@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="Barrens"
-run/main_scene="res://Debug.tscn"
+run/main_scene="res://Scenes/Debug.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Models/": "red",
+"res://Models/Player/": "yellow",
+"res://Scenes/": "green",
+"res://Weapons/": "purple",
+"res://Weapons/Shotgun/": "pink"
+}
 
 [rendering]
 
