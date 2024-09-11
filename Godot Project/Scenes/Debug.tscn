@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=21 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Texture2D" uid="uid://bc7lq6eg8ryt5" path="res://Models/Player/Coat.png" id="1_qrqjr"]
 [ext_resource type="Script" path="res://Models/Player/PlayerController.gd" id="1_vh0g0"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bkhjlab7jkolg" path="res://Models/Player/RightLeg.png" id="9_pggau"]
 [ext_resource type="Texture2D" uid="uid://bwcd3cakf8j3e" path="res://Models/Player/LeftFoot.png" id="11_mk3id"]
 [ext_resource type="Texture2D" uid="uid://b26dhah1welrd" path="res://Models/Player/RightFoot.png" id="13_h4w6t"]
-[ext_resource type="SkeletonModificationStack2D" uid="uid://b3lex3m7w7bs7" path="res://Models/Player/RightAnimation.tres" id="14_ofc8o"]
+[ext_resource type="SkeletonModificationStack2D" uid="uid://b3lex3m7w7bs7" path="res://Models/Player/RightIK.tres" id="14_ofc8o"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iawck"]
 load_path = "res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f.ctex"
@@ -22,84 +22,176 @@ load_path = "res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01b5n"]
 load_path = "res://.godot/imported/RightKnee.png-61797b381eb60671d7187bc5562b2aa0.ctex"
 
+[sub_resource type="Animation" id="Animation_2y7vr"]
+resource_name = "Idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left Hand Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-12.2, -5.20001), Vector2(-11.4, -5), Vector2(-12.2, -5.20001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right Hand Target:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.43333, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(35, 3.59999), Vector2(36.8, 1.2), Vector2(35, 3.59999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/Torso/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.36667, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0174533, 0.0174533, -0.0174533]
+}
+
+[sub_resource type="Animation" id="Animation_i6dkc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Left Hand Target:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12.2, -5.20001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Right Hand Target:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(35, 3.59999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/Torso/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epl7e"]
+_data = {
+"Idle": SubResource("Animation_2y7vr"),
+"RESET": SubResource("Animation_i6dkc")
+}
+
 [node name="Debug Scene" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [33.0]
 
 [node name="Player" type="Node2D" parent="."]
 texture_filter = 1
 position = Vector2(582, 349)
+scale = Vector2(5, 5)
 script = ExtResource("1_vh0g0")
 
 [node name="Coat" type="Sprite2D" parent="Player"]
-position = Vector2(0, -2)
+position = Vector2(-2.28882e-05, -2)
+scale = Vector2(1, 1)
 texture = ExtResource("1_qrqjr")
 
 [node name="Head" type="Sprite2D" parent="Player/Coat"]
 z_index = 3
-position = Vector2(0.163696, -19.9995)
+position = Vector2(0.163612, -19.9995)
+rotation = 0.0166292
+scale = Vector2(0.999859, 0.999859)
 texture = ExtResource("2_nb7ar")
 offset = Vector2(1, 22)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/Coat"]
 z_index = 6
-position = Vector2(-17.0233, -19.0477)
-rotation = 0.365863
-scale = Vector2(0.999998, 0.999998)
+position = Vector2(-17.0197, -19.0377)
+rotation = 0.310457
+scale = Vector2(0.999384, 0.999384)
 texture = ExtResource("3_kj2go")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Coat/LeftElbow"]
 z_index = -1
-position = Vector2(17.7458, 10.3032)
-rotation = -0.166399
-scale = Vector2(1, 1)
+position = Vector2(17.8272, 10.8077)
+rotation = -0.164542
+scale = Vector2(0.999711, 0.999711)
 texture = ExtResource("4_8xayp")
 
 [node name="RightHand" type="Sprite2D" parent="Player/Coat/LeftElbow/Weapon"]
-position = Vector2(39.5231, -1.41443)
-rotation = 0.700512
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(39.9275, -1.45028)
+rotation = 0.58829
+scale = Vector2(0.998922, 0.998922)
 texture = ExtResource("5_fe20w")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/Coat/LeftElbow"]
-position = Vector2(-5.49011, 12.3101)
-rotation = -0.450118
+position = Vector2(-5.37169, 12.2206)
+rotation = -0.413114
 scale = Vector2(1, 1)
 texture = ExtResource("3_jwq7c")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Coat"]
-position = Vector2(17.5097, -15.7622)
-rotation = -0.124598
-scale = Vector2(0.999997, 0.999997)
+position = Vector2(17.5933, -15.5983)
+rotation = -0.163305
+scale = Vector2(0.998101, 0.998101)
 texture = ExtResource("7_df1ck")
 offset = Vector2(-18, 19)
 
 [node name="RightArm" type="Sprite2D" parent="Player/Coat/RightElbow"]
 z_index = -1
-position = Vector2(2.6142, 14.8355)
-rotation = -0.438463
-scale = Vector2(1, 1)
+position = Vector2(2.85791, 14.8138)
+rotation = -0.56553
+scale = Vector2(0.999918, 0.999918)
 texture = ExtResource("6_0t3nv")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="Torso" type="Sprite2D" parent="Player/Coat"]
 z_index = -4
 position = Vector2(0, 6)
+scale = Vector2(1, 1)
 texture = ExtResource("7_2yta8")
 
 [node name="LeftKnee" type="Sprite2D" parent="Player/Coat/Torso"]
 z_index = 10
-position = Vector2(-6.99988, 4)
-rotation = -0.0033505
-scale = Vector2(0.999994, 0.999994)
+position = Vector2(-6.99982, 4.00002)
+rotation = -0.00335813
+scale = Vector2(1, 1)
 texture = SubResource("CompressedTexture2D_iawck")
 offset = Vector2(7, -6)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/Coat/Torso/LeftKnee"]
 z_index = -2
-position = Vector2(7.0011, -5.41324)
+position = Vector2(7.00097, -5.41366)
+scale = Vector2(1, 1)
 texture = ExtResource("8_wksww")
 
 [node name="LeftFoot" type="Sprite2D" parent="Player/Coat/Torso/LeftKnee/LeftLeg"]
@@ -108,14 +200,14 @@ texture = ExtResource("11_mk3id")
 
 [node name="RightKnee" type="Sprite2D" parent="Player/Coat/Torso"]
 z_index = 20
-position = Vector2(7, 4.00003)
-rotation = 0.00251317
+position = Vector2(7.00006, 4.00001)
+rotation = 0.00251365
 texture = SubResource("CompressedTexture2D_01b5n")
 offset = Vector2(-7, -6)
 
 [node name="RightLeg" type="Sprite2D" parent="Player/Coat/Torso/RightKnee"]
 z_index = -1
-position = Vector2(-7.01563, -5.38019)
+position = Vector2(-7.01546, -5.38061)
 scale = Vector2(0.999998, 0.999998)
 texture = ExtResource("9_pggau")
 
@@ -132,6 +224,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
+scale = Vector2(0.999859, 0.999859)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/Skeleton2D/Torso/Head"]
@@ -148,6 +241,7 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Right Arm" type="Bone2D" parent="Player/Skeleton2D/Torso/Right Elbow"]
 position = Vector2(14.9063, -1.67942)
 rotation = -1.19052
+scale = Vector2(1, 1)
 rest = Transform2D(0.913015, -0.407687, 0.40769, 0.913022, 14.9066, -1.6785)
 metadata/_local_pose_override_enabled_ = true
 
@@ -174,7 +268,6 @@ remote_path = NodePath("../../../../Coat/RightElbow")
 [node name="Left Elbow" type="Bone2D" parent="Player/Skeleton2D/Torso"]
 position = Vector2(25.1065, -16.8423)
 rotation = 2.46435
-scale = Vector2(1, 1)
 rest = Transform2D(-0.916347, 0.388974, -0.388974, -0.916347, 26.1296, -16.8418)
 metadata/_local_pose_override_enabled_ = true
 
@@ -188,7 +281,6 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Left Hand" type="Bone2D" parent="Player/Skeleton2D/Torso/Left Elbow/Left Arm"]
 position = Vector2(13.2551, 2.12175)
 rotation = -0.301919
-scale = Vector2(1, 1)
 rest = Transform2D(0.994704, 0.0996467, -0.0996419, 0.994657, 13.2835, 2.13715)
 metadata/_local_pose_override_enabled_ = true
 
@@ -288,3 +380,8 @@ position = Vector2(-7.6, 47)
 
 [node name="Right Foot Target" type="Node2D" parent="Player"]
 position = Vector2(7.4, 47.4)
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_epl7e")
+}

@@ -2,9 +2,9 @@ extends Node2D
 
 var playerSpeed = 5
 
-# Called when the node enters the scene tree for the first time.
+# Called when the player enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$MainAnimationPlayer.play("Idle")
 
 # Called every physics tick.
 func _physics_process(delta: float) -> void:
