@@ -27,15 +27,21 @@ var walkingBackwards = false
 func _physics_process(delta: float) -> void:
 	# player movement
 	if currentMovementKeypresses.size() > 0:
-		var movementVector = currentMovementKeypresses[0]
+		var movementVector = Vector2.ZERO
 		walking = true
 		
-		# walking animations
+		# calculate the total movement velocity
+		for currentMovementVector in  currentMovementKeypresses:
+			movementVector += currentMovementVector
+		
+		# normalize the vector to ensure same speed regardless of direction
+		movementVector = movementVector.normalized()
+		
+		# play a specific animation depending on speed and direction
 		walkingBackwards = movementVector.x < 0
-		if walkingBackwards:
-			currentAnimation = BACKWARDSWALK
-		else:
-			currentAnimation = WALK
+		currentAnimation = BACKWARDSWALK if walkingBackwards else WALK
+		if movementVector.length_squared() == 0:
+			currentAnimation = IDLE
 			
 		# move player
 		if walkingBackwards:
