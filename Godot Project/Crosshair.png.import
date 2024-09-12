@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0a231r76ohql"
-path="res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f.ctex"
+uid="uid://ccxkmhbm1vsqw"
+path="res://.godot/imported/Crosshair.png-1956ffc22614618aaaacdf35a0cc4cd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Player/LeftKnee.png"
-dest_files=["res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f.ctex"]
+source_file="res://Crosshair.png"
+dest_files=["res://.godot/imported/Crosshair.png-1956ffc22614618aaaacdf35a0cc4cd2.ctex"]
 
 [params]
 
