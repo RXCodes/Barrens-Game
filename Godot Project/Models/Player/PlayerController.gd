@@ -2,7 +2,7 @@ extends Node2D
 
 var playerSpeed = 3.5
 
-# animations
+# player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
 var blendSpeed = 7.5
 var currentAnimation = IDLE
