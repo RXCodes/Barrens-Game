@@ -2,9 +2,24 @@ extends Node2D
 
 var playerSpeed = 3.5
 
-# Called when the player enters the scene tree for the first time.
-func _ready() -> void:
-	$MainAnimationPlayer.play("Idle")
+# animations
+enum {IDLE, WALK, BACKWARDSWALK}
+var blendSpeed = 7.5
+var currentAnimation = IDLE
+var animationValues = {
+	"parameters/WalkProgress/blend_amount": 0,
+	"parameters/WalkBackwardsProgress/blend_amount": 0
+}
+func _process(delta: float) -> void:
+	# blend animations so we can have smoother transitions between them
+	var animSpeed = delta * blendSpeed
+	match currentAnimation:
+		WALK: animationValues["parameters/WalkProgress/blend_amount"] += animSpeed * 2.0
+		BACKWARDSWALK: animationValues["parameters/WalkBackwardsProgress/blend_amount"] += animSpeed * 2.0
+	for key in animationValues.keys():
+		animationValues[key] -= animSpeed
+		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
+		$AnimationTree[key] = animationValues[key]
 
 # Called every physics tick.
 var walking = false
@@ -13,21 +28,14 @@ func _physics_process(delta: float) -> void:
 	# player movement
 	if currentMovementKeypresses.size() > 0:
 		var movementVector = currentMovementKeypresses[0]
+		walking = true
 		
 		# walking animations
-		var currentlyWalkingBackwards = movementVector.x < 0
-		var shouldChangeAnimation = false
-		if not walking:
-			shouldChangeAnimation = true
-			walking = true
-		if not shouldChangeAnimation:
-			shouldChangeAnimation = currentlyWalkingBackwards != walkingBackwards
-		walkingBackwards = currentlyWalkingBackwards
-		if shouldChangeAnimation: 
-			if walkingBackwards:
-				$MainAnimationPlayer.play("Walk Backwards")
-			else:
-				$MainAnimationPlayer.play("Walk")
+		walkingBackwards = movementVector.x < 0
+		if walkingBackwards:
+			currentAnimation = BACKWARDSWALK
+		else:
+			currentAnimation = WALK
 			
 		# move player
 		if walkingBackwards:
@@ -35,9 +43,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			position += movementVector * playerSpeed
 	else:
-		if walking:
-			$MainAnimationPlayer.play("Idle")
-			walking = false
+		currentAnimation = IDLE
+		walking = false
 
 # keep track of which movement keys are being pressed
 var currentMovementKeypresses: Array = []
