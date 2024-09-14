@@ -1,6 +1,9 @@
 extends Node2D
 
 var playerSpeed = 3.5
+var playerRender: EntityRender
+func _ready() -> void:
+	playerRender = get_parent()
 
 # player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
@@ -20,10 +23,17 @@ func _process(delta: float) -> void:
 		animationValues[key] -= animSpeed
 		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
 		$AnimationTree[key] = animationValues[key]
+	
+	# calculate normal vector to crosshair and flip player if needed
+	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.global_position))
+	facingLeft = crosshairNormal.x < 0
+	playerRender.flipHorizontally = facingLeft
+	
 
 # Called every physics tick.
 var walking = false
 var walkingBackwards = false
+var facingLeft = false
 func _physics_process(delta: float) -> void:
 	# player movement
 	if currentMovementKeypresses.size() > 0:
@@ -38,16 +48,16 @@ func _physics_process(delta: float) -> void:
 		movementVector = movementVector.normalized()
 		
 		# play a specific animation depending on speed and direction
-		walkingBackwards = movementVector.x < 0
+		walkingBackwards = movementVector.x > 0 if facingLeft else movementVector.x < 0
 		currentAnimation = BACKWARDSWALK if walkingBackwards else WALK
 		if movementVector.length_squared() == 0:
 			currentAnimation = IDLE
-			
-		# move player
+		
+		# finally move the player
+		movementVector *= playerSpeed
 		if walkingBackwards:
-			position += movementVector * playerSpeed * 0.6
-		else:
-			position += movementVector * playerSpeed
+			movementVector *= 0.6
+		position += movementVector
 	else:
 		currentAnimation = IDLE
 		walking = false
