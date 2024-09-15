@@ -28,7 +28,6 @@ func _process(delta: float) -> void:
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.global_position))
 	facingLeft = crosshairNormal.x < 0
 	playerRender.flipHorizontally = facingLeft
-	
 
 # Called every physics tick.
 var walking = false

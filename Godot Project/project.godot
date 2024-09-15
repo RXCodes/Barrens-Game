@@ -14,9 +14,15 @@ config/name="Barrens"
 run/main_scene="res://Scenes/Debug.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[display]
+
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
+
 [file_customization]
 
 folder_colors={
+"res://Environment/": "yellow",
 "res://Models/": "red",
 "res://Models/Player/": "yellow",
 "res://Scenes/": "green",
