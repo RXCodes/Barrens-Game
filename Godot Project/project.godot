@@ -26,6 +26,7 @@ folder_colors={
 "res://Models/": "red",
 "res://Models/Player/": "yellow",
 "res://Scenes/": "green",
+"res://UI/": "blue",
 "res://Weapons/": "purple",
 "res://Weapons/Shotgun/": "pink"
 }
