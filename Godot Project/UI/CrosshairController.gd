@@ -1,7 +1,7 @@
 extends Sprite2D
 class_name Crosshair
 static var current
-static var crosshairPosition
+static var crosshairPosition = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
