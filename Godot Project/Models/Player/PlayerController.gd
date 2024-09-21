@@ -1,5 +1,7 @@
 extends Node2D
 
+var sprintingMultiplier = 1.5
+var isSprinting = false
 var playerSpeed = 3.5
 var playerRender: EntityRender
 func _ready() -> void:
@@ -53,7 +55,12 @@ func _physics_process(delta: float) -> void:
 			currentAnimation = IDLE
 		
 		# finally move the player
-		movementVector *= playerSpeed
+		
+		var speed = playerSpeed
+		if isSprinting:
+			speed *= sprintingMultiplier
+		movementVector *= speed
+		
 		if walkingBackwards:
 			movementVector *= 0.6
 		position += movementVector
@@ -79,3 +86,8 @@ func _input(event: InputEvent) -> void:
 					currentMovementKeypresses.push_front(moveVector)
 			else:
 				currentMovementKeypresses.erase(moveVector)
+				
+	if Input.is_key_pressed(KEY_SHIFT):
+		isSprinting = true
+	else:
+		isSprinting = false
