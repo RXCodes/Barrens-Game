@@ -1,4 +1,19 @@
 # Barrens-Game
-A top-down western shooter game created using Godot for CSE 350.
+*A top-down western shooter game created using Godot for CSE 350.*
 
-Try it out: https://rxcodes.github.io/Barrens-Game/Export/index.html
+The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of NPCs and enemies. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
+
+Through this project, we will enhance our programming skills by learning a new programming language, `GDScript`, and also while gaining valuable experience working as a cohesive team. By using open-source material, creating our own assets, and collaborating through GitHub, we hope to communicate effectively which is vital for our project's success. By doing something none of us have done before, we will learn a completely new perspective of programming we are not used to. 
+
+The relevance of this project is in the opportunity to use tools like **Godot** and **GitHub**, which are often utilized in industry level projects.  While learning to create a product that requires creative problem-solving, technical knowledge, and teamwork, our group will be pushed to our boundaries, developing essential, and new skills applicable to future software development projects and other programming aspects.
+
+# Try It Out
+**Development Version**
+https://rxcodes.github.io/Barrens-Game/Export/index.html
+- This version is for testing purposes only and may not represent the final gameplay.
+- May contain unintended bugs and incomplete features.
+
+**Production Version**
+_TBA_
+- This version is ready for the public to play and represents a playable official release.
+- What you see is what is intended - bugs encountered should be minimal to none.
