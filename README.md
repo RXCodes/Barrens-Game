@@ -1,7 +1,13 @@
-# Barrens-Game
-*A top-down western shooter game created using Godot for CSE 350.*
+# Description
+An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
 
-The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of NPCs and enemies. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
+# Technical Info
+- This game is supported on all devices with a keyboard and mouse/trackpad.
+- You can play this game on the browser by using one of the links under the **Try It Out** section of this page.
+- Due to technical limitations, this game may not be able to run on iOS devices.
+
+# Project Goal
+*This is top-down western shooter game created using Godot for CSE 350.* The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of NPCs and enemies. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
 
 Through this project, we will enhance our programming skills by learning a new programming language, `GDScript`, and also while gaining valuable experience working as a cohesive team. By using open-source material, creating our own assets, and collaborating through GitHub, we hope to communicate effectively which is vital for our project's success. By doing something none of us have done before, we will learn a completely new perspective of programming we are not used to. 
 
