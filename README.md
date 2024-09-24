@@ -15,7 +15,7 @@ The relevance of this project is in the opportunity to use tools like **Godot** 
 
 # Try It Out
 **Development Version**
--> https://rxcodes.github.io/Barrens-Game/Export/index.html
+-> https://rxcodes.github.io/Barrens-Game/Export/Development/index.html
 - This version is for testing purposes only and may not represent the final gameplay.
 - May contain unintended bugs and incomplete features.
 
