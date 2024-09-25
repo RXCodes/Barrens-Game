@@ -1,6 +1,14 @@
 # Description
 An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
 
+# Credits
+Thanks to students at **UofL J.B. Speed School of Engineering** for this project.
+- Robinson X.
+- Justin R.
+- Grey N.
+- Joseph N.
+- Chris P.
+
 # Technical Info
 - This game is supported on all devices with a keyboard and mouse/trackpad.
 - You can play this game on the browser by using one of the links under the **Try It Out** section of this page.
