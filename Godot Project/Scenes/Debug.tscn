@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=39 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Texture2D" uid="uid://bc7lq6eg8ryt5" path="res://Models/Player/Coat.png" id="1_qrqjr"]
 [ext_resource type="Script" path="res://Models/Player/PlayerController.gd" id="1_vh0g0"]
@@ -39,6 +39,8 @@ load_path = "res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v60d4"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1egbw"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gms8f"]
 animation = &"Walk Backwards"
 
@@ -50,18 +52,21 @@ animation = &"Walk"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2do1i"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bko5g"]
+graph_offset = Vector2(-46.4035, 84.9276)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_v60d4")
-nodes/Idle/position = Vector2(60, 140)
+nodes/Idle/position = Vector2(-260, 140)
+nodes/Speed/node = SubResource("AnimationNodeTimeScale_1egbw")
+nodes/Speed/position = Vector2(580, 160)
 nodes/Walk/node = SubResource("AnimationNodeAnimation_oon0j")
-nodes/Walk/position = Vector2(180, 342)
+nodes/Walk/position = Vector2(-260, 320)
 "nodes/Walk Backwards/node" = SubResource("AnimationNodeAnimation_gms8f")
-"nodes/Walk Backwards/position" = Vector2(360, 378)
+"nodes/Walk Backwards/position" = Vector2(-80, 360)
 nodes/WalkBackwardsProgress/node = SubResource("AnimationNodeBlend2_mc6is")
-nodes/WalkBackwardsProgress/position = Vector2(576, 144)
+nodes/WalkBackwardsProgress/position = Vector2(180, 160)
 nodes/WalkProgress/node = SubResource("AnimationNodeBlend2_2do1i")
-nodes/WalkProgress/position = Vector2(378, 144)
-nodes/output/position = Vector2(774, 198)
-node_connections = [&"WalkBackwardsProgress", 0, &"WalkProgress", &"WalkBackwardsProgress", 1, &"Walk Backwards", &"WalkProgress", 0, &"Idle", &"WalkProgress", 1, &"Walk", &"output", 0, &"WalkBackwardsProgress"]
+nodes/WalkProgress/position = Vector2(-60, 120)
+nodes/output/position = Vector2(900, 180)
+node_connections = [&"Speed", 0, &"WalkBackwardsProgress", &"WalkBackwardsProgress", 0, &"WalkProgress", &"WalkBackwardsProgress", 1, &"Walk Backwards", &"WalkProgress", 0, &"Idle", &"WalkProgress", 1, &"Walk", &"output", 0, &"Speed"]
 
 [sub_resource type="Animation" id="Animation_2y7vr"]
 resource_name = "Idle"
@@ -811,6 +816,7 @@ position = Vector2(7.4, 47.4)
 [node name="AnimationTree" type="AnimationTree" parent="PlayerRender/Player"]
 tree_root = SubResource("AnimationNodeBlendTree_bko5g")
 anim_player = NodePath("../MainAnimationPlayer")
+parameters/Speed/scale = 1.0
 parameters/WalkBackwardsProgress/blend_amount = 0
 parameters/WalkProgress/blend_amount = 0.0
 

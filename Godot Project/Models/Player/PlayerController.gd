@@ -55,10 +55,12 @@ func _physics_process(delta: float) -> void:
 			currentAnimation = IDLE
 		
 		# finally move the player
-		
 		var speed = playerSpeed
-		if isSprinting:
+		if isSprinting and not walkingBackwards:
 			speed *= sprintingMultiplier
+			$AnimationTree["parameters/Speed/scale"] = 1.5
+		else:
+			$AnimationTree["parameters/Speed/scale"] = 1.0
 		movementVector *= speed
 		
 		if walkingBackwards:
