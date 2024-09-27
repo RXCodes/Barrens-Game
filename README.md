@@ -3,6 +3,7 @@ An evil tribe has invaded your land and inflicted chaos on multiple villages. Th
 
 # Credits
 Thanks to students at **UofL J.B. Speed School of Engineering** for this project.
+CSE 350 - Section 50
 - Robinson X.
 - Justin R.
 - Grey N.
