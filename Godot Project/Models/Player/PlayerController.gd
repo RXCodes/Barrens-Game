@@ -80,7 +80,10 @@ var movementKeyBinds = {
 }
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		var key = event.as_text_key_label()
+		var key: String = event.as_text_key_label()
+		key = key.trim_prefix("Shift+")
+		
+		# keep track of WASD movement
 		if movementKeyBinds.has(key):
 			var moveVector = movementKeyBinds[key]
 			if event.pressed:
@@ -88,7 +91,8 @@ func _input(event: InputEvent) -> void:
 					currentMovementKeypresses.push_front(moveVector)
 			else:
 				currentMovementKeypresses.erase(moveVector)
-				
+	
+	# when holding shift, the player is sprinting
 	if Input.is_key_pressed(KEY_SHIFT):
 		isSprinting = true
 	else:
