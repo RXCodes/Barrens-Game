@@ -1,5 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=41 format=3 uid="uid://babhxms1scsca"]
 
+[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Texture2D" uid="uid://bc7lq6eg8ryt5" path="res://Models/Player/Coat.png" id="1_qrqjr"]
 [ext_resource type="Script" path="res://Models/Player/PlayerController.gd" id="1_vh0g0"]
 [ext_resource type="Texture2D" uid="uid://cy71otyfeqvxd" path="res://Models/Player/Head.png" id="2_nb7ar"]
@@ -22,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://Models/Shadow.png" id="20_eeijc"]
 [ext_resource type="Texture2D" uid="uid://ckqmv5xntt73r" path="res://Environment/Sand.png" id="20_xgqmk"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
+[ext_resource type="Script" path="res://UI/CameraManager.gd" id="21_mx4fk"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm8et"]
@@ -493,21 +495,45 @@ _data = {
 position = Vector2(0, 4)
 metadata/_edit_horizontal_guides_ = [33.0]
 
-[node name="Screen UI" type="Control" parent="."]
+[node name="ScreenUI" type="Control" parent="."]
+process_priority = 10
 z_index = 4096
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3newm")
 metadata/_edit_use_anchors_ = true
 
-[node name="Crosshair" type="Sprite2D" parent="Screen UI"]
+[node name="Crosshair" type="TextureRect" parent="ScreenUI"]
 texture_filter = 1
-position = Vector2(202, 5)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("16_mx3cv")
 script = ExtResource("17_mq60l")
 
+[node name="Label" type="Label" parent="ScreenUI"]
+layout_mode = 0
+offset_left = -619.0
+offset_top = -345.0
+offset_right = -371.0
+offset_bottom = -319.0
+text = "put some UI here"
+label_settings = ExtResource("22_ueea8")
+
 [node name="PlayerRender" type="CanvasGroup" parent="."]
+process_priority = 5
 visibility_layer = 2
 z_as_relative = false
 material = SubResource("ShaderMaterial_tm8et")
@@ -826,8 +852,10 @@ libraries = {
 "": SubResource("AnimationLibrary_epl7e")
 }
 
-[node name="Camera2D" type="Camera2D" parent="PlayerRender/Player"]
+[node name="PlayerCamera" type="Camera2D" parent="PlayerRender/Player"]
 position_smoothing_enabled = true
+position_smoothing_speed = 6.0
+script = ExtResource("21_mx4fk")
 
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -4096
@@ -838,6 +866,7 @@ texture = ExtResource("20_xgqmk")
 region_enabled = true
 region_rect = Rect2(0, 0, 200, 200)
 script = ExtResource("21_khkv7")
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = -234.0

@@ -1,11 +1,18 @@
-extends Node2D
+class_name Player extends Node2D
+static var current: Player
+var renderer: EntityRender
 
-var sprintingMultiplier = 1.5
+var sprintingSpeedMultiplier = 1.5
 var isSprinting = false
 var playerSpeed = 3.5
-var playerRender: EntityRender
+var health = 100.0
+
+var sprintZoomOffset = -0.125
+var sprintZoomDampening = 0.075
+
 func _ready() -> void:
-	playerRender = get_parent()
+	renderer = get_parent()
+	current = self
 
 # player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
@@ -29,7 +36,12 @@ func _process(delta: float) -> void:
 	# calculate normal vector to crosshair and flip player if needed
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.global_position))
 	facingLeft = crosshairNormal.x < 0
-	playerRender.flipHorizontally = facingLeft
+	renderer.flipHorizontally = facingLeft
+	
+	# zoom camera when player is sprinting
+	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards
+	var targetZoomOffset = sprintZoomOffset if shouldZoomCamera else 0.0
+	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
 
 # Called every physics tick.
 var walking = false
@@ -57,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		# finally move the player
 		var speed = playerSpeed
 		if isSprinting and not walkingBackwards:
-			speed *= sprintingMultiplier
+			speed *= sprintingSpeedMultiplier
 			$AnimationTree["parameters/Speed/scale"] = 1.5
 		else:
 			$AnimationTree["parameters/Speed/scale"] = 1.0
@@ -92,8 +104,5 @@ func _input(event: InputEvent) -> void:
 			else:
 				currentMovementKeypresses.erase(moveVector)
 	
-	# when holding shift, the player is sprinting
-	if Input.is_key_pressed(KEY_SHIFT):
-		isSprinting = true
-	else:
-		isSprinting = false
+	# player is sprinting while shift is held
+	isSprinting = Input.is_key_pressed(KEY_SHIFT)

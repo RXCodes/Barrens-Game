@@ -16,8 +16,9 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [display]
 
-window/stretch/aspect="expand"
-window/stretch/scale_mode="integer"
+window/size/viewport_width=1280
+window/size/viewport_height=800
+window/stretch/mode="viewport"
 
 [file_customization]
 
@@ -30,6 +31,10 @@ folder_colors={
 "res://Weapons/": "purple",
 "res://Weapons/Shotgun/": "pink"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [rendering]
 
