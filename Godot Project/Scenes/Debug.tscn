@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=49 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Texture2D" uid="uid://bc7lq6eg8ryt5" path="res://Models/Player/Coat.png" id="1_qrqjr"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Models/EntityRenderer.gd" id="3_atbdy"]
 [ext_resource type="Texture2D" uid="uid://blu2aknh1cx8i" path="res://Models/Player/LeftArm.png" id="3_jwq7c"]
 [ext_resource type="Texture2D" uid="uid://bm48ayf5vh1d7" path="res://Models/Player/LeftElbow.png" id="3_kj2go"]
-[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://Weapons/Shotgun/Weapon.png" id="4_8xayp"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://Weapons/Shotgun/Shotgun.png" id="4_8xayp"]
 [ext_resource type="Texture2D" uid="uid://cpc0ey12mu75a" path="res://Models/Player/RightHand.png" id="5_fe20w"]
 [ext_resource type="Texture2D" uid="uid://dk6lt2vxpt78y" path="res://Models/Player/RightArm.png" id="6_0t3nv"]
 [ext_resource type="Texture2D" uid="uid://di4mjivv4rn4j" path="res://Models/Player/RightElbow.png" id="7_df1ck"]
@@ -20,11 +20,16 @@
 [ext_resource type="SkeletonModificationStack2D" uid="uid://b3lex3m7w7bs7" path="res://Models/Player/InverseKinematics.tres" id="14_ofc8o"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="17_mq60l"]
+[ext_resource type="Script" path="res://Weapons/Gun.gd" id="18_2h52x"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://Models/Shadow.png" id="20_eeijc"]
 [ext_resource type="Texture2D" uid="uid://ckqmv5xntt73r" path="res://Environment/Sand.png" id="20_xgqmk"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="Script" path="res://UI/CameraManager.gd" id="21_mx4fk"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
+[ext_resource type="Texture2D" uid="uid://uu1x68u1mgb5" path="res://Weapons/Shotgun/ShotgunShell.png" id="27_f6y28"]
+[ext_resource type="AudioStream" uid="uid://cb6ha26jlq24k" path="res://Weapons/Shotgun/ShotgunShoot.mp3" id="28_lux8q"]
+[ext_resource type="AudioStream" uid="uid://b01w7am2dnink" path="res://Weapons/Shotgun/ShotgunCock.mp3" id="29_vey1i"]
+[ext_resource type="AudioStream" uid="uid://buvjgbel4tijd" path="res://Weapons/Shotgun/ShotgunReload.mp3" id="30_cx2v1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm8et"]
 shader = ExtResource("3_34r7j")
@@ -491,6 +496,105 @@ _data = {
 "Walk Backwards": SubResource("Animation_elbte")
 }
 
+[sub_resource type="Animation" id="Animation_nf2tp"]
+resource_name = "Fire-Shotgun"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Left Hand Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.566667, 0.733333, 0.866667, 0.999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-21, -8), Vector2(-10, 0), Vector2(-12, 7), Vector2(2, -7), Vector2(-2, -2), Vector2(-14, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Right Hand Target:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.6, 0.733333, 0.866667, 0.999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(35, -31), Vector2(40, 13), Vector2(41, 14), Vector2(37, -16), Vector2(23, 3), Vector2(30, -7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.666667, 0.833333, 1),
+"transitions": PackedFloat32Array(0.353553, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.74533, -1.5708, -1.5708, -1.62316, -1.5708]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.733333, 0.866667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["playCockingSound"],
+"method": &"callGunMethod"
+}, {
+"args": ["dropShell"],
+"method": &"callGunMethod"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pdiy5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Left Hand Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Right Hand Target:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(33, -19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_guau6"]
+_data = {
+"Fire-Shotgun": SubResource("Animation_nf2tp"),
+"RESET": SubResource("Animation_pdiy5")
 [node name="Debug Scene" type="Node2D"]
 position = Vector2(0, 4)
 metadata/_edit_horizontal_guides_ = [33.0]
@@ -852,10 +956,18 @@ libraries = {
 "": SubResource("AnimationLibrary_epl7e")
 }
 
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="PlayerRender/Player"]
+root_node = NodePath("../MainAnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_guau6")
+}
+
 [node name="PlayerCamera" type="Camera2D" parent="PlayerRender/Player"]
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 script = ExtResource("21_mx4fk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PlayerRender/Player"]
 
 [node name="Ground" type="Sprite2D" parent="."]
 z_index = -4096
@@ -887,3 +999,20 @@ text = "do you like this font? also what should
 we put here?"
 label_settings = ExtResource("22_ueea8")
 horizontal_alignment = 1
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Shotgun" type="Node2D" parent="Weapons"]
+script = ExtResource("18_2h52x")
+identifier = "Shotgun"
+displayName = "Shotgun"
+fireRate = 1.0
+automatic = false
+maximumMagCapacity = 5
+bulletMultiplier = 8
+reloadTime = 2.0
+texture = ExtResource("4_8xayp")
+shellTexture = ExtResource("27_f6y28")
+shootSound = ExtResource("28_lux8q")
+cockingSound = ExtResource("29_vey1i")
+reloadSound = ExtResource("30_cx2v1")

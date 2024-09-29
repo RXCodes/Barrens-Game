@@ -7,6 +7,7 @@ var originalZoom = 1.0
 
 var aimingPositionOffset = Vector2.ZERO
 var originalPositionOffset = Vector2.ZERO
+var gunFireShakeOffset = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +24,7 @@ func _process(delta: float) -> void:
 	# offset camera
 	var finalOffset = originalPositionOffset
 	finalOffset += aimingPositionOffset
+	finalOffset += gunFireShakeOffset
 	offset = finalOffset
 	
 func setZoom(zoom: float, duration: float) -> void:

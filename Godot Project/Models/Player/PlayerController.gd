@@ -10,9 +10,19 @@ var health = 100.0
 var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
 
+var gunInteractor: Gun.Interactor
+var gunFireShakeDampening = 0.2
+var shooting = false
+
 func _ready() -> void:
 	renderer = get_parent()
 	current = self
+	await get_tree().process_frame
+	gunInteractor = Gun.Interactor.new()
+	gunInteractor.originNode = self
+	gunInteractor.gunSprite = $"Coat/LeftElbow/Weapon"
+	gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
+	gunInteractor.onFire = self.onFire
 
 # player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
@@ -42,6 +52,12 @@ func _process(delta: float) -> void:
 	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards
 	var targetZoomOffset = sprintZoomOffset if shouldZoomCamera else 0.0
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
+	
+	# weapon functionality
+	gunInteractor.currentWeapon.process(delta)
+	if shooting:
+		gunInteractor.currentWeapon.fire(true)
+	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
 
 # Called every physics tick.
 var walking = false
@@ -74,7 +90,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimationTree["parameters/Speed/scale"] = 1.0
 		movementVector *= speed
-		
 		if walkingBackwards:
 			movementVector *= 0.6
 		position += movementVector
@@ -104,5 +119,25 @@ func _input(event: InputEvent) -> void:
 			else:
 				currentMovementKeypresses.erase(moveVector)
 	
+	if event is InputEventMouseButton:
+		shooting = event.pressed
+		if shooting:
+			gunInteractor.currentWeapon.fire(false)
+	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)
+
+func onFire() -> void:
+	# briefly shake screen
+	var recoilMultiplier = 7.5
+	var random = Vector2(randf_range(-250, 250), randf_range(-250, 250))
+	var crosshairNormal = Vector2.from_angle(Crosshair.current.global_position.angle_to_point(global_position + random)).normalized()
+	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier
+	
+	# animate shooting
+	$"ActionAnimationPlayer".stop()
+	$"ActionAnimationPlayer".play("Fire-" + gunInteractor.currentWeapon.identifier)
+
+func callGunMethod(string: String):
+	if gunInteractor.currentWeapon.has_method(string):
+		gunInteractor.currentWeapon.call(string)
