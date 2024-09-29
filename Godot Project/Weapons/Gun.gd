@@ -69,6 +69,8 @@ func fire(holding: bool) -> void:
 		return
 	if not canFire:
 		return
+	if currentMagCapacity <= 0:
+		return
 	if needsCocking:
 		if not cockedGun:
 			return
@@ -98,13 +100,13 @@ func reload() -> void:
 				gunInteractor.onReload.call()
 			reloadTimer = TimeManager.waitTimer(reloadTime)
 			await reloadTimer.timeout
-			if gunInteractor.onFinishReload:
-				gunInteractor.onFinishReload.call()
-			reloading = false
 			var ammoAmountNeeded = maximumMagCapacity - currentMagCapacity
 			var ammoLeft = max(leftoverAmmoCount - ammoAmountNeeded, 0)
 			currentMagCapacity = leftoverAmmoCount - ammoLeft
 			leftoverAmmoCount = ammoLeft
+			if gunInteractor.onFinishReload:
+				gunInteractor.onFinishReload.call()
+			reloading = false
 			if needsCocking:
 				cockWeapon()
 

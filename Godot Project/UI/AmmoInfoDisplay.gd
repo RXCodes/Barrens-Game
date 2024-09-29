@@ -24,11 +24,14 @@ static func setMagCapacity(amount: int) -> void:
 	else:
 		magCapacity.self_modulate = Color.WHITE
 
+static var previousGunfireTween: Tween
 static func gunFired() -> void:
 	magCapacity.scale = Vector2(1.35, 1.35)
-	var tween = current.get_tree().create_tween()
-	tween.tween_property(magCapacity, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_SPRING)
-	tween.play()
+	if previousGunfireTween:
+		previousGunfireTween.kill()
+	previousGunfireTween = current.get_tree().create_tween()
+	previousGunfireTween.tween_property(magCapacity, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	previousGunfireTween.play()
 
 static func gunReloaded() -> void:
 	ammoLeft.scale = Vector2(1.35, 1.35)
