@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=56 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Texture2D" uid="uid://bc7lq6eg8ryt5" path="res://Models/Player/Coat.png" id="1_qrqjr"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://blu2aknh1cx8i" path="res://Models/Player/LeftArm.png" id="3_jwq7c"]
 [ext_resource type="Texture2D" uid="uid://bm48ayf5vh1d7" path="res://Models/Player/LeftElbow.png" id="3_kj2go"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://Weapons/Shotgun/Shotgun.png" id="4_8xayp"]
+[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_uqaru"]
+[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_a4mxq"]
 [ext_resource type="Texture2D" uid="uid://cpc0ey12mu75a" path="res://Models/Player/RightHand.png" id="5_fe20w"]
 [ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="5_fhfcf"]
 [ext_resource type="Texture2D" uid="uid://dk6lt2vxpt78y" path="res://Models/Player/RightArm.png" id="6_0t3nv"]
@@ -738,6 +740,7 @@ script = ExtResource("1_3newm")
 metadata/_edit_use_anchors_ = true
 
 [node name="Crosshair" type="TextureRect" parent="ScreenUI"]
+z_index = 999
 texture_filter = 1
 layout_mode = 2
 anchor_left = 0.5
@@ -750,8 +753,20 @@ offset_right = 21.0
 offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(21, 21)
 texture = ExtResource("16_mx3cv")
 script = ExtResource("17_mq60l")
+
+[node name="ReloadingIcon" type="TextureProgressBar" parent="ScreenUI"]
+visible = false
+z_index = 999
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(16, 16)
+fill_mode = 4
+texture_under = ExtResource("4_uqaru")
+texture_progress = ExtResource("5_a4mxq")
 
 [node name="Label" type="Label" parent="ScreenUI"]
 layout_mode = 0

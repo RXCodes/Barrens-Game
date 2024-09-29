@@ -170,6 +170,7 @@ func onCockWeapon() -> void:
 
 func onReload() -> void:
 	$"ActionAnimationPlayer".play("Reload-" + gunInteractor.currentWeapon.identifier)
+	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
 
 func onFinishReload() -> void:
 	AmmoInfoDisplay.gunReloaded()
@@ -181,6 +182,7 @@ func refreshAmmoDisplay() -> void:
 
 func onReloadInterrupted() -> void:
 	$"ActionAnimationPlayer".stop()
+	Crosshair.stopReloadingWeapon()
 
 func callGunMethod(string: String):
 	if gunInteractor.currentWeapon.has_method(string):

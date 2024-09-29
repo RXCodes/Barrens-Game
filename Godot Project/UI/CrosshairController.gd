@@ -1,5 +1,6 @@
 class_name Crosshair extends TextureRect
-static var current
+static var current: Control
+static var reloadingIcon: TextureProgressBar
 
 var cameraOffsetDampening = 0.1
 var cameraOffsetMultiplier = 0.2
@@ -11,12 +12,16 @@ var zoomDampening = 0.05
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	current = self
+	reloadingIcon = $"../ReloadingIcon"
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 # move crosshair every frame
 func _process(delta: float) -> void:
 	position = get_viewport().get_mouse_position() - (size / 2.0)
 	position -= get_viewport_rect().size / 2.0
+	reloadingIcon.position = get_viewport().get_mouse_position() - (reloadingIcon.size / 2.0)
+	reloadingIcon.position += Vector2(4, 4)
+	reloadingIcon.position -= get_viewport_rect().size / 2.0
 	
 	# offset camera depending on vector from player
 	var targetOffset = (global_position - Player.current.global_position) * cameraOffsetMultiplier
@@ -31,3 +36,26 @@ func _process(delta: float) -> void:
 	else:
 		targetZoomOffset = -(targetOffset.length() - minimumDistanceToZoom) * zoomMultiplier
 	PlayerCamera.current.crosshairZoomOffset += (targetZoomOffset - PlayerCamera.current.crosshairZoomOffset) * zoomDampening
+
+static var reloadTimer: SceneTreeTimer
+static func reloadWeapon(time: float) -> void:
+	current.visible = false
+	reloadingIcon.visible = true
+	var tween = current.get_tree().create_tween()
+	reloadingIcon.value = 0
+	reloadingIcon.scale = Vector2(1.25, 1.25)
+	tween.tween_property(reloadingIcon, "value", 100, time).set_trans(Tween.TRANS_LINEAR)
+	tween.parallel().tween_property(reloadingIcon, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK)
+	tween.play()
+	reloadTimer = TimeManager.waitTimer(time)
+	await reloadTimer.timeout
+	if reloadingIcon.visible:
+		stopReloadingWeapon()
+
+static func stopReloadingWeapon() -> void:
+	current.visible = true
+	reloadingIcon.visible = false
+	current.scale = Vector2(1.2, 1.2)
+	var tween = current.get_tree().create_tween()
+	tween.tween_property(current, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)
+	tween.play()

@@ -32,10 +32,13 @@ static func gunFired() -> void:
 
 static func gunReloaded() -> void:
 	ammoLeft.scale = Vector2(1.35, 1.35)
+	magCapacity.scale = Vector2(1.35, 1.35)
 	var tween = current.get_tree().create_tween()
 	tween.tween_property(ammoLeft, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)
+	tween.parallel().tween_property(magCapacity, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)
 	tween.play()
-	magCapacity.scale = Vector2(1.35, 1.35)
-	var tween2 = current.get_tree().create_tween()
-	tween2.tween_property(magCapacity, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)
-	tween2.play()
+	
+	var bounceTween = current.get_tree().create_tween()
+	bounceTween.tween_property(current, "position", Vector2(0, -10), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	bounceTween.tween_property(current, "position", Vector2.ZERO, 0.5).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	bounceTween.play()
