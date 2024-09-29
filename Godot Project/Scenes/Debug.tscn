@@ -595,6 +595,8 @@ tracks/2/keys = {
 _data = {
 "Fire-Shotgun": SubResource("Animation_nf2tp"),
 "RESET": SubResource("Animation_pdiy5")
+}
+
 [node name="Debug Scene" type="Node2D"]
 position = Vector2(0, 4)
 metadata/_edit_horizontal_guides_ = [33.0]
