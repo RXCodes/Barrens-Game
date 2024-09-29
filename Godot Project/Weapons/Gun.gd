@@ -15,11 +15,17 @@ class_name Gun extends Node2D
 
 # how much ammo this weapon can hold per mag
 @export var maximumMagCapacity: int = 10
-var currentMagCapacity: int = maximumMagCapacity
+var currentMagCapacity: int:
+	set(newAmount):
+		gunInteractor.weaponData[identifier]["magCapacity"] = newAmount
+		currentMagCapacity = newAmount
 
 # how much ammo the player starts with when picking up this weapon
 @export var startingAmmoCount: int = 50
-var leftoverAmmoCount = startingAmmoCount
+var leftoverAmmoCount: int:
+	set(newAmount):
+		gunInteractor.weaponData[identifier]["leftoverAmmo"] = newAmount
+		leftoverAmmoCount = newAmount
 
 # how many bullets come from one shot - this can be increased for shotguns
 @export var bulletMultiplier: int = 1
@@ -33,6 +39,9 @@ var leftoverAmmoCount = startingAmmoCount
 # the shell graphic to use for this weapon
 @export var shellTexture: Texture2D
 
+# the magazine graphic to use for this weapon
+@export var magazineTexture: Texture2D
+
 # the sound to use when firing the weapon
 @export var shootSound: AudioStream
 
@@ -40,52 +49,80 @@ var leftoverAmmoCount = startingAmmoCount
 ## this requires an animation to trigger this sfx
 @export var cockingSound: AudioStream
 
+# whether or not this gun needs to be cocked before firing again (Shotgun)
+@export var needsCocking: bool = false
+var cockedGun = true:
+	set(setBool):
+		gunInteractor.weaponData[identifier]["cocked"] = setBool
+		cockedGun = setBool
+
 # the sound to use when reloading the weapon
 ## this requires an animation to trigger this sfx
 @export var reloadSound: AudioStream
 
-var fireDelay = 0.0
-var reloadDelay = 0.0
+var canFire = true
 var reloading = false
-func process(delta: float) -> void:
-	fireDelay -= delta
-	if reloadDelay <= 0.0 and reloading:
-		if gunInteractor.onFinishReload:
-			gunInteractor.onFinishReload.call()
-		reloading = false
-	reloadDelay -= delta
 
 var shootAudioPlayer: AudioStreamPlayer2D
 func fire(holding: bool) -> void:
 	if not automatic and holding:
 		return
-	if fireDelay > 0.0:
+	if not canFire:
 		return
-	fireDelay = fireRate
+	if needsCocking:
+		if not cockedGun:
+			return
+		cockedGun = false
+	canFire = false
+	currentMagCapacity -= 1
 	if shootAudioPlayer:
 		shootAudioPlayer.play()
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
+	await TimeManager.wait(fireRate)
+	canFire = true
 
 var reloadAudioPlayer: AudioStreamPlayer2D
 func playReloadSound() -> void:
 	if reloadAudioPlayer:
 		reloadAudioPlayer.play()
 
+var reloadTimer: SceneTreeTimer
 func reload() -> void:
 	if currentMagCapacity < maximumMagCapacity and leftoverAmmoCount > 0:
-		if reloadDelay <= 0.0:
-			reloadDelay = reloadTime
+		if not reloading:
+			if leftoverAmmoCount == 0 and currentMagCapacity < maximumMagCapacity:
+				return
 			reloading = true
 			if gunInteractor.onReload:
 				gunInteractor.onReload.call()
-				
+			reloadTimer = TimeManager.waitTimer(reloadTime)
+			await reloadTimer.timeout
+			if gunInteractor.onFinishReload:
+				gunInteractor.onFinishReload.call()
+			reloading = false
+			var ammoAmountNeeded = maximumMagCapacity - currentMagCapacity
+			var ammoLeft = max(leftoverAmmoCount - ammoAmountNeeded, 0)
+			currentMagCapacity = leftoverAmmoCount - ammoLeft
+			leftoverAmmoCount = ammoLeft
+			if needsCocking:
+				cockWeapon()
+
 func cancelReload() -> void:
-	if reloadDelay > 0.0:
-		reloadDelay = 0.0
+	if reloading:
 		reloading = false
+		reloadTimer.free()
 		if gunInteractor.onReloadInterrupted:
 			gunInteractor.onReloadInterrupted.call()
+
+func cockWeapon() -> void:
+	if cockedGun:
+		return
+	if not needsCocking:
+		return
+	if gunInteractor.onCockWeapon:
+		gunInteractor.onCockWeapon.call()
+		cockedGun = true
 
 static var shellBehaviorScript: Script = preload("res://Weapons/ShellBehavior.gd")
 func dropShell() -> void:
@@ -105,7 +142,7 @@ func playCockingSound() -> void:
 static var rootNode: Node
 func _ready() -> void:
 	weaponsNode = get_parent()
-	rootNode = get_tree().root
+	rootNode = get_tree().root.get_children()[0]
 
 static var weaponsNode: Node
 static func gunFromString(string: String) -> Gun:
@@ -119,9 +156,12 @@ class Interactor:
 	var currentWeapon: Gun:
 		set(newWeapon):
 			if not weaponData.has(newWeapon.identifier):
+				# we're going to keep track of specific properties so we can access them
+				# again when switching between weapons
 				weaponData[newWeapon.identifier] = {
 					"leftoverAmmo": newWeapon.startingAmmoCount,
-					"magCapacity": newWeapon.maximumMagCapacity
+					"magCapacity": newWeapon.maximumMagCapacity,
+					"cocked": true
 				}
 				
 				# setup audio players for different sounds the gun can play
@@ -147,8 +187,6 @@ class Interactor:
 					newWeapon.reloadAudioPlayer = newAudioPlayer
 					newAudioPlayer.name = newWeapon.identifier + ".reload"
 			else:
-				newWeapon.leftoverAmmoCount = weaponData["leftoverAmmo"]
-				newWeapon.currentMagCapacity = weaponData["magCapacity"]
 				if weaponData.has(newWeapon.identifier + ".shoot"):
 					newWeapon.shootAudioPlayer = weaponData[newWeapon.identifier + ".shoot"]
 				if weaponData.has(newWeapon.identifier + ".cocking"):
@@ -157,10 +195,14 @@ class Interactor:
 					newWeapon.reloadAudioPlayer = weaponData[newWeapon.identifier + ".reload"]
 			newWeapon.gunInteractor = self
 			currentWeapon = newWeapon
+			newWeapon.leftoverAmmoCount = weaponData[newWeapon.identifier]["leftoverAmmo"]
+			newWeapon.currentMagCapacity = weaponData[newWeapon.identifier]["magCapacity"]
+			newWeapon.cockedGun = weaponData[newWeapon.identifier]["cocked"]
 			gunSprite.texture = currentWeapon.texture
 	var gunSprite: Sprite2D
 	var onFire: Callable
 	var onReload: Callable
 	var onFinishReload: Callable
 	var onReloadInterrupted: Callable
+	var onCockWeapon: Callable
 	var originNode: Node2D

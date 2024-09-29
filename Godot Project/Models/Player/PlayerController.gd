@@ -14,6 +14,7 @@ var gunInteractor: Gun.Interactor
 var gunFireShakeDampening = 0.2
 var shooting = false
 
+# setup renderer and gun interactor
 func _ready() -> void:
 	renderer = get_parent()
 	current = self
@@ -23,6 +24,11 @@ func _ready() -> void:
 	gunInteractor.gunSprite = $"Coat/LeftElbow/Weapon"
 	gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
 	gunInteractor.onFire = self.onFire
+	gunInteractor.onCockWeapon = self.onCockWeapon
+	gunInteractor.onFinishReload = self.onFinishReload
+	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
+	gunInteractor.onReload = self.onReload
+	refreshAmmoDisplay()
 
 # player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
@@ -54,7 +60,6 @@ func _process(delta: float) -> void:
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
 	
 	# weapon functionality
-	gunInteractor.currentWeapon.process(delta)
 	if shooting:
 		gunInteractor.currentWeapon.fire(true)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
@@ -134,9 +139,48 @@ func onFire() -> void:
 	var crosshairNormal = Vector2.from_angle(Crosshair.current.global_position.angle_to_point(global_position + random)).normalized()
 	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier
 	
-	# animate shooting
+	# update ammo info and animate it
+	AmmoInfoDisplay.gunFired()
+	refreshAmmoDisplay()
+	
+	# play shoot animation
 	$"ActionAnimationPlayer".stop()
 	$"ActionAnimationPlayer".play("Fire-" + gunInteractor.currentWeapon.identifier)
+	gunInteractor.currentWeapon.cockedGun = false
+	var shootAnimationTime = $ActionAnimationPlayer.current_animation_length
+	var currentGunIdentifier = gunInteractor.currentWeapon.identifier
+	
+	# after shoot animation is played, play cocking animation if any
+	# this only plays if there's at least one ammo in the magazine to load from
+	await TimeManager.wait(shootAnimationTime)
+	if currentGunIdentifier == gunInteractor.currentWeapon.identifier:
+		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
+			gunInteractor.currentWeapon.cockWeapon()
+		else:
+			# player has no ammo left in magazine
+			if gunInteractor.currentWeapon.leftoverAmmoCount > 0:
+				gunInteractor.currentWeapon.reload()
+			else:
+				# oh, there's no leftover ammo - player can't reload
+				print("No ammo left")
+
+func onCockWeapon() -> void:
+	$"ActionAnimationPlayer".play("Cock-" + gunInteractor.currentWeapon.identifier)
+	refreshAmmoDisplay()
+
+func onReload() -> void:
+	$"ActionAnimationPlayer".play("Reload-" + gunInteractor.currentWeapon.identifier)
+
+func onFinishReload() -> void:
+	AmmoInfoDisplay.gunReloaded()
+	refreshAmmoDisplay()
+
+func refreshAmmoDisplay() -> void:
+	AmmoInfoDisplay.setAmmoLeft(gunInteractor.currentWeapon.leftoverAmmoCount)
+	AmmoInfoDisplay.setMagCapacity(gunInteractor.currentWeapon.currentMagCapacity)
+
+func onReloadInterrupted() -> void:
+	$"ActionAnimationPlayer".stop()
 
 func callGunMethod(string: String):
 	if gunInteractor.currentWeapon.has_method(string):

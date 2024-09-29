@@ -24,6 +24,7 @@ window/stretch/mode="viewport"
 
 folder_colors={
 "res://Environment/": "yellow",
+"res://HelperClasses/": "pink",
 "res://Models/": "red",
 "res://Models/Player/": "yellow",
 "res://Scenes/": "green",
