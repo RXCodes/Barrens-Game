@@ -6,7 +6,7 @@ var yPosition = 0
 func _ready() -> void:
 	xPosition = global_position.x
 	yPosition = global_position.y
-	z_index = -yPosition
+	set_meta(ZIndexSorter.zScoreKey, yPosition)
 	var xTween = get_tree().create_tween()
 	xTween.tween_property(self, "xPosition", xPosition + randfn(0, 20), 0.3)
 	xTween.set_ease(Tween.EASE_OUT)

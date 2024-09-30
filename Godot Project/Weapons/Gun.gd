@@ -46,7 +46,7 @@ var leftoverAmmoCount: int:
 @export_group("Bullet Properties")
 
 ## how much a bullet's trajectory angle deviates in degrees
-@export var bulletSpreadDegrees: float = 50
+@export var bulletSpreadDegrees: float = 5
 
 ## how far bullets should travel before stopping
 @export var targetRange: float = 500
@@ -67,7 +67,7 @@ var leftoverAmmoCount: int:
 @export var bulletTrailColor: Color = Color.DIM_GRAY
 
 ## the visual size of the bullet - does not affect collision
-@export var bulletSize: float = 15
+@export var bulletSize: float = 0.75
 
 ## how much time it takes to reload this weapon in seconds
 @export var reloadTime: float = 1.5
@@ -102,7 +102,7 @@ var canFire = true
 var reloading = false
 
 var shootAudioPlayer: AudioStreamPlayer2D
-func fire(holding: bool) -> void:
+func fire(holding: bool, angleRadians: float) -> void:
 	if not automatic and holding:
 		return
 	if not canFire or reloading:
@@ -119,6 +119,8 @@ func fire(holding: bool) -> void:
 		shootAudioPlayer.play()
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
+	for i in range(bulletMultiplier):
+		Bullet.fire(gunInteractor.originNode.global_position, angleRadians, self)
 	await TimeManager.wait(fireRate)
 	canFire = true
 
@@ -174,20 +176,15 @@ func dropShell() -> void:
 		newShell.texture = shellTexture
 		newShell.global_position = gunInteractor.gunSprite.global_position
 		newShell.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-		rootNode.add_child(newShell)
+		NodeRelations.rootNode.find_child("Level").add_child(newShell)
 
 var cockingAudioPlayer: AudioStreamPlayer2D
 func playCockingSound() -> void:
 	if cockingAudioPlayer:
 		cockingAudioPlayer.play()
 
-static var rootNode: Node
-func _ready() -> void:
-	weaponsNode = get_parent()
-	rootNode = get_tree().root.get_children()[0]
-
-static var weaponsNode: Node
 static func gunFromString(string: String) -> Gun:
+	var weaponsNode = NodeRelations.rootNode.find_child("Weapons")
 	return weaponsNode.find_child(string).duplicate()
 
 # this is what other nodes can use to be able to use guns (see PlayerController.gd)

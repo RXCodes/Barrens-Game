@@ -62,7 +62,8 @@ func _process(delta: float) -> void:
 	
 	# weapon functionality
 	if shooting:
-		gunInteractor.currentWeapon.fire(true)
+		var aimAngle = global_position.angle_to_point(Crosshair.current.global_position)
+		gunInteractor.currentWeapon.fire(true, aimAngle)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
 
 # Called every physics tick.
@@ -130,7 +131,8 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == 1:
 			shooting = event.pressed
 			if event.pressed:
-				gunInteractor.currentWeapon.fire(false)
+				var aimAngle = global_position.angle_to_point(Crosshair.current.global_position)
+				gunInteractor.currentWeapon.fire(false, aimAngle)
 		# handle right click
 		elif event.button_index == 2:
 			if event.pressed:

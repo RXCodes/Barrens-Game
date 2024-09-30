@@ -1,12 +1,15 @@
 extends CanvasGroup
 class_name EntityRender
+var targetNode: Node2D
 
 # this is what will be used to render the player, all enemies and npcs
-@export var flipHorizontally: bool = false:
+var flipHorizontally: bool = false:
 	set(flip):
 		flipHorizontally = flip
 		material.set_shader_parameter("flipX", flip)
-var targetNode: Node2D
+		
+## how much to offset the z index
+@export var entityZIndexOffset = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,4 +21,5 @@ func _process(delta: float) -> void:
 	var viewportSize = get_viewport_rect().size
 	var normalizedXScreenPosition = entityPosition.x / viewportSize.x
 	material.set_shader_parameter("currentXPosition", normalizedXScreenPosition)
-	pass
+	var zScore = targetNode.global_position.y + entityZIndexOffset
+	set_meta(ZIndexSorter.zScoreKey, zScore)

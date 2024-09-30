@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=60 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -37,6 +37,8 @@
 [ext_resource type="AudioStream" uid="uid://b01w7am2dnink" path="res://Weapons/Shotgun/ShotgunCock.mp3" id="29_vey1i"]
 [ext_resource type="AudioStream" uid="uid://buvjgbel4tijd" path="res://Weapons/Shotgun/ShotgunReload.mp3" id="30_cx2v1"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="31_rq6uy"]
+[ext_resource type="Texture2D" uid="uid://dhv23kg6kw2ag" path="res://Weapons/BulletTrail.png" id="35_ky7i1"]
+[ext_resource type="Script" path="res://Weapons/BulletBehavior.gd" id="36_mgjos"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm8et"]
 shader = ExtResource("3_34r7j")
@@ -723,8 +725,6 @@ _data = {
 "Reload-Shotgun": SubResource("Animation_esp1p")
 }
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0c6ax"]
-
 [node name="Debug Scene" type="Node2D"]
 texture_filter = 1
 position = Vector2(0, 4)
@@ -838,7 +838,6 @@ label_settings = ExtResource("22_ueea8")
 horizontal_alignment = 1
 
 [node name="Level" type="Node" parent="."]
-process_priority = 100
 script = ExtResource("9_i8abo")
 
 [node name="PlayerRender" type="CanvasGroup" parent="Level"]
@@ -860,15 +859,15 @@ position = Vector2(-1.6512e-05, 2.60002)
 texture = ExtResource("11_epjwa")
 
 [node name="RightLeg" type="Sprite2D" parent="Level/PlayerRender/Player/Torso"]
-position = Vector2(0.361795, -0.0208917)
-rotation = 0.010431
-scale = Vector2(0.999623, 0.999623)
+position = Vector2(0.215474, -0.0136819)
+rotation = 0.00711197
+scale = Vector2(0.999268, 0.999268)
 texture = ExtResource("9_pggau")
 
 [node name="RightKnee" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/RightLeg"]
-position = Vector2(7.03931, 5.34975)
-rotation = -0.00633681
-scale = Vector2(1.00021, 1.00021)
+position = Vector2(7.03965, 5.36767)
+rotation = -0.00361168
+scale = Vector2(1.00057, 1.00057)
 texture = SubResource("CompressedTexture2D_01b5n")
 offset = Vector2(-7, -6)
 
@@ -913,37 +912,37 @@ texture = ExtResource("6_0t3nv")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Level/PlayerRender/Player/Coat"]
-position = Vector2(-18.3861, -20.0546)
-rotation = 0.272234
-scale = Vector2(0.995861, 0.995861)
+position = Vector2(-17.8657, -20.0596)
+rotation = 0.30122
+scale = Vector2(0.995803, 0.995803)
 texture = ExtResource("3_kj2go")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow"]
-position = Vector2(18.4166, 12.9399)
-rotation = -0.0270337
-scale = Vector2(0.9999, 0.9999)
+position = Vector2(18.285, 12.5619)
+rotation = -0.0560196
+scale = Vector2(0.999655, 0.999655)
 texture = ExtResource("4_8xayp")
 
 [node name="RightHand" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow/Weapon"]
-position = Vector2(40.202, -1.45581)
-rotation = 3.03851
-scale = Vector2(1.00317, 1.00317)
-skew = -0.00084722
+position = Vector2(40.2166, -1.45671)
+rotation = 3.0385
+scale = Vector2(1.00347, 1.00347)
+skew = -0.000845671
 texture = ExtResource("5_fe20w")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow"]
-position = Vector2(-5.03421, 12.0571)
-rotation = -0.333852
-scale = Vector2(1.00001, 1.00001)
+position = Vector2(-5.10159, 12.0796)
+rotation = -0.34524
+scale = Vector2(0.999929, 0.999929)
 texture = ExtResource("3_jwq7c")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="Head" type="Sprite2D" parent="Level/PlayerRender/Player"]
 position = Vector2(0.163581, -21.9995)
-rotation = -0.0174531
-scale = Vector2(0.999798, 0.999798)
+rotation = -0.0174533
+scale = Vector2(0.999793, 0.999793)
 texture = ExtResource("2_nb7ar")
 offset = Vector2(1, 22)
 
@@ -959,7 +958,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.999798, 0.999798)
+scale = Vector2(0.999793, 0.999793)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -1207,7 +1206,6 @@ horizontal_alignment = 1
 [node name="Weapons" type="Node" parent="."]
 
 [node name="Shotgun" type="Node2D" parent="Weapons"]
-material = SubResource("CanvasItemMaterial_0c6ax")
 script = ExtResource("18_2h52x")
 identifier = "Shotgun"
 displayName = "Shotgun"
@@ -1223,6 +1221,24 @@ shellTexture = ExtResource("27_f6y28")
 shootSound = ExtResource("28_lux8q")
 cockingSound = ExtResource("29_vey1i")
 reloadSound = ExtResource("30_cx2v1")
+
+[node name="Hidden" type="Node2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="BulletTrail" type="NinePatchRect" parent="Hidden"]
+offset_left = -482.0
+offset_top = 412.0
+offset_right = -474.0
+offset_bottom = 420.0
+pivot_offset = Vector2(4, 8)
+texture = ExtResource("35_ky7i1")
+region_rect = Rect2(8, 0, 16, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("36_mgjos")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("31_rq6uy")
