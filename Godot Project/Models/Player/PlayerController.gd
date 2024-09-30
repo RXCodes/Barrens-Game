@@ -12,6 +12,7 @@ var sprintZoomDampening = 0.075
 
 var gunInteractor: Gun.Interactor
 var gunFireShakeDampening = 0.2
+var reloadSpeedMultiplier = 0.5
 var shooting = false
 
 # setup renderer and gun interactor
@@ -88,13 +89,13 @@ func _physics_process(delta: float) -> void:
 			currentAnimation = IDLE
 		
 		# finally move the player
-		var speed = playerSpeed
-		if isSprinting and not walkingBackwards:
-			speed *= sprintingSpeedMultiplier
-			$AnimationTree["parameters/Speed/scale"] = 1.5
-		else:
-			$AnimationTree["parameters/Speed/scale"] = 1.0
-		movementVector *= speed
+		var speedMultiplier = 1.0
+		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
+			speedMultiplier *= sprintingSpeedMultiplier
+		elif gunInteractor.currentWeapon.reloading:
+			speedMultiplier *= reloadSpeedMultiplier
+		$AnimationTree["parameters/Speed/scale"] = speedMultiplier
+		movementVector *= playerSpeed * speedMultiplier
 		if walkingBackwards:
 			movementVector *= 0.6
 		position += movementVector
@@ -125,9 +126,18 @@ func _input(event: InputEvent) -> void:
 				currentMovementKeypresses.erase(moveVector)
 	
 	if event is InputEventMouseButton:
-		shooting = event.pressed
-		if shooting:
-			gunInteractor.currentWeapon.fire(false)
+		# handle left click
+		if event.button_index == 1:
+			shooting = event.pressed
+			if event.pressed:
+				gunInteractor.currentWeapon.fire(false)
+		# handle right click
+		elif event.button_index == 2:
+			if event.pressed:
+				if gunInteractor.currentWeapon.reloading:
+					gunInteractor.currentWeapon.cancelReload()
+				else:
+					gunInteractor.currentWeapon.reload(false)
 	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)
@@ -157,9 +167,9 @@ func onFire() -> void:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
 		else:
-			# player has no ammo left in magazine
+			# player has no ammo left in magazine - let's reload
 			if gunInteractor.currentWeapon.leftoverAmmoCount > 0:
-				gunInteractor.currentWeapon.reload()
+				gunInteractor.currentWeapon.reload(true)
 			else:
 				# oh, there's no leftover ammo - player can't reload
 				print("No ammo left")

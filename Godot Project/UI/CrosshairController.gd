@@ -38,23 +38,29 @@ func _process(delta: float) -> void:
 	PlayerCamera.current.crosshairZoomOffset += (targetZoomOffset - PlayerCamera.current.crosshairZoomOffset) * zoomDampening
 
 static var reloadTimer: SceneTreeTimer
+static var reloadTween: Tween
 static func reloadWeapon(time: float) -> void:
+	if reloadTween:
+		reloadTween.kill()
 	current.visible = false
 	reloadingIcon.visible = true
-	var tween = current.get_tree().create_tween()
+	reloadTween = current.get_tree().create_tween()
 	reloadingIcon.value = 0
 	reloadingIcon.scale = Vector2(1.25, 1.25)
-	tween.tween_property(reloadingIcon, "value", 100, time).set_trans(Tween.TRANS_LINEAR)
-	tween.parallel().tween_property(reloadingIcon, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK)
-	tween.play()
-	reloadTimer = TimeManager.waitTimer(time)
+	reloadTween.tween_property(reloadingIcon, "value", 100, time).set_trans(Tween.TRANS_LINEAR)
+	reloadTween.parallel().tween_property(reloadingIcon, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK)
+	reloadTween.play()
+	var newReloadTimer = TimeManager.waitTimer(time)
+	reloadTimer = newReloadTimer
 	await reloadTimer.timeout
-	if reloadingIcon.visible:
-		stopReloadingWeapon()
+	if reloadTimer != newReloadTimer:
+		return
+	stopReloadingWeapon()
 
 static func stopReloadingWeapon() -> void:
 	current.visible = true
 	reloadingIcon.visible = false
+	reloadTimer = null
 	current.scale = Vector2(1.2, 1.2)
 	var tween = current.get_tree().create_tween()
 	tween.tween_property(current, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)

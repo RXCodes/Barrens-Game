@@ -67,7 +67,7 @@ var shootAudioPlayer: AudioStreamPlayer2D
 func fire(holding: bool) -> void:
 	if not automatic and holding:
 		return
-	if not canFire:
+	if not canFire or reloading:
 		return
 	if currentMagCapacity <= 0:
 		return
@@ -90,37 +90,38 @@ func playReloadSound() -> void:
 		reloadAudioPlayer.play()
 
 var reloadTimer: SceneTreeTimer
-func reload() -> void:
-	if currentMagCapacity < maximumMagCapacity and leftoverAmmoCount > 0:
-		if not reloading:
-			if leftoverAmmoCount == 0 and currentMagCapacity < maximumMagCapacity:
-				return
-			reloading = true
-			if gunInteractor.onReload:
-				gunInteractor.onReload.call()
-			reloadTimer = TimeManager.waitTimer(reloadTime)
-			await reloadTimer.timeout
-			var ammoAmountNeeded = maximumMagCapacity - currentMagCapacity
-			var ammoLeft = max(leftoverAmmoCount - ammoAmountNeeded, 0)
-			currentMagCapacity = leftoverAmmoCount - ammoLeft
-			leftoverAmmoCount = ammoLeft
-			if gunInteractor.onFinishReload:
-				gunInteractor.onFinishReload.call()
-			reloading = false
-			if needsCocking:
-				cockWeapon()
+func reload(forced: bool) -> void:
+	if reloading or (not canFire and not forced):
+		return
+	if currentMagCapacity >= maximumMagCapacity or leftoverAmmoCount <= 0:
+		return
+	reloading = true
+	if gunInteractor.onReload:
+		gunInteractor.onReload.call()
+	var newReloadTimer = TimeManager.waitTimer(reloadTime)
+	reloadTimer = newReloadTimer
+	await reloadTimer.timeout
+	if reloadTimer != newReloadTimer:
+		return
+	var ammoAmountNeeded = maximumMagCapacity - currentMagCapacity
+	var ammoLeft = max(leftoverAmmoCount - ammoAmountNeeded, 0)
+	currentMagCapacity += leftoverAmmoCount - ammoLeft
+	leftoverAmmoCount = ammoLeft
+	if gunInteractor.onFinishReload:
+		gunInteractor.onFinishReload.call()
+	reloading = false
+	if needsCocking:
+		cockWeapon()
 
 func cancelReload() -> void:
 	if reloading:
 		reloading = false
-		reloadTimer.free()
+		reloadTimer = null
 		if gunInteractor.onReloadInterrupted:
 			gunInteractor.onReloadInterrupted.call()
 
 func cockWeapon() -> void:
-	if cockedGun:
-		return
-	if not needsCocking:
+	if cockedGun or not needsCocking:
 		return
 	if gunInteractor.onCockWeapon:
 		gunInteractor.onCockWeapon.call()
