@@ -1,63 +1,101 @@
 class_name Gun extends Node2D
 
-## DO NOT EDIT THESE PROPERTIES HERE!
-## Go into the Inspector on the right to modify properties on a weapon.
+# DO NOT EDIT THESE PROPERTIES HERE!
+# Go into the Inspector on the right to modify properties on a weapon.
 
-# how this gun is identified in source code
+@export_group("Gun Info")
+
+## how this gun is identified in source code
 @export var identifier: String = "default_gun"
 
-# the user-facing display name of this weapon
+## the user-facing display name of this weapon
 @export var displayName: String = "Gun"
 
-# the time to wait between shots in seconds before the weapon can be fired again
-@export var fireRate: float = 0.2
-@export var automatic: bool = true
+@export_group("Gun Properties")
 
-# how much ammo this weapon can hold per mag
-@export var maximumMagCapacity: int = 10
-var currentMagCapacity: int:
-	set(newAmount):
-		gunInteractor.weaponData[identifier]["magCapacity"] = newAmount
-		currentMagCapacity = newAmount
-
-# how much ammo the player starts with when picking up this weapon
-@export var startingAmmoCount: int = 50
-var leftoverAmmoCount: int:
-	set(newAmount):
-		gunInteractor.weaponData[identifier]["leftoverAmmo"] = newAmount
-		leftoverAmmoCount = newAmount
-
-# how many bullets come from one shot - this can be increased for shotguns
-@export var bulletMultiplier: int = 1
-
-# how much time it takes to reload this weapon in seconds
-@export var reloadTime: float = 1.5
-
-# the graphic to use for this weapon
-@export var texture: Texture2D
-
-# the shell graphic to use for this weapon
-@export var shellTexture: Texture2D
-
-# the magazine graphic to use for this weapon
-@export var magazineTexture: Texture2D
-
-# the sound to use when firing the weapon
-@export var shootSound: AudioStream
-
-# the sound to use when cocking the weapon
-## this requires an animation to trigger this sfx
-@export var cockingSound: AudioStream
-
-# whether or not this gun needs to be cocked before firing again (Shotgun)
+## whether or not this gun needs to be cocked before firing again (like a Shotgun)
 @export var needsCocking: bool = false
 var cockedGun = true:
 	set(setBool):
 		gunInteractor.weaponData[identifier]["cocked"] = setBool
 		cockedGun = setBool
 
-# the sound to use when reloading the weapon
-## this requires an animation to trigger this sfx
+## the time to wait between shots in seconds before the weapon can be fired again
+@export var fireRate: float = 0.2
+
+## if enabled, the gun can fire again while holding the shoot trigger
+@export var automatic: bool = true
+
+## how much ammo this weapon can hold per mag
+@export var maximumMagCapacity: int = 10
+var currentMagCapacity: int:
+	set(newAmount):
+		gunInteractor.weaponData[identifier]["magCapacity"] = newAmount
+		currentMagCapacity = newAmount
+
+## how much ammo the player starts with when picking up this weapon
+@export var startingAmmoCount: int = 50
+var leftoverAmmoCount: int:
+	set(newAmount):
+		gunInteractor.weaponData[identifier]["leftoverAmmo"] = newAmount
+		leftoverAmmoCount = newAmount
+
+## how many bullets come from one shot - this can be increased for shotguns
+@export var bulletMultiplier: int = 1
+
+@export_group("Bullet Properties")
+
+## how much a bullet's trajectory angle deviates in degrees
+@export var bulletSpreadDegrees: float = 50
+
+## how far bullets should travel before stopping
+@export var targetRange: float = 500
+
+## how far to deviate from the target range
+@export var rangeSpread: float = 50
+
+## how much a single bullet can damage an enemy
+@export var targetDamage: float = 10
+
+## how far to deviate from the target damage
+@export var damageSpread: float = 3
+
+## the color of the bullet when fired
+@export var bulletFireColor: Color = Color.BEIGE
+
+## the color of the trail the bullet leaves behind
+@export var bulletTrailColor: Color = Color.DIM_GRAY
+
+## the visual size of the bullet - does not affect collision
+@export var bulletSize: float = 15
+
+## how much time it takes to reload this weapon in seconds
+@export var reloadTime: float = 1.5
+
+@export_group("Textures")
+
+## this is the graphic used to display this weapon
+@export var texture: Texture2D
+
+## the shell graphic to use for this weapon (dropped when cocking a weapon)
+## this requires the cocking animation to call an event to trigger at a specific time
+@export var shellTexture: Texture2D
+
+## the magazine graphic to use for this weapon (this is dropped when finishing reloading)
+## this requires the reloading animation to call an event to trigger at a specific time
+@export var magazineTexture: Texture2D
+
+@export_group("Audio")
+
+## the sound to use when firing the weapon
+@export var shootSound: AudioStream
+
+## the sound to use when cocking the weapon
+## -- this requires an animation to trigger this sound effect
+@export var cockingSound: AudioStream
+
+## the sound to use when reloading the weapon
+## -- this requires an animation to trigger this sound effect
 @export var reloadSound: AudioStream
 
 var canFire = true
@@ -110,6 +148,7 @@ func reload(forced: bool) -> void:
 	if gunInteractor.onFinishReload:
 		gunInteractor.onFinishReload.call()
 	reloading = false
+	cockedGun = false
 	if needsCocking:
 		cockWeapon()
 

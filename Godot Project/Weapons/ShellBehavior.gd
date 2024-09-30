@@ -6,6 +6,7 @@ var yPosition = 0
 func _ready() -> void:
 	xPosition = global_position.x
 	yPosition = global_position.y
+	z_index = -yPosition
 	var xTween = get_tree().create_tween()
 	xTween.tween_property(self, "xPosition", xPosition + randfn(0, 20), 0.3)
 	xTween.set_ease(Tween.EASE_OUT)
@@ -20,7 +21,7 @@ func _ready() -> void:
 	rotateTween.set_ease(Tween.EASE_OUT)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-var decayTime = randf_range(0.5, 1.0)
+var decayTime = randf_range(3.5, 6.0)
 func _process(delta: float) -> void:
 	global_position = Vector2(xPosition, yPosition)
 	if decaying:
