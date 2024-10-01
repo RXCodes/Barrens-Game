@@ -49,7 +49,7 @@ var leftoverAmmoCount: int:
 @export var bulletSpreadDegrees: float = 5
 
 ## how far bullets should travel before stopping
-@export var targetRange: float = 500
+@export var targetRange: float = 1000
 
 ## how far to deviate from the target range
 @export var rangeSpread: float = 50

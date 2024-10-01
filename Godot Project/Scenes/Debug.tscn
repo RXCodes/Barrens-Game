@@ -837,6 +837,20 @@ text = "/"
 label_settings = ExtResource("22_ueea8")
 horizontal_alignment = 1
 
+[node name="Under" type="Node" parent="."]
+
+[node name="Ground" type="Sprite2D" parent="Under"]
+z_index = -4096
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 4)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("20_xgqmk")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)
+script = ExtResource("21_khkv7")
+metadata/_edit_lock_ = true
+
 [node name="Level" type="Node" parent="."]
 process_priority = 100
 script = ExtResource("9_i8abo")
@@ -1172,17 +1186,6 @@ libraries = {
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 script = ExtResource("21_mx4fk")
-
-[node name="Ground" type="Sprite2D" parent="."]
-z_index = -4096
-texture_filter = 1
-texture_repeat = 2
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("20_xgqmk")
-region_enabled = true
-region_rect = Rect2(0, 0, 200, 200)
-script = ExtResource("21_khkv7")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = -234.0

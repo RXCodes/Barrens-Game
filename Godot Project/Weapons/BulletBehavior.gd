@@ -4,40 +4,47 @@ class_name Bullet extends NinePatchRect
 static var targetBulletTravelSpeed = 200
 static var bulletTravelSpeedDeviation = 15
 static var rotationOffset = -deg_to_rad(90.0)
+static var bulletScale = 1.5
 static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
 	var spreadRadians = deg_to_rad(gun.bulletSpreadDegrees)
 	var bulletAngle = randfn(angleRadians, spreadRadians) + rotationOffset
 	var maximumDistance = randfn(gun.targetRange, gun.rangeSpread)
+	var travelDistance = maximumDistance
 	
 	# create the trail that's behind the bullet
 	var smokeBullet = Bullet.new()
 	smokeBullet.global_position = position
-	smokeBullet.size = Vector2(gun.bulletSize / 2.0, 8)
+	smokeBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	smokeBullet.pivot_offset = Vector2(4, 8)
 	smokeBullet.rotation = bulletAngle
 	smokeBullet.fadeTime = randfn(1.0, 0.2)
 	smokeBullet.self_modulate = gun.bulletTrailColor
 	smokeBullet.smokeBullet = true
-	smokeBullet.maximumDistance = maximumDistance
+	smokeBullet.maximumDistance = (travelDistance / bulletScale) + 10
 	NodeRelations.rootNode.find_child("Level").add_child(smokeBullet)
 	
 	# create the bullet with fire color
 	var fireBullet = Bullet.new()
 	fireBullet.global_position = position
-	fireBullet.size = Vector2(gun.bulletSize / 2.0, 8)
+	fireBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	fireBullet.pivot_offset = Vector2(4, 8)
 	fireBullet.rotation = bulletAngle
 	fireBullet.self_modulate = gun.bulletFireColor
 	fireBullet.fadeTime = randfn(0.3, 0.1)
-	fireBullet.maximumDistance = maximumDistance
+	fireBullet.maximumDistance = (travelDistance / bulletScale) + 10
 	var canvasItemMaterial = CanvasItemMaterial.new()
 	canvasItemMaterial.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	fireBullet.material = canvasItemMaterial
 	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
 	
+	# create a bullet hole where bullet lands (if it hit the ground or a wall)
+	var projectoryVector = Vector2.from_angle(bulletAngle - rotationOffset) * travelDistance
+	BulletHole.create(position + projectoryVector, true)
+	
 	# forcefully order the bullets for this frame
 	ZIndexSorter.sort()
 
+# bullet functionality
 var fadeTime: float = 0.3
 var normalDirection: Vector2
 func _ready() -> void:
@@ -47,7 +54,7 @@ func _ready() -> void:
 	patch_margin_top = 4
 	patch_margin_right = 4
 	patch_margin_bottom = 4
-	scale = Vector2(1.5, 1.5)
+	scale = Vector2(bulletScale, bulletScale)
 	var zScore = global_position.y
 	normalDirection = Vector2.from_angle(rotation - rotationOffset)
 	if normalDirection.y < 0:
@@ -79,6 +86,6 @@ func _process(delta: float) -> void:
 		global_position += normalDirection * speed * 0.4
 		distanceTravelled += speed * 1.2
 		if distanceTravelled >= maximumDistance:
-			size.y -= speed
-			if size.y <= 10:
+			size.y -= speed * 0.95
+			if size.y <= 5:
 				free()

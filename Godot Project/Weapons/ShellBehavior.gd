@@ -19,19 +19,9 @@ func _ready() -> void:
 	var rotateTween = get_tree().create_tween()
 	rotateTween.tween_property(self, "rotation_degrees",  randf_range(-150, 150), 0.45)
 	rotateTween.set_ease(Tween.EASE_OUT)
+	await TimeManager.wait(randf_range(3.5, 6.0))
+	decay()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-var decayTime = randf_range(3.5, 6.0)
-func _process(delta: float) -> void:
-	global_position = Vector2(xPosition, yPosition)
-	if decaying:
-		return
-	decayTime -= delta
-	if decayTime <= 0:
-		decaying = true
-		decay()
-
-var decaying = false
 func decay() -> void:
 	var decayTween = get_tree().create_tween()
 	decayTween.tween_property(self, "scale", Vector2.ZERO, 0.4)
