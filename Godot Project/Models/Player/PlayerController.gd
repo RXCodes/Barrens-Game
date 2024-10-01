@@ -11,7 +11,7 @@ var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
 
 var gunInteractor: Gun.Interactor
-var gunFireShakeDampening = 0.2
+var gunFireShakeDampening = 0.1
 var reloadSpeedMultiplier = 0.5
 var shooting = false
 
@@ -22,7 +22,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
-	gunInteractor.gunSprite = $"Coat/LeftElbow/Weapon"
+	gunInteractor.gunSprite = $Torso/Coat/LeftElbow/Weapon
 	gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
 	gunInteractor.onFire = self.onFire
 	gunInteractor.onCockWeapon = self.onCockWeapon
@@ -125,6 +125,16 @@ func _input(event: InputEvent) -> void:
 					currentMovementKeypresses.push_front(moveVector)
 			else:
 				currentMovementKeypresses.erase(moveVector)
+		
+		# just for debugging purposes -- have the player be able to swap weapons
+		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
+			if event.pressed:
+				if key == "1":
+					gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
+					refreshAmmoDisplay()
+				elif key == "2":
+					gunInteractor.currentWeapon = Gun.gunFromString("AK47")
+					refreshAmmoDisplay()
 	
 	if event is InputEventMouseButton:
 		# handle left click
@@ -146,7 +156,7 @@ func _input(event: InputEvent) -> void:
 
 func onFire() -> void:
 	# briefly shake screen
-	var recoilMultiplier = 7.5
+	var recoilMultiplier = gunInteractor.currentWeapon.recoilAmount
 	var random = Vector2(randf_range(-250, 250), randf_range(-250, 250))
 	var crosshairNormal = Vector2.from_angle(Crosshair.current.global_position.angle_to_point(global_position + random)).normalized()
 	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier

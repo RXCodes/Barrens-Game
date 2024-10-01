@@ -23,6 +23,9 @@ var cockedGun = true:
 ## the time to wait between shots in seconds before the weapon can be fired again
 @export var fireRate: float = 0.2
 
+## the amount of pushback experienced per shot
+@export var recoilAmount: float = 5.0
+
 ## if enabled, the gun can fire again while holding the shoot trigger
 @export var automatic: bool = true
 
@@ -102,6 +105,7 @@ var canFire = true
 var reloading = false
 
 var shootAudioPlayer: AudioStreamPlayer2D
+var lastBulletAngleRadians: float
 func fire(holding: bool, angleRadians: float) -> void:
 	if not automatic and holding:
 		return
@@ -115,6 +119,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 		cockedGun = false
 	canFire = false
 	currentMagCapacity -= 1
+	lastBulletAngleRadians = angleRadians
 	if shootAudioPlayer:
 		shootAudioPlayer.play()
 	if gunInteractor.onFire:
@@ -158,6 +163,8 @@ func cancelReload() -> void:
 	if reloading:
 		reloading = false
 		reloadTimer = null
+		if reloadAudioPlayer:
+			reloadAudioPlayer.stop()
 		if gunInteractor.onReloadInterrupted:
 			gunInteractor.onReloadInterrupted.call()
 
@@ -176,7 +183,17 @@ func dropShell() -> void:
 		newShell.texture = shellTexture
 		newShell.global_position = gunInteractor.gunSprite.global_position
 		newShell.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		newShell.xVelocity = Vector2.from_angle(lastBulletAngleRadians).x * -35
 		NodeRelations.rootNode.find_child("Level").add_child(newShell)
+
+func dropMagazine() -> void:
+	if magazineTexture:
+		var newMagazine = Sprite2D.new()
+		newMagazine.set_script(shellBehaviorScript)
+		newMagazine.texture = magazineTexture
+		newMagazine.global_position = gunInteractor.gunSprite.global_position
+		newMagazine.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		NodeRelations.rootNode.find_child("Level").add_child(newMagazine)
 
 var cockingAudioPlayer: AudioStreamPlayer2D
 func playCockingSound() -> void:
@@ -192,6 +209,7 @@ static func gunFromString(string: String) -> Gun:
 var gunInteractor: Gun.Interactor
 class Interactor:
 	var weaponData = {}
+	var audioStreams = {}
 	var currentWeapon: Gun:
 		set(newWeapon):
 			if not weaponData.has(newWeapon.identifier):
@@ -210,34 +228,33 @@ class Interactor:
 					newAudioPlayer.max_polyphony = 10
 					originNode.add_child(newAudioPlayer)
 					newWeapon.shootAudioPlayer = newAudioPlayer
-					newAudioPlayer.name = newWeapon.identifier + ".shoot"
+					audioStreams[newWeapon.identifier + "-shoot"] = newAudioPlayer
 				if newWeapon.cockingSound:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.cockingSound
 					newAudioPlayer.max_polyphony = 2
 					originNode.add_child(newAudioPlayer)
 					newWeapon.cockingAudioPlayer = newAudioPlayer
-					newAudioPlayer.name = newWeapon.identifier + ".cocking"
+					audioStreams[newWeapon.identifier + "-cocking"] = newAudioPlayer
 				if newWeapon.reloadSound:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.reloadSound
 					newAudioPlayer.max_polyphony = 1
 					originNode.add_child(newAudioPlayer)
 					newWeapon.reloadAudioPlayer = newAudioPlayer
-					newAudioPlayer.name = newWeapon.identifier + ".reload"
+					audioStreams[newWeapon.identifier + "-reload"] = newAudioPlayer
 			else:
-				if weaponData.has(newWeapon.identifier + ".shoot"):
-					newWeapon.shootAudioPlayer = weaponData[newWeapon.identifier + ".shoot"]
-				if weaponData.has(newWeapon.identifier + ".cocking"):
-					newWeapon.cockingAudioPlayer = weaponData[newWeapon.identifier + ".cocking"]
-				if weaponData.has(newWeapon.identifier + ".reload"):
-					newWeapon.reloadAudioPlayer = weaponData[newWeapon.identifier + ".reload"]
+				newWeapon.shootAudioPlayer = audioStreams.get(newWeapon.identifier + "-shoot")
+				newWeapon.cockingAudioPlayer = audioStreams.get(newWeapon.identifier + "-cocking")
+				newWeapon.reloadAudioPlayer = audioStreams.get(newWeapon.identifier + "-reload")
 			newWeapon.gunInteractor = self
 			currentWeapon = newWeapon
 			newWeapon.leftoverAmmoCount = weaponData[newWeapon.identifier]["leftoverAmmo"]
 			newWeapon.currentMagCapacity = weaponData[newWeapon.identifier]["magCapacity"]
 			newWeapon.cockedGun = weaponData[newWeapon.identifier]["cocked"]
 			gunSprite.texture = currentWeapon.texture
+			if not newWeapon.cockedGun:
+				newWeapon.cockWeapon()
 	var gunSprite: Sprite2D
 	var onFire: Callable
 	var onReload: Callable

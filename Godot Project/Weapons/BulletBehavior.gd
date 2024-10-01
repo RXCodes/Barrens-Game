@@ -87,5 +87,5 @@ func _process(delta: float) -> void:
 		distanceTravelled += speed * 1.2
 		if distanceTravelled >= maximumDistance:
 			size.y -= speed * 0.95
-			if size.y <= 5:
+			if size.y <= 10:
 				free()

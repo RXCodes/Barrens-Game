@@ -30,6 +30,7 @@ folder_colors={
 "res://Scenes/": "green",
 "res://UI/": "blue",
 "res://Weapons/": "purple",
+"res://Weapons/AK47/": "pink",
 "res://Weapons/Shotgun/": "pink"
 }
 

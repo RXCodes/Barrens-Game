@@ -43,7 +43,7 @@ joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = true
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_6n2of"]
-target_nodepath = NodePath("../Coat/LeftElbow/Weapon/RightHand")
+target_nodepath = NodePath("../Torso/Coat/LeftElbow/Weapon/RightHand")
 tip_nodepath = NodePath("Torso/Left Elbow/Left Arm/Left Hand/Gun")
 ccdik_data_chain_length = 1
 joint_data/0/bone_index = 7
