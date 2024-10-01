@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=60 format=3 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -37,11 +37,8 @@
 [ext_resource type="AudioStream" uid="uid://b01w7am2dnink" path="res://Weapons/Shotgun/ShotgunCock.mp3" id="29_vey1i"]
 [ext_resource type="AudioStream" uid="uid://buvjgbel4tijd" path="res://Weapons/Shotgun/ShotgunReload.mp3" id="30_cx2v1"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="31_rq6uy"]
-[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://Weapons/AK47/AK47.png" id="37_47fda"]
-[ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://Weapons/AK47/AK47Shell.png" id="38_gny0h"]
-[ext_resource type="Texture2D" uid="uid://dpu7ryi50nn1e" path="res://Weapons/AK47/AK47Magazine.png" id="39_3ewhs"]
-[ext_resource type="AudioStream" uid="uid://doc6awewuo1na" path="res://Weapons/AK47/AK47Shoot.mp3" id="40_qy7rx"]
-[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://Weapons/AK47/AK47Reload.mp3" id="41_q13as"]
+[ext_resource type="Texture2D" uid="uid://dhv23kg6kw2ag" path="res://Weapons/BulletTrail.png" id="35_ky7i1"]
+[ext_resource type="Script" path="res://Weapons/BulletBehavior.gd" id="36_mgjos"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tm8et"]
 shader = ExtResource("3_34r7j")
@@ -575,60 +572,6 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_sq5cb"]
-resource_name = "Fire-AK47"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Left Hand Target:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-17, -1), Vector2(-10, 0), Vector2(-12, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Right Hand Target:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(39, -11), Vector2(40, 13), Vector2(37, 20)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.266667),
-"transitions": PackedFloat32Array(0.353553, 1),
-"update": 0,
-"values": [-1.6057, -1.5708]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["dropShell"],
-"method": &"callGunMethod"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_nf2tp"]
 resource_name = "Fire-Shotgun"
 length = 0.5
@@ -708,63 +651,6 @@ tracks/2/keys = {
 "values": [-1.5708]
 }
 
-[sub_resource type="Animation" id="Animation_gjv8w"]
-resource_name = "Reload-AK47"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Left Hand Target:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.533333, 0.633333, 0.733333, 0.833333, 0.933333, 1.06667, 1.4, 1.56667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-12, 7), Vector2(2, -7), Vector2(2.16667, -7), Vector2(-2, -7), Vector2(3, -8), Vector2(3, -7.86207), Vector2(3, -7.68965), Vector2(3, 1), Vector2(-8, -6), Vector2(3, -7), Vector2(-14, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Right Hand Target:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.533333, 0.633333, 0.766667, 0.866667, 1.16667, 1.56667, 1.76667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(41, 14), Vector2(37, -16), Vector2(24, -19), Vector2(29, -10), Vector2(30, -17), Vector2(31.1035, -17.2759), Vector2(33, 2), Vector2(30, -12), Vector2(38, -19), Vector2(34, 11)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.98023e-07, 0.3, 1.16667, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [-1.5708, -1.74533, -1.76278, -1.5708]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.533333, 0.866667),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": ["playReloadSound"],
-"method": &"callGunMethod"
-}, {
-"args": ["dropMagazine"],
-"method": &"callGunMethod"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_esp1p"]
 resource_name = "Reload-Shotgun"
 length = 2.0
@@ -834,14 +720,10 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_guau6"]
 _data = {
 "Cock-Shotgun": SubResource("Animation_iueme"),
-"Fire-AK47": SubResource("Animation_sq5cb"),
 "Fire-Shotgun": SubResource("Animation_nf2tp"),
 "RESET": SubResource("Animation_pdiy5"),
-"Reload-AK47": SubResource("Animation_gjv8w"),
 "Reload-Shotgun": SubResource("Animation_esp1p")
 }
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0c6ax"]
 
 [node name="Debug Scene" type="Node2D"]
 texture_filter = 1
@@ -870,10 +752,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -26.0
-offset_right = -169.0
-offset_bottom = 16.0
+offset_left = -21.0
+offset_top = -21.0
+offset_right = 21.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(21, 21)
@@ -955,26 +837,12 @@ text = "/"
 label_settings = ExtResource("22_ueea8")
 horizontal_alignment = 1
 
-[node name="Under" type="Node" parent="."]
-
-[node name="Ground" type="Sprite2D" parent="Under"]
-z_index = -4096
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(0, 4)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("20_xgqmk")
-region_enabled = true
-region_rect = Rect2(0, 0, 200, 200)
-script = ExtResource("21_khkv7")
-metadata/_edit_lock_ = true
-
 [node name="Level" type="Node" parent="."]
-process_priority = 100
 script = ExtResource("9_i8abo")
 
 [node name="PlayerRender" type="CanvasGroup" parent="Level"]
 process_priority = 5
+z_as_relative = false
 material = SubResource("ShaderMaterial_tm8et")
 position = Vector2(0, 4)
 script = ExtResource("3_atbdy")
@@ -988,19 +856,18 @@ script = ExtResource("1_vh0g0")
 [node name="Torso" type="Sprite2D" parent="Level/PlayerRender/Player"]
 process_mode = 3
 position = Vector2(-1.6512e-05, 2.60002)
-scale = Vector2(1, 1)
 texture = ExtResource("11_epjwa")
 
 [node name="RightLeg" type="Sprite2D" parent="Level/PlayerRender/Player/Torso"]
-position = Vector2(0.102777, 0.035748)
-rotation = 0.00384969
-scale = Vector2(0.994498, 0.994498)
+position = Vector2(0.214323, -0.0142579)
+rotation = 0.00709481
+scale = Vector2(0.999322, 0.999322)
 texture = ExtResource("9_pggau")
 
 [node name="RightKnee" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/RightLeg"]
-position = Vector2(7.03978, 5.3672)
-rotation = -0.000824213
-scale = Vector2(1.00536, 1.00536)
+position = Vector2(7.03965, 5.36807)
+rotation = -0.00359809
+scale = Vector2(1.00051, 1.00051)
 texture = SubResource("CompressedTexture2D_01b5n")
 offset = Vector2(-7, -6)
 
@@ -1010,14 +877,14 @@ texture = ExtResource("13_h4w6t")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Level/PlayerRender/Player/Torso"]
-position = Vector2(-0.0222651, -0.0325198)
-rotation = -0.00337284
-scale = Vector2(0.99934, 0.99934)
+position = Vector2(-0.0223395, -0.0327458)
+rotation = -0.00337237
+scale = Vector2(0.99932, 0.99932)
 texture = ExtResource("8_wksww")
 
 [node name="LeftKnee" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/LeftLeg"]
-position = Vector2(-7.00058, 5.41224)
-scale = Vector2(1.00005, 1.00005)
+position = Vector2(-7.00053, 5.4129)
+scale = Vector2(1, 1)
 texture = SubResource("CompressedTexture2D_iawck")
 offset = Vector2(7, -6)
 
@@ -1026,55 +893,55 @@ position = Vector2(-7.8855, 30.6798)
 texture = ExtResource("11_mk3id")
 offset = Vector2(7.8855, -30.6798)
 
-[node name="Coat" type="Sprite2D" parent="Level/PlayerRender/Player/Torso"]
-position = Vector2(-5.20793e-06, -4.60002)
+[node name="Coat" type="Sprite2D" parent="Level/PlayerRender/Player"]
+position = Vector2(-2.17199e-05, -2)
 texture = ExtResource("1_qrqjr")
 
-[node name="RightElbow" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat"]
-position = Vector2(14.4857, -18.0899)
-rotation = -0.133891
-scale = Vector2(0.998927, 0.998927)
+[node name="RightElbow" type="Sprite2D" parent="Level/PlayerRender/Player/Coat"]
+position = Vector2(14.5966, -18.1231)
+rotation = -0.124508
+scale = Vector2(0.998921, 0.998921)
 texture = ExtResource("7_df1ck")
 offset = Vector2(-17.5087, 18.4199)
 
-[node name="RightArm" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat/RightElbow"]
-position = Vector2(5.19584, 17.5618)
-rotation = -0.42661
-scale = Vector2(1.0006, 1.0006)
+[node name="RightArm" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/RightElbow"]
+position = Vector2(5.22013, 17.584)
+rotation = -0.439893
+scale = Vector2(0.999996, 0.999996)
 texture = ExtResource("6_0t3nv")
 offset = Vector2(-19.7922, 3.05063)
 
-[node name="LeftElbow" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat"]
-position = Vector2(-17.4596, -20.0653)
-rotation = 0.326516
-scale = Vector2(0.995875, 0.995875)
+[node name="LeftElbow" type="Sprite2D" parent="Level/PlayerRender/Player/Coat"]
+position = Vector2(-17.863, -20.0596)
+rotation = 0.30139
+scale = Vector2(0.995804, 0.995804)
 texture = ExtResource("3_kj2go")
 offset = Vector2(18, 20)
 
-[node name="Weapon" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat/LeftElbow"]
-position = Vector2(18.2131, 12.2302)
-rotation = -0.0813154
-scale = Vector2(0.999833, 0.999833)
-texture = ExtResource("37_47fda")
+[node name="Weapon" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow"]
+position = Vector2(18.2846, 12.5596)
+rotation = -0.0561902
+scale = Vector2(0.999655, 0.999655)
+texture = ExtResource("4_8xayp")
 
-[node name="RightHand" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(40.2046, -1.45597)
-rotation = 3.03854
-scale = Vector2(1.00383, 1.00383)
-skew = -0.000853896
+[node name="RightHand" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow/Weapon"]
+position = Vector2(40.2166, -1.4567)
+rotation = 3.03851
+scale = Vector2(1.00347, 1.00347)
+skew = -0.000846744
 texture = ExtResource("5_fe20w")
 offset = Vector2(-21.7808, -3.12533)
 
-[node name="LeftArm" type="Sprite2D" parent="Level/PlayerRender/Player/Torso/Coat/LeftElbow"]
-position = Vector2(-5.14004, 12.1069)
-rotation = -0.35582
-scale = Vector2(0.999986, 0.999986)
+[node name="LeftArm" type="Sprite2D" parent="Level/PlayerRender/Player/Coat/LeftElbow"]
+position = Vector2(-5.10202, 12.0799)
+rotation = -0.345327
+scale = Vector2(0.99994, 0.99994)
 texture = ExtResource("3_jwq7c")
 offset = Vector2(21.5783, 10.0035)
 
-[node name="Head" type="Sprite2D" parent="Level/PlayerRender/Player/Torso"]
-position = Vector2(0.163597, -24.5995)
-rotation = -0.000163474
+[node name="Head" type="Sprite2D" parent="Level/PlayerRender/Player"]
+position = Vector2(0.163581, -21.9995)
+rotation = -0.0174533
 scale = Vector2(0.999793, 0.999793)
 texture = ExtResource("2_nb7ar")
 offset = Vector2(1, 22)
@@ -1087,7 +954,6 @@ modification_stack = ExtResource("14_ofc8o")
 [node name="Torso" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D"]
 position = Vector2(0, 4)
 rotation = -1.5708
-scale = Vector2(1, 1)
 rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
@@ -1100,7 +966,7 @@ bone_angle = 0.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Head"]
 rotation = 1.5708
-remote_path = NodePath("../../../../Torso/Head")
+remote_path = NodePath("../../../../Head")
 
 [node name="Right Elbow" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(23.8872, 18.1496)
@@ -1119,25 +985,24 @@ metadata/_local_pose_override_enabled_ = true
 [node name="Right Hand" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Right Elbow/Right Arm"]
 position = Vector2(14.5632, -6.70177)
 rotation = 1.14699
-scale = Vector2(1, 1)
 rest = Transform2D(0.411234, 0.91153, -0.91153, 0.411234, 14.5632, -6.70177)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 65.7177
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand"]
-remote_path = NodePath("../../../../../../Torso/Coat/LeftElbow/Weapon/RightHand")
+remote_path = NodePath("../../../../../../Coat/LeftElbow/Weapon/RightHand")
 update_rotation = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Right Elbow/Right Arm"]
 position = Vector2(1.79673, 0.776616)
 rotation = -1.58323
-remote_path = NodePath("../../../../../Torso/Coat/RightElbow/RightArm")
+remote_path = NodePath("../../../../../Coat/RightElbow/RightArm")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Right Elbow"]
 position = Vector2(-0.676, 3.5)
 rotation = -1.5708
-remote_path = NodePath("../../../../Torso/Coat/RightElbow")
+remote_path = NodePath("../../../../Coat/RightElbow")
 
 [node name="Left Elbow" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(26.1296, -16.8418)
@@ -1171,18 +1036,18 @@ bone_angle = -4.87757
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand"]
 position = Vector2(7.92635, -1.47766)
-remote_path = NodePath("../../../../../../Torso/Coat/LeftElbow/Weapon")
+remote_path = NodePath("../../../../../../Coat/LeftElbow/Weapon")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Left Elbow/Left Arm"]
 position = Vector2(-1.26577, -3.79972)
 rotation = -0.111617
-remote_path = NodePath("../../../../../Torso/Coat/LeftElbow/LeftArm")
+remote_path = NodePath("../../../../../Coat/LeftElbow/LeftArm")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso/Left Elbow"]
 position = Vector2(-0.0139112, 0.189827)
 rotation = -0.817507
 scale = Vector2(0.999998, 0.999998)
-remote_path = NodePath("../../../../Torso/Coat/LeftElbow")
+remote_path = NodePath("../../../../Coat/LeftElbow")
 
 [node name="Left Knee" type="Bone2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(-3.95605, -7)
@@ -1250,7 +1115,7 @@ remote_path = NodePath("../../../../../Torso/RightLeg")
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(6, 0)
 rotation = 1.5708
-remote_path = NodePath("../../../Torso/Coat")
+remote_path = NodePath("../../../Coat")
 
 [node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Level/PlayerRender/Player/Skeleton2D/Torso"]
 position = Vector2(1.39998, -1.14441e-05)
@@ -1307,6 +1172,17 @@ position_smoothing_enabled = true
 position_smoothing_speed = 6.0
 script = ExtResource("21_mx4fk")
 
+[node name="Ground" type="Sprite2D" parent="."]
+z_index = -4096
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("20_xgqmk")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 200)
+script = ExtResource("21_khkv7")
+metadata/_edit_lock_ = true
+
 [node name="Label" type="Label" parent="."]
 offset_left = -234.0
 offset_top = -242.0
@@ -1330,18 +1206,15 @@ horizontal_alignment = 1
 [node name="Weapons" type="Node" parent="."]
 
 [node name="Shotgun" type="Node2D" parent="Weapons"]
-material = SubResource("CanvasItemMaterial_0c6ax")
 script = ExtResource("18_2h52x")
 identifier = "Shotgun"
 displayName = "Shotgun"
 needsCocking = true
 fireRate = 1.0
-recoilAmount = 15.0
 automatic = false
 maximumMagCapacity = 5
 startingAmmoCount = 20
 bulletMultiplier = 8
-targetRange = 500.0
 reloadTime = 2.0
 texture = ExtResource("4_8xayp")
 shellTexture = ExtResource("27_f6y28")
@@ -1349,26 +1222,23 @@ shootSound = ExtResource("28_lux8q")
 cockingSound = ExtResource("29_vey1i")
 reloadSound = ExtResource("30_cx2v1")
 
-[node name="AK47" type="Node2D" parent="Weapons"]
-material = SubResource("CanvasItemMaterial_0c6ax")
-script = ExtResource("18_2h52x")
-identifier = "AK47"
-displayName = "AK47"
-fireRate = 0.12
-maximumMagCapacity = 30
-startingAmmoCount = 120
-bulletSpreadDegrees = 3.0
-targetRange = 850.0
-rangeSpread = 30.0
-targetDamage = 13.0
-bulletFireColor = Color(0.953984, 0.853036, 0.772508, 1)
-bulletTrailColor = Color(0.35821, 0.419437, 0.484453, 1)
-bulletSize = 0.85
-texture = ExtResource("37_47fda")
-shellTexture = ExtResource("38_gny0h")
-magazineTexture = ExtResource("39_3ewhs")
-shootSound = ExtResource("40_qy7rx")
-reloadSound = ExtResource("41_q13as")
+[node name="Hidden" type="Node2D" parent="."]
+process_mode = 4
+visible = false
+
+[node name="BulletTrail" type="NinePatchRect" parent="Hidden"]
+offset_left = -482.0
+offset_top = 412.0
+offset_right = -474.0
+offset_bottom = 420.0
+pivot_offset = Vector2(4, 8)
+texture = ExtResource("35_ky7i1")
+region_rect = Rect2(8, 0, 16, 32)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+script = ExtResource("36_mgjos")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("31_rq6uy")

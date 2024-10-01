@@ -24,11 +24,13 @@ window/stretch/mode="viewport"
 
 folder_colors={
 "res://Environment/": "yellow",
+"res://HelperClasses/": "pink",
 "res://Models/": "red",
 "res://Models/Player/": "yellow",
 "res://Scenes/": "green",
 "res://UI/": "blue",
 "res://Weapons/": "purple",
+"res://Weapons/AK47/": "pink",
 "res://Weapons/Shotgun/": "pink"
 }
 

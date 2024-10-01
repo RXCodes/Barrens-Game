@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3p88gsutmh2q"
-path="res://.godot/imported/Weapon.png-4d4d48158c99d13401be4dec14cb129a.ctex"
+uid="uid://dpu7ryi50nn1e"
+path="res://.godot/imported/AK47Magazine.png-01b5912905e53c1e567108ec5a2cce89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Shotgun/Weapon.png"
-dest_files=["res://.godot/imported/Weapon.png-4d4d48158c99d13401be4dec14cb129a.ctex"]
+source_file="res://Weapons/AK47/AK47Magazine.png"
+dest_files=["res://.godot/imported/AK47Magazine.png-01b5912905e53c1e567108ec5a2cce89.ctex"]
 
 [params]
 
