@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd5uck0450p8b"
-path="res://.godot/imported/Sand.png-a066d16836dac72e027545f0e2544628.ctex"
+uid="uid://dcr6lyfsf26tc"
+path="res://.godot/imported/StonePathTilemap.png-e6d5ce4b0c6daaa9543dd959d0a1577f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/Sand.png"
-dest_files=["res://.godot/imported/Sand.png-a066d16836dac72e027545f0e2544628.ctex"]
+source_file="res://Environment/StonePathTilemap.png"
+dest_files=["res://.godot/imported/StonePathTilemap.png-e6d5ce4b0c6daaa9543dd959d0a1577f.ctex"]
 
 [params]
 
