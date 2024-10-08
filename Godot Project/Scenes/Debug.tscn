@@ -174,7 +174,7 @@ region_rect = Rect2(0, 0, 200, 200)
 script = ExtResource("21_khkv7")
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="Under"]
+[node name="Hit Me Lol" type="Label" parent="Under"]
 modulate = Color(1, 0.47, 0.47, 1)
 offset_left = 435.0
 offset_top = 550.0
