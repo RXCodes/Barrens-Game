@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm48ayf5vh1d7"
-path="res://.godot/imported/LeftElbow.png-d8d6ebe1d7763a2aa27bfc42dff143cf.ctex"
+uid="uid://bwcd3cakf8j3e"
+path="res://.godot/imported/LeftFoot.png-e0e5747cd2aeb5bf13a1b790bc9624c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Player/LeftElbow.png"
-dest_files=["res://.godot/imported/LeftElbow.png-d8d6ebe1d7763a2aa27bfc42dff143cf.ctex"]
+source_file="res://ModelContents/Player/LeftFoot.png"
+dest_files=["res://.godot/imported/LeftFoot.png-e0e5747cd2aeb5bf13a1b790bc9624c7.ctex"]
 
 [params]
 

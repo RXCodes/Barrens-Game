@@ -35,11 +35,8 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
 	var canvasItemMaterial = CanvasItemMaterial.new()
 	canvasItemMaterial.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	fireBullet.material = canvasItemMaterial
+	fireBullet.gun = gun
 	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
-	
-	# create a bullet hole where bullet lands (if it hit the ground or a wall)
-	var projectoryVector = Vector2.from_angle(bulletAngle - rotationOffset) * travelDistance
-	BulletHole.create(position + projectoryVector, true)
 	
 	# forcefully order the bullets for this frame
 	ZIndexSorter.sort()
@@ -76,6 +73,8 @@ var smokeBullet = false
 var speed = randfn(targetBulletTravelSpeed, bulletTravelSpeedDeviation)
 var maximumDistance = 10000
 var distanceTravelled = 0
+var frames = 0
+var gun: Gun
 func _process(delta: float) -> void:
 	if smokeBullet:
 		size.y += speed * 0.7
@@ -83,11 +82,38 @@ func _process(delta: float) -> void:
 		if distanceTravelled >= maximumDistance:
 			size.y = maximumDistance
 	else:
+		if frames == 0:
+			global_position -= normalDirection * speed * 0.5
 		size.y += speed * 0.8
 		scale.x *= 0.95
 		global_position += normalDirection * speed * 0.4
 		distanceTravelled += speed * 1.2
 		if distanceTravelled >= maximumDistance:
 			size.y -= speed * 0.95
-			if size.y <= 10:
+			if size.y <= 10 and frames >= 3:
 				free()
+			elif size.y <= 10:
+				size.y = maximumDistance * 0.5
+	frames += 1
+
+var needsRaycast = true
+func _physics_process(delta: float) -> void:
+	if not needsRaycast:
+		return
+	needsRaycast = false
+	
+	# raycasting functionality
+	var space_state = get_world_2d().direct_space_state
+	var projectoryVector = maximumDistance * normalDirection * bulletScale
+	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector)
+	var result = space_state.intersect_ray(query)
+	if result:
+		maximumDistance = global_position.distance_to(result.position) / bulletScale
+		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
+		if enemy and gun:
+			enemy.call("onHit", result.position)
+			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread))
+		return
+	
+	# create a bullet hole where bullet lands (it didn't hit anything)
+	BulletHole.create(global_position + projectoryVector, true)

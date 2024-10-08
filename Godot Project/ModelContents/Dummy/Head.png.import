@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpc0ey12mu75a"
-path="res://.godot/imported/RightHand.png-bdbbb72fbdc605cdcf03522f1995527c.ctex"
+uid="uid://bhxd72k2ycswe"
+path="res://.godot/imported/Head.png-28142fb9e738a12c3b55ee871df9e34e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Player/RightHand.png"
-dest_files=["res://.godot/imported/RightHand.png-bdbbb72fbdc605cdcf03522f1995527c.ctex"]
+source_file="res://ModelContents/Dummy/Head.png"
+dest_files=["res://.godot/imported/Head.png-28142fb9e738a12c3b55ee871df9e34e.ctex"]
 
 [params]
 

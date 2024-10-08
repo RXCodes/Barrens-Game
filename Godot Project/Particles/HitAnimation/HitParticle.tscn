@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://capl88ekysngf"]
+
+[ext_resource type="Texture2D" uid="uid://dk1yh7mwv1k7y" path="res://Particles/HitAnimation/0.png" id="1_dwn2p"]
+[ext_resource type="Texture2D" uid="uid://cq47i78b0lalb" path="res://Particles/HitAnimation/1.png" id="2_p1dqt"]
+[ext_resource type="Texture2D" uid="uid://xl0mnykpr0a0" path="res://Particles/HitAnimation/2.png" id="3_gb0ic"]
+[ext_resource type="Texture2D" uid="uid://brdy8ncjmvx5t" path="res://Particles/HitAnimation/3.png" id="4_05bh7"]
+[ext_resource type="Texture2D" uid="uid://c3tonq5k5yhe" path="res://Particles/HitAnimation/4.png" id="5_iyygq"]
+[ext_resource type="Texture2D" uid="uid://c07n3fbg3yu6g" path="res://Particles/HitAnimation/5.png" id="6_pmae8"]
+[ext_resource type="Texture2D" uid="uid://cv1u8c25mprp1" path="res://Particles/HitAnimation/6.png" id="7_l0aj3"]
+[ext_resource type="Texture2D" uid="uid://d22d86i1mchup" path="res://Particles/HitAnimation/7.png" id="8_21vj4"]
+[ext_resource type="Texture2D" uid="uid://p0se3kbmfbpw" path="res://Particles/HitAnimation/8.png" id="9_mqdp7"]
+[ext_resource type="Script" path="res://Particles/HitAnimation/HitParticle.gd" id="10_04ioy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oyl8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dwn2p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_p1dqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gb0ic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_05bh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_iyygq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pmae8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_l0aj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_21vj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mqdp7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HitParticle" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(251, 683)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_6oyl8")
+frame_progress = 0.39135
+speed_scale = 7.0
+script = ExtResource("10_04ioy")

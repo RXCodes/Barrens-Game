@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://1m47f1qmoc5v"]
+
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_8l233"]
+[ext_resource type="Script" path="res://ModelContents/AIController.gd" id="2_ldgo1"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="3_os0n6"]
+[ext_resource type="Texture2D" uid="uid://dkpps3q1nmmro" path="res://ModelContents/Dummy/Base.png" id="4_e8bl2"]
+[ext_resource type="Texture2D" uid="uid://c2le345d36g4p" path="res://ModelContents/Dummy/Body.png" id="5_54ymu"]
+[ext_resource type="Texture2D" uid="uid://bhxd72k2ycswe" path="res://ModelContents/Dummy/Head.png" id="6_i1ai0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
+radius = 15.0
+height = 46.0
+
+[node name="DummyRender" type="CanvasGroup"]
+process_priority = 5
+texture_filter = 1
+script = ExtResource("1_8l233")
+entityZIndexOffset = 24
+
+[node name="Dummy" type="Node2D" parent="." node_paths=PackedStringArray("rigidBody")]
+script = ExtResource("2_ldgo1")
+rigidBody = NodePath("Rigidbody")
+
+[node name="Rigidbody" type="RigidBody2D" parent="Dummy"]
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Dummy/Rigidbody"]
+position = Vector2(1, -12)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_64nc2")
+
+[node name="Shadow" type="Sprite2D" parent="Dummy/Rigidbody"]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 23.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_os0n6")
+offset = Vector2(0, -39.2243)
+
+[node name="Base" type="Sprite2D" parent="Dummy/Rigidbody"]
+texture_filter = 1
+position = Vector2(0, 24.5)
+scale = Vector2(2, 2)
+texture = ExtResource("4_e8bl2")
+offset = Vector2(0, -24.5)
+
+[node name="Body" type="Sprite2D" parent="Dummy/Rigidbody/Base"]
+texture_filter = 1
+position = Vector2(0, -12.5)
+texture = ExtResource("5_54ymu")
+offset = Vector2(0, -6.5)
+
+[node name="Head" type="Sprite2D" parent="Dummy/Rigidbody/Base/Body"]
+texture_filter = 1
+position = Vector2(1, -18)
+texture = ExtResource("6_i1ai0")
+offset = Vector2(-1, 13.5)

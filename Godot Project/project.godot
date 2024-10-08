@@ -25,9 +25,9 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://Environment/": "yellow",
 "res://HelperClasses/": "pink",
-"res://Models/": "red",
-"res://Models/Dummy/": "orange",
-"res://Models/Player/": "yellow",
+"res://ModelContents/": "red",
+"res://ModelContents/Dummy/": "orange",
+"res://ModelContents/Player/": "yellow",
 "res://Scenes/": "green",
 "res://UI/": "blue",
 "res://Weapons/": "purple",
@@ -38,6 +38,11 @@ folder_colors={
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true
+
+[physics]
+
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
 
 [rendering]
 

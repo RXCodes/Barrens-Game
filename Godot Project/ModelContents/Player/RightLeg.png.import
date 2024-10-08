@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2qcvkjk1aqk3"
-path="res://.godot/imported/Shadow.png-f4b7c1b17022ae8cffc061d36aaa3195.ctex"
+uid="uid://bkhjlab7jkolg"
+path="res://.godot/imported/RightLeg.png-759426c379504cce1ca410f8b6e8cd1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Shadow.png"
-dest_files=["res://.godot/imported/Shadow.png-f4b7c1b17022ae8cffc061d36aaa3195.ctex"]
+source_file="res://ModelContents/Player/RightLeg.png"
+dest_files=["res://.godot/imported/RightLeg.png-759426c379504cce1ca410f8b6e8cd1b.ctex"]
 
 [params]
 

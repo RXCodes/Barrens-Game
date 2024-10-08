@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0a231r76ohql"
-path="res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f.ctex"
+uid="uid://dvya68w5g4410"
+path="res://.godot/imported/LeftLeg.png-37c899346e4e9b12621d19688a9100fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Models/Player/LeftKnee.png"
-dest_files=["res://.godot/imported/LeftKnee.png-b5d81ce86da209cbcd8d4514b31e3e4f.ctex"]
+source_file="res://ModelContents/Player/LeftLeg.png"
+dest_files=["res://.godot/imported/LeftLeg.png-37c899346e4e9b12621d19688a9100fa.ctex"]
 
 [params]
 
