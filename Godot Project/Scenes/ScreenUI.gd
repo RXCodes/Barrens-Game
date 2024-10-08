@@ -1,10 +1,6 @@
-class_name ScreenUI extends Control
+class_name ScreenUI extends CanvasLayer
 static var current
 
 func _ready() -> void:
+	offset = get_viewport().size * 0.5
 	current = self
-
-# Make sure the position and scale of the UI matches the camera
-func _process(delta: float) -> void:
-	position = PlayerCamera.current.get_screen_center_position()
-	scale = Vector2.ONE / PlayerCamera.current.zoom

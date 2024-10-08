@@ -1,7 +1,11 @@
 class_name Player extends Node2D
 static var current: Player
 var renderer: EntityRender
-
+var mainAnimationPlayer: AnimationPlayer
+var actionAnimationPlayer: AnimationPlayer
+var animationTree: AnimationTree
+var subviewPort: SubViewport
+var textureOutput: Sprite2D
 var sprintingSpeedMultiplier = 1.5
 var isSprinting = false
 var playerSpeed = 3.5
@@ -19,10 +23,15 @@ var shooting = false
 func _ready() -> void:
 	renderer = get_parent()
 	current = self
+	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
+	actionAnimationPlayer = $Subviewport/Transform/ActionAnimationPlayer
+	animationTree = $Subviewport/Transform/AnimationTree
+	subviewPort = $Subviewport
+	textureOutput = $TextureDisplay
 	await get_tree().process_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
-	gunInteractor.gunSprite = $Torso/Coat/LeftElbow/Weapon
+	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon
 	gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
 	gunInteractor.onFire = self.onFire
 	gunInteractor.onCockWeapon = self.onCockWeapon
@@ -48,13 +57,12 @@ func _process(delta: float) -> void:
 	for key in animationValues.keys():
 		animationValues[key] -= animSpeed
 		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
-		$AnimationTree[key] = animationValues[key]
+		animationTree[key] = animationValues[key]
 	
 	# calculate normal vector to crosshair and flip player if needed
-	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.global_position))
+	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.cursorPosition))
 	facingLeft = crosshairNormal.x < 0
-	#renderer.flipHorizontally = facingLeft
-	scale.x = -1 if facingLeft else 1
+	textureOutput.scale.x = -1 if facingLeft else 1
 	
 	# zoom camera when player is sprinting
 	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards
@@ -63,7 +71,7 @@ func _process(delta: float) -> void:
 	
 	# weapon functionality
 	if shooting:
-		var aimAngle = global_position.angle_to_point(Crosshair.current.global_position)
+		var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
 		gunInteractor.currentWeapon.fire(true, aimAngle)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
 
@@ -96,7 +104,7 @@ func _physics_process(delta: float) -> void:
 			speedMultiplier *= sprintingSpeedMultiplier
 		elif gunInteractor.currentWeapon.reloading:
 			speedMultiplier *= reloadSpeedMultiplier
-		$AnimationTree["parameters/Speed/scale"] = speedMultiplier
+		animationTree["parameters/Speed/scale"] = speedMultiplier
 		movementVector *= playerSpeed * speedMultiplier
 		if walkingBackwards:
 			movementVector *= 0.6
@@ -142,7 +150,7 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == 1:
 			shooting = event.pressed
 			if event.pressed:
-				var aimAngle = global_position.angle_to_point(Crosshair.current.global_position)
+				var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
 				gunInteractor.currentWeapon.fire(false, aimAngle)
 		# handle right click
 		elif event.button_index == 2:
@@ -159,7 +167,7 @@ func onFire() -> void:
 	# briefly shake screen
 	var recoilMultiplier = gunInteractor.currentWeapon.recoilAmount
 	var random = Vector2(randf_range(-250, 250), randf_range(-250, 250))
-	var crosshairNormal = Vector2.from_angle(Crosshair.current.global_position.angle_to_point(global_position + random)).normalized()
+	var crosshairNormal = Vector2.from_angle(Crosshair.current.cursorPosition.angle_to_point(global_position + random)).normalized()
 	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier
 	
 	# update ammo info and animate it
@@ -167,10 +175,10 @@ func onFire() -> void:
 	refreshAmmoDisplay()
 	
 	# play shoot animation
-	$"ActionAnimationPlayer".stop()
-	$"ActionAnimationPlayer".play("Fire-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.stop()
+	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.identifier)
 	gunInteractor.currentWeapon.cockedGun = false
-	var shootAnimationTime = $ActionAnimationPlayer.current_animation_length
+	var shootAnimationTime = actionAnimationPlayer.current_animation_length
 	var currentGunIdentifier = gunInteractor.currentWeapon.identifier
 	
 	# after shoot animation is played, play cocking animation if any
@@ -188,11 +196,11 @@ func onFire() -> void:
 				print("No ammo left")
 
 func onCockWeapon() -> void:
-	$"ActionAnimationPlayer".play("Cock-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.identifier)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
-	$"ActionAnimationPlayer".play("Reload-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.identifier)
 	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
 
 func onFinishReload() -> void:
@@ -204,7 +212,7 @@ func refreshAmmoDisplay() -> void:
 	AmmoInfoDisplay.setMagCapacity(gunInteractor.currentWeapon.currentMagCapacity)
 
 func onReloadInterrupted() -> void:
-	$"ActionAnimationPlayer".stop()
+	actionAnimationPlayer.stop()
 	Crosshair.stopReloadingWeapon()
 
 func callGunMethod(string: String):

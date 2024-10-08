@@ -8,6 +8,7 @@ var maximumOffsetDistance = 100
 var zoomMultiplier = 1.0 / 350.0
 var minimumDistanceToZoom = 50
 var zoomDampening = 0.05
+var cursorPosition = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,9 +23,10 @@ func _process(delta: float) -> void:
 	reloadingIcon.position = get_viewport().get_mouse_position() - (reloadingIcon.size / 2.0)
 	reloadingIcon.position += Vector2(4, 4)
 	reloadingIcon.position -= get_viewport_rect().size / 2.0
+	cursorPosition = global_position + PlayerCamera.current.get_screen_center_position()
 	
 	# offset camera depending on vector from player
-	var targetOffset = (global_position - Player.current.global_position) * cameraOffsetMultiplier
+	var targetOffset = (cursorPosition - Player.current.global_position) * cameraOffsetMultiplier
 	if targetOffset.length_squared() >= maximumOffsetDistance ** 2:
 		targetOffset = targetOffset.normalized() * maximumOffsetDistance
 	PlayerCamera.current.aimingPositionOffset += (targetOffset - PlayerCamera.current.aimingPositionOffset) * cameraOffsetDampening

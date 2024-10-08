@@ -59,6 +59,8 @@ func _ready() -> void:
 	normalDirection = Vector2.from_angle(rotation - rotationOffset)
 	if normalDirection.y < 0:
 		zScore -= 50
+	else:
+		zScore += 50
 	if smokeBullet:
 		zScore -= 1
 	else:

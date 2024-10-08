@@ -6,7 +6,7 @@ static var zScoreKey = "zScore"
 # objects can be in front of or behind another object depending on y position
 
 # how often to sort objects in seconds
-var intervalCheck: float = 0.10
+var intervalCheck: float = 0.25
 
 func _process(delta: float) -> void:
 	currentTime -= delta
@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		children.sort_custom(sortFunction)
 		var zIndex = 0
 		for child in children:
-			move_child(child, zIndex)
+			child.z_index = zIndex
 			zIndex += 1
 
 func sortFunction(a: Node, b: Node):

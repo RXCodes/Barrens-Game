@@ -181,7 +181,7 @@ func dropShell() -> void:
 		var newShell = Sprite2D.new()
 		newShell.set_script(shellBehaviorScript)
 		newShell.texture = shellTexture
-		newShell.global_position = gunInteractor.gunSprite.global_position
+		newShell.global_position = gunInteractor.originNode.global_position
 		newShell.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		newShell.xVelocity = Vector2.from_angle(lastBulletAngleRadians).x * -35
 		NodeRelations.rootNode.find_child("Level").add_child(newShell)
@@ -191,7 +191,7 @@ func dropMagazine() -> void:
 		var newMagazine = Sprite2D.new()
 		newMagazine.set_script(shellBehaviorScript)
 		newMagazine.texture = magazineTexture
-		newMagazine.global_position = gunInteractor.gunSprite.global_position
+		newMagazine.global_position = gunInteractor.originNode.global_position
 		newMagazine.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		NodeRelations.rootNode.find_child("Level").add_child(newMagazine)
 
