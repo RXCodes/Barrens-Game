@@ -174,9 +174,56 @@ region_rect = Rect2(0, 0, 200, 200)
 script = ExtResource("21_khkv7")
 metadata/_edit_lock_ = true
 
+[node name="Label" type="Label" parent="Under"]
+modulate = Color(1, 0.47, 0.47, 1)
+offset_left = 435.0
+offset_top = 550.0
+offset_right = 683.0
+offset_bottom = 576.0
+text = "HIT ME!!!!! ->"
+label_settings = ExtResource("22_ueea8")
+
 [node name="Level" type="Node" parent="."]
 process_priority = 100
 script = ExtResource("9_i8abo")
+
+[node name="DummyRender" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(730, 431)
+
+[node name="DummyRender2" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(652, 574)
+
+[node name="DummyRender9" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(825, 333)
+
+[node name="DummyRender10" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(654, 300)
+
+[node name="DummyRender11" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(581, 748)
+
+[node name="DummyRender3" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(738, 718)
+
+[node name="DummyRender4" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(1180, 464)
+flipX = true
+
+[node name="DummyRender5" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(1262, 598)
+flipX = true
+
+[node name="DummyRender6" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(1104, 730)
+flipX = true
+
+[node name="DummyRender7" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(1341, 412)
+flipX = true
+
+[node name="DummyRender8" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(1238, 756)
+flipX = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
 
@@ -225,41 +272,3 @@ reloadSound = ExtResource("41_q13as")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("31_rq6uy")
-
-[node name="DummyRender" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(730, 427)
-
-[node name="DummyRender2" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(652, 570)
-
-[node name="DummyRender9" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(825, 329)
-
-[node name="DummyRender10" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(654, 296)
-
-[node name="DummyRender11" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(581, 744)
-
-[node name="DummyRender3" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(738, 714)
-
-[node name="DummyRender4" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(1180, 460)
-flipX = true
-
-[node name="DummyRender5" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(1262, 594)
-flipX = true
-
-[node name="DummyRender6" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(1104, 726)
-flipX = true
-
-[node name="DummyRender7" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(1341, 408)
-flipX = true
-
-[node name="DummyRender8" parent="." instance=ExtResource("33_b2gow")]
-position = Vector2(1238, 752)
-flipX = true
