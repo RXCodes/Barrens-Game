@@ -25,4 +25,5 @@ void fragment() {
 		c.rgb /= c.a;
 	}
 	COLOR *= c;
+	//COLOR = vec4(SCREEN_UV.x, SCREEN_UV.y, 1.0, 1.0);
 }

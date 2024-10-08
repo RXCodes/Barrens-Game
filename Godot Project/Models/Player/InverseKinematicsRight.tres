@@ -1,0 +1,108 @@
+[gd_resource type="SkeletonModificationStack2D" load_steps=6 format=3 uid="uid://wufdc7yi6y8c"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_uah0x"]
+target_nodepath = NodePath("../Left Hand Target")
+tip_nodepath = NodePath("Torso/Left Elbow/Left Arm/Left Hand")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 5
+joint_data/0/bone2d_node = NodePath("Torso/Left Elbow")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 0.14
+joint_data/0/constraint_angle_max = -180.09
+joint_data/0/constraint_angle_invert = false
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 6
+joint_data/1/bone2d_node = NodePath("Torso/Left Elbow/Left Arm")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 35.0
+joint_data/1/constraint_angle_max = 270.0
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = false
+joint_data/1/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_xu4oy"]
+target_nodepath = NodePath("../Right Hand Target")
+tip_nodepath = NodePath("Torso/Right Elbow/Right Arm/Right Hand")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 2
+joint_data/0/bone2d_node = NodePath("Torso/Right Elbow")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = false
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 3
+joint_data/1/bone2d_node = NodePath("Torso/Right Elbow/Right Arm")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 145.0
+joint_data/1/constraint_angle_max = 9.95
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_6n2of"]
+target_nodepath = NodePath("../Torso/Coat/LeftElbow/Weapon/RightHand")
+tip_nodepath = NodePath("Torso/Left Elbow/Left Arm/Left Hand/Gun")
+ccdik_data_chain_length = 1
+joint_data/0/bone_index = 7
+joint_data/0/bone2d_node = NodePath("Torso/Left Elbow/Left Arm/Left Hand")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = false
+joint_data/0/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_f5xu3"]
+target_nodepath = NodePath("../Left Foot Target")
+tip_nodepath = NodePath("Torso/Left Knee/Left Leg/Left Foot")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 9
+joint_data/0/bone2d_node = NodePath("Torso/Left Knee")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 0.0
+joint_data/0/constraint_angle_max = -98.707
+joint_data/0/constraint_angle_invert = false
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 10
+joint_data/1/bone2d_node = NodePath("Torso/Left Knee/Left Leg")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 0.0
+joint_data/1/constraint_angle_max = 180.0
+joint_data/1/constraint_angle_invert = false
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_k806v"]
+target_nodepath = NodePath("../Right Foot Target")
+tip_nodepath = NodePath("Torso/Right Knee/Right Leg/Right Foot")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 12
+joint_data/0/bone2d_node = NodePath("Torso/Right Knee")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 0.0
+joint_data/0/constraint_angle_max = -85.168
+joint_data/0/constraint_angle_invert = false
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 13
+joint_data/1/bone2d_node = NodePath("Torso/Right Knee/Right Leg")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 0.0
+joint_data/1/constraint_angle_max = 180.0
+joint_data/1/constraint_angle_invert = false
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+
+[resource]
+enabled = true
+modification_count = 5
+modifications/0 = SubResource("SkeletonModification2DCCDIK_uah0x")
+modifications/1 = SubResource("SkeletonModification2DCCDIK_xu4oy")
+modifications/2 = SubResource("SkeletonModification2DCCDIK_6n2of")
+modifications/3 = SubResource("SkeletonModification2DCCDIK_f5xu3")
+modifications/4 = SubResource("SkeletonModification2DCCDIK_k806v")

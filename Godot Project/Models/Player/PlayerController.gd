@@ -53,7 +53,8 @@ func _process(delta: float) -> void:
 	# calculate normal vector to crosshair and flip player if needed
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.global_position))
 	facingLeft = crosshairNormal.x < 0
-	renderer.flipHorizontally = facingLeft
+	#renderer.flipHorizontally = facingLeft
+	scale.x = -1 if facingLeft else 1
 	
 	# zoom camera when player is sprinting
 	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards

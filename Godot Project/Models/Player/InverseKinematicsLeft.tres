@@ -1,4 +1,4 @@
-[gd_resource type="SkeletonModificationStack2D" load_steps=6 format=3 uid="uid://b3lex3m7w7bs7"]
+[gd_resource type="SkeletonModificationStack2D" load_steps=6 format=3 uid="uid://bptmlrqhm1h3f"]
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_uah0x"]
 target_nodepath = NodePath("../Left Hand Target")
@@ -10,7 +10,7 @@ joint_data/0/rotate_from_joint = false
 joint_data/0/enable_constraint = true
 joint_data/0/constraint_angle_min = 0.14
 joint_data/0/constraint_angle_max = -180.09
-joint_data/0/constraint_angle_invert = false
+joint_data/0/constraint_angle_invert = true
 joint_data/0/constraint_in_localspace = true
 joint_data/0/editor_draw_gizmo = true
 joint_data/1/bone_index = 6
@@ -19,7 +19,7 @@ joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
 joint_data/1/constraint_angle_min = 35.0
 joint_data/1/constraint_angle_max = 270.0
-joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_angle_invert = false
 joint_data/1/constraint_in_localspace = false
 joint_data/1/editor_draw_gizmo = true
 
@@ -38,7 +38,7 @@ joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
 joint_data/1/constraint_angle_min = 145.0
 joint_data/1/constraint_angle_max = 9.95
-joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_angle_invert = false
 joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = true
 
@@ -71,7 +71,7 @@ joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
 joint_data/1/constraint_angle_min = 0.0
 joint_data/1/constraint_angle_max = 180.0
-joint_data/1/constraint_angle_invert = false
+joint_data/1/constraint_angle_invert = true
 joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = true
 
@@ -94,7 +94,7 @@ joint_data/1/rotate_from_joint = false
 joint_data/1/enable_constraint = true
 joint_data/1/constraint_angle_min = 0.0
 joint_data/1/constraint_angle_max = 180.0
-joint_data/1/constraint_angle_invert = false
+joint_data/1/constraint_angle_invert = true
 joint_data/1/constraint_in_localspace = true
 joint_data/1/editor_draw_gizmo = true
 
