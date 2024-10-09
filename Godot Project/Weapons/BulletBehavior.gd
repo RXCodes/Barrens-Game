@@ -73,7 +73,7 @@ var smokeBullet = false
 var speed = randfn(targetBulletTravelSpeed, bulletTravelSpeedDeviation)
 var maximumDistance = 10000
 var distanceTravelled = 0
-var frames = 0
+var frames: int = 0
 var gun: Gun
 func _process(delta: float) -> void:
 	if smokeBullet:
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	# raycasting functionality
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector)
+	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, 1)
 	var result = space_state.intersect_ray(query)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale

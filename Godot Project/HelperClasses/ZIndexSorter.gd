@@ -6,7 +6,7 @@ static var zScoreKey = "zScore"
 # objects can be in front of or behind another object depending on y position
 
 # how often to sort objects in seconds
-var intervalCheck: float = 0.25
+var intervalCheck: float = 0.1
 
 func _process(delta: float) -> void:
 	currentTime -= delta

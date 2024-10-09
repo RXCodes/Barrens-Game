@@ -61,9 +61,11 @@ static var enemyAIKey = "EnemyAI"
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
 var hitboxShapeInitialPosition: Vector2
+var flipTransform: Node2D
 func _ready() -> void:
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
+	flipTransform = find_child("FlipTransform")
 	hitboxShape = hitBoxRigidBody.get_children()[0]
 	navigationAgents.append(navigationAgent)
 	hitboxShapeInitialPosition = hitboxShape.position
@@ -78,7 +80,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var flipX = false
 func _process(delta: float) -> void:
-	hitBoxRigidBody.scale.x = -1 if flipX else 1
+	flipTransform.scale.x = -1 if flipX else 1
 	if renderer.material is ShaderMaterial:
 		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
 	runNavigationQueue()
@@ -152,6 +154,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
 	var movementVector = pathfindDirectionVector * walkMovementSpeed
+	flipX = movementVector.x <= 0
 	collisionRigidBody.move_and_collide(movementVector)
 
 # this prevents too many enemies pathfinding at once (laggy)

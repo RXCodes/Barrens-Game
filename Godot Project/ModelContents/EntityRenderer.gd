@@ -20,4 +20,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var zScore = targetNode.global_position.y + entityZIndexOffset
+	if targetNode is EnemyAI:
+		zScore = targetNode.collisionRigidBody.global_position.y + entityZIndexOffset
 	set_meta(ZIndexSorter.zScoreKey, zScore)
