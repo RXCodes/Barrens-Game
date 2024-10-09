@@ -1,0 +1,108 @@
+[gd_scene load_steps=9 format=3 uid="uid://c3ypoaje2v8fd"]
+
+[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_t3gym"]
+[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_l2w11"]
+[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="3_x06ds"]
+[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_5aofd"]
+[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_qm3m2"]
+[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="6_ljiw1"]
+[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="7_l2vhb"]
+[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="8_txft5"]
+
+[node name="ScreenUI" type="CanvasLayer"]
+process_priority = 10
+layer = 128
+script = ExtResource("1_t3gym")
+metadata/_edit_use_anchors_ = true
+
+[node name="Crosshair" type="TextureRect" parent="."]
+z_index = 999
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -26.0
+offset_right = -169.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(21, 21)
+texture = ExtResource("2_l2w11")
+script = ExtResource("3_x06ds")
+
+[node name="ReloadingIcon" type="TextureProgressBar" parent="."]
+visible = false
+z_index = 999
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(16, 16)
+fill_mode = 4
+texture_under = ExtResource("4_5aofd")
+texture_progress = ExtResource("5_qm3m2")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -619.0
+offset_top = -345.0
+offset_right = -371.0
+offset_bottom = -319.0
+text = "put some UI here"
+label_settings = ExtResource("6_ljiw1")
+
+[node name="AmmoInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+pivot_offset = Vector2(0, 400)
+script = ExtResource("7_l2vhb")
+
+[node name="AmmoBackdrop" type="TextureRect" parent="AmmoInfo"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = 350.0
+offset_right = 100.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(100, 0)
+texture = ExtResource("8_txft5")
+
+[node name="AmmoLeft" type="Label" parent="AmmoInfo"]
+layout_mode = 0
+offset_left = -57.0
+offset_top = 358.0
+offset_right = 5.0
+offset_bottom = 384.0
+pivot_offset = Vector2(61, 14)
+text = "0"
+label_settings = ExtResource("6_ljiw1")
+horizontal_alignment = 2
+
+[node name="MagCapacity" type="Label" parent="AmmoInfo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 34.0
+offset_top = 358.0
+offset_right = 101.0
+offset_bottom = 384.0
+pivot_offset = Vector2(0, 14)
+text = "0"
+label_settings = ExtResource("6_ljiw1")
+
+[node name="Slash" type="Label" parent="AmmoInfo"]
+modulate = Color(0.627047, 0.597041, 0.555939, 1)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 358.0
+offset_right = 35.0
+offset_bottom = 384.0
+text = "/"
+label_settings = ExtResource("6_ljiw1")
+horizontal_alignment = 1

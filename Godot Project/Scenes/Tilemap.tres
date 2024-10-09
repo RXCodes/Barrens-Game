@@ -354,6 +354,7 @@ texture = ExtResource("1_7f3p3")
 11:3/0/terrains_peering_bit/left_side = 0
 11:3/0/terrains_peering_bit/top_left_corner = 0
 11:3/0/terrains_peering_bit/top_side = 0
+10:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_se3sd"]
 texture = ExtResource("1_ms032")
