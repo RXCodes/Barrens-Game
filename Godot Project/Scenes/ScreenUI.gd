@@ -2,5 +2,6 @@ class_name ScreenUI extends CanvasLayer
 static var current
 
 func _ready() -> void:
-	offset = get_viewport().size * 0.5
+	# half the viewport size
+	offset = Vector2(640, 400)
 	current = self
