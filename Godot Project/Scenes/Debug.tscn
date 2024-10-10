@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=24 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -9,10 +9,12 @@
 [ext_resource type="Script" path="res://HelperClasses/ZIndexSorter.gd" id="9_i8abo"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="12_q6ydc"]
+[ext_resource type="LabelSettings" uid="uid://cfstjkfdvbd10" path="res://UI/DamageIndicatorLabelSettings.tres" id="14_cp6hk"]
 [ext_resource type="Script" path="res://Scenes/ChallengeNodeDemo.gd" id="14_u4g0j"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="17_mq60l"]
+[ext_resource type="PackedScene" uid="uid://b32pm6wsa4058" path="res://UI/DamageIndicator.tscn" id="19_k00ad"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
@@ -70,6 +72,7 @@ script = ExtResource("17_mq60l")
 [node name="ReloadingIcon" type="TextureProgressBar" parent="ScreenUI"]
 visible = false
 z_index = 999
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(16, 16)
@@ -78,6 +81,7 @@ texture_under = ExtResource("4_uqaru")
 texture_progress = ExtResource("5_a4mxq")
 
 [node name="Label" type="Label" parent="ScreenUI"]
+texture_filter = 1
 offset_left = -619.0
 offset_top = -345.0
 offset_right = -371.0
@@ -86,6 +90,7 @@ text = "put some UI here"
 label_settings = ExtResource("22_ueea8")
 
 [node name="AmmoInfo" type="Control" parent="ScreenUI"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 pivot_offset = Vector2(0, 400)
@@ -109,6 +114,7 @@ pivot_offset = Vector2(100, 0)
 texture = ExtResource("6_wt6eb")
 
 [node name="AmmoLeft" type="Label" parent="ScreenUI/AmmoInfo"]
+texture_filter = 1
 layout_mode = 0
 offset_left = -57.0
 offset_top = 358.0
@@ -132,6 +138,7 @@ label_settings = ExtResource("22_ueea8")
 
 [node name="Slash" type="Label" parent="ScreenUI/AmmoInfo"]
 modulate = Color(0.627047, 0.597041, 0.555939, 1)
+texture_filter = 1
 layout_mode = 0
 offset_left = 4.0
 offset_top = 358.0
@@ -141,7 +148,7 @@ text = "/"
 label_settings = ExtResource("22_ueea8")
 horizontal_alignment = 1
 
-[node name="Under" type="Node" parent="."]
+[node name="Under" type="Node2D" parent="."]
 
 [node name="DecorationTilemap" type="TileMapLayer" parent="Under"]
 z_index = -8
@@ -178,7 +185,7 @@ offset_bottom = 1072.0
 text = "stand here 
 for fun :)
 "
-label_settings = ExtResource("22_ueea8")
+label_settings = ExtResource("14_cp6hk")
 horizontal_alignment = 1
 
 [node name="Hit Me Lol" type="Label" parent="Under"]
@@ -199,7 +206,7 @@ visible = false
 position = Vector2(-2432, -2238)
 navigation_polygon = SubResource("NavigationPolygon_mt871")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node2D" parent="."]
 process_priority = 100
 script = ExtResource("9_i8abo")
 
@@ -242,6 +249,8 @@ position = Vector2(1235, 766)
 flipX = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
+
+[node name="DamageIndicator" parent="Level" instance=ExtResource("19_k00ad")]
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("31_rq6uy")

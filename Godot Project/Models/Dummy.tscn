@@ -383,6 +383,7 @@ deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
 hitFrontAnimation = "Hit-Front"
 hitBackAnimation = "Hit-Back"
+damageIndicatorPositionOffset = Vector2(0, -40)
 
 [node name="Hitbox" type="RigidBody2D" parent="Dummy"]
 collision_mask = 0

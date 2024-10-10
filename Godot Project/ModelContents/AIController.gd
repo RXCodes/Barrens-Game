@@ -77,6 +77,11 @@ static var enemyAIKey = "EnemyAI"
 ## -- will reuse front animation if left blank
 @export var hitBackAnimation: String
 
+@export_category("Visuals")
+
+## Offset where damage number is displayed
+@export var damageIndicatorPositionOffset: Vector2 = Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
@@ -105,6 +110,11 @@ func _process(delta: float) -> void:
 	if renderer.material is ShaderMaterial:
 		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
 	runNavigationQueue()
+	if damageInTick > 0:
+		var damageIndicatorPosition = collisionRigidBody.global_position + Vector2(randfn(0, 15), randfn(0, 20))
+		damageIndicatorPosition += damageIndicatorPositionOffset
+		DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageInTick)
+		damageInTick = 0
 
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 var renderer: EntityRender
@@ -118,7 +128,7 @@ func onHit(globalPosition: Vector2) -> void:
 	flashWhite(true)
 	if actionAnimationPlayer:
 		actionAnimationPlayer.stop()
-		var directionVector = globalPosition - global_position
+		var directionVector = globalPosition - collisionRigidBody.global_position
 		if directionVector.x > 0 == not flipX:
 			actionAnimationPlayer.play(hitFrontAnimation)
 		else:
@@ -127,9 +137,11 @@ func onHit(globalPosition: Vector2) -> void:
 	flashWhite(false)
 
 # called when enemy is damaged
+var damageInTick = 0
 func damage(amount: float) -> void:
 	if dead:
 		return
+	damageInTick += amount
 	currentHealth -= amount
 	if currentHealth <= 0:
 		currentHealth = 0
