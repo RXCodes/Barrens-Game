@@ -176,15 +176,15 @@ func onFire() -> void:
 	
 	# play shoot animation
 	actionAnimationPlayer.stop()
-	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.displayName)
 	gunInteractor.currentWeapon.cockedGun = false
 	var shootAnimationTime = actionAnimationPlayer.current_animation_length
-	var currentGunIdentifier = gunInteractor.currentWeapon.identifier
+	var currentGunIdentifier = gunInteractor.currentWeapon.displayName
 	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
 	await TimeManager.wait(shootAnimationTime)
-	if currentGunIdentifier == gunInteractor.currentWeapon.identifier:
+	if currentGunIdentifier == gunInteractor.currentWeapon.displayName:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
 		else:
@@ -196,11 +196,11 @@ func onFire() -> void:
 				print("No ammo left")
 
 func onCockWeapon() -> void:
-	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.displayName)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
-	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.identifier)
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.displayName)
 	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
 
 func onFinishReload() -> void:

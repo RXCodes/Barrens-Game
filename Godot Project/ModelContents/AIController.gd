@@ -24,11 +24,31 @@ static var enemyAIKey = "EnemyAI"
 ## Speed when enemy walks
 @export var walkMovementSpeed: float = 1
 
-## How close does the enemy need to be to the player to attack?
-@export var attackRange: float = 1000
+## How close does the enemy need to be to the player to start attacking?
+@export var attackDistance: float = 30
+
+@export_subgroup("Animated Attack")
+
+## The enemy attacks by triggering an attack over and over again.
+## This calls the onAttack() method which you can override to define what the enemy does.
+@export var animatedAttacksEnabled: bool = true
 
 ## How long does it take for the enemy to attack again in seconds?
-@export var attackTime: float = 0.5
+@export var attackTime: float = 1.2
+
+@export_subgroup("")
+@export_subgroup("Gun Attack")
+
+## The enemy attacks by using a gun
+@export var gunAttacksEnabled: bool = false
+
+## What gun does the enemy use?
+@export var gun: String = "Shotgun"
+
+## Where's the gun that the enemy is holding? (required)
+@export var gunSprite: Sprite2D
+
+@export_subgroup("")
 
 @export_category("Animations")
 
@@ -41,14 +61,14 @@ static var enemyAIKey = "EnemyAI"
 ## Animation to play when idling
 @export var idleAnimation: String
 
+## Animation to play when attacking (animated attacks must be enabled)
+@export var attackAnimation: String
+
 ## Animation to play when dying
 @export var deathAnimation: String
 
 ## Animation player for when the enemy attacks or is hit
 @export var actionAnimationPlayer: AnimationPlayer
-
-## Animation to play when attacking
-@export var attackAnimation: String
 
 ## Animation to play when being hit from the front
 @export var hitFrontAnimation: String
@@ -76,6 +96,7 @@ func _ready() -> void:
 		hitBoxRigidBody.set_meta(EnemyAI.enemyAIKey, self)
 	if hitBackAnimation.is_empty():
 		hitBackAnimation = hitFrontAnimation
+	navigationAgent.target_reached.connect(reachedTarget)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var flipX = false
@@ -88,6 +109,7 @@ func _process(delta: float) -> void:
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 var renderer: EntityRender
 
+# called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
@@ -104,6 +126,7 @@ func onHit(globalPosition: Vector2) -> void:
 	await TimeManager.wait(0.05)
 	flashWhite(false)
 
+# called when enemy is damaged
 func damage(amount: float) -> void:
 	if dead:
 		return
@@ -112,6 +135,7 @@ func damage(amount: float) -> void:
 		currentHealth = 0
 		kill()
 
+# called when changing the flashing state of the enemy
 func flashWhite(flashing: bool) -> void:
 	if flashing:
 		renderer.material = ShaderMaterial.new()
@@ -120,6 +144,7 @@ func flashWhite(flashing: bool) -> void:
 		renderer.material = null
 
 var dead = false
+# called when enemy is killed
 func kill() -> void:
 	if dead:
 		return
@@ -146,16 +171,49 @@ func kill() -> void:
 	navigationAgents.erase(navigationAgent)
 	get_parent().queue_free()
 
+# called on every physics tick
 func _physics_process(delta: float) -> void:
 	hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
-	if not hasAI or dead:
+	if dead:
 		return
+	if hasAI:
+		navigate()
+
+# pathfinding and movement functionality
+func navigate() -> void:
+	navigationAgent.target_desired_distance = attackDistance
 	if navigationAgent.is_navigation_finished():
+		if mainAnimationPlayer:
+			if mainAnimationPlayer.current_animation != idleAnimation:
+				mainAnimationPlayer.stop()
+				mainAnimationPlayer.play(idleAnimation)
 		return
+	if mainAnimationPlayer.current_animation != walkAnimation:
+		mainAnimationPlayer.stop()
+		mainAnimationPlayer.play(walkAnimation)
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
 	var movementVector = pathfindDirectionVector * walkMovementSpeed
 	flipX = movementVector.x <= 0
 	collisionRigidBody.move_and_collide(movementVector)
+
+# called when enemy reaches its target and is ready to attack
+func reachedTarget() -> void:
+	if mainAnimationPlayer:
+		mainAnimationPlayer.stop()
+		mainAnimationPlayer.play(idleAnimation)
+	if animatedAttacksEnabled:
+		attack()
+
+# called when enemy performs an attack
+func attack() -> void:
+	onAttack()
+	if actionAnimationPlayer:
+		actionAnimationPlayer.play(attackAnimation)
+	await TimeManager.wait(attackTime)
+	
+	# after attacking, attack again if in range of the target
+	if navigationAgent.distance_to_target() + 10 <= attackDistance:
+		attack()
 
 # this prevents too many enemies pathfinding at once (laggy)
 static var navigationAgents := []
@@ -175,3 +233,7 @@ static func runNavigationQueue() -> void:
 		currentNavigationAgent.target_position = Player.current.global_position
 	await TimeManager.wait(navigateQueueInterval)
 	readyToRunNavigation = true
+
+# override this function to define an attack
+func onAttack() -> void:
+	pass

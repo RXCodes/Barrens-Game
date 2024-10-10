@@ -1,10 +1,11 @@
-extends Node2D
+class_name BulletShell extends Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 var xPosition = 0
 var yPosition = 0
 var xVelocity: float = 0
 func _ready() -> void:
+	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	xPosition = global_position.x
 	yPosition = global_position.y
 	set_meta(ZIndexSorter.zScoreKey, yPosition + 50)

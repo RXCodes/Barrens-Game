@@ -45,7 +45,7 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
 var fadeTime: float = 0.3
 var normalDirection: Vector2
 func _ready() -> void:
-	texture = load("res://Weapons/BulletTrail.png")
+	texture = load("res://WeaponsContents/BulletTrail.png")
 	region_rect = Rect2(8, 0, 16, 32)
 	patch_margin_left = 4
 	patch_margin_top = 4

@@ -1,12 +1,9 @@
-class_name Gun extends Node2D
+class_name Gun extends Node
 
 # DO NOT EDIT THESE PROPERTIES HERE!
 # Go into the Inspector on the right to modify properties on a weapon.
 
 @export_group("Gun Info")
-
-## how this gun is identified in source code
-@export var identifier: String = "default_gun"
 
 ## the user-facing display name of this weapon
 @export var displayName: String = "Gun"
@@ -17,7 +14,7 @@ class_name Gun extends Node2D
 @export var needsCocking: bool = false
 var cockedGun = true:
 	set(setBool):
-		gunInteractor.weaponData[identifier]["cocked"] = setBool
+		gunInteractor.weaponData[displayName]["cocked"] = setBool
 		cockedGun = setBool
 
 ## the time to wait between shots in seconds before the weapon can be fired again
@@ -33,14 +30,14 @@ var cockedGun = true:
 @export var maximumMagCapacity: int = 10
 var currentMagCapacity: int:
 	set(newAmount):
-		gunInteractor.weaponData[identifier]["magCapacity"] = newAmount
+		gunInteractor.weaponData[displayName]["magCapacity"] = newAmount
 		currentMagCapacity = newAmount
 
 ## how much ammo the player starts with when picking up this weapon
 @export var startingAmmoCount: int = 50
 var leftoverAmmoCount: int:
 	set(newAmount):
-		gunInteractor.weaponData[identifier]["leftoverAmmo"] = newAmount
+		gunInteractor.weaponData[displayName]["leftoverAmmo"] = newAmount
 		leftoverAmmoCount = newAmount
 
 ## how many bullets come from one shot - this can be increased for shotguns
@@ -175,24 +172,19 @@ func cockWeapon() -> void:
 		gunInteractor.onCockWeapon.call()
 		cockedGun = true
 
-static var shellBehaviorScript: Script = preload("res://Weapons/ShellBehavior.gd")
 func dropShell() -> void:
 	if shellTexture:
-		var newShell = Sprite2D.new()
-		newShell.set_script(shellBehaviorScript)
+		var newShell = BulletShell.new()
 		newShell.texture = shellTexture
 		newShell.global_position = gunInteractor.originNode.global_position
-		newShell.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		newShell.xVelocity = Vector2.from_angle(lastBulletAngleRadians).x * -35
 		NodeRelations.rootNode.find_child("Level").add_child(newShell)
 
 func dropMagazine() -> void:
 	if magazineTexture:
-		var newMagazine = Sprite2D.new()
-		newMagazine.set_script(shellBehaviorScript)
+		var newMagazine = BulletShell.new()
 		newMagazine.texture = magazineTexture
 		newMagazine.global_position = gunInteractor.originNode.global_position
-		newMagazine.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		NodeRelations.rootNode.find_child("Level").add_child(newMagazine)
 
 var cockingAudioPlayer: AudioStreamPlayer2D
@@ -201,8 +193,8 @@ func playCockingSound() -> void:
 		cockingAudioPlayer.play()
 
 static func gunFromString(string: String) -> Gun:
-	var weaponsNode = NodeRelations.rootNode.find_child("Weapons")
-	return weaponsNode.find_child(string).duplicate()
+	var weaponScene = load("res://Weapons/" + string + ".tscn")
+	return weaponScene.instantiate()
 
 # this is what other nodes can use to be able to use guns (see PlayerController.gd)
 # yes, this also includes enemies! (or any Node2D)
@@ -212,10 +204,10 @@ class Interactor:
 	var audioStreams = {}
 	var currentWeapon: Gun:
 		set(newWeapon):
-			if not weaponData.has(newWeapon.identifier):
+			if not weaponData.has(newWeapon.displayName):
 				# we're going to keep track of specific properties so we can access them
 				# again when switching between weapons
-				weaponData[newWeapon.identifier] = {
+				weaponData[newWeapon.displayName] = {
 					"leftoverAmmo": newWeapon.startingAmmoCount,
 					"magCapacity": newWeapon.maximumMagCapacity,
 					"cocked": true
@@ -228,30 +220,30 @@ class Interactor:
 					newAudioPlayer.max_polyphony = 10
 					originNode.add_child(newAudioPlayer)
 					newWeapon.shootAudioPlayer = newAudioPlayer
-					audioStreams[newWeapon.identifier + "-shoot"] = newAudioPlayer
+					audioStreams[newWeapon.displayName + "-shoot"] = newAudioPlayer
 				if newWeapon.cockingSound:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.cockingSound
 					newAudioPlayer.max_polyphony = 2
 					originNode.add_child(newAudioPlayer)
 					newWeapon.cockingAudioPlayer = newAudioPlayer
-					audioStreams[newWeapon.identifier + "-cocking"] = newAudioPlayer
+					audioStreams[newWeapon.displayName + "-cocking"] = newAudioPlayer
 				if newWeapon.reloadSound:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.reloadSound
 					newAudioPlayer.max_polyphony = 1
 					originNode.add_child(newAudioPlayer)
 					newWeapon.reloadAudioPlayer = newAudioPlayer
-					audioStreams[newWeapon.identifier + "-reload"] = newAudioPlayer
+					audioStreams[newWeapon.displayName + "-reload"] = newAudioPlayer
 			else:
-				newWeapon.shootAudioPlayer = audioStreams.get(newWeapon.identifier + "-shoot")
-				newWeapon.cockingAudioPlayer = audioStreams.get(newWeapon.identifier + "-cocking")
-				newWeapon.reloadAudioPlayer = audioStreams.get(newWeapon.identifier + "-reload")
+				newWeapon.shootAudioPlayer = audioStreams.get(newWeapon.displayName + "-shoot")
+				newWeapon.cockingAudioPlayer = audioStreams.get(newWeapon.displayName + "-cocking")
+				newWeapon.reloadAudioPlayer = audioStreams.get(newWeapon.displayName + "-reload")
 			newWeapon.gunInteractor = self
 			currentWeapon = newWeapon
-			newWeapon.leftoverAmmoCount = weaponData[newWeapon.identifier]["leftoverAmmo"]
-			newWeapon.currentMagCapacity = weaponData[newWeapon.identifier]["magCapacity"]
-			newWeapon.cockedGun = weaponData[newWeapon.identifier]["cocked"]
+			newWeapon.leftoverAmmoCount = weaponData[newWeapon.displayName]["leftoverAmmo"]
+			newWeapon.currentMagCapacity = weaponData[newWeapon.displayName]["magCapacity"]
+			newWeapon.cockedGun = weaponData[newWeapon.displayName]["cocked"]
 			gunSprite.texture = currentWeapon.texture
 			if not newWeapon.cockedGun:
 				newWeapon.cockWeapon()

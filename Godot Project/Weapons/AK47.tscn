@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfpjpi0uc24dp"]
+
+[ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_k2unm"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="2_meaok"]
+[ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_i4os7"]
+[ext_resource type="Texture2D" uid="uid://dpu7ryi50nn1e" path="res://WeaponsContents/AK47/AK47Magazine.png" id="4_vtw2n"]
+[ext_resource type="AudioStream" uid="uid://doc6awewuo1na" path="res://WeaponsContents/AK47/AK47Shoot.mp3" id="5_jif8r"]
+[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_f7qio"]
+
+[node name="AK47" type="Node"]
+script = ExtResource("1_k2unm")
+displayName = "AK47"
+fireRate = 0.12
+maximumMagCapacity = 30
+startingAmmoCount = 120
+bulletSpreadDegrees = 3.0
+targetRange = 850.0
+rangeSpread = 30.0
+targetDamage = 13.0
+bulletFireColor = Color(0.953984, 0.853036, 0.772508, 1)
+bulletTrailColor = Color(0.35821, 0.419437, 0.484453, 1)
+bulletSize = 0.85
+texture = ExtResource("2_meaok")
+shellTexture = ExtResource("3_i4os7")
+magazineTexture = ExtResource("4_vtw2n")
+shootSound = ExtResource("5_jif8r")
+reloadSound = ExtResource("6_f7qio")

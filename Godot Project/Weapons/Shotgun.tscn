@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://diyjuf2ah6fk3"]
+
+[ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_sqank"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="2_4klu2"]
+[ext_resource type="Texture2D" uid="uid://uu1x68u1mgb5" path="res://WeaponsContents/Shotgun/ShotgunShell.png" id="3_agpxh"]
+[ext_resource type="AudioStream" uid="uid://cb6ha26jlq24k" path="res://WeaponsContents/Shotgun/ShotgunShoot.mp3" id="4_864ks"]
+[ext_resource type="AudioStream" uid="uid://b01w7am2dnink" path="res://WeaponsContents/Shotgun/ShotgunCock.mp3" id="5_yscbf"]
+[ext_resource type="AudioStream" uid="uid://buvjgbel4tijd" path="res://WeaponsContents/Shotgun/ShotgunReload.mp3" id="6_5pfb5"]
+
+[node name="Shotgun" type="Node"]
+script = ExtResource("1_sqank")
+displayName = "Shotgun"
+needsCocking = true
+fireRate = 1.0
+recoilAmount = 15.0
+automatic = false
+maximumMagCapacity = 5
+startingAmmoCount = 20
+bulletMultiplier = 8
+targetRange = 500.0
+reloadTime = 2.0
+texture = ExtResource("2_4klu2")
+shellTexture = ExtResource("3_agpxh")
+shootSound = ExtResource("4_864ks")
+cockingSound = ExtResource("5_yscbf")
+reloadSound = ExtResource("6_5pfb5")

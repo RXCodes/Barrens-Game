@@ -377,6 +377,7 @@ entityZIndexOffset = 24
 script = ExtResource("2_ldgo1")
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
+animatedAttacksEnabled = false
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
@@ -415,7 +416,7 @@ target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
 simplify_path = true
-simplify_epsilon = 50.0
+simplify_epsilon = 16.0
 
 [node name="FlipTransform" type="Node2D" parent="Dummy/ColliderBox"]
 

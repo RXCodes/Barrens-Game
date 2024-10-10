@@ -28,11 +28,14 @@ folder_colors={
 "res://ModelContents/": "red",
 "res://ModelContents/Dummy/": "orange",
 "res://ModelContents/Player/": "yellow",
+"res://Models/": "gray",
+"res://Particles/": "pink",
 "res://Scenes/": "green",
-"res://UI/": "blue",
-"res://Weapons/": "purple",
-"res://Weapons/AK47/": "pink",
-"res://Weapons/Shotgun/": "pink"
+"res://UI/": "purple",
+"res://Weapons/": "gray",
+"res://WeaponsContents/": "red",
+"res://WeaponsContents/AK47/": "pink",
+"res://WeaponsContents/Shotgun/": "pink"
 }
 
 [gui]

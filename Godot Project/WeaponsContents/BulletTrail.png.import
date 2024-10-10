@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uu1x68u1mgb5"
-path="res://.godot/imported/ShotgunShell.png-5270365650f924b9181ae79a3385338a.ctex"
+uid="uid://dhv23kg6kw2ag"
+path="res://.godot/imported/BulletTrail.png-1b7d4393ba8c95ec0ce418211eaf8483.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/Shotgun/ShotgunShell.png"
-dest_files=["res://.godot/imported/ShotgunShell.png-5270365650f924b9181ae79a3385338a.ctex"]
+source_file="res://WeaponsContents/BulletTrail.png"
+dest_files=["res://.godot/imported/BulletTrail.png-1b7d4393ba8c95ec0ce418211eaf8483.ctex"]
 
 [params]
 

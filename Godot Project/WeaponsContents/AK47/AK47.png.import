@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhv23kg6kw2ag"
-path="res://.godot/imported/BulletTrail.png-a97d63e99f15ce8635e55493cc08bcef.ctex"
+uid="uid://b7toj4jjwpymk"
+path="res://.godot/imported/AK47.png-23cd344830a66e3c9b8dbe00746cafb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/BulletTrail.png"
-dest_files=["res://.godot/imported/BulletTrail.png-a97d63e99f15ce8635e55493cc08bcef.ctex"]
+source_file="res://WeaponsContents/AK47/AK47.png"
+dest_files=["res://.godot/imported/AK47.png-23cd344830a66e3c9b8dbe00746cafb6.ctex"]
 
 [params]
 

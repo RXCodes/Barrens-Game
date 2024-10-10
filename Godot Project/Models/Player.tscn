@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://di4mjivv4rn4j" path="res://ModelContents/Player/RightElbow.png" id="10_3ywxo"]
 [ext_resource type="Texture2D" uid="uid://dk6lt2vxpt78y" path="res://ModelContents/Player/RightArm.png" id="11_2l05x"]
 [ext_resource type="Texture2D" uid="uid://bm48ayf5vh1d7" path="res://ModelContents/Player/LeftElbow.png" id="12_vu2m0"]
-[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://Weapons/AK47/AK47.png" id="13_3ds28"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="13_3ds28"]
 [ext_resource type="Texture2D" uid="uid://cpc0ey12mu75a" path="res://ModelContents/Player/RightHand.png" id="14_2uyc6"]
 [ext_resource type="Texture2D" uid="uid://blu2aknh1cx8i" path="res://ModelContents/Player/LeftArm.png" id="15_0hql7"]
 [ext_resource type="Texture2D" uid="uid://cy71otyfeqvxd" path="res://ModelContents/Player/Head.png" id="16_m686t"]

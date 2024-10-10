@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdi4lyqkeib1x"
-path="res://.godot/imported/BulletHole.png-b71ba672d05339d36548745d14b2d9b4.ctex"
+uid="uid://dpu7ryi50nn1e"
+path="res://.godot/imported/AK47Magazine.png-ff43d02e109d2b741ec8f05151668855.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/BulletHole.png"
-dest_files=["res://.godot/imported/BulletHole.png-b71ba672d05339d36548745d14b2d9b4.ctex"]
+source_file="res://WeaponsContents/AK47/AK47Magazine.png"
+dest_files=["res://.godot/imported/AK47Magazine.png-ff43d02e109d2b741ec8f05151668855.ctex"]
 
 [params]
 
