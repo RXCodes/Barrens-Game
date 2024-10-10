@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1m47f1qmoc5v"]
+[gd_scene load_steps=16 format=3 uid="uid://c2xeqe2b511wo"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_8l233"]
 [ext_resource type="Script" path="res://ModelContents/AIController.gd" id="2_ldgo1"]
