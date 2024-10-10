@@ -110,11 +110,15 @@ func _process(delta: float) -> void:
 	if renderer.material is ShaderMaterial:
 		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
 	runNavigationQueue()
-	if damageInTick > 0:
-		var damageIndicatorPosition = collisionRigidBody.global_position + Vector2(randfn(0, 15), randfn(0, 20))
-		damageIndicatorPosition += damageIndicatorPositionOffset
-		DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageInTick)
-		damageInTick = 0
+	if not damageInTick.is_empty():
+		for nodeRid in damageInTick.keys():
+			var damageIndicatorPosition = collisionRigidBody.global_position
+			damageIndicatorPosition += damageIndicatorPositionOffset
+			damageIndicatorPosition.x += randfn(0, 15)
+			damageIndicatorPosition.y += randfn(0, 20)
+			var damageValue = damageInTick[nodeRid]
+			DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageValue, instance_from_id(nodeRid))
+		damageInTick.clear()
 
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 var renderer: EntityRender
@@ -123,7 +127,7 @@ var renderer: EntityRender
 func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
-	var random = Vector2(randfn(0, 15), randfn(0, 15))
+	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
 	flashWhite(true)
 	if actionAnimationPlayer:
@@ -137,11 +141,13 @@ func onHit(globalPosition: Vector2) -> void:
 	flashWhite(false)
 
 # called when enemy is damaged
-var damageInTick = 0
-func damage(amount: float) -> void:
+var damageInTick := {}
+func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
-	damageInTick += amount
+	if not damageInTick.has(source.get_instance_id()):
+		damageInTick[source.get_instance_id()] = 0
+	damageInTick[source.get_instance_id()] += amount
 	currentHealth -= amount
 	if currentHealth <= 0:
 		currentHealth = 0

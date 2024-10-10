@@ -43,6 +43,9 @@ var leftoverAmmoCount: int:
 ## how many bullets come from one shot - this can be increased for shotguns
 @export var bulletMultiplier: int = 1
 
+## how much time it takes to reload this weapon in seconds
+@export var reloadTime: float = 1.5
+
 @export_group("Bullet Properties")
 
 ## how much a bullet's trajectory angle deviates in degrees
@@ -68,9 +71,6 @@ var leftoverAmmoCount: int:
 
 ## the visual size of the bullet - does not affect collision
 @export var bulletSize: float = 0.75
-
-## how much time it takes to reload this weapon in seconds
-@export var reloadTime: float = 1.5
 
 @export_group("Textures")
 
@@ -103,6 +103,7 @@ var reloading = false
 
 var shootAudioPlayer: AudioStreamPlayer2D
 var lastBulletAngleRadians: float
+var sourceNode: Node2D
 func fire(holding: bool, angleRadians: float) -> void:
 	if not automatic and holding:
 		return
@@ -122,7 +123,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
-		Bullet.fire(gunInteractor.originNode.global_position, angleRadians, self)
+		Bullet.fire(gunInteractor.originNode.global_position, angleRadians, self, sourceNode)
 	await TimeManager.wait(fireRate)
 	canFire = true
 
@@ -244,6 +245,7 @@ class Interactor:
 			newWeapon.leftoverAmmoCount = weaponData[newWeapon.displayName]["leftoverAmmo"]
 			newWeapon.currentMagCapacity = weaponData[newWeapon.displayName]["magCapacity"]
 			newWeapon.cockedGun = weaponData[newWeapon.displayName]["cocked"]
+			newWeapon.sourceNode = originNode
 			gunSprite.texture = currentWeapon.texture
 			if not newWeapon.cockedGun:
 				newWeapon.cockWeapon()

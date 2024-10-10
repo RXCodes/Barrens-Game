@@ -17,6 +17,7 @@ bulletSpreadDegrees = 3.0
 targetRange = 850.0
 rangeSpread = 30.0
 targetDamage = 13.0
+damageSpread = 2.0
 bulletFireColor = Color(0.953984, 0.853036, 0.772508, 1)
 bulletTrailColor = Color(0.35821, 0.419437, 0.484453, 1)
 bulletSize = 0.85

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=23 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -11,10 +11,9 @@
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="12_q6ydc"]
 [ext_resource type="LabelSettings" uid="uid://cfstjkfdvbd10" path="res://UI/DamageIndicatorLabelSettings.tres" id="14_cp6hk"]
 [ext_resource type="Script" path="res://Scenes/ChallengeNodeDemo.gd" id="14_u4g0j"]
-[ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
+[ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Particles/Player.tscn" id="15_1u73x"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="17_mq60l"]
-[ext_resource type="PackedScene" uid="uid://b32pm6wsa4058" path="res://UI/DamageIndicator.tscn" id="19_k00ad"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
@@ -249,8 +248,6 @@ position = Vector2(1235, 766)
 flipX = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
-
-[node name="DamageIndicator" parent="Level" instance=ExtResource("19_k00ad")]
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("31_rq6uy")

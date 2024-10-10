@@ -5,7 +5,7 @@ static var targetBulletTravelSpeed = 200
 static var bulletTravelSpeedDeviation = 15
 static var rotationOffset = -deg_to_rad(90.0)
 static var bulletScale = 1.5
-static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
+static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: Node2D) -> void:
 	var spreadRadians = deg_to_rad(gun.bulletSpreadDegrees)
 	var bulletAngle = randfn(angleRadians, spreadRadians) + rotationOffset
 	var maximumDistance = randfn(gun.targetRange, gun.rangeSpread)
@@ -36,6 +36,7 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
 	canvasItemMaterial.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	fireBullet.material = canvasItemMaterial
 	fireBullet.gun = gun
+	fireBullet.sourceNode = sourceNode
 	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
 	
 	# forcefully order the bullets for this frame
@@ -44,6 +45,7 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun) -> void:
 # bullet functionality
 var fadeTime: float = 0.3
 var normalDirection: Vector2
+var sourceNode: Node2D
 func _ready() -> void:
 	texture = load("res://WeaponsContents/BulletTrail.png")
 	region_rect = Rect2(8, 0, 16, 32)
@@ -112,7 +114,7 @@ func _physics_process(delta: float) -> void:
 		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
 		if enemy and gun:
 			enemy.call("onHit", result.position)
-			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread))
+			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread), sourceNode)
 		return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)
