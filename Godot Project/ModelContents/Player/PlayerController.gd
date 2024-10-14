@@ -1,4 +1,4 @@
-class_name Player extends Node2D
+class_name Player extends CharacterBody2D
 static var current: Player
 var renderer: EntityRender
 var mainAnimationPlayer: AnimationPlayer
@@ -108,7 +108,8 @@ func _physics_process(delta: float) -> void:
 		movementVector *= playerSpeed * speedMultiplier
 		if walkingBackwards:
 			movementVector *= 0.6
-		position += movementVector
+		move_and_collide(Vector2(movementVector.x, 0))
+		move_and_collide(Vector2(0, movementVector.y))
 	else:
 		currentAnimation = IDLE
 		walking = false
