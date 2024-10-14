@@ -236,9 +236,9 @@ func attack() -> void:
 # this prevents too many enemies pathfinding at once (laggy)
 static var navigationAgents := []
 static var navigationQueueIndex = 0
-static var maxPathfindLimit = 10
+static var maxPathfindLimit = 5
 static var readyToRunNavigation = true
-static var navigateQueueInterval = 0.025
+static var navigateQueueInterval = 0.05
 static func runNavigationQueue() -> void:
 	if not readyToRunNavigation:
 		return

@@ -38,6 +38,10 @@ folder_colors={
 "res://WeaponsContents/Shotgun/": "pink"
 }
 
+[global_group]
+
+NavigationGroup="Nodes in this group will have all collisions used in pathfinding."
+
 [gui]
 
 theme/default_font_multichannel_signed_distance_field=true

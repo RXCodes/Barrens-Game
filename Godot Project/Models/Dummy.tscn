@@ -416,8 +416,6 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
-simplify_path = true
-simplify_epsilon = 16.0
 
 [node name="FlipTransform" type="Node2D" parent="Dummy/ColliderBox"]
 

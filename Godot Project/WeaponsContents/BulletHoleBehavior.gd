@@ -2,7 +2,7 @@ class_name BulletHole extends Sprite2D
 
 static func create(position: Vector2, grounded: bool) -> void:
 	var bulletHole = BulletHole.new()
-	bulletHole.texture = load("res://Weapons/BulletHole.png")
+	bulletHole.texture = load("res://WeaponsContents/BulletHole.png")
 	bulletHole.global_position = position
 	var nodeToAddTo = "Under" if grounded else "Level"
 	NodeRelations.rootNode.find_child(nodeToAddTo).add_child(bulletHole)
