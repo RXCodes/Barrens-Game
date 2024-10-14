@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2xeqe2b511wo"]
+[gd_scene load_steps=16 format=3 uid="uid://1m47f1qmoc5v"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_8l233"]
 [ext_resource type="Script" path="res://ModelContents/AIController.gd" id="2_ldgo1"]
@@ -386,6 +386,7 @@ hitBackAnimation = "Hit-Back"
 damageIndicatorPositionOffset = Vector2(0, -40)
 
 [node name="Hitbox" type="RigidBody2D" parent="Dummy"]
+collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
 lock_rotation = true
@@ -399,9 +400,8 @@ shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
 
 [node name="ColliderBox" type="RigidBody2D" parent="Dummy"]
-collision_layer = 2
-collision_mask = 2
 gravity_scale = 0.0
+lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Dummy/ColliderBox"]
 z_index = -1

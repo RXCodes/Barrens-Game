@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dhdmvm3ldshuk"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://ca83qlkhrmspj"]
 
 [ext_resource type="Texture2D" uid="uid://dcr6lyfsf26tc" path="res://Environment/StonePathTilemap.png" id="1_7f3p3"]
 [ext_resource type="Texture2D" uid="uid://vj68q2gu3cor" path="res://Environment/WhitePathTilemap.png" id="1_ms032"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cju5qhfith7mh"]
+
+[ext_resource type="Texture2D" uid="uid://c5mu1rilokt4f" path="res://Environment/Cactus/Cactus2.png" id="1_d56sc"]
+[ext_resource type="Script" path="res://Scenes/EnvironmentSprite.gd" id="2_hgurx"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="3_lgmxt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5v7y"]
+radius = 4.5
+height = 17.0
+
+[node name="Cactus" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_d56sc")
+offset = Vector2(0.5, -22)
+script = ExtResource("2_hgurx")
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(1, -0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_x5v7y")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(0, -1)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("3_lgmxt")
+offset = Vector2(0, -39.2243)
