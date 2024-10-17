@@ -117,7 +117,6 @@ var renderer: EntityRender
 func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
-	enemyDamaged.emit()
 	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
 	flashWhite(true)
@@ -137,6 +136,8 @@ var damageInTick := {}
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
+	enemyDamaged.emit()
+	onDamage()
 	if not damageInTick.has(source.get_instance_id()):
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
@@ -303,6 +304,10 @@ func onStart() -> void:
 
 # define what happens when the enemy dies
 func onDeath() -> void:
+	pass
+
+# define what happened when the enemy is damaged
+func onDamage() -> void:
 	pass
 
 #                     #
