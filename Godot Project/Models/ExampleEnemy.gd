@@ -21,14 +21,14 @@ func onStart():
 			faceTarget()
 			
 			# play an attack animation
-			attack("Punch")
+			playAnimation("Punch")
 			
 			# use the hurtbox to deal damage to the player
 			var damage = randf_range(3, 6) # random float from 3 to 6
 			activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
 			
 			# wait for the enemy's attack animation to finish before attacking again
-			await enemyAttackFinished or enemyDamaged
+			await enemyAnimationFinished
 			
 			# little delay before enemy attacks again
 			await TimeManager.wait(0.1)

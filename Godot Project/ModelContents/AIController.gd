@@ -223,15 +223,14 @@ func setTarget(targetNode: Node2D, newTargetDistance: float) -> void:
 	targetDistance = newTargetDistance
 	navigationAgent.target_position = target.global_position
 
-# performs an attack, playing an animation
-# you should override the onAttack() function to have the enemy deal damage or do additional things
-func attack(attackName: String) -> void:
+# plays an animation from the Main Animation Player
+func playAnimation(animationName: String) -> void:
 	if dead:
 		return
-	actionAnimationPlayer.play(attackName)
+	actionAnimationPlayer.play(animationName)
 	var attackTime = maxf(actionAnimationPlayer.current_animation_length, 0.01)
 	await TimeManager.wait(attackTime)
-	enemyAttackFinished.emit()
+	enemyAnimationFinished.emit()
 
 # makes the enemy face the target
 func faceTarget() -> void:
@@ -314,8 +313,8 @@ func onDeath() -> void:
 # when the enemy has reached the range of its target
 signal enemyReachedTarget
 
-# when the enemy finishes an attack
-signal enemyAttackFinished
+# when the enemy finishes an animation
+signal enemyAnimationFinished
 
 # when the enemy was damaged
 signal enemyDamaged
