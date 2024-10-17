@@ -18,26 +18,41 @@ static func waitTimer(seconds: float) -> SceneTreeTimer:
 ## `await TimeManager.promise([signal1, signal2, signal3])'
 ## will wait until any one of the signals is called
 static var currentPromises = []
-static func promise(signals: Array) -> Signal:
+static func promise(signals: Array, maxTime: float = INF) -> Signal:
 	var newPromise = Promise.new()
 	currentPromises.append(newPromise)
-	newPromise.startWithSignals(signals)
-	return newPromise.done
+	newPromise.startWithSignals(signals, maxTime)
+	return newPromise.once
 
+## `await TimeManager.promiseAll([signal1, signal2, signal3])'
+## will wait until all of the signals are called
+static func promiseAll(signals: Array, maxTime: float = INF) -> Signal:
+	var newPromise = Promise.new()
+	currentPromises.append(newPromise)
+	newPromise.startWithSignals(signals, maxTime)
+	return newPromise.all
+
+# class for handling awaiting multiple signals
 class Promise:
-	var emitted = false
-	signal done
+	var emittedOnce = false
+	signal once
+	signal all
 	var count = 0
-	func startWithSignals(array: Array):
+	func startWithSignals(array: Array, maxTime: float = INF):
 		count = array.size()
 		for signalCall in array:
 			wait(signalCall)
+		if maxTime != INF:
+			await TimeManager.wait(maxTime)
+			once.emit()
+			all.emit()
 	
 	func wait(forSignal: Signal):
 		await forSignal
 		count -= 1
-		if not emitted:
-			emitted = true
-			done.emit()
+		if not emittedOnce:
+			emittedOnce = true
+			once.emit()
 		if count <= 0:
+			all.emit()
 			TimeManager.currentPromises.erase(self)
