@@ -28,11 +28,11 @@ func _process(delta: float) -> void:
 	offset = finalOffset
 	
 func setZoom(zoom: float, duration: float) -> void:
-	var tween = get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	tween.tween_property(current, "originalZoom", zoom, duration).set_trans(Tween.TRANS_CUBIC)
 	tween.play()
 
 func setOffset(offset: Vector2, duration: float) -> void:
-	var tween = get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	tween.tween_property(current, "originalPositionOffset", offset, duration).set_trans(Tween.TRANS_CUBIC)
 	tween.play()

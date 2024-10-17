@@ -10,6 +10,7 @@ var sprintingSpeedMultiplier = 1.5
 var isSprinting = false
 var playerSpeed = 3.5
 var health = 100.0
+var dead = false
 
 var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
@@ -20,6 +21,8 @@ var reloadSpeedMultiplier = 0.5
 var shooting = false
 
 # setup renderer and gun interactor
+var hitboxShape: Node2D
+var hitBoxRigidBody: Node2D
 func _ready() -> void:
 	renderer = get_parent()
 	current = self
@@ -39,6 +42,11 @@ func _ready() -> void:
 	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
 	gunInteractor.onReload = self.onReload
 	refreshAmmoDisplay()
+	hitBoxRigidBody = $"../Hitbox"
+	hitboxShape = hitBoxRigidBody.get_children()[0]
+	var children = NodeRelations.getChildrenRecursive(self)
+	for child: Node in children:
+		child.set_meta(EnemyAI.parentControllerKey, self)
 
 # player looping animations
 enum {IDLE, WALK, BACKWARDSWALK}
@@ -59,6 +67,10 @@ func _process(delta: float) -> void:
 		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
 		animationTree[key] = animationValues[key]
 	
+	# flashing shader animation
+	if renderer.material is ShaderMaterial:
+		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
+	
 	# calculate normal vector to crosshair and flip player if needed
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.cursorPosition))
 	facingLeft = crosshairNormal.x < 0
@@ -70,16 +82,32 @@ func _process(delta: float) -> void:
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
 	
 	# weapon functionality
-	if shooting:
+	if shooting and not dead:
 		var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
 		gunInteractor.currentWeapon.fire(true, aimAngle)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
+	
+	# damage display
+	if not damageInTick.is_empty():
+		for nodeRid in damageInTick.keys():
+			var damageIndicatorPositionOffset = Vector2(0, -20)
+			var damageIndicatorPosition = global_position
+			damageIndicatorPosition += damageIndicatorPositionOffset
+			damageIndicatorPosition.x += randfn(0, 15)
+			damageIndicatorPosition.y += randfn(0, 20)
+			var damageValue = damageInTick[nodeRid]
+			var indicator = DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageValue, instance_from_id(nodeRid))
+			indicator.modulate = Color(1.0, 0.5, 0.5)
+		damageInTick.clear()
 
 # Called every physics tick.
 var walking = false
 var walkingBackwards = false
 var facingLeft = false
 func _physics_process(delta: float) -> void:
+	if dead:
+		return
+	
 	# player movement
 	if currentMovementKeypresses.size() > 0:
 		var movementVector = Vector2.ZERO
@@ -113,6 +141,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		currentAnimation = IDLE
 		walking = false
+	
+	# move player hitbox
+	if hitboxShape:
+		hitboxShape.global_position = global_position
 
 # keep track of which movement keys are being pressed
 var currentMovementKeypresses: Array = []
@@ -123,6 +155,8 @@ var movementKeyBinds = {
 	"D": Vector2.RIGHT
 }
 func _input(event: InputEvent) -> void:
+	if dead:
+		return
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label()
 		key = key.trim_prefix("Shift+")
@@ -219,3 +253,48 @@ func onReloadInterrupted() -> void:
 func callGunMethod(string: String):
 	if gunInteractor.currentWeapon.has_method(string):
 		gunInteractor.currentWeapon.call(string)
+
+# called when player is damaged
+var damageInTick := {}
+func damage(amount: float, source: Node2D) -> void:
+	if dead:
+		return
+	flashWhite(true)
+	if not damageInTick.has(source.get_instance_id()):
+		damageInTick[source.get_instance_id()] = 0
+	damageInTick[source.get_instance_id()] += amount
+	health -= amount
+	if health <= 0:
+		health = 0
+		kill()
+	await TimeManager.wait(0.05)
+	flashWhite(false)
+
+# called when player dies
+func kill() -> void:
+	if dead:
+		return
+	dead = true
+	hitBoxRigidBody.collision_mask = 0
+	hitBoxRigidBody.collision_layer = 0
+	self.collision_mask = 0
+	self.collision_layer = 0
+	actionAnimationPlayer.stop()
+	mainAnimationPlayer.stop()
+	mainAnimationPlayer.play("death")
+	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
+	DeathSmokeParticles.spawnParticle(global_position, z_index)
+	hide()
+	
+	# after dying, restart scene - we'll change this to be the death screen
+	await TimeManager.wait(2.25)
+	NodeRelations.loadScene("res://Scenes/Debug.tscn")
+
+# called when changing the flashing state of the player
+static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
+func flashWhite(flashing: bool) -> void:
+	if flashing:
+		renderer.material = ShaderMaterial.new()
+		renderer.material.shader = flashWhiteShader
+	else:
+		renderer.material = null

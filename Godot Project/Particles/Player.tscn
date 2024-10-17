@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=48 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
@@ -919,6 +919,10 @@ _data = {
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aydp0"]
 height = 44.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m5rhv"]
+radius = 13.0
+height = 48.0
+
 [node name="PlayerRender" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
@@ -970,13 +974,13 @@ texture = ExtResource("6_5fnib")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
-position = Vector2(-0.0251465, -0.289612)
-rotation = -0.00341082
-scale = Vector2(0.998669, 0.998669)
+position = Vector2(-0.0254898, -0.395462)
+rotation = -0.00345397
+scale = Vector2(0.99867, 0.99867)
 texture = ExtResource("7_qwvak")
 
 [node name="LeftKnee" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/LeftLeg"]
-position = Vector2(-7.00242, 5.39389)
+position = Vector2(-7.00227, 5.38003)
 scale = Vector2(1.00067, 1.00067)
 texture = ExtResource("9_8cycy")
 offset = Vector2(7, -6)
@@ -991,51 +995,51 @@ position = Vector2(-7.62939e-06, -4.60002)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(14.6536, -18.2719)
-rotation = -0.164399
-scale = Vector2(0.998922, 0.998922)
+position = Vector2(14.6533, -18.3789)
+rotation = -0.167887
+scale = Vector2(0.998921, 0.998921)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/RightElbow"]
-position = Vector2(5.30135, 17.5458)
-rotation = -0.485078
-scale = Vector2(1, 1)
+position = Vector2(5.15269, 17.5516)
+rotation = -0.408629
+scale = Vector2(0.999999, 0.999999)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(-17.2145, -20.1963)
-rotation = 0.298849
-scale = Vector2(0.995487, 0.995487)
+position = Vector2(-17.2752, -20.2585)
+rotation = 0.312859
+scale = Vector2(0.995486, 0.995486)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(18.1816, 12.6047)
-rotation = -0.0918218
+position = Vector2(18.192, 12.5637)
+rotation = -0.0858353
 scale = Vector2(0.999548, 0.999484)
 texture = ExtResource("13_3ds28")
 
 [node name="RightHand" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(40.7026, -1.52956)
-rotation = 3.03899
-scale = Vector2(1.00391, -1.00397)
-skew = -0.00150204
+position = Vector2(40.5798, -1.51982)
+rotation = 3.03903
+scale = Vector2(1.0039, -1.00397)
+skew = -0.00152123
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-5.03971, 12.0272)
-rotation = -0.321587
+position = Vector2(-5.06096, 12.0387)
+rotation = -0.327903
 scale = Vector2(1, 1)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="Head" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(0.163597, -24.5995)
-rotation = 0.00663593
-scale = Vector2(0.999791, 0.999791)
+rotation = -0.00185892
+scale = Vector2(0.999792, 0.999792)
 texture = ExtResource("16_m686t")
 offset = Vector2(1, 22)
 
@@ -1052,7 +1056,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.999791, 0.999791)
+scale = Vector2(0.999792, 0.999792)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -1266,3 +1270,19 @@ libraries = {
 position = Vector2(0, 41)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aydp0")
+debug_color = Color(0, 0.634491, 0.42842, 0.42)
+
+[node name="Hitbox" type="RigidBody2D" parent="."]
+position = Vector2(-2, 24)
+collision_layer = 0
+collision_mask = 8
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+z_index = -2
+position = Vector2(1, -20)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_m5rhv")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)

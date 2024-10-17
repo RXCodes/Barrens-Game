@@ -1,7 +1,7 @@
 class_name DamageIndicator extends Label
 
 static var damageIndicator = preload("res://UI/DamageIndicator.tscn")
-static func createDamageIndicator(position: Vector2, amount: int, originNode: Node2D) -> void:
+static func createDamageIndicator(position: Vector2, amount: int, originNode: Node2D) -> Node2D:
 	var newIndicator: Node2D = damageIndicator.instantiate()
 	var indicatorLabel: Label = newIndicator.find_child("DamageIndicator")
 	indicatorLabel.text = str(amount)
@@ -9,12 +9,13 @@ static func createDamageIndicator(position: Vector2, amount: int, originNode: No
 	newIndicator.global_position = position
 	newIndicator.z_index = 4000
 	NodeRelations.rootNode.add_child(newIndicator)
+	return newIndicator
 
 # Called when the node enters the scene tree for the first time.
 var originNode: Node2D
 func _ready() -> void:
 	scale = Vector2(2, 2)
-	var tween = get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	tween.set_parallel()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_BACK)
@@ -27,7 +28,7 @@ func _ready() -> void:
 
 func scaled() -> void:
 	await TimeManager.wait(0.5)
-	var tween = get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.2)

@@ -21,23 +21,11 @@ static var enemyAIKey = "EnemyAI"
 ## Does the enemy do anything?
 @export var hasAI: bool = false
 
-## Speed when enemy walks
+## Speed when enemy travels
 @export var walkMovementSpeed: float = 1
 
-## How close does the enemy need to be to the player to start attacking?
-@export var attackDistance: float = 30
-
-@export_subgroup("Animated Attack")
-
-## The enemy attacks by triggering an attack over and over again.
-## This calls the onAttack() method which you can override to define what the enemy does.
-@export var animatedAttacksEnabled: bool = true
-
-## How long does it take for the enemy to attack again in seconds?
-@export var attackTime: float = 1.2
-
 @export_subgroup("")
-@export_subgroup("Gun Attack")
+@export_subgroup("Gun")
 
 ## The enemy attacks by using a gun
 @export var gunAttacksEnabled: bool = false
@@ -49,7 +37,6 @@ static var enemyAIKey = "EnemyAI"
 @export var gunSprite: Sprite2D
 
 @export_subgroup("")
-
 @export_category("Animations")
 
 ## Animation player for walking, idle and death animations
@@ -61,13 +48,10 @@ static var enemyAIKey = "EnemyAI"
 ## Animation to play when idling
 @export var idleAnimation: String
 
-## Animation to play when attacking (animated attacks must be enabled)
-@export var attackAnimation: String
-
 ## Animation to play when dying
 @export var deathAnimation: String
 
-## Animation player for when the enemy attacks or is hit
+## Animation player for when  or is hit
 @export var actionAnimationPlayer: AnimationPlayer
 
 ## Animation to play when being hit from the front
@@ -87,12 +71,13 @@ var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
 var hitboxShapeInitialPosition: Vector2
 var flipTransform: Node2D
+var target: Node2D = Player.current
 func _ready() -> void:
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
 	flipTransform = find_child("FlipTransform")
 	hitboxShape = hitBoxRigidBody.get_children()[0]
-	navigationAgents.append(navigationAgent)
+	enemies.append(self)
 	hitboxShapeInitialPosition = hitboxShape.position
 	currentHealth = maxHealth
 	if not hitBoxRigidBody:
@@ -102,6 +87,11 @@ func _ready() -> void:
 	if hitBackAnimation.is_empty():
 		hitBackAnimation = hitFrontAnimation
 	navigationAgent.target_reached.connect(reachedTarget)
+	var children = NodeRelations.getChildrenRecursive(self)
+	for child: Node in children:
+		child.set_meta(EnemyAI.parentControllerKey, self)
+	await get_tree().physics_frame
+	onStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var flipX = false
@@ -127,6 +117,7 @@ var renderer: EntityRender
 func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
+	enemyDamaged.emit()
 	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
 	flashWhite(true)
@@ -139,6 +130,7 @@ func onHit(globalPosition: Vector2) -> void:
 			actionAnimationPlayer.play(hitBackAnimation)
 	await TimeManager.wait(0.05)
 	flashWhite(false)
+	pass
 
 # called when enemy is damaged
 var damageInTick := {}
@@ -152,6 +144,7 @@ func damage(amount: float, source: Node2D) -> void:
 	if currentHealth <= 0:
 		currentHealth = 0
 		kill()
+	pass
 
 # called when changing the flashing state of the enemy
 func flashWhite(flashing: bool) -> void:
@@ -161,81 +154,48 @@ func flashWhite(flashing: bool) -> void:
 	else:
 		renderer.material = null
 
-var dead = false
-# called when enemy is killed
-func kill() -> void:
-	if dead:
-		return
-	dead = true
-	hitBoxRigidBody.collision_mask = 0
-	hitBoxRigidBody.collision_layer = 0
-	collisionRigidBody.collision_mask = 0
-	collisionRigidBody.collision_layer = 0
-	hasAI = false
-	if actionAnimationPlayer:
-		actionAnimationPlayer.stop()
-	if mainAnimationPlayer:
-		mainAnimationPlayer.stop()
-		mainAnimationPlayer.play(deathAnimation)
-		await TimeManager.wait(mainAnimationPlayer.current_animation_length)
-	for i in range(3):
-		flashWhite(true)
-		await TimeManager.wait(0.05)
-		flashWhite(false)
-		await TimeManager.wait(0.05)
-	flashWhite(true)
-	await TimeManager.wait(0.05)
-	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)
-	navigationAgents.erase(navigationAgent)
-	get_parent().queue_free()
-
 # called on every physics tick
+var shapeTests: Array[ShapeIntersectionTest] = []
 func _physics_process(delta: float) -> void:
 	hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
 	if dead:
 		return
 	if hasAI:
 		navigate()
+		if shapeTests.size() > 0:
+			var directPhysicsState = get_world_2d().direct_space_state
+			for shapeTest in shapeTests:
+				var intersectedShapes = directPhysicsState.intersect_shape(shapeTest.shapeQueryParameters)
+				if intersectedShapes.size() > 0:
+					if shapeTest.onSuccess:
+						shapeTest.onSuccess.call(intersectedShapes)
+			shapeTests.clear()
 
 # pathfinding and movement functionality
+var targetDistance: float = 30
 func navigate() -> void:
-	navigationAgent.target_desired_distance = attackDistance
-	if navigationAgent.is_navigation_finished():
-		if mainAnimationPlayer:
-			if mainAnimationPlayer.current_animation != idleAnimation:
-				mainAnimationPlayer.stop()
-				mainAnimationPlayer.play(idleAnimation)
+	navigationAgent.target_desired_distance = targetDistance
+	if withinRangeOfTarget():
+		reachedTarget()
 		return
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()
 		mainAnimationPlayer.play(walkAnimation)
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
 	var movementVector = pathfindDirectionVector * walkMovementSpeed
-	flipX = movementVector.x <= 0
+	faceTarget()
 	collisionRigidBody.move_and_collide(movementVector)
 
 # called when enemy reaches its target and is ready to attack
 func reachedTarget() -> void:
-	if mainAnimationPlayer:
+	if mainAnimationPlayer.current_animation != idleAnimation:
 		mainAnimationPlayer.stop()
 		mainAnimationPlayer.play(idleAnimation)
-	if animatedAttacksEnabled:
-		attack()
-
-# called when enemy performs an attack
-func attack() -> void:
-	onAttack()
-	if actionAnimationPlayer:
-		actionAnimationPlayer.play(attackAnimation)
-	await TimeManager.wait(attackTime)
-	
-	# after attacking, attack again if in range of the target
-	if navigationAgent.distance_to_target() + 10 <= attackDistance:
-		attack()
+	enemyReachedTarget.emit()
 
 # this prevents too many enemies pathfinding at once (laggy)
-static var navigationAgents := []
-static var navigationQueueIndex = 0
+static var enemies := []
+static var enemyQueueIndex = 0
 static var maxPathfindLimit = 5
 static var readyToRunNavigation = true
 static var navigateQueueInterval = 0.05
@@ -244,14 +204,149 @@ static func runNavigationQueue() -> void:
 		return
 	readyToRunNavigation = false
 	for i in range(maxPathfindLimit):
-		navigationQueueIndex += 1
-		if navigationQueueIndex >= navigationAgents.size():
-			navigationQueueIndex = 0
-		var currentNavigationAgent: NavigationAgent2D = navigationAgents[navigationQueueIndex]
-		currentNavigationAgent.target_position = Player.current.global_position
+		enemyQueueIndex += 1
+		if enemyQueueIndex >= enemies.size():
+			enemyQueueIndex = 0
+		var currentAI: EnemyAI = enemies[enemyQueueIndex]
+		if currentAI.target:
+			currentAI.navigationAgent.target_position = currentAI.target.global_position
 	await TimeManager.wait(navigateQueueInterval)
 	readyToRunNavigation = true
 
-# override this function to define an attack
-func onAttack() -> void:
+#                  #
+# HELPER FUNCTIONS #
+#                  #
+
+# targets a node and starts pathfinding to it
+func setTarget(targetNode: Node2D, newTargetDistance: float) -> void:
+	target = targetNode
+	targetDistance = newTargetDistance
+	navigationAgent.target_position = target.global_position
+
+# performs an attack, playing an animation
+# you should override the onAttack() function to have the enemy deal damage or do additional things
+func attack(attackName: String) -> void:
+	if dead:
+		return
+	actionAnimationPlayer.play(attackName)
+	var attackTime = maxf(actionAnimationPlayer.current_animation_length, 0.01)
+	await TimeManager.wait(attackTime)
+	enemyAttackFinished.emit()
+
+# makes the enemy face the target
+func faceTarget() -> void:
+	if dead:
+		return
+	var directionVector = target.global_position - collisionRigidBody.global_position
+	flipX = directionVector.x < 0
+
+# checks if the enemy is within the range of the target
+func withinRangeOfTarget() -> bool:
+	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
+	return distanceSquared <= targetDistance ** 2
+
+var dead = false
+# kills the enemy - setting dead to true
+func kill() -> void:
+	if dead:
+		return
+	onDeath()
+	dead = true
+	hitBoxRigidBody.collision_mask = 0
+	hitBoxRigidBody.collision_layer = 0
+	collisionRigidBody.collision_mask = 0
+	collisionRigidBody.collision_layer = 0
+	hasAI = false
+	actionAnimationPlayer.stop()
+	mainAnimationPlayer.stop()
+	mainAnimationPlayer.play(deathAnimation)
+	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
+	for i in range(3):
+		flashWhite(true)
+		await TimeManager.wait(0.05)
+		flashWhite(false)
+		await TimeManager.wait(0.05)
+	flashWhite(true)
+	await TimeManager.wait(0.05)
+	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)
+	enemies.erase(self)
+	get_parent().queue_free()
+
+enum HurtBoxType {PLAYER, ENEMY, ALL}
+static var parentControllerKey = "ParentControllerKey"
+# checks if a shape intersects with other players and enemies, dealing damage
+func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) -> void:
+	var newIntersectionTest = ShapeIntersectionTest.new()
+	newIntersectionTest.setDetectionType(type)
+	newIntersectionTest.setCollisionShape(shape)
+	newIntersectionTest.exclude(collisionRigidBody)
+	newIntersectionTest.onSuccess = func(shapes):
+		for dictionary: Dictionary in shapes:
+			var collider = dictionary.collider
+			var parent = collider.get_meta(parentControllerKey)
+			if parent:
+				parent.damage(damage, collisionRigidBody)
+	shapeTests.append(newIntersectionTest)
+	
+	# let's also make it flash so we can see it being activated in debug
+	var originalDebugColor = shape.debug_color
+	shape.debug_color = Color(1, 1, 1, 0.9)
+	await TimeManager.wait(0.05)
+	shape.debug_color = originalDebugColor
+
+#                                  #
+# FUNCTIONS THAT CAN BE OVERRIDDEN #
+#                                  #
+
+# define what the enemy does on start
+func onStart() -> void:
 	pass
+
+# define what happens when the enemy dies
+func onDeath() -> void:
+	pass
+
+#                     #
+# SIGNALS             #
+#                     #
+# Usage: await <name> #
+
+# when the enemy has reached the range of its target
+signal enemyReachedTarget
+
+# when the enemy finishes an attack
+signal enemyAttackFinished
+
+# when the enemy was damaged
+signal enemyDamaged
+
+#            #
+# STRUCTURES #
+#            #
+
+class ShapeIntersectionTest:
+	var shapeQueryParameters: PhysicsShapeQueryParameters2D
+	var onSuccess: Callable
+	
+	func _init() -> void:
+		shapeQueryParameters = PhysicsShapeQueryParameters2D.new()
+		shapeQueryParameters.collide_with_bodies = true
+		shapeQueryParameters.collide_with_areas = false
+		setDetectionType(HurtBoxType.PLAYER)
+	
+	func exclude(collider: CollisionObject2D) -> void:
+		var exclude = shapeQueryParameters.exclude
+		exclude.append(collider.get_rid())
+		shapeQueryParameters.exclude = exclude
+	
+	func setCollisionShape(newCollisionShape: CollisionShape2D) -> void:
+		shapeQueryParameters.shape = newCollisionShape.shape
+		shapeQueryParameters.transform = newCollisionShape.global_transform
+	
+	func setDetectionType(hurtboxType: HurtBoxType) -> void:
+		if hurtboxType == HurtBoxType.PLAYER:
+			shapeQueryParameters.collision_mask = 2**(1-1) # collision mask 0
+		elif hurtboxType == HurtBoxType.ENEMY:
+			shapeQueryParameters.collision_mask = 2**(3-1) # collision mask 3
+		elif hurtboxType == HurtBoxType.ALL:
+			shapeQueryParameters.collision_mask = (2**(1-1)) + (2**(3-1)) # collision masks 0 and 3

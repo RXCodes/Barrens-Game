@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=38 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -13,11 +13,14 @@
 [ext_resource type="Script" path="res://Scenes/ChallengeNodeDemo.gd" id="14_u4g0j"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Particles/Player.tscn" id="15_1u73x"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
-[ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="17_mq60l"]
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="18_cknrn"]
+[ext_resource type="Script" path="res://Models/ExampleEnemy.gd" id="19_1u5kv"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
+[ext_resource type="Texture2D" uid="uid://06hggffynh3o" path="res://ModelContents/ReplaceSprite.png" id="20_wwut8"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="21_18m3f"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
@@ -46,6 +49,30 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
+radius = 15.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
+radius = 6.0
+height = 15.0
+
+[sub_resource type="Animation" id="Animation_hpohb"]
+resource_name = "Walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lu1r2"]
+_data = {
+"Walk": SubResource("Animation_hpohb")
+}
+
+[sub_resource type="Animation" id="Animation_7esst"]
+resource_name = "Hit"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0mtp"]
+_data = {
+"Hit": SubResource("Animation_7esst")
+}
 
 [node name="Debug Scene" type="Node2D"]
 texture_filter = 1
@@ -220,9 +247,6 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 process_priority = 100
 script = ExtResource("9_i8abo")
 
-[node name="ExampleRender" parent="Level" instance=ExtResource("17_75868")]
-position = Vector2(330, -11)
-
 [node name="DummyRender" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(731, 431)
 
@@ -260,6 +284,83 @@ flipX = true
 [node name="DummyRender8" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(1235, 766)
 flipX = true
+
+[node name="ExampleRender" type="CanvasGroup" parent="Level"]
+process_priority = 5
+texture_filter = 1
+position = Vector2(272, 63)
+script = ExtResource("18_cknrn")
+entityZIndexOffset = 24
+
+[node name="ExampleEnemy" type="Node2D" parent="Level/ExampleRender" node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+script = ExtResource("19_1u5kv")
+hitBoxRigidBody = NodePath("Hitbox")
+collisionRigidBody = NodePath("ColliderBox")
+hasAI = true
+mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
+walkAnimation = "Walk"
+deathAnimation = "Death"
+actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
+hitFrontAnimation = "Hit"
+
+[node name="Hitbox" type="RigidBody2D" parent="Level/ExampleRender/ExampleEnemy"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Level/ExampleRender/ExampleEnemy/Hitbox"]
+z_index = -2
+position = Vector2(0, -12)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_64nc2")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)
+
+[node name="ColliderBox" type="RigidBody2D" parent="Level/ExampleRender/ExampleEnemy"]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Shape" type="CollisionShape2D" parent="Level/ExampleRender/ExampleEnemy/ColliderBox"]
+z_index = -1
+position = Vector2(0, 22)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_a2did")
+debug_color = Color(0, 0.648944, 0.163145, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Level/ExampleRender/ExampleEnemy/ColliderBox"]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+path_max_distance = 120.0
+path_metadata_flags = 0
+
+[node name="FlipTransform" type="Node2D" parent="Level/ExampleRender/ExampleEnemy/ColliderBox"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/ExampleRender/ExampleEnemy/ColliderBox/FlipTransform"]
+position = Vector2(2, -8)
+scale = Vector2(2, 2)
+texture = ExtResource("20_wwut8")
+
+[node name="Shadow" type="Sprite2D" parent="Level/ExampleRender/ExampleEnemy/ColliderBox/FlipTransform"]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(-1, 23)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("21_18m3f")
+offset = Vector2(0, -39.2243)
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Level/ExampleRender/ExampleEnemy/ColliderBox/FlipTransform"]
+libraries = {
+"": SubResource("AnimationLibrary_lu1r2")
+}
+
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Level/ExampleRender/ExampleEnemy/ColliderBox/FlipTransform"]
+libraries = {
+"": SubResource("AnimationLibrary_s0mtp")
+}
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
 

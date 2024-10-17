@@ -46,7 +46,7 @@ static func reloadWeapon(time: float) -> void:
 		reloadTween.kill()
 	current.visible = false
 	reloadingIcon.visible = true
-	reloadTween = current.get_tree().create_tween()
+	reloadTween = NodeRelations.createTween()
 	reloadingIcon.value = 0
 	reloadingIcon.scale = Vector2(1.25, 1.25)
 	reloadTween.tween_property(reloadingIcon, "value", 100, time).set_trans(Tween.TRANS_LINEAR)
@@ -64,6 +64,6 @@ static func stopReloadingWeapon() -> void:
 	reloadingIcon.visible = false
 	reloadTimer = null
 	current.scale = Vector2(1.2, 1.2)
-	var tween = current.get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	tween.tween_property(current, "scale", Vector2.ONE, 0.5).set_trans(Tween.TRANS_ELASTIC)
 	tween.play()
