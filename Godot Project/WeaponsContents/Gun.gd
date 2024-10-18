@@ -85,6 +85,9 @@ var leftoverAmmoCount: int:
 ## this requires the reloading animation to call an event to trigger at a specific time
 @export var magazineTexture: Texture2D
 
+## the drawing offset for the gun texture
+@export var drawingOffset: Vector2
+
 @export_group("Audio")
 
 ## the sound to use when firing the weapon
@@ -247,6 +250,7 @@ class Interactor:
 			newWeapon.cockedGun = weaponData[newWeapon.displayName]["cocked"]
 			newWeapon.sourceNode = originNode
 			gunSprite.texture = currentWeapon.texture
+			gunSprite.offset = currentWeapon.drawingOffset
 			if not newWeapon.cockedGun:
 				newWeapon.cockWeapon()
 	var gunSprite: Sprite2D
