@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0dwned5p02s7"]
+
+[ext_resource type="Script" path="res://Environment/Building/Roof/Roof.gd" id="1_bj4x2"]
+[ext_resource type="Texture2D" uid="uid://douvttohd38ou" path="res://Environment/Building/Roof/RoofFront.png" id="2_hblnh"]
+[ext_resource type="Texture2D" uid="uid://bj7a36mukqwbi" path="res://Environment/Building/Roof/Rooftop.png" id="3_wwnsh"]
+
+[node name="Roof" type="ReferenceRect"]
+texture_filter = 1
+offset_right = 17.0
+offset_bottom = 10.0
+scale = Vector2(27.2396, 29.0496)
+border_color = Color(1, 0, 0, 0)
+border_width = 0.0
+script = ExtResource("1_bj4x2")
+primaryColor = Color(0.763743, 0.606984, 0.413049, 1)
+secondaryColor = Color(0.81, 0.59022, 0.4536, 1)
+roofFrontOffset = -5.0
+
+[node name="RoofFront" type="NinePatchRect" parent="."]
+self_modulate = Color(0.81, 0.59022, 0.4536, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_top = 7.34936
+offset_right = 463.073
+offset_bottom = 89.3494
+scale = Vector2(0.0367113, 0.0344239)
+texture = ExtResource("2_hblnh")
+patch_margin_left = 27
+patch_margin_right = 27
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="RoofTop" type="NinePatchRect" parent="."]
+self_modulate = Color(0.763743, 0.606984, 0.413049, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 463.073
+offset_bottom = 290.496
+scale = Vector2(0.0367113, 0.0344239)
+texture = ExtResource("3_wwnsh")
+patch_margin_left = 70
+patch_margin_top = 58
+patch_margin_right = 70
+patch_margin_bottom = 80
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

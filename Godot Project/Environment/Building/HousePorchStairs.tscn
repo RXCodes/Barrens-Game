@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7w2l3qkk0klb"]
+
+[ext_resource type="Script" path="res://Environment/Building/Stairs/HouseStairs.gd" id="1_8nnc6"]
+[ext_resource type="Texture2D" uid="uid://ch6t1iin4fcpq" path="res://Environment/Building/Stairs/Stairs.png" id="2_suivn"]
+
+[node name="Stairs" type="ReferenceRect"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3.47476, 2.6447)
+border_color = Color(0.598258, 0.541581, 0.108535, 1)
+border_width = 0.0
+script = ExtResource("1_8nnc6")
+primaryColor = Color(0.79, 0.523375, 0.4345, 1)
+
+[node name="Stairs" type="NinePatchRect" parent="."]
+self_modulate = Color(0.79, 0.523375, 0.4345, 1)
+layout_mode = 0
+offset_right = 118.142
+offset_bottom = 95.2092
+scale = Vector2(0.287789, 0.378115)
+texture = ExtResource("2_suivn")
+patch_margin_left = 35
+patch_margin_top = 20
+patch_margin_right = 35
+patch_margin_bottom = 32
+axis_stretch_vertical = 2

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://crxlb54lwtxff"]
+
+[ext_resource type="Script" path="res://Environment/Building/Support/Fence.gd" id="1_bmpon"]
+[ext_resource type="Texture2D" uid="uid://dqy7mh10j0sit" path="res://Environment/Building/Support/Fence3.png" id="2_iwul2"]
+[ext_resource type="Texture2D" uid="uid://bu2ad15hd15h4" path="res://Environment/Building/Support/FencePole.png" id="3_aoqmq"]
+
+[node name="Fence" type="ReferenceRect"]
+texture_filter = 1
+offset_right = 14.0
+offset_bottom = 10.0
+scale = Vector2(13.3911, 1)
+border_color = Color(1, 0, 0, 0)
+border_width = 0.0
+script = ExtResource("1_bmpon")
+primaryColor = Color(0.6255, 0.423577, 0.32255, 1)
+secondaryColor = Color(0.482121, 0.295574, 0.191265, 1)
+fenceType = 2
+
+[node name="Fence" type="Sprite2D" parent="."]
+self_modulate = Color(0.6255, 0.423577, 0.32255, 1)
+texture_repeat = 2
+scale = Vector2(0.0746765, 1)
+texture = ExtResource("2_iwul2")
+offset = Vector2(82, -27)
+region_enabled = true
+region_rect = Rect2(0, 0, 164, 48)
+
+[node name="LeftFencePole" type="Sprite2D" parent="."]
+self_modulate = Color(0.482121, 0.295574, 0.191265, 1)
+scale = Vector2(0.0746765, 1)
+texture = ExtResource("3_aoqmq")
+offset = Vector2(-4, -27)
+
+[node name="RightFencePole" type="Sprite2D" parent="."]
+self_modulate = Color(0.482121, 0.295574, 0.191265, 1)
+scale = Vector2(0.0746765, 1)
+texture = ExtResource("3_aoqmq")
+offset = Vector2(166, -27)

@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctm05ljoj7upc"]
+
+[ext_resource type="Script" path="res://Environment/Building/Foundation/HouseFoundation.gd" id="1_88onj"]
+[ext_resource type="Texture2D" uid="uid://dawa8greu807r" path="res://Environment/Building/Foundation/FoundationPlanks.png" id="2_uluda"]
+[ext_resource type="Texture2D" uid="uid://dmbkoclctolki" path="res://Environment/Building/Foundation/FoundationBottom.png" id="3_p0weu"]
+[ext_resource type="Texture2D" uid="uid://dp3ownogcg4hs" path="res://Environment/Building/Foundation/FoundationTop.png" id="4_h40cy"]
+
+[node name="HouseFoundation" type="ReferenceRect"]
+texture_filter = 1
+offset_right = 17.0
+offset_bottom = 10.0
+scale = Vector2(12.8038, 1)
+border_color = Color(1, 0, 0, 0)
+border_width = 0.0
+script = ExtResource("1_88onj")
+primaryColor = Color(0.920518, 0.626815, 0.437017, 1)
+secondaryColor = Color(0.95536, 0.720732, 0.591975, 1)
+
+[node name="FoundationWallOutline" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+texture_repeat = 2
+position = Vector2(0.0131074, 5)
+scale = Vector2(0.0781018, 1)
+texture = ExtResource("2_uluda")
+offset = Vector2(108.832, -27)
+region_enabled = true
+region_rect = Rect2(0, 0, 210, 44)
+
+[node name="FoundationWall" type="Sprite2D" parent="."]
+self_modulate = Color(0.95536, 0.720732, 0.591975, 1)
+texture_repeat = 2
+position = Vector2(0.0131074, 5)
+scale = Vector2(0.0781018, 1)
+texture = ExtResource("2_uluda")
+offset = Vector2(108.832, -27)
+region_enabled = true
+region_rect = Rect2(0, 0, 206, 44)
+
+[node name="BottomFoundation" type="NinePatchRect" parent="."]
+self_modulate = Color(0.920518, 0.626815, 0.437017, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_right = 217.665
+offset_bottom = 10.0
+scale = Vector2(0.0781018, 1)
+texture = ExtResource("3_p0weu")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="TopFoundation" type="NinePatchRect" parent="."]
+self_modulate = Color(0.920518, 0.626815, 0.437017, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 0.39051
+offset_top = -52.0
+offset_right = 218.055
+offset_bottom = -44.0
+scale = Vector2(0.0781018, 1)
+texture = ExtResource("4_h40cy")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2

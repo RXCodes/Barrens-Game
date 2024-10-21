@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3ddjachkhbtm"]
+
+[ext_resource type="Script" path="res://Environment/Building/Wall/Wall.gd" id="1_dgfct"]
+[ext_resource type="Texture2D" uid="uid://bci536one20wx" path="res://Environment/Building/Wall/Plank.png" id="2_bat0y"]
+[ext_resource type="Texture2D" uid="uid://cpbd61qyjqm07" path="res://Environment/Building/Support/VerticalSupportSides.png" id="3_381xg"]
+[ext_resource type="Texture2D" uid="uid://b4e8exeqsmgxb" path="res://Environment/Building/Floor/Floor.png" id="3_566d5"]
+[ext_resource type="Texture2D" uid="uid://kg7c4gnqoucs" path="res://Environment/Building/Vignette.png" id="3_gpgw3"]
+[ext_resource type="Texture2D" uid="uid://dp3ownogcg4hs" path="res://Environment/Building/Foundation/FoundationTop.png" id="4_5uvdv"]
+
+[node name="Wall" type="ReferenceRect"]
+texture_filter = 1
+offset_right = 37.0
+offset_bottom = 31.0
+scale = Vector2(11.5963, 7.32951)
+border_color = Color(0.598258, 0.541581, 0.108535, 1)
+border_width = 0.0
+script = ExtResource("1_dgfct")
+primaryColor = Color(0.27, 0.2034, 0.1701, 1)
+secondaryColor = Color(0.670378, 0.446754, 0.363591, 1)
+floorColor = Color(0.694618, 0.498327, 0.39378, 1)
+separatorColor = Color(1, 0.78, 0.67, 1)
+depth = 35.0
+
+[node name="Wall" type="NinePatchRect" parent="."]
+self_modulate = Color(0.27, 0.2034, 0.1701, 1)
+layout_mode = 0
+offset_right = 429.064
+offset_bottom = 227.215
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("2_bat0y")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Floor" type="NinePatchRect" parent="."]
+self_modulate = Color(0.694618, 0.498327, 0.39378, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.77522
+offset_right = 429.064
+offset_bottom = 30.2248
+grow_vertical = 0
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("3_566d5")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="FloorVignette" type="NinePatchRect" parent="."]
+self_modulate = Color(0.6, 0.4328, 0.372, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -4.77522
+offset_right = 429.064
+offset_bottom = 35.2248
+grow_vertical = 0
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("3_gpgw3")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Vignette" type="NinePatchRect" parent="."]
+self_modulate = Color(0.6, 0.4328, 0.372, 1)
+layout_mode = 0
+offset_top = 0.150811
+offset_right = 429.064
+offset_bottom = 192.366
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("3_gpgw3")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="Supports" type="NinePatchRect" parent="."]
+self_modulate = Color(0.670378, 0.446754, 0.363591, 1)
+layout_mode = 0
+offset_right = 429.064
+offset_bottom = 227.215
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("3_381xg")
+patch_margin_left = 52
+patch_margin_top = 40
+patch_margin_right = 52
+
+[node name="TopSeparator" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 0.78, 0.67, 1)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.5457
+offset_right = 429.064
+offset_bottom = -23.5457
+grow_vertical = 0
+scale = Vector2(0.0862342, 0.136435)
+texture = ExtResource("4_5uvdv")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

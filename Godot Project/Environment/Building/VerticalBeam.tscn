@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://2otg2a37wnag"]
+
+[ext_resource type="Script" path="res://Environment/Building/Support/VerticalBeam.gd" id="1_j56h5"]
+[ext_resource type="Texture2D" uid="uid://crpiwlfamyd1m" path="res://Environment/Building/Support/VerticalSupport.png" id="2_rshcm"]
+
+[node name="VerticalBeam" type="ReferenceRect"]
+texture_filter = 1
+offset_left = 583.0
+offset_top = -316.0
+offset_right = 620.0
+offset_bottom = -285.0
+scale = Vector2(2, 5.11822)
+border_color = Color(0.598258, 0.541581, 0.108535, 1)
+border_width = 0.0
+script = ExtResource("1_j56h5")
+primaryColor = Color(0.61, 0.394975, 0.3233, 1)
+
+[node name="Support" type="NinePatchRect" parent="."]
+self_modulate = Color(0.61, 0.394975, 0.3233, 1)
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 158.665
+scale = Vector2(0.5, 0.19538)
+texture = ExtResource("2_rshcm")
+patch_margin_left = 2
+patch_margin_top = 10
+patch_margin_right = 2
+patch_margin_bottom = 10

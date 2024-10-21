@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=28 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
@@ -15,9 +15,15 @@
 [ext_resource type="Script" path="res://Environment/ground.gd" id="13_5d4x4"]
 [ext_resource type="Script" path="res://HelperClasses/ZIndexSorter.gd" id="16_0asqa"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="17_0ajqr"]
-[ext_resource type="PackedScene" uid="uid://cipnnialkcda4" path="res://Environment/Building/BasicHouse.tscn" id="17_7est2"]
+[ext_resource type="PackedScene" uid="uid://ctm05ljoj7upc" path="res://Environment/Building/HouseFoundation.tscn" id="17_6sxbk"]
+[ext_resource type="PackedScene" uid="uid://d3ddjachkhbtm" path="res://Environment/Building/HouseWall.tscn" id="17_biqno"]
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="17_vs1af"]
+[ext_resource type="PackedScene" uid="uid://2otg2a37wnag" path="res://Environment/Building/VerticalBeam.tscn" id="18_1toat"]
+[ext_resource type="PackedScene" uid="uid://crxlb54lwtxff" path="res://Environment/Building/Fence.tscn" id="18_p3qbl"]
+[ext_resource type="PackedScene" uid="uid://b7w2l3qkk0klb" path="res://Environment/Building/HousePorchStairs.tscn" id="18_pdu4m"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="18_sejpj"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="19_13i64"]
+[ext_resource type="PackedScene" uid="uid://d0dwned5p02s7" path="res://Environment/Building/Roof.tscn" id="20_7hscl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6bmr"]
 texture = ExtResource("10_pvnfi")
@@ -165,6 +171,7 @@ tile_set = ExtResource("11_lspg1")
 metadata/_edit_lock_ = true
 
 [node name="Ground" type="Sprite2D" parent="Under"]
+visible = false
 z_index = -4096
 texture_filter = 1
 texture_repeat = 2
@@ -189,7 +196,56 @@ script = ExtResource("16_0asqa")
 [node name="Cactus" parent="Level" instance=ExtResource("18_sejpj")]
 position = Vector2(220, -145)
 
-[node name="House" parent="Level" instance=ExtResource("17_7est2")]
+[node name="CanvasGroup" type="CanvasGroup" parent="Level"]
+script = ExtResource("17_vs1af")
+
+[node name="Wall" parent="Level/CanvasGroup" instance=ExtResource("17_biqno")]
+offset_left = 409.0
+offset_top = -328.0
+offset_right = 446.0
+offset_bottom = -297.0
+scale = Vector2(12.1066, 5.59403)
+depth = 76.0
+
+[node name="VerticalBeam" parent="Level/CanvasGroup" instance=ExtResource("18_1toat")]
+offset_top = -329.0
+offset_bottom = -298.0
+scale = Vector2(2, 5.52457)
+
+[node name="HouseFoundation" parent="Level/CanvasGroup" instance=ExtResource("17_6sxbk")]
+offset_left = 404.0
+offset_top = -106.0
+offset_right = 421.0
+offset_bottom = -96.0
+scale = Vector2(27.2205, 1)
+
+[node name="Roof" parent="Level/CanvasGroup" instance=ExtResource("20_7hscl")]
+offset_left = 402.0
+offset_top = -592.0
+offset_right = 419.0
+offset_bottom = -582.0
+
+[node name="Fence" parent="Level/CanvasGroup" instance=ExtResource("18_p3qbl")]
+offset_left = 419.0
+offset_top = -155.0
+offset_right = 433.0
+offset_bottom = -145.0
+showLeftFencePole = false
+showRightFencePole = false
+
+[node name="Fence2" parent="Level/CanvasGroup" instance=ExtResource("18_p3qbl")]
+offset_left = 737.0
+offset_top = -154.0
+offset_right = 751.0
+offset_bottom = -144.0
+scale = Vector2(11.61, 1)
+showRightFencePole = false
+
+[node name="Stairs" parent="Level/CanvasGroup" instance=ExtResource("18_pdu4m")]
+offset_left = 603.0
+offset_top = -157.0
+offset_right = 643.0
+offset_bottom = -117.0
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")

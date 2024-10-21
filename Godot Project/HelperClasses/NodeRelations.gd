@@ -22,5 +22,5 @@ static func loadScene(path: String) -> void:
 	var sceneInstance = newScene.instantiate()
 	parent.add_child(sceneInstance)
 
-static func createTween() -> Variant:
+static func createTween() -> Tween:
 	return NodeRelations.rootNode.create_tween()
