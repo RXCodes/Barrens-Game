@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpl4ur700pkk6"]
+
+[ext_resource type="Texture2D" uid="uid://bwps8vv3axet0" path="res://Environment/Building/Wall/Window4.png" id="1_mu1ko"]
+[ext_resource type="Script" path="res://Environment/Building/Wall/Window.gd" id="2_kk3s4"]
+[ext_resource type="Texture2D" uid="uid://cnhqpw43td3mr" path="res://Environment/Building/Wall/Glass4.png" id="3_5f0e2"]
+[ext_resource type="Texture2D" uid="uid://byyxstd67ib7x" path="res://Environment/Building/Wall/GlassHighlight4.png" id="4_0mqdd"]
+
+[node name="WindowFrame" type="Sprite2D"]
+self_modulate = Color(0.558522, 0.397612, 0.238608, 1)
+texture_filter = 1
+texture = ExtResource("1_mu1ko")
+script = ExtResource("2_kk3s4")
+windowType = 3
+frameColor = Color(0.558522, 0.397612, 0.238608, 1)
+windowColor = Color(0.619942, 0.700848, 0.718138, 1)
+
+[node name="Window" type="Sprite2D" parent="."]
+self_modulate = Color(0.619942, 0.700848, 0.718138, 1)
+show_behind_parent = true
+texture = ExtResource("3_5f0e2")
+
+[node name="Highlight" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("4_0mqdd")

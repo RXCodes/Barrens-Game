@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=35 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="18_sejpj"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="19_13i64"]
 [ext_resource type="PackedScene" uid="uid://d0dwned5p02s7" path="res://Environment/Building/Roof.tscn" id="20_7hscl"]
+[ext_resource type="PackedScene" uid="uid://c81r82pub4120" path="res://Environment/Building/SalonDoor.tscn" id="21_7l2lu"]
+[ext_resource type="PackedScene" uid="uid://bpl4ur700pkk6" path="res://Environment/Building/Window.tscn" id="21_fgcst"]
+[ext_resource type="Texture2D" uid="uid://b4h3rr3cd7hjp" path="res://Environment/Building/Wall/Window2.png" id="22_2sfto"]
 [ext_resource type="Script" path="res://Environment/Building/BehindBuilding.gd" id="24_4u4j0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6bmr"]
@@ -214,35 +217,62 @@ position = Vector2(608, -124)
 
 [node name="Roof" parent="Level/House2" instance=ExtResource("20_7hscl")]
 offset_left = 385.0
-offset_top = -616.0
+offset_top = -663.0
 offset_right = 402.0
-offset_bottom = -606.0
+offset_bottom = -653.0
 scale = Vector2(44.3515, 29.4837)
 primaryColor = Color(0.615905, 0.36297, 0.198551, 1)
 
 [node name="Wall" parent="Level/House2" instance=ExtResource("17_biqno")]
 offset_left = 409.0
-offset_top = -328.0
+offset_top = -378.0
 offset_right = 446.0
-offset_bottom = -297.0
-scale = Vector2(19.0597, 5.76378)
+offset_bottom = -347.0
+scale = Vector2(19.0883, 7.09446)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
 separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 80.0
 
+[node name="SalonDoorFrame" parent="Level/House2" instance=ExtResource("21_7l2lu")]
+position = Vector2(661, -299)
+
+[node name="SalonDoorFrame2" parent="Level/House2" instance=ExtResource("21_7l2lu")]
+position = Vector2(1016, -301)
+
+[node name="WindowFrame" parent="Level/House2" instance=ExtResource("21_fgcst")]
+self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
+position = Vector2(466, -307)
+texture = ExtResource("22_2sfto")
+windowType = 1
+frameColor = Color(0.526266, 0.303573, 0.127719, 1)
+
+[node name="WindowFrame3" parent="Level/House2" instance=ExtResource("21_fgcst")]
+self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
+position = Vector2(784, -307)
+texture = ExtResource("22_2sfto")
+windowType = 1
+frameColor = Color(0.526266, 0.303573, 0.127719, 1)
+
+[node name="WindowFrame5" parent="Level/House2" instance=ExtResource("21_fgcst")]
+self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
+position = Vector2(912, -306)
+texture = ExtResource("22_2sfto")
+windowType = 1
+frameColor = Color(0.526266, 0.303573, 0.127719, 1)
+
 [node name="VerticalBeam" parent="Level/House2" instance=ExtResource("18_1toat")]
-offset_top = -329.0
-offset_bottom = -298.0
-scale = Vector2(2, 5.52457)
+offset_top = -379.0
+offset_bottom = -348.0
+scale = Vector2(2, 7.1528)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="VerticalBeam2" parent="Level/House2" instance=ExtResource("18_1toat")]
 offset_left = 727.0
-offset_top = -325.0
+offset_top = -379.0
 offset_right = 764.0
-offset_bottom = -294.0
-scale = Vector2(2, 5.52457)
+offset_bottom = -348.0
+scale = Vector2(2, 7.13265)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="HouseFoundation" parent="Level/House2" instance=ExtResource("17_6sxbk")]
@@ -297,11 +327,11 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House2"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/Area2D"]
-position = Vector2(764.75, -470.75)
+visible = false
+position = Vector2(764.75, -516.75)
 shape = SubResource("RectangleShape2D_0lxle")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
 

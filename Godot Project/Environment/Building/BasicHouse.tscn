@@ -1,10 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cipnnialkcda4"]
+[gd_scene load_steps=14 format=3 uid="uid://cipnnialkcda4"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_5dskk"]
 [ext_resource type="PackedScene" uid="uid://d0dwned5p02s7" path="res://Environment/Building/Roof.tscn" id="2_irbya"]
+[ext_resource type="PackedScene" uid="uid://c81r82pub4120" path="res://Environment/Building/SalonDoor.tscn" id="3_cinr0"]
 [ext_resource type="PackedScene" uid="uid://d3ddjachkhbtm" path="res://Environment/Building/HouseWall.tscn" id="3_ppmx0"]
 [ext_resource type="PackedScene" uid="uid://2otg2a37wnag" path="res://Environment/Building/VerticalBeam.tscn" id="4_0oj6d"]
+[ext_resource type="PackedScene" uid="uid://bpl4ur700pkk6" path="res://Environment/Building/Window.tscn" id="4_66k71"]
 [ext_resource type="PackedScene" uid="uid://ctm05ljoj7upc" path="res://Environment/Building/HouseFoundation.tscn" id="5_0vapo"]
+[ext_resource type="Texture2D" uid="uid://sc02ggmb2kgy" path="res://Environment/Building/Wall/Window3.png" id="5_hx1vu"]
 [ext_resource type="PackedScene" uid="uid://crxlb54lwtxff" path="res://Environment/Building/Fence.tscn" id="6_wqvec"]
 [ext_resource type="PackedScene" uid="uid://b7w2l3qkk0klb" path="res://Environment/Building/HousePorchStairs.tscn" id="7_tl7yb"]
 [ext_resource type="Script" path="res://Environment/Building/BehindBuilding.gd" id="8_e8wpf"]
@@ -13,7 +16,7 @@
 size = Vector2(17.916, 10.526)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxle"]
-size = Vector2(499, 307)
+size = Vector2(499, 341)
 
 [node name="House" type="CanvasGroup"]
 position = Vector2(0, -1)
@@ -22,25 +25,36 @@ script = ExtResource("1_5dskk")
 [node name="Origin" type="Node2D" parent="."]
 position = Vector2(608, -124)
 
-[node name="Roof" parent="." instance=ExtResource("2_irbya")]
-offset_left = 385.0
-offset_top = -616.0
-offset_right = 402.0
-offset_bottom = -606.0
-scale = Vector2(29.1528, 29.8659)
-
 [node name="Wall" parent="." instance=ExtResource("3_ppmx0")]
 offset_left = 409.0
-offset_top = -328.0
+offset_top = -357.0
 offset_right = 446.0
-offset_bottom = -297.0
-scale = Vector2(12.1066, 5.59403)
+offset_bottom = -326.0
+scale = Vector2(12.0882, 6.56532)
 depth = 76.0
 
+[node name="SalonDoorFrame" parent="." instance=ExtResource("3_cinr0")]
+position = Vector2(657, -296)
+
+[node name="WindowFrame" parent="." instance=ExtResource("4_66k71")]
+position = Vector2(495, -292)
+
+[node name="WindowFrame2" parent="." instance=ExtResource("4_66k71")]
+position = Vector2(766, -294)
+texture = ExtResource("5_hx1vu")
+windowType = 2
+
+[node name="Roof" parent="." instance=ExtResource("2_irbya")]
+offset_left = 385.0
+offset_top = -653.0
+offset_right = 402.0
+offset_bottom = -643.0
+scale = Vector2(29.1528, 29.8659)
+
 [node name="VerticalBeam" parent="." instance=ExtResource("4_0oj6d")]
-offset_top = -329.0
-offset_bottom = -298.0
-scale = Vector2(2, 5.52457)
+offset_top = -358.0
+offset_bottom = -327.0
+scale = Vector2(2, 6.50785)
 
 [node name="HouseFoundation" parent="." instance=ExtResource("5_0vapo")]
 offset_left = 404.0
@@ -87,7 +101,7 @@ visible = false
 script = ExtResource("8_e8wpf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(633.5, -465.5)
+position = Vector2(633.5, -482.5)
 shape = SubResource("RectangleShape2D_0lxle")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
 
