@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d4if5bo5j5f56"
-path="res://.godot/imported/HeavyDoorBase.png-da8aa7d2016c9eb5caa7f1b6dafa6783.ctex"
+uid="uid://bhwhmf8dqkjrb"
+path="res://.godot/imported/HeavyDoor.png-3f2d1e4f3f5614d64e58c59f283a222f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Environment/Building/Wall/HeavyDoorBase.png"
-dest_files=["res://.godot/imported/HeavyDoorBase.png-da8aa7d2016c9eb5caa7f1b6dafa6783.ctex"]
+source_file="res://Environment/Building/Wall/HeavyDoor.png"
+dest_files=["res://.godot/imported/HeavyDoor.png-3f2d1e4f3f5614d64e58c59f283a222f.ctex"]
 
 [params]
 

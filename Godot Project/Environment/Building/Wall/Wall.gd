@@ -1,6 +1,8 @@
 @tool
 extends ReferenceRect
 
+enum WallType {WallAndFloor, Supports}
+@export var wallType: WallType = WallType.WallAndFloor
 @export var primaryColor: Color
 @export var secondaryColor: Color
 @export var floorColor: Color
@@ -54,3 +56,13 @@ func updateStructure() -> void:
 	topSeparator.self_modulate = separatorColor
 	topSeparator.scale = wall.scale
 	topSeparator.position.y = -4 / scale.y
+	for node: Control in [wall, floor, vignette, floorVignette, supports, topSeparator]:
+		node.hide()
+	if wallType == WallType.WallAndFloor:
+		floorVignette.show()
+		vignette.show()
+		floor.show()
+		wall.show()
+	elif wallType == WallType.Supports:
+		supports.show()
+		topSeparator.show()

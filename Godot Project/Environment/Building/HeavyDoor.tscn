@@ -2,23 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://taobemtu5mew" path="res://Environment/Building/Wall/Door.png" id="1_oafrn"]
 [ext_resource type="Script" path="res://Environment/Building/Wall/Door.gd" id="2_jmh5o"]
-[ext_resource type="Texture2D" uid="uid://d4if5bo5j5f56" path="res://Environment/Building/Wall/HeavyDoorBase.png" id="3_v4iaf"]
-[ext_resource type="Texture2D" uid="uid://bg02qgvq8dlge" path="res://Environment/Building/Wall/HeavyDoorMetal.png" id="4_k6mrv"]
+[ext_resource type="Texture2D" uid="uid://bhwhmf8dqkjrb" path="res://Environment/Building/Wall/HeavyDoor.png" id="3_td4tx"]
+[ext_resource type="Texture2D" uid="uid://cjwn4xayuoo2e" path="res://Environment/Building/Wall/HeavyDoorMetal.png" id="4_k6mrv"]
 
 [node name="HeavyDoorFrame" type="Sprite2D"]
-self_modulate = Color(0.466163, 0.319439, 0.189236, 1)
+self_modulate = Color(0.418341, 0.278817, 0.23697, 1)
 texture_filter = 1
-position = Vector2(661, -301)
 texture = ExtResource("1_oafrn")
 script = ExtResource("2_jmh5o")
-frameColor = Color(0.466163, 0.319439, 0.189236, 1)
-doorColor = Color(0.62, 0.41664, 0.3224, 1)
+frameColor = Color(0.418341, 0.278817, 0.23697, 1)
+doorColor = Color(0.723726, 0.552451, 0.493568, 1)
 
 [node name="Door" type="Sprite2D" parent="."]
-self_modulate = Color(0.62, 0.41664, 0.3224, 1)
-position = Vector2(0, -1)
-texture = ExtResource("3_v4iaf")
+self_modulate = Color(0.723726, 0.552451, 0.493568, 1)
+position = Vector2(0, 8)
+texture = ExtResource("3_td4tx")
 
 [node name="Door2" type="Sprite2D" parent="."]
 self_modulate = Color(0.563402, 0.621245, 0.682525, 1)
+position = Vector2(0, 7)
 texture = ExtResource("4_k6mrv")
