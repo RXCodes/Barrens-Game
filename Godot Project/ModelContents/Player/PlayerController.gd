@@ -171,6 +171,8 @@ func _input(event: InputEvent) -> void:
 				currentMovementKeypresses.erase(moveVector)
 		
 		# just for debugging purposes -- have the player be able to swap weapons
+		if gunInteractor == null:
+			return
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":

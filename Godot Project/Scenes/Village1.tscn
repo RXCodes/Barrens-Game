@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=48 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
@@ -32,6 +32,10 @@
 [ext_resource type="Texture2D" uid="uid://dw8xjqhvr7cqm" path="res://Environment/Building/Wall/Window1.png" id="22_wlfva"]
 [ext_resource type="Script" path="res://Environment/Building/BehindBuilding.gd" id="24_4u4j0"]
 [ext_resource type="Texture2D" uid="uid://sc02ggmb2kgy" path="res://Environment/Building/Wall/Window3.png" id="31_ne6jr"]
+[ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="32_tfwlq"]
+[ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="33_86g18"]
+[ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="34_lu31p"]
+[ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="35_yxa77"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6bmr"]
 texture = ExtResource("10_pvnfi")
@@ -64,7 +68,7 @@ size = Vector2(499, 341)
 size = Vector2(28.1878, 13.4568)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aw633"]
-size = Vector2(756.5, 454)
+size = Vector2(499, 307)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6m4o8"]
 size = Vector2(756.5, 311)
@@ -74,6 +78,9 @@ size = Vector2(28.1878, 10.8729)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rftqs"]
 size = Vector2(28.1878, 10.9205)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7nsq"]
+size = Vector2(757.5, 437.5)
 
 [node name="Village1" type="Node2D"]
 script = ExtResource("1_875xw")
@@ -1062,9 +1069,195 @@ visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/Area2D"]
-position = Vector2(764.75, -597)
-shape = SubResource("RectangleShape2D_aw633")
+position = Vector2(762.25, -595.75)
+shape = SubResource("RectangleShape2D_m7nsq")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+
+[node name="Cactus2" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(208, 219)
+
+[node name="Cactus3" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(398, 1908)
+
+[node name="Cactus7" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(-324, 828)
+
+[node name="Cactus6" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(313, 144)
+
+[node name="Cactus8" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-255, 1414)
+
+[node name="Cactus11" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(-211, -144)
+
+[node name="Cactus12" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(-805, 685)
+
+[node name="Cactus14" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(-269, -214)
+
+[node name="Cactus16" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(293, 1827)
+
+[node name="Cactus15" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(231, 1006)
+
+[node name="Cactus4" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(-483, 2879)
+
+[node name="Cactus5" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(254, 2920)
+
+[node name="Cactus9" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(883, 3108)
+
+[node name="Cactus10" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(1175, 2959)
+
+[node name="Cactus13" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(-235, 3155)
+
+[node name="Cactus17" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(-289, 3311)
+
+[node name="Cactus18" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(1803, 3190)
+
+[node name="Cactus19" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(632, 3581)
+
+[node name="Cactus20" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(879, 3660)
+
+[node name="Cactus21" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-397, 3514)
+
+[node name="Cactus22" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(2229, 3657)
+
+[node name="Cactus23" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(2070, 3574)
+
+[node name="Cactus24" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(2419, 3476)
+
+[node name="Cactus25" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(2349, 3730)
+
+[node name="Cactus26" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(2118, 3714)
+
+[node name="Cactus27" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(1892, 3632)
+
+[node name="Cactus28" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(2689, 3574)
+
+[node name="Cactus29" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(3197, 3143)
+
+[node name="Cactus30" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(2876, 3130)
+
+[node name="Cactus31" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(3505, 3101)
+
+[node name="Cactus32" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(3346, 3146)
+
+[node name="Cactus33" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(3632, 3578)
+
+[node name="Cactus34" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(4794, 3098)
+
+[node name="Cactus35" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(5064, 3124)
+
+[node name="Cactus36" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(4283, 3606)
+
+[node name="Cactus37" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(4143, 3692)
+
+[node name="Cactus38" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(956, 2600)
+
+[node name="Cactus39" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(2130, 2717)
+
+[node name="Cactus40" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(2987, 2717)
+
+[node name="Cactus41" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(3489, 2571)
+
+[node name="Cactus42" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(4578, 2590)
+
+[node name="Cactus43" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(4740, 2752)
+
+[node name="Cactus44" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(4892, 2466)
+
+[node name="Cactus45" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(792, 1294)
+
+[node name="Cactus46" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-856, 2286)
+
+[node name="Cactus47" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(-1150, -1967)
+
+[node name="Cactus48" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-500, -1778)
+
+[node name="Cactus49" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(-362, -2044)
+
+[node name="Cactus50" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(-242, -1793)
+
+[node name="Cactus51" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(-859, -1514)
+
+[node name="Cactus52" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(-1195, -1709)
+
+[node name="Cactus53" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-967, -981)
+
+[node name="Cactus54" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(270, -1508)
+
+[node name="Cactus55" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(-554, -1214)
+
+[node name="Cactus56" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(366, -789)
+
+[node name="Cactus57" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(816, -1130)
+
+[node name="Cactus58" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(603, -651)
+
+[node name="Cactus59" parent="Level" instance=ExtResource("35_yxa77")]
+position = Vector2(-683, -660)
+
+[node name="Cactus60" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(-431, -579)
+
+[node name="Cactus61" parent="Level" instance=ExtResource("32_tfwlq")]
+position = Vector2(828, -423)
+
+[node name="Cactus62" parent="Level" instance=ExtResource("34_lu31p")]
+position = Vector2(153, -1175)
+
+[node name="Cactus63" parent="Level" instance=ExtResource("33_86g18")]
+position = Vector2(513, -1349)
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")
