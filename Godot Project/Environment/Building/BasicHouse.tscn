@@ -31,8 +31,6 @@ offset_top = -357.0
 offset_right = 446.0
 offset_bottom = -326.0
 scale = Vector2(12.0882, 6.56532)
-floorColor = Color(0.694618, 0.498327, 0.39378, 1)
-separatorColor = Color(1, 0.78, 0.67, 1)
 depth = 76.0
 
 [node name="SalonDoorFrame" parent="." instance=ExtResource("3_cinr0")]
@@ -60,8 +58,6 @@ offset_right = 446.0
 offset_bottom = -326.0
 scale = Vector2(12.0882, 6.56532)
 wallType = 1
-floorColor = Color(0.694618, 0.498327, 0.39378, 1)
-separatorColor = Color(1, 0.78, 0.67, 1)
 depth = 76.0
 
 [node name="VerticalBeam" parent="." instance=ExtResource("4_0oj6d")]
