@@ -104,10 +104,10 @@ size = Vector2(28.1878, 10.8729)
 size = Vector2(760.5, 428.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdn4"]
-size = Vector2(18.5729, 27.0165)
+size = Vector2(18.0454, 26.7993)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buymu"]
-size = Vector2(454.5, 568.5)
+size = Vector2(474.25, 568.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rftqs"]
 size = Vector2(28.1878, 10.9205)
@@ -310,10 +310,10 @@ patch_margin_bottom = 34
 
 [node name="HouseShadow6" type="NinePatchRect" parent="Shadow"]
 texture_filter = 1
-offset_left = 413.0
-offset_top = 1712.0
-offset_right = 899.0
-offset_bottom = 1989.0
+offset_left = 405.0
+offset_top = 1701.0
+offset_right = 906.0
+offset_bottom = 1997.0
 texture = ExtResource("19_yop0l")
 patch_margin_left = 40
 patch_margin_top = 34
@@ -562,7 +562,7 @@ collision_layer = 5
 position = Vector2(636, -206.479)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_64qng")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House8"]
 script = ExtResource("24_4u4j0")
@@ -570,7 +570,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House8/Area2D"]
 position = Vector2(633.5, -482.5)
 shape = SubResource("RectangleShape2D_0lxle")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House7" type="CanvasGroup" parent="Level"]
 position = Vector2(2537, 3904)
@@ -636,7 +636,7 @@ collision_layer = 5
 position = Vector2(636, -206.479)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_64qng")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House7"]
 script = ExtResource("24_4u4j0")
@@ -644,7 +644,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House7/Area2D"]
 position = Vector2(633.5, -482.5)
 shape = SubResource("RectangleShape2D_0lxle")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House12" type="CanvasGroup" parent="Level"]
 position = Vector2(-1101, 2706)
@@ -712,7 +712,7 @@ collision_layer = 5
 position = Vector2(635, -218)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_hpu0p")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House12"]
 script = ExtResource("24_4u4j0")
@@ -720,7 +720,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House12/Area2D"]
 position = Vector2(634.75, -505.5)
 shape = SubResource("RectangleShape2D_dd1db")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House3" type="CanvasGroup" parent="Level"]
 position = Vector2(1939, 3220)
@@ -817,7 +817,7 @@ collision_layer = 5
 position = Vector2(636, -206.479)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_64qng")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House3"]
 script = ExtResource("24_4u4j0")
@@ -825,7 +825,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House3/Area2D"]
 position = Vector2(633.5, -482.5)
 shape = SubResource("RectangleShape2D_0lxle")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House2" type="CanvasGroup" parent="Level"]
 position = Vector2(847, 3227)
@@ -954,7 +954,7 @@ collision_layer = 5
 position = Vector2(763, -243)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_wgxyf")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House2"]
 script = ExtResource("24_4u4j0")
@@ -962,7 +962,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/Area2D"]
 position = Vector2(761.188, -496)
 shape = SubResource("RectangleShape2D_1uhlq")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House10" type="CanvasGroup" parent="Level"]
 position = Vector2(-1145, 1988)
@@ -1037,7 +1037,7 @@ collision_layer = 5
 position = Vector2(664.25, -500)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_6td3q")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House10"]
 script = ExtResource("24_4u4j0")
@@ -1045,7 +1045,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House10/Area2D"]
 position = Vector2(667.75, -730.75)
 shape = SubResource("RectangleShape2D_s4iej")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House6" type="CanvasGroup" parent="Level"]
 position = Vector2(640, 3900)
@@ -1125,7 +1125,7 @@ collision_layer = 5
 position = Vector2(763, -243)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_wgxyf")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House6"]
 script = ExtResource("24_4u4j0")
@@ -1133,7 +1133,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House6/Area2D"]
 position = Vector2(765, -494.5)
 shape = SubResource("RectangleShape2D_6m4o8")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House11" type="CanvasGroup" parent="Level"]
 position = Vector2(-184, 2420)
@@ -1189,7 +1189,7 @@ collision_layer = 5
 position = Vector2(710, -510)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_4lqyd")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House11"]
 script = ExtResource("24_4u4j0")
@@ -1197,7 +1197,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House11/Area2D"]
 position = Vector2(703.875, -738.5)
 shape = SubResource("RectangleShape2D_38gjo")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House4" type="CanvasGroup" parent="Level"]
 position = Vector2(3289, 3231)
@@ -1367,7 +1367,7 @@ collision_layer = 5
 position = Vector2(763, -270.12)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_ld3n2")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House4"]
 script = ExtResource("24_4u4j0")
@@ -1375,7 +1375,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House4/Area2D"]
 position = Vector2(765.75, -598.25)
 shape = SubResource("RectangleShape2D_aw633")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House9" type="CanvasGroup" parent="Level"]
 position = Vector2(-173, 1192)
@@ -1497,18 +1497,18 @@ primaryColor = Color(0.479651, 0.302984, 0.20383, 1)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/StaticBody2D"]
-position = Vector2(629.75, -770.56)
+position = Vector2(632.375, -433.72)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_rgdn4")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House9"]
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/Area2D"]
-position = Vector2(631.75, -436)
+position = Vector2(634.875, -764)
 shape = SubResource("RectangleShape2D_buymu")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House5" type="CanvasGroup" parent="Level"]
 position = Vector2(-612, 3970)
@@ -1638,7 +1638,7 @@ collision_layer = 5
 position = Vector2(763, -269.62)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_rftqs")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House5"]
 script = ExtResource("24_4u4j0")
@@ -1646,7 +1646,7 @@ script = ExtResource("24_4u4j0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/Area2D"]
 position = Vector2(762.25, -595.75)
 shape = SubResource("RectangleShape2D_m7nsq")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="Cactus2" parent="Level" instance=ExtResource("18_sejpj")]
 position = Vector2(528, 29)
