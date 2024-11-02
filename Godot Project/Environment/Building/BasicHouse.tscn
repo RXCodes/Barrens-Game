@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cipnnialkcda4"]
+[gd_scene load_steps=15 format=3 uid="uid://cipnnialkcda4"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_5dskk"]
 [ext_resource type="PackedScene" uid="uid://d0dwned5p02s7" path="res://Environment/Building/Roof.tscn" id="2_irbya"]
@@ -14,6 +14,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64qng"]
 size = Vector2(17.916, 10.526)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fsais"]
+size = Vector2(3.94151, 4.59607)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxle"]
 size = Vector2(499, 341)
@@ -102,6 +105,12 @@ collision_layer = 5
 position = Vector2(636, -206.479)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_64qng")
+debug_color = Color(0, 0.595, 0.7, 0.219608)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(660.5, -111.761)
+scale = Vector2(25.1172, 20.9916)
+shape = SubResource("RectangleShape2D_fsais")
 debug_color = Color(0, 0.595, 0.7, 0.219608)
 
 [node name="Area2D" type="Area2D" parent="."]

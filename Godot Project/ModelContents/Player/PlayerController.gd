@@ -130,7 +130,7 @@ func _physics_process(delta: float) -> void:
 		var speedMultiplier = 1.0
 		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
 			speedMultiplier *= sprintingSpeedMultiplier
-		elif gunInteractor.currentWeapon.reloading:
+		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
 			speedMultiplier *= reloadSpeedMultiplier
 		animationTree["parameters/Speed/scale"] = speedMultiplier
 		movementVector *= playerSpeed * speedMultiplier
@@ -186,7 +186,7 @@ func _input(event: InputEvent) -> void:
 		# handle left click
 		if event.button_index == 1:
 			shooting = event.pressed
-			if event.pressed:
+			if event.pressed and gunInteractor != null:
 				var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
 				gunInteractor.currentWeapon.fire(false, aimAngle)
 		# handle right click
