@@ -96,23 +96,21 @@ offset_bottom = -112.0
 scale = Vector2(3.49736, 2.64641)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(636, -206.479)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_64qng")
-debug_color = Color(0, 0.595, 0.7, 0.443137)
+debug_color = Color(0, 0.595, 0.7, 0.219608)
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 script = ExtResource("8_e8wpf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(633.5, -482.5)
 shape = SubResource("RectangleShape2D_0lxle")
-debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
+debug_color = Color(0.77, 0.424142, 0.3927, 0.168627)
 
 [connection signal="body_shape_entered" from="Area2D" to="Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="Area2D" method="_on_body_shape_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=61 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
@@ -24,6 +24,8 @@
 [ext_resource type="PackedScene" uid="uid://b7w2l3qkk0klb" path="res://Environment/Building/HousePorchStairs.tscn" id="18_pdu4m"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="18_sejpj"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="19_13i64"]
+[ext_resource type="Shader" path="res://Environment/Shadow.gdshader" id="19_a7jig"]
+[ext_resource type="Texture2D" uid="uid://bu8phupfe0dy1" path="res://Environment/Building/ShadowHouse.png" id="19_yop0l"]
 [ext_resource type="PackedScene" uid="uid://cnhhobvq8lj54" path="res://Environment/Building/HeavyDoor.tscn" id="20_3niti"]
 [ext_resource type="PackedScene" uid="uid://d0dwned5p02s7" path="res://Environment/Building/Roof.tscn" id="20_7hscl"]
 [ext_resource type="PackedScene" uid="uid://c81r82pub4120" path="res://Environment/Building/SalonDoor.tscn" id="21_7l2lu"]
@@ -59,6 +61,9 @@ source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ss7yx"]
+shader = ExtResource("19_a7jig")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64qng"]
 size = Vector2(17.916, 10.526)
 
@@ -74,8 +79,8 @@ size = Vector2(478.5, 359)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgxyf"]
 size = Vector2(28.1878, 13.4568)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw633"]
-size = Vector2(499, 307)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1uhlq"]
+size = Vector2(765.625, 307)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6td3q"]
 size = Vector2(20.2849, 37.979)
@@ -87,13 +92,16 @@ size = Vector2(558.5, 803.5)
 size = Vector2(756.5, 311)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lqyd"]
-size = Vector2(24.525, 38.9318)
+size = Vector2(23.7287, 38.9318)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_38gjo"]
 size = Vector2(634.25, 799)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ld3n2"]
 size = Vector2(28.1878, 10.8729)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aw633"]
+size = Vector2(760.5, 428.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rgdn4"]
 size = Vector2(18.5729, 27.0165)
@@ -248,6 +256,214 @@ visible = false
 position = Vector2(-3474, -4504)
 navigation_polygon = SubResource("NavigationPolygon_1kdcy")
 
+[node name="Shadow" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_ss7yx")
+position = Vector2(-1122, 638)
+
+[node name="HouseShadow" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 391.0
+offset_top = -330.0
+offset_right = 882.0
+offset_bottom = -78.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow3" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 1330.0
+offset_top = -195.0
+offset_right = 1834.0
+offset_bottom = 425.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow4" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 363.0
+offset_top = 429.0
+offset_right = 919.0
+offset_bottom = 1277.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow5" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 1327.0
+offset_top = 844.0
+offset_right = 1968.0
+offset_bottom = 1714.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow6" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 413.0
+offset_top = 1712.0
+offset_right = 899.0
+offset_bottom = 1989.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow7" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 1464.0
+offset_top = 2253.0
+offset_right = 1950.0
+offset_bottom = 2510.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow9" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 901.0
+offset_top = 2920.0
+offset_right = 1648.0
+offset_bottom = 3200.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow10" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 2153.0
+offset_top = 2856.0
+offset_right = 2899.0
+offset_bottom = 3188.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow11" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 2362.0
+offset_top = 2195.0
+offset_right = 3100.0
+offset_bottom = 2509.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow15" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 3451.0
+offset_top = 2242.0
+offset_right = 3944.0
+offset_bottom = 2506.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow17" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 4800.0
+offset_top = 2179.0
+offset_right = 5554.0
+offset_bottom = 2464.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow16" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 4052.0
+offset_top = 2924.0
+offset_right = 4542.0
+offset_bottom = 3196.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow12" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 2562.0
+offset_top = 2426.0
+offset_right = 2700.0
+offset_bottom = 2539.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow13" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 2974.0
+offset_top = 2423.0
+offset_right = 3086.0
+offset_bottom = 2536.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow14" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 3469.0
+offset_top = 2420.0
+offset_right = 3581.0
+offset_bottom = 2533.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow8" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 1660.0
+offset_top = 2441.0
+offset_right = 1800.0
+offset_bottom = 2535.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow2" type="NinePatchRect" parent="Shadow"]
+texture_filter = 1
+offset_left = 595.0
+offset_top = -182.0
+offset_right = 724.0
+offset_bottom = -50.0
+texture = ExtResource("19_yop0l")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
 [node name="Level" type="Node2D" parent="." groups=["NavigationGroup"]]
 process_priority = 100
 script = ExtResource("16_0asqa")
@@ -340,7 +556,6 @@ offset_bottom = -112.0
 scale = Vector2(3.49736, 2.64641)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House8"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House8/StaticBody2D"]
@@ -350,7 +565,6 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House8"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House8/Area2D"]
@@ -416,7 +630,6 @@ showLeftFencePole = false
 showRightFencePole = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House7"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House7/StaticBody2D"]
@@ -426,7 +639,6 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House7"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House7/Area2D"]
@@ -490,9 +702,10 @@ offset_top = -679.0
 offset_right = 418.0
 offset_bottom = -669.0
 scale = Vector2(27.6157, 33.9465)
+border_color = Color(0.764706, 0.607843, 0.411765, 1)
+primaryColor = Color(0.821576, 0.57691, 0.401882, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House12"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House12/StaticBody2D"]
@@ -502,7 +715,6 @@ shape = SubResource("RectangleShape2D_hpu0p")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House12"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House12/Area2D"]
@@ -599,7 +811,6 @@ scale = Vector2(2.97467, 2.62129)
 primaryColor = Color(0.61055, 0.608517, 0.487682, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House3"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House3/StaticBody2D"]
@@ -609,7 +820,6 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House3"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House3/Area2D"]
@@ -738,7 +948,6 @@ offset_bottom = -112.0
 scale = Vector2(2.61552, 2.54494)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House2"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/StaticBody2D"]
@@ -751,9 +960,8 @@ debug_color = Color(0, 0.595, 0.7, 0.443137)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/Area2D"]
-visible = false
-position = Vector2(764.75, -516.75)
-shape = SubResource("RectangleShape2D_aw633")
+position = Vector2(761.188, -496)
+shape = SubResource("RectangleShape2D_1uhlq")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
 
 [node name="House10" type="CanvasGroup" parent="Level"]
@@ -815,15 +1023,14 @@ showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Roof2" parent="Level/House10" instance=ExtResource("32_vkgvc")]
-offset_left = 394.0
+offset_left = 391.0
 offset_top = -1135.0
-offset_right = 411.0
+offset_right = 408.0
 offset_bottom = -1125.0
 scale = Vector2(32.0338, 80.1872)
 primaryColor = Color(0.615686, 0.364706, 0.2, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House10"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House10/StaticBody2D"]
@@ -833,7 +1040,6 @@ shape = SubResource("RectangleShape2D_6td3q")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House10"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House10/Area2D"]
@@ -913,7 +1119,6 @@ offset_bottom = -96.0
 scale = Vector2(42.2825, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House6"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House6/StaticBody2D"]
@@ -926,7 +1131,6 @@ debug_color = Color(0, 0.595, 0.7, 0.443137)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House6/Area2D"]
-visible = false
 position = Vector2(765, -494.5)
 shape = SubResource("RectangleShape2D_6m4o8")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
@@ -979,17 +1183,15 @@ scale = Vector2(35.4821, 78.1111)
 primaryColor = Color(0.478278, 0.355808, 0.206255, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House11"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House11/StaticBody2D"]
-position = Vector2(700, -510)
+position = Vector2(710, -510)
 scale = Vector2(25.1172, 20.9916)
 shape = SubResource("RectangleShape2D_4lqyd")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House11"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House11/Area2D"]
@@ -1159,7 +1361,6 @@ primaryColor = Color(0.815691, 0.622651, 0.456474, 1)
 secondaryColor = Color(0.849892, 0.645782, 0.52019, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House4"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House4/StaticBody2D"]
@@ -1169,11 +1370,10 @@ shape = SubResource("RectangleShape2D_ld3n2")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House4"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House4/Area2D"]
-position = Vector2(764.75, -549.125)
+position = Vector2(765.75, -598.25)
 shape = SubResource("RectangleShape2D_aw633")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
 
@@ -1291,9 +1491,9 @@ offset_top = -1052.0
 offset_right = 417.0
 offset_bottom = -1042.0
 scale = Vector2(27.563, 56.8198)
+primaryColor = Color(0.479651, 0.302984, 0.20383, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House9"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/StaticBody2D"]
@@ -1306,7 +1506,6 @@ debug_color = Color(0, 0.595, 0.7, 0.443137)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/Area2D"]
-visible = false
 position = Vector2(631.75, -436)
 shape = SubResource("RectangleShape2D_buymu")
 debug_color = Color(0.769633, 0.421896, 0.390568, 0.42)
@@ -1433,7 +1632,6 @@ primaryColor = Color(0.962755, 0.520545, 0.480822, 1)
 secondaryColor = Color(0.95348, 0.565032, 0.626485, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House5"]
-visible = false
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/StaticBody2D"]
@@ -1443,7 +1641,6 @@ shape = SubResource("RectangleShape2D_rftqs")
 debug_color = Color(0, 0.595, 0.7, 0.443137)
 
 [node name="Area2D" type="Area2D" parent="Level/House5"]
-visible = false
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/Area2D"]
@@ -1456,6 +1653,9 @@ position = Vector2(528, 29)
 
 [node name="Cactus3" parent="Level" instance=ExtResource("18_sejpj")]
 position = Vector2(323, 2376)
+
+[node name="Cactus66" parent="Level" instance=ExtResource("18_sejpj")]
+position = Vector2(594, 1189)
 
 [node name="Cactus64" parent="Level" instance=ExtResource("18_sejpj")]
 position = Vector2(-649, 2000)
