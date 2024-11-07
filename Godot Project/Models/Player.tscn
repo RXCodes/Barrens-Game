@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=52 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
@@ -19,6 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://blu2aknh1cx8i" path="res://ModelContents/Player/LeftArm.png" id="15_0hql7"]
 [ext_resource type="Texture2D" uid="uid://cy71otyfeqvxd" path="res://ModelContents/Player/Head.png" id="16_m686t"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="17_fys2t"]
+[ext_resource type="AudioStream" uid="uid://da6vedsrk20hn" path="res://Environment/WalkSounds/Walk1.mp3" id="20_1h2su"]
+[ext_resource type="AudioStream" uid="uid://3k3dc1u70grp" path="res://Environment/WalkSounds/Walk2.mp3" id="21_yiwhv"]
+[ext_resource type="AudioStream" uid="uid://d3t7o0kj4kd37" path="res://Environment/WalkSounds/Walk3.mp3" id="22_i0hps"]
+[ext_resource type="AudioStream" uid="uid://dfxodl0bwkr1x" path="res://Environment/WalkSounds/Walk4.mp3" id="23_5rian"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_12evv"]
 viewport_path = NodePath("Player/Subviewport")
@@ -449,6 +453,23 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(0, 42), Vector2(3, 42), Vector2(0, 42), Vector2(0, 42), Vector2(-3, 42), Vector2(0, 42)]
 }
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.266667, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"playWalkSound"
+}, {
+"args": [],
+"method": &"playWalkSound"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_elbte"]
 resource_name = "Walk"
@@ -572,6 +593,23 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-4, 42), Vector2(0, 42), Vector2(-1, 42), Vector2(0, 42), Vector2(-4, 42), Vector2(0, 42)]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0.466667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"playWalkSound"
+}, {
+"args": [],
+"method": &"playWalkSound"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epl7e"]
@@ -933,6 +971,28 @@ entityZIndexOffset = 42
 texture_filter = 1
 script = ExtResource("2_opaao")
 
+[node name="WalkSounds" type="Node2D" parent="Player"]
+
+[node name="Walk1" type="AudioStreamPlayer2D" parent="Player/WalkSounds"]
+stream = ExtResource("20_1h2su")
+volume_db = -6.0
+max_polyphony = 2
+
+[node name="Walk2" type="AudioStreamPlayer2D" parent="Player/WalkSounds"]
+stream = ExtResource("21_yiwhv")
+volume_db = -6.0
+max_polyphony = 2
+
+[node name="Walk3" type="AudioStreamPlayer2D" parent="Player/WalkSounds"]
+stream = ExtResource("22_i0hps")
+volume_db = -6.0
+max_polyphony = 2
+
+[node name="Walk4" type="AudioStreamPlayer2D" parent="Player/WalkSounds"]
+stream = ExtResource("23_5rian")
+volume_db = -6.0
+max_polyphony = 2
+
 [node name="TextureDisplay" type="Sprite2D" parent="Player"]
 texture = SubResource("ViewportTexture_12evv")
 
@@ -1273,6 +1333,9 @@ position = Vector2(0, 41)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aydp0")
 debug_color = Color(0, 0.634491, 0.42842, 0.42)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Player"]
+current = true
 
 [node name="Hitbox" type="RigidBody2D" parent="."]
 position = Vector2(-2, 24)
