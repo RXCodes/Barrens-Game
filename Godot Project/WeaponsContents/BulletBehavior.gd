@@ -65,7 +65,7 @@ func _ready() -> void:
 	else:
 		size.x += 5
 	set_meta(ZIndexSorter.zScoreKey, zScore)
-	var tween = get_tree().create_tween()
+	var tween = NodeRelations.createTween()
 	var finalColor = self_modulate
 	finalColor.a = 0.0
 	tween.tween_property(self, "self_modulate", finalColor, fadeTime)

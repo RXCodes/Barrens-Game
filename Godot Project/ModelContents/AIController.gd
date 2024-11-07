@@ -66,12 +66,16 @@ static var enemyAIKey = "EnemyAI"
 ## Offset where damage number is displayed
 @export var damageIndicatorPositionOffset: Vector2 = Vector2.ZERO
 
+## Offset where health bar is displayed
+@export var healthBarPositionOffset: Vector2 = Vector2(0, 20)
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
 var hitboxShapeInitialPosition: Vector2
 var flipTransform: Node2D
 var target: Node2D = Player.current
+var healthBar: EnemyHealthBar
 func _ready() -> void:
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
@@ -90,6 +94,9 @@ func _ready() -> void:
 	var children = NodeRelations.getChildrenRecursive(self)
 	for child: Node in children:
 		child.set_meta(EnemyAI.parentControllerKey, self)
+	healthBar = preload("res://UI/EnemyHealthBar.tscn").instantiate()
+	healthBar.position += healthBarPositionOffset
+	hitboxShape.add_child(healthBar)
 	await get_tree().physics_frame
 	onStart()
 
@@ -145,8 +152,12 @@ func damage(amount: float, source: Node2D) -> void:
 	if currentHealth <= 0:
 		currentHealth = 0
 		kill()
-	pass
+	updateHealthBar()
 
+# called when health bar needs to update
+func updateHealthBar() -> void:
+	healthBar.progress = (currentHealth / maxHealth) * 100.0
+	
 # called when changing the flashing state of the enemy
 func flashWhite(flashing: bool) -> void:
 	if flashing:

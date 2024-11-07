@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://bplnfo2dvklgq"]
+
+[ext_resource type="Texture2D" uid="uid://dq11xdygrj2ar" path="res://UI/EnemyHealthBarEmpty.png" id="1_a6cs0"]
+[ext_resource type="Texture2D" uid="uid://3vsk53crm10j" path="res://UI/EnemyHealthBar.png" id="2_26yf0"]
+[ext_resource type="Script" path="res://UI/EnemyHealthBar.gd" id="3_kpmh3"]
+
+[node name="EnemyHealthBar" type="TextureProgressBar"]
+z_index = 2000
+texture_filter = 1
+offset_left = -26.0
+offset_right = 26.0
+offset_bottom = 10.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(26, 5)
+step = 0.0
+value = 100.0
+texture_under = ExtResource("1_a6cs0")
+texture_progress = ExtResource("2_26yf0")
+script = ExtResource("3_kpmh3")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 10.0
+pivot_offset = Vector2(25, 5)
+step = 0.0
+value = 100.0
+texture_progress = ExtResource("2_26yf0")
+tint_progress = Color(0.97, 0.3977, 0.407238, 1)

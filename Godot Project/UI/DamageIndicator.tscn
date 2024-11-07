@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/DamageIndicator.gd" id="2_nn2ds"]
 
 [node name="Node2D" type="Node2D"]
+z_index = 4000
 
 [node name="DamageIndicator" type="Label" parent="."]
 offset_left = -40.0
