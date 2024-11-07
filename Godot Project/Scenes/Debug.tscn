@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -12,6 +12,7 @@
 [ext_resource type="LabelSettings" uid="uid://cfstjkfdvbd10" path="res://UI/DamageIndicatorLabelSettings.tres" id="14_cp6hk"]
 [ext_resource type="Script" path="res://Scenes/ChallengeNodeDemo.gd" id="14_u4g0j"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
+[ext_resource type="Script" path="res://Scenes/InfiniteMoneyTest.gd" id="15_mokh8"]
 [ext_resource type="Script" path="res://Scenes/GoToVillageOneTest.gd" id="16_e3y2f"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
 [ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
@@ -251,6 +252,17 @@ offset_bottom = 576.0
 text = "HIT ME!!!!! ->"
 label_settings = ExtResource("22_ueea8")
 
+[node name="Infinite Money Test" type="Label" parent="Under"]
+modulate = Color(0, 1, 0.166667, 1)
+offset_left = -309.0
+offset_top = 549.0
+offset_right = -43.0
+offset_bottom = 604.0
+text = "KILL ME FOR
+100,000 CASH ->"
+label_settings = ExtResource("22_ueea8")
+script = ExtResource("15_mokh8")
+
 [node name="ChallengeNode" type="Node2D" parent="Under"]
 position = Vector2(677, 1125)
 script = ExtResource("14_u4g0j")
@@ -276,6 +288,9 @@ position = Vector2(731, 431)
 
 [node name="DummyRender2" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(652, 574)
+
+[node name="DummyRender12" parent="Level" instance=ExtResource("33_b2gow")]
+position = Vector2(17, 598)
 
 [node name="DummyRender9" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(825, 333)

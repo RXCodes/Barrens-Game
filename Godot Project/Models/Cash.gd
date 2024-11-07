@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		pickupAnimationProgress += delta / pickupDuration
 		var newPosition = originalPosition.lerp(Player.current.global_position, pickupAnimationProgress)
 		global_position = newPosition
-		rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.1
+		$Cash.rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.1
 		set_meta(ZIndexSorter.zScoreKey, INF)
 		z_index = 4096
 		if pickupAnimationProgress >= 1.0:
