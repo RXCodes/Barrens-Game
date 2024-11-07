@@ -300,3 +300,9 @@ func flashWhite(flashing: bool) -> void:
 		renderer.material.shader = flashWhiteShader
 	else:
 		renderer.material = null
+
+func playWalkSound() -> void:
+	var walkSounds = $WalkSounds.get_children()
+	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
+	walkSound.pitch_scale = randfn(1.0, 0.2)
+	walkSound.play()

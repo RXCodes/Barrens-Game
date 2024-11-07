@@ -1,7 +1,8 @@
-[gd_scene load_steps=69 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=70 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
+[ext_resource type="PackedScene" uid="uid://ca028heqxjty6" path="res://Environment/Ambience.tscn" id="2_q3l28"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="3_4xtrd"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="4_i2ivd"]
 [ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="5_pkggm"]
@@ -151,6 +152,8 @@ size = Vector2(757.5, 437.5)
 
 [node name="Village1" type="Node2D"]
 script = ExtResource("1_875xw")
+
+[node name="Ambience" parent="." instance=ExtResource("2_q3l28")]
 
 [node name="ScreenUI" type="CanvasLayer" parent="."]
 process_priority = 10
