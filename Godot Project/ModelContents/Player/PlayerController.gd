@@ -6,6 +6,7 @@ var actionAnimationPlayer: AnimationPlayer
 var animationTree: AnimationTree
 var subviewPort: SubViewport
 var textureOutput: Sprite2D
+var sprintBar: SprintBar
 var sprintingSpeedMultiplier = 1.5
 var isSprinting = false
 var playerSpeed = 3.5
@@ -31,6 +32,8 @@ func _ready() -> void:
 	animationTree = $Subviewport/Transform/AnimationTree
 	subviewPort = $Subviewport
 	textureOutput = $TextureDisplay
+	sprintBar = $SprintBar
+	sprintBar.modulate = Color.TRANSPARENT
 	await get_tree().process_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
@@ -56,6 +59,8 @@ var animationValues = {
 	"parameters/WalkProgress/blend_amount": 0,
 	"parameters/WalkBackwardsProgress/blend_amount": 0
 }
+
+var sprintBarHidden = true
 func _process(delta: float) -> void:
 	# blend animations so we can have smoother transitions between them
 	var animSpeed = delta * blendSpeed
@@ -77,7 +82,7 @@ func _process(delta: float) -> void:
 	textureOutput.scale.x = -1 if facingLeft else 1
 	
 	# zoom camera when player is sprinting
-	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards
+	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards and sprintPower > 0
 	var targetZoomOffset = sprintZoomOffset if shouldZoomCamera else 0.0
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
 	
@@ -99,11 +104,27 @@ func _process(delta: float) -> void:
 			var indicator = DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageValue, instance_from_id(nodeRid))
 			indicator.modulate = Color(1.0, 0.5, 0.5)
 		damageInTick.clear()
+	
+	# sprint bar display
+	sprintBar.value = sprintPower
+	if sprintPower == 100 and not sprintBarHidden:
+		sprintBarHidden = true
+		sprintBar.fadeOut()
+	if sprintPower < 100 and sprintBarHidden:
+		sprintBarHidden = false
+		sprintBar.fadeIn()
+	if sprintPower == 0:
+		sprintBar.startFlashing()
+	else:
+		sprintBar.stopFlashing()
 
 # Called every physics tick.
 var walking = false
 var walkingBackwards = false
 var facingLeft = false
+var sprintPower = 100.0
+var sprintDecreaseRate = 20
+var sprintRecoveryRate = 30
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
@@ -129,9 +150,16 @@ func _physics_process(delta: float) -> void:
 		# finally move the player
 		var speedMultiplier = 1.0
 		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
-			speedMultiplier *= sprintingSpeedMultiplier
+			if sprintPower > 0:
+				speedMultiplier *= sprintingSpeedMultiplier
+				sprintPower -= sprintDecreaseRate * delta
+		else:
+			sprintPower += sprintRecoveryRate * delta * 0.5
 		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
 			speedMultiplier *= reloadSpeedMultiplier
+		if sprintPower == 0:
+			# sprint has exhausted, slow down player
+			speedMultiplier *= 0.6
 		animationTree["parameters/Speed/scale"] = speedMultiplier
 		movementVector *= playerSpeed * speedMultiplier
 		if walkingBackwards:
@@ -139,8 +167,10 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(Vector2(movementVector.x, 0))
 		move_and_collide(Vector2(0, movementVector.y))
 	else:
+		sprintPower += sprintRecoveryRate * delta
 		currentAnimation = IDLE
 		walking = false
+	sprintPower = clampf(sprintPower, 0.0, 100.0)
 	
 	# move player hitbox
 	if hitboxShape:
