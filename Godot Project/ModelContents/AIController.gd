@@ -69,6 +69,13 @@ static var enemyAIKey = "EnemyAI"
 ## Offset where health bar is displayed
 @export var healthBarPositionOffset: Vector2 = Vector2(0, 20)
 
+## The health bar's color
+@export var healthBarColor: Color = Color(1.0, 0.4, 0.4, 1.0):
+	set(newColor):
+		healthBarColor = newColor
+		if healthBar:
+			healthBar.setHealthBarColor(healthBarColor)
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
@@ -97,6 +104,7 @@ func _ready() -> void:
 	healthBar = preload("res://UI/EnemyHealthBar.tscn").instantiate()
 	healthBar.position += healthBarPositionOffset
 	hitboxShape.add_child(healthBar)
+	healthBar.setHealthBarColor(healthBarColor)
 	await get_tree().physics_frame
 	onStart()
 

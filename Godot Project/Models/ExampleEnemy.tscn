@@ -261,6 +261,7 @@ walkAnimation = "Walk"
 deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
 hitFrontAnimation = "Hit"
+healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
 
 [node name="Hitbox" type="RigidBody2D" parent="ExampleEnemy"]
 collision_layer = 4
