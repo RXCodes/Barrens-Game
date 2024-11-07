@@ -1,9 +1,12 @@
-[gd_scene load_steps=52 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=56 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
 [ext_resource type="Script" path="res://UI/CameraManager.gd" id="3_ucqgu"]
+[ext_resource type="Texture2D" uid="uid://dq11xdygrj2ar" path="res://UI/EnemyHealthBarEmpty.png" id="3_wu06p"]
 [ext_resource type="Texture2D" uid="uid://cm5g2enpksjve" path="res://ModelContents/Player/Torso.png" id="4_7ekww"]
+[ext_resource type="Texture2D" uid="uid://3vsk53crm10j" path="res://UI/EnemyHealthBar.png" id="4_ct6pv"]
+[ext_resource type="Script" path="res://Models/SprintBar.gd" id="5_4to31"]
 [ext_resource type="Texture2D" uid="uid://bkhjlab7jkolg" path="res://ModelContents/Player/RightLeg.png" id="5_mv52h"]
 [ext_resource type="Texture2D" uid="uid://b26dhah1welrd" path="res://ModelContents/Player/RightFoot.png" id="6_5fnib"]
 [ext_resource type="Texture2D" uid="uid://cwhq0efofuqjt" path="res://ModelContents/Player/RightKnee.png" id="6_735yq"]
@@ -23,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://3k3dc1u70grp" path="res://Environment/WalkSounds/Walk2.mp3" id="21_yiwhv"]
 [ext_resource type="AudioStream" uid="uid://d3t7o0kj4kd37" path="res://Environment/WalkSounds/Walk3.mp3" id="22_i0hps"]
 [ext_resource type="AudioStream" uid="uid://dfxodl0bwkr1x" path="res://Environment/WalkSounds/Walk4.mp3" id="23_5rian"]
+[ext_resource type="AudioStream" uid="uid://bi5j2x76m6e2i" path="res://ModelContents/Cash/CashPickup.mp3" id="27_81mt3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_12evv"]
 viewport_path = NodePath("Player/Subviewport")
@@ -971,6 +975,26 @@ entityZIndexOffset = 42
 texture_filter = 1
 script = ExtResource("2_opaao")
 
+[node name="SprintBar" type="TextureProgressBar" parent="Player"]
+z_index = 1
+texture_filter = 1
+offset_left = -31.0
+offset_top = -75.0
+offset_right = 31.0
+offset_bottom = -67.0
+pivot_offset = Vector2(31, 3)
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("3_wu06p")
+texture_progress = ExtResource("4_ct6pv")
+tint_progress = Color(0.5264, 0.65048, 0.94, 1)
+script = ExtResource("5_4to31")
+
 [node name="WalkSounds" type="Node2D" parent="Player"]
 
 [node name="Walk1" type="AudioStreamPlayer2D" parent="Player/WalkSounds"]
@@ -1336,6 +1360,10 @@ debug_color = Color(0, 0.634491, 0.42842, 0.42)
 
 [node name="AudioListener2D" type="AudioListener2D" parent="Player"]
 current = true
+
+[node name="CashPickup" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("27_81mt3")
+max_polyphony = 10
 
 [node name="Hitbox" type="RigidBody2D" parent="."]
 position = Vector2(-2, 24)
