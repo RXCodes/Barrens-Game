@@ -9,6 +9,12 @@ class_name EnemyAI extends Node2D
 @export var maxHealth: int = 100
 var currentHealth: float
 
+## How much cash this enemy should drop
+@export var cashDrop: int = 5
+
+## How much the amount of cash dropped varies
+@export var cashDropVariance: int = 1
+
 ## The hitbox body of this enemy (what detects attacks)
 @export var hitBoxRigidBody: RigidBody2D
 
@@ -313,6 +319,8 @@ func kill() -> void:
 	await TimeManager.wait(0.05)
 	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)
 	enemies.erase(self)
+	var cashAmountToDrop = ceil(randfn(cashDrop, cashDropVariance))
+	EnemySpawner.spawnMoney(cashAmountToDrop, collisionRigidBody.global_position)
 	get_parent().queue_free()
 
 enum HurtBoxType {PLAYER, ENEMY, ALL}

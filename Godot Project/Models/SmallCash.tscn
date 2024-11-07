@@ -1,0 +1,154 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxupj06qb3mhx"]
+
+[ext_resource type="Script" path="res://Models/Cash.gd" id="1_pi11b"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="2_g1562"]
+[ext_resource type="Texture2D" uid="uid://b7jcunwnennes" path="res://ModelContents/Cash/Cash1.png" id="3_lukhf"]
+
+[sub_resource type="Animation" id="Animation_8eurx"]
+resource_name = "CashBounce"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333334, 0.366667, 0.4, 0.433334, 0.466667, 0.5, 0.533334, 0.566667, 0.6, 0.633334, 0.666667, 0.7, 0.733334, 0.766667, 0.8, 0.833334, 0.866667, 0.9, 0.933334, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.0104543, 0.0105097), Vector2(0.0412931, 0.0415117), Vector2(0.0909699, 0.0914514), Vector2(0.156994, 0.157825), Vector2(0.236054, 0.237303), Vector2(0.324186, 0.325902), Vector2(0.416971, 0.419178), Vector2(0.417524, 0.419734), Vector2(0.419764, 0.421618), Vector2(0.426486, 0.427269), Vector2(0.437688, 0.436688), Vector2(0.453372, 0.449874), Vector2(0.473536, 0.466828), Vector2(0.498182, 0.487549), Vector2(0.527308, 0.512038), Vector2(0.560915, 0.540294), Vector2(0.545232, 0.527108), Vector2(0.534029, 0.517689), Vector2(0.527308, 0.512038), Vector2(0.525067, 0.510154), Vector2(0.527308, 0.512038), Vector2(0.534029, 0.517689), Vector2(0.545232, 0.527108), Vector2(0.560915, 0.540294), Vector2(0.554193, 0.534643), Vector2(0.551953, 0.532759), Vector2(0.554194, 0.534643), Vector2(0.560915, 0.540294), Vector2(0.558675, 0.53841), Vector2(0.560915, 0.540294)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cash:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23.7185), Vector2(-5.27178e-06, 13.2989), Vector2(-3.14495e-06, 3.89928), Vector2(-1.45709e-06, -3.56033), Vector2(-3.73409e-07, -8.3497), Vector2(0, -10), Vector2(0, -9.592), Vector2(0, -8.368), Vector2(0, -6.328), Vector2(0, -3.472), Vector2(0, 0.200001), Vector2(0, 4.688), Vector2(0, 9.992), Vector2(0, 16.112), Vector2(0, 23.048), Vector2(0, 20.6843), Vector2(0, 18.125), Vector2(0, 16.3817), Vector2(0, 15.4545), Vector2(0, 15.3432), Vector2(0, 16.0479), Vector2(0, 17.5687), Vector2(0, 19.9054), Vector2(0, 23.0581), Vector2(0, 22.4748), Vector2(0, 21.6959), Vector2(0, 21.733), Vector2(0, 22.586), Vector2(0, 23.4965), Vector2(0, 23.1997), Vector2(0, 23.719)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Cash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.4, 0), Vector2(0.423689, 0.0734152), Vector2(0.492436, 0.286475), Vector2(0.599512, 0.618322), Vector2(0.734436, 1.03647), Vector2(0.884, 1.5), Vector2(0.862993, 1.16019), Vector2(0.838822, 0.769199), Vector2(0.826373, 0.567815), Vector2(0.827629, 0.588137), Vector2(0.836054, 0.724412), Vector2(0.843876, 0.850952), Vector2(0.846972, 0.901021), Vector2(0.845618, 0.879123), Vector2(0.842467, 0.828158), Vector2(0.840049, 0.789044), Vector2(0.839407, 0.778647), Vector2(0.840143, 0.790567), Vector2(0.84126, 0.808628), Vector2(0.841969, 0.820099), Vector2(0.842047, 0.82136), Vector2(0.841719, 0.816051), Vector2(0.841341, 0.809942), Vector2(0.841147, 0.806795), Vector2(0.841166, 0.807113), Vector2(0.841298, 0.809242), Vector2(0.84142, 0.811219), Vector2(0.841468, 0.812001), Vector2(0.841447, 0.811659), Vector2(0.841398, 0.810863), Vector2(0.841381, 0.810588)]
+}
+
+[sub_resource type="Animation" id="Animation_2q7es"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.560915, 0.540294)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cash:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 40.7185)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Cash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.841372, 0.810441)]
+}
+
+[sub_resource type="Animation" id="Animation_2yrjo"]
+resource_name = "CashPickup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.333333, 0.366666, 0.4, 0.433333, 0.466666, 0.5, 0.533333, 0.566666, 0.6, 0.633333, 0.666666, 0.7, 0.733333, 0.766666, 0.8, 0.833333, 0.866666, 0.9, 0.933333, 0.966666, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.560915, 0.540294), Vector2(0.526841, 0.511645), Vector2(0.494476, 0.484433), Vector2(0.465442, 0.460022), Vector2(0.441195, 0.439636), Vector2(0.422952, 0.424298), Vector2(0.411627, 0.414776), Vector2(0.407788, 0.411548), Vector2(0.407537, 0.411295), Vector2(0.406784, 0.410537), Vector2(0.405534, 0.409278), Vector2(0.403791, 0.407523), Vector2(0.401564, 0.405281), Vector2(0.398864, 0.402561), Vector2(0.395703, 0.399378), Vector2(0.392096, 0.395746), Vector2(0.38806, 0.39168), Vector2(0.383612, 0.387202), Vector2(0.378775, 0.382331), Vector2(0.373571, 0.37709), Vector2(0.368024, 0.371503), Vector2(0.362159, 0.365598), Vector2(0.356005, 0.3594), Vector2(0.34959, 0.352939), Vector2(0.342943, 0.346246), Vector2(0.336096, 0.339351), Vector2(0.329081, 0.332286), Vector2(0.32193, 0.325085), Vector2(0.314677, 0.317781), Vector2(0.307356, 0.310408), Vector2(0.3, 0.303)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cash:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.333333, 0.366666, 0.4, 0.433333, 0.466666, 0.5, 0.533333, 0.566666, 0.6, 0.633333, 0.666666, 0.7, 0.733333, 0.766666, 0.8, 0.833333, 0.866666, 0.9, 0.933333, 0.966666, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23.7185), Vector2(-5.93169e-06, 13.9902), Vector2(-4.31912e-06, 4.74973), Vector2(-2.87254e-06, -3.53957), Vector2(-1.66449e-06, -10.462), Vector2(-7.55542e-07, -15.6705), Vector2(-1.91282e-07, -18.9039), Vector2(0, -20), Vector2(0, -19.9767), Vector2(0, -19.9069), Vector2(0, -19.7908), Vector2(0, -19.6292), Vector2(0, -19.4226), Vector2(0, -19.1721), Vector2(0, -18.8789), Vector2(0, -18.5442), Vector2(0, -18.1697), Vector2(0, -17.7571), Vector2(0, -17.3084), Vector2(0, -16.8255), Vector2(0, -16.3109), Vector2(0, -15.7668), Vector2(0, -15.1958), Vector2(0, -14.6007), Vector2(0, -13.984), Vector2(0, -13.3488), Vector2(0, -12.698), Vector2(0, -12.0346), Vector2(0, -11.3617), Vector2(0, -10.6824), Vector2(0, -10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Cash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.884, 1.5), Vector2(0.86729, 1.2297), Vector2(0.846035, 0.885873), Vector2(0.830715, 0.638051), Vector2(0.825475, 0.553293), Vector2(0.828755, 0.606342), Vector2(0.836044, 0.724246), Vector2(0.842841, 0.834201), Vector2(0.846515, 0.893632), Vector2(0.8467, 0.896636), Vector2(0.844612, 0.862848), Vector2(0.841955, 0.81987), Vector2(0.84004, 0.788892), Vector2(0.839385, 0.778297), Vector2(0.839795, 0.784929), Vector2(0.840706, 0.799667), Vector2(0.841556, 0.813411), Vector2(0.842015, 0.82084), Vector2(0.842038, 0.821215), Vector2(0.841777, 0.816992), Vector2(0.841445, 0.81162), Vector2(0.841205, 0.807747), Vector2(0.841124, 0.806423), Vector2(0.841175, 0.807252), Vector2(0.841289, 0.809094), Vector2(0.841395, 0.810812), Vector2(0.841452, 0.811741), Vector2(0.841455, 0.811788), Vector2(0.841423, 0.81126), Vector2(0.841381, 0.810588), Vector2(0.841372, 0.810441)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qnai"]
+_data = {
+"CashBounce": SubResource("Animation_8eurx"),
+"CashPickup": SubResource("Animation_2yrjo"),
+"RESET": SubResource("Animation_2q7es")
+}
+
+[node name="CashEntity" type="Node2D"]
+position = Vector2(-73, 61)
+script = ExtResource("1_pi11b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CashShadow")
+libraries = {
+"": SubResource("AnimationLibrary_7qnai")
+}
+
+[node name="CashShadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.286275)
+texture_filter = 1
+position = Vector2(0, 28)
+scale = Vector2(0.560915, 0.540294)
+texture = ExtResource("2_g1562")
+offset = Vector2(-1.78281, -37.0169)
+
+[node name="Cash" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-7.62939e-06, 40.7185)
+scale = Vector2(0.841372, 0.810441)
+texture = ExtResource("3_lukhf")
+offset = Vector2(2.38419e-06, 0.887179)

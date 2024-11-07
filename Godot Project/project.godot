@@ -26,6 +26,7 @@ folder_colors={
 "res://Environment/": "yellow",
 "res://HelperClasses/": "pink",
 "res://ModelContents/": "red",
+"res://ModelContents/Cash/": "orange",
 "res://ModelContents/Dummy/": "orange",
 "res://ModelContents/Player/": "yellow",
 "res://Models/": "gray",

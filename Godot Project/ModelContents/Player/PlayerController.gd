@@ -12,6 +12,7 @@ var isSprinting = false
 var playerSpeed = 3.5
 var health = 100.0
 var dead = false
+var cash = 0
 
 var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
@@ -336,3 +337,8 @@ func playWalkSound() -> void:
 	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
 	walkSound.pitch_scale = randfn(1.0, 0.2)
 	walkSound.play()
+
+func pickupCash(amount: int) -> void:
+	cash += amount
+	$CashPickup.pitch_scale = randfn(1.0, 0.05)
+	$CashPickup.play()

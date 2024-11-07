@@ -26,4 +26,5 @@ shellTexture = ExtResource("3_i4os7")
 magazineTexture = ExtResource("4_vtw2n")
 shootSound = ExtResource("5_jif8r")
 shootVolumeOffset = -12.0
+shootPitchVariance = 0.1
 reloadSound = ExtResource("6_f7qio")

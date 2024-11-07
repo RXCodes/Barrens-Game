@@ -257,6 +257,8 @@ entityZIndexOffset = 24
 [node name="ExampleEnemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
 script = ExtResource("2_oxte1")
 maxHealth = 500
+cashDrop = 50
+cashDropVariance = 4
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
 hasAI = true
