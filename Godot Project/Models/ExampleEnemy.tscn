@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://cjvmd0xr387n2"]
+[gd_scene load_steps=20 format=3 uid="uid://cjvmd0xr387n2"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_ucvpd"]
 [ext_resource type="Script" path="res://Models/ExampleEnemy.gd" id="2_oxte1"]
 [ext_resource type="Texture2D" uid="uid://06hggffynh3o" path="res://ModelContents/ReplaceSprite.png" id="3_3g47e"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_efgjf"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_n5lcd"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_1qrr4"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_70xyg"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_82lct"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 15.0
@@ -329,3 +333,26 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_s0mtp")
 }
+
+[node name="HitSounds" type="Node2D" parent="ExampleEnemy/ColliderBox"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="ExampleEnemy/ColliderBox/HitSounds"]
+stream = ExtResource("5_n5lcd")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="ExampleEnemy/ColliderBox/HitSounds"]
+stream = ExtResource("6_1qrr4")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="ExampleEnemy/ColliderBox/HitSounds"]
+stream = ExtResource("7_70xyg")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="ExampleEnemy/ColliderBox"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="ExampleEnemy/ColliderBox/DeathSounds"]
+stream = ExtResource("8_82lct")
+volume_db = 4.0

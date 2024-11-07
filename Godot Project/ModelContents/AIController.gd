@@ -76,6 +76,11 @@ static var enemyAIKey = "EnemyAI"
 		if healthBar:
 			healthBar.setHealthBarColor(healthBarColor)
 
+@export_category("Audio")
+
+## How long to wait before a hit sound effect can be played again
+@export var hitSoundDelay: float = 0.05
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
@@ -134,6 +139,7 @@ func onHit(globalPosition: Vector2) -> void:
 		return
 	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
+	playHitSound()
 	flashWhite(true)
 	if actionAnimationPlayer:
 		actionAnimationPlayer.stop()
@@ -145,6 +151,18 @@ func onHit(globalPosition: Vector2) -> void:
 	await TimeManager.wait(0.05)
 	flashWhite(false)
 	pass
+
+var canPlayHitSound = true
+func playHitSound() -> void:
+	var hitSounds = $ColliderBox/HitSounds
+	if hitSounds and canPlayHitSound:
+		if hitSounds.get_child_count() == 0:
+			return
+		var hitSound = hitSounds.get_children().pick_random()
+		hitSound.play()
+		canPlayHitSound = false
+		await TimeManager.wait(hitSoundDelay)
+		canPlayHitSound = true
 
 # called when enemy is damaged
 var damageInTick := {}
@@ -279,6 +297,12 @@ func kill() -> void:
 	actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play(deathAnimation)
+	var deathSounds = $ColliderBox/DeathSounds
+	if deathSounds:
+		if deathSounds.get_child_count() == 0:
+			return
+		var deathSound = deathSounds.get_children().pick_random()
+		deathSound.play()
 	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
 	for i in range(3):
 		flashWhite(true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://1m47f1qmoc5v"]
+[gd_scene load_steps=20 format=3 uid="uid://1m47f1qmoc5v"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_8l233"]
 [ext_resource type="Script" path="res://ModelContents/AIController.gd" id="2_ldgo1"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://dkpps3q1nmmro" path="res://ModelContents/Dummy/Base.png" id="4_e8bl2"]
 [ext_resource type="Texture2D" uid="uid://c2le345d36g4p" path="res://ModelContents/Dummy/Body.png" id="5_54ymu"]
 [ext_resource type="Texture2D" uid="uid://bhxd72k2ycswe" path="res://ModelContents/Dummy/Head.png" id="6_i1ai0"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="7_o2jo8"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="8_jjbfo"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="9_qdln4"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="10_rek5p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 15.0
@@ -465,3 +469,26 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_4vkjs")
 }
+
+[node name="HitSounds" type="Node2D" parent="Dummy/ColliderBox"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("7_o2jo8")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("8_jjbfo")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("9_qdln4")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="Dummy/ColliderBox"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/DeathSounds"]
+stream = ExtResource("10_rek5p")
+volume_db = 4.0

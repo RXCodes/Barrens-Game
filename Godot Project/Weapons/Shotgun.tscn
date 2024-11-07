@@ -24,4 +24,6 @@ texture = ExtResource("2_4klu2")
 shellTexture = ExtResource("3_agpxh")
 shootSound = ExtResource("4_864ks")
 cockingSound = ExtResource("5_yscbf")
+cockingSoundVolumeOffset = -5.0
 reloadSound = ExtResource("6_5pfb5")
+reloadSoundVolumeOffset = -9.0

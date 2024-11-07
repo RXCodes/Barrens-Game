@@ -93,13 +93,25 @@ var leftoverAmmoCount: int:
 ## the sound to use when firing the weapon
 @export var shootSound: AudioStream
 
+## volume offset of the shoot sound in db
+@export var shootVolumeOffset: float = -8.0
+
+## pitch variance of the shoot sound
+@export var shootPitchVariance: float = 0.15
+
 ## the sound to use when cocking the weapon
 ## -- this requires an animation to trigger this sound effect
 @export var cockingSound: AudioStream
 
+## volume offset of the cocking sound
+@export var cockingSoundVolumeOffset: float = -3.0
+
 ## the sound to use when reloading the weapon
 ## -- this requires an animation to trigger this sound effect
 @export var reloadSound: AudioStream
+
+## volume offset of the reload sound
+@export var reloadSoundVolumeOffset: float = -2.0
 
 var canFire = true
 var reloading = false
@@ -122,6 +134,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 	currentMagCapacity -= 1
 	lastBulletAngleRadians = angleRadians
 	if shootAudioPlayer:
+		shootAudioPlayer.pitch_scale = randfn(1.0, shootPitchVariance)
 		shootAudioPlayer.play()
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
@@ -222,6 +235,7 @@ class Interactor:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.shootSound
 					newAudioPlayer.max_polyphony = 10
+					newAudioPlayer.volume_db = newWeapon.shootVolumeOffset 
 					originNode.add_child(newAudioPlayer)
 					newWeapon.shootAudioPlayer = newAudioPlayer
 					audioStreams[newWeapon.displayName + "-shoot"] = newAudioPlayer
@@ -229,6 +243,7 @@ class Interactor:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.cockingSound
 					newAudioPlayer.max_polyphony = 2
+					newAudioPlayer.volume_db = newWeapon.cockingSoundVolumeOffset
 					originNode.add_child(newAudioPlayer)
 					newWeapon.cockingAudioPlayer = newAudioPlayer
 					audioStreams[newWeapon.displayName + "-cocking"] = newAudioPlayer
@@ -236,6 +251,7 @@ class Interactor:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
 					newAudioPlayer.stream = newWeapon.reloadSound
 					newAudioPlayer.max_polyphony = 1
+					newAudioPlayer.volume_db = newWeapon.reloadSoundVolumeOffset
 					originNode.add_child(newAudioPlayer)
 					newWeapon.reloadAudioPlayer = newAudioPlayer
 					audioStreams[newWeapon.displayName + "-reload"] = newAudioPlayer

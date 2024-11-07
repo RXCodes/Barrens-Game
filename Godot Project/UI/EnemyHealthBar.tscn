@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://UI/EnemyHealthBar.gd" id="3_kpmh3"]
 
 [node name="EnemyHealthBar" type="TextureProgressBar"]
-z_index = 2000
+z_index = 1
 texture_filter = 1
 offset_left = -26.0
 offset_right = 26.0
