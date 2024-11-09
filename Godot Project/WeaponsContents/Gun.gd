@@ -181,6 +181,7 @@ func cancelReload() -> void:
 	if reloading:
 		reloading = false
 		reloadTimer = null
+		gunInteractor.gunSprite.texture = gunInteractor.currentWeapon.texture
 		if reloadAudioPlayer:
 			reloadAudioPlayer.stop()
 		if gunInteractor.onReloadInterrupted:

@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8tpbeww4jac5"]
+[gd_scene load_steps=8 format=3 uid="uid://b8tpbeww4jac5"]
 
 [ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_qurpq"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="2_kslff"]
 [ext_resource type="Texture2D" uid="uid://djg8d6omf1ioo" path="res://WeaponsContents/MachineGun/MachineGunShell.png" id="3_3fs4u"]
 [ext_resource type="Texture2D" uid="uid://xuinsgvita5f" path="res://WeaponsContents/MachineGun/MachineGunMagazine.png" id="4_gn353"]
 [ext_resource type="AudioStream" uid="uid://dxreftqjo2xci" path="res://WeaponsContents/MachineGun/MachineGunShoot.mp3" id="5_cjnv5"]
-[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_nqxq4"]
+[ext_resource type="AudioStream" uid="uid://bodqa1yxromc1" path="res://WeaponsContents/MachineGun/MachineGunCock.mp3" id="6_yshvk"]
+[ext_resource type="AudioStream" uid="uid://8q7cvo7glnk0" path="res://WeaponsContents/MachineGun/MachineGunReload.mp3" id="7_beudm"]
 
 [node name="MachineGun" type="Node"]
 script = ExtResource("1_qurpq")
@@ -14,7 +15,7 @@ fireRate = 0.085
 recoilAmount = 3.0
 maximumMagCapacity = 100
 startingAmmoCount = 300
-reloadTime = 6.0
+reloadTime = 5.6
 bulletSpreadDegrees = 6.5
 targetRange = 900.0
 rangeSpread = 30.0
@@ -30,4 +31,5 @@ rightHandOffset = Vector2(-16, 10)
 shootSound = ExtResource("5_cjnv5")
 shootVolumeOffset = -4.0
 shootPitchVariance = 0.05
-reloadSound = ExtResource("6_nqxq4")
+cockingSound = ExtResource("6_yshvk")
+reloadSound = ExtResource("7_beudm")
