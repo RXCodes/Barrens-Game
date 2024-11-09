@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=59 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://di4mjivv4rn4j" path="res://ModelContents/Player/RightElbow.png" id="10_3ywxo"]
 [ext_resource type="Texture2D" uid="uid://dk6lt2vxpt78y" path="res://ModelContents/Player/RightArm.png" id="11_2l05x"]
 [ext_resource type="Texture2D" uid="uid://bm48ayf5vh1d7" path="res://ModelContents/Player/LeftElbow.png" id="12_vu2m0"]
-[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="13_3ds28"]
 [ext_resource type="Texture2D" uid="uid://cpc0ey12mu75a" path="res://ModelContents/Player/RightHand.png" id="14_2uyc6"]
 [ext_resource type="Texture2D" uid="uid://blu2aknh1cx8i" path="res://ModelContents/Player/LeftArm.png" id="15_0hql7"]
 [ext_resource type="Texture2D" uid="uid://cy71otyfeqvxd" path="res://ModelContents/Player/Head.png" id="16_m686t"]
@@ -26,7 +25,9 @@
 [ext_resource type="AudioStream" uid="uid://3k3dc1u70grp" path="res://Environment/WalkSounds/Walk2.mp3" id="21_yiwhv"]
 [ext_resource type="AudioStream" uid="uid://d3t7o0kj4kd37" path="res://Environment/WalkSounds/Walk3.mp3" id="22_i0hps"]
 [ext_resource type="AudioStream" uid="uid://dfxodl0bwkr1x" path="res://Environment/WalkSounds/Walk4.mp3" id="23_5rian"]
+[ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="23_do1ik"]
 [ext_resource type="AudioStream" uid="uid://bi5j2x76m6e2i" path="res://ModelContents/Cash/CashPickup.mp3" id="27_81mt3"]
+[ext_resource type="Texture2D" uid="uid://cjywsmy7355c1" path="res://WeaponsContents/MachineGun/MachineGunUnload.png" id="28_c2fqk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_12evv"]
 viewport_path = NodePath("Player/Subviewport")
@@ -746,6 +747,60 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_o7jun"]
+resource_name = "Fire-MachineGun"
+length = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Left Hand Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17, 4), Vector2(-15.01, 1.34665), Vector2(-13.847, -0.204063), Vector2(-14.041, 0.0546196), Vector2(-14, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Right Hand Target:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(21, -20), Vector2(28.96, -19.3367), Vector2(33.6122, -18.949), Vector2(32.8361, -19.0137), Vector2(33, -19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.65806, -1.5708]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["dropShell"],
+"method": &"callGunMethod"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_nf2tp"]
 resource_name = "Fire-Shotgun"
 length = 0.5
@@ -824,6 +879,66 @@ tracks/2/keys = {
 "update": 0,
 "values": [-1.5708]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Torso/Coat/LeftElbow/Weapon:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_do1ik")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 10)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Torso/Coat/LeftElbow/Weapon/RightHand:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_gjv8w"]
 resource_name = "Reload-AK47"
@@ -880,6 +995,120 @@ tracks/3/keys = {
 "args": ["dropMagazine"],
 "method": &"callGunMethod"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_5ug3w"]
+resource_name = "Reload-MachineGun"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Left Hand Target:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.6, 0.866667, 1.16667, 1.6, 1.83333, 3.43333, 5.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, 0), Vector2(-20, 8), Vector2(-24, -5), Vector2(-11, 1), Vector2(-28, -4), Vector2(-1, -11), Vector2(-24, 7), Vector2(5, 3), Vector2(-14, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Right Hand Target:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433337, 0.633333, 0.966667, 1.2, 1.66667, 2.03333, 3.5, 5.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(33, -19), Vector2(10, 31), Vector2(40, -5), Vector2(10, 31), Vector2(15, 40), Vector2(17, 40), Vector2(-4, 16), Vector2(44, -53), Vector2(33, -19)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.499997, 1.4, 1.66667, 2.03333, 3.46667, 5.93333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.74533, -1.70643, -1.39626, -1.39626, -1.74533, -1.5708]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.499997),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["dropMagazine"],
+"method": &"callGunMethod"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.566667, 0.8, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -5), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Torso/Coat/LeftElbow/Weapon:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.5, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("23_do1ik"), ExtResource("28_c2fqk"), ExtResource("23_do1ik")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.0333333, 0.433333, 0.566667, 0.666667, 1.53333, 1.7, 1.96667, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, 10), Vector2(-16, 10), Vector2(-3.26, 6.89), Vector2(-16, 10), Vector2(-16, 10), Vector2(-20, 20), Vector2(-16, 10), Vector2(-16, 10)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.43333, 1.8, 2, 3.1, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.678933, 0.698132, 0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Torso/Coat/LeftElbow/Weapon/RightHand:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1.36667, 5.83333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_esp1p"]
@@ -952,9 +1181,11 @@ tracks/3/keys = {
 _data = {
 "Cock-Shotgun": SubResource("Animation_iueme"),
 "Fire-AK47": SubResource("Animation_sq5cb"),
+"Fire-MachineGun": SubResource("Animation_o7jun"),
 "Fire-Shotgun": SubResource("Animation_nf2tp"),
 "RESET": SubResource("Animation_pdiy5"),
 "Reload-AK47": SubResource("Animation_gjv8w"),
+"Reload-MachineGun": SubResource("Animation_5ug3w"),
 "Reload-Shotgun": SubResource("Animation_esp1p")
 }
 
@@ -1029,27 +1260,27 @@ script = ExtResource("3_ucqgu")
 transparent_bg = true
 canvas_item_default_texture_filter = 0
 gui_disable_input = true
-size = Vector2i(150, 150)
+size = Vector2i(200, 200)
 
 [node name="Transform" type="Node2D" parent="Player/Subviewport"]
-position = Vector2(75, 75)
+position = Vector2(100, 100)
 
 [node name="Torso" type="Sprite2D" parent="Player/Subviewport/Transform"]
 process_mode = 3
 texture_filter = 1
-position = Vector2(-1.52588e-05, 2.60003)
-scale = Vector2(0.999995, 0.999995)
+position = Vector2(-1.52588e-05, 2.60026)
+scale = Vector2(0.999829, 0.999829)
 texture = ExtResource("4_7ekww")
 
 [node name="RightLeg" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
-position = Vector2(0.0107346, -0.0544434)
-rotation = 0.00273186
-scale = Vector2(0.999709, 0.999709)
+position = Vector2(0.0103683, 0.0171509)
+rotation = 0.00268442
+scale = Vector2(0.999721, 0.999721)
 texture = ExtResource("5_mv52h")
 
 [node name="RightKnee" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/RightLeg"]
-position = Vector2(7.02064, 5.3713)
-scale = Vector2(1.00017, 1.00017)
+position = Vector2(7.02069, 5.37979)
+scale = Vector2(1.00016, 1.00016)
 texture = ExtResource("6_735yq")
 offset = Vector2(-7, -6)
 
@@ -1059,14 +1290,14 @@ texture = ExtResource("6_5fnib")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
-position = Vector2(-0.0632095, -0.128143)
-rotation = -0.00399995
-scale = Vector2(0.998548, 0.998548)
+position = Vector2(-0.0238953, -0.0535431)
+rotation = -0.00332975
+scale = Vector2(0.998968, 0.998968)
 texture = ExtResource("7_qwvak")
 
 [node name="LeftKnee" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/LeftLeg"]
-position = Vector2(-7.04062, 5.41148)
-scale = Vector2(1.00079, 1.00079)
+position = Vector2(-7.00122, 5.41155)
+scale = Vector2(1.00042, 1.00042)
 texture = ExtResource("9_8cycy")
 offset = Vector2(7, -6)
 
@@ -1080,51 +1311,51 @@ position = Vector2(-7.62939e-06, -4.60002)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(14.5819, -18.1043)
-rotation = -0.160173
-scale = Vector2(0.998921, 0.998921)
+position = Vector2(14.6595, -18.1463)
+rotation = -0.127095
+scale = Vector2(0.998952, 0.998952)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/RightElbow"]
-position = Vector2(5.39938, 17.5267)
-rotation = -0.535364
-scale = Vector2(0.999838, 0.999838)
+position = Vector2(5.21693, 17.5404)
+rotation = -0.442115
+scale = Vector2(0.999909, 0.999909)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(-17.159, -20.1044)
-rotation = 0.295392
-scale = Vector2(0.995487, 0.995487)
+position = Vector2(-17.0902, -20.07)
+rotation = 0.344106
+scale = Vector2(0.99552, 0.99552)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(18.1597, 12.4973)
-rotation = -0.100208
-scale = Vector2(0.999461, 0.999397)
-texture = ExtResource("13_3ds28")
+position = Vector2(18.1205, 12.0129)
+rotation = -0.102098
+scale = Vector2(0.999399, 0.999384)
+texture = ExtResource("23_do1ik")
 
 [node name="RightHand" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(40.7196, -1.45872)
-rotation = 3.03903
-scale = Vector2(1.00383, -1.00389)
-skew = -0.00152457
+position = Vector2(40.2932, -1.47924)
+rotation = 3.03905
+scale = Vector2(1.00396, -1.00397)
+skew = -0.00153136
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-5.04867, 12.0338)
-rotation = -0.324706
-scale = Vector2(0.999919, 0.999919)
+position = Vector2(-5.16868, 12.1076)
+rotation = -0.35966
+scale = Vector2(0.999906, 0.999906)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="Head" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(0.163597, -24.5995)
-rotation = 0.00775481
-scale = Vector2(0.999795, 0.999795)
+rotation = -0.0109983
+scale = Vector2(0.99979, 0.99979)
 texture = ExtResource("16_m686t")
 offset = Vector2(1, 22)
 
@@ -1137,12 +1368,12 @@ modification_stack = SubResource("SkeletonModificationStack2D_cbq8p")
 [node name="Torso" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D"]
 position = Vector2(0, 4)
 rotation = -1.5708
-scale = Vector2(0.999995, 0.999995)
+scale = Vector2(0.999829, 0.999829)
 rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.999795, 0.999795)
+scale = Vector2(0.99979, 0.99979)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -1168,12 +1399,14 @@ metadata/_local_pose_override_enabled_ = true
 
 [node name="Right Hand" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm"]
 position = Vector2(14.5632, -6.70177)
+scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(0.411234, 0.91153, -0.91153, 0.411234, 14.5632, -6.70177)
 auto_calculate_length_and_angle = false
 length = 16.0
 bone_angle = 65.7177
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand"]
+position = Vector2(-16, 10)
 remote_path = NodePath("../../../../../../Torso/Coat/LeftElbow/Weapon/RightHand")
 update_rotation = false
 
@@ -1202,14 +1435,15 @@ rest = Transform2D(0.480368, -0.87706, 0.87706, 0.480368, 9.22096, 12.9767)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Left Hand" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm"]
-position = Vector2(13.2838, 2.13744)
-rotation = 0.146944
-scale = Vector2(0.999542, 0.999488)
+position = Vector2(13.283, 2.13574)
+rotation = -0.855994
+scale = Vector2(0.999499, 0.999474)
 rest = Transform2D(0.994704, 0.0996467, -0.0996419, 0.994657, 13.2835, 2.13715)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="Gun" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand"]
 position = Vector2(43.0281, -2.6226)
+rotation = -1.5708
 scale = Vector2(0.171556, 0.930627)
 rest = Transform2D(0.170935, -0.0145869, 0.0791278, 0.927257, 43.0281, -2.6226)
 auto_calculate_length_and_angle = false
@@ -1217,7 +1451,6 @@ length = 16.0
 bone_angle = -4.87757
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand"]
-position = Vector2(7.92635, -1.47766)
 remote_path = NodePath("../../../../../../Torso/Coat/LeftElbow/Weapon")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm"]

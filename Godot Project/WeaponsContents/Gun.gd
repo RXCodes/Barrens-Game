@@ -86,7 +86,10 @@ var leftoverAmmoCount: int:
 @export var magazineTexture: Texture2D
 
 ## the drawing offset for the gun texture - this only applies to the player model
-@export var drawingOffset: Vector2
+@export var drawingOffset: Vector2 = Vector2.ZERO
+
+## how much to offset the right hand to correctly hold the gun - affects the player model only
+@export var rightHandOffset: Vector2 = Vector2.ZERO
 
 @export_group("Audio")
 
@@ -119,6 +122,7 @@ var reloading = false
 var shootAudioPlayer: AudioStreamPlayer2D
 var lastBulletAngleRadians: float
 var sourceNode: Node2D
+var fileName: String
 func fire(holding: bool, angleRadians: float) -> void:
 	if not automatic and holding:
 		return
@@ -211,7 +215,9 @@ func playCockingSound() -> void:
 
 static func gunFromString(string: String) -> Gun:
 	var weaponScene = load("res://Weapons/" + string + ".tscn")
-	return weaponScene.instantiate()
+	var weapon: Gun = weaponScene.instantiate()
+	weapon.fileName = string
+	return weapon
 
 # this is what other nodes can use to be able to use guns (see PlayerController.gd)
 # yes, this also includes enemies! (or any Node2D)

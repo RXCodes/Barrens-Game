@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8tpbeww4jac5"]
+
+[ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_qurpq"]
+[ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="2_kslff"]
+[ext_resource type="Texture2D" uid="uid://djg8d6omf1ioo" path="res://WeaponsContents/MachineGun/MachineGunShell.png" id="3_3fs4u"]
+[ext_resource type="Texture2D" uid="uid://xuinsgvita5f" path="res://WeaponsContents/MachineGun/MachineGunMagazine.png" id="4_gn353"]
+[ext_resource type="AudioStream" uid="uid://dxreftqjo2xci" path="res://WeaponsContents/MachineGun/MachineGunShoot.mp3" id="5_cjnv5"]
+[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_nqxq4"]
+
+[node name="MachineGun" type="Node"]
+script = ExtResource("1_qurpq")
+displayName = "Machine Gun"
+fireRate = 0.085
+recoilAmount = 3.0
+maximumMagCapacity = 100
+startingAmmoCount = 300
+reloadTime = 6.0
+bulletSpreadDegrees = 6.5
+targetRange = 900.0
+rangeSpread = 30.0
+targetDamage = 6.0
+damageSpread = 1.0
+bulletFireColor = Color(0.946714, 0.726983, 0.578206, 1)
+bulletTrailColor = Color(0.418361, 0.409735, 0.411894, 1)
+texture = ExtResource("2_kslff")
+shellTexture = ExtResource("3_3fs4u")
+magazineTexture = ExtResource("4_gn353")
+drawingOffset = Vector2(48, -4)
+rightHandOffset = Vector2(-16, 10)
+shootSound = ExtResource("5_cjnv5")
+shootVolumeOffset = -4.0
+shootPitchVariance = 0.05
+reloadSound = ExtResource("6_nqxq4")

@@ -36,6 +36,7 @@ folder_colors={
 "res://Weapons/": "gray",
 "res://WeaponsContents/": "red",
 "res://WeaponsContents/AK47/": "pink",
+"res://WeaponsContents/MachineGun/": "pink",
 "res://WeaponsContents/Shotgun/": "pink"
 }
 

@@ -4,7 +4,6 @@ var renderer: EntityRender
 var mainAnimationPlayer: AnimationPlayer
 var actionAnimationPlayer: AnimationPlayer
 var animationTree: AnimationTree
-var subviewPort: SubViewport
 var textureOutput: Sprite2D
 var sprintBar: SprintBar
 var sprintingSpeedMultiplier = 1.5
@@ -31,7 +30,6 @@ func _ready() -> void:
 	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
 	actionAnimationPlayer = $Subviewport/Transform/ActionAnimationPlayer
 	animationTree = $Subviewport/Transform/AnimationTree
-	subviewPort = $Subviewport
 	textureOutput = $TextureDisplay
 	sprintBar = $SprintBar
 	sprintBar.modulate = Color.TRANSPARENT
@@ -39,12 +37,12 @@ func _ready() -> void:
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
 	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon
-	gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
 	gunInteractor.onFire = self.onFire
 	gunInteractor.onCockWeapon = self.onCockWeapon
 	gunInteractor.onFinishReload = self.onFinishReload
 	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
 	gunInteractor.onReload = self.onReload
+	selectWeapon("Shotgun")
 	refreshAmmoDisplay()
 	hitBoxRigidBody = $"../Hitbox"
 	hitboxShape = hitBoxRigidBody.get_children()[0]
@@ -207,11 +205,11 @@ func _input(event: InputEvent) -> void:
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":
-					gunInteractor.currentWeapon = Gun.gunFromString("Shotgun")
-					refreshAmmoDisplay()
+					selectWeapon("Shotgun")
 				elif key == "2":
-					gunInteractor.currentWeapon = Gun.gunFromString("AK47")
-					refreshAmmoDisplay()
+					selectWeapon("AK47")
+				elif key == "3":
+					selectWeapon("MachineGun")
 	
 	if event is InputEventMouseButton:
 		# handle left click
@@ -244,15 +242,15 @@ func onFire() -> void:
 	
 	# play shoot animation
 	actionAnimationPlayer.stop()
-	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.displayName)
+	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName)
 	gunInteractor.currentWeapon.cockedGun = false
 	var shootAnimationTime = actionAnimationPlayer.current_animation_length
-	var currentGunIdentifier = gunInteractor.currentWeapon.displayName
+	var currentGunIdentifier = gunInteractor.currentWeapon.fileName
 	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
 	await TimeManager.wait(shootAnimationTime)
-	if currentGunIdentifier == gunInteractor.currentWeapon.displayName:
+	if currentGunIdentifier == gunInteractor.currentWeapon.fileName:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
 		else:
@@ -264,11 +262,11 @@ func onFire() -> void:
 				print("No ammo left")
 
 func onCockWeapon() -> void:
-	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.displayName)
+	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
-	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.displayName)
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName)
 	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
 
 func onFinishReload() -> void:
@@ -281,6 +279,8 @@ func refreshAmmoDisplay() -> void:
 
 func onReloadInterrupted() -> void:
 	actionAnimationPlayer.stop()
+	actionAnimationPlayer.play(&"RESET")
+	actionAnimationPlayer.advance(0)
 	Crosshair.stopReloadingWeapon()
 
 func callGunMethod(string: String):
@@ -342,3 +342,9 @@ func pickupCash(amount: int) -> void:
 	cash += amount
 	$CashPickup.pitch_scale = randfn(1.0, 0.05)
 	$CashPickup.play()
+
+func selectWeapon(name: String) -> void:
+	gunInteractor.currentWeapon = Gun.gunFromString(name)
+	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
+	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
+	refreshAmmoDisplay()
