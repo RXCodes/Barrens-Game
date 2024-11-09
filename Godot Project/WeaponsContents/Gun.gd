@@ -124,6 +124,7 @@ var lastBulletAngleRadians: float
 var sourceNode: Node2D
 var fileName: String
 func fire(holding: bool, angleRadians: float) -> void:
+	gunInteractor.gunSprite.texture = gunInteractor.currentWeapon.texture
 	if not automatic and holding:
 		return
 	if not canFire or reloading:
@@ -181,11 +182,11 @@ func cancelReload() -> void:
 	if reloading:
 		reloading = false
 		reloadTimer = null
-		gunInteractor.gunSprite.texture = gunInteractor.currentWeapon.texture
 		if reloadAudioPlayer:
 			reloadAudioPlayer.stop()
 		if gunInteractor.onReloadInterrupted:
 			gunInteractor.onReloadInterrupted.call()
+		gunInteractor.gunSprite.texture = gunInteractor.currentWeapon.texture
 
 func cockWeapon() -> void:
 	if cockedGun or not needsCocking:
