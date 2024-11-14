@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://bx7uhlvcq0jey"]
+
+[ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_taljv"]
+[ext_resource type="Script" path="res://Scenes/IntroStoryboard.gd" id="2_0qdrk"]
+[ext_resource type="Script" path="res://Scenes/Intro/HoldToSkipIntro.gd" id="2_fgnul"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="2_km675"]
+[ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="4_46fug"]
+[ext_resource type="Script" path="res://Scenes/Intro/TypewriterText.gd" id="4_vuexh"]
+[ext_resource type="Texture2D" uid="uid://bj7a36mukqwbi" path="res://Environment/Building/Roof/Rooftop.png" id="5_xkb5h"]
+[ext_resource type="Script" path="res://Scenes/Intro/StoryboardImage.gd" id="6_ikdki"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u1762"]
+font = ExtResource("2_km675")
+font_size = 20
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cr5uu"]
+font = ExtResource("2_km675")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[node name="Intro" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_taljv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Storyboard" type="CanvasLayer" parent="."]
+script = ExtResource("2_0qdrk")
+
+[node name="Background" type="ColorRect" parent="Storyboard"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="HoldToSkipLabel" type="Label" parent="Storyboard"]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -93.0
+offset_top = -50.0
+offset_right = 93.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Hold to Skip"
+label_settings = SubResource("LabelSettings_u1762")
+horizontal_alignment = 1
+script = ExtResource("2_fgnul")
+
+[node name="SkipProgress" type="ColorRect" parent="Storyboard/HoldToSkipLabel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Text" type="Label" parent="Storyboard"]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -484.5
+offset_top = -164.0
+offset_right = 484.5
+offset_bottom = -138.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "This peaceful town was full of hardworking people doing their daily chores."
+label_settings = SubResource("LabelSettings_cr5uu")
+autowrap_mode = 2
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+script = ExtResource("4_vuexh")
+
+[node name="StoryImage" type="Sprite2D" parent="Storyboard"]
+position = Vector2(640, 300)
+texture = ExtResource("5_xkb5h")
+script = ExtResource("6_ikdki")
+
+[node name="TimeManager" parent="." instance=ExtResource("4_46fug")]

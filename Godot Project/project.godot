@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Barrens"
-run/main_scene="res://Scenes/Debug.tscn"
+run/main_scene="res://Scenes/Intro.tscn"
+run/print_header=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [display]

@@ -25,8 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
+[ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
-[ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="31_rq6uy"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -371,7 +371,6 @@ position = Vector2(1437, 411)
 [node name="Cactus14" parent="Level" instance=ExtResource("23_0a004")]
 position = Vector2(213, 274)
 
-[node name="TimeManager" type="Node" parent="."]
-script = ExtResource("31_rq6uy")
+[node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]

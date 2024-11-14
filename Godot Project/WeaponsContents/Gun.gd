@@ -276,7 +276,7 @@ class Interactor:
 			gunSprite.texture = currentWeapon.texture
 			if originNode is Player:
 				gunSprite.offset = currentWeapon.drawingOffset
-			if not newWeapon.cockedGun:
+			if not newWeapon.cockedGun and newWeapon.leftoverAmmoCount > 0:
 				newWeapon.cockWeapon()
 	var gunSprite: Sprite2D
 	var onFire: Callable
