@@ -1,9 +1,5 @@
 extends CanvasLayer
 
-var sheriffColor = Color.DARK_SALMON
-var playerColor = Color.STEEL_BLUE
-var wizardColor = Color.CRIMSON
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().physics_frame
@@ -26,12 +22,12 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	TypewriterText.interval = 0.06
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"Okay, what\'s going on?"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	TypewriterText.interval = 0.035
-	TypewriterText.setColor(Color.WHITE)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.setText("As the sheriff slowly approaches the portal, it begins to get brighter.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
@@ -39,11 +35,11 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	TypewriterText.interval = 0.08
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"WHAT WAS THAT?"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
-	TypewriterText.setColor(Color.WHITE)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.interval = 0.035
 	TypewriterText.setText("Something emerges from the portal.")
 	await TypewriterText.finishedAnimation
@@ -56,16 +52,15 @@ func _ready() -> void:
 	TypewriterText.setText("The wizard slowly made his way to the sheriff.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
-	TypewriterText.setColor(wizardColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.WIZARD)
 	TypewriterText.setText('"MUAHAHAHAHA! This land will now be mine!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
-	TypewriterText.setColor(Color.WHITE)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
+	TypewriterText.interval = 0.035
 	TypewriterText.setText("His wand had the power to drain water from anything to use it for evil.")
-	TypewriterText.interval = 0.05
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
-	TypewriterText.interval = 0.035
 	TypewriterText.setText("This once beautiful, lush, and properous town is now...   \nBarren.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(4.0)
@@ -73,7 +68,7 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	TypewriterText.interval = 0.045
-	TypewriterText.setColor(playerColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"NO! DAD! Please stay with me!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
@@ -82,42 +77,42 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.25)
 	TypewriterText.interval = 0.05
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"The wizard, son... He\'s back."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	TypewriterText.interval = 0.035
-	TypewriterText.setColor(playerColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Impossible! I thought we defeated him a long time ago!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	TypewriterText.interval = 0.05
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"I don\'t know... But he\'s much more powerful now and I don\'t think I can make it."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	TypewriterText.interval = 0.035
-	TypewriterText.setColor(playerColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"No! Don\'t leave us! We need you!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	TypewriterText.interval = 0.06
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"I don\'t have much time left...    \nCan you promise me something son?"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	TypewriterText.interval = 0.07
-	TypewriterText.setColor(playerColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Yes, dad..."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	TypewriterText.interval = 0.1
-	TypewriterText.setColor(sheriffColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"Please, protect our village. \nWe can\'t lose it."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	TypewriterText.interval = 0.09
-	TypewriterText.setColor(playerColor)
+	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"I will, dad."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)

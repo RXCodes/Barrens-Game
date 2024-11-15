@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bx7uhlvcq0jey"]
+[gd_scene load_steps=12 format=3 uid="uid://bx7uhlvcq0jey"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_taljv"]
 [ext_resource type="Script" path="res://Scenes/IntroStoryboard.gd" id="2_0qdrk"]
 [ext_resource type="Script" path="res://Scenes/Intro/HoldToSkipIntro.gd" id="2_fgnul"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="2_km675"]
+[ext_resource type="AudioStream" uid="uid://dexxnhnqdcras" path="res://Scenes/Intro/Typewriter.mp3" id="3_5qsbt"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="4_46fug"]
 [ext_resource type="Script" path="res://Scenes/Intro/TypewriterText.gd" id="4_vuexh"]
 [ext_resource type="Texture2D" uid="uid://bj7a36mukqwbi" path="res://Environment/Building/Roof/Rooftop.png" id="5_xkb5h"]
@@ -45,6 +46,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
+
+[node name="DialoguePlayer" type="AudioStreamPlayer" parent="Storyboard"]
+stream = ExtResource("3_5qsbt")
+max_polyphony = 10
 
 [node name="HoldToSkipLabel" type="Label" parent="Storyboard"]
 texture_filter = 1
