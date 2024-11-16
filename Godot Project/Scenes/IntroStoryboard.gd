@@ -89,23 +89,37 @@ func _ready() -> void:
 	
 	# Slide 10
 	TypewriterText.interval = 0.035
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide10.png"))
+	StoryboardImage.fadeIn(1.0)
 	TypewriterText.setText("The wizard slowly made his way to the sheriff.")
 	await TypewriterText.finishedAnimation
-	await TimeManager.wait(3.0)
+	await TimeManager.wait(2.0)
 	
 	# Slide 11
+	StoryboardImage.fadeOut(0.5)
+	await TimeManager.wait(0.5)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide11.png"))
 	StoryboardImage.fadeIn(0.5)
+	await TimeManager.wait(2.75)
+	StoryboardImage.fadeOut(1.25)
+	TypewriterText.fadeOut(1.25)
+	await TimeManager.wait(1.35)
+	
+	# here, we can play a little animatic
+	
+	# Slide 12
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide12.png"))
+	StoryboardImage.fadeIn(0.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.WIZARD)
-	TypewriterText.setText('"MUAHAHAHAHA! This land will now be mine!"')
+	TypewriterText.setText('"MUAHAHAHAHA! This land will soon be mine!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
-	# Slide 12
+	# Slide 13
 	StoryboardImage.fadeOut(1.0)
 	TypewriterText.fadeOut(1.0)
 	await TimeManager.wait(1.0)
-	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide12.png"))
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide13.png"))
 	StoryboardImage.fadeIn(1.0)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.interval = 0.035
@@ -122,20 +136,22 @@ func _ready() -> void:
 	TypewriterText.fadeOut(1.0)
 	await TimeManager.wait(1.0)
 	
-	# Slide 13
-	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide1.png"))
-	StoryboardImage.fadeIn(1.0)
+	# Slide 14
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide14.png"))
+	StoryboardImage.fadeIn(1.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.setText("This once beautiful, lush, and properous town is now...   \nBarren.")
-	await TypewriterText.finishedAnimation
-	await TimeManager.wait(3.5)
-	
-	# Slide 14
-	TypewriterText.setText("You come back to find your beloved town in shambles and you see the town sheriff, barely alive.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
 	# Slide 15
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide15.png"))
+	StoryboardImage.fadeIn(1.0)
+	TypewriterText.setText("You come back to find your beloved town in shambles and you see the town sheriff, barely alive.")
+	await TypewriterText.finishedAnimation
+	await TimeManager.wait(3.0)
+	
+	# Slide 16
 	TypewriterText.interval = 0.045
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"NO! DAD! Please stay with me!"')
@@ -146,14 +162,14 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.25)
 	
-	# Slide 16
+	# Slide 17
 	TypewriterText.interval = 0.05
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"The wizard, son... He\'s back."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	
-	# Slide 17
+	# Slide 18
 	TypewriterText.interval = 0.035
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Impossible! I thought we defeated him a long time ago!"')
@@ -165,35 +181,35 @@ func _ready() -> void:
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	
-	# Slide 18
+	# Slide 19
 	TypewriterText.interval = 0.035
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"No! Don\'t leave us! We need you!"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	
-	# Slide 19
+	# Slide 20
 	TypewriterText.interval = 0.06
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"I don\'t have much time left...    \nCan you promise me something son?"')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	
-	# Slide 20
+	# Slide 21
 	TypewriterText.interval = 0.07
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Yes, dad..."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(1.5)
 	
-	# Slide 21
+	# Slide 22
 	TypewriterText.interval = 0.1
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"Please, protect our village. \nWe can\'t lose it."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	
-	# Slide 22
+	# Slide 23
 	TypewriterText.interval = 0.09
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"I will, dad."')
