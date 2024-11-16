@@ -57,7 +57,7 @@ func _ready() -> void:
 	StoryboardImage.flashColor(Color.WHITE, 2.25)
 	StoryboardImage.shake()
 	await TimeManager.wait(1.5)
-	TypewriterText.setText("A powerful shockwave erupted from the portal, knocking everyone back and causing destruction.")
+	TypewriterText.setText("A powerful shockwave erupted from the portal, knocking everyone back and causing mass destruction.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
@@ -152,6 +152,8 @@ func _ready() -> void:
 	await TimeManager.wait(3.0)
 	
 	# Slide 16
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide16.png"))
+	StoryboardImage.fadeIn(0.5)
 	TypewriterText.interval = 0.045
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"NO! DAD! Please stay with me!"')
@@ -163,6 +165,8 @@ func _ready() -> void:
 	await TimeManager.wait(1.25)
 	
 	# Slide 17
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide17.png"))
+	StoryboardImage.fadeIn(1.0)
 	TypewriterText.interval = 0.05
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"The wizard, son... He\'s back."')
@@ -170,6 +174,8 @@ func _ready() -> void:
 	await TimeManager.wait(1.5)
 	
 	# Slide 18
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide18.png"))
+	StoryboardImage.fadeIn(1.0)
 	TypewriterText.interval = 0.035
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Impossible! I thought we defeated him a long time ago!"')
@@ -182,6 +188,8 @@ func _ready() -> void:
 	await TimeManager.wait(1.5)
 	
 	# Slide 19
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide19.png"))
+	StoryboardImage.fadeIn(1.0)
 	TypewriterText.interval = 0.035
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"No! Don\'t leave us! We need you!"')
@@ -189,6 +197,8 @@ func _ready() -> void:
 	await TimeManager.wait(1.5)
 	
 	# Slide 20
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide20.png"))
+	StoryboardImage.fadeIn(1.0)
 	TypewriterText.interval = 0.06
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"I don\'t have much time left...    \nCan you promise me something son?"')
@@ -196,6 +206,8 @@ func _ready() -> void:
 	await TimeManager.wait(2.0)
 	
 	# Slide 21
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide21.png"))
+	StoryboardImage.fadeIn(0.5)
 	TypewriterText.interval = 0.07
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"Yes, dad..."')
@@ -203,14 +215,15 @@ func _ready() -> void:
 	await TimeManager.wait(1.5)
 	
 	# Slide 22
-	TypewriterText.interval = 0.1
+	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide22.png"))
+	StoryboardImage.fadeIn(0.75)
+	TypewriterText.interval = 0.125
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
-	TypewriterText.setText('"Please, protect our village. \nWe can\'t lose it."')
+	TypewriterText.setText('"Please, protect our village. \nWe can\'t lose anymore people."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	
-	# Slide 23
-	TypewriterText.interval = 0.09
+	TypewriterText.interval = 0.1
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.PLAYER)
 	TypewriterText.setText('"I will, dad."')
 	await TypewriterText.finishedAnimation
