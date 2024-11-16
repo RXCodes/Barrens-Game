@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx7uhlvcq0jey"]
+[gd_scene load_steps=16 format=3 uid="uid://bx7uhlvcq0jey"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_taljv"]
 [ext_resource type="Script" path="res://Scenes/IntroStoryboard.gd" id="2_0qdrk"]
@@ -7,8 +7,8 @@
 [ext_resource type="AudioStream" uid="uid://dexxnhnqdcras" path="res://Scenes/Intro/Typewriter.mp3" id="3_5qsbt"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="4_46fug"]
 [ext_resource type="Script" path="res://Scenes/Intro/TypewriterText.gd" id="4_vuexh"]
-[ext_resource type="Texture2D" uid="uid://bj7a36mukqwbi" path="res://Environment/Building/Roof/Rooftop.png" id="5_xkb5h"]
 [ext_resource type="Script" path="res://Scenes/Intro/StoryboardImage.gd" id="6_ikdki"]
+[ext_resource type="Texture2D" uid="uid://bw7d6if3fra51" path="res://Scenes/Intro/Images/Slide1.png" id="7_0gx1m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u1762"]
 font = ExtResource("2_km675")
@@ -25,6 +25,70 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, 5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wl55y"]
+blend_mode = 1
+
+[sub_resource type="Animation" id="Animation_q28e1"]
+resource_name = "shake"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3, 1.33333, 1.36667, 1.4, 1.43333, 1.46667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640, 275), Vector2(640, 280.848), Vector2(640, 289.029), Vector2(640, 297.265), Vector2(640, 303.872), Vector2(640, 307.942), Vector2(640, 309.323), Vector2(640, 308.447), Vector2(640, 306.091), Vector2(640, 303.125), Vector2(640, 300.312), Vector2(640, 298.181), Vector2(640, 296.984), Vector2(640, 296.716), Vector2(640, 297.185), Vector2(640, 298.1), Vector2(640, 299.158), Vector2(640, 300.106), Vector2(640, 300.781), Vector2(640, 301.119), Vector2(640, 301.14), Vector2(640, 300.925), Vector2(640, 300.579), Vector2(640, 300.207), Vector2(640, 299.892), Vector2(640, 299.683), Vector2(640, 299.593), Vector2(640, 299.609), Vector2(640, 299.701), Vector2(640, 299.829), Vector2(640, 299.957), Vector2(640, 300.06), Vector2(640, 300.124), Vector2(640, 300.146), Vector2(640, 300.132), Vector2(640, 300.095), Vector2(640, 300.049), Vector2(640, 300.005), Vector2(640, 299.972), Vector2(640, 299.953), Vector2(640, 299.949), Vector2(640, 299.956), Vector2(640, 299.97), Vector2(640, 299.987), Vector2(640, 300.002), Vector2(640, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3, 1.33333, 1.36667, 1.4, 1.43333, 1.46667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.25, 2.25), Vector2(2.21428, 2.21428), Vector2(2.18365, 2.18365), Vector2(2.1574, 2.1574), Vector2(2.13489, 2.13489), Vector2(2.1156, 2.1156), Vector2(2.09906, 2.09906), Vector2(2.08488, 2.08488), Vector2(2.07273, 2.07273), Vector2(2.06231, 2.06231), Vector2(2.05338, 2.05338), Vector2(2.04573, 2.04573), Vector2(2.03916, 2.03916), Vector2(2.03354, 2.03354), Vector2(2.02871, 2.02871), Vector2(2.02458, 2.02458), Vector2(2.02103, 2.02103), Vector2(2.018, 2.018), Vector2(2.01539, 2.01539), Vector2(2.01316, 2.01316), Vector2(2.01124, 2.01124), Vector2(2.0096, 2.0096), Vector2(2.0082, 2.0082), Vector2(2.00699, 2.00699), Vector2(2.00596, 2.00596), Vector2(2.00507, 2.00507), Vector2(2.00431, 2.00431), Vector2(2.00366, 2.00366), Vector2(2.0031, 2.0031), Vector2(2.00262, 2.00262), Vector2(2.00221, 2.00221), Vector2(2.00186, 2.00186), Vector2(2.00156, 2.00156), Vector2(2.0013, 2.0013), Vector2(2.00108, 2.00108), Vector2(2.00089, 2.00089), Vector2(2.00073, 2.00073), Vector2(2.00059, 2.00059), Vector2(2.00047, 2.00047), Vector2(2.00037, 2.00037), Vector2(2.00028, 2.00028), Vector2(2.0002, 2.0002), Vector2(2.00014, 2.00014), Vector2(2.00008, 2.00008), Vector2(2.00004, 2.00004), Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_eeegu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yffwi"]
+_data = {
+"RESET": SubResource("Animation_eeegu"),
+"shake": SubResource("Animation_q28e1")
+}
 
 [node name="Intro" type="Node2D"]
 texture_filter = 1
@@ -102,8 +166,28 @@ visible_ratio = 0.0
 script = ExtResource("4_vuexh")
 
 [node name="StoryImage" type="Sprite2D" parent="Storyboard"]
+texture_filter = 1
 position = Vector2(640, 300)
-texture = ExtResource("5_xkb5h")
+scale = Vector2(2, 2)
+texture = ExtResource("7_0gx1m")
 script = ExtResource("6_ikdki")
+
+[node name="Flash" type="ColorRect" parent="Storyboard/StoryImage"]
+self_modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_wl55y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -100.0
+offset_right = -150.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Storyboard/StoryImage"]
+libraries = {
+"": SubResource("AnimationLibrary_yffwi")
+}
 
 [node name="TimeManager" parent="." instance=ExtResource("4_46fug")]

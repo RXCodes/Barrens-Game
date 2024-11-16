@@ -23,13 +23,13 @@ static func setText(text: String) -> void:
 		current.visible_characters = i
 		
 		# play typewriter sound
+		var currentCharacter = text[i - 1]
 		var nextCharacter = text[i]
-		if nextCharacter != ' ' and nextCharacter != '\n':
+		if currentCharacter != ' ' and currentCharacter != '\n':
 			dialogueAudioPlayer.play()
 		
 		# brief pauses on some characters
 		if i > 0:
-			var currentCharacter = text[i - 1]
 			if nextCharacter == ' ':
 				if currentCharacter == '.':
 					await TimeManager.wait(0.4)
