@@ -135,6 +135,9 @@ func _ready() -> void:
 	$IntroAnimatic/WandContainer/AnimationPlayer.play("WandIdle")
 	$IntroAnimatic/TreeContainer/RadialGradient/AnimationPlayer.play("Gradient")
 	$IntroAnimatic/TreeContainer/TopRadialGradient/AnimationPlayer.play("Gradient")
+	$IntroAnimatic/FlowerContainer/RadialGradient/AnimationPlayer.play("Gradient")
+	if get_tree() == null:
+		return
 	await get_tree().physics_frame
 	$IntroAnimatic.show()
 	await TimeManager.wait(animaticAnimationPlayer.current_animation_length)
@@ -263,3 +266,6 @@ func _ready() -> void:
 	await TimeManager.wait(2.0)
 	StoryboardImage.fadeOut(2.5)
 	TypewriterText.fadeOut(2.5)
+
+	if get_tree() == null:
+		return

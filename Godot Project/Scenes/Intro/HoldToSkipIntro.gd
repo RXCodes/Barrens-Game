@@ -4,6 +4,8 @@ var canSkip = false
 var holdingSkip = false
 var holdProgress = 0.0
 var timeToHold = 1.5
+var fadeOutTime = 16.0
+var currentFadeTween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,14 +15,16 @@ func _ready() -> void:
 	print("Display skip button")
 	canSkip = true
 	var tween = NodeRelations.createTween()
-	tween.tween_property(self, "self_modulate", Color.WHITE, 1.0)
-	await TimeManager.wait(15.0)
-	canSkip = false
-	var tweenw = NodeRelations.createTween()
-	tweenw.tween_property(self, "self_modulate", Color.TRANSPARENT, 2.0)
+	tween.tween_property(self, "self_modulate", Color.WEB_GRAY, 1.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if fadeOutTime > 0:
+		fadeOutTime -= delta
+		if fadeOutTime <= 0:
+			var tween = NodeRelations.createTween()
+			tween.tween_property(self, "self_modulate", Color.TRANSPARENT, 2.0)
+	
 	if holdingSkip and canSkip:
 		holdProgress += delta / timeToHold
 		if holdProgress >= 1.0:
@@ -31,4 +35,11 @@ func _process(delta: float) -> void:
 	$SkipProgress.scale.x = holdProgress
 
 func _input(event: InputEvent) -> void:
+	if event.as_text() != "Space":
+		return
 	holdingSkip = event.is_pressed()
+	if holdingSkip and canSkip:
+		fadeOutTime = maxf(fadeOutTime, 5.0)
+		if currentFadeTween != null:
+			currentFadeTween.stop()
+		self_modulate = Color.WEB_GRAY

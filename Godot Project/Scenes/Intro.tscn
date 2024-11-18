@@ -1562,7 +1562,7 @@ offset_right = 93.0
 offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Hold to Skip"
+text = "Hold Spacebar to Skip"
 label_settings = SubResource("LabelSettings_u1762")
 horizontal_alignment = 1
 script = ExtResource("2_fgnul")
@@ -1577,6 +1577,7 @@ offset_top = -2.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+color = Color(0.548963, 0.548963, 0.548963, 1)
 
 [node name="Text" type="Label" parent="Storyboard"]
 texture_filter = 1
@@ -1625,6 +1626,7 @@ libraries = {
 }
 
 [node name="IntroAnimatic" type="Sprite2D" parent="Storyboard"]
+visible = false
 self_modulate = Color(1, 0.35, 0.35, 1)
 clip_children = 2
 texture_filter = 1
@@ -1681,7 +1683,6 @@ texture = ExtResource("15_cde7m")
 modulate = Color(0.618206, 0.856389, 0.543433, 1)
 show_behind_parent = true
 texture_filter = 1
-scale = Vector2(1, 1)
 emitting = false
 amount = 60
 process_material = ExtResource("16_2vwpe")
@@ -1692,7 +1693,6 @@ local_coords = true
 show_behind_parent = true
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_7xrq6")
-scale = Vector2(1, 1)
 emitting = false
 amount = 50
 lifetime = 1.5
@@ -1716,7 +1716,6 @@ anim_speed_max = 1.0
 show_behind_parent = true
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_7xrq6")
-scale = Vector2(1, 1)
 emitting = false
 amount = 50
 lifetime = 2.0
@@ -1791,7 +1790,6 @@ texture = ExtResource("21_itqv6")
 modulate = Color(0.618206, 0.856389, 0.543433, 1)
 texture_filter = 1
 position = Vector2(-22.7711, -16.0773)
-scale = Vector2(1, 1)
 emitting = false
 amount = 500
 process_material = ExtResource("22_k7qxp")
@@ -1860,12 +1858,27 @@ texture = ExtResource("10_mtygq")
 modulate = Color(0.618206, 0.856389, 0.543433, 1)
 texture_filter = 1
 position = Vector2(7.43914, 26.7809)
-scale = Vector2(1, 1)
 emitting = false
 amount = 50
 process_material = ExtResource("39_qemm1")
 texture = ExtResource("16_3nagu")
 lifetime = 2.0
 local_coords = true
+
+[node name="RadialGradient" type="Sprite2D" parent="Storyboard/IntroAnimatic/FlowerContainer"]
+self_modulate = Color(0.702007, 0.98, 0.5292, 0.411765)
+material = SubResource("CanvasItemMaterial_pcews")
+position = Vector2(33.4227, -122.828)
+rotation = -1.5708
+scale = Vector2(2.0914, 2.88488)
+texture = ExtResource("17_yna02")
+offset = Vector2(0, -2.21594)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Storyboard/IntroAnimatic/FlowerContainer/RadialGradient"]
+deterministic = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_5f7dt")
+}
 
 [node name="TimeManager" parent="." instance=ExtResource("4_46fug")]
