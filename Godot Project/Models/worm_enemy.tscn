@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://n0e8t8q312gb"]
+
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
+[ext_resource type="Script" path="res://Models/ExampleEnemy.gd" id="2_uha87"]
+[ext_resource type="Texture2D" uid="uid://c41vu2uwx1ekr" path="res://ModelContents/Enemies/Worm_Enemy/Worm_Still.PNG" id="3_ioymg"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_aabbn"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_2m7wb"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_aibhf"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_a64jw"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_q36qw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
+radius = 37.5
+height = 107.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
+radius = 7.00001
+height = 59.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
+radius = 75.0
+height = 218.0
+
+[node name="Worm_Enemy" type="CanvasGroup"]
+process_priority = 5
+texture_filter = 1
+position = Vector2(84, 46)
+script = ExtResource("1_i73wb")
+entityZIndexOffset = 24
+
+[node name="Worm_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody")]
+script = ExtResource("2_uha87")
+enemyName = "Slime"
+maxHealth = 40
+cashDropVariance = 4
+hitBoxRigidBody = NodePath("Hitbox")
+collisionRigidBody = NodePath("ColliderBox")
+hasAI = true
+walkAnimation = "Walk"
+deathAnimation = "Death"
+hitFrontAnimation = "Hit"
+healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+
+[node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/Hitbox"]
+z_index = -2
+position = Vector2(27, 17)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_64nc2")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)
+
+[node name="ColliderBox" type="RigidBody2D" parent="Worm_Enemy"]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(28, 124)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_a2did")
+debug_color = Color(0, 0.648944, 0.163145, 0.42)
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(27, 15)
+rotation = 3.14159
+shape = SubResource("CapsuleShape2D_aosje")
+disabled = true
+debug_color = Color(0, 0.92, 0.720667, 0.184314)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Worm_Enemy/ColliderBox"]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+path_max_distance = 120.0
+path_metadata_flags = 0
+
+[node name="FlipTransform" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(38.202, 24.428)
+scale = Vector2(0.169839, 0.170484)
+texture = ExtResource("3_ioymg")
+
+[node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(16, 124)
+scale = Vector2(2.19531, 1.51712)
+texture = ExtResource("4_aabbn")
+offset = Vector2(0, -39.2243)
+
+[node name="HitSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("5_2m7wb")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("6_aibhf")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("7_a64jw")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/DeathSounds"]
+stream = ExtResource("8_q36qw")
+volume_db = 4.0

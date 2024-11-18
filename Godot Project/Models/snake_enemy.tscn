@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://ge1chou4evxe"]
+
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_j3v26"]
+[ext_resource type="Script" path="res://Models/ExampleEnemy.gd" id="2_7lhsk"]
+[ext_resource type="Texture2D" uid="uid://c8vqt3ejkpkxu" path="res://ModelContents/Enemies/Snake_Enemy/Snake_Still.PNG" id="3_i2ipl"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_py10l"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_4nv2j"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_dgyuq"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_ay5ug"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_tpaa1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
+radius = 19.4225
+height = 49.7291
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
+radius = 2.0
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
+radius = 36.0167
+height = 101.39
+
+[node name="Snake_Enemy" type="CanvasGroup"]
+process_priority = 5
+texture_filter = 1
+position = Vector2(168, 92)
+script = ExtResource("1_j3v26")
+entityZIndexOffset = 24
+
+[node name="Snake_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody")]
+script = ExtResource("2_7lhsk")
+enemyName = "Slime"
+maxHealth = 40
+cashDropVariance = 4
+hitBoxRigidBody = NodePath("Hitbox")
+collisionRigidBody = NodePath("ColliderBox")
+hasAI = true
+walkAnimation = "Walk"
+deathAnimation = "Death"
+hitFrontAnimation = "Hit"
+healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+
+[node name="Hitbox" type="RigidBody2D" parent="Snake_Enemy"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/Hitbox"]
+z_index = -2
+position = Vector2(-53, 7)
+rotation = -1.309
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_64nc2")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)
+
+[node name="ColliderBox" type="RigidBody2D" parent="Snake_Enemy"]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(-50, 36)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_a2did")
+debug_color = Color(0, 0.648944, 0.163145, 0.42)
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(-54, 6)
+rotation = 1.8326
+shape = SubResource("CapsuleShape2D_aosje")
+disabled = true
+debug_color = Color(0, 0.92, 0.720667, 0.184314)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Snake_Enemy/ColliderBox"]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+path_max_distance = 120.0
+path_metadata_flags = 0
+
+[node name="FlipTransform" type="Node2D" parent="Snake_Enemy/ColliderBox"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(-53.9999, 0.608002)
+scale = Vector2(0.154519, 0.133811)
+texture = ExtResource("3_i2ipl")
+
+[node name="Shadow" type="Sprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(-57, 37)
+scale = Vector2(1.42828, 0.680655)
+texture = ExtResource("4_py10l")
+offset = Vector2(0, -39.2243)
+
+[node name="HitSounds" type="Node2D" parent="Snake_Enemy/ColliderBox"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("5_4nv2j")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("6_dgyuq")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("7_ay5ug")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="Snake_Enemy/ColliderBox"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/DeathSounds"]
+stream = ExtResource("8_tpaa1")
+volume_db = 4.0
