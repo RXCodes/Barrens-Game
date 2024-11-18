@@ -1,8 +1,31 @@
 extends CanvasLayer
 
+# preload gpu particle effects to reduce lag during runtime
+var preloadParticleInstances = [
+	 preload("res://Particles/FallingLeaves.tres"),
+	 preload("res://Particles/AbsorptionCenter.tres"),
+	 preload("res://Particles/AbsorptionFromTree.tres"),
+	 preload("res://Particles/AbsorptionFromGround.tres")
+]
+func preloadParticles() -> void:
+	var particles = []
+	for particle: ParticleProcessMaterial in preloadParticleInstances:
+		var instance = GPUParticles2D.new()
+		instance.process_material = particle
+		instance.one_shot = true
+		instance.modulate = Color.TRANSPARENT
+		instance.emitting = true
+		add_child(instance)
+		particles.append(instance)
+	await TimeManager.wait(1.0)
+	for particle: GPUParticles2D in particles:
+		particle.queue_free()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$IntroAnimatic.hide()
 	await get_tree().physics_frame
+	preloadParticles()
 	await TimeManager.wait(0.5)
 	
 	# Slide 1
@@ -106,6 +129,16 @@ func _ready() -> void:
 	await TimeManager.wait(1.35)
 	
 	# here, we can play a little animatic
+	var animaticAnimationPlayer = $IntroAnimatic/AnimationPlayer
+	animaticAnimationPlayer.play("animatic")
+	$IntroAnimatic/WizardContainer/Wizard/AnimationPlayer.play("WizardIdle")
+	$IntroAnimatic/WandContainer/AnimationPlayer.play("WandIdle")
+	$IntroAnimatic/TreeContainer/RadialGradient/AnimationPlayer.play("Gradient")
+	$IntroAnimatic/TreeContainer/TopRadialGradient/AnimationPlayer.play("Gradient")
+	await get_tree().physics_frame
+	$IntroAnimatic.show()
+	await TimeManager.wait(animaticAnimationPlayer.current_animation_length)
+	$IntroAnimatic.hide()
 	
 	# Slide 12
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide12.png"))
@@ -123,7 +156,7 @@ func _ready() -> void:
 	StoryboardImage.fadeIn(1.0)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.interval = 0.035
-	TypewriterText.setText("His wand had the power to control the element of water.")
+	TypewriterText.setText("His wand has the power to control the element of water.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
 	TypewriterText.setText("Legends say that its energy comes from absorbing large amounts of water.")
@@ -140,7 +173,7 @@ func _ready() -> void:
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide14.png"))
 	StoryboardImage.fadeIn(1.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
-	TypewriterText.setText("This once beautiful, lush, and properous town is now...   \nBarren.")
+	TypewriterText.setText("This once beautiful, lush, and prosperous town is now...   \nBarren.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
@@ -216,7 +249,7 @@ func _ready() -> void:
 	
 	# Slide 22
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide22.png"))
-	StoryboardImage.fadeIn(0.75)
+	StoryboardImage.fadeIn(1.25)
 	TypewriterText.interval = 0.125
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.SHERIFF)
 	TypewriterText.setText('"Please, protect our village. \nWe can\'t lose anymore people."')
