@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://bx7uhlvcq0jey"]
+[gd_scene load_steps=88 format=3 uid="uid://bx7uhlvcq0jey"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_taljv"]
 [ext_resource type="Script" path="res://Scenes/IntroStoryboard.gd" id="2_0qdrk"]
@@ -30,12 +30,16 @@
 [ext_resource type="Texture2D" uid="uid://cp8qx7nd18cdf" path="res://Scenes/Intro/Images/Animatic/RadialGradient.png" id="17_yna02"]
 [ext_resource type="Texture2D" uid="uid://d3o3h014v7rkf" path="res://Particles/SmokeAnimation/SmokeAnimation.png" id="18_7jkv5"]
 [ext_resource type="AudioStream" uid="uid://dtf33auwiyw3q" path="res://Scenes/Intro/WandExplode.mp3" id="18_v2d7v"]
+[ext_resource type="AudioStream" uid="uid://hhe5s0mxeg2m" path="res://Scenes/Intro/LeavesFalling.mp3" id="19_3oand"]
+[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="19_isdva"]
 [ext_resource type="AudioStream" uid="uid://bucfxvvt16wdn" path="res://Scenes/Intro/WandPower.mp3" id="19_qa10a"]
+[ext_resource type="AudioStream" uid="uid://c1jcermcuxqt8" path="res://Scenes/Intro/Drying.mp3" id="20_0r5nb"]
 [ext_resource type="Texture2D" uid="uid://8y6f8ivt10xw" path="res://Scenes/Intro/Images/Animatic/TreeStem.png" id="20_felu0"]
 [ext_resource type="Texture2D" uid="uid://0hgg3a65nky3" path="res://Scenes/Intro/Images/Animatic/TreeLeaves.png" id="21_itqv6"]
 [ext_resource type="Material" uid="uid://wnpkhx11v7jx" path="res://Particles/FallingLeaves.tres" id="22_k7qxp"]
 [ext_resource type="Texture2D" uid="uid://dylnc4a7yf5i" path="res://Scenes/Intro/Images/Animatic/DesaturatedTreeStem.png" id="22_v08cc"]
 [ext_resource type="Texture2D" uid="uid://uhopbwtcuqjs" path="res://Scenes/Intro/Images/Animatic/DesaturatedTreeLeaves.png" id="23_eluda"]
+[ext_resource type="AudioStream" uid="uid://dgufnl1xvxk3e" path="res://Scenes/Intro/Withering.mp3" id="23_ki8fn"]
 [ext_resource type="Shader" path="res://Scenes/Intro/Dissolve.gdshader" id="23_wyxm1"]
 [ext_resource type="Texture2D" uid="uid://dji12f064dc1f" path="res://Scenes/Intro/Images/Animatic/DeadLeaf.png" id="25_6optp"]
 [ext_resource type="Material" uid="uid://osk1j6a5tira" path="res://Particles/AbsorptionFromTree.tres" id="28_2fet4"]
@@ -700,6 +704,30 @@ tracks/46/keys = {
 "update": 0,
 "values": [-4.0]
 }
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Primary:volume_db")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-4.0]
+}
+tracks/48/type = "value"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Tertiary:volume_db")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_dpnrd"]
 resource_name = "animatic"
@@ -1267,8 +1295,16 @@ tracks/46/keys = {
 "end_offset": 0.0,
 "start_offset": 0.0,
 "stream": ExtResource("18_v2d7v")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_3oand")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("20_0r5nb")
 }],
-"times": PackedFloat32Array(3.26667)
+"times": PackedFloat32Array(3.26667, 7, 11.9667)
 }
 tracks/46/use_blend = true
 tracks/47/type = "value"
@@ -1278,10 +1314,10 @@ tracks/47/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Primary:volum
 tracks/47/interp = 1
 tracks/47/loop_wrap = true
 tracks/47/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(6.86667, 6.96667, 10.4667, 11.8333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [-4.0, -12.0, -12.0, 0.0]
 }
 tracks/48/type = "audio"
 tracks/48/imported = false
@@ -1291,11 +1327,15 @@ tracks/48/interp = 1
 tracks/48/loop_wrap = true
 tracks/48/keys = {
 "clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_isdva")
+}, {
 "end_offset": 1.47013,
 "start_offset": 0.0,
 "stream": ExtResource("19_qa10a")
 }],
-"times": PackedFloat32Array(3.76667)
+"times": PackedFloat32Array(0, 3.76667)
 }
 tracks/48/use_blend = true
 tracks/49/type = "value"
@@ -1305,10 +1345,37 @@ tracks/49/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Secondary:vol
 tracks/49/interp = 1
 tracks/49/loop_wrap = true
 tracks/49/keys = {
-"times": PackedFloat32Array(15.0667, 15.9333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 3.73333, 3.76667, 15.0667, 15.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [-4.0, -50.0]
+"values": [-9.0, -7.0, -4.0, -4.0, -50.0]
+}
+tracks/50/type = "audio"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Tertiary")
+tracks/50/interp = 1
+tracks/50/loop_wrap = true
+tracks/50/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("23_ki8fn")
+}],
+"times": PackedFloat32Array(11.6667)
+}
+tracks/50/use_blend = true
+tracks/51/type = "value"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Tertiary:volume_db")
+tracks/51/interp = 1
+tracks/51/loop_wrap = true
+tracks/51/keys = {
+"times": PackedFloat32Array(11.1333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-2.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qda5i"]
@@ -1966,6 +2033,8 @@ volume_db = -4.0
 
 [node name="Secondary" type="AudioStreamPlayer" parent="Storyboard/IntroAnimatic/AudioStreamers"]
 volume_db = -4.0
+
+[node name="Tertiary" type="AudioStreamPlayer" parent="Storyboard/IntroAnimatic/AudioStreamers"]
 
 [node name="Ambience" type="AudioStreamPlayer" parent="Storyboard"]
 stream = ExtResource("41_o8dwi")

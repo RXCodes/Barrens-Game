@@ -112,9 +112,9 @@ func _ready() -> void:
 	StoryboardImage.fadeIn(1.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.interval = 0.035
+	TypewriterText.setText("Something emerges from the portal...")
 	await TimeManager.wait(1.0)
 	IntroAudioController.fadeIn("WizardAppears", 0.0, -8.0)
-	TypewriterText.setText("Something emerges from the portal...")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
