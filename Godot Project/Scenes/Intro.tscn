@@ -2078,4 +2078,9 @@ volume_db = -8.0
 stream = ExtResource("50_kxykj")
 volume_db = -8.0
 
+[node name="Bell" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("19_isdva")
+volume_db = -8.0
+pitch_scale = 0.6
+
 [node name="TimeManager" parent="." instance=ExtResource("4_46fug")]

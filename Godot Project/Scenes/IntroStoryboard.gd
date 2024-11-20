@@ -176,6 +176,7 @@ func _ready() -> void:
 	StoryboardImage.fadeOut(1.0)
 	TypewriterText.fadeOut(1.0)
 	await TimeManager.wait(1.0)
+	IntroAudioController.fadeIn("Bell", 0.0, -8.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide13.png"))
 	StoryboardImage.fadeIn(1.0)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
@@ -293,3 +294,5 @@ func _ready() -> void:
 
 	if get_tree() == null:
 		return
+	await TimeManager.wait(3.0)
+	NodeRelations.loadScene("res://Scenes/Village1.tscn")
