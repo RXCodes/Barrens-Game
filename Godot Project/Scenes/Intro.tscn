@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bx7uhlvcq0jey"]
+[gd_scene load_steps=84 format=3 uid="uid://bx7uhlvcq0jey"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_taljv"]
 [ext_resource type="Script" path="res://Scenes/IntroStoryboard.gd" id="2_0qdrk"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://c5rkg7o1488k4" path="res://Scenes/Intro/Images/Animatic/FlowerDeathAnimation/7.png" id="17_veioj"]
 [ext_resource type="Texture2D" uid="uid://cp8qx7nd18cdf" path="res://Scenes/Intro/Images/Animatic/RadialGradient.png" id="17_yna02"]
 [ext_resource type="Texture2D" uid="uid://d3o3h014v7rkf" path="res://Particles/SmokeAnimation/SmokeAnimation.png" id="18_7jkv5"]
+[ext_resource type="AudioStream" uid="uid://dtf33auwiyw3q" path="res://Scenes/Intro/WandExplode.mp3" id="18_v2d7v"]
+[ext_resource type="AudioStream" uid="uid://bucfxvvt16wdn" path="res://Scenes/Intro/WandPower.mp3" id="19_qa10a"]
 [ext_resource type="Texture2D" uid="uid://8y6f8ivt10xw" path="res://Scenes/Intro/Images/Animatic/TreeStem.png" id="20_felu0"]
 [ext_resource type="Texture2D" uid="uid://0hgg3a65nky3" path="res://Scenes/Intro/Images/Animatic/TreeLeaves.png" id="21_itqv6"]
 [ext_resource type="Material" uid="uid://wnpkhx11v7jx" path="res://Particles/FallingLeaves.tres" id="22_k7qxp"]
@@ -41,6 +43,16 @@
 [ext_resource type="Texture2D" uid="uid://dldhayattemrj" path="res://Scenes/Intro/Images/Animatic/IntroSand.png" id="38_lbxxu"]
 [ext_resource type="Texture2D" uid="uid://bb8jnqapceedd" path="res://Scenes/Intro/Images/Animatic/GrassDead.png" id="38_nxnni"]
 [ext_resource type="Material" uid="uid://vc5iog3bdoox" path="res://Particles/AbsorptionFromGround.tres" id="39_qemm1"]
+[ext_resource type="AudioStream" uid="uid://ceveu3bh3qvn" path="res://Scenes/Intro/VillageAmbience.mp3" id="41_o8dwi"]
+[ext_resource type="Script" path="res://Scenes/Intro/IntroAmbience.gd" id="42_lebli"]
+[ext_resource type="Script" path="res://Scenes/Intro/CustomAudioController.gd" id="43_5q207"]
+[ext_resource type="AudioStream" uid="uid://cagta0qlb7hmx" path="res://Scenes/Intro/PortalAmbienceFar.mp3" id="44_wew1i"]
+[ext_resource type="AudioStream" uid="uid://dqxlx4a1tvuml" path="res://Scenes/Intro/PortalExplosion.mp3" id="45_ks44l"]
+[ext_resource type="AudioStream" uid="uid://b70hmrkk7gs7r" path="res://Scenes/Intro/PortalAmbienceNearby.mp3" id="45_xq52t"]
+[ext_resource type="AudioStream" uid="uid://da6vedsrk20hn" path="res://Environment/WalkSounds/Walk1.mp3" id="46_cqu80"]
+[ext_resource type="AudioStream" uid="uid://c1cnf1bpf3ywt" path="res://Scenes/Intro/PortalWizardEntered.mp3" id="46_dm884"]
+[ext_resource type="AudioStream" uid="uid://4gvhnqo10fuh" path="res://Scenes/Intro/WizardNoticed.mp3" id="47_3i6am"]
+[ext_resource type="AudioStream" uid="uid://3k3dc1u70grp" path="res://Environment/WalkSounds/Walk2.mp3" id="50_kxykj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_u1762"]
 font = ExtResource("2_km675")
@@ -676,6 +688,18 @@ tracks/45/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/46/type = "value"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Secondary:volume_db")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-4.0]
+}
 
 [sub_resource type="Animation" id="Animation_dpnrd"]
 resource_name = "animatic"
@@ -1179,7 +1203,7 @@ tracks/41/path = NodePath("Storyboard/IntroAnimatic/FlowerContainer/DeadGrass:se
 tracks/41/interp = 1
 tracks/41/loop_wrap = true
 tracks/41/keys = {
-"times": PackedFloat32Array(0.0333333, 11.5, 12.7667),
+"times": PackedFloat32Array(0.0333333, 11.5, 12.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -1203,7 +1227,7 @@ tracks/43/path = NodePath("Storyboard/IntroAnimatic/FlowerContainer/DeadGrass:ma
 tracks/43/interp = 1
 tracks/43/loop_wrap = true
 tracks/43/keys = {
-"times": PackedFloat32Array(12.6667, 13.8),
+"times": PackedFloat32Array(12.4, 14.3333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [1.0, 0.0]
@@ -1215,7 +1239,7 @@ tracks/44/path = NodePath("Storyboard/IntroAnimatic/FlowerContainer/Sand:visible
 tracks/44/interp = 1
 tracks/44/loop_wrap = true
 tracks/44/keys = {
-"times": PackedFloat32Array(0, 12.6667),
+"times": PackedFloat32Array(0, 12.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -1231,6 +1255,60 @@ tracks/45/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.568465, 0.436262, 0.384201, 1), Color(1, 1, 1, 1)]
+}
+tracks/46/type = "audio"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Primary")
+tracks/46/interp = 1
+tracks/46/loop_wrap = true
+tracks/46/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("18_v2d7v")
+}],
+"times": PackedFloat32Array(3.26667)
+}
+tracks/46/use_blend = true
+tracks/47/type = "value"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Primary:volume_db")
+tracks/47/interp = 1
+tracks/47/loop_wrap = true
+tracks/47/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/48/type = "audio"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Secondary")
+tracks/48/interp = 1
+tracks/48/loop_wrap = true
+tracks/48/keys = {
+"clips": [{
+"end_offset": 1.47013,
+"start_offset": 0.0,
+"stream": ExtResource("19_qa10a")
+}],
+"times": PackedFloat32Array(3.76667)
+}
+tracks/48/use_blend = true
+tracks/49/type = "value"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Storyboard/IntroAnimatic/AudioStreamers/Secondary:volume_db")
+tracks/49/interp = 1
+tracks/49/loop_wrap = true
+tracks/49/keys = {
+"times": PackedFloat32Array(15.0667, 15.9333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-4.0, -50.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qda5i"]
@@ -1547,6 +1625,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="DialoguePlayer" type="AudioStreamPlayer" parent="Storyboard"]
 stream = ExtResource("3_5qsbt")
+volume_db = -15.0
 max_polyphony = 10
 
 [node name="HoldToSkipLabel" type="Label" parent="Storyboard"]
@@ -1626,7 +1705,6 @@ libraries = {
 }
 
 [node name="IntroAnimatic" type="Sprite2D" parent="Storyboard"]
-visible = false
 self_modulate = Color(1, 0.35, 0.35, 1)
 clip_children = 2
 texture_filter = 1
@@ -1880,5 +1958,55 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_5f7dt")
 }
+
+[node name="AudioStreamers" type="Node" parent="Storyboard/IntroAnimatic"]
+
+[node name="Primary" type="AudioStreamPlayer" parent="Storyboard/IntroAnimatic/AudioStreamers"]
+volume_db = -4.0
+
+[node name="Secondary" type="AudioStreamPlayer" parent="Storyboard/IntroAnimatic/AudioStreamers"]
+volume_db = -4.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="Storyboard"]
+stream = ExtResource("41_o8dwi")
+volume_db = -8.0
+parameters/looping = true
+script = ExtResource("42_lebli")
+
+[node name="CustomAudioController" type="Node" parent="Storyboard"]
+script = ExtResource("43_5q207")
+
+[node name="PortalAmbienceFar" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("44_wew1i")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="PortalExplosion" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("45_ks44l")
+volume_db = -8.0
+parameters/looping = false
+
+[node name="WizardAppears" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("46_dm884")
+volume_db = -8.0
+parameters/looping = false
+
+[node name="WizardNoticed" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("47_3i6am")
+volume_db = -8.0
+parameters/looping = false
+
+[node name="PortalAmbienceNear" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("45_xq52t")
+volume_db = -5.0
+parameters/looping = true
+
+[node name="Footstep" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("46_cqu80")
+volume_db = -8.0
+
+[node name="Footstep2" type="AudioStreamPlayer" parent="Storyboard/CustomAudioController"]
+stream = ExtResource("50_kxykj")
+volume_db = -8.0
 
 [node name="TimeManager" parent="." instance=ExtResource("4_46fug")]

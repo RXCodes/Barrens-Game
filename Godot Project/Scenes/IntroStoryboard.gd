@@ -29,6 +29,7 @@ func _ready() -> void:
 	await TimeManager.wait(0.5)
 	
 	# Slide 1
+	IntroAmbience.fadeIn(1.5)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide1.png"))
 	StoryboardImage.fadeIn(1.0)
 	await TimeManager.wait(3.0)
@@ -42,6 +43,7 @@ func _ready() -> void:
 	# Slide 2
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide2.png"))
 	StoryboardImage.fadeIn(1.0)
+	IntroAudioController.fadeIn("PortalAmbienceFar", 2.0, -10.0)
 	TypewriterText.setText("But one day, a deep blue portal bursts open on a street.")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
@@ -52,7 +54,12 @@ func _ready() -> void:
 	# Slide 3
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide3.png"))
 	StoryboardImage.fadeIn(1.0)
+	IntroAmbience.changeVolume(2.0, -12)
 	TypewriterText.setText("The town sheriff ran out into the street to observe the commotion.")
+	await TimeManager.wait(0.5)
+	IntroAudioController.fadeIn("Footstep", 0.0, -4.0)
+	await TimeManager.wait(0.5)
+	IntroAudioController.fadeIn("Footstep2", 0.0, -4.0)
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
@@ -66,13 +73,19 @@ func _ready() -> void:
 	await TimeManager.wait(3.5)
 	
 	# Slide 5
+	IntroAudioController.fadeOut("PortalAmbienceFar", 1.0)
+	IntroAudioController.fadeIn("PortalAmbienceNear", 2.0, -9.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide5.png"))
 	StoryboardImage.fadeIn(1.0)
 	TypewriterText.interval = 0.035
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.setText("As the sheriff slowly approaches the portal, it begins to get brighter.")
+	IntroAmbience.fadeOut(4.0)
 	await TypewriterText.finishedAnimation
-	await TimeManager.wait(3.0)
+	await TimeManager.wait(0.5)
+	IntroAudioController.fadeIn("PortalExplosion", 0.0, -8.0)
+	await TimeManager.wait(1.25)
+	IntroAudioController.fadeOut("PortalAmbienceNear", 0.0)
 	
 	# Slide 6
 	TypewriterText.setText("")
@@ -94,15 +107,19 @@ func _ready() -> void:
 	await TimeManager.wait(3.0)
 	
 	# Slide 8
+	IntroAudioController.fadeIn("PortalAmbienceNear", 1.0, -10.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide8.png"))
 	StoryboardImage.fadeIn(1.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
 	TypewriterText.interval = 0.035
+	await TimeManager.wait(1.0)
+	IntroAudioController.fadeIn("WizardAppears", 0.0, -8.0)
 	TypewriterText.setText("Something emerges from the portal...")
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(3.0)
 	
 	# Slide 9
+	IntroAudioController.fadeIn("WizardNoticed", 0.0, -6.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide9.png"))
 	StoryboardImage.fadeIn(2.5)
 	TypewriterText.interval = 0.1
@@ -112,6 +129,8 @@ func _ready() -> void:
 	
 	# Slide 10
 	TypewriterText.interval = 0.035
+	IntroAudioController.fadeOut("PortalAmbienceNear", 1.0)
+	IntroAudioController.fadeIn("PortalAmbienceFar", 1.0, -10.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide10.png"))
 	StoryboardImage.fadeIn(1.0)
 	TypewriterText.setText("The wizard slowly made his way to the sheriff.")
@@ -119,8 +138,10 @@ func _ready() -> void:
 	await TimeManager.wait(2.0)
 	
 	# Slide 11
+	IntroAudioController.fadeOut("PortalAmbienceFar", 5.0)
 	StoryboardImage.fadeOut(0.5)
 	await TimeManager.wait(0.5)
+	IntroAudioController.fadeIn("WizardNoticed", 0.0, -6.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide11.png"))
 	StoryboardImage.fadeIn(0.5)
 	await TimeManager.wait(2.75)
@@ -173,6 +194,8 @@ func _ready() -> void:
 	await TimeManager.wait(1.0)
 	
 	# Slide 14
+	IntroAmbience.current.stream = preload("res://Scenes/Ambience.mp3")
+	IntroAmbience.fadeIn(5.0)
 	StoryboardImage.setTexture(preload("res://Scenes/Intro/Images/Slide14.png"))
 	StoryboardImage.fadeIn(1.5)
 	TypewriterText.setDialogueType(TypewriterText.DialogueType.DEFAULT)
@@ -264,6 +287,7 @@ func _ready() -> void:
 	TypewriterText.setText('"I will, dad."')
 	await TypewriterText.finishedAnimation
 	await TimeManager.wait(2.0)
+	IntroAmbience.fadeOut(2.5)
 	StoryboardImage.fadeOut(2.5)
 	TypewriterText.fadeOut(2.5)
 
