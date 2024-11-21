@@ -144,7 +144,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
-		Bullet.fire(gunInteractor.originNode.global_position, angleRadians, self, sourceNode)
+		Bullet.fire(gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset, angleRadians, self, sourceNode)
 	await TimeManager.wait(fireRate)
 	canFire = true
 
@@ -199,7 +199,7 @@ func dropShell() -> void:
 	if shellTexture:
 		var newShell = BulletShell.new()
 		newShell.texture = shellTexture
-		newShell.global_position = gunInteractor.originNode.global_position
+		newShell.global_position = gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset
 		newShell.xVelocity = Vector2.from_angle(lastBulletAngleRadians).x * -35
 		NodeRelations.rootNode.find_child("Level").add_child(newShell)
 
@@ -207,7 +207,7 @@ func dropMagazine() -> void:
 	if magazineTexture:
 		var newMagazine = BulletShell.new()
 		newMagazine.texture = magazineTexture
-		newMagazine.global_position = gunInteractor.originNode.global_position
+		newMagazine.global_position = gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset
 		NodeRelations.rootNode.find_child("Level").add_child(newMagazine)
 
 var cockingAudioPlayer: AudioStreamPlayer2D
@@ -285,3 +285,4 @@ class Interactor:
 	var onReloadInterrupted: Callable
 	var onCockWeapon: Callable
 	var originNode: Node2D
+	var sourcePositionOffset: Vector2

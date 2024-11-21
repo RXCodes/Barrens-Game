@@ -9,6 +9,8 @@ static var zScoreKey = "zScore"
 var intervalCheck: float = 0.1
 
 func _process(delta: float) -> void:
+	if true:
+		return
 	currentTime -= delta
 	if currentTime <= 0 or forceSort:
 		forceSort = false

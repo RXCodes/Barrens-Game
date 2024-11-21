@@ -42,6 +42,7 @@ func _ready() -> void:
 	gunInteractor.onFinishReload = self.onFinishReload
 	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
 	gunInteractor.onReload = self.onReload
+	gunInteractor.sourcePositionOffset = Vector2(0, -48)
 	selectWeapon("Shotgun")
 	refreshAmmoDisplay()
 	hitBoxRigidBody = $"../Hitbox"
