@@ -1328,7 +1328,6 @@ offset = Vector2(7.8855, -30.6798)
 
 [node name="Coat" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(-7.62939e-06, -4.60002)
-scale = Vector2(1, 1)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
