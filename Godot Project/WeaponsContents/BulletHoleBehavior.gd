@@ -9,7 +9,6 @@ static func create(position: Vector2, grounded: bool) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_meta(ZIndexSorter.zScoreKey, -INF)
 	await TimeManager.wait(randf_range(4.5, 8.0))
 	var fadeTime = randf_range(4.0, 6.0)
 	var tween = NodeRelations.createTween()

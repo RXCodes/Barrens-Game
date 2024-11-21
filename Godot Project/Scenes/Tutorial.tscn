@@ -14,10 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_ecap2"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="13_3im5g"]
 [ext_resource type="Texture2D" uid="uid://dylvv10wwke0e" path="res://Environment/Graveyard/GraveyardFloor.png" id="14_pkr2h"]
-[ext_resource type="Script" path="res://HelperClasses/ZIndexSorter.gd" id="18_l7j5w"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="19_2iiad"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="20_ewlqk"]
-[ext_resource type="Script" path="res://Scenes/EnvironmentSprite.gd" id="20_m2l3e"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="21_3lp5y"]
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="21_ay3om"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="22_wkert"]
@@ -26,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://bu2ad15hd15h4" path="res://Environment/Building/Support/FencePole.png" id="23_rs0wi"]
 [ext_resource type="PackedScene" uid="uid://cipnnialkcda4" path="res://Environment/Building/BasicHouse.tscn" id="24_02fli"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="24_2pvp0"]
+[ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="25_7ft87"]
+[ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="26_67v8x"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_rwois"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="28_ge3ee"]
 
@@ -77,13 +77,13 @@ height = 105.0
 size = Vector2(27, 14.6683)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bkojc"]
-size = Vector2(472.5, 24.3341)
+size = Vector2(451, 24.3341)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn58i"]
-size = Vector2(115, 23)
+size = Vector2(113, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45ucy"]
-size = Vector2(194, 25)
+size = Vector2(215, 25)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_hihye")
@@ -249,7 +249,6 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 process_priority = 100
 y_sort_enabled = true
 position = Vector2(0, 4)
-script = ExtResource("18_l7j5w")
 
 [node name="DummyRender" parent="Level" instance=ExtResource("20_ewlqk")]
 y_sort_enabled = true
@@ -283,7 +282,7 @@ y_sort_enabled = true
 position = Vector2(-3, 39)
 
 [node name="Cactus" parent="Level" instance=ExtResource("22_wkert")]
-position = Vector2(274, 344)
+position = Vector2(321, -77)
 
 [node name="Graveyard" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -370,13 +369,12 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
-script = ExtResource("20_m2l3e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence"]
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence/StaticBody2D"]
-position = Vector2(-0.832916, 242)
+position = Vector2(-0.832947, 251.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_bkojc")
 
@@ -388,20 +386,19 @@ offset_left = 180.0
 offset_top = 112.0
 offset_right = 188.0
 offset_bottom = 205.0
-pivot_offset = Vector2(3, 142)
+pivot_offset = Vector2(6, 78)
 texture = ExtResource("23_rs0wi")
 patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
-script = ExtResource("20_m2l3e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence2"]
 position = Vector2(-1, 21)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence2/StaticBody2D"]
-position = Vector2(8.5, 70.5)
+position = Vector2(8.5, 69.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_vn58i")
 
@@ -419,14 +416,13 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
-script = ExtResource("20_m2l3e")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence3"]
 position = Vector2(-1, 21)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence3/StaticBody2D"]
-position = Vector2(9.5, 110)
+position = Vector2(9.49998, 113.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_45ucy")
 
@@ -450,10 +446,19 @@ shape = SubResource("RectangleShape2D_a4ghs")
 position = Vector2(648, -56)
 
 [node name="Cactus3" parent="Level" instance=ExtResource("23_py5i2")]
-position = Vector2(342, 322)
+position = Vector2(-198, -108)
 
 [node name="Cactus2" parent="Level" instance=ExtResource("24_2pvp0")]
-position = Vector2(299, 291)
+position = Vector2(141, 219)
+
+[node name="Cactus4" parent="Level" instance=ExtResource("25_7ft87")]
+position = Vector2(443, 138)
+
+[node name="Cactus5" parent="Level" instance=ExtResource("26_67v8x")]
+position = Vector2(-309, 338)
+
+[node name="Cactus6" parent="Level" instance=ExtResource("23_py5i2")]
+position = Vector2(906, -8)
 
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 

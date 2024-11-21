@@ -20,7 +20,6 @@ func _ready() -> void:
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
 	moveTween.parallel().tween_property($Cash, "rotation_degrees", randfn(0, 15), tweenDuration)
-	set_meta(ZIndexSorter.zScoreKey, newPosition.y)
 	await TimeManager.wait(1.25)
 	canBePickedUp = true
 
@@ -32,10 +31,10 @@ func _process(delta: float) -> void:
 			pickup()
 	if pickingUp:
 		pickupAnimationProgress += delta / pickupDuration
-		var newPosition = originalPosition.lerp(Player.current.global_position, pickupAnimationProgress)
+		var targetPosition = Player.current.global_position + Vector2(0, -35)
+		var newPosition = originalPosition.lerp(targetPosition, pickupAnimationProgress)
 		global_position = newPosition
-		$Cash.rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.1
-		set_meta(ZIndexSorter.zScoreKey, INF)
+		$Cash.rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.125
 		z_index = 4096
 		if pickupAnimationProgress >= 1.0:
 			Player.current.pickupCash(amount)

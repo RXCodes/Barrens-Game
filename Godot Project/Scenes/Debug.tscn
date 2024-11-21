@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=34 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_a4mxq"]
 [ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="5_fhfcf"]
 [ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="6_wt6eb"]
-[ext_resource type="Script" path="res://HelperClasses/ZIndexSorter.gd" id="9_i8abo"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="12_q6ydc"]
 [ext_resource type="LabelSettings" uid="uid://cfstjkfdvbd10" path="res://UI/DamageIndicatorLabelSettings.tres" id="14_cp6hk"]
@@ -278,7 +277,7 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 
 [node name="Level" type="Node2D" parent="." groups=["NavigationGroup"]]
 process_priority = 100
-script = ExtResource("9_i8abo")
+y_sort_enabled = true
 
 [node name="ExampleRender" parent="Level" instance=ExtResource("17_75868")]
 position = Vector2(330, -11)
@@ -325,6 +324,7 @@ position = Vector2(1235, 766)
 flipX = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
+y_sort_enabled = true
 
 [node name="Cactus" parent="Level" instance=ExtResource("19_i8kru")]
 position = Vector2(274, 344)

@@ -6,7 +6,6 @@ static func spawnParticle(position: Vector2, zIndex: int) -> void:
 	NodeRelations.rootNode.find_child("Level").add_child(newParticle)
 	newParticle.global_position = position
 	newParticle.z_index = zIndex
-	newParticle.set_meta(ZIndexSorter.zScoreKey, position.y + 45)
 
 func _ready() -> void:
 	emitting = true

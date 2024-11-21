@@ -378,6 +378,7 @@ script = ExtResource("1_8l233")
 entityZIndexOffset = 24
 
 [node name="Dummy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+position = Vector2(0, -23)
 script = ExtResource("2_ldgo1")
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")

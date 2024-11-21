@@ -8,7 +8,6 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	xPosition = global_position.x
 	yPosition = global_position.y
-	set_meta(ZIndexSorter.zScoreKey, yPosition + 50)
 	var xTween = NodeRelations.createTween()
 	xTween.tween_property(self, "xPosition", xPosition + randfn(xVelocity, 15), 0.4)
 	xTween.set_ease(Tween.EASE_OUT)

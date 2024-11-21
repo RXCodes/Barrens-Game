@@ -38,9 +38,6 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	fireBullet.gun = gun
 	fireBullet.sourceNode = sourceNode
 	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
-	
-	# forcefully order the bullets for this frame
-	ZIndexSorter.sort()
 
 # bullet functionality
 var fadeTime: float = 0.3
@@ -64,7 +61,6 @@ func _ready() -> void:
 		zScore -= 1
 	else:
 		size.x += 5
-	set_meta(ZIndexSorter.zScoreKey, zScore)
 	var tween = NodeRelations.createTween()
 	var finalColor = self_modulate
 	finalColor.a = 0.0

@@ -1,8 +1,8 @@
-[gd_scene load_steps=70 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=69 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
-[ext_resource type="PackedScene" uid="uid://ca028heqxjty6" path="res://Environment/Ambience.tscn" id="2_q3l28"]
+[ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="3_4xtrd"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="4_i2ivd"]
 [ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="5_pkggm"]
@@ -14,7 +14,6 @@
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="11_lspg1"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_p5o2j"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="13_5d4x4"]
-[ext_resource type="Script" path="res://HelperClasses/ZIndexSorter.gd" id="16_0asqa"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="17_0ajqr"]
 [ext_resource type="PackedScene" uid="uid://ctm05ljoj7upc" path="res://Environment/Building/HouseFoundation.tscn" id="17_6sxbk"]
 [ext_resource type="PackedScene" uid="uid://cipnnialkcda4" path="res://Environment/Building/BasicHouse.tscn" id="17_7est2"]
@@ -539,96 +538,100 @@ patch_margin_bottom = 34
 
 [node name="Level" type="Node2D" parent="." groups=["NavigationGroup"]]
 process_priority = 100
-script = ExtResource("16_0asqa")
+y_sort_enabled = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("17_0ajqr")]
+y_sort_enabled = true
 
 [node name="Cactus" parent="Level" instance=ExtResource("18_sejpj")]
 position = Vector2(220, -145)
 
 [node name="House" parent="Level" instance=ExtResource("17_7est2")]
-position = Vector2(-52, 3226)
+position = Vector2(556, 3096)
 
 [node name="House8" type="CanvasGroup" parent="Level"]
-position = Vector2(-1122, 638)
+position = Vector2(-462, 519)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House8"]
-position = Vector2(608, -124)
+position = Vector2(-52, -14)
 
 [node name="Wall" parent="Level/House8" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -251.0
+offset_top = -247.0
+offset_right = -214.0
+offset_bottom = -216.0
 scale = Vector2(12.0882, 6.56532)
 depth = 76.0
 
 [node name="WindowFrame" parent="Level/House8" instance=ExtResource("21_fgcst")]
-position = Vector2(495, -292)
+position = Vector2(-165, -182)
 texture = ExtResource("22_wlfva")
 windowType = 0
 
 [node name="HeavyDoorFrame" parent="Level/House8" instance=ExtResource("20_3niti")]
-position = Vector2(658, -295)
+position = Vector2(-2, -185)
 
 [node name="WindowFrame2" parent="Level/House8" instance=ExtResource("21_fgcst")]
-position = Vector2(766, -294)
+position = Vector2(106, -184)
 texture = ExtResource("22_wlfva")
 windowType = 0
 
 [node name="Roof" parent="Level/House8" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -653.0
-offset_right = 402.0
-offset_bottom = -643.0
+offset_left = -275.0
+offset_top = -543.0
+offset_right = -258.0
+offset_bottom = -533.0
 scale = Vector2(29.1528, 29.8659)
 
 [node name="Wall2" parent="Level/House8" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -251.0
+offset_top = -247.0
+offset_right = -214.0
+offset_bottom = -216.0
 scale = Vector2(12.0882, 6.56532)
 wallType = 1
 depth = 76.0
 
 [node name="VerticalBeam" parent="Level/House8" instance=ExtResource("18_1toat")]
-offset_top = -358.0
-offset_bottom = -327.0
+offset_left = -77.0
+offset_top = -248.0
+offset_right = -40.0
+offset_bottom = -217.0
 scale = Vector2(2, 6.50785)
 
 [node name="HouseFoundation" parent="Level/House8" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -256.0
+offset_top = 4.0
+offset_right = -239.0
+offset_bottom = 14.0
 scale = Vector2(27.2205, 1)
 
 [node name="Fence" parent="Level/House8" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -241.0
+offset_top = -45.0
+offset_right = -227.0
+offset_bottom = -35.0
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Fence2" parent="Level/House8" instance=ExtResource("18_p3qbl")]
-offset_left = 737.0
-offset_top = -154.0
-offset_right = 751.0
-offset_bottom = -144.0
+offset_left = 77.0
+offset_top = -44.0
+offset_right = 91.0
+offset_bottom = -34.0
 scale = Vector2(11.61, 1)
 showRightFencePole = false
 
 [node name="Stairs" parent="Level/House8" instance=ExtResource("18_pdu4m")]
-offset_left = 601.0
-offset_top = -152.0
-offset_right = 641.0
-offset_bottom = -112.0
+offset_left = -58.9999
+offset_top = -42.0
+offset_right = -18.9999
+offset_bottom = -2.0
 scale = Vector2(3.49736, 2.64641)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House8"]
+position = Vector2(-660, 110)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House8/StaticBody2D"]
@@ -644,6 +647,7 @@ shape = SubResource("RectangleShape2D_nw765")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House8"]
+position = Vector2(-660, 110)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House8/Area2D"]
@@ -652,63 +656,64 @@ shape = SubResource("RectangleShape2D_0lxle")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House7" type="CanvasGroup" parent="Level"]
-position = Vector2(2537, 3904)
+position = Vector2(3166, 3785)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House7"]
-position = Vector2(608, -124)
+position = Vector2(-21, -5)
 
 [node name="Wall" parent="Level/House7" instance=ExtResource("17_biqno")]
-offset_left = 416.0
-offset_top = -357.0
-offset_right = 453.0
-offset_bottom = -326.0
+offset_left = -213.0
+offset_top = -238.0
+offset_right = -176.0
+offset_bottom = -207.0
 scale = Vector2(11.8758, 6.53002)
 depth = 30.0
 
 [node name="WindowFrame" parent="Level/House7" instance=ExtResource("21_fgcst")]
-position = Vector2(493, -267)
+position = Vector2(-136, -148)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 
 [node name="WindowFrame2" parent="Level/House7" instance=ExtResource("21_fgcst")]
-position = Vector2(771, -267)
+position = Vector2(142, -148)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 
 [node name="Roof" parent="Level/House7" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -653.0
-offset_right = 402.0
-offset_bottom = -643.0
+offset_left = -244.0
+offset_top = -534.0
+offset_right = -227.0
+offset_bottom = -524.0
 scale = Vector2(29.1528, 29.8659)
 
 [node name="Wall2" parent="Level/House7" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -220.0
+offset_top = -238.0
+offset_right = -183.0
+offset_bottom = -207.0
 scale = Vector2(12.2653, 6.59399)
 wallType = 1
 depth = 76.0
 
 [node name="HouseFoundation" parent="Level/House7" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -225.0
+offset_top = 13.0
+offset_right = -208.0
+offset_bottom = 23.0
 scale = Vector2(27.6081, 1)
 
 [node name="Fence" parent="Level/House7" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -210.0
+offset_top = -36.0
+offset_right = -196.0
+offset_bottom = -26.0
 scale = Vector2(29.7206, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House7"]
+position = Vector2(-629, 119)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House7/StaticBody2D"]
@@ -718,6 +723,7 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House7"]
+position = Vector2(-629, 119)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House7/Area2D"]
@@ -726,65 +732,66 @@ shape = SubResource("RectangleShape2D_0lxle")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House12" type="CanvasGroup" parent="Level"]
-position = Vector2(-1101, 2706)
+position = Vector2(-477, 2580)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House12"]
-position = Vector2(608, -124)
+position = Vector2(-16, 2)
 
 [node name="Wall" parent="Level/House12" instance=ExtResource("17_biqno")]
-offset_left = 416.0
-offset_top = -357.0
-offset_right = 453.0
-offset_bottom = -326.0
+offset_left = -208.0
+offset_top = -231.0
+offset_right = -171.0
+offset_bottom = -200.0
 scale = Vector2(11.8758, 6.53002)
 depth = 30.0
 
 [node name="WindowFrame" parent="Level/House12" instance=ExtResource("21_fgcst")]
-position = Vector2(493, -267)
+position = Vector2(-131, -141)
 texture = ExtResource("22_2sfto")
 windowType = 1
 
 [node name="WindowFrame2" parent="Level/House12" instance=ExtResource("21_fgcst")]
-position = Vector2(771, -267)
+position = Vector2(147, -141)
 texture = ExtResource("22_2sfto")
 windowType = 1
 
 [node name="Wall2" parent="Level/House12" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -215.0
+offset_top = -231.0
+offset_right = -178.0
+offset_bottom = -200.0
 scale = Vector2(12.2653, 6.59399)
 wallType = 1
 depth = 76.0
 
 [node name="HouseFoundation" parent="Level/House12" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -203.0
+offset_bottom = 30.0
 scale = Vector2(27.1844, 1)
 
 [node name="Fence" parent="Level/House12" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -205.0
+offset_top = -29.0
+offset_right = -191.0
+offset_bottom = -19.0
 scale = Vector2(29.0244, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Roof" parent="Level/House12" instance=ExtResource("32_vkgvc")]
-offset_left = 401.0
-offset_top = -679.0
-offset_right = 418.0
-offset_bottom = -669.0
+offset_left = -223.0
+offset_top = -553.0
+offset_right = -206.0
+offset_bottom = -543.0
 scale = Vector2(27.6157, 33.9465)
 border_color = Color(0.764706, 0.607843, 0.411765, 1)
 primaryColor = Color(0.821576, 0.57691, 0.401882, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House12"]
+position = Vector2(-624, 126)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House12/StaticBody2D"]
@@ -794,6 +801,7 @@ shape = SubResource("RectangleShape2D_hpu0p")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House12"]
+position = Vector2(-624, 126)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House12/Area2D"]
@@ -802,17 +810,17 @@ shape = SubResource("RectangleShape2D_dd1db")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House3" type="CanvasGroup" parent="Level"]
-position = Vector2(1939, 3220)
+position = Vector2(2546, 3099)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House3"]
-position = Vector2(608, -124)
+position = Vector2(1, -3)
 
 [node name="Wall" parent="Level/House3" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -198.0
+offset_top = -236.0
+offset_right = -161.0
+offset_bottom = -205.0
 scale = Vector2(12.0882, 6.56532)
 primaryColor = Color(0.541226, 0.528876, 0.495487, 1)
 secondaryColor = Color(0.51164, 0.528156, 0.329358, 1)
@@ -822,38 +830,38 @@ depth = 90.0
 
 [node name="HeavyDoorFrame" parent="Level/House3" instance=ExtResource("20_3niti")]
 self_modulate = Color(0.234653, 0.29392, 0.220273, 1)
-position = Vector2(631, -310)
+position = Vector2(24, -189)
 frameColor = Color(0.234653, 0.29392, 0.220273, 1)
 doorColor = Color(0.577155, 0.61528, 0.514521, 1)
 
 [node name="WindowFrame" parent="Level/House3" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.428176, 0.457672, 0.240684, 1)
-position = Vector2(505, -333)
+position = Vector2(-102, -212)
 texture = ExtResource("22_wlfva")
 windowType = 0
 frameColor = Color(0.428176, 0.457672, 0.240684, 1)
 
 [node name="WindowFrame2" parent="Level/House3" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.428176, 0.457672, 0.240684, 1)
-position = Vector2(756, -336)
+position = Vector2(149, -215)
 texture = ExtResource("22_wlfva")
 windowType = 0
 frameColor = Color(0.428176, 0.457672, 0.240684, 1)
 
 [node name="Roof" parent="Level/House3" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -654.0
-offset_right = 402.0
-offset_bottom = -644.0
+offset_left = -222.0
+offset_top = -533.0
+offset_right = -205.0
+offset_bottom = -523.0
 scale = Vector2(29.1528, 29.8659)
 primaryColor = Color(0.621454, 0.654603, 0.556141, 1)
 secondaryColor = Color(0.497618, 0.706616, 0.52223, 1)
 
 [node name="Wall2" parent="Level/House3" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -358.0
-offset_right = 446.0
-offset_bottom = -327.0
+offset_left = -198.0
+offset_top = -237.0
+offset_right = -161.0
+offset_bottom = -206.0
 scale = Vector2(12.0882, 6.56532)
 wallType = 1
 primaryColor = Color(0.475455, 0.419418, 0.267632, 1)
@@ -863,33 +871,34 @@ separatorColor = Color(0.748169, 0.880681, 0.706818, 1)
 depth = 76.0
 
 [node name="HouseFoundation" parent="Level/House3" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -203.0
+offset_top = 15.0
+offset_right = -186.0
+offset_bottom = 25.0
 scale = Vector2(27.2205, 1)
 primaryColor = Color(0.329696, 0.606711, 0.434592, 1)
 secondaryColor = Color(0.650653, 0.829532, 0.726302, 1)
 
 [node name="Fence2" parent="Level/House3" instance=ExtResource("18_p3qbl")]
-offset_left = 520.0
-offset_top = -153.0
-offset_right = 534.0
-offset_bottom = -143.0
+offset_left = -87.0
+offset_top = -32.0
+offset_right = -73.0
+offset_bottom = -22.0
 scale = Vector2(22.8578, 1)
 primaryColor = Color(0.377874, 0.511021, 0.475462, 1)
 secondaryColor = Color(0.370904, 0.385198, 0.343526, 1)
 showRightFencePole = false
 
 [node name="Stairs" parent="Level/House3" instance=ExtResource("18_pdu4m")]
-offset_left = 412.0
-offset_top = -150.0
-offset_right = 452.0
-offset_bottom = -110.0
+offset_left = -195.0
+offset_top = -29.0
+offset_right = -155.0
+offset_bottom = 11.0
 scale = Vector2(2.97467, 2.62129)
 primaryColor = Color(0.61055, 0.608517, 0.487682, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House3"]
+position = Vector2(-607, 121)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House3/StaticBody2D"]
@@ -905,6 +914,7 @@ shape = SubResource("RectangleShape2D_hv5vc")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House3"]
+position = Vector2(-607, 121)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House3/Area2D"]
@@ -913,17 +923,17 @@ shape = SubResource("RectangleShape2D_0lxle")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House2" type="CanvasGroup" parent="Level"]
-position = Vector2(847, 3227)
+position = Vector2(1628, 3113)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House2"]
-position = Vector2(608, -124)
+position = Vector2(-173, -10)
 
 [node name="Wall" parent="Level/House2" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -378.0
-offset_right = 446.0
-offset_bottom = -347.0
+offset_left = -372.0
+offset_top = -264.0
+offset_right = -335.0
+offset_bottom = -233.0
 scale = Vector2(19.0883, 7.09446)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -931,37 +941,37 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 80.0
 
 [node name="SalonDoorFrame" parent="Level/House2" instance=ExtResource("21_7l2lu")]
-position = Vector2(661, -299)
+position = Vector2(-120, -185)
 
 [node name="SalonDoorFrame2" parent="Level/House2" instance=ExtResource("21_7l2lu")]
-position = Vector2(1016, -301)
+position = Vector2(235, -187)
 
 [node name="WindowFrame" parent="Level/House2" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(467, -305)
+position = Vector2(-314, -191)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame3" parent="Level/House2" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(782, -305)
+position = Vector2(1, -191)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame5" parent="Level/House2" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(912, -306)
+position = Vector2(131, -192)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="Wall2" parent="Level/House2" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -349.0
-offset_right = 446.0
-offset_bottom = -318.0
+offset_left = -372.0
+offset_top = -235.0
+offset_right = -335.0
+offset_bottom = -204.0
 scale = Vector2(19.1422, 6.2851)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -970,69 +980,72 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="VerticalBeam" parent="Level/House2" instance=ExtResource("18_1toat")]
-offset_top = -349.0
-offset_bottom = -318.0
+offset_left = -198.0
+offset_top = -235.0
+offset_right = -161.0
+offset_bottom = -204.0
 scale = Vector2(2, 6.23651)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="VerticalBeam2" parent="Level/House2" instance=ExtResource("18_1toat")]
-offset_left = 727.0
-offset_top = -349.0
-offset_right = 764.0
-offset_bottom = -318.0
+offset_left = -54.0
+offset_top = -235.0
+offset_right = -17.0
+offset_bottom = -204.0
 scale = Vector2(2, 6.23651)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="Roof" parent="Level/House2" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -643.0
-offset_right = 402.0
-offset_bottom = -633.0
+offset_left = -396.0
+offset_top = -529.0
+offset_right = -379.0
+offset_bottom = -519.0
 scale = Vector2(44.3515, 29.4837)
 primaryColor = Color(0.615905, 0.36297, 0.198551, 1)
 
 [node name="HouseFoundation" parent="Level/House2" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -377.0
+offset_top = 8.0
+offset_right = -360.0
+offset_bottom = 18.0
 scale = Vector2(42.2825, 1)
 
 [node name="Fence" parent="Level/House2" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -362.0
+offset_top = -41.0
+offset_right = -348.0
+offset_bottom = -31.0
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Fence2" parent="Level/House2" instance=ExtResource("18_p3qbl")]
-offset_left = 737.0
-offset_top = -154.0
-offset_right = 751.0
-offset_bottom = -144.0
+offset_left = -44.0
+offset_top = -40.0
+offset_right = -30.0
+offset_bottom = -30.0
 scale = Vector2(21.7697, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
 showLeftFencePole = false
 
 [node name="Stairs" parent="Level/House2" instance=ExtResource("18_pdu4m")]
-offset_left = 601.0
-offset_top = -152.0
-offset_right = 641.0
-offset_bottom = -112.0
+offset_left = -180.0
+offset_top = -38.0
+offset_right = -140.0
+offset_bottom = 2.0
 scale = Vector2(3.49736, 2.64641)
 
 [node name="Stairs2" parent="Level/House2" instance=ExtResource("18_pdu4m")]
-offset_left = 1018.0
-offset_top = -152.0
-offset_right = 1058.0
-offset_bottom = -112.0
+offset_left = 237.0
+offset_top = -38.0
+offset_right = 277.0
+offset_bottom = 2.0
 scale = Vector2(2.61552, 2.54494)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House2"]
+position = Vector2(-781, 114)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/StaticBody2D"]
@@ -1054,6 +1067,7 @@ shape = SubResource("RectangleShape2D_hrw3s")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House2"]
+position = Vector2(-781, 114)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House2/Area2D"]
@@ -1062,17 +1076,17 @@ shape = SubResource("RectangleShape2D_1uhlq")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House10" type="CanvasGroup" parent="Level"]
-position = Vector2(-1145, 1988)
+position = Vector2(-491, 1864)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House10"]
-position = Vector2(608, -124)
+position = Vector2(-46, 0)
 
 [node name="Wall" parent="Level/House10" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -378.0
-offset_right = 446.0
-offset_bottom = -347.0
+offset_left = -245.0
+offset_top = -254.0
+offset_right = -208.0
+offset_bottom = -223.0
 scale = Vector2(13.4836, 7.28583)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1080,20 +1094,20 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 80.0
 
 [node name="SalonDoorFrame" parent="Level/House10" instance=ExtResource("21_7l2lu")]
-position = Vector2(661, -299)
+position = Vector2(7, -175)
 
 [node name="WindowFrame" parent="Level/House10" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(467, -305)
+position = Vector2(-187, -181)
 texture = ExtResource("22_wlfva")
 windowType = 0
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="Wall2" parent="Level/House10" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -349.0
-offset_right = 446.0
-offset_bottom = -318.0
+offset_left = -245.0
+offset_top = -225.0
+offset_right = -208.0
+offset_bottom = -194.0
 scale = Vector2(13.7033, 6.23122)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1102,17 +1116,17 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="HouseFoundation" parent="Level/House10" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -250.0
+offset_top = 18.0
+offset_right = -233.0
+offset_bottom = 28.0
 scale = Vector2(30.5417, 1)
 
 [node name="Fence" parent="Level/House10" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -235.0
+offset_top = -31.0
+offset_right = -221.0
+offset_bottom = -21.0
 scale = Vector2(32.2394, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
@@ -1120,14 +1134,15 @@ showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Roof2" parent="Level/House10" instance=ExtResource("32_vkgvc")]
-offset_left = 391.0
-offset_top = -1135.0
-offset_right = 408.0
-offset_bottom = -1125.0
+offset_left = -263.0
+offset_top = -1011.0
+offset_right = -246.0
+offset_bottom = -1001.0
 scale = Vector2(32.0338, 80.1872)
 primaryColor = Color(0.615686, 0.364706, 0.2, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House10"]
+position = Vector2(-654, 124)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House10/StaticBody2D"]
@@ -1137,6 +1152,7 @@ shape = SubResource("RectangleShape2D_6td3q")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House10"]
+position = Vector2(-654, 124)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House10/Area2D"]
@@ -1145,17 +1161,17 @@ shape = SubResource("RectangleShape2D_s4iej")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House6" type="CanvasGroup" parent="Level"]
-position = Vector2(640, 3900)
+position = Vector2(1399, 3772)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House6"]
-position = Vector2(608, -124)
+position = Vector2(-151, 4)
 
 [node name="Wall" parent="Level/House6" instance=ExtResource("17_biqno")]
-offset_left = 414.0
-offset_top = -378.0
-offset_right = 451.0
-offset_bottom = -347.0
+offset_left = -345.0
+offset_top = -250.0
+offset_right = -308.0
+offset_bottom = -219.0
 scale = Vector2(18.9622, 7.09446)
 primaryColor = Color(0.271287, 0.204655, 0.152728, 1)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1165,33 +1181,33 @@ depth = 12.0
 
 [node name="WindowFrame" parent="Level/House6" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(493, -272)
+position = Vector2(-266, -144)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame2" parent="Level/House6" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(1046, -271)
+position = Vector2(287, -143)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="Fence" parent="Level/House6" instance=ExtResource("18_p3qbl")]
-offset_left = 412.0
-offset_top = -153.0
-offset_right = 426.0
-offset_bottom = -143.0
+offset_left = -347.0
+offset_top = -25.0
+offset_right = -333.0
+offset_bottom = -15.0
 scale = Vector2(46.2812, 1)
 primaryColor = Color(0.482422, 0.33909, 0.225602, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Wall2" parent="Level/House6" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -349.0
-offset_right = 446.0
-offset_bottom = -318.0
+offset_left = -350.0
+offset_top = -221.0
+offset_right = -313.0
+offset_bottom = -190.0
 scale = Vector2(19.1422, 6.2851)
 wallType = 1
 primaryColor = Color(0.174535, 0.234775, 0.221509, 1)
@@ -1201,21 +1217,22 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="Roof" parent="Level/House6" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -643.0
-offset_right = 402.0
-offset_bottom = -633.0
+offset_left = -374.0
+offset_top = -515.0
+offset_right = -357.0
+offset_bottom = -505.0
 scale = Vector2(44.3515, 29.4837)
 primaryColor = Color(0.532969, 0.411426, 0.2442, 1)
 
 [node name="HouseFoundation" parent="Level/House6" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -355.0
+offset_top = 22.0
+offset_right = -338.0
+offset_bottom = 32.0
 scale = Vector2(42.2825, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House6"]
+position = Vector2(-759, 128)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House6/StaticBody2D"]
@@ -1225,6 +1242,7 @@ shape = SubResource("RectangleShape2D_wgxyf")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House6"]
+position = Vector2(-759, 128)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House6/Area2D"]
@@ -1233,17 +1251,17 @@ shape = SubResource("RectangleShape2D_6m4o8")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House11" type="CanvasGroup" parent="Level"]
-position = Vector2(-173, 2280)
+position = Vector2(436, 2161)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House11"]
-position = Vector2(608, -124)
+position = Vector2(-1, -5)
 
 [node name="Wall" parent="Level/House11" instance=ExtResource("17_biqno")]
-offset_left = 414.0
-offset_top = -378.0
-offset_right = 451.0
-offset_bottom = -347.0
+offset_left = -195.0
+offset_top = -259.0
+offset_right = -158.0
+offset_bottom = -228.0
 scale = Vector2(10.5365, 7.35885)
 primaryColor = Color(0.271287, 0.204655, 0.152728, 1)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1252,10 +1270,10 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 12.0
 
 [node name="Wall2" parent="Level/House11" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -349.0
-offset_right = 446.0
-offset_bottom = -318.0
+offset_left = -200.0
+offset_top = -230.0
+offset_right = -163.0
+offset_bottom = -199.0
 scale = Vector2(10.8391, 6.31186)
 wallType = 1
 primaryColor = Color(0.174535, 0.234775, 0.221509, 1)
@@ -1265,21 +1283,22 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="HouseFoundation" parent="Level/House11" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -205.0
+offset_top = 13.0
+offset_right = -188.0
+offset_bottom = 23.0
 scale = Vector2(23.9773, 1)
 
 [node name="Roof" parent="Level/House11" instance=ExtResource("32_vkgvc")]
-offset_left = 401.0
-offset_top = -1122.0
-offset_right = 418.0
-offset_bottom = -1112.0
+offset_left = -208.0
+offset_top = -1003.0
+offset_right = -191.0
+offset_bottom = -993.0
 scale = Vector2(24.372, 77.9565)
 primaryColor = Color(0.478278, 0.355808, 0.206255, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House11"]
+position = Vector2(-609, 119)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House11/StaticBody2D"]
@@ -1289,6 +1308,7 @@ shape = SubResource("RectangleShape2D_4lqyd")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House11"]
+position = Vector2(-609, 119)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House11/Area2D"]
@@ -1297,17 +1317,17 @@ shape = SubResource("RectangleShape2D_38gjo")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House4" type="CanvasGroup" parent="Level"]
-position = Vector2(3289, 3231)
+position = Vector2(3999, 3055)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House4"]
-position = Vector2(707, -179)
+position = Vector2(-3, -3)
 
 [node name="Wall" parent="Level/House4" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -313.0
-offset_right = 448.0
-offset_bottom = -282.0
+offset_left = -299.0
+offset_top = -137.0
+offset_right = -262.0
+offset_bottom = -106.0
 scale = Vector2(19.0883, 5.13959)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1316,33 +1336,33 @@ depth = 39.0
 
 [node name="WindowFrame" parent="Level/House4" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(493, -253)
+position = Vector2(-217, -77)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame2" parent="Level/House4" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(1025, -258)
+position = Vector2(315, -82)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame3" parent="Level/House4" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(846, -258)
+position = Vector2(136, -82)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="HeavyDoorFrame" parent="Level/House4" instance=ExtResource("20_3niti")]
-position = Vector2(708, -258)
+position = Vector2(-2, -82)
 
 [node name="Wall2" parent="Level/House4" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -304.0
-offset_right = 446.0
-offset_bottom = -273.0
+offset_left = -301.0
+offset_top = -128.0
+offset_right = -264.0
+offset_bottom = -97.0
 scale = Vector2(19.1347, 4.82404)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1351,26 +1371,26 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="VerticalBeam" parent="Level/House4" instance=ExtResource("18_1toat")]
-offset_left = 637.0
-offset_top = -303.0
-offset_right = 674.0
-offset_bottom = -272.0
+offset_left = -73.0
+offset_top = -127.0
+offset_right = -36.0
+offset_bottom = -96.0
 scale = Vector2(2, 4.75803)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="VerticalBeam2" parent="Level/House4" instance=ExtResource("18_1toat")]
-offset_left = 771.0
-offset_top = -303.0
-offset_right = 808.0
-offset_bottom = -272.0
+offset_left = 61.0
+offset_top = -127.0
+offset_right = 98.0
+offset_bottom = -96.0
 scale = Vector2(2, 4.76748)
 primaryColor = Color(0.397927, 0.243791, 0.192387, 1)
 
 [node name="Fence" parent="Level/House4" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -152.0
-offset_right = 433.0
-offset_bottom = -142.0
+offset_left = -291.0
+offset_top = 24.0
+offset_right = -277.0
+offset_bottom = 34.0
 scale = Vector2(16.8844, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
@@ -1378,10 +1398,10 @@ showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Fence2" parent="Level/House4" instance=ExtResource("18_p3qbl")]
-offset_left = 781.0
-offset_top = -152.0
-offset_right = 795.0
-offset_bottom = -142.0
+offset_left = 71.0
+offset_top = 24.0
+offset_right = 85.0
+offset_bottom = 34.0
 scale = Vector2(24.2618, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
@@ -1389,17 +1409,17 @@ showLeftFencePole = false
 showRightFencePole = false
 
 [node name="HouseFoundation" parent="Level/House4" instance=ExtResource("17_6sxbk")]
-offset_left = 398.0
-offset_top = -319.0
-offset_right = 415.0
-offset_bottom = -309.0
+offset_left = -312.0
+offset_top = -143.0
+offset_right = -295.0
+offset_bottom = -133.0
 scale = Vector2(42.7955, 1)
 
 [node name="Wall3" parent="Level/House4" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -528.0
-offset_right = 448.0
-offset_bottom = -497.0
+offset_left = -299.0
+offset_top = -352.0
+offset_right = -262.0
+offset_bottom = -321.0
 scale = Vector2(19.0883, 5.13959)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1407,40 +1427,40 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 39.0
 
 [node name="HeavyDoorFrame2" parent="Level/House4" instance=ExtResource("20_3niti")]
-position = Vector2(527, -475)
+position = Vector2(-183, -299)
 
 [node name="WindowFrame4" parent="Level/House4" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(643, -470)
+position = Vector2(-67, -294)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame5" parent="Level/House4" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(871, -472)
+position = Vector2(161, -296)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="HeavyDoorFrame3" parent="Level/House4" instance=ExtResource("20_3niti")]
-position = Vector2(999, -475)
+position = Vector2(289, -299)
 
 [node name="Fence3" parent="Level/House4" instance=ExtResource("18_p3qbl")]
-offset_left = 413.0
-offset_top = -369.0
-offset_right = 427.0
-offset_bottom = -359.0
+offset_left = -297.0
+offset_top = -193.0
+offset_right = -283.0
+offset_bottom = -183.0
 scale = Vector2(45.2083, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Wall4" parent="Level/House4" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -520.0
-offset_right = 446.0
-offset_bottom = -489.0
+offset_left = -301.0
+offset_top = -344.0
+offset_right = -264.0
+offset_bottom = -313.0
 scale = Vector2(19.1347, 4.82404)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1449,15 +1469,16 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="Roof" parent="Level/House4" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -814.0
-offset_right = 402.0
-offset_bottom = -804.0
+offset_left = -325.0
+offset_top = -638.0
+offset_right = -308.0
+offset_bottom = -628.0
 scale = Vector2(44.4879, 29.4837)
 primaryColor = Color(0.815691, 0.622651, 0.456474, 1)
 secondaryColor = Color(0.849892, 0.645782, 0.52019, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House4"]
+position = Vector2(-710, 176)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House4/StaticBody2D"]
@@ -1467,6 +1488,7 @@ shape = SubResource("RectangleShape2D_ld3n2")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House4"]
+position = Vector2(-710, 176)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House4/Area2D"]
@@ -1475,17 +1497,17 @@ shape = SubResource("RectangleShape2D_aw633")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House9" type="CanvasGroup" parent="Level"]
-position = Vector2(-173, 1192)
+position = Vector2(452, 1015)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House9"]
-position = Vector2(707, -179)
+position = Vector2(82, -2)
 
 [node name="Wall" parent="Level/House9" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -313.0
-offset_right = 448.0
-offset_bottom = -282.0
+offset_left = -214.0
+offset_top = -136.0
+offset_right = -177.0
+offset_bottom = -105.0
 scale = Vector2(12.0793, 4.97604)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1494,19 +1516,19 @@ depth = 39.0
 
 [node name="WindowFrame" parent="Level/House9" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(493, -253)
+position = Vector2(-132, -76)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="HeavyDoorFrame" parent="Level/House9" instance=ExtResource("20_3niti")]
-position = Vector2(687, -258)
+position = Vector2(62, -81)
 
 [node name="Wall2" parent="Level/House9" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -304.0
-offset_right = 446.0
-offset_bottom = -273.0
+offset_left = -216.0
+offset_top = -127.0
+offset_right = -179.0
+offset_bottom = -96.0
 scale = Vector2(12.1257, 4.75019)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1515,35 +1537,35 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="Fence" parent="Level/House9" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -152.0
-offset_right = 433.0
-offset_bottom = -142.0
+offset_left = -206.0
+offset_top = 25.0
+offset_right = -192.0
+offset_bottom = 35.0
 scale = Vector2(16.8844, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 showLeftFencePole = false
 
 [node name="Fence2" parent="Level/House9" instance=ExtResource("18_p3qbl")]
-offset_left = 738.0
-offset_top = -152.0
-offset_right = 752.0
-offset_bottom = -142.0
+offset_left = 113.0
+offset_top = 25.0
+offset_right = 127.0
+offset_bottom = 35.0
 scale = Vector2(10.0311, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 showRightFencePole = false
 
 [node name="HouseFoundation" parent="Level/House9" instance=ExtResource("17_6sxbk")]
-offset_left = 398.0
-offset_top = -319.0
-offset_right = 415.0
-offset_bottom = -309.0
+offset_left = -227.0
+offset_top = -142.0
+offset_right = -210.0
+offset_bottom = -132.0
 scale = Vector2(27.5909, 1)
 
 [node name="Wall3" parent="Level/House9" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -528.0
-offset_right = 448.0
-offset_bottom = -497.0
+offset_left = -214.0
+offset_top = -351.0
+offset_right = -177.0
+offset_bottom = -320.0
 scale = Vector2(12.0589, 5.16852)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1551,30 +1573,30 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 39.0
 
 [node name="HeavyDoorFrame2" parent="Level/House9" instance=ExtResource("20_3niti")]
-position = Vector2(527, -475)
+position = Vector2(-98, -298)
 
 [node name="WindowFrame4" parent="Level/House9" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(643, -470)
+position = Vector2(18, -293)
 texture = ExtResource("31_ne6jr")
 windowType = 2
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="Fence3" parent="Level/House9" instance=ExtResource("18_p3qbl")]
-offset_left = 413.0
-offset_top = -369.0
-offset_right = 427.0
-offset_bottom = -359.0
+offset_left = -212.0
+offset_top = -192.0
+offset_right = -198.0
+offset_bottom = -182.0
 scale = Vector2(28.9092, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Wall4" parent="Level/House9" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -520.0
-offset_right = 446.0
-offset_bottom = -489.0
+offset_left = -216.0
+offset_top = -343.0
+offset_right = -179.0
+offset_bottom = -312.0
 scale = Vector2(12.0883, 4.75428)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1583,14 +1605,15 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="Roof" parent="Level/House9" instance=ExtResource("32_vkgvc")]
-offset_left = 400.0
-offset_top = -1052.0
-offset_right = 417.0
-offset_bottom = -1042.0
+offset_left = -225.0
+offset_top = -875.0
+offset_right = -208.0
+offset_bottom = -865.0
 scale = Vector2(27.563, 56.8198)
 primaryColor = Color(0.479651, 0.302984, 0.20383, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House9"]
+position = Vector2(-625, 177)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/StaticBody2D"]
@@ -1600,6 +1623,7 @@ shape = SubResource("RectangleShape2D_rgdn4")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House9"]
+position = Vector2(-625, 177)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House9/Area2D"]
@@ -1608,17 +1632,17 @@ shape = SubResource("RectangleShape2D_buymu")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House13" type="CanvasGroup" parent="Level"]
-position = Vector2(40, 2687)
+position = Vector2(799, 2561)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House13"]
-position = Vector2(608, -124)
+position = Vector2(-151, 2)
 
 [node name="Wall" parent="Level/House13" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -378.0
-offset_right = 446.0
-offset_bottom = -347.0
+offset_left = -350.0
+offset_top = -252.0
+offset_right = -313.0
+offset_bottom = -221.0
 scale = Vector2(19.0883, 7.09446)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
 floorColor = Color(0.708263, 0.489279, 0.401702, 1)
@@ -1626,37 +1650,37 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 80.0
 
 [node name="HeavyDoorFrame" parent="Level/House13" instance=ExtResource("20_3niti")]
-position = Vector2(570, -299)
+position = Vector2(-189, -173)
 
 [node name="SalonDoorFrame2" parent="Level/House13" instance=ExtResource("21_7l2lu")]
-position = Vector2(1016, -301)
+position = Vector2(257, -175)
 
 [node name="WindowFrame" parent="Level/House13" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(467, -305)
+position = Vector2(-292, -179)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame3" parent="Level/House13" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(782, -305)
+position = Vector2(23, -179)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame5" parent="Level/House13" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(912, -306)
+position = Vector2(153, -180)
 texture = ExtResource("22_2sfto")
 windowType = 1
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="Wall2" parent="Level/House13" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -349.0
-offset_right = 446.0
-offset_bottom = -318.0
+offset_left = -350.0
+offset_top = -223.0
+offset_right = -313.0
+offset_bottom = -192.0
 scale = Vector2(19.1422, 6.2851)
 wallType = 1
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1665,38 +1689,39 @@ separatorColor = Color(0.482347, 0.342703, 0.312961, 1)
 depth = 80.0
 
 [node name="Roof" parent="Level/House13" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -643.0
-offset_right = 402.0
-offset_bottom = -633.0
+offset_left = -374.0
+offset_top = -517.0
+offset_right = -357.0
+offset_bottom = -507.0
 scale = Vector2(44.3515, 29.4837)
 primaryColor = Color(0.615905, 0.36297, 0.198551, 1)
 
 [node name="HouseFoundation" parent="Level/House13" instance=ExtResource("17_6sxbk")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -355.0
+offset_top = 20.0
+offset_right = -338.0
+offset_bottom = 30.0
 scale = Vector2(42.2825, 1)
 
 [node name="Fence" parent="Level/House13" instance=ExtResource("18_p3qbl")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -340.0
+offset_top = -29.0
+offset_right = -326.0
+offset_bottom = -19.0
 scale = Vector2(39.1216, 1)
 primaryColor = Color(0.408821, 0.263543, 0.190447, 1)
 fenceType = 1
 showLeftFencePole = false
 
 [node name="Stairs2" parent="Level/House13" instance=ExtResource("18_pdu4m")]
-offset_left = 1018.0
-offset_top = -152.0
-offset_right = 1058.0
-offset_bottom = -112.0
+offset_left = 259.0
+offset_top = -26.0
+offset_right = 299.0
+offset_bottom = 14.0
 scale = Vector2(2.61552, 2.54494)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House13"]
+position = Vector2(-759, 126)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House13/StaticBody2D"]
@@ -1712,6 +1737,7 @@ shape = SubResource("RectangleShape2D_x0r4d")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House13"]
+position = Vector2(-759, 126)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House13/Area2D"]
@@ -1720,17 +1746,17 @@ shape = SubResource("RectangleShape2D_1uhlq")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House5" type="CanvasGroup" parent="Level"]
-position = Vector2(-612, 3970)
+position = Vector2(95, 3790)
 script = ExtResource("17_vs1af")
 
 [node name="Origin" type="Node2D" parent="Level/House5"]
-position = Vector2(706, -177)
+position = Vector2(-1, 3)
 
 [node name="Wall" parent="Level/House5" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -313.0
-offset_right = 448.0
-offset_bottom = -282.0
+offset_left = -296.0
+offset_top = -133.0
+offset_right = -259.0
+offset_bottom = -102.0
 scale = Vector2(19.0883, 5.13959)
 primaryColor = Color(0.30036, 0.184204, 0.179219, 1)
 secondaryColor = Color(0.416439, 0.256188, 0.211901, 1)
@@ -1740,27 +1766,27 @@ depth = 39.0
 
 [node name="WindowFrame" parent="Level/House5" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(493, -253)
+position = Vector2(-214, -73)
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame2" parent="Level/House5" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(1025, -258)
+position = Vector2(318, -78)
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="WindowFrame3" parent="Level/House5" instance=ExtResource("21_fgcst")]
 self_modulate = Color(0.526266, 0.303573, 0.127719, 1)
-position = Vector2(846, -258)
+position = Vector2(139, -78)
 frameColor = Color(0.526266, 0.303573, 0.127719, 1)
 
 [node name="HeavyDoorFrame" parent="Level/House5" instance=ExtResource("20_3niti")]
-position = Vector2(708, -258)
+position = Vector2(1, -78)
 
 [node name="Wall2" parent="Level/House5" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -304.0
-offset_right = 446.0
-offset_bottom = -273.0
+offset_left = -298.0
+offset_top = -124.0
+offset_right = -261.0
+offset_bottom = -93.0
 scale = Vector2(19.1347, 4.82404)
 wallType = 1
 primaryColor = Color(0.340148, 0.155899, 0.161555, 1)
@@ -1770,35 +1796,35 @@ separatorColor = Color(0.513195, 0.323376, 0.312758, 1)
 depth = 80.0
 
 [node name="VerticalBeam" parent="Level/House5" instance=ExtResource("18_1toat")]
-offset_left = 637.0
-offset_top = -303.0
-offset_right = 674.0
-offset_bottom = -272.0
+offset_left = -70.0
+offset_top = -123.0
+offset_right = -33.0
+offset_bottom = -92.0
 scale = Vector2(2, 4.75803)
 primaryColor = Color(0.43032, 0.216763, 0.211642, 1)
 
 [node name="VerticalBeam2" parent="Level/House5" instance=ExtResource("18_1toat")]
-offset_left = 771.0
-offset_top = -303.0
-offset_right = 808.0
-offset_bottom = -272.0
+offset_left = 64.0
+offset_top = -123.0
+offset_right = 101.0
+offset_bottom = -92.0
 scale = Vector2(2, 4.76748)
 primaryColor = Color(0.43032, 0.216763, 0.211642, 1)
 
 [node name="HouseFoundation" parent="Level/House5" instance=ExtResource("17_6sxbk")]
-offset_left = 398.0
-offset_top = -319.0
-offset_right = 415.0
-offset_bottom = -309.0
+offset_left = -309.0
+offset_top = -139.0
+offset_right = -292.0
+offset_bottom = -129.0
 scale = Vector2(42.7955, 1)
 primaryColor = Color(0.877512, 0.636328, 0.587452, 1)
 secondaryColor = Color(0.986381, 0.586363, 0.594849, 1)
 
 [node name="Wall3" parent="Level/House5" instance=ExtResource("17_biqno")]
-offset_left = 411.0
-offset_top = -528.0
-offset_right = 448.0
-offset_bottom = -497.0
+offset_left = -296.0
+offset_top = -348.0
+offset_right = -259.0
+offset_bottom = -317.0
 scale = Vector2(19.0883, 5.13959)
 primaryColor = Color(0.310245, 0.176144, 0.1875, 1)
 secondaryColor = Color(0.419772, 0.236358, 0.321772, 1)
@@ -1807,23 +1833,23 @@ separatorColor = Color(0.622101, 0.49482, 0.422577, 1)
 depth = 39.0
 
 [node name="HeavyDoorFrame2" parent="Level/House5" instance=ExtResource("20_3niti")]
-position = Vector2(709, -473)
+position = Vector2(2, -293)
 
 [node name="Fence3" parent="Level/House5" instance=ExtResource("18_p3qbl")]
-offset_left = 413.0
-offset_top = -369.0
-offset_right = 427.0
-offset_bottom = -359.0
+offset_left = -294.0
+offset_top = -189.0
+offset_right = -280.0
+offset_bottom = -179.0
 scale = Vector2(45.2083, 1)
 primaryColor = Color(0.444779, 0.233933, 0.221178, 1)
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Wall4" parent="Level/House5" instance=ExtResource("17_biqno")]
-offset_left = 409.0
-offset_top = -520.0
-offset_right = 446.0
-offset_bottom = -489.0
+offset_left = -298.0
+offset_top = -340.0
+offset_right = -261.0
+offset_bottom = -309.0
 scale = Vector2(19.1347, 4.82404)
 wallType = 1
 secondaryColor = Color(0.46306, 0.226415, 0.150989, 1)
@@ -1832,15 +1858,16 @@ separatorColor = Color(0.582846, 0.274327, 0.265431, 1)
 depth = 80.0
 
 [node name="Roof" parent="Level/House5" instance=ExtResource("20_7hscl")]
-offset_left = 385.0
-offset_top = -814.0
-offset_right = 402.0
-offset_bottom = -804.0
+offset_left = -322.0
+offset_top = -634.0
+offset_right = -305.0
+offset_bottom = -624.0
 scale = Vector2(44.4879, 29.4837)
 primaryColor = Color(0.962755, 0.520545, 0.480822, 1)
 secondaryColor = Color(0.95348, 0.565032, 0.626485, 1)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/House5"]
+position = Vector2(-707, 180)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/StaticBody2D"]
@@ -1850,6 +1877,7 @@ shape = SubResource("RectangleShape2D_rftqs")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House5"]
+position = Vector2(-707, 180)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House5/Area2D"]
