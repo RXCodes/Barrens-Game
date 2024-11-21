@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=43 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_g2g3p"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_ecap2"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="13_3im5g"]
 [ext_resource type="Texture2D" uid="uid://dylvv10wwke0e" path="res://Environment/Graveyard/GraveyardFloor.png" id="14_pkr2h"]
+[ext_resource type="Shader" path="res://Environment/Shadow.gdshader" id="15_ctpe2"]
+[ext_resource type="Texture2D" uid="uid://bu8phupfe0dy1" path="res://Environment/Building/ShadowHouse.png" id="16_b2xyr"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="19_2iiad"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="20_ewlqk"]
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="21_3lp5y"]
@@ -59,6 +61,9 @@ seamless = true
 seamless_blend_skirt = 0.159
 color_ramp = SubResource("Gradient_dydg8")
 noise = SubResource("FastNoiseLite_x051s")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wur88"]
+shader = ExtResource("15_ctpe2")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mt871"]
 vertices = PackedVector2Array(4576.24, 4514, 4549.76, 4514, 4047.4, 4503, 4040.68, 4477.81, 4783.21, 4614.09, 4764.28, 4609, 4621.4, 4563, 4614.68, 4537.81, 4441.27, 5018, 4400.73, 5018, 4100.4, 5002, 4093.68, 4976.81, 4962.91, 4938.21, 4969.42, 4914, 8682.09, 6620.85, 4900.42, 5268, 4893.91, 5243.79, 4926.28, 4867, 4895.72, 4867, 4808.42, 4856, 4801.91, 4831.79, 4783.21, 4697.91, 4311.42, 5368, 4826.72, 5315, 4857.28, 5315, 4304.91, 5392.21, 4489.42, 5070, 4895.72, 4961, 4926.28, 4961, 4876.21, 5226.09, 4857.28, 5221, 4529.81, 4519.32, 4733.72, 4609, 4379.29, 5023.75, 4807.79, 5309.91, 4876.79, 4872.09, 4876.79, 4955.91, 4945.21, 4955.91, 4714.79, 4614.09, 3742.92, 4894, 3766.13, 4894, 3750.32, 4909.81, 3746.42, 4907, 3815.24, 4886, 3792.96, 4886, 3810.25, 4868.71, 4714.79, 4697.91, 4715.79, 4814.09, 4698.09, 4831.79, 3890.42, 4814, 3883.91, 4789.79, 4697.09, 4680.21, 4511.32, 4537.81, 4359.75, 5043.29, 4807.42, 4656, 7734, 2445.17, 4800.91, 4680.21, 4790.09, 5292.21, 4859.09, 4889.79, 4801.91, 4880.21, 4859.09, 4938.21, 4482.25, 5043.29, 4826.72, 5221, 4807.79, 5226.09, 4800.91, 4631.79, 3739.91, 4931.21, 3743.6, 4935, 4790.09, 5243.79, 4482.25, 5096.71, 4697.09, 4631.79, 4614.68, 4588.19, 3769.27, 4790, 3741.92, 4790, 3745.42, 4777, 3653.79, 4865.09, 3671.72, 4824, 3685.41, 4824, 3680.58, 4842, 3672.72, 4860, 3685.41, 4860, 3883.91, 4838.21, 4691.58, 4856, 4462.71, 5023.75, 4504.6, 4563, 4040.68, 4528.19, 4783.58, 5268, 4304.91, 5343.79, 4462.71, 5116.25, 4352.58, 5070, 4093.68, 5027.19, 4852.58, 4914, 4784.21, 4897.91, 4893.91, 5292.21, 3722.21, 4948.91, 3750.32, 4960.19, 3812.61, 4859.89, 3816.72, 4861, 3835.19, 4891.32, 3738.91, 4752.79, 3780.09, 4789.79, 3779.3, 4792.69, 4765.28, 4903, 2228.25, 3131.91, 4596.19, 4519.32, 4441.27, 5122, 4400.73, 5122, 4287.21, 5326.09, 4379.29, 5116.25, 4268.28, 5321, 4734.72, 4903, 4715.79, 4897.91, 4698.09, 4880.21, 4690.58, 4656, 4596.19, 4606.68, 4576.24, 4612, 4207.42, 4656, 4200.91, 4631.79, 4549.76, 4612, 4200.91, 4680.21, 4359.75, 5096.71, 4237.72, 5321, 4075.19, 5045.68, 4962.91, 4889.79, 4945.21, 4872.09, 4022.19, 4546.68, 4511.32, 4588.19, 4183.21, 4614.09, 4164.28, 4609, 4218.79, 5326.09, 4055.24, 5051, 4201.09, 5343.79, 4028.76, 5051, 4876.21, 5309.91, 1710.26, 6740.2, 3853.68, 4909.81, 3866.21, 4855.91, 4055.24, 4953, 3847.28, 4861, 3652.79, 4818.91, 3636.09, 4882.79, 4784.21, 4814.09, 4765.28, 4809, 4764.28, 4703, 4734.72, 4809, 4733.72, 4703, 3866.21, 4772.09, 3797.79, 4772.09, 3635.09, 4801.21, 3629.58, 4907, 4008.81, 5045.68, 4194.58, 5368, 4183.21, 4697.91, 4529.81, 4606.68, 4133.72, 4609, 4114.79, 4614.09, 4097.09, 4631.79, 4002.24, 4552, 4090.58, 4656, 3975.76, 4552, 4022.19, 4459.32, 4075.19, 4958.32, 4287.21, 5409.91, 4268.28, 5415, 4237.72, 5415, 4218.79, 5409.91, 4201.09, 5392.21, 3990.32, 5027.19, 3983.6, 5002, 3990.32, 4976.81, 3815.24, 4984, 3835.19, 4978.68, 3703.28, 4954, 3768.81, 4978.68, 3816.72, 4767, 3721.21, 4735.09, 3955.81, 4546.68, 4097.09, 4680.21, 3702.28, 4730, 3847.28, 4767, 4002.24, 4454, 3975.76, 4454, 3955.81, 4459.32, 3937.32, 4477.81, 3930.6, 4503, 3937.32, 4528.19, 3671.72, 4730, 3672.72, 4954, 4164.28, 4703, 3628.58, 4777, 4133.72, 4703, 4114.79, 4697.91, 3652.79, 4735.09, 3635.09, 4752.79, 3636.09, 4931.21, 3653.79, 4948.91, 3788.76, 4984, 3853.68, 4960.19, 3860.4, 4935, 4008.81, 4958.32, 4028.76, 4953)
@@ -240,6 +245,121 @@ position = Vector2(0, 46)
 scale = Vector2(2, 2)
 texture = ExtResource("14_pkr2h")
 
+[node name="Shadow" type="CanvasGroup" parent="Under"]
+material = SubResource("ShaderMaterial_wur88")
+position = Vector2(-1122, 638)
+
+[node name="HouseShadow" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 1554.0
+offset_top = -904.0
+offset_right = 2048.0
+offset_bottom = -644.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow2" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 1755.0
+offset_top = -718.0
+offset_right = 1897.0
+offset_bottom = -615.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 40
+patch_margin_top = 34
+patch_margin_right = 40
+patch_margin_bottom = 34
+
+[node name="HouseShadow3" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 847.0
+offset_top = -829.0
+offset_right = 1324.0
+offset_bottom = -797.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 851.0
+offset_top = -409.0
+offset_right = 1328.0
+offset_bottom = -377.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow2" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 851.0
+offset_top = -409.0
+offset_right = 1330.0
+offset_bottom = -377.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow3" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 1285.0
+offset_top = -642.0
+offset_right = 1500.0
+offset_bottom = -610.0
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow4" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 1322.0
+offset_top = -838.0
+offset_right = 1556.0
+offset_bottom = -806.0
+rotation = 1.5708
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow5" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 1322.0
+offset_top = -513.0
+offset_right = 1464.0
+offset_bottom = -481.0
+rotation = 1.5708
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow6" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 882.0
+offset_top = -834.0
+offset_right = 1341.0
+offset_bottom = -802.0
+rotation = 1.5708
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
 [node name="NavigationRegion" type="NavigationRegion2D" parent="."]
 visible = false
 position = Vector2(-3474, -4500)
@@ -282,7 +402,7 @@ y_sort_enabled = true
 position = Vector2(-3, 39)
 
 [node name="Cactus" parent="Level" instance=ExtResource("22_wkert")]
-position = Vector2(321, -77)
+position = Vector2(1231, -44)
 
 [node name="Graveyard" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -446,7 +566,7 @@ shape = SubResource("RectangleShape2D_a4ghs")
 position = Vector2(648, -56)
 
 [node name="Cactus3" parent="Level" instance=ExtResource("23_py5i2")]
-position = Vector2(-198, -108)
+position = Vector2(-219, -135)
 
 [node name="Cactus2" parent="Level" instance=ExtResource("24_2pvp0")]
 position = Vector2(141, 219)
@@ -459,6 +579,12 @@ position = Vector2(-309, 338)
 
 [node name="Cactus6" parent="Level" instance=ExtResource("23_py5i2")]
 position = Vector2(906, -8)
+
+[node name="Cactus7" parent="Level" instance=ExtResource("23_py5i2")]
+position = Vector2(1283, -104)
+
+[node name="Cactus8" parent="Level" instance=ExtResource("24_2pvp0")]
+position = Vector2(1184, -81)
 
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 
