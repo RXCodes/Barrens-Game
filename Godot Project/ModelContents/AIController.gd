@@ -251,7 +251,19 @@ static func runNavigationQueue() -> void:
 		enemyQueueIndex += 1
 		if enemyQueueIndex >= enemies.size():
 			enemyQueueIndex = 0
+		if not is_instance_valid(enemies[enemyQueueIndex]):
+			await TimeManager.wait(navigateQueueInterval)
+			readyToRunNavigation = true
+			return
 		var currentAI: EnemyAI = enemies[enemyQueueIndex]
+		if not is_instance_valid(currentAI):
+			await TimeManager.wait(navigateQueueInterval)
+			readyToRunNavigation = true
+			return
+		if not is_instance_valid(currentAI.target):
+			await TimeManager.wait(navigateQueueInterval)
+			readyToRunNavigation = true
+			return
 		if currentAI.target:
 			currentAI.navigationAgent.target_position = currentAI.target.global_position
 	await TimeManager.wait(navigateQueueInterval)

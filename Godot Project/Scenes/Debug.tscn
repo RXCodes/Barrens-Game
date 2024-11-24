@@ -1,11 +1,6 @@
-[gd_scene load_steps=34 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=28 format=4 uid="uid://babhxms1scsca"]
 
-[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
-[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_uqaru"]
-[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_a4mxq"]
-[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="5_fhfcf"]
-[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="6_wt6eb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="12_q6ydc"]
 [ext_resource type="LabelSettings" uid="uid://cfstjkfdvbd10" path="res://UI/DamageIndicatorLabelSettings.tres" id="14_cp6hk"]
@@ -13,14 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
 [ext_resource type="Script" path="res://Scenes/InfiniteMoneyTest.gd" id="15_mokh8"]
 [ext_resource type="Script" path="res://Scenes/GoToVillageOneTest.gd" id="16_e3y2f"]
-[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="16_mx3cv"]
 [ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
-[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="17_mq60l"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
+[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="21_mbysx"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
@@ -73,109 +67,6 @@ texture_filter = 1
 position = Vector2(0, 4)
 script = ExtResource("1_80clb")
 metadata/_edit_horizontal_guides_ = [33.0]
-
-[node name="ScreenUI" type="CanvasLayer" parent="."]
-process_priority = 10
-layer = 128
-script = ExtResource("1_3newm")
-metadata/_edit_use_anchors_ = true
-
-[node name="Crosshair" type="TextureRect" parent="ScreenUI"]
-z_index = 999
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -26.0
-offset_right = -169.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(21, 21)
-texture = ExtResource("16_mx3cv")
-script = ExtResource("17_mq60l")
-
-[node name="ReloadingIcon" type="TextureProgressBar" parent="ScreenUI"]
-visible = false
-z_index = 999
-texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
-pivot_offset = Vector2(16, 16)
-fill_mode = 4
-texture_under = ExtResource("4_uqaru")
-texture_progress = ExtResource("5_a4mxq")
-
-[node name="Label" type="Label" parent="ScreenUI"]
-texture_filter = 1
-offset_left = -619.0
-offset_top = -345.0
-offset_right = -371.0
-offset_bottom = -319.0
-text = "put some UI here"
-label_settings = ExtResource("22_ueea8")
-
-[node name="AmmoInfo" type="Control" parent="ScreenUI"]
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-pivot_offset = Vector2(0, 400)
-script = ExtResource("5_fhfcf")
-
-[node name="AmmoBackdrop" type="TextureRect" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = 350.0
-offset_right = 100.0
-offset_bottom = 394.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(100, 0)
-texture = ExtResource("6_wt6eb")
-
-[node name="AmmoLeft" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -57.0
-offset_top = 358.0
-offset_right = 5.0
-offset_bottom = 384.0
-pivot_offset = Vector2(61, 14)
-text = "0"
-label_settings = ExtResource("22_ueea8")
-horizontal_alignment = 2
-
-[node name="MagCapacity" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 34.0
-offset_top = 358.0
-offset_right = 101.0
-offset_bottom = 384.0
-pivot_offset = Vector2(0, 14)
-text = "0"
-label_settings = ExtResource("22_ueea8")
-
-[node name="Slash" type="Label" parent="ScreenUI/AmmoInfo"]
-modulate = Color(0.627047, 0.597041, 0.555939, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 358.0
-offset_right = 35.0
-offset_bottom = 384.0
-text = "/"
-label_settings = ExtResource("22_ueea8")
-horizontal_alignment = 1
 
 [node name="Under" type="Node2D" parent="."]
 
@@ -374,3 +265,5 @@ position = Vector2(213, 274)
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
+
+[node name="ScreenUI" parent="." instance=ExtResource("21_mbysx")]

@@ -1,14 +1,7 @@
-[gd_scene load_steps=81 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=74 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
-[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_g2g3p"]
-[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="3_ul36k"]
-[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="4_4bhkx"]
-[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="5_8p1vj"]
-[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="6_swb4h"]
-[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="7_t1ue4"]
-[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="8_2nkw1"]
-[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="9_w1043"]
+[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="2_bcbjt"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_hrnbf"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="11_3ds43"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_ecap2"]
@@ -163,108 +156,7 @@ size = Vector2(39.7601, 3546.25)
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_hihye")
 
-[node name="ScreenUI" type="CanvasLayer" parent="."]
-process_priority = 10
-layer = 128
-script = ExtResource("2_g2g3p")
-metadata/_edit_use_anchors_ = true
-
-[node name="Crosshair" type="TextureRect" parent="ScreenUI"]
-z_index = 999
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -26.0
-offset_right = -169.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(21, 21)
-texture = ExtResource("3_ul36k")
-script = ExtResource("4_4bhkx")
-
-[node name="ReloadingIcon" type="TextureProgressBar" parent="ScreenUI"]
-visible = false
-z_index = 999
-texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
-pivot_offset = Vector2(16, 16)
-fill_mode = 4
-texture_under = ExtResource("5_8p1vj")
-texture_progress = ExtResource("6_swb4h")
-
-[node name="Label" type="Label" parent="ScreenUI"]
-texture_filter = 1
-offset_left = -619.0
-offset_top = -345.0
-offset_right = -371.0
-offset_bottom = -319.0
-text = "put some UI here"
-label_settings = ExtResource("7_t1ue4")
-
-[node name="AmmoInfo" type="Control" parent="ScreenUI"]
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-pivot_offset = Vector2(0, 400)
-script = ExtResource("8_2nkw1")
-
-[node name="AmmoBackdrop" type="TextureRect" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = 350.0
-offset_right = 100.0
-offset_bottom = 394.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(100, 0)
-texture = ExtResource("9_w1043")
-
-[node name="AmmoLeft" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -57.0
-offset_top = 358.0
-offset_right = 5.0
-offset_bottom = 384.0
-pivot_offset = Vector2(61, 14)
-text = "0"
-label_settings = ExtResource("7_t1ue4")
-horizontal_alignment = 2
-
-[node name="MagCapacity" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 34.0
-offset_top = 358.0
-offset_right = 101.0
-offset_bottom = 384.0
-pivot_offset = Vector2(0, 14)
-text = "0"
-label_settings = ExtResource("7_t1ue4")
-
-[node name="Slash" type="Label" parent="ScreenUI/AmmoInfo"]
-modulate = Color(0.627047, 0.597041, 0.555939, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 358.0
-offset_right = 35.0
-offset_bottom = 384.0
-text = "/"
-label_settings = ExtResource("7_t1ue4")
-horizontal_alignment = 1
+[node name="ScreenUI" parent="." instance=ExtResource("2_bcbjt")]
 
 [node name="Under" type="Node2D" parent="."]
 texture_filter = 1
@@ -1777,6 +1669,28 @@ y_sort_enabled = true
 position = Vector2(1675.88, 49.8755)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dkwjr")
+
+[node name="Tree22" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(4051, 681)
+
+[node name="TrashCan6" parent="Level" instance=ExtResource("43_jy1hf")]
+position = Vector2(4995, -15)
+
+[node name="FallenTree12" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(4857, 568)
+
+[node name="FallenTree13" parent="Level" instance=ExtResource("45_75gqq")]
+position = Vector2(4984, -363)
+
+[node name="FallenTree14" parent="Level" instance=ExtResource("45_75gqq")]
+position = Vector2(3624, -309)
+flip_h = true
+
+[node name="FallenTree15" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(2952, -359)
+
+[node name="Log3" parent="Level" instance=ExtResource("18_muafu")]
+position = Vector2(4388, 657)
 
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 

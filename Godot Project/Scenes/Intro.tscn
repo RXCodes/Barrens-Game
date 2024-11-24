@@ -1741,8 +1741,9 @@ grow_vertical = 0
 text = "This peaceful town was full of hardworking people doing their daily chores."
 label_settings = SubResource("LabelSettings_cr5uu")
 autowrap_mode = 2
+visible_characters = 0
 visible_characters_behavior = 1
-visible_ratio = -0.0133333
+visible_ratio = 0.0
 script = ExtResource("4_vuexh")
 
 [node name="StoryImage" type="Sprite2D" parent="Storyboard"]

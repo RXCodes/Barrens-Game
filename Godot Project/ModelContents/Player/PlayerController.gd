@@ -313,6 +313,7 @@ func damage(amount: float, source: Node2D) -> void:
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	PlayerHealthBar.setProgress(health)
 	if health <= 0:
 		health = 0
 		kill()
@@ -356,7 +357,8 @@ func playWalkSound() -> void:
 
 func pickupCash(amount: int) -> void:
 	cash += amount
-	$CashPickup.pitch_scale = randfn(1.0, 0.05)
+	MoneyDisplay.setMoney(cash)
+	$CashPickup.pitch_scale = randfn(1.0, 0.075)
 	$CashPickup.play()
 
 func selectWeapon(name: String) -> void:
