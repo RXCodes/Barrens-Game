@@ -9,10 +9,14 @@ func _ready() -> void:
 
 ## `await TimeManager.wait(0.5)` will wait 0.5s before running the next line
 static func wait(seconds: float):
+	if current.get_tree() == null:
+		return
 	return current.get_tree().create_timer(seconds).timeout
 
 ## `var timer = TimeManager.waitTimer` will allow you to access this timer using "timer"
 static func waitTimer(seconds: float) -> SceneTreeTimer:
+	if current.get_tree() == null:
+		return
 	return current.get_tree().create_timer(seconds)
 
 ## `await TimeManager.promise([signal1, signal2, signal3])'

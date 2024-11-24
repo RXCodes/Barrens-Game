@@ -104,8 +104,29 @@ func _physics_process(delta: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, mask)
-	var result = space_state.intersect_ray(query)
+	
+	# raycast to wall
+	var wallOriginPosition = global_position
+	wallOriginPosition.y += 75
+	var wallQuery = PhysicsRayQueryParameters2D.create(wallOriginPosition, global_position + projectoryVector, mask)
+	var wallResult = space_state.intersect_ray(wallQuery)
+	var wallDistance = INF
+	if wallResult:
+		wallDistance = global_position.distance_to(wallResult.position) / bulletScale
+	
+	# raycast to enemy
+	var enemyQuery = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, mask)
+	var enemyResult = space_state.intersect_ray(enemyQuery)
+	var enemyDistance = INF
+	if enemyResult:
+		enemyDistance = global_position.distance_to(enemyResult.position) / bulletScale
+	
+	# get raycast with shortest distance
+	var result = null
+	if wallResult and enemyResult:
+		result = wallResult if wallDistance < enemyDistance else enemyResult
+	else:
+		result = wallResult if wallResult else wallResult
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale
 		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
