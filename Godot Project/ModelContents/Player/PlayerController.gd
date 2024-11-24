@@ -15,6 +15,10 @@ var cash = 0
 
 var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
+var currentScrollZoom = 1.0
+var scrollZoomDampening = 0.12
+var minScrollZoom = 0.65
+var maxScrollZoom = 1.5
 
 var gunInteractor: Gun.Interactor
 var gunFireShakeDampening = 0.1
@@ -85,6 +89,7 @@ func _process(delta: float) -> void:
 	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards and sprintPower > 0
 	var targetZoomOffset = sprintZoomOffset if shouldZoomCamera else 0.0
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
+	PlayerCamera.current.zoomMultiplier += (currentScrollZoom - PlayerCamera.current.zoomMultiplier) * scrollZoomDampening
 	
 	# weapon functionality
 	if shooting and not dead:
@@ -212,6 +217,7 @@ func _input(event: InputEvent) -> void:
 				elif key == "3":
 					selectWeapon("MachineGun")
 	
+	# mouse clicks and scrolling
 	if event is InputEventMouseButton:
 		# handle left click
 		if event.button_index == 1:
@@ -226,6 +232,15 @@ func _input(event: InputEvent) -> void:
 					gunInteractor.currentWeapon.cancelReload()
 				else:
 					gunInteractor.currentWeapon.reload(false)
+		# scrolling up should reduce zoom
+		elif event.button_index == 4:
+			currentScrollZoom *= 0.975
+			currentScrollZoom = maxf(currentScrollZoom, minScrollZoom)
+		# scrolling down should increase zoom
+		elif event.button_index == 5:
+			currentScrollZoom *= 1.025
+			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
+		print(event)
 	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)

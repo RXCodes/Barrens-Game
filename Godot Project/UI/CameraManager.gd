@@ -4,6 +4,7 @@ static var current: PlayerCamera
 var crosshairZoomOffset = 0.0
 var sprintingZoomOffset = 0.0
 var originalZoom = 0.9
+var zoomMultiplier = 1.0
 
 var aimingPositionOffset = Vector2.ZERO
 var originalPositionOffset = Vector2.ZERO
@@ -19,6 +20,7 @@ func _process(delta: float) -> void:
 	var finalZoom = originalZoom
 	finalZoom *= 1.0 + crosshairZoomOffset
 	finalZoom *= 1.0 + sprintingZoomOffset
+	finalZoom *= zoomMultiplier
 	zoom = Vector2(finalZoom, finalZoom)
 	
 	# offset camera

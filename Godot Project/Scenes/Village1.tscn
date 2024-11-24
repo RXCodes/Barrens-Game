@@ -4532,6 +4532,7 @@ position = Vector2(820, 553)
 position = Vector2(1144, 552)
 
 [node name="BorderHorizontal" type="NinePatchRect" parent="Level"]
+z_index = -10
 texture_filter = 1
 offset_left = -1171.0
 offset_top = -2383.0
@@ -4557,6 +4558,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_1hko7")
 
 [node name="BorderHorizontal2" type="NinePatchRect" parent="Level"]
+z_index = -15
 texture_filter = 1
 offset_left = -421.0
 offset_top = -2498.0
@@ -4608,6 +4610,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_g1nr3")
 
 [node name="BorderHorizontal3" type="NinePatchRect" parent="Level"]
+z_index = -5
 texture_filter = 1
 offset_left = 1447.0
 offset_top = -2405.0
@@ -4633,6 +4636,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_02vbe")
 
 [node name="BorderHorizontal4" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = -1100.0
 offset_top = 3778.0
@@ -4659,6 +4663,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ijk0d")
 
 [node name="BorderHorizontal6" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 5596.0
 offset_top = 2690.0
@@ -4685,6 +4690,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_k47xr")
 
 [node name="BorderHorizontal7" type="NinePatchRect" parent="Level"]
+z_index = -6
 texture_filter = 1
 offset_left = 5526.0
 offset_top = 1453.0
@@ -4711,6 +4717,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ufkcg")
 
 [node name="BorderVertical" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 2905.0
 offset_top = 3813.0
@@ -4737,17 +4744,18 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_hkqrs")
 
 [node name="BorderVertical5" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 1450.0
-offset_top = -2454.0
+offset_top = -2455.0
 offset_right = 1461.0
-offset_bottom = -2380.0
+offset_bottom = -2429.0
 scale = Vector2(2, 2)
 texture = ExtResource("53_oh13s")
 patch_margin_left = 5
-patch_margin_top = 16
+patch_margin_top = 5
 patch_margin_right = 5
-patch_margin_bottom = 16
+patch_margin_bottom = 5
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 2
 
@@ -4763,11 +4771,12 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_xd6aj")
 
 [node name="BorderVertical6" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
-offset_left = -417.0
+offset_left = -416.0
 offset_top = -2454.0
-offset_right = -406.0
-offset_bottom = -2380.0
+offset_right = -405.0
+offset_bottom = -2418.0
 scale = Vector2(2, 2)
 texture = ExtResource("53_oh13s")
 patch_margin_left = 5
@@ -4789,6 +4798,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_xd6aj")
 
 [node name="BorderVertical2" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 5601.0
 offset_top = 2733.0
@@ -4815,6 +4825,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_gyuhd")
 
 [node name="BorderVertical7" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = -1166.0
 offset_top = -2338.0
@@ -4841,6 +4852,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_cc8rs")
 
 [node name="BorderVertical3" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 5757.0
 offset_top = 1496.0
@@ -4867,6 +4879,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_u144t")
 
 [node name="BorderHorizontal8" type="NinePatchRect" parent="Level"]
+z_index = -5
 texture_filter = 1
 offset_left = -1100.0
 offset_top = 73.0
@@ -4893,6 +4906,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_k47xr")
 
 [node name="BorderHorizontal9" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = -1170.0
 offset_top = -1164.0
@@ -4919,11 +4933,12 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ufkcg")
 
 [node name="BorderVertical8" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = -939.0
 offset_top = -1121.0
 offset_right = -928.0
-offset_bottom = -505.0
+offset_bottom = -523.0
 scale = Vector2(2, 2)
 texture = ExtResource("53_oh13s")
 patch_margin_left = 5
@@ -4945,11 +4960,12 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_u144t")
 
 [node name="BorderVertical4" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = 5531.0
 offset_top = -2361.0
 offset_right = 5542.0
-offset_bottom = -442.0
+offset_bottom = -453.0
 scale = Vector2(2, 2)
 texture = ExtResource("53_oh13s")
 patch_margin_left = 5
@@ -4971,6 +4987,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_jr2kn")
 
 [node name="BorderVertical9" type="NinePatchRect" parent="Level"]
+z_index = 10
 texture_filter = 1
 offset_left = -1095.0
 offset_top = 115.0
