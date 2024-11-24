@@ -4,7 +4,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijcnl"]
 radius = 11.0
-height = 33.0
+height = 29.0
 
 [node name="TrashCan" type="Sprite2D"]
 texture_filter = 1

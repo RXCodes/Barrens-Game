@@ -240,7 +240,6 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == 5:
 			currentScrollZoom *= 1.025
 			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
-		print(event)
 	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=102 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="52_bomwk"]
 [ext_resource type="Texture2D" uid="uid://cmvlklxuckjqv" path="res://Environment/Border.png" id="52_dttcw"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
+[ext_resource type="PackedScene" uid="uid://dd5p33ybg8ngx" path="res://Environment/Decoration/Log.tscn" id="54_avb0r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6bmr"]
 texture = ExtResource("10_pvnfi")
@@ -4985,6 +4986,33 @@ y_sort_enabled = true
 position = Vector2(7, 986)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jr2kn")
+
+[node name="Log" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(814, 1692)
+
+[node name="Log2" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(2824, 2098)
+
+[node name="Log3" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(2453, 964)
+
+[node name="Log4" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(-178, 3618)
+
+[node name="Log5" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(693, -183)
+
+[node name="Log6" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(2643, -1519)
+
+[node name="Log7" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(4260, -1353)
+
+[node name="Log8" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(360, -1353)
+
+[node name="Log9" parent="Level" instance=ExtResource("54_avb0r")]
+position = Vector2(-752, -2000)
 
 [node name="BorderVertical9" type="NinePatchRect" parent="Level"]
 z_index = 10
