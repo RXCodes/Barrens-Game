@@ -154,11 +154,11 @@ size = Vector2(28.1878, 10.9205)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ihmq"]
 size = Vector2(757.5, 437.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkwjr"]
-size = Vector2(39.7601, 2943.25)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ilwx6"]
 size = Vector2(731.5, 19.8754)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkwjr"]
+size = Vector2(39.7601, 3546.25)
 
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_hihye")
@@ -274,7 +274,7 @@ position = Vector2(0, 4)
 z_index = -8
 texture_filter = 1
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD9/wQAAAAAAAAAAAD6////AAACAAAAAAADAPz/AAAEAAAAAAAFAAAAAAAAAAAAAAD4//v/AAAFAAAAAAD6/wUAAAAAAAAAAAAEAAQAAAADAAAAAAD7//v/AAAFAAAAAAAIAAQAAAACAAAAAAAKAAEAAAACAAAAAAAQAAMAAAADAAAAAAAOAAAAAAAAAAAAAAAWAAEAAAAEAAAAAAAbAAUAAAABAAAAAAAfAAAAAAAEAAAAAAAmAAAAAAAEAAAAAAAuAAAAAAABAAAAAAAmAAQAAAAFAAAAAAAiAAMAAAAAAAAAAAAyAAIAAAAFAAAAAAAuAAQAAAACAAAAAAA1AAAAAAACAAAAAAAjAP7/AAAAAAAAAAApAP//AAABAAAAAAAIAPz/AAACAAAAAAAOAAgAAAAAAAAAAAAfAAoAAAAEAAAAAAAWAAcAAAAFAAAAAAApAAcAAAACAAAAAAAiAPr/AAACAAAAAAAcAP3/AAAFAAAAAAArAPz/AAAEAAAAAAAxAP3/AAACAAAAAAA0AAgAAAACAAAAAAAGAPn/AAABAAAAAAD9//b/AAACAAAAAAD0//n/AAAFAAAAAADz/wEAAAAFAAAAAADu/woAAAADAAAAAADv/wsAAAAAAAAAAADz/wwAAAAFAAAAAADw/wAAAAADAAAAAADv/wQAAAAEAAAAAAAFAPL/AAAAAAAAAAADAPL/AAAEAAAAAAD6//L/AAAFAAAAAADu//n/AAAFAAAAAADs//b/AAADAAAAAADr/w0AAAAFAAAAAADv/xEAAAADAAAAAAAJAA8AAAABAAAAAAADAA8AAAADAAAAAAALABMAAAAEAAAAAAAVABEAAAAEAAAAAAAtAPT/AAACAAAAAAA7APX/AAAFAAAAAAAsABMAAAABAAAAAAA1AA0AAAAAAAAAAAA6AAwAAAAAAAAAAAA+AAkAAAAFAAAAAAA/AAcAAAADAAAAAAA/AAQAAAAFAAAAAAA7APr/AAACAAAAAAA6APn/AAADAAAAAAAzAPf/AAAEAAAAAAAtAPb/AAAFAAAAAAAuAA0AAAADAAAAAAAhAA4AAAACAAAAAAAhABEAAAAEAAAAAAAgABEAAAACAAAAAABIAPv/AAABAAAAAABLAPr/AAABAAAAAABPAPn/AAAEAAAAAABaAAAAAAADAAAAAABIAAwAAAADAAAAAABUAAUAAAADAAAAAABXAA4AAAADAAAAAABfAAsAAAACAAAAAABeAP3/AAADAAAAAABbAPr/AAAAAAAAAABEAAAAAAAEAAAAAABNAAYAAAACAAAAAAA+ABEAAAAEAAAAAAA+AA4AAAACAAAAAABDAAgAAAACAAAAAABBAPb/AAAAAAAAAABDAPX/AAAAAAAAAABpAPz/AAABAAAAAAB1AAQAAAADAAAAAAB2AAUAAAAEAAAAAAB1AA4AAAACAAAAAABkABAAAAADAAAAAABhAA0AAAABAAAAAABgAAoAAAACAAAAAABiAAcAAAADAAAAAAB3APj/AAADAAAAAACDAAoAAAAAAAAAAACBAAkAAAAAAAAAAACAAAcAAAAFAAAAAAB9AAIAAAAFAAAAAAB7AAcAAAAEAAAAAABoAAUAAAACAAAAAAByAAwAAAAEAAAAAACTAAAAAAACAAAAAACTAAIAAAADAAAAAACQAAoAAAADAAAAAACOAAsAAAAEAAAAAACJAAgAAAAAAAAAAACGAPz/AAAEAAAAAACDAAEAAAAAAAAAAABzABMAAAADAAAAAACNABUAAAACAAAAAACaABIAAAAEAAAAAACfABAAAAAAAAAAAACgAA4AAAAFAAAAAACfAAgAAAAAAAAAAACeAAMAAAAFAAAAAACZAPj/AAAEAAAAAACXAAUAAAAEAAAAAABwAPf/AAACAAAAAABrAPf/AAAAAAAAAABIAPH/AAAAAAAAAABoAPH/AAABAAAAAABuAPT/AAABAAAAAABsAPT/AAAFAAAAAABnAPT/AAACAAAAAABkAPT/AAAEAAAAAABSAPX/AAAEAAAAAABeABYAAAADAAAAAABdABUAAAAAAAAAAABXABcAAAADAAAAAABJABYAAAAEAAAAAAA+ABoAAAAFAAAAAAAyABgAAAABAAAAAAA1ABkAAAACAAAAAACBABYAAAACAAAAAAB7ABoAAAABAAAAAACEABoAAAABAAAAAAB0APL/AAAFAAAAAAB8APP/AAADAAAAAAAvAPL/AAADAAAAAAATAPL/AAAAAAAAAAASAPL/AAACAAAAAADk//b/AAAAAAAAAADm/wAAAAAAAAAAAADn/wkAAAAFAAAAAADq/wEAAAAFAAAAAADq/wIAAAABAAAAAADp/wsAAAACAAAAAADn/xQAAAACAAAAAAAHABkAAAADAAAAAAAOABkAAAACAAAAAAASABkAAAAAAAAAAAAUABkAAAADAAAAAAAjABoAAAABAAAAAAArABoAAAAEAAAAAADq/xsAAAAFAAAAAAD5/xYAAAAEAAAAAAD7/xUAAAABAAAAAAD9/xIAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAD9/wQAAAAAAAAAAAD6////AAACAAAAAAADAPz/AAAEAAAAAAAFAAAAAAAAAAAAAAD4//v/AAAFAAAAAAD6/wUAAAAAAAAAAAAEAAQAAAADAAAAAAD7//v/AAAFAAAAAAAIAAQAAAACAAAAAAAKAAEAAAACAAAAAAAQAAMAAAADAAAAAAAOAAAAAAAAAAAAAAAWAAEAAAAEAAAAAAAbAAUAAAABAAAAAAAfAAAAAAAEAAAAAAAmAAAAAAAEAAAAAAAuAAAAAAABAAAAAAAmAAQAAAAFAAAAAAAiAAMAAAAAAAAAAAAyAAIAAAAFAAAAAAAuAAQAAAACAAAAAAA1AAAAAAACAAAAAAAjAP7/AAAAAAAAAAApAP//AAABAAAAAAAIAPz/AAACAAAAAAAOAAgAAAAAAAAAAAAfAAoAAAAEAAAAAAAWAAcAAAAFAAAAAAApAAcAAAACAAAAAAAiAPr/AAACAAAAAAAcAP3/AAAFAAAAAAArAPz/AAAEAAAAAAAxAP3/AAACAAAAAAA0AAgAAAACAAAAAAAGAPn/AAABAAAAAAD9//b/AAACAAAAAAD0//n/AAAFAAAAAADz/wEAAAAFAAAAAADu/woAAAADAAAAAADv/wsAAAAAAAAAAADz/wwAAAAFAAAAAADw/wAAAAADAAAAAADv/wQAAAAEAAAAAAAFAPL/AAAAAAAAAAADAPL/AAAEAAAAAAD6//L/AAAFAAAAAADu//n/AAAFAAAAAADs//b/AAADAAAAAADr/w0AAAAFAAAAAADv/xEAAAADAAAAAAAJAA8AAAABAAAAAAADAA8AAAADAAAAAAALABMAAAAEAAAAAAAVABEAAAAEAAAAAAAtAPT/AAACAAAAAAA7APX/AAAFAAAAAAAsABMAAAABAAAAAAA1AA0AAAAAAAAAAAA6AAwAAAAAAAAAAAA+AAkAAAAFAAAAAAA/AAcAAAADAAAAAAA/AAQAAAAFAAAAAAA7APr/AAACAAAAAAA6APn/AAADAAAAAAAzAPf/AAAEAAAAAAAtAPb/AAAFAAAAAAAuAA0AAAADAAAAAAAhAA4AAAACAAAAAAAhABEAAAAEAAAAAAAgABEAAAACAAAAAABIAPv/AAABAAAAAABLAPr/AAABAAAAAABPAPn/AAAEAAAAAABaAAAAAAADAAAAAABIAAwAAAADAAAAAABUAAUAAAADAAAAAABXAA4AAAADAAAAAABfAAsAAAACAAAAAABeAP3/AAADAAAAAABbAPr/AAAAAAAAAABEAAAAAAAEAAAAAABNAAYAAAACAAAAAAA+ABEAAAAEAAAAAAA+AA4AAAACAAAAAABDAAgAAAACAAAAAABBAPb/AAAAAAAAAABDAPX/AAAAAAAAAABpAPz/AAABAAAAAAB1AAQAAAADAAAAAAB2AAUAAAAEAAAAAAB1AA4AAAACAAAAAABkABAAAAADAAAAAABhAA0AAAABAAAAAABgAAoAAAACAAAAAABiAAcAAAADAAAAAAB3APj/AAADAAAAAACDAAoAAAAAAAAAAACBAAkAAAAAAAAAAACAAAcAAAAFAAAAAAB9AAIAAAAFAAAAAAB7AAcAAAAEAAAAAABoAAUAAAACAAAAAAByAAwAAAAEAAAAAACTAAAAAAACAAAAAACTAAIAAAADAAAAAACQAAoAAAADAAAAAACOAAsAAAAEAAAAAACJAAgAAAAAAAAAAACGAPz/AAAEAAAAAACDAAEAAAAAAAAAAABzABMAAAADAAAAAACNABUAAAACAAAAAACaABIAAAAEAAAAAACfABAAAAAAAAAAAACgAA4AAAAFAAAAAACfAAgAAAAAAAAAAACeAAMAAAAFAAAAAACZAPj/AAAEAAAAAACXAAUAAAAEAAAAAABwAPf/AAACAAAAAABrAPf/AAAAAAAAAABIAPH/AAAAAAAAAABoAPH/AAABAAAAAABuAPT/AAABAAAAAABsAPT/AAAFAAAAAABnAPT/AAACAAAAAABkAPT/AAAEAAAAAABSAPX/AAAEAAAAAABeABYAAAADAAAAAABdABUAAAAAAAAAAABXABcAAAADAAAAAABJABYAAAAEAAAAAAA+ABoAAAAFAAAAAAAyABgAAAABAAAAAAA1ABkAAAACAAAAAACBABYAAAACAAAAAAB7ABoAAAABAAAAAACEABoAAAABAAAAAAB0APL/AAAFAAAAAAB8APP/AAADAAAAAAAvAPL/AAADAAAAAAATAPL/AAAAAAAAAAASAPL/AAACAAAAAADk//b/AAAAAAAAAADm/wAAAAAAAAAAAADn/wkAAAAFAAAAAADq/wEAAAAFAAAAAADq/wIAAAABAAAAAADp/wsAAAACAAAAAADn/xQAAAACAAAAAAAHABkAAAADAAAAAAAOABkAAAACAAAAAAASABkAAAAAAAAAAAAUABkAAAADAAAAAAAjABoAAAABAAAAAAArABoAAAAEAAAAAADq/xsAAAAFAAAAAAD5/xYAAAAEAAAAAAD7/xUAAAABAAAAAAD9/xIAAAADAAAAAADk//r/AAAEAAAAAADY//X/AAAFAAAAAADY//v/AAABAAAAAADd//r/AAAFAAAAAADa/wgAAAADAAAAAADg/woAAAACAAAAAADb//7/AAACAAAAAADj/w8AAAADAAAAAADh/wAAAAAEAAAAAADa/xEAAAAAAAAAAADd/xcAAAABAAAAAADc/xcAAAACAAAAAADY/xYAAAAFAAAAAADp/xYAAAABAAAAAADx/xcAAAABAAAAAADf//P/AAABAAAAAADm//P/AAABAAAAAADy//z/AAACAAAAAAAKAPX/AAAEAAAAAAANAPv/AAACAAAAAAAFABUAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_ietyu")
 metadata/_edit_lock_ = true
 
@@ -1636,12 +1636,102 @@ flip_h = true
 [node name="Tree20" parent="Level" instance=ExtResource("42_tc770")]
 position = Vector2(4209, 478)
 
+[node name="BorderVertical8" type="NinePatchRect" parent="Level"]
+z_index = 10
+texture_filter = 1
+offset_left = -1398.0
+offset_top = -564.0
+offset_right = -1387.0
+offset_bottom = 122.0
+scale = Vector2(2, 2)
+texture = ExtResource("52_5ig2d")
+patch_margin_left = 5
+patch_margin_top = 16
+patch_margin_right = 5
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/BorderVertical8"]
+y_sort_enabled = true
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/BorderVertical8/StaticBody2D"]
+z_index = 30
+y_sort_enabled = true
+position = Vector2(6.99887, 364.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ilwx6")
+
+[node name="BorderVertical9" type="NinePatchRect" parent="Level"]
+z_index = 10
+texture_filter = 1
+offset_left = 5272.0
+offset_top = -566.0
+offset_right = 5283.0
+offset_bottom = 120.0
+scale = Vector2(2, 2)
+texture = ExtResource("52_5ig2d")
+patch_margin_left = 5
+patch_margin_top = 16
+patch_margin_right = 5
+patch_margin_bottom = 16
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/BorderVertical9"]
+y_sort_enabled = true
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/BorderVertical9/StaticBody2D"]
+z_index = 30
+y_sort_enabled = true
+position = Vector2(6.99887, 364.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ilwx6")
+
+[node name="FallenTree6" parent="Level" instance=ExtResource("45_75gqq")]
+position = Vector2(-1127, -367)
+
+[node name="FallenTree7" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(-924, -148)
+
+[node name="FallenTree8" parent="Level" instance=ExtResource("45_75gqq")]
+position = Vector2(-730, 615)
+flip_h = true
+
+[node name="FallenTree9" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(-1143, 375)
+flip_h = true
+
+[node name="FallenTree10" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(-879, 145)
+
+[node name="FallenTree11" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(-713, -28)
+flip_h = true
+
+[node name="Tree21" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(-748, -258)
+
+[node name="Cactus35" parent="Level" instance=ExtResource("23_py5i2")]
+position = Vector2(-1294, 27)
+
+[node name="Cactus36" parent="Level" instance=ExtResource("24_2pvp0")]
+position = Vector2(-1019, 702)
+
+[node name="Cactus37" parent="Level" instance=ExtResource("25_7ft87")]
+position = Vector2(-1205, -224)
+
+[node name="Cactus38" parent="Level" instance=ExtResource("26_67v8x")]
+position = Vector2(-1187, 144)
+
 [node name="BorderHorizontal2" type="NinePatchRect" parent="Level"]
 z_index = -15
 texture_filter = 1
-offset_left = -585.0
+offset_left = -1403.0
 offset_top = -610.0
-offset_right = 2357.0
+offset_right = 1948.0
 offset_bottom = -536.0
 scale = Vector2(2, 2)
 texture = ExtResource("49_ewkqu")
@@ -1658,16 +1748,16 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/BorderHorizontal2/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(1470.38, 49.8748)
+position = Vector2(1615.38, 49.8751)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dkwjr")
 
 [node name="BorderHorizontal3" type="NinePatchRect" parent="Level"]
 z_index = 15
 texture_filter = 1
-offset_left = -585.0
+offset_left = -1403.0
 offset_top = 804.0
-offset_right = 2357.0
+offset_right = 1948.0
 offset_bottom = 878.0
 scale = Vector2(2, 2)
 texture = ExtResource("49_ewkqu")
@@ -1684,67 +1774,13 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/BorderHorizontal3/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(1470.38, 49.8748)
+position = Vector2(1675.88, 49.8755)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_dkwjr")
 
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 
 [node name="Ambience" parent="." instance=ExtResource("28_ge3ee")]
-
-[node name="BorderVertical8" type="NinePatchRect" parent="."]
-z_index = 10
-texture_filter = 1
-offset_left = -580.0
-offset_top = -561.0
-offset_right = -569.0
-offset_bottom = 125.0
-scale = Vector2(2, 2)
-texture = ExtResource("52_5ig2d")
-patch_margin_left = 5
-patch_margin_top = 16
-patch_margin_right = 5
-patch_margin_bottom = 16
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 2
-
-[node name="StaticBody2D" type="StaticBody2D" parent="BorderVertical8"]
-y_sort_enabled = true
-collision_layer = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderVertical8/StaticBody2D"]
-z_index = 30
-y_sort_enabled = true
-position = Vector2(6.99887, 364.25)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_ilwx6")
-
-[node name="BorderVertical9" type="NinePatchRect" parent="."]
-z_index = 10
-texture_filter = 1
-offset_left = 5272.0
-offset_top = -562.0
-offset_right = 5283.0
-offset_bottom = 124.0
-scale = Vector2(2, 2)
-texture = ExtResource("52_5ig2d")
-patch_margin_left = 5
-patch_margin_top = 16
-patch_margin_right = 5
-patch_margin_bottom = 16
-axis_stretch_horizontal = 1
-axis_stretch_vertical = 2
-
-[node name="StaticBody2D" type="StaticBody2D" parent="BorderVertical9"]
-y_sort_enabled = true
-collision_layer = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BorderVertical9/StaticBody2D"]
-z_index = 30
-y_sort_enabled = true
-position = Vector2(6.99887, 364.25)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_ilwx6")
 
 [connection signal="body_shape_entered" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_exited"]
