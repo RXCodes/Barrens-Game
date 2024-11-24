@@ -138,6 +138,7 @@ layout_mode = 3
 anchors_preset = 0
 pivot_offset = Vector2(0, 400)
 script = ExtResource("8_2nkw1")
+metadata/_edit_use_anchors_ = true
 
 [node name="AmmoBackdrop" type="TextureRect" parent="ScreenUI/AmmoInfo"]
 texture_filter = 1
@@ -155,6 +156,7 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(100, 0)
 texture = ExtResource("9_w1043")
+metadata/_edit_use_anchors_ = true
 
 [node name="AmmoLeft" type="Label" parent="ScreenUI/AmmoInfo"]
 texture_filter = 1
@@ -167,6 +169,7 @@ pivot_offset = Vector2(61, 14)
 text = "0"
 label_settings = ExtResource("7_t1ue4")
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="MagCapacity" type="Label" parent="ScreenUI/AmmoInfo"]
 texture_filter = 1
@@ -178,6 +181,7 @@ offset_bottom = 384.0
 pivot_offset = Vector2(0, 14)
 text = "0"
 label_settings = ExtResource("7_t1ue4")
+metadata/_edit_use_anchors_ = true
 
 [node name="Slash" type="Label" parent="ScreenUI/AmmoInfo"]
 modulate = Color(0.627047, 0.597041, 0.555939, 1)
@@ -190,6 +194,7 @@ offset_bottom = 384.0
 text = "/"
 label_settings = ExtResource("7_t1ue4")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Under" type="Node2D" parent="."]
 texture_filter = 1
@@ -326,6 +331,7 @@ offset_top = -168.0
 offset_right = -238.0
 offset_bottom = -158.0
 scale = Vector2(31.701, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/Fence"]
 y_sort_enabled = true
@@ -344,6 +350,7 @@ offset_top = 256.0
 offset_right = -238.0
 offset_bottom = 266.0
 scale = Vector2(31.701, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/Fence2"]
 y_sort_enabled = true
@@ -369,6 +376,7 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence"]
 collision_layer = 5
@@ -392,6 +400,7 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence2"]
 position = Vector2(-1, 21)
@@ -416,6 +425,7 @@ patch_margin_left = 2
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence3"]
 position = Vector2(-1, 21)
@@ -433,6 +443,7 @@ offset_top = 21.0
 offset_right = 202.0
 offset_bottom = 31.0
 scale = Vector2(12.9881, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Level/Fence3"]
 collision_layer = 5
