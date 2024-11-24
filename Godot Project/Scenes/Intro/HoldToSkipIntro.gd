@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	if holdingSkip and canSkip:
 		holdProgress += delta / timeToHold
 		if holdProgress >= 1.0:
-			NodeRelations.loadScene("res://Scenes/Village1.tscn")
+			NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
 			canSkip = false
 	else:
 		holdProgress = 0.0
