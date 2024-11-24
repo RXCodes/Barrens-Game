@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bea0yqsiy8r2l"]
+
+[ext_resource type="Texture2D" uid="uid://cmegyo6do5mif" path="res://Environment/Decoration/WaterFountain.png" id="1_u04px"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2kq4"]
+radius = 24.0
+height = 97.0
+
+[node name="WaterFountain" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_u04px")
+offset = Vector2(0, -22)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.500003, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g2kq4")
