@@ -1293,14 +1293,14 @@ scale = Vector2(0.99983, 0.99983)
 texture = ExtResource("4_7ekww")
 
 [node name="RightLeg" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
-position = Vector2(0.0109329, 0.011116)
+position = Vector2(0.0109558, 0.0111847)
 rotation = 0.00270206
-scale = Vector2(0.999726, 0.999726)
+scale = Vector2(0.999723, 0.999723)
 texture = ExtResource("5_mv52h")
 
 [node name="RightKnee" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/RightLeg"]
-position = Vector2(7.02017, 5.37798)
-scale = Vector2(1.00016, 1.00016)
+position = Vector2(7.02016, 5.37794)
+scale = Vector2(1.00017, 1.00017)
 texture = ExtResource("6_735yq")
 offset = Vector2(-7, -6)
 
@@ -1310,7 +1310,7 @@ texture = ExtResource("6_5fnib")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
-position = Vector2(-0.0235138, -0.0516357)
+position = Vector2(-0.0235138, -0.052063)
 rotation = -0.00331545
 scale = Vector2(0.998951, 0.998951)
 texture = ExtResource("7_qwvak")
@@ -1328,54 +1328,55 @@ offset = Vector2(7.8855, -30.6798)
 
 [node name="Coat" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(-7.62939e-06, -4.60002)
+scale = Vector2(1, 1)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(14.6593, -18.1466)
-rotation = -0.12802
-scale = Vector2(0.998946, 0.998946)
+position = Vector2(14.6593, -18.1452)
+rotation = -0.128415
+scale = Vector2(0.998942, 0.998942)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/RightElbow"]
-position = Vector2(5.33798, 17.5343)
-rotation = -0.503994
-scale = Vector2(0.999909, 0.999909)
+position = Vector2(5.3401, 17.5341)
+rotation = -0.505112
+scale = Vector2(0.999912, 0.999912)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(-17.0909, -20.0736)
-rotation = 0.325449
-scale = Vector2(0.99551, 0.99551)
+position = Vector2(-17.0905, -20.0736)
+rotation = 0.324969
+scale = Vector2(0.995506, 0.995506)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(10.4046, 14.4615)
-rotation = -0.247792
-scale = Vector2(0.999399, 0.999377)
+position = Vector2(10.4051, 14.466)
+rotation = -0.247248
+scale = Vector2(0.999398, 0.999379)
 texture = ExtResource("22_t2au1")
 
 [node name="RightHand" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(30.2398, -1.84977)
+position = Vector2(30.2392, -1.84969)
 rotation = 3.03902
-scale = Vector2(1.00396, -1.00398)
-skew = -0.00151563
+scale = Vector2(1.00397, -1.00399)
+skew = -0.00151336
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-5.12519, 12.0802)
-rotation = -0.346829
-scale = Vector2(0.999901, 0.999901)
+position = Vector2(-5.12411, 12.0798)
+rotation = -0.346509
+scale = Vector2(0.999902, 0.999902)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="Head" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(0.163589, -24.5995)
-rotation = -0.00340942
-scale = Vector2(0.99979, 0.99979)
+rotation = -0.00319863
+scale = Vector2(0.999791, 0.999791)
 texture = ExtResource("16_m686t")
 offset = Vector2(1, 22)
 
@@ -1393,7 +1394,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.99979, 0.99979)
+scale = Vector2(0.999791, 0.999791)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0

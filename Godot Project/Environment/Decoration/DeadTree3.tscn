@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1kagn22hckke"]
+
+[ext_resource type="Texture2D" uid="uid://cm6jrtdugsc62" path="res://Environment/Decoration/Tree3.png" id="1_ruams"]
+[ext_resource type="Script" path="res://Environment/Building/BehindBuilding.gd" id="2_s4ne6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj2om"]
+radius = 0.39813
+height = 1.42932
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e065e"]
+size = Vector2(52.5, 45.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vnrk"]
+size = Vector2(20, 57.375)
+
+[node name="Tree3" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_ruams")
+offset = Vector2(1.23535, -53.9875)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-707, 180)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(710, -180)
+rotation = 1.57483
+scale = Vector2(25.1172, 20.9916)
+shape = SubResource("CapsuleShape2D_wj2om")
+debug_color = Color(0, 0.595, 0.7, 0.188235)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-707, 180)
+script = ExtResource("2_s4ne6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(708.25, -275.625)
+shape = SubResource("RectangleShape2D_e065e")
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(710.5, -224)
+shape = SubResource("RectangleShape2D_0vnrk")
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
+
+[connection signal="body_shape_entered" from="Area2D" to="Area2D" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="Area2D" method="_on_body_shape_exited"]

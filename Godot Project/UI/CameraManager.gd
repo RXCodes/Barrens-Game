@@ -3,7 +3,7 @@ static var current: PlayerCamera
 
 var crosshairZoomOffset = 0.0
 var sprintingZoomOffset = 0.0
-var originalZoom = 1.0
+var originalZoom = 0.9
 
 var aimingPositionOffset = Vector2.ZERO
 var originalPositionOffset = Vector2.ZERO

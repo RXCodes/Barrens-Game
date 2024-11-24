@@ -104,7 +104,9 @@ func _physics_process(delta: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, mask)
+	var originPosition = global_position
+	originPosition.y += 75
+	var query = PhysicsRayQueryParameters2D.create(originPosition, global_position + projectoryVector, mask)
 	var result = space_state.intersect_ray(query)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale

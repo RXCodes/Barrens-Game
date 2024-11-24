@@ -20,6 +20,8 @@ func _ready() -> void:
 static func setText(text: String) -> void:
 	current.text = text
 	for i in range(text.length()):
+		if not is_instance_valid(current):
+			return
 		current.visible_characters = i
 		
 		# play typewriter sound

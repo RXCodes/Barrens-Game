@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxyqg2lyeonya"]
+
+[ext_resource type="Texture2D" uid="uid://dkive8ayq2yon" path="res://Environment/Decoration/TrashCan.png" id="1_qfb0b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijcnl"]
+radius = 11.0
+height = 33.0
+
+[node name="TrashCan" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_qfb0b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.46423, 8.70544)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ijcnl")
