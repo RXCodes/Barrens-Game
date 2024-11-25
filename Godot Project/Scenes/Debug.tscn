@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=41 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_3newm"]
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
@@ -20,12 +20,18 @@
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
+[ext_resource type="PackedScene" uid="uid://btgbwiyajh4kn" path="res://Models/acid_slime_enemy.tscn" id="21_h1bqx"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
+[ext_resource type="PackedScene" uid="uid://ckq8ygp0nkyp1" path="res://Models/manta_ray_enemy.tscn" id="21_st20k"]
+[ext_resource type="PackedScene" uid="uid://ge1chou4evxe" path="res://Models/snake_enemy.tscn" id="22_8e4gw"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
+[ext_resource type="PackedScene" uid="uid://cxnpl8vckivfy" path="res://Models/scorpion_enemy.tscn" id="23_bojoh"]
+[ext_resource type="PackedScene" uid="uid://n0e8t8q312gb" path="res://Models/worm_enemy.tscn" id="24_twix6"]
 [ext_resource type="PackedScene" uid="uid://ca028heqxjty6" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
+[ext_resource type="PackedScene" uid="uid://bkp4ikyughfp2" path="res://Models/slime_enemy.tscn" id="28_ptxxx"]
 [ext_resource type="Script" path="res://HelperClasses/TimerManager.gd" id="31_rq6uy"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
@@ -280,6 +286,24 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 process_priority = 100
 script = ExtResource("9_i8abo")
 
+[node name="AcidSlime_Enemy" parent="Level" instance=ExtResource("21_h1bqx")]
+position = Vector2(-92, 114)
+
+[node name="Slime_Enemy" parent="Level" instance=ExtResource("28_ptxxx")]
+position = Vector2(-217, 127)
+
+[node name="MantaRay_Enemy" parent="Level" instance=ExtResource("21_st20k")]
+position = Vector2(-342, -158)
+
+[node name="Snake_Enemy" parent="Level" instance=ExtResource("22_8e4gw")]
+position = Vector2(15, -166)
+
+[node name="Scorpion_Enemy" parent="Level" instance=ExtResource("23_bojoh")]
+position = Vector2(189.955, 29.1349)
+
+[node name="Worm_Enemy" parent="Level" instance=ExtResource("24_twix6")]
+position = Vector2(129, -250)
+
 [node name="ExampleRender" parent="Level" instance=ExtResource("17_75868")]
 position = Vector2(330, -11)
 
@@ -325,6 +349,7 @@ position = Vector2(1235, 766)
 flipX = true
 
 [node name="PlayerRender" parent="Level" instance=ExtResource("15_1u73x")]
+position = Vector2(-131, -25)
 
 [node name="Cactus" parent="Level" instance=ExtResource("19_i8kru")]
 position = Vector2(274, 344)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=19 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
-[ext_resource type="Script" path="res://Models/ExampleEnemy.gd" id="2_gy5ro"]
+[ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
 [ext_resource type="Texture2D" uid="uid://br3hdm7fg53r5" path="res://ModelContents/Enemies/Scorpion_Enemy/Scorpion_Still.PNG" id="3_o8wl3"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_y5pvb"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_nq8aj"]
@@ -21,6 +21,274 @@ height = 66.0
 radius = 44.0
 height = 154.0
 
+[sub_resource type="Animation" id="Animation_qf741"]
+resource_name = "Hit-Back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Base:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0698132, 0.0117163, -0.0254203, -0.0134583, 0.00617067, 0.0077297, 0.0, -0.00324994, -0.00109083, 0.0010003, 0.000794384, -0.000153939, -0.000385667, -6.47231e-05, 0.000140428, 7.4348e-05, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Base/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.10472, 0.0443269, -0.0182391, -0.0390459, -0.0233428, 0.00103112, 0.0133035, 0.0107134, 0.00198537, -0.0040243, -0.00446416, -0.00163625, 0.000992038, 0.00171118, 0.00092037, -0.000132064, -0.00060192, -0.000439247, -5.13199e-05, 0.000190462, 0.000188571, 5.82171e-05, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Base/Body/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1.10957, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.20944, -0.127341, -0.0229109, 0.0523599, 0.0781036, 0.0619909, 0.0261799, -0.00721648, -0.0252677, -0.0261799, -0.0159177, -0.00286386, 0.00654498, 0.00976295, 0.00774885, 0.00327249, -0.000902063, -0.00315847, -0.00327249, -0.00198971, -0.000357979, 0.000818123, 0.00122037, 0.0009686, 0.000409062, -0.000112752, -0.000394805, -0.000409062, -0.00024871, -4.47536e-05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d470x"]
+resource_name = "Hit-Front"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Base:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0523599, -0.00878721, 0.0190652, 0.0100937, -0.004628, -0.00579727, 0.0, 0.00243745, 0.000818123, -0.000750222, -0.000595788, 0.000115454, 0.000289251, 4.85424e-05, -0.000105321, -5.5761e-05, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Base/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0872665, -0.0369391, 0.0151992, 0.0325382, 0.0194524, -0.000859265, -0.0110862, -0.00892781, -0.00165448, 0.00335359, 0.00372013, 0.00136354, -0.000826698, -0.00142598, -0.000766975, 0.000110053, 0.0005016, 0.000366039, 4.27666e-05, -0.000158718, -0.000157142, -4.85143e-05, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Base/Body/Head:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1.10957, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.279253, 0.169788, 0.0305479, -0.0698132, -0.104138, -0.0826545, -0.0349066, 0.00962197, 0.0336903, 0.0349066, 0.0212235, 0.00381847, -0.00872665, -0.0130173, -0.0103318, -0.00436332, 0.00120275, 0.00421129, 0.00436332, 0.00265294, 0.000477305, -0.00109083, -0.00162716, -0.00129147, -0.000545415, 0.000150335, 0.000526407, 0.000545415, 0.000331613, 5.96715e-05, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bm7uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Base:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Base/Body/Head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3b64k"]
+_data = {
+"Hit-Back": SubResource("Animation_qf741"),
+"Hit-Front": SubResource("Animation_d470x"),
+"RESET": SubResource("Animation_bm7uj")
+}
+
+[sub_resource type="Animation" id="Animation_fkkh3"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Base:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0326474, -0.13059, -0.293826, -0.522358, -0.816185, -1.17531, -1.5382, -1.35122, -1.22954, -1.17315, -1.18205, -1.25625, -1.39574, -1.53901, -1.47075, -1.46778, -1.53011, -1.5347, -1.55844]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Base/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.322536, 0.348469, 0.349066, 0.20457, 0.0962116, 0.00852806, -0.051566, -0.0602514, -0.0269145, -0.0304158, -0.0321195]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Base/Body/Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/DetachedHead:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/DetachedHead:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.594604, 0.594604),
+"update": 0,
+"values": [Vector2(1, -42), Vector2(3.47372, -37.2058), Vector2(7.5, -40.5), Vector2(13, -45), Vector2(14.8772, -34.9882), Vector2(16.7082, -25.2229), Vector2(18.4479, -15.9446), Vector2(20.0534, -7.38174), Vector2(21.4853, 0.254833), Vector2(22.7082, 6.77708), Vector2(23.6921, 12.0244), Vector2(24.4127, 15.8676), Vector2(24.8523, 18.2121), Vector2(25, 19), Vector2(28, 19)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlipTransform/DetachedHead:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.287175, 1),
+"update": 0,
+"values": [0.0, 4.36332]
+}
+
+[sub_resource type="Animation" id="Animation_82ynv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Base:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Base/Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Base/Body/Head:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/DetachedHead:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/DetachedHead:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -36)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlipTransform/DetachedHead:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vkjs"]
+_data = {
+"Death": SubResource("Animation_fkkh3"),
+"RESET": SubResource("Animation_82ynv")
+}
+
 [node name="Scorpion_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
@@ -28,16 +296,19 @@ position = Vector2(84, 46)
 script = ExtResource("1_3oudb")
 entityZIndexOffset = 24
 
-[node name="Scorpion_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody")]
-script = ExtResource("2_gy5ro")
-enemyName = "Slime"
-maxHealth = 40
-cashDropVariance = 4
+[node name="Scorpion_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+script = ExtResource("2_auyif")
+enemyName = "Scorpion"
+maxHealth = 75
+cashDrop = 30
+cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
 hasAI = true
+mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 walkAnimation = "Walk"
 deathAnimation = "Death"
+actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
 hitFrontAnimation = "Hit"
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
 
@@ -98,6 +369,18 @@ position = Vector2(31, -9.53674e-07)
 scale = Vector2(1.96182, 0.765625)
 texture = ExtResource("4_y5pvb")
 offset = Vector2(0, -39.2243)
+
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3b64k")
+}
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4vkjs")
+}
 
 [node name="HitSounds" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
 
