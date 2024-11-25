@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=88 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="2_bcbjt"]
@@ -163,6 +163,14 @@ size = Vector2(731.5, 19.8754)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkwjr"]
 size = Vector2(39.7601, 3546.25)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1384b"]
+font = ExtResource("6_kiaf2")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3t2l"]
 
@@ -1877,6 +1885,17 @@ position = Vector2(4559, -201)
 [node name="Tree31" parent="Level" instance=ExtResource("41_875lx")]
 position = Vector2(3254, -305)
 
+[node name="Label2" type="Label" parent="Level"]
+offset_left = 4038.0
+offset_top = -440.0
+offset_right = 4375.0
+offset_bottom = -365.0
+scale = Vector2(0.5, 0.5)
+text = "hm, you like exploring?"
+label_settings = SubResource("LabelSettings_1384b")
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 
 [node name="Ambience" parent="." instance=ExtResource("28_ge3ee")]
@@ -1986,15 +2005,15 @@ shape = SubResource("CapsuleShape2D_df5u7")
 [node name="HintText" type="Label" parent="Barrier2/StaticBody2D"]
 self_modulate = Color(0.99248, 0.543984, 0.504537, 1)
 z_index = 1000
-offset_left = 60.3364
-offset_top = 56.7144
-offset_right = 235.336
-offset_bottom = 95.7144
+offset_left = 61.5715
+offset_top = 36.7275
+offset_right = 241.572
+offset_bottom = 75.7275
 rotation = -1.5708
 scale = Vector2(1.4, 1.4)
 pivot_offset = Vector2(20, 30.8889)
-text = "Buy a golden
-ticket to pass!"
+text = "Buy a gun from
+the shop to pass!"
 label_settings = SubResource("LabelSettings_42dhk")
 horizontal_alignment = 1
 

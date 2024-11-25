@@ -374,6 +374,8 @@ func pickupCash(amount: int) -> void:
 	$CashPickup.play()
 
 func pickupAmmo() -> void:
+	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
+	$AmmoPickup.play()
 	for gun: Gun in holdingWeapons:
 		var ammoToAdd = min(gun.maximumMagCapacity, 50)
 		if ammoToAdd < 10:
