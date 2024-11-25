@@ -24,6 +24,14 @@ Through this project, we will enhance our programming skills by learning a new p
 
 The relevance of this project is in the opportunity to use tools like **Godot** and **GitHub**, which are often utilized in industry level projects.  While learning to create a product that requires creative problem-solving, technical knowledge, and teamwork, our group will be pushed to our boundaries, developing essential, and new skills applicable to future software development projects and other programming aspects. Video games are extremely popular and opens opportunities for new jobs while also having fun. Our game will be playable on the browser, requiring no prior downloads, which makes it extremely accessible and monetizable.
 
+# Project Installation
+If you would like to open the project and edit it, here are steps to achieve that.
+- Download Godot 4.3 *(Not the NET version)*.
+- Clone the repository - you can download the zip file.
+- Open Godot and select **Import**.
+- Locate `Godot Project/project.godot` and select it.
+- You should now be able to view and edit the project.
+
 # Try It Out
 **Development Version**
 -> https://rxcodes.github.io/Barrens-Game/Export/Development/index.html
