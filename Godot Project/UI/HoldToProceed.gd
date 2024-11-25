@@ -20,7 +20,6 @@ func _process(delta: float) -> void:
 		holdProgress += delta / timeToHold
 		if holdProgress >= 1.0:
 			canSkip = false
-			$"../../../Close".play()
 			GamePopup.closeCurrent()
 	else:
 		holdProgress = 0.0
@@ -30,4 +29,3 @@ func _input(event: InputEvent) -> void:
 	if event.as_text() != "Space":
 		return
 	holdingSkip = event.is_pressed()
-	get_viewport().set_input_as_handled()

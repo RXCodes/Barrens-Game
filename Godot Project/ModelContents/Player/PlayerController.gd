@@ -69,6 +69,12 @@ var animationValues = {
 
 var sprintBarHidden = true
 func _process(delta: float) -> void:
+	# interrupt controls if needed
+	if GamePopup.current or TutorialManager.shouldDisableControls:
+		currentMovementKeypresses.clear()
+		isSprinting = false
+		shooting = false
+	
 	# blend animations so we can have smoother transitions between them
 	var animSpeed = delta * blendSpeed
 	match currentAnimation:

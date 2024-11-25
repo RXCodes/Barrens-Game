@@ -15,10 +15,23 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	var fadeInTween = NodeRelations.createTween()
 	fadeInTween.tween_property(fadeIn, "self_modulate", Color(0, 0, 0, 0), 4.0)
-	await TimeManager.wait(3.5)
+	await TimeManager.wait(6.5)
+	
 	GamePopup.openPopup("TutorialMovementControls")
 	shouldDisableControls = false
 	await $"../TutorialTrigger1".body_entered
 	GamePopup.openPopup("TutorialSprinting")
 	await $"../TutorialTrigger2".body_entered
 	GamePopup.openPopup("TutorialGunUsage")
+	
+	# wait for all enemies to be defeated
+	while true:
+		await TimeManager.wait(0.5)
+		var enemies = get_tree().get_nodes_in_group("TutorialDummy")
+		if enemies.size() == 0:
+			break
+	$"../Barrier/StaticBody2D".queue_free()
+	$"../Barrier".emitting = false
+
+	await $"../TutorialTrigger3".body_entered
+	GamePopup.openPopup("TutorialShop")

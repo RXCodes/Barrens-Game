@@ -3,18 +3,18 @@ class_name GamePopup extends Node2D
 static var current: Node2D
 var open = true
 var background: ColorRect
+var tween: Tween
 
 @export var silencesAmbience = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	current = self
 	background = $".."
 	background.self_modulate = Color("#33333300")
 	modulate = Color.TRANSPARENT
 	scale = Vector2(0.9, 0.9)
 	await get_tree().physics_frame
-	var tween = NodeRelations.createTween()
+	tween = NodeRelations.createTween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.6)
@@ -28,16 +28,21 @@ static func closeCurrent() -> void:
 		return
 	if not current.open:
 		return
+	var closeSound = current.background.find_child("Close")
+	if closeSound and closeSound is AudioStreamPlayer:
+		closeSound.play()
 	current.open = false
-	var tween = NodeRelations.createTween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_EXPO)
-	tween.tween_property(current, "modulate", Color.TRANSPARENT, 0.6)
-	tween.parallel().tween_property(current, "scale", Vector2(0.9, 0.9), 0.6)
-	tween.parallel().tween_property(current.background, "self_modulate", Color("#33333300"), 0.6)
+	if current.tween:
+		current.tween.stop()
+	current.tween = NodeRelations.createTween()
+	current.tween.set_ease(Tween.EASE_OUT)
+	current.tween.set_trans(Tween.TRANS_EXPO)
+	current.tween.tween_property(current, "modulate", Color.TRANSPARENT, 0.6)
+	current.tween.parallel().tween_property(current, "scale", Vector2(0.9, 0.9), 0.6)
+	current.tween.parallel().tween_property(current.background, "self_modulate", Color("#33333300"), 0.3)
 	if current.silencesAmbience:
-		tween.parallel().tween_property(InGameAmbience.current, "volume_db", -6, 0.6)
-	tween.tween_callback(current.queue_free)
+		current.tween.parallel().tween_property(InGameAmbience.current, "volume_db", -6, 0.6)
+	current.tween.tween_callback(current.background.queue_free)
 	current = null
 
 static func openPopup(name: String) -> void:
@@ -46,4 +51,5 @@ static func openPopup(name: String) -> void:
 	var popupScene = load("res://UI/Popups/" + name + ".tscn")
 	var popup = popupScene.instantiate()
 	var screenUI = NodeRelations.rootNode.find_child("ScreenUI")
+	current = popup.get_children()[0]
 	screenUI.add_child(popup)

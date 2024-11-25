@@ -32,6 +32,7 @@ folder_colors={
 "res://ModelContents/Cash/": "orange",
 "res://ModelContents/Dummy/": "orange",
 "res://ModelContents/Player/": "yellow",
+"res://ModelContents/VanShop/": "orange",
 "res://Models/": "gray",
 "res://Particles/": "pink",
 "res://Scenes/": "green",
