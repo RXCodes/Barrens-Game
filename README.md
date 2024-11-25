@@ -18,7 +18,7 @@ CSE 350 - Section 50 **(Group 3)**
 - Due to technical limitations, this game may not be able to run on iOS devices.
 
 # Project Goal & Relevance
-*This is top-down western shooter game created using Godot for CSE 350.* The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of NPCs and enemies. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
+*This is top-down western shooter game created using Godot for CSE 350.* The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of mechanics. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
 
 Through this project, we will enhance our programming skills by learning a new programming language, `GDScript`, and also while gaining valuable experience working as a cohesive team. By using open-source material, creating our own assets, and collaborating through GitHub, we hope to communicate effectively which is vital for our project's success. By doing something none of us have done before, we will learn a completely new perspective of programming we are not used to. 
 
