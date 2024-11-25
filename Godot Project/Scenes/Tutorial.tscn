@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=80 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="2_bcbjt"]
@@ -42,7 +42,9 @@
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="44_7pwp5"]
 [ext_resource type="PackedScene" uid="uid://dl5upgb4r3jku" path="res://Environment/Decoration/FallenTree1.tscn" id="45_75gqq"]
 [ext_resource type="PackedScene" uid="uid://dutchm520hefn" path="res://Environment/Decoration/FallenTree2.tscn" id="46_2urrm"]
+[ext_resource type="Script" path="res://Scenes/TutorialManager.gd" id="46_n1i4t"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="47_3v38m"]
+[ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="47_jbsjw"]
 [ext_resource type="Texture2D" uid="uid://cmvlklxuckjqv" path="res://Environment/Border.png" id="49_ewkqu"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="52_5ig2d"]
 
@@ -108,11 +110,17 @@ size = Vector2(451, 24.3341)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn58i"]
 size = Vector2(113, 23)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4wbq"]
+size = Vector2(164, 23)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwa33"]
-size = Vector2(147, 23)
+size = Vector2(289, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hk08a"]
 size = Vector2(244, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tm14t"]
+size = Vector2(547, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45ucy"]
 size = Vector2(215, 25)
@@ -153,10 +161,24 @@ size = Vector2(731.5, 19.8754)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dkwjr"]
 size = Vector2(39.7601, 3546.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3t2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ut7y1"]
+size = Vector2(48.694, 4.2462)
+
 [node name="Tutorial" type="Node2D"]
 script = ExtResource("1_hihye")
 
 [node name="ScreenUI" parent="." instance=ExtResource("2_bcbjt")]
+
+[node name="FadeIn" type="ColorRect" parent="ScreenUI"]
+z_index = 4096
+offset_left = -685.0
+offset_top = -413.0
+offset_right = -645.0
+offset_bottom = -373.0
+scale = Vector2(1.06187, 0.941122)
+color = Color(0, 0, 0, 1)
 
 [node name="Under" type="Node2D" parent="."]
 texture_filter = 1
@@ -409,7 +431,7 @@ patch_margin_bottom = 16
 texture_filter = 1
 offset_left = 3815.0
 offset_top = -334.0
-offset_right = 3982.0
+offset_right = 4356.0
 offset_bottom = -302.0
 rotation = 1.5708
 texture = ExtResource("16_b2xyr")
@@ -424,6 +446,19 @@ offset_left = 3903.0
 offset_top = -808.0
 offset_right = 4179.0
 offset_bottom = -776.0
+rotation = 1.5708
+texture = ExtResource("16_b2xyr")
+patch_margin_left = 35
+patch_margin_top = 16
+patch_margin_right = 35
+patch_margin_bottom = 16
+
+[node name="GateShadow15" type="NinePatchRect" parent="Under/Shadow"]
+texture_filter = 1
+offset_left = 3176.0
+offset_top = -1143.0
+offset_right = 3452.0
+offset_bottom = -1111.0
 rotation = 1.5708
 texture = ExtResource("16_b2xyr")
 patch_margin_left = 35
@@ -700,7 +735,31 @@ position = Vector2(-1, 21)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence4/StaticBody2D"]
-position = Vector2(8.5, 86.4999)
+position = Vector2(8.50024, 75.9999)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_o4wbq")
+
+[node name="VerticalFence7" type="NinePatchRect" parent="Level"]
+modulate = Color(0.546892, 0.363387, 0.163887, 1)
+y_sort_enabled = true
+texture_filter = 1
+offset_left = 2034.0
+offset_top = -526.0
+offset_right = 2042.0
+offset_bottom = -210.0
+pivot_offset = Vector2(6, 78)
+texture = ExtResource("23_rs0wi")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level/VerticalFence7"]
+position = Vector2(-1, 21)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence7/StaticBody2D"]
+position = Vector2(8.49976, 157.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_fwa33")
 
@@ -735,7 +794,7 @@ texture_filter = 1
 offset_left = 2672.0
 offset_top = 277.0
 offset_right = 2680.0
-offset_bottom = 453.0
+offset_bottom = 816.0
 pivot_offset = Vector2(6, 78)
 texture = ExtResource("23_rs0wi")
 patch_margin_left = 2
@@ -748,9 +807,9 @@ position = Vector2(-1, 21)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/VerticalFence5/StaticBody2D"]
-position = Vector2(8.5, 86.4999)
+position = Vector2(8.49951, 251.5)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_fwa33")
+shape = SubResource("RectangleShape2D_tm14t")
 
 [node name="VerticalFence3" type="NinePatchRect" parent="Level"]
 modulate = Color(0.546892, 0.363387, 0.163887, 1)
@@ -1515,7 +1574,7 @@ flip_h = true
 position = Vector2(1737, 454)
 
 [node name="Tree17" parent="Level" instance=ExtResource("42_tc770")]
-position = Vector2(2611, 713)
+position = Vector2(2562, 713)
 
 [node name="Tree18" parent="Level" instance=ExtResource("41_875lx")]
 position = Vector2(2048, 689)
@@ -1692,9 +1751,62 @@ position = Vector2(2952, -359)
 [node name="Log3" parent="Level" instance=ExtResource("18_muafu")]
 position = Vector2(4388, 657)
 
+[node name="Tree23" parent="Level" instance=ExtResource("40_c2yo1")]
+position = Vector2(464, -301)
+
+[node name="Tree24" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(764, -427)
+
+[node name="Tree25" parent="Level" instance=ExtResource("40_c2yo1")]
+position = Vector2(1346, -398)
+
+[node name="Tree26" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(1716, -376)
+
+[node name="Tree27" parent="Level" instance=ExtResource("42_tc770")]
+position = Vector2(1897, -422)
+
+[node name="Tree28" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(3945, -237)
+
+[node name="Tree29" parent="Level" instance=ExtResource("40_c2yo1")]
+position = Vector2(4271, -272)
+
+[node name="Tree30" parent="Level" instance=ExtResource("42_tc770")]
+position = Vector2(4559, -201)
+
+[node name="Tree31" parent="Level" instance=ExtResource("41_875lx")]
+position = Vector2(3254, -305)
+
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 
 [node name="Ambience" parent="." instance=ExtResource("28_ge3ee")]
+
+[node name="TutorialManager" type="Node" parent="."]
+script = ExtResource("46_n1i4t")
+
+[node name="TutorialTrigger1" type="Area2D" parent="."]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger1"]
+position = Vector2(879, 179)
+scale = Vector2(3.35, 83.467)
+shape = SubResource("RectangleShape2D_r3t2l")
+debug_color = Color(0.194038, 0.623016, 0.443458, 0.42)
+
+[node name="TutorialTrigger2" type="Area2D" parent="."]
+position = Vector2(1245, -127)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger2"]
+position = Vector2(963.438, 164.209)
+scale = Vector2(3.35, 83.467)
+shape = SubResource("RectangleShape2D_ut7y1")
+debug_color = Color(0.194038, 0.623016, 0.443458, 0.42)
+
+[node name="AmmoDispenser" parent="." instance=ExtResource("47_jbsjw")]
+position = Vector2(2432, 53)
+respawnCooldown = 25.0
 
 [connection signal="body_shape_entered" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_exited"]

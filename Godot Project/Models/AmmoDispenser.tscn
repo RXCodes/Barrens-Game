@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxe6vjhsw81h7"]
+
+[ext_resource type="Texture2D" uid="uid://xunfi2rfq2wy" path="res://ModelContents/AmmoDispenser/AmmoDispenser.png" id="1_7u8pl"]
+[ext_resource type="Script" path="res://Models/AmmoDispenser.gd" id="2_7jiog"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_leg58"]
+[ext_resource type="Texture2D" uid="uid://dk1yh7mwv1k7y" path="res://Particles/HitAnimation/0.png" id="4_ilkmb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_erm78"]
+font = ExtResource("3_leg58")
+font_size = 20
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="Gradient" id="Gradient_ugvwt"]
+offsets = PackedFloat32Array(0, 0.2021, 0.850394, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 1, 0)
+
+[node name="AmmoDispenser" type="Sprite2D"]
+z_index = -1
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_7u8pl")
+script = ExtResource("2_7jiog")
+
+[node name="Countdown" type="Label" parent="."]
+visible = false
+z_index = 1000
+offset_left = -20.0
+offset_top = -36.0
+offset_right = 20.0
+offset_bottom = -13.6667
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(20, 30.8889)
+text = "30
+"
+label_settings = SubResource("LabelSettings_erm78")
+horizontal_alignment = 1
+
+[node name="DispenserParticles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, -8)
+amount = 6
+lifetime = 3.0
+randomness = 0.25
+texture = ExtResource("4_ilkmb")
+emission_shape = 1
+emission_sphere_radius = 23.13
+gravity = Vector2(0, -5)
+angle_min = -50.0
+angle_max = 50.0
+scale_amount_min = 0.4
+scale_amount_max = 1.4
+color_ramp = SubResource("Gradient_ugvwt")

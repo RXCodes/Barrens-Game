@@ -14,7 +14,6 @@ class_name Gun extends Node
 @export var needsCocking: bool = false
 var cockedGun = true:
 	set(setBool):
-		gunInteractor.weaponData[displayName]["cocked"] = setBool
 		cockedGun = setBool
 
 ## the time to wait between shots in seconds before the weapon can be fired again
@@ -30,14 +29,12 @@ var cockedGun = true:
 @export var maximumMagCapacity: int = 10
 var currentMagCapacity: int:
 	set(newAmount):
-		gunInteractor.weaponData[displayName]["magCapacity"] = newAmount
 		currentMagCapacity = newAmount
 
 ## how much ammo the player starts with when picking up this weapon
 @export var startingAmmoCount: int = 50
 var leftoverAmmoCount: int:
 	set(newAmount):
-		gunInteractor.weaponData[displayName]["leftoverAmmo"] = newAmount
 		leftoverAmmoCount = newAmount
 
 ## how many bullets come from one shot - this can be increased for shotguns
@@ -225,19 +222,11 @@ static func gunFromString(string: String) -> Gun:
 # yes, this also includes enemies! (or any Node2D)
 var gunInteractor: Gun.Interactor
 class Interactor:
-	var weaponData = {}
 	var audioStreams = {}
+	var weapons = []
 	var currentWeapon: Gun:
 		set(newWeapon):
-			if not weaponData.has(newWeapon.displayName):
-				# we're going to keep track of specific properties so we can access them
-				# again when switching between weapons
-				weaponData[newWeapon.displayName] = {
-					"leftoverAmmo": newWeapon.startingAmmoCount,
-					"magCapacity": newWeapon.maximumMagCapacity,
-					"cocked": true
-				}
-				
+			if not weapons.has(newWeapon.displayName):
 				# setup audio players for different sounds the gun can play
 				if newWeapon.shootSound:
 					var newAudioPlayer = AudioStreamPlayer2D.new()
@@ -263,15 +252,13 @@ class Interactor:
 					originNode.add_child(newAudioPlayer)
 					newWeapon.reloadAudioPlayer = newAudioPlayer
 					audioStreams[newWeapon.displayName + "-reload"] = newAudioPlayer
+				weapons.append(newWeapon.displayName)
 			else:
 				newWeapon.shootAudioPlayer = audioStreams.get(newWeapon.displayName + "-shoot")
 				newWeapon.cockingAudioPlayer = audioStreams.get(newWeapon.displayName + "-cocking")
 				newWeapon.reloadAudioPlayer = audioStreams.get(newWeapon.displayName + "-reload")
 			newWeapon.gunInteractor = self
 			currentWeapon = newWeapon
-			newWeapon.leftoverAmmoCount = weaponData[newWeapon.displayName]["leftoverAmmo"]
-			newWeapon.currentMagCapacity = weaponData[newWeapon.displayName]["magCapacity"]
-			newWeapon.cockedGun = weaponData[newWeapon.displayName]["cocked"]
 			newWeapon.sourceNode = originNode
 			gunSprite.texture = currentWeapon.texture
 			if originNode is Player:

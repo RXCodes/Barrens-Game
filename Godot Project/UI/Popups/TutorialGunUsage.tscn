@@ -1,0 +1,261 @@
+[gd_scene load_steps=19 format=3 uid="uid://b4vdlk4reps5e"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_cg3sf"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_cxoen"]
+[ext_resource type="Texture2D" uid="uid://c8etd3dkgbfx7" path="res://UI/AmmoGenIllustration.png" id="3_k8jns"]
+[ext_resource type="Texture2D" uid="uid://cec588687lw0m" path="res://UI/Mouse.png" id="4_r6vms"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="6_rdve4"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="6_uye4i"]
+[ext_resource type="Texture2D" uid="uid://di7w3670f3fn8" path="res://UI/DeathIllustration.png" id="7_tp5i0"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="7_vbb5d"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="7_ycliu"]
+[ext_resource type="Texture2D" uid="uid://mcdwodlmienk" path="res://ModelContents/Cash/Cash3.png" id="8_7elq6"]
+[ext_resource type="Script" path="res://UI/HoldToProceed.gd" id="8_7mw5x"]
+[ext_resource type="Texture2D" uid="uid://dq11xdygrj2ar" path="res://UI/EnemyHealthBarEmpty.png" id="9_5hqpu"]
+[ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="9_i0iyf"]
+[ext_resource type="Texture2D" uid="uid://3vsk53crm10j" path="res://UI/EnemyHealthBar.png" id="10_5c8bp"]
+[ext_resource type="AudioStream" uid="uid://hslx4gjkh0rq" path="res://UI/Popups/TutorialJingle.mp3" id="11_f3btp"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="12_8fp6h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("7_ycliu")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4udbh"]
+font = ExtResource("7_ycliu")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 793)
+script = ExtResource("1_cg3sf")
+silencesAmbience = true
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.440127, 0.503688, 0.764535, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -259.0
+offset_right = -69.0
+offset_bottom = -53.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_cxoen")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Bullet" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(46.8, 57.2)
+texture = ExtResource("3_k8jns")
+
+[node name="Shadow" type="Sprite2D" parent="Popup/SquareUI/Bullet"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 1.2)
+scale = Vector2(1, 1)
+texture = ExtResource("3_k8jns")
+
+[node name="Mouse" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(20.8, 105.6)
+texture = ExtResource("4_r6vms")
+
+[node name="Gun" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(42.4, 106)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_uye4i")
+
+[node name="Gun3" type="Sprite2D" parent="Popup/SquareUI/Gun"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 1.6)
+scale = Vector2(1, 1)
+texture = ExtResource("6_uye4i")
+
+[node name="Gun2" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(44.4, 121.6)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_vbb5d")
+
+[node name="Gun4" type="Sprite2D" parent="Popup/SquareUI/Gun2"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 2.40001)
+scale = Vector2(1, 1)
+texture = ExtResource("7_vbb5d")
+
+[node name="Death" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(32.4, 153.2)
+scale = Vector2(1, 1)
+texture = ExtResource("7_tp5i0")
+
+[node name="Death2" type="Sprite2D" parent="Popup/SquareUI/Death"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 1.60001)
+texture = ExtResource("7_tp5i0")
+
+[node name="Cash" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(60.8, 160)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_7elq6")
+
+[node name="Cash3" type="Sprite2D" parent="Popup/SquareUI/Cash"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 3.2)
+scale = Vector2(1, 1)
+texture = ExtResource("8_7elq6")
+
+[node name="Cash2" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(26.8, 166)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_i0iyf")
+
+[node name="Cash4" type="Sprite2D" parent="Popup/SquareUI/Cash2"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(1.52588e-05, 3.2)
+scale = Vector2(1, 1)
+texture = ExtResource("9_i0iyf")
+
+[node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 0
+offset_left = 82.0
+offset_top = 27.0
+offset_right = 84.0
+offset_bottom = 180.0
+scale = Vector2(0.538776, 1)
+texture = ExtResource("6_rdve4")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Separator2" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("6_rdve4")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.569733, 0.608967, 0.705495, 1)
+layout_mode = 0
+offset_left = 94.0
+offset_top = 40.0
+offset_right = 674.0
+offset_bottom = 176.0
+scale = Vector2(0.3, 0.3)
+text = "Get ammo from dispensers or shops scattered throughout the map."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="HoldToContinue" type="Label" parent="Popup/SquareUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -24.4
+offset_right = 203.5
+offset_bottom = 1.59998
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Hold Spacebar to Proceed"
+label_settings = SubResource("LabelSettings_4udbh")
+horizontal_alignment = 1
+script = ExtResource("8_7mw5x")
+
+[node name="SkipProgress" type="TextureProgressBar" parent="Popup/SquareUI/HoldToContinue"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.8
+offset_bottom = 4.2
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("9_5hqpu")
+texture_progress = ExtResource("10_5c8bp")
+
+[node name="Label3" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.569733, 0.608967, 0.705495, 1)
+layout_mode = 0
+offset_left = 94.0
+offset_top = 96.0
+offset_right = 674.0
+offset_bottom = 208.0
+scale = Vector2(0.3, 0.3)
+text = "Left click to shoot.
+Right click to reload."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.569733, 0.608967, 0.705495, 1)
+layout_mode = 0
+offset_left = 94.0
+offset_top = 143.0
+offset_right = 674.0
+offset_bottom = 255.0
+scale = Vector2(0.3, 0.3)
+text = "Earn cash from defeating enemies. "
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Using your gun"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_f3btp")
+volume_db = 5.0
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_8fp6h")
+volume_db = 5.0

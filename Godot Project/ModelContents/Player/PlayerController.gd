@@ -25,10 +25,13 @@ var gunFireShakeDampening = 0.1
 var reloadSpeedMultiplier = 0.5
 var shooting = false
 
+var holdingWeapons = []
+
 # setup renderer and gun interactor
 var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
+	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
 	current = self
 	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
@@ -47,7 +50,7 @@ func _ready() -> void:
 	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
 	gunInteractor.onReload = self.onReload
 	gunInteractor.sourcePositionOffset = Vector2(0, -48)
-	selectWeapon("Shotgun")
+	selectWeapon(holdingWeapons[0])
 	refreshAmmoDisplay()
 	hitBoxRigidBody = $"../Hitbox"
 	hitboxShape = hitBoxRigidBody.get_children()[0]
@@ -192,6 +195,11 @@ var movementKeyBinds = {
 func _input(event: InputEvent) -> void:
 	if dead:
 		return
+	if GamePopup.current or TutorialManager.shouldDisableControls:
+		currentMovementKeypresses.clear()
+		isSprinting = false
+		shooting = false
+		return
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label()
 		key = key.trim_prefix("Shift+")
@@ -211,12 +219,11 @@ func _input(event: InputEvent) -> void:
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":
-					selectWeapon("Shotgun")
+					selectWeapon(holdingWeapons[0])
 				elif key == "2":
-					selectWeapon("AK47")
-				elif key == "3":
-					selectWeapon("MachineGun")
-	
+					if holdingWeapons.size() >= 2:
+						selectWeapon(holdingWeapons[1])
+				
 	# mouse clicks and scrolling
 	if event is InputEventMouseButton:
 		# handle left click
@@ -240,7 +247,6 @@ func _input(event: InputEvent) -> void:
 		elif event.button_index == 5:
 			currentScrollZoom *= 1.025
 			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
-		print(event)
 	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)
@@ -361,8 +367,19 @@ func pickupCash(amount: int) -> void:
 	$CashPickup.pitch_scale = randfn(1.0, 0.075)
 	$CashPickup.play()
 
-func selectWeapon(name: String) -> void:
-	gunInteractor.currentWeapon = Gun.gunFromString(name)
+func pickupAmmo() -> void:
+	for gun: Gun in holdingWeapons:
+		var ammoToAdd = min(gun.maximumMagCapacity, 50)
+		if ammoToAdd < 10:
+			ammoToAdd *= 2
+		gun.leftoverAmmoCount += ammoToAdd
+	if gunInteractor.currentWeapon.currentMagCapacity == 0:
+		gunInteractor.currentWeapon.reload(true)
+	AmmoInfoDisplay.gunReloaded()
+	refreshAmmoDisplay()
+
+func selectWeapon(gun: Gun) -> void:
+	gunInteractor.currentWeapon = gun
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()

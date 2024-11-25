@@ -1,17 +1,16 @@
 extends Node2D
 
-var amount = 1
 var canBePickedUp = false
 var pickupDistance = 75
 var pickingUp = false
-var pickupDuration = 0.35
+var pickupDuration = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Cash.scale = Vector2.ZERO
-	$CashShadow.scale = Vector2.ZERO
+	$Ammo.scale = Vector2.ZERO
+	$AmmoShadow.scale = Vector2.ZERO
 	$AnimationPlayer.speed_scale = randfn(1.0, 0.15)
-	$AnimationPlayer.play("CashBounce")
+	$AnimationPlayer.play("AmmoSpawn")
 	var moveTween = NodeRelations.createTween()
 	moveTween.set_ease(Tween.EASE_OUT)
 	moveTween.set_trans(Tween.TRANS_CUBIC)
@@ -20,7 +19,6 @@ func _ready() -> void:
 	newPosition.y += randfn(0, 25)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
-	moveTween.parallel().tween_property($Cash, "rotation_degrees", randfn(0, 15), tweenDuration)
 	await TimeManager.wait(1.25)
 	canBePickedUp = true
 
@@ -35,10 +33,10 @@ func _process(delta: float) -> void:
 		var targetPosition = Player.current.global_position + Vector2(0, -35)
 		var newPosition = originalPosition.lerp(targetPosition, pickupAnimationProgress)
 		global_position = newPosition
-		$Cash.rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.125
+		$Ammo.rotation_degrees += (global_position.x - Player.current.global_position.x) * 0.125
 		z_index = 4096
 		if pickupAnimationProgress >= 1.0:
-			Player.current.pickupCash(amount)
+			Player.current.pickupAmmo()
 			queue_free()
 
 var pickupAnimationProgress = 0.0
@@ -47,4 +45,4 @@ func pickup() -> void:
 	canBePickedUp = false
 	pickingUp = true
 	originalPosition = global_position
-	$AnimationPlayer.play("CashPickup")
+	$AnimationPlayer.play("AmmoPickup")
