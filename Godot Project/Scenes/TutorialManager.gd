@@ -6,13 +6,14 @@ static var shouldDisableControls = false
 func _ready() -> void:
 	var fadeIn = $"../ScreenUI/FadeIn"
 	fadeIn.scale = Vector2(1000, 1000)
+	shouldDisableControls = true
+	await get_tree().physics_frame
+	await TimeManager.wait(0.2)
 	var primaryGun: Gun = Player.current.holdingWeapons[0]
 	primaryGun.leftoverAmmoCount = 0
 	primaryGun.currentMagCapacity = 0
 	AmmoInfoDisplay.setAmmoLeft(0)
 	AmmoInfoDisplay.setMagCapacity(0)
-	shouldDisableControls = true
-	await get_tree().physics_frame
 	var fadeInTween = NodeRelations.createTween()
 	fadeInTween.tween_property(fadeIn, "self_modulate", Color(0, 0, 0, 0), 4.0)
 	await TimeManager.wait(6.5)

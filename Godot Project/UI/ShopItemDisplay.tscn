@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=3 uid="uid://cen48bexa2feg"]
+
+[ext_resource type="Script" path="res://UI/ShopItemDisplay.gd" id="1_q1jbf"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_72r1v"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_bj0e2"]
+[ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="4_1jl0l"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="5_g7fun"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lvsub"]
+font = ExtResource("3_bj0e2")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[node name="ShopItemDisplay" type="Control"]
+custom_minimum_size = Vector2(272, 56)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q1jbf")
+
+[node name="Shop" type="NinePatchRect" parent="."]
+self_modulate = Color(0.71, 0.4757, 0.56942, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(270, 56)
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 274.0
+offset_bottom = 59.0
+texture = ExtResource("2_72r1v")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Title" type="Label" parent="Shop"]
+self_modulate = Color(0.93849, 0.763682, 0.769804, 1)
+offset_left = 58.0
+offset_top = 4.0
+offset_right = 647.0
+offset_bottom = 45.0
+scale = Vector2(0.35, 0.35)
+text = "Item Name"
+label_settings = SubResource("LabelSettings_lvsub")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Shop"]
+self_modulate = Color(0.775172, 0.548442, 0.61048, 1)
+offset_left = 58.0
+offset_top = 17.0
+offset_right = 878.0
+offset_bottom = 109.0
+scale = Vector2(0.25, 0.25)
+text = "Item
+Description"
+label_settings = SubResource("LabelSettings_lvsub")
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Cost" type="Label" parent="Shop"]
+offset_left = 75.0
+offset_top = 41.0
+offset_right = 232.0
+offset_bottom = 94.0
+scale = Vector2(0.3, 0.3)
+text = "100"
+label_settings = SubResource("LabelSettings_lvsub")
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="ItemType" type="Label" parent="Shop"]
+self_modulate = Color(0.678342, 0.3996, 0.451461, 1)
+offset_left = 189.0
+offset_top = 41.0
+offset_right = 442.0
+offset_bottom = 94.0
+scale = Vector2(0.3, 0.3)
+text = "Weapon"
+label_settings = SubResource("LabelSettings_lvsub")
+horizontal_alignment = 2
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="CashIcon" type="Sprite2D" parent="Shop"]
+position = Vector2(64, 47)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_1jl0l")
+
+[node name="ItemFrame" type="NinePatchRect" parent="."]
+self_modulate = Color(0.577012, 0.299304, 0.350718, 1)
+texture_filter = 1
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 56.0
+offset_bottom = 56.0
+texture = ExtResource("2_72r1v")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Mask" type="ColorRect" parent="ItemFrame"]
+clip_contents = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 49.0
+offset_bottom = 49.0
+color = Color(1, 1, 1, 0)
+
+[node name="Amount" type="Label" parent="ItemFrame/Mask"]
+offset_left = 2.0
+offset_top = 36.0
+offset_right = 82.0
+offset_bottom = 89.0
+scale = Vector2(0.3, 0.3)
+text = "x1"
+label_settings = SubResource("LabelSettings_lvsub")
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="SlotInfo" type="Label" parent="ItemFrame/Mask"]
+offset_left = 2.0
+offset_right = 259.0
+offset_bottom = 53.0
+scale = Vector2(0.175, 0.175)
+text = "left: 10"
+label_settings = SubResource("LabelSettings_lvsub")
+
+[node name="Preview" type="Sprite2D" parent="ItemFrame/Mask"]
+position = Vector2(23, 24)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_g7fun")
+offset = Vector2(-18, 0)
+
+[node name="Button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 274.0
+offset_bottom = 59.0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

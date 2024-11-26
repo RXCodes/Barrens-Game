@@ -11,6 +11,8 @@ func _ready() -> void:
 	current = self
 
 static func setAmmoLeft(amount: int) -> void:
+	if not ammoLeft:
+		return
 	ammoLeft.text = str(amount)
 	if amount <= 0:
 		ammoLeft.self_modulate = Color(1.0, 0.25, 0.25, 1.0)

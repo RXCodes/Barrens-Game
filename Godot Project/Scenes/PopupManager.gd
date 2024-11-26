@@ -1,9 +1,10 @@
 class_name GamePopup extends Node2D
 
-static var current: Node2D
+static var current: GamePopup
 var open = true
 var background: ColorRect
 var tween: Tween
+var data: Dictionary
 
 @export var silencesAmbience = false
 
@@ -45,11 +46,12 @@ static func closeCurrent() -> void:
 	current.tween.tween_callback(current.background.queue_free)
 	current = null
 
-static func openPopup(name: String) -> void:
+static func openPopup(name: String, data: Dictionary = {}) -> void:
 	if current:
 		closeCurrent()
 	var popupScene = load("res://UI/Popups/" + name + ".tscn")
 	var popup = popupScene.instantiate()
 	var screenUI = NodeRelations.rootNode.find_child("ScreenUI")
 	current = popup.get_children()[0]
+	current.data = data
 	screenUI.add_child(popup)

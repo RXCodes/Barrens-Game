@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxe6vjhsw81h7"]
+[gd_scene load_steps=8 format=3 uid="uid://bxe6vjhsw81h7"]
 
 [ext_resource type="Texture2D" uid="uid://xunfi2rfq2wy" path="res://ModelContents/AmmoDispenser/AmmoDispenser.png" id="1_7u8pl"]
 [ext_resource type="Script" path="res://Models/AmmoDispenser.gd" id="2_7jiog"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_leg58"]
 [ext_resource type="Texture2D" uid="uid://dk1yh7mwv1k7y" path="res://Particles/HitAnimation/0.png" id="4_ilkmb"]
+[ext_resource type="AudioStream" uid="uid://dbs0wrf66wnua" path="res://UI/AmmoDispense.mp3" id="5_ne37y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_erm78"]
 font = ExtResource("3_leg58")
@@ -54,3 +55,8 @@ angle_max = 50.0
 scale_amount_min = 0.4
 scale_amount_max = 1.4
 color_ramp = SubResource("Gradient_ugvwt")
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ne37y")
+volume_db = 1.0
+max_distance = 1000.0

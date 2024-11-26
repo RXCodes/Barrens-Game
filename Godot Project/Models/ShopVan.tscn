@@ -43,11 +43,11 @@ scale = Vector2(0.480472, 6.83067)
 shape = SubResource("RectangleShape2D_oharx")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Shop" type="Area2D" parent="."]
 position = Vector2(-707, 180)
 script = ExtResource("2_7ouje")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop"]
 position = Vector2(707, -184.5)
 shape = SubResource("RectangleShape2D_bkh2n")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
@@ -98,5 +98,5 @@ label_settings = SubResource("LabelSettings_kmg6o")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[connection signal="body_shape_entered" from="Area2D" to="Area2D" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="Area2D" to="Area2D" method="_on_body_shape_exited"]
+[connection signal="body_shape_entered" from="Shop" to="Shop" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Shop" to="Shop" method="_on_body_shape_exited"]

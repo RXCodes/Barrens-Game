@@ -253,6 +253,10 @@ class Interactor:
 					newWeapon.reloadAudioPlayer = newAudioPlayer
 					audioStreams[newWeapon.displayName + "-reload"] = newAudioPlayer
 				weapons.append(newWeapon.displayName)
+				
+				# setup ammo
+				newWeapon.currentMagCapacity = newWeapon.maximumMagCapacity
+				newWeapon.leftoverAmmoCount = newWeapon.maximumMagCapacity * 3
 			else:
 				newWeapon.shootAudioPlayer = audioStreams.get(newWeapon.displayName + "-shoot")
 				newWeapon.cockingAudioPlayer = audioStreams.get(newWeapon.displayName + "-cocking")

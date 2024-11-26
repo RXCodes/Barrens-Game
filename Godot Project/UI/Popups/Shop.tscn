@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmwpbhirw7ahf"]
+[gd_scene load_steps=22 format=3 uid="uid://cmwpbhirw7ahf"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_6apie"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_3are3"]
+[ext_resource type="Script" path="res://UI/Popups/ShopInteractor.gd" id="3_7evts"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_5cchh"]
 [ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_6havx"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="5_10gfr"]
@@ -9,6 +10,25 @@
 [ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_j5pfl"]
 [ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="8_k3cbs"]
 [ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="10_gcvg0"]
+[ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="11_c2pl6"]
+[ext_resource type="AudioStream" uid="uid://bf2dxbqe73u84" path="res://UI/ShopPurchase.mp3" id="12_idri2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4airn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4d2wy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrkmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xdsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgonr"]
+
+[sub_resource type="Theme" id="Theme_yhavq"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_4airn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_4d2wy")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_nrkmt")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_0xdsl")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_tgonr")
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
 font = ExtResource("5_10gfr")
@@ -26,6 +46,7 @@ keycode = 4194305
 events = [SubResource("InputEventKey_hcuy1")]
 
 [node name="PopupBackground" type="ColorRect"]
+z_index = -2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,9 +67,9 @@ script = ExtResource("1_6apie")
 self_modulate = Color(0.724444, 0.405068, 0.53259, 1)
 texture_filter = 1
 offset_left = -369.0
-offset_top = -302.0
+offset_top = -310.0
 offset_right = -74.0
-offset_bottom = -60.0
+offset_bottom = -61.0
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_3are3")
 patch_margin_left = 10
@@ -59,6 +80,7 @@ patch_margin_bottom = 10
 [node name="SquareUI2" type="NinePatchRect" parent="Popup/SquareUI"]
 self_modulate = Color(0.461186, 0.225785, 0.322712, 1)
 texture_filter = 1
+layout_mode = 0
 offset_left = 8.2
 offset_top = 26.0
 offset_right = 287.2
@@ -68,6 +90,20 @@ patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup/SquareUI/SquareUI2"]
+custom_minimum_size = Vector2(276, 162)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 278.0
+offset_bottom = 163.0
+theme = SubResource("Theme_yhavq")
+horizontal_scroll_mode = 0
+
+[node name="ShopItemContainer" type="VBoxContainer" parent="Popup/SquareUI/SquareUI2/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("3_7evts")
 
 [node name="Separator2" type="NinePatchRect" parent="Popup/SquareUI"]
 layout_mode = 0
@@ -80,15 +116,27 @@ texture = ExtResource("4_5cchh")
 patch_margin_top = 6
 patch_margin_bottom = 6
 
-[node name="Label4" type="Label" parent="Popup/SquareUI"]
+[node name="Title" type="Label" parent="Popup/SquareUI"]
 modulate = Color(0.760977, 0.540906, 0.574823, 1)
 layout_mode = 0
-offset_left = 11.0
-offset_top = 195.0
-offset_right = 935.0
-offset_bottom = 338.0
+offset_left = 8.19983
+offset_top = 193.4
+offset_right = 1098.2
+offset_bottom = 248.4
 scale = Vector2(0.3, 0.3)
-text = "Select an item to see its price."
+text = "No item selected."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.731794, 0.403142, 0.468137, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 205.0
+offset_right = 1253.0
+offset_bottom = 336.0
+scale = Vector2(0.225, 0.225)
+text = "Select an item to see its full description."
 label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 
@@ -124,5 +172,12 @@ autoplay = true
 [node name="Close" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_gcvg0")
 volume_db = 5.0
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_c2pl6")
+
+[node name="Purchase" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_idri2")
+max_polyphony = 5
 
 [connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -11,13 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
+[ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="21_40mk5"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="21_evfkg"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
+[ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="21_lkc5g"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="21_mbysx"]
+[ext_resource type="PackedScene" uid="uid://bghr0faxa387a" path="res://Models/ShopVan.tscn" id="22_5ghfe"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
+[ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="22_n87nw"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
+[ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
@@ -261,6 +268,61 @@ position = Vector2(1437, 411)
 
 [node name="Cactus14" parent="Level" instance=ExtResource("23_0a004")]
 position = Vector2(213, 274)
+
+[node name="ShopVan" parent="Level" instance=ExtResource("22_5ghfe")]
+position = Vector2(-443, -54)
+
+[node name="AmmoShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Ammo"
+displayTexture = ExtResource("21_lkc5g")
+displayScale = 0.5
+price = 50
+description = "Salted, polished, and works with any gun."
+type = 1
+itemIdentifier = "AmmoPickup"
+
+[node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Shotgun"
+displayTexture = ExtResource("21_evfkg")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 75
+description = "Great for short range targets."
+itemIdentifier = "Shotgun"
+
+[node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "AK47"
+displayTexture = ExtResource("21_40mk5")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 200
+description = "A weapon with a decent fire rate and deals average damage."
+itemIdentifier = "AK47"
+
+[node name="MachineGunShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Machine Gun"
+displayTexture = ExtResource("22_n87nw")
+displayTextureOffset = Vector2(-5, 0)
+displayScale = 0.5
+price = 750
+description = "A weapon with a fast fire rate, but deals less damage."
+itemIdentifier = "MachineGun"
+
+[node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
+position = Vector2(-620, 154)
+respawnCooldown = 10.0
+
+[node name="AmmoDispenser2" parent="Level" instance=ExtResource("24_tsq8j")]
+position = Vector2(-267, 148)
+respawnCooldown = 10.0
+
+[node name="AmmoDispenser3" parent="Level" instance=ExtResource("24_tsq8j")]
+position = Vector2(-435, 301)
+respawnCooldown = 10.0
 
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 

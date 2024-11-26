@@ -1,8 +1,14 @@
 class_name Shop extends Area2D
 
+var shopItems: Array = []
+
 func _ready() -> void:
 	interactNode = $"../Interact"
 	interactNode.modulate = Color.TRANSPARENT
+	var children = get_parent().get_children()
+	for node in children:
+		if node is ShopItem:
+			shopItems.append(node)
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body is Player:
@@ -38,4 +44,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label()
 		if key == "E":
-			GamePopup.openPopup("Shop")
+			GamePopup.openPopup("Shop", {
+				"shopItems": shopItems
+			})
