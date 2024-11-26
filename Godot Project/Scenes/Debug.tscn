@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=37 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -25,6 +25,7 @@
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
+[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://UI/Upgrades/BulletStorm.png" id="25_ykkra"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
@@ -68,6 +69,16 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
+
+[sub_resource type="GDScript" id="GDScript_farfr"]
+resource_name = "DebugSceneDemo"
+script/source = "extends Node
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	await get_tree().physics_frame
+	Player.current.holdingWeapons.append(Gun.gunFromString(\"MachineGun\"))
+"
 
 [node name="Debug Scene" type="Node2D"]
 texture_filter = 1
@@ -294,7 +305,7 @@ displayTexture = ExtResource("21_evfkg")
 displayTextureOffset = Vector2(-18, 0)
 displayScale = 0.5
 price = 75
-description = "Great for short range targets."
+description = "Great for targets within short range."
 itemIdentifier = "Shotgun"
 
 [node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
@@ -317,6 +328,16 @@ price = 750
 description = "A weapon with a fast fire rate, but deals less damage."
 itemIdentifier = "MachineGun"
 
+[node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Bullet Storm"
+displayTexture = ExtResource("25_ykkra")
+price = 100
+description = "+5% fire rate"
+type = 2
+itemIdentifier = "BulletStorm"
+costIncrementMultiplier = 1.22
+
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)
 respawnCooldown = 10.0
@@ -334,3 +355,6 @@ respawnCooldown = 10.0
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
 
 [node name="ScreenUI" parent="." instance=ExtResource("21_mbysx")]
+
+[node name="DebugSceneCode" type="Node" parent="."]
+script = SubResource("GDScript_farfr")

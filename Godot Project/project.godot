@@ -37,6 +37,7 @@ folder_colors={
 "res://Particles/": "pink",
 "res://Scenes/": "green",
 "res://UI/": "purple",
+"res://Upgrades/": "yellow",
 "res://Weapons/": "gray",
 "res://WeaponsContents/": "red",
 "res://WeaponsContents/AK47/": "pink",

@@ -132,13 +132,15 @@ func _process(delta: float) -> void:
 	else:
 		sprintBar.stopFlashing()
 
-# Called every physics tick.
 var walking = false
 var walkingBackwards = false
 var facingLeft = false
 var sprintPower = 100.0
+
+# properties that can be modified during runtime (Upgrades)
 var sprintDecreaseRate = 20
 var sprintRecoveryRate = 30
+
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
@@ -383,7 +385,7 @@ func pickupAmmo() -> void:
 	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
 	$AmmoPickup.play()
 	for gun: Gun in holdingWeapons:
-		var ammoToAdd = min(gun.maximumMagCapacity, 50)
+		var ammoToAdd = min(gun.maximumMagCapacity, 30)
 		if ammoToAdd < 10:
 			ammoToAdd *= 2
 		gun.leftoverAmmoCount += ammoToAdd

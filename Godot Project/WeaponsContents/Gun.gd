@@ -148,7 +148,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
 		Bullet.fire(gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset, angleRadians, self, sourceNode)
-	await TimeManager.wait(fireRate)
+	await TimeManager.wait(fireRate * gunInteractor.fireRateMultiplier)
 	canFire = true
 
 var reloadAudioPlayer: AudioStreamPlayer2D
@@ -230,6 +230,7 @@ var gunInteractor: Gun.Interactor
 class Interactor:
 	var audioStreams = {}
 	var weapons = []
+	var fireRateMultiplier: float = 1.0
 	var currentWeapon: Gun:
 		set(newWeapon):
 			if not weapons.has(newWeapon.displayName):

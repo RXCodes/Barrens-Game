@@ -67,7 +67,9 @@ func _on_button_button_down() -> void:
 			EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
 			GamePopup.closeCurrent()
 		if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
-			pass # upgrade whatever
+			var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()
+			newUpgrade.onUpgrade()
+			newUpgrade.queue_free()
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()
