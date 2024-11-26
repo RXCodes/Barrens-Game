@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 			spawnAmmo()
 
 func spawnAmmo() -> void:
-	lastSpawnedAmmo = EnemySpawner.spawnEnemy("AmmoPickup", global_position + Vector2(0, -10))
+	lastSpawnedAmmo = EnemySpawner.spawnEnemy("AmmoPickup", global_position)
 	currentCooldown = respawnCooldown
 	$Spawn.pitch_scale = randfn(1.0, 0.05)
 	$Spawn.play()

@@ -9,14 +9,8 @@ func _process(delta: float) -> void:
 	if not activated:
 		if Player.current.global_position.distance_squared_to(global_position) > 350:
 			return
-		Player.current.gunInteractor.currentWeapon = Gun.gunFromString("AK47")
-		var weaponData: Dictionary = Player.current.gunInteractor.weaponData
-		for key in weaponData.keys():
-			weaponData[key]["leftoverAmmo"] = 9999
-		Player.current.gunInteractor.weaponData = weaponData
-		Player.current.gunInteractor.currentWeapon.leftoverAmmoCount = 9999
-		AmmoInfoDisplay.gunReloaded()
-		AmmoInfoDisplay.setAmmoLeft(9999)
+		Player.current.pickupAmmo()
+		Player.current.refreshAmmoDisplay()
 		$"../Challenge Text".text = "Lol have fun"
 		activated = true
 	else:

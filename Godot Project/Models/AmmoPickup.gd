@@ -7,6 +7,7 @@ var pickupDuration = 0.25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	position.y -= 35
 	$Ammo.scale = Vector2.ZERO
 	$AmmoShadow.scale = Vector2.ZERO
 	$AnimationPlayer.speed_scale = randfn(1.0, 0.15)
@@ -15,8 +16,8 @@ func _ready() -> void:
 	moveTween.set_ease(Tween.EASE_OUT)
 	moveTween.set_trans(Tween.TRANS_CUBIC)
 	var newPosition = global_position
-	newPosition.x += randfn(0, 40)
-	newPosition.y += randfn(0, 25)
+	newPosition.x += randfn(0, 30)
+	newPosition.y += randfn(0, 12.5)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
 	await TimeManager.wait(1.25)

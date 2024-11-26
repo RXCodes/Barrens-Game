@@ -41,6 +41,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if not event.is_pressed():
 		return
+	if not canAccessShop:
+		return
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label()
 		if key == "E":

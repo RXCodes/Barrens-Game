@@ -281,6 +281,11 @@ price = 50
 description = "Salted, polished, and works with any gun."
 type = 1
 itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
 
 [node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")

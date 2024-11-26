@@ -1,0 +1,134 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqd68c27crp7q"]
+
+[ext_resource type="Script" path="res://Models/WeaponPickup.gd" id="1_4hbwl"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="2_8gags"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="3_k4o0x"]
+[ext_resource type="Texture2D" uid="uid://dk1yh7mwv1k7y" path="res://Particles/HitAnimation/0.png" id="4_u1g32"]
+
+[sub_resource type="Animation" id="Animation_rkayo"]
+resource_name = "GunSpawn"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.377478, 0.377478), Vector2(0.517711, 0.517711), Vector2(0.569807, 0.569807), Vector2(0.58916, 0.58916), Vector2(0.59635, 0.59635), Vector2(0.599021, 0.599021), Vector2(0.6, 0.6), Vector2(0.610467, 0.610467), Vector2(0.641869, 0.641869), Vector2(0.694204, 0.694204), Vector2(0.767474, 0.767474), Vector2(0.861678, 0.861678), Vector2(0.976817, 0.976817), Vector2(0.954066, 0.954066), Vector2(0.916955, 0.916955), Vector2(0.900779, 0.900779), Vector2(0.905536, 0.905536), Vector2(0.931228, 0.931228), Vector2(0.977855, 0.977855), Vector2(0.983651, 0.983651), Vector2(0.975087, 0.975087), Vector2(0.987457, 0.987457), Vector2(0.994291, 0.994291), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Weapon:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -7.78823), Vector2(0, -15.1859), Vector2(0, -21.8221), Vector2(0, -27.3641), Vector2(0, -31.5339), Vector2(0, -34.1225), Vector2(0, -35), Vector2(0, -34.0841), Vector2(0, -31.3365), Vector2(0, -26.7571), Vector2(0, -20.346), Vector2(0, -12.1032), Vector2(0, -2.02855), Vector2(0, -4.01925), Vector2(0, -7.26644), Vector2(0, -8.68188), Vector2(0, -8.26557), Vector2(0, -6.01752), Vector2(0, -1.93771), Vector2(0, -1.43058), Vector2(0, -2.17993), Vector2(0, -1.09753), Vector2(0, -0.499569), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Weapon:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 1.3), Vector2(0.759227, 1.14446), Vector2(1.04873, 0.970763), Vector2(1.18206, 0.890764), Vector2(1.14799, 0.911205), Vector2(1.04035, 0.975788), Vector2(0.955806, 1.02652), Vector2(0.93479, 1.03913), Vector2(0.961999, 1.0228), Vector2(1, 1), Vector2(1.02133, 0.987204), Vector2(1.02054, 0.987676), Vector2(1.00781, 0.995313), Vector2(0.995996, 1.0024), Vector2(0.99176, 1.00494), Vector2(0.994311, 1.00341), Vector2(0.999145, 1.00051), Vector2(1.00237, 0.998578), Vector2(1.00276, 0.998343), Vector2(1.00133, 0.999202), Vector2(0.999731, 1.00016), Vector2(0.998994, 1.0006), Vector2(0.999182, 1.00049), Vector2(0.999777, 1.00013), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_bo5po"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Weapon:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e65ba"]
+_data = {
+"GunSpawn": SubResource("Animation_rkayo"),
+"RESET": SubResource("Animation_bo5po")
+}
+
+[sub_resource type="Gradient" id="Gradient_qf6wg"]
+offsets = PackedFloat32Array(0, 0.2021, 0.850394, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 1, 0)
+
+[node name="WeaponEntity" type="Node2D" groups=["Weapon"]]
+position = Vector2(-146.348, -241.235)
+script = ExtResource("1_4hbwl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../WeaponShadow")
+libraries = {
+"": SubResource("AnimationLibrary_e65ba")
+}
+
+[node name="WeaponShadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.286275)
+texture_filter = 1
+position = Vector2(0, 33)
+texture = ExtResource("2_8gags")
+offset = Vector2(-1.78281, -37.0169)
+
+[node name="Weapon" type="Node2D" parent="."]
+
+[node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
+texture_filter = 1
+position = Vector2(-25.6523, 33.235)
+texture = ExtResource("3_k4o0x")
+
+[node name="WeaponParticles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 21)
+lifetime = 2.0
+randomness = 0.25
+texture = ExtResource("4_u1g32")
+emission_shape = 3
+emission_rect_extents = Vector2(50, 30)
+gravity = Vector2(0, -5)
+angle_min = -50.0
+angle_max = 50.0
+scale_amount_min = 0.4
+scale_amount_max = 1.4
+color_ramp = SubResource("Gradient_qf6wg")

@@ -225,9 +225,11 @@ func _input(event: InputEvent) -> void:
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":
+					WeaponSlots.selectPrimary()
 					selectWeapon(holdingWeapons[0])
 				elif key == "2":
 					if holdingWeapons.size() >= 2:
+						WeaponSlots.selectSecondary()
 						selectWeapon(holdingWeapons[1])
 				
 	# mouse clicks and scrolling
@@ -325,8 +327,12 @@ func damage(amount: float, source: Node2D) -> void:
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
+	var animationTime = lerpf(2.0, 0.6, health / 100.0)
+	HurtVignette.animate(hurtVignetteOpacity, animationTime)
 	PlayerHealthBar.setProgress(health)
 	if health <= 0:
+		HurtVignette.animate(1.0, 5.0)
 		health = 0
 		kill()
 	await TimeManager.wait(0.05)
@@ -391,3 +397,4 @@ func selectWeapon(gun: Gun) -> void:
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()
+	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)

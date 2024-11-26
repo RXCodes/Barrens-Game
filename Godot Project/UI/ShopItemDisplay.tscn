@@ -28,6 +28,7 @@ script = ExtResource("1_q1jbf")
 self_modulate = Color(0.71, 0.4757, 0.56942, 1)
 texture_filter = 1
 custom_minimum_size = Vector2(270, 56)
+layout_mode = 0
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 274.0
@@ -40,6 +41,7 @@ patch_margin_bottom = 10
 
 [node name="Title" type="Label" parent="Shop"]
 self_modulate = Color(0.93849, 0.763682, 0.769804, 1)
+layout_mode = 0
 offset_left = 58.0
 offset_top = 4.0
 offset_right = 647.0
@@ -51,6 +53,7 @@ autowrap_mode = 2
 
 [node name="Description" type="Label" parent="Shop"]
 self_modulate = Color(0.775172, 0.548442, 0.61048, 1)
+layout_mode = 0
 offset_left = 58.0
 offset_top = 17.0
 offset_right = 878.0
@@ -63,6 +66,7 @@ autowrap_mode = 3
 text_overrun_behavior = 3
 
 [node name="Cost" type="Label" parent="Shop"]
+layout_mode = 0
 offset_left = 75.0
 offset_top = 41.0
 offset_right = 232.0
@@ -75,6 +79,7 @@ text_overrun_behavior = 3
 
 [node name="ItemType" type="Label" parent="Shop"]
 self_modulate = Color(0.678342, 0.3996, 0.451461, 1)
+layout_mode = 0
 offset_left = 189.0
 offset_top = 41.0
 offset_right = 442.0
@@ -94,6 +99,7 @@ texture = ExtResource("4_1jl0l")
 [node name="ItemFrame" type="NinePatchRect" parent="."]
 self_modulate = Color(0.577012, 0.299304, 0.350718, 1)
 texture_filter = 1
+layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 56.0
@@ -114,6 +120,7 @@ offset_bottom = 49.0
 color = Color(1, 1, 1, 0)
 
 [node name="Amount" type="Label" parent="ItemFrame/Mask"]
+layout_mode = 0
 offset_left = 2.0
 offset_top = 36.0
 offset_right = 82.0
@@ -125,12 +132,16 @@ autowrap_mode = 3
 text_overrun_behavior = 3
 
 [node name="SlotInfo" type="Label" parent="ItemFrame/Mask"]
-offset_left = 2.0
-offset_right = 259.0
-offset_bottom = 53.0
-scale = Vector2(0.175, 0.175)
-text = "left: 10"
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 262.0
+offset_bottom = 52.0
+scale = Vector2(0.19, 0.19)
+text = "restocking"
 label_settings = SubResource("LabelSettings_lvsub")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Preview" type="Sprite2D" parent="ItemFrame/Mask"]
 position = Vector2(23, 24)

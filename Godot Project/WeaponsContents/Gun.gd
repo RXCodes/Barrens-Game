@@ -88,6 +88,12 @@ var leftoverAmmoCount: int:
 ## how much to offset the right hand to correctly hold the gun - affects the player model only
 @export var rightHandOffset: Vector2 = Vector2.ZERO
 
+## drop texture offset
+@export var dropTextureOffset: Vector2 = Vector2.ZERO
+
+## drop texture scale
+@export var dropTextureScale: float = 1.0
+
 @export_group("Audio")
 
 ## the sound to use when firing the weapon

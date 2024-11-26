@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmwpbhirw7ahf"]
+[gd_scene load_steps=24 format=3 uid="uid://cmwpbhirw7ahf"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_6apie"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_3are3"]
@@ -6,12 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_5cchh"]
 [ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_6havx"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="5_10gfr"]
+[ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="6_p7kix"]
 [ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="6_xqf83"]
 [ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_j5pfl"]
 [ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="8_k3cbs"]
 [ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="10_gcvg0"]
 [ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="11_c2pl6"]
 [ext_resource type="AudioStream" uid="uid://bf2dxbqe73u84" path="res://UI/ShopPurchase.mp3" id="12_idri2"]
+[ext_resource type="AudioStream" uid="uid://cxs6lbq4tcq1q" path="res://UI/Error.mp3" id="14_qkdjc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4airn"]
 
@@ -69,7 +71,7 @@ texture_filter = 1
 offset_left = -369.0
 offset_top = -310.0
 offset_right = -74.0
-offset_bottom = -61.0
+offset_bottom = -57.0
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_3are3")
 patch_margin_left = 10
@@ -82,9 +84,9 @@ self_modulate = Color(0.461186, 0.225785, 0.322712, 1)
 texture_filter = 1
 layout_mode = 0
 offset_left = 8.2
-offset_top = 26.0
+offset_top = 24.0
 offset_right = 287.2
-offset_bottom = 191.0
+offset_bottom = 189.0
 texture = ExtResource("2_3are3")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -120,9 +122,9 @@ patch_margin_bottom = 6
 modulate = Color(0.760977, 0.540906, 0.574823, 1)
 layout_mode = 0
 offset_left = 8.19983
-offset_top = 193.4
+offset_top = 191.4
 offset_right = 1098.2
-offset_bottom = 248.4
+offset_bottom = 246.4
 scale = Vector2(0.3, 0.3)
 text = "No item selected."
 label_settings = SubResource("LabelSettings_hdjlq")
@@ -132,11 +134,12 @@ autowrap_mode = 2
 modulate = Color(0.731794, 0.403142, 0.468137, 1)
 layout_mode = 0
 offset_left = 8.0
-offset_top = 205.0
+offset_top = 203.0
 offset_right = 1253.0
-offset_bottom = 336.0
+offset_bottom = 334.0
 scale = Vector2(0.225, 0.225)
-text = "Select an item to see its full description."
+text = "Select an item to see its full description.
+"
 label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 
@@ -151,6 +154,54 @@ text = "Shop"
 label_settings = SubResource("LabelSettings_hdjlq")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="BuyButton" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(0.506975, 0.744358, 0.456243, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 231.0
+offset_top = 226.6
+offset_right = 287.0
+offset_bottom = 246.6
+texture = ExtResource("2_3are3")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="BuyTitle" type="Label" parent="Popup/SquareUI/BuyButton"]
+self_modulate = Color(0.690252, 0.831858, 0.592742, 1)
+layout_mode = 0
+offset_left = 1.0
+offset_top = -4.6
+offset_right = 241.0
+offset_bottom = 41.4
+scale = Vector2(0.225, 0.225)
+text = "Purchase"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="Popup/SquareUI/BuyButton"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 4.79999
+offset_right = 122.0
+offset_bottom = 50.8
+scale = Vector2(0.3, 0.3)
+text = "500"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="CashIcon" type="Sprite2D" parent="Popup/SquareUI/BuyButton"]
+position = Vector2(11.4, 11)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_p7kix")
+
+[node name="Button" type="TextureButton" parent="Popup/SquareUI/BuyButton"]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 20.0
 
 [node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
 layout_mode = 0
@@ -180,4 +231,11 @@ stream = ExtResource("11_c2pl6")
 stream = ExtResource("12_idri2")
 max_polyphony = 5
 
+[node name="Error" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_qkdjc")
+max_polyphony = 5
+
+[connection signal="button_down" from="Popup/SquareUI/BuyButton/Button" to="Popup/SquareUI/SquareUI2/ScrollContainer/ShopItemContainer" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/SquareUI/BuyButton/Button" to="Popup/SquareUI/SquareUI2/ScrollContainer/ShopItemContainer" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/SquareUI/BuyButton/Button" to="Popup/SquareUI/SquareUI2/ScrollContainer/ShopItemContainer" method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]

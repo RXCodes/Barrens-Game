@@ -22,8 +22,10 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 
 [node name="AmmoDispenser" type="Sprite2D"]
 z_index = -1
 texture_filter = 1
+position = Vector2(0, -10)
 scale = Vector2(2, 2)
 texture = ExtResource("1_7u8pl")
+offset = Vector2(0, 5)
 script = ExtResource("2_7jiog")
 
 [node name="Countdown" type="Label" parent="."]

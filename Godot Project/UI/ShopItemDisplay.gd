@@ -6,6 +6,7 @@ var currentShop: ShopInteractor
 func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 	shopItem = newShopItem
 	currentShop = shop
+	shopItem.shopInteractor = currentShop
 	$Shop/Title.text = shopItem.displayName
 	$Shop/Description.text = shopItem.description
 	$Shop/Cost.text = str(shopItem.price)
@@ -28,7 +29,7 @@ func refresh() -> void:
 	if shopItem.limitSales:
 		if shopItem.limitAmount > 1:
 			$ItemFrame/Mask/SlotInfo.show()
-		$ItemFrame/Mask/SlotInfo.text = "Left: " + str(shopItem.itemsLeft)
+		$ItemFrame/Mask/SlotInfo.text = str(shopItem.itemsLeft) + "Left"
 		if shopItem.canRestock:
 			$ItemFrame/Mask/SlotInfo.hide()
 		if shopItem.itemsLeft == 0:
