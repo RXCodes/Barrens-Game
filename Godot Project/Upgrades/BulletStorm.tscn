@@ -6,7 +6,8 @@
 [node name="BulletStorm" type="Node"]
 script = ExtResource("1_056vb")
 upgradeName = "Bullet Storm"
-description = "+5% increased fire rate"
+description = "increase fire rate by [amt]%"
 accumativeDescription = "+[amt]% increased fire rate"
+preferredUpgradeAmounts = Array[float]([2.5])
 upgradeIdentifier = "fireRate"
 texture = ExtResource("2_8qlqa")

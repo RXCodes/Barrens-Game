@@ -1,7 +1,7 @@
 extends Upgrade
 
-func onUpgrade() -> void:
-	# increase magazine capacity by 10%
-	Player.current.gunInteractor.magazineCapacityMultiplier += 0.1
-	incrementUpgradeStat(10)
+func onUpgrade(amounts: Array) -> void:
+	# increase magazine capacity by (amount)%
+	Player.current.gunInteractor.magazineCapacityMultiplier += amounts[0] / 100.0
+	incrementUpgradeStat(amounts[0])
 	

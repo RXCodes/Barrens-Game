@@ -1,6 +1,6 @@
 extends Upgrade
 
-func onUpgrade() -> void:
-	# increase critical hit chance by 25%
-	Player.current.criticalDamageMultiplier += 0.25
-	incrementUpgradeStat(25)
+func onUpgrade(amounts: Array) -> void:
+	# increase critical hit chance by (amount)%
+	Player.current.criticalDamageMultiplier += amounts[0] / 100.0
+	incrementUpgradeStat(amounts[0])

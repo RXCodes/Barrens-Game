@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -25,13 +25,8 @@
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
-[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://Upgrades/BulletStorm.png" id="25_ykkra"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
-[ext_resource type="Texture2D" uid="uid://b6ki3owib2o3w" path="res://Upgrades/CriticalDamage.png" id="27_7f7hp"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
-[ext_resource type="Texture2D" uid="uid://bi7ul53db8i01" path="res://Upgrades/SpeedBoost.png" id="28_4gdok"]
-[ext_resource type="Texture2D" uid="uid://cq46r55ceb428" path="res://Upgrades/Dexterity.png" id="29_2snq2"]
-[ext_resource type="Texture2D" uid="uid://dbp8ghocwiruo" path="res://Upgrades/ExtendedMagazine.png" id="31_n5ckk"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -73,9 +68,6 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_n2j28"]
-load_path = "res://.godot/imported/SaltedBullets.png-16dd83c91623dab46fb6744a57757362.ctex"
 
 [sub_resource type="GDScript" id="GDScript_farfr"]
 resource_name = "DebugSceneDemo"
@@ -338,63 +330,74 @@ itemIdentifier = "MachineGun"
 
 [node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Bullet Storm"
-displayTexture = ExtResource("25_ykkra")
 price = 100
-description = "+5% fire rate"
 type = 2
 itemIdentifier = "BulletStorm"
+upgradeAmounts = Array[float]([5.0])
 costIncrementMultiplier = 1.25
 
 [node name="ExtendedMagazineUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Extended Magazine"
-displayTexture = ExtResource("31_n5ckk")
 price = 150
-description = "+10% magazine capacity"
 type = 2
 itemIdentifier = "ExtendedMagazine"
+upgradeAmounts = Array[float]([10.0])
 costIncrementMultiplier = 1.4
 
 [node name="SaltedBulletsUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Salted Bullets"
-displayTexture = SubResource("CompressedTexture2D_n2j28")
 price = 80
-description = "+5% damage"
 type = 2
 itemIdentifier = "SaltedBullets"
+upgradeAmounts = Array[float]([5.0])
 costIncrementMultiplier = 1.125
 
 [node name="CriticalDamageUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Critical Damage"
-displayTexture = ExtResource("27_7f7hp")
 price = 75
-description = "+25% chance to deal a critical hit"
 type = 2
 itemIdentifier = "CriticalDamage"
+upgradeAmounts = Array[float]([30.0])
 costIncrementMultiplier = 1.05
 
 [node name="SpeedBoostUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Speed Boost"
-displayTexture = ExtResource("28_4gdok")
 price = 90
-description = "+2.5% movement speed"
 type = 2
 itemIdentifier = "SpeedBoost"
+upgradeAmounts = Array[float]([2.0])
 costIncrementMultiplier = 1.6
 
 [node name="DexterityUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
-displayName = "Dexterity"
-displayTexture = ExtResource("29_2snq2")
 price = 120
-description = "+5% reload speed"
 type = 2
 itemIdentifier = "Dexterity"
+upgradeAmounts = Array[float]([4.0])
 costIncrementMultiplier = 1.4
+
+[node name="ConserveAmmoUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 120
+type = 2
+itemIdentifier = "ConserveAmmo"
+upgradeAmounts = Array[float]([2.0])
+costIncrementMultiplier = 1.25
+
+[node name="DefenseUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 120
+type = 2
+itemIdentifier = "Defense"
+upgradeAmounts = Array[float]([2.5])
+costIncrementMultiplier = 1.25
+
+[node name="GlassCannonUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 200
+type = 2
+itemIdentifier = "GlassCannon"
+costIncrementMultiplier = 1.2
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)

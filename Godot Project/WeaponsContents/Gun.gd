@@ -140,6 +140,10 @@ func fire(holding: bool, angleRadians: float) -> void:
 		cockedGun = false
 	canFire = false
 	currentMagCapacity -= 1
+	gunInteractor.ammoConsumptionPercent -= gunInteractor.ammoConsumptionDecrease
+	if gunInteractor.ammoConsumptionPercent <= 0.0:
+		gunInteractor.ammoConsumptionPercent = 100.0
+		currentMagCapacity += 1
 	lastBulletAngleRadians = angleRadians
 	if shootAudioPlayer:
 		shootAudioPlayer.pitch_scale = randfn(1.0, shootPitchVariance)
@@ -235,6 +239,8 @@ class Interactor:
 	var reloadSpeedDivisor: float = 1.0
 	var magazineCapacityMultiplier: float = 1.0
 	var damageMultiplier: float = 1.0
+	var ammoConsumptionDecrease: float = 0.0
+	var ammoConsumptionPercent: float = 100.0
 	var currentWeapon: Gun:
 		set(newWeapon):
 			if not weapons.has(newWeapon.displayName):

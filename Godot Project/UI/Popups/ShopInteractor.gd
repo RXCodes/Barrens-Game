@@ -69,7 +69,10 @@ func _on_button_button_down() -> void:
 				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
 				var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()
-				newUpgrade.onUpgrade()
+				var upgradeAmounts = newUpgrade.preferredUpgradeAmounts
+				for s in range(selectedShopItem.upgradeAmounts.size()):
+					upgradeAmounts[s] = selectedShopItem.upgradeAmounts[s]
+				newUpgrade.onUpgrade(upgradeAmounts)
 				newUpgrade.queue_free()
 	else:
 		MoneyDisplay.error()

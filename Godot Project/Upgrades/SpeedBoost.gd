@@ -1,6 +1,6 @@
 extends Upgrade
 
-func onUpgrade() -> void:
-	# increase movement speed by 2.5%
-	Player.current.movementSpeedMultiplier += 0.025
-	incrementUpgradeStat(2.5)
+func onUpgrade(amounts: Array) -> void:
+	# increase movement speed by (amount)%
+	Player.current.movementSpeedMultiplier += amounts[0] / 100.0
+	incrementUpgradeStat(amounts[0])

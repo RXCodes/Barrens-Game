@@ -6,7 +6,8 @@
 [node name="SpeedBoost" type="Node"]
 script = ExtResource("1_453mx")
 upgradeName = "Speed Boost"
-description = "+2.5% movement speed"
+description = "increase movement speed by [amt]%"
 accumativeDescription = "+[amt]% movement speed"
+preferredUpgradeAmounts = Array[float]([1.2])
 upgradeIdentifier = "movementSpeed"
 texture = ExtResource("2_ok8x5")

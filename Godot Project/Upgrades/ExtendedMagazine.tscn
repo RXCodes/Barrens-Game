@@ -6,7 +6,8 @@
 [node name="ExtendedMagazine" type="Node"]
 script = ExtResource("1_y6sbj")
 upgradeName = "Extended Magazine"
-description = "+10% magazine capacity"
+description = "increase magazine capacity by [amt]%"
 accumativeDescription = "+[amt]% magazine capacity"
+preferredUpgradeAmounts = Array[float]([4.0])
 upgradeIdentifier = "magazineCapacity"
 texture = ExtResource("2_36iap")

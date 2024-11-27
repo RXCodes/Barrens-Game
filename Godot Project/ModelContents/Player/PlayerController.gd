@@ -33,6 +33,7 @@ var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
 	TutorialManager.shouldDisableControls = false
+	Upgrade.playerUpgrades.clear()
 	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
 	current = self
@@ -142,6 +143,7 @@ var criticalDamageMultiplier: float = 1.0
 var movementSpeedMultiplier: float = 1.0
 var sprintRecoveryMultiplier: float = 1.0
 var reloadSpeedDivisor: float = 1.0
+var defenseDivisor: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -333,6 +335,13 @@ var damageInTick := {}
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
+	
+	# apply defense
+	if defenseDivisor >= 1:
+		amount /= defenseDivisor
+	else:
+		# case for negative defense
+		amount *= absf(defenseDivisor - 2)
 		
 	# play random hit sound
 	var hitSounds = $HitSounds.get_children()

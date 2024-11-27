@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0tlvlki2es54"]
+
+[ext_resource type="Script" path="res://Upgrades/ConserveAmmo.gd" id="1_3msfa"]
+[ext_resource type="Texture2D" uid="uid://cxl04ig5kab05" path="res://Upgrades/ConserveAmmo.png" id="2_j0mmk"]
+
+[node name="ConserveAmmo" type="Node"]
+script = ExtResource("1_3msfa")
+upgradeName = "Conserve Ammo"
+description = "decrease ammo consumption by [amt]%"
+accumativeDescription = "-[amt]% ammo consumption"
+preferredUpgradeAmounts = Array[float]([1.0])
+upgradeIdentifier = "ammoConsumption"
+texture = ExtResource("2_j0mmk")

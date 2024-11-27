@@ -26,7 +26,11 @@ enum ItemType {GUN, ITEM, UPGRADE}
 
 ## e.g., "Shotgun", "MachineGun" for GUN item type
 ## - "AmmoPickup" for ITEM type
+## - "BulletStorm" for UPGRADE type
 @export var itemIdentifier: String
+
+## for upgrades only - the values to populate the upgrade with (all entries must be numeric)
+@export var upgradeAmounts: Array[float]
 
 ## if enabled, you can limit the amount of purchases to the item
 @export var limitSales: bool = false
@@ -53,6 +57,17 @@ var shopInteractor: ShopInteractor
 func _ready() -> void:
 	if limitSales:
 		itemsLeft = limitAmount
+	if type == ItemType.UPGRADE:
+		var upgrade: Upgrade = Upgrade.upgradeForName(itemIdentifier)
+		if displayName.is_empty():
+			displayName = upgrade.upgradeName
+		if not displayTexture:
+			displayTexture = upgrade.texture
+		if description.is_empty():
+			var newUpgradeAmounts = upgrade.preferredUpgradeAmounts
+			for s in range(upgradeAmounts.size()):
+				newUpgradeAmounts[s] = upgradeAmounts[s]
+			description = upgrade.getDescription(newUpgradeAmounts)
 
 func purchasedItem() -> void:
 	if limitSales:

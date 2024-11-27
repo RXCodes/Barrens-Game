@@ -1,7 +1,7 @@
 extends Upgrade
 
-func onUpgrade() -> void:
-	# increase reload speed by 6%
-	Player.current.reloadSpeedDivisor += 0.06
-	incrementUpgradeStat(6)
+func onUpgrade(amounts: Array) -> void:
+	# increase reload speed by (amount)%
+	Player.current.reloadSpeedDivisor += amounts[0] / 100.0
+	incrementUpgradeStat(amounts[0])
 	

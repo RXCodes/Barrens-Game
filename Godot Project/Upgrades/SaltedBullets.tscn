@@ -6,7 +6,8 @@
 [node name="SaltedBullets" type="Node"]
 script = ExtResource("1_1n32x")
 upgradeName = "Salted Bullets"
-description = "+5% damage"
+description = "increase damage by [amt]%"
 accumativeDescription = "+[amt]% damage"
+preferredUpgradeAmounts = Array[float]([2.0])
 upgradeIdentifier = "damage"
 texture = ExtResource("2_4m482")

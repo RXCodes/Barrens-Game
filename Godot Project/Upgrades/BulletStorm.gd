@@ -1,6 +1,6 @@
 extends Upgrade
 
-func onUpgrade() -> void:
-	# increase fire rate by 5%
-	Player.current.gunInteractor.fireRateDivisor += 0.05
-	incrementUpgradeStat(5)
+func onUpgrade(amounts: Array) -> void:
+	# increase fire rate by (amount)%
+	Player.current.gunInteractor.fireRateDivisor += amounts[0] / 100.0
+	incrementUpgradeStat(amounts[0])

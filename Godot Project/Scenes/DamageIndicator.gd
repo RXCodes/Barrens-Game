@@ -19,6 +19,7 @@ func _ready() -> void:
 	var finalScale = Vector2(1.35, 1.35)
 	if criticalHit:
 		delayDuration = 2.5
+		z_index = 99
 		scale = Vector2(6, 10)
 		finalScale = Vector2(1.65, 1.55)
 		self_modulate = Color.GOLD

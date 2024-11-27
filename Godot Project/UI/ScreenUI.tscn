@@ -415,6 +415,7 @@ label_settings = SubResource("LabelSettings_60nyp")
 
 [node name="ItemDropdown" type="Node2D" parent="."]
 process_priority = -2
+visible = false
 z_index = -2
 position = Vector2(456, -231)
 

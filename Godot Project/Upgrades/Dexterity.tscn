@@ -6,7 +6,8 @@
 [node name="Dexterity" type="Node"]
 script = ExtResource("1_t0a1c")
 upgradeName = "Dexterity"
-description = "+6% reload speed"
+description = "increase reload speed by [amt]%"
 accumativeDescription = "+[amt]% reload speed"
+preferredUpgradeAmounts = Array[float]([3.0])
 upgradeIdentifier = "reloadSpeed"
 texture = ExtResource("2_lxiij")

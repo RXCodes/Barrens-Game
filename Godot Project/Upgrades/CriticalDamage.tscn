@@ -6,7 +6,8 @@
 [node name="CriticalDamage" type="Node"]
 script = ExtResource("1_5iedc")
 upgradeName = "Critical Damage"
-description = "+25% increased chance to deal a critical hit"
+description = "increase chance to strike a critical hit by [amt]%"
 accumativeDescription = "+[amt]% increased chance to deal a critical hit"
+preferredUpgradeAmounts = Array[float]([25.0])
 upgradeIdentifier = "criticalDamage"
 texture = ExtResource("2_1kmup")

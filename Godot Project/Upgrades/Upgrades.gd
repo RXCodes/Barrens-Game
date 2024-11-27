@@ -10,6 +10,10 @@ class_name Upgrade extends Node
 ## - [amt] will be replaced with the current statistic
 @export var accumativeDescription: String
 
+## an array of preferred numbers that the upgrade should use
+## - this is used when randomly selecting upgrades or when an upgrade amount is not specified
+@export var preferredUpgradeAmounts: Array[float]
+
 ## what identifier this upgrade uses
 @export var upgradeIdentifier: String
 
@@ -22,8 +26,8 @@ class_name Upgrade extends Node
 static var playerUpgrades: Dictionary = {}
 static var upgradeStructs: Array = []
 
-## This function is called when upgrading
-func onUpgrade() -> void:
+## This function is called when upgrading (override this)
+func onUpgrade(amounts: Array) -> void:
 	pass
 
 ## Use this to track upgrade statistics
@@ -45,6 +49,16 @@ func getUpgradeStruct() -> UpgradeStruct:
 	newStruct.identifier = upgradeIdentifier
 	return newStruct
 
+func getDescription(amounts: Array) -> String:
+	var outputDescription = description
+	for i in range(amounts.size()):
+		var index = i + 1
+		if index == 1:
+			outputDescription = outputDescription.replace("[amt]", str(amounts[0]))
+		else:
+			outputDescription = outputDescription.replace("[amt" + str(index) + "]", str(amounts[i]))
+	return outputDescription
+
 # this sets up all the upgrades found in res://Upgrades
 static func _static_init() -> void:
 	print("--- Setting up upgrades ---")
@@ -59,6 +73,12 @@ static func _static_init() -> void:
 			print("Setup upgrade: " + filePath)
 	print("--- Finished setting up upgrades ---")
 
+static func upgradeForName(name: String) -> Upgrade:
+	var path = "res://Upgrades/" + name + ".tscn"
+	var upgrade = load(path).instantiate()
+	upgrade.queue_free()
+	return upgrade
+
 static func getCurrentUpgradeStructs() -> Array:
 	var currentStructs = []
 	for upgrade: UpgradeStruct in upgradeStructs:
@@ -72,4 +92,9 @@ class UpgradeStruct:
 	var identifier: String
 	func getDescription() -> String:
 		var replacement = str(Upgrade.playerUpgrades[identifier])
-		return rawDescription.replace("[amt]", replacement)
+		var newDescription = rawDescription.replace("[amt]", replacement)
+		newDescription = newDescription.replace("+-", "-")
+		newDescription = newDescription.replace("--", "+")
+		return newDescription
+	func isNegative() -> bool:
+		return Upgrade.playerUpgrades[identifier] < 0
