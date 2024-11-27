@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3vw1dkfe4g3h"]
+
+[ext_resource type="Script" path="res://Upgrades/ResourceMagnet.gd" id="1_ea5d0"]
+[ext_resource type="Texture2D" uid="uid://kgg31of8xbxw" path="res://Upgrades/ResourceMagnet.png" id="2_017x6"]
+
+[node name="ResourceMagnet" type="Node"]
+script = ExtResource("1_ea5d0")
+upgradeName = "Resource Magnet"
+description = "increase the player's pick up range by [amt]%"
+accumativeDescription = "+[amt]% pick up range"
+preferredUpgradeAmounts = Array[float]([4.0])
+upgradeIdentifier = "magnet"
+texture = ExtResource("2_017x6")

@@ -8,6 +8,6 @@ script = ExtResource("1_t0a1c")
 upgradeName = "Dexterity"
 description = "increase reload speed by [amt]%"
 accumativeDescription = "+[amt]% reload speed"
-preferredUpgradeAmounts = Array[float]([3.0])
+preferredUpgradeAmounts = Array[float]([2.5])
 upgradeIdentifier = "reloadSpeed"
 texture = ExtResource("2_lxiij")

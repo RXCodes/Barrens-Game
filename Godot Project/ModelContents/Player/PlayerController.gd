@@ -137,6 +137,7 @@ var facingLeft = false
 var sprintPower = 100.0
 var sprintDecreaseRate = 20
 var sprintRecoveryRate = 30
+var regenerationRate = 1.0 / 10.0 # one hp every 10 seconds
 
 # properties that can be modified during runtime (Upgrades)
 var criticalDamageMultiplier: float = 1.0
@@ -144,10 +145,19 @@ var movementSpeedMultiplier: float = 1.0
 var sprintRecoveryMultiplier: float = 1.0
 var reloadSpeedDivisor: float = 1.0
 var defenseDivisor: float = 1.0
+var pickUpRangeMultiplier: float = 1.0
+var regenerationRateMultiplier: float = 1.0
+var maximumHealth: int = 100
 
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	
+	# passive regeneration
+	if not dead:
+		health += regenerationRate * regenerationRateMultiplier * delta
+		health = min(health, maximumHealth)
+		PlayerHealthBar.setProgress(health)
 	
 	# player movement
 	if currentMovementKeypresses.size() > 0:

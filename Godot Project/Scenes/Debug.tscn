@@ -399,6 +399,22 @@ type = 2
 itemIdentifier = "GlassCannon"
 costIncrementMultiplier = 1.2
 
+[node name="ResourceMagnetUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "ResourceMagnet"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.3
+
+[node name="SpeedyRecoveryUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 80
+type = 2
+itemIdentifier = "SpeedyRecovery"
+upgradeAmounts = Array[float]([35.0])
+costIncrementMultiplier = 1.075
+
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)
 respawnCooldown = 10.0
