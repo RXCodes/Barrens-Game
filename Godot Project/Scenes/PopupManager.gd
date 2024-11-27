@@ -25,7 +25,7 @@ func _ready() -> void:
 		tween.parallel().tween_property(InGameAmbience.current, "volume_db", -20, 0.6)
 	
 static func closeCurrent() -> void:
-	if not current:
+	if not is_instance_valid(current):
 		return
 	if not current.open:
 		return

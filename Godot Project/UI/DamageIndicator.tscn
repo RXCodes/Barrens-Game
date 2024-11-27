@@ -7,10 +7,11 @@
 z_index = 4000
 
 [node name="DamageIndicator" type="Label" parent="."]
-offset_left = -40.0
-offset_top = -15.0
-offset_right = 44.0
-offset_bottom = 11.0
+texture_filter = 1
+offset_left = -42.0
+offset_top = -14.0
+offset_right = 42.0
+offset_bottom = 12.0
 pivot_offset = Vector2(41, 14)
 text = "0"
 label_settings = ExtResource("1_xfs85")

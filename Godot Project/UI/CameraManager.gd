@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 	var finalOffset = originalPositionOffset
 	finalOffset += aimingPositionOffset
 	finalOffset += gunFireShakeOffset
+	finalOffset.y += verticalOffsetShake
 	offset = finalOffset
 	
 func setZoom(zoom: float, duration: float) -> void:
@@ -38,3 +39,14 @@ func setOffset(offset: Vector2, duration: float) -> void:
 	var tween = NodeRelations.createTween()
 	tween.tween_property(current, "originalPositionOffset", offset, duration).set_trans(Tween.TRANS_CUBIC)
 	tween.play()
+
+var verticalOffsetShake = 0.0
+var verticalShakeTween: Tween
+func playerDamaged() -> void:
+	verticalOffsetShake = -15
+	if verticalShakeTween:
+		verticalShakeTween.stop()
+	verticalShakeTween = NodeRelations.createTween()
+	verticalShakeTween.set_ease(Tween.EASE_OUT)
+	verticalShakeTween.set_trans(Tween.TRANS_ELASTIC)
+	verticalShakeTween.tween_property(self, "verticalOffsetShake", 0, 1.5)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjcmkwdolwjo1"
-path="res://.godot/imported/SaltedBullets.png-16dd83c91623dab46fb6744a57757362.ctex"
+uid="uid://bi7ul53db8i01"
+path="res://.godot/imported/SpeedBoost.png-2e40ad4d992623cd343a2440f15566a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Upgrades/SaltedBullets.png"
-dest_files=["res://.godot/imported/SaltedBullets.png-16dd83c91623dab46fb6744a57757362.ctex"]
+source_file="res://Upgrades/SpeedBoost.png"
+dest_files=["res://.godot/imported/SpeedBoost.png-2e40ad4d992623cd343a2440f15566a5.ctex"]
 
 [params]
 

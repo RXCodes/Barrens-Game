@@ -4,7 +4,7 @@ extends Node2D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var activated = false
 var monsterCount = 0
-var maxMonsterCount = 30
+var maxMonsterCount = 60
 func _process(delta: float) -> void:
 	if not activated:
 		if Player.current.global_position.distance_squared_to(global_position) > 350:

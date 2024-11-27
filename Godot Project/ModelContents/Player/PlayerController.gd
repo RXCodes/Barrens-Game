@@ -31,6 +31,7 @@ var holdingWeapons = []
 var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
+	TutorialManager.shouldDisableControls = false
 	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
 	current = self
@@ -85,10 +86,6 @@ func _process(delta: float) -> void:
 		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
 		animationTree[key] = animationValues[key]
 	
-	# flashing shader animation
-	if renderer.material is ShaderMaterial:
-		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
-	
 	# calculate normal vector to crosshair and flip player if needed
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.cursorPosition))
 	facingLeft = crosshairNormal.x < 0
@@ -136,10 +133,13 @@ var walking = false
 var walkingBackwards = false
 var facingLeft = false
 var sprintPower = 100.0
-
-# properties that can be modified during runtime (Upgrades)
 var sprintDecreaseRate = 20
 var sprintRecoveryRate = 30
+
+# properties that can be modified during runtime (Upgrades)
+var criticalDamageMultiplier: float = 1.0
+var movementSpeedMultiplier: float = 1.0
+var sprintRecoveryMultiplier: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -164,13 +164,13 @@ func _physics_process(delta: float) -> void:
 			currentAnimation = IDLE
 		
 		# finally move the player
-		var speedMultiplier = 1.0
+		var speedMultiplier = movementSpeedMultiplier
 		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
 			if sprintPower > 0:
 				speedMultiplier *= sprintingSpeedMultiplier
 				sprintPower -= sprintDecreaseRate * delta
 		else:
-			sprintPower += sprintRecoveryRate * delta * 0.5
+			sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta * 0.5
 		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
 			speedMultiplier *= reloadSpeedMultiplier
 		if sprintPower == 0:
@@ -183,7 +183,7 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(Vector2(movementVector.x, 0))
 		move_and_collide(Vector2(0, movementVector.y))
 	else:
-		sprintPower += sprintRecoveryRate * delta
+		sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta
 		currentAnimation = IDLE
 		walking = false
 	sprintPower = clampf(sprintPower, 0.0, 100.0)
@@ -236,6 +236,9 @@ func _input(event: InputEvent) -> void:
 				
 	# mouse clicks and scrolling
 	if event is InputEventMouseButton:
+		# don't register clicks when hovering over buttons
+		if Crosshair.hoveringOverButton:
+			return
 		# handle left click
 		if event.button_index == 1:
 			shooting = event.pressed
@@ -324,27 +327,40 @@ var damageInTick := {}
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
-	flashWhite(true)
+		
+	# play random hit sound
+	var hitSounds = $HitSounds.get_children()
+	var hitSound: AudioStreamPlayer = hitSounds.pick_random()
+	hitSound.pitch_scale = randfn(1.0, 0.075)
+	hitSound.play()
+	
+	# keep track of damage
 	if not damageInTick.has(source.get_instance_id()):
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	
+	# animate hurt vignette and camera
 	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
 	var animationTime = lerpf(2.0, 0.6, health / 100.0)
 	HurtVignette.animate(hurtVignetteOpacity, animationTime)
+	PlayerCamera.current.playerDamaged()
+	
+	# update health
 	PlayerHealthBar.setProgress(health)
 	if health <= 0:
 		HurtVignette.animate(1.0, 5.0)
 		health = 0
 		kill()
-	await TimeManager.wait(0.05)
-	flashWhite(false)
 
 # called when player dies
 func kill() -> void:
 	if dead:
 		return
 	dead = true
+	GamePopup.closeCurrent()
+	$DeathSound.play()
+	TutorialManager.shouldDisableControls = true
 	hitBoxRigidBody.collision_mask = 0
 	hitBoxRigidBody.collision_layer = 0
 	self.collision_mask = 0
@@ -360,19 +376,10 @@ func kill() -> void:
 	await TimeManager.wait(2.25)
 	NodeRelations.loadScene("res://Scenes/Debug.tscn")
 
-# called when changing the flashing state of the player
-static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
-func flashWhite(flashing: bool) -> void:
-	if flashing:
-		renderer.material = ShaderMaterial.new()
-		renderer.material.shader = flashWhiteShader
-	else:
-		renderer.material = null
-
 func playWalkSound() -> void:
 	var walkSounds = $WalkSounds.get_children()
 	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
-	walkSound.pitch_scale = randfn(1.0, 0.2)
+	walkSound.pitch_scale = randfn(1.0, 0.1)
 	walkSound.play()
 
 func pickupCash(amount: int) -> void:

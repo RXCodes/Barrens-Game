@@ -1,6 +1,7 @@
 class_name Crosshair extends TextureRect
 static var current: Control
 static var reloadingIcon: TextureProgressBar
+static var hoveringOverButton: bool = false
 
 var cameraOffsetDampening = 0.1
 var cameraOffsetMultiplier = 0.2

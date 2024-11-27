@@ -148,7 +148,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
 		Bullet.fire(gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset, angleRadians, self, sourceNode)
-	await TimeManager.wait(fireRate * gunInteractor.fireRateMultiplier)
+	await TimeManager.wait(fireRate / gunInteractor.fireRateDivisor)
 	canFire = true
 
 var reloadAudioPlayer: AudioStreamPlayer2D
@@ -160,7 +160,7 @@ var reloadTimer: SceneTreeTimer
 func reload(forced: bool) -> void:
 	if reloading or (not canFire and not forced):
 		return
-	var modifiedMaximumMagCapacity = ceil(maximumMagCapacity * gunInteractor.magazineCapacityMultiplier)
+	var modifiedMaximumMagCapacity = round(maximumMagCapacity * gunInteractor.magazineCapacityMultiplier)
 	if currentMagCapacity >= modifiedMaximumMagCapacity or leftoverAmmoCount <= 0:
 		return
 	reloading = true
@@ -231,7 +231,7 @@ var gunInteractor: Gun.Interactor
 class Interactor:
 	var audioStreams = {}
 	var weapons = []
-	var fireRateMultiplier: float = 1.0
+	var fireRateDivisor: float = 1.0
 	var magazineCapacityMultiplier: float = 1.0
 	var damageMultiplier: float = 1.0
 	var currentWeapon: Gun:
