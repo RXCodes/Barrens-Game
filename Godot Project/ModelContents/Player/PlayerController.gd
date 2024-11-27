@@ -40,7 +40,7 @@ func _ready() -> void:
 	textureOutput = $TextureDisplay
 	sprintBar = $SprintBar
 	sprintBar.modulate = Color.TRANSPARENT
-	await get_tree().process_frame
+	await get_tree().physics_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
 	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon
@@ -385,7 +385,7 @@ func pickupAmmo() -> void:
 	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
 	$AmmoPickup.play()
 	for gun: Gun in holdingWeapons:
-		var ammoToAdd = min(gun.maximumMagCapacity, 30)
+		var ammoToAdd = min(gun.maximumMagCapacity, 50)
 		if ammoToAdd < 10:
 			ammoToAdd *= 2
 		gun.leftoverAmmoCount += ammoToAdd

@@ -59,17 +59,18 @@ func _on_button_button_down() -> void:
 		Player.current.pickupCash(-price)
 		selectedShopItem.purchasedItem()
 		$"../../../../../Purchase".play()
-		if selectedShopItem.type == ShopItem.ItemType.ITEM:
-			EnemySpawner.spawnEnemy(selectedShopItem.itemIdentifier, Player.current.global_position + Vector2(0, 15))
-			GamePopup.closeCurrent()
-		if selectedShopItem.type == ShopItem.ItemType.GUN:
-			var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
-			EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
-			GamePopup.closeCurrent()
-		if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
-			var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()
-			newUpgrade.onUpgrade()
-			newUpgrade.queue_free()
+		for i in range(selectedShopItem.amount):
+			if selectedShopItem.type == ShopItem.ItemType.ITEM:
+				EnemySpawner.spawnEnemy(selectedShopItem.itemIdentifier, Player.current.global_position + Vector2(0, 15))
+				GamePopup.closeCurrent()
+			if selectedShopItem.type == ShopItem.ItemType.GUN:
+				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
+				EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
+				GamePopup.closeCurrent()
+			if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
+				var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()
+				newUpgrade.onUpgrade()
+				newUpgrade.queue_free()
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()

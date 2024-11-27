@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://biyl1buiw3uf6"]
+
+[ext_resource type="Script" path="res://Upgrades/SaltedBullets.gd" id="1_1n32x"]
+[ext_resource type="Texture2D" uid="uid://c2v4mjngs70jr" path="res://Upgrades/SaltedBullets.png" id="2_4m482"]
+
+[node name="SaltedBullets" type="Node"]
+script = ExtResource("1_1n32x")
+upgradeName = "Salted Bullets"
+description = "+5% damage"
+accumativeDescription = "+[amt]% damage"
+upgradeIdentifier = "damage"
+texture = ExtResource("2_4m482")

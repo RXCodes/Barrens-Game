@@ -160,7 +160,8 @@ var reloadTimer: SceneTreeTimer
 func reload(forced: bool) -> void:
 	if reloading or (not canFire and not forced):
 		return
-	if currentMagCapacity >= maximumMagCapacity or leftoverAmmoCount <= 0:
+	var modifiedMaximumMagCapacity = ceil(maximumMagCapacity * gunInteractor.magazineCapacityMultiplier)
+	if currentMagCapacity >= modifiedMaximumMagCapacity or leftoverAmmoCount <= 0:
 		return
 	reloading = true
 	if gunInteractor.onReload:
@@ -170,7 +171,7 @@ func reload(forced: bool) -> void:
 	await reloadTimer.timeout
 	if reloadTimer != newReloadTimer:
 		return
-	var ammoAmountNeeded = maximumMagCapacity - currentMagCapacity
+	var ammoAmountNeeded = modifiedMaximumMagCapacity - currentMagCapacity
 	var ammoLeft = max(leftoverAmmoCount - ammoAmountNeeded, 0)
 	currentMagCapacity += leftoverAmmoCount - ammoLeft
 	leftoverAmmoCount = ammoLeft
@@ -231,6 +232,8 @@ class Interactor:
 	var audioStreams = {}
 	var weapons = []
 	var fireRateMultiplier: float = 1.0
+	var magazineCapacityMultiplier: float = 1.0
+	var damageMultiplier: float = 1.0
 	var currentWeapon: Gun:
 		set(newWeapon):
 			if not weapons.has(newWeapon.displayName):

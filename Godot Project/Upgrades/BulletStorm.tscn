@@ -1,10 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://di7sb7eo61gw2"]
 
 [ext_resource type="Script" path="res://Upgrades/BulletStorm.gd" id="1_056vb"]
-[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://UI/Upgrades/BulletStorm.png" id="2_8qlqa"]
+[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://Upgrades/BulletStorm.png" id="2_8qlqa"]
 
 [node name="BulletStorm" type="Node"]
 script = ExtResource("1_056vb")
 upgradeName = "Bullet Storm"
+description = "+5% increased fire rate"
+accumativeDescription = "+[amt]% increased fire rate"
 upgradeIdentifier = "fireRate"
 texture = ExtResource("2_8qlqa")

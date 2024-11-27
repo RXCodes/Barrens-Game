@@ -1,15 +1,7 @@
-[gd_scene load_steps=101 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=94 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
-[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="2_i234e"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
-[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="3_4xtrd"]
-[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="4_i2ivd"]
-[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="5_pkggm"]
-[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="6_xpklj"]
-[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="7_b05fc"]
-[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="8_ob6tj"]
-[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="9_qibp5"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_pvnfi"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="11_lspg1"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_p5o2j"]
@@ -49,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="45_cpv0j"]
 [ext_resource type="PackedScene" uid="uid://d37xd83dbrt2p" path="res://Environment/Decoration/FallenTrashCan.tscn" id="46_libqt"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="47_ofusp"]
+[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="47_rliu7"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="48_m57vu"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="51_abhol"]
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="52_bomwk"]
@@ -221,109 +214,6 @@ script = ExtResource("1_875xw")
 metadata/_edit_horizontal_guides_ = [-32.0, 361.0]
 
 [node name="Ambience" parent="." instance=ExtResource("2_q3l28")]
-
-[node name="ScreenUI" type="CanvasLayer" parent="."]
-process_priority = 10
-layer = 128
-script = ExtResource("2_i234e")
-metadata/_edit_use_anchors_ = true
-
-[node name="Crosshair" type="TextureRect" parent="ScreenUI"]
-z_index = 999
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -26.0
-offset_right = -169.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(21, 21)
-texture = ExtResource("3_4xtrd")
-script = ExtResource("4_i2ivd")
-
-[node name="ReloadingIcon" type="TextureProgressBar" parent="ScreenUI"]
-visible = false
-z_index = 999
-texture_filter = 1
-offset_right = 40.0
-offset_bottom = 40.0
-pivot_offset = Vector2(16, 16)
-fill_mode = 4
-texture_under = ExtResource("5_pkggm")
-texture_progress = ExtResource("6_xpklj")
-
-[node name="Label" type="Label" parent="ScreenUI"]
-texture_filter = 1
-offset_left = -619.0
-offset_top = -345.0
-offset_right = -371.0
-offset_bottom = -319.0
-text = "put some UI here"
-label_settings = ExtResource("7_b05fc")
-
-[node name="AmmoInfo" type="Control" parent="ScreenUI"]
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-pivot_offset = Vector2(0, 400)
-script = ExtResource("8_ob6tj")
-
-[node name="AmmoBackdrop" type="TextureRect" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -100.0
-offset_top = 350.0
-offset_right = 100.0
-offset_bottom = 394.0
-grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(100, 0)
-texture = ExtResource("9_qibp5")
-
-[node name="AmmoLeft" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = -57.0
-offset_top = 358.0
-offset_right = 5.0
-offset_bottom = 384.0
-pivot_offset = Vector2(61, 14)
-text = "0"
-label_settings = ExtResource("7_b05fc")
-horizontal_alignment = 2
-
-[node name="MagCapacity" type="Label" parent="ScreenUI/AmmoInfo"]
-texture_filter = 1
-layout_mode = 0
-offset_left = 34.0
-offset_top = 358.0
-offset_right = 101.0
-offset_bottom = 384.0
-pivot_offset = Vector2(0, 14)
-text = "0"
-label_settings = ExtResource("7_b05fc")
-
-[node name="Slash" type="Label" parent="ScreenUI/AmmoInfo"]
-modulate = Color(0.627047, 0.597041, 0.555939, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 4.0
-offset_top = 358.0
-offset_right = 35.0
-offset_bottom = 384.0
-text = "/"
-label_settings = ExtResource("7_b05fc")
-horizontal_alignment = 1
 
 [node name="Under" type="Node2D" parent="."]
 
@@ -5015,6 +4905,8 @@ shape = SubResource("RectangleShape2D_jr2kn")
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")
+
+[node name="ScreenUI" parent="." instance=ExtResource("47_rliu7")]
 
 [connection signal="body_shape_entered" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_exited"]

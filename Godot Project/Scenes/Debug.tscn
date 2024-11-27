@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=39 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -18,16 +18,18 @@
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
 [ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="21_lkc5g"]
-[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="21_mbysx"]
+[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="21_mbysx"]
 [ext_resource type="PackedScene" uid="uid://bghr0faxa387a" path="res://Models/ShopVan.tscn" id="22_5ghfe"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="22_n87nw"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
-[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://UI/Upgrades/BulletStorm.png" id="25_ykkra"]
+[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://Upgrades/BulletStorm.png" id="25_ykkra"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
+[ext_resource type="Texture2D" uid="uid://c2v4mjngs70jr" path="res://Upgrades/SaltedBullets.png" id="31_m16wo"]
+[ext_resource type="Texture2D" uid="uid://c68310gao4pku" path="res://Upgrades/ExtendedMagazine.png" id="31_n5ckk"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -336,7 +338,27 @@ price = 100
 description = "+5% fire rate"
 type = 2
 itemIdentifier = "BulletStorm"
-costIncrementMultiplier = 1.22
+costIncrementMultiplier = 1.25
+
+[node name="ExtendedMagazineUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Extended Magazine"
+displayTexture = ExtResource("31_n5ckk")
+price = 150
+description = "+10% magazine capacity"
+type = 2
+itemIdentifier = "ExtendedMagazine"
+costIncrementMultiplier = 1.4
+
+[node name="SaltedBulletsUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Salted Bullets"
+displayTexture = ExtResource("31_m16wo")
+price = 100
+description = "+5% damage"
+type = 2
+itemIdentifier = "SaltedBullets"
+costIncrementMultiplier = 1.1
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)

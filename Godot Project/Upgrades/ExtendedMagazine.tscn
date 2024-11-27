@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ajofwors58h"]
+
+[ext_resource type="Script" path="res://Upgrades/ExtendedMagazine.gd" id="1_y6sbj"]
+[ext_resource type="Texture2D" uid="uid://c68310gao4pku" path="res://Upgrades/ExtendedMagazine.png" id="2_36iap"]
+
+[node name="ExtendedMagazine" type="Node"]
+script = ExtResource("1_y6sbj")
+upgradeName = "Extended Magazine"
+description = "+10% magazine capacity"
+accumativeDescription = "+[amt]% magazine capacity"
+upgradeIdentifier = "magazineCapacity"
+texture = ExtResource("2_36iap")

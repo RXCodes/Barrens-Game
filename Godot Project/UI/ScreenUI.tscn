@@ -1,18 +1,52 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3ypoaje2v8fd"]
+[gd_scene load_steps=29 format=3 uid="uid://oc0fa0b3t0mo"]
 
-[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_t3gym"]
-[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_l2w11"]
-[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="3_x06ds"]
-[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_5aofd"]
-[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_qm3m2"]
-[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="6_ljiw1"]
-[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="7_l2vhb"]
-[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="8_txft5"]
+[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
+[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
+[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="3_na6ej"]
+[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_7w5bb"]
+[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_xwyaq"]
+[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="6_meu8m"]
+[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="7_dwn10"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="7_egwtw"]
+[ext_resource type="Script" path="res://UI/WeaponSlots.gd" id="7_swpyc"]
+[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="8_75vom"]
+[ext_resource type="Texture2D" uid="uid://cnoopryek4fww" path="res://UI/WeaponSlots.png" id="9_1kvol"]
+[ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="9_gdfer"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="9_nepcg"]
+[ext_resource type="Script" path="res://UI/MoneyDisplay.gd" id="10_3pf0b"]
+[ext_resource type="Texture2D" uid="uid://dq11xdygrj2ar" path="res://UI/EnemyHealthBarEmpty.png" id="10_rg7kg"]
+[ext_resource type="Texture2D" uid="uid://dayr2ucnwkj3m" path="res://UI/HealthBarIcon.png" id="11_fisi3"]
+[ext_resource type="Texture2D" uid="uid://3vsk53crm10j" path="res://UI/EnemyHealthBar.png" id="11_khyta"]
+[ext_resource type="Script" path="res://Models/SprintBar.gd" id="12_fi0l7"]
+[ext_resource type="Script" path="res://UI/PlayerHealthBar.gd" id="12_h5lnw"]
+[ext_resource type="Texture2D" uid="uid://dwjlnjbs3w8at" path="res://UI/PlayerHealthBarUnder.png" id="12_iad2n"]
+[ext_resource type="Texture2D" uid="uid://ddxuv6xx34fja" path="res://UI/PlayerHealthBarOver.png" id="13_aieh8"]
+[ext_resource type="Texture2D" uid="uid://cycyexib503yu" path="res://UI/WhiteVignette.png" id="18_nr68i"]
+[ext_resource type="Script" path="res://UI/HurtVignette.gd" id="19_cvkcw"]
+[ext_resource type="Texture2D" uid="uid://o7g6hva8yyic" path="res://UI/UpgradesListButton.png" id="24_ukd3x"]
+[ext_resource type="Script" path="res://UI/UpgradesListButton.gd" id="25_48dft"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
+font = ExtResource("7_egwtw")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="InputEventKey" id="InputEventKey_o0fx4"]
+device = -1
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_x550s"]
+events = [SubResource("InputEventKey_o0fx4")]
 
 [node name="ScreenUI" type="CanvasLayer"]
 process_priority = 10
 layer = 128
-script = ExtResource("1_t3gym")
+script = ExtResource("1_1kk4v")
 metadata/_edit_use_anchors_ = true
 
 [node name="Crosshair" type="TextureRect" parent="."]
@@ -30,32 +64,135 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(21, 21)
-texture = ExtResource("2_l2w11")
-script = ExtResource("3_x06ds")
+texture = ExtResource("2_28phi")
+script = ExtResource("3_na6ej")
 
 [node name="ReloadingIcon" type="TextureProgressBar" parent="."]
 visible = false
 z_index = 999
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(16, 16)
 fill_mode = 4
-texture_under = ExtResource("4_5aofd")
-texture_progress = ExtResource("5_qm3m2")
+texture_under = ExtResource("4_7w5bb")
+texture_progress = ExtResource("5_xwyaq")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -619.0
-offset_top = -345.0
-offset_right = -371.0
-offset_bottom = -319.0
-text = "put some UI here"
-label_settings = ExtResource("6_ljiw1")
+[node name="WeaponSlots" type="TextureRect" parent="."]
+z_index = -5
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -739.0
+offset_top = -494.0
+offset_right = -506.0
+offset_bottom = -450.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(100, 0)
+texture = ExtResource("9_1kvol")
+script = ExtResource("7_swpyc")
+
+[node name="WeaponName" type="Label" parent="WeaponSlots"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = -17.0
+offset_right = 282.0
+offset_bottom = 9.0
+scale = Vector2(0.75, 0.75)
+text = "Shotgun"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="1" type="Label" parent="WeaponSlots"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.5
+offset_top = 1.0
+offset_right = 16.5
+offset_bottom = 27.0
+scale = Vector2(0.6, 0.6)
+text = "1"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="2" type="Label" parent="WeaponSlots"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 119.5
+offset_top = 1.0
+offset_right = 132.5
+offset_bottom = 27.0
+scale = Vector2(0.6, 0.6)
+text = "2"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="PrimaryWeapon" type="Sprite2D" parent="WeaponSlots"]
+position = Vector2(90.5, 20.5)
+texture = ExtResource("9_nepcg")
+offset = Vector2(-60, 5)
+metadata/_edit_lock_ = true
+
+[node name="SecondaryWeapon" type="Sprite2D" parent="WeaponSlots"]
+position = Vector2(211.5, 20.5)
+texture = ExtResource("9_nepcg")
+offset = Vector2(-60, 5)
+metadata/_edit_lock_ = true
+
+[node name="PrimaryBar" type="TextureProgressBar" parent="WeaponSlots"]
+z_index = 2
+texture_filter = 1
+offset_left = -15.0
+offset_top = 38.0
+offset_right = 221.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(31, 3)
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("10_rg7kg")
+texture_progress = ExtResource("11_khyta")
+script = ExtResource("12_fi0l7")
+
+[node name="SecondaryBar" type="TextureProgressBar" parent="WeaponSlots"]
+z_index = 2
+texture_filter = 1
+offset_left = 107.0
+offset_top = 38.0
+offset_right = 327.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(31, 3)
+step = 0.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("10_rg7kg")
+texture_progress = ExtResource("11_khyta")
+script = ExtResource("12_fi0l7")
 
 [node name="AmmoInfo" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
+offset_left = -306.0
+offset_right = -306.0
 pivot_offset = Vector2(0, 400)
-script = ExtResource("7_l2vhb")
+script = ExtResource("6_meu8m")
 
 [node name="AmmoBackdrop" type="TextureRect" parent="AmmoInfo"]
 texture_filter = 1
@@ -72,37 +209,171 @@ offset_bottom = 394.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(100, 0)
-texture = ExtResource("8_txft5")
+texture = ExtResource("7_dwn10")
 
 [node name="AmmoLeft" type="Label" parent="AmmoInfo"]
+texture_filter = 1
 layout_mode = 0
-offset_left = -57.0
-offset_top = 358.0
-offset_right = 5.0
-offset_bottom = 384.0
+offset_left = -63.0
+offset_top = 364.0
+offset_right = -1.00002
+offset_bottom = 390.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(61, 14)
 text = "0"
-label_settings = ExtResource("6_ljiw1")
+label_settings = ExtResource("8_75vom")
 horizontal_alignment = 2
 
 [node name="MagCapacity" type="Label" parent="AmmoInfo"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 34.0
-offset_top = 358.0
+offset_top = 364.0
 offset_right = 101.0
-offset_bottom = 384.0
+offset_bottom = 390.0
+scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(0, 14)
 text = "0"
-label_settings = ExtResource("6_ljiw1")
+label_settings = ExtResource("8_75vom")
 
 [node name="Slash" type="Label" parent="AmmoInfo"]
 modulate = Color(0.627047, 0.597041, 0.555939, 1)
+texture_filter = 1
 layout_mode = 0
-offset_left = 4.0
-offset_top = 358.0
-offset_right = 35.0
-offset_bottom = 384.0
+offset_left = -6.0
+offset_top = 357.0
+offset_right = 25.0
+offset_bottom = 383.0
+scale = Vector2(1.5, 1.5)
 text = "/"
-label_settings = ExtResource("6_ljiw1")
+label_settings = ExtResource("8_75vom")
 horizontal_alignment = 1
+
+[node name="AmmoTitle" type="Label" parent="AmmoInfo"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+self_modulate = Color(0.825732, 0.738706, 0.516004, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -77.0
+offset_top = 325.0
+offset_right = 45.0
+offset_bottom = 351.0
+scale = Vector2(1.25, 1.25)
+text = "Ammo"
+label_settings = SubResource("LabelSettings_60nyp")
+horizontal_alignment = 1
+
+[node name="Money" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-623, -325)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("9_gdfer")
+offset = Vector2(14, 13)
+script = ExtResource("10_3pf0b")
+
+[node name="MoneyAmount" type="Label" parent="Money"]
+texture_filter = 1
+offset_left = 36.0
+offset_top = 0.800037
+offset_right = 147.0
+offset_bottom = 26.8
+scale = Vector2(1.2, 1.2)
+text = "0
+"
+label_settings = ExtResource("8_75vom")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBar" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-604, -365)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_fisi3")
+script = ExtResource("12_h5lnw")
+
+[node name="ProgressBarUnder" type="TextureProgressBar" parent="HealthBar"]
+offset_left = 38.0
+offset_top = -56.0
+offset_right = 563.0
+offset_bottom = 53.0
+step = 0.0
+value = 100.0
+texture_under = ExtResource("12_iad2n")
+texture_progress = ExtResource("13_aieh8")
+texture_progress_offset = Vector2(10, 7)
+tint_progress = Color(0.947375, 0.31939, 0.329442, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="TextureProgressBar" parent="HealthBar/ProgressBarUnder"]
+layout_mode = 0
+offset_right = 525.0
+offset_bottom = 109.0
+step = 0.0
+value = 100.0
+texture_progress = ExtResource("13_aieh8")
+texture_progress_offset = Vector2(10, 7)
+tint_progress = Color(0.47292, 0.84, 0.3612, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthText" type="Label" parent="HealthBar"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+self_modulate = Color(0.646456, 0.804611, 0.514459, 1)
+texture_filter = 1
+offset_left = 133.333
+offset_top = 50.0
+offset_right = 255.333
+offset_bottom = 76.0
+scale = Vector2(3.5, 3.5)
+text = "100/100HP"
+label_settings = SubResource("LabelSettings_60nyp")
+horizontal_alignment = 2
+
+[node name="HurtVignette" type="NinePatchRect" parent="."]
+self_modulate = Color(1, 0, 0, 0)
+z_index = -50
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1328.0
+offset_top = -849.0
+offset_right = -1052.0
+offset_bottom = -669.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("18_nr68i")
+patch_margin_left = 60
+patch_margin_top = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
+script = ExtResource("19_cvkcw")
+metadata/_edit_lock_ = true
+
+[node name="UpgradesListButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 274.0
+offset_top = 341.0
+offset_right = 314.0
+offset_bottom = 381.0
+scale = Vector2(2, 2)
+shortcut = SubResource("Shortcut_x550s")
+texture_normal = ExtResource("24_ukd3x")
+script = ExtResource("25_48dft")
+
+[node name="P" type="Label" parent="UpgradesListButton"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.5
+offset_top = -13.5
+offset_right = 33.5
+offset_bottom = 12.5
+scale = Vector2(0.6, 0.6)
+text = "(P)"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="UpgradesListButton" to="UpgradesListButton" method="_on_pressed"]

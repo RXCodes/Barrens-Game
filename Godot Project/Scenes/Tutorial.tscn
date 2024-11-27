@@ -1,7 +1,7 @@
 [gd_scene load_steps=88 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
-[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://Environment/Decoration/ScreenUI.tscn" id="2_bcbjt"]
+[ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="2_bcbjt"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="6_kiaf2"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_hrnbf"]
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="11_3ds43"]

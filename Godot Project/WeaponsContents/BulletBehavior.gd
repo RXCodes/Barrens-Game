@@ -107,7 +107,7 @@ func _physics_process(delta: float) -> void:
 		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
 		if enemy and gun:
 			enemy.call("onHit", result.position)
-			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread), sourceNode)
+			enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
 		return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)

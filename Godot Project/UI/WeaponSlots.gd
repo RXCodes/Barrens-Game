@@ -38,6 +38,8 @@ static func selectSecondary() -> void:
 
 static var weaponTween: Tween
 static func setWeaponName(name: String) -> void:
+	if not is_instance_valid(weaponNameLabel):
+		return
 	weaponNameLabel.text = name
 	if weaponTween:
 		weaponTween.stop()
