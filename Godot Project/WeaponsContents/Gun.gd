@@ -166,7 +166,7 @@ func reload(forced: bool) -> void:
 	reloading = true
 	if gunInteractor.onReload:
 		gunInteractor.onReload.call()
-	var newReloadTimer = TimeManager.waitTimer(reloadTime)
+	var newReloadTimer = TimeManager.waitTimer(reloadTime / gunInteractor.reloadSpeedDivisor)
 	reloadTimer = newReloadTimer
 	await reloadTimer.timeout
 	if reloadTimer != newReloadTimer:
@@ -232,6 +232,7 @@ class Interactor:
 	var audioStreams = {}
 	var weapons = []
 	var fireRateDivisor: float = 1.0
+	var reloadSpeedDivisor: float = 1.0
 	var magazineCapacityMultiplier: float = 1.0
 	var damageMultiplier: float = 1.0
 	var currentWeapon: Gun:

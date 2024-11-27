@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbp8ghocwiruo"
-path="res://.godot/imported/ExtendedMagazine.png-83476b4979756dff758d6a9c264810a4.ctex"
+uid="uid://cq46r55ceb428"
+path="res://.godot/imported/Dexterity.png-20bfcfed8adcb6bc163d3c68f956c220.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Upgrades/ExtendedMagazine.png"
-dest_files=["res://.godot/imported/ExtendedMagazine.png-83476b4979756dff758d6a9c264810a4.ctex"]
+source_file="res://Upgrades/Dexterity.png"
+dest_files=["res://.godot/imported/Dexterity.png-20bfcfed8adcb6bc163d3c68f956c220.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=42 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -30,7 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://b6ki3owib2o3w" path="res://Upgrades/CriticalDamage.png" id="27_7f7hp"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="Texture2D" uid="uid://bi7ul53db8i01" path="res://Upgrades/SpeedBoost.png" id="28_4gdok"]
-[ext_resource type="Texture2D" uid="uid://c68310gao4pku" path="res://Upgrades/ExtendedMagazine.png" id="31_n5ckk"]
+[ext_resource type="Texture2D" uid="uid://cq46r55ceb428" path="res://Upgrades/Dexterity.png" id="29_2snq2"]
+[ext_resource type="Texture2D" uid="uid://dbp8ghocwiruo" path="res://Upgrades/ExtendedMagazine.png" id="31_n5ckk"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -373,7 +374,7 @@ price = 75
 description = "+25% chance to deal a critical hit"
 type = 2
 itemIdentifier = "CriticalDamage"
-costIncrementMultiplier = 1.075
+costIncrementMultiplier = 1.05
 
 [node name="SpeedBoostUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
@@ -384,6 +385,16 @@ description = "+2.5% movement speed"
 type = 2
 itemIdentifier = "SpeedBoost"
 costIncrementMultiplier = 1.6
+
+[node name="DexterityUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Dexterity"
+displayTexture = ExtResource("29_2snq2")
+price = 120
+description = "+5% reload speed"
+type = 2
+itemIdentifier = "Dexterity"
+costIncrementMultiplier = 1.4
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)

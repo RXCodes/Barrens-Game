@@ -22,10 +22,11 @@ var maxScrollZoom = 1.5
 
 var gunInteractor: Gun.Interactor
 var gunFireShakeDampening = 0.1
-var reloadSpeedMultiplier = 0.5
+var reloadMovementSpeedMultiplier = 0.5
 var shooting = false
 
 var holdingWeapons = []
+var currentWeaponSlot = 1
 
 # setup renderer and gun interactor
 var hitboxShape: Node2D
@@ -140,6 +141,7 @@ var sprintRecoveryRate = 30
 var criticalDamageMultiplier: float = 1.0
 var movementSpeedMultiplier: float = 1.0
 var sprintRecoveryMultiplier: float = 1.0
+var reloadSpeedDivisor: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -172,7 +174,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta * 0.5
 		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
-			speedMultiplier *= reloadSpeedMultiplier
+			speedMultiplier *= reloadMovementSpeedMultiplier
 		if sprintPower == 0:
 			# sprint has exhausted, slow down player
 			speedMultiplier *= 0.6
@@ -227,10 +229,12 @@ func _input(event: InputEvent) -> void:
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":
+					currentWeaponSlot = 1
 					WeaponSlots.selectPrimary()
 					selectWeapon(holdingWeapons[0])
 				elif key == "2":
 					if holdingWeapons.size() >= 2:
+						currentWeaponSlot = 2
 						WeaponSlots.selectSecondary()
 						selectWeapon(holdingWeapons[1])
 				
@@ -251,6 +255,7 @@ func _input(event: InputEvent) -> void:
 				if gunInteractor.currentWeapon.reloading:
 					gunInteractor.currentWeapon.cancelReload()
 				else:
+					gunInteractor.reloadSpeedDivisor = self.reloadSpeedDivisor
 					gunInteractor.currentWeapon.reload(false)
 		# scrolling up should reduce zoom
 		elif event.button_index == 4:
@@ -277,32 +282,33 @@ func onFire() -> void:
 	
 	# play shoot animation
 	actionAnimationPlayer.stop()
-	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName)
+	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	gunInteractor.currentWeapon.cockedGun = false
 	var shootAnimationTime = actionAnimationPlayer.current_animation_length
 	var currentGunIdentifier = gunInteractor.currentWeapon.fileName
 	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
-	await TimeManager.wait(shootAnimationTime)
+	await TimeManager.wait(shootAnimationTime / gunInteractor.fireRateDivisor)
 	if currentGunIdentifier == gunInteractor.currentWeapon.fileName:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
 		else:
 			# player has no ammo left in magazine - let's reload
 			if gunInteractor.currentWeapon.leftoverAmmoCount > 0:
+				gunInteractor.reloadSpeedDivisor = self.reloadSpeedDivisor
 				gunInteractor.currentWeapon.reload(true)
 			else:
 				# oh, there's no leftover ammo - player can't reload
 				print("No ammo left")
 
 func onCockWeapon() -> void:
-	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName)
+	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
-	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName)
-	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName, -1, reloadSpeedDivisor)
+	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime / reloadSpeedDivisor)
 
 func onFinishReload() -> void:
 	AmmoInfoDisplay.gunReloaded()

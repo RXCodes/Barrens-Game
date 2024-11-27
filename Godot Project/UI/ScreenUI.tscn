@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=43 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -25,6 +25,11 @@
 [ext_resource type="Script" path="res://UI/HurtVignette.gd" id="19_cvkcw"]
 [ext_resource type="Texture2D" uid="uid://o7g6hva8yyic" path="res://UI/UpgradesListButton.png" id="24_ukd3x"]
 [ext_resource type="Script" path="res://UI/UpgradesListButton.gd" id="25_48dft"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="26_jshui"]
+[ext_resource type="Script" path="res://UI/NearbyItemsListInteractor.tres.gd" id="27_kkdk0"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="28_on2at"]
+[ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="29_gq867"]
+[ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="30_qn6y7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -42,6 +47,39 @@ unicode = 112
 
 [sub_resource type="Shortcut" id="Shortcut_x550s"]
 events = [SubResource("InputEventKey_o0fx4")]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4airn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4d2wy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrkmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xdsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgonr"]
+
+[sub_resource type="Theme" id="Theme_yhavq"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_4airn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_4d2wy")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_nrkmt")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_0xdsl")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_tgonr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("7_egwtw")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hcuy1"]
+device = -1
+keycode = 73
+unicode = 105
+
+[sub_resource type="Shortcut" id="Shortcut_fmn4k"]
+events = [SubResource("InputEventKey_hcuy1")]
 
 [node name="ScreenUI" type="CanvasLayer"]
 process_priority = 10
@@ -352,6 +390,7 @@ script = ExtResource("19_cvkcw")
 metadata/_edit_lock_ = true
 
 [node name="UpgradesListButton" type="TextureButton" parent="."]
+z_index = -2
 texture_filter = 1
 offset_left = 274.0
 offset_top = 341.0
@@ -374,6 +413,102 @@ scale = Vector2(0.6, 0.6)
 text = "(P)"
 label_settings = SubResource("LabelSettings_60nyp")
 
+[node name="ItemDropdown" type="Node2D" parent="."]
+process_priority = -2
+z_index = -2
+position = Vector2(456, -231)
+
+[node name="SquareUI" type="NinePatchRect" parent="ItemDropdown"]
+self_modulate = Color(0.513233, 0.513233, 0.513233, 1)
+texture_filter = 1
+offset_left = -168.0
+offset_top = -153.0
+offset_right = -33.0
+offset_bottom = -31.0001
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("26_jshui")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="SquareUI2" type="NinePatchRect" parent="ItemDropdown/SquareUI"]
+self_modulate = Color(0.303233, 0.303233, 0.303233, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = 126.0
+offset_bottom = 115.0
+texture = ExtResource("26_jshui")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemDropdown/SquareUI/SquareUI2"]
+custom_minimum_size = Vector2(116, 94)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 117.0
+offset_bottom = 95.0
+theme = SubResource("Theme_yhavq")
+horizontal_scroll_mode = 0
+
+[node name="NearbyItemsContainer" type="VBoxContainer" parent="ItemDropdown/SquareUI/SquareUI2/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("27_kkdk0")
+
+[node name="Separator" type="NinePatchRect" parent="ItemDropdown/SquareUI"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 13.0
+offset_right = 128.0
+offset_bottom = 132.0
+rotation = 1.5708
+texture = ExtResource("28_on2at")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="NoItems" type="Label" parent="ItemDropdown/SquareUI"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 0
+offset_left = 26.8
+offset_top = 58.8
+offset_right = 423.8
+offset_bottom = 143.8
+scale = Vector2(0.2, 0.2)
+text = "No nearby items to pick up."
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="ItemDropdown/SquareUI"]
+layout_mode = 0
+offset_left = 6.4
+offset_top = 3.2
+offset_right = 492.4
+offset_bottom = 44.2
+scale = Vector2(0.25, 0.25)
+text = "Nearby Items
+"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HideButton" type="TextureButton" parent="ItemDropdown/SquareUI"]
+layout_mode = 0
+offset_left = 122.8
+offset_top = 3.2
+offset_right = 132.8
+offset_bottom = 13.2
+shortcut = SubResource("Shortcut_fmn4k")
+texture_normal = ExtResource("29_gq867")
+texture_pressed = ExtResource("29_gq867")
+texture_hover = ExtResource("30_qn6y7")
+
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]
 [connection signal="pressed" from="UpgradesListButton" to="UpgradesListButton" method="_on_pressed"]
+[connection signal="pressed" from="ItemDropdown/SquareUI/HideButton" to="ItemDropdown/SquareUI/HideButton" method="_on_pressed"]
