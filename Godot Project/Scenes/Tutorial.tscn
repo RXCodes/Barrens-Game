@@ -1909,6 +1909,98 @@ label_settings = SubResource("LabelSettings_1384b")
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="DummyRender8" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4855, 70)
+flipX = true
+
+[node name="DummyRender9" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4941, 69)
+flipX = true
+
+[node name="DummyRender10" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5028, 70)
+flipX = true
+
+[node name="DummyRender11" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5113, 72)
+flipX = true
+
+[node name="DummyRender12" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5199, 72)
+flipX = true
+
+[node name="DummyRender14" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4898, 135)
+flipX = true
+
+[node name="DummyRender15" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4985, 136)
+flipX = true
+
+[node name="DummyRender16" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5070, 138)
+flipX = true
+
+[node name="DummyRender17" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5156, 138)
+flipX = true
+
+[node name="DummyRender18" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4857, 205)
+flipX = true
+
+[node name="DummyRender19" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4943, 204)
+flipX = true
+
+[node name="DummyRender20" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5030, 205)
+flipX = true
+
+[node name="DummyRender21" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5115, 207)
+flipX = true
+
+[node name="DummyRender22" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5201, 207)
+flipX = true
+
+[node name="DummyRender24" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4897, 269)
+flipX = true
+
+[node name="DummyRender25" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4984, 270)
+flipX = true
+
+[node name="DummyRender26" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5069, 272)
+flipX = true
+
+[node name="DummyRender27" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5155, 272)
+flipX = true
+
+[node name="DummyRender28" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4858, 329)
+flipX = true
+
+[node name="DummyRender29" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(4944, 328)
+flipX = true
+
+[node name="DummyRender30" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5031, 329)
+flipX = true
+
+[node name="DummyRender31" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5116, 331)
+flipX = true
+
+[node name="DummyRender32" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+position = Vector2(5202, 331)
+flipX = true
+
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]
 
 [node name="Ambience" parent="." instance=ExtResource("28_ge3ee")]
@@ -1950,6 +2042,10 @@ respawnCooldown = 25.0
 
 [node name="AmmoDispenser2" parent="." instance=ExtResource("47_jbsjw")]
 position = Vector2(2526, 55)
+respawnCooldown = 25.0
+
+[node name="AmmoDispenser3" parent="." instance=ExtResource("47_jbsjw")]
+position = Vector2(4599, 180)
 respawnCooldown = 25.0
 
 [node name="Barrier" type="CPUParticles2D" parent="."]
@@ -2032,6 +2128,20 @@ pivot_offset = Vector2(20, 30.8889)
 text = "buy the gun
 from the shop and
 pick it up to pass!"
+label_settings = SubResource("LabelSettings_42dhk")
+horizontal_alignment = 1
+
+[node name="FinalText" type="Label" parent="."]
+visible = false
+self_modulate = Color(0.99248, 0.543984, 0.504537, 1)
+z_index = 1000
+offset_left = 4852.0
+offset_top = -74.0
+offset_right = 5127.0
+offset_bottom = -42.0
+scale = Vector2(1.4, 1.4)
+pivot_offset = Vector2(20, 30.8889)
+text = "defeat all of them!"
 label_settings = SubResource("LabelSettings_42dhk")
 horizontal_alignment = 1
 

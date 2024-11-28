@@ -24,6 +24,8 @@ func _ready() -> void:
 		await TimeManager.wait(0.1)
 		
 		# scan for items, search for new weapons first
+		if get_tree() == null:
+			continue
 		var weaponItems = get_tree().get_nodes_in_group("Weapon")
 		for weapon: WeaponEntity in weaponItems:
 			if weapon in discoveredItems:

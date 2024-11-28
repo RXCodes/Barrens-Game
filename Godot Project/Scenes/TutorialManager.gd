@@ -51,7 +51,26 @@ func _ready() -> void:
 		await TimeManager.wait(0.25)
 		if Player.current.holdingWeapons.size() == 2:
 			break
-	await TimeManager.wait(1.5)
 	$"../Barrier2/StaticBody2D".queue_free()
+	$"../FinalText".show()
 	$"../Barrier2".emitting = false
+	
+	# wait for the player to defeat all the enemies at the end
+	while true:
+		await TimeManager.wait(0.25)
+		var enemies = get_tree().get_nodes_in_group("TutorialDummyFinal")
+		if enemies.size() == 0:
+			break
 	GamePopup.openPopup("TutorialComplete")
+	
+	# wait for the player to close the last popup
+	while true:
+		await TimeManager.wait(0.25)
+		if not is_instance_valid(GamePopup.current):
+			break
+	
+	# tutorial has been completed
+	var fadeOutTween = NodeRelations.createTween()
+	fadeOutTween.tween_property(fadeIn, "self_modulate", Color.BLACK, 3.0)
+	await TimeManager.wait(3.5)
+	NodeRelations.loadScene("res://Scenes/Village1.tscn")

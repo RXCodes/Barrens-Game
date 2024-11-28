@@ -116,9 +116,9 @@ offset_top = 66.2
 offset_right = 859.0
 offset_bottom = 336.2
 scale = Vector2(0.3, 0.3)
-text = "You're off to a great start to begin defending your village, but there's much more to learn.
+text = "You're prepared to go into battle, but there's much more to learn.
 
-Go try out your newly purchased gun, and when you're ready, travel to the right to complete the tutorial."
+Are you ready to start defending your village? Do you have what it takes to protect what you truly care for?"
 label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 
