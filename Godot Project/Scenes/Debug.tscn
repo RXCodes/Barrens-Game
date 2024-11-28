@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=41 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -25,8 +25,13 @@
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
+[ext_resource type="PackedScene" uid="uid://btgbwiyajh4kn" path="res://Models/acid_slime_enemy.tscn" id="26_q22rl"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
+[ext_resource type="PackedScene" uid="uid://ckq8ygp0nkyp1" path="res://Models/manta_ray_enemy.tscn" id="27_v7y67"]
+[ext_resource type="PackedScene" uid="uid://cxnpl8vckivfy" path="res://Models/scorpion_enemy.tscn" id="28_n3ycc"]
+[ext_resource type="PackedScene" uid="uid://bkp4ikyughfp2" path="res://Models/slime_enemy.tscn" id="29_a5a7w"]
+[ext_resource type="PackedScene" uid="uid://ge1chou4evxe" path="res://Models/snake_enemy.tscn" id="30_23wda"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -449,6 +454,21 @@ respawnCooldown = 10.0
 [node name="AmmoDispenser3" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-435, 301)
 respawnCooldown = 10.0
+
+[node name="AcidSlime_Enemy" parent="Level" instance=ExtResource("26_q22rl")]
+position = Vector2(-38, -316)
+
+[node name="MantaRay_Enemy" parent="Level" instance=ExtResource("27_v7y67")]
+position = Vector2(144, -232)
+
+[node name="Scorpion_Enemy" parent="Level" instance=ExtResource("28_n3ycc")]
+position = Vector2(438, -287)
+
+[node name="Slime_Enemy" parent="Level" instance=ExtResource("29_a5a7w")]
+position = Vector2(231.419, -387.582)
+
+[node name="Snake_Enemy" parent="Level" instance=ExtResource("30_23wda")]
+position = Vector2(103, -430)
 
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 

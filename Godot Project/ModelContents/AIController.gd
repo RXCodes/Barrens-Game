@@ -323,7 +323,8 @@ func kill() -> void:
 	collisionRigidBody.collision_mask = 0
 	collisionRigidBody.collision_layer = 0
 	hasAI = false
-	actionAnimationPlayer.stop()
+	if actionAnimationPlayer:
+		actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play(deathAnimation)
 	var deathSounds = $ColliderBox/DeathSounds
