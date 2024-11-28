@@ -1,13 +1,20 @@
-[gd_scene load_steps=19 format=3 uid="uid://ckq8ygp0nkyp1"]
+[gd_scene load_steps=27 format=3 uid="uid://ckq8ygp0nkyp1"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_uv8cb"]
 [ext_resource type="Script" path="res://Models/manta_ray_enemy.gd" id="2_k54m4"]
-[ext_resource type="Texture2D" uid="uid://dnwemvpkki30m" path="res://ModelContents/Enemies/MantaRay_Enemy/MantaRay_Still.PNG" id="3_wk8tt"]
+[ext_resource type="Texture2D" uid="uid://csr7h1pcypo2u" path="res://ModelContents/Enemies/Manta Ray Idle/frame_0_delay-0.2s.png" id="3_28731"]
+[ext_resource type="Texture2D" uid="uid://dqv4uoohfiptx" path="res://ModelContents/Enemies/Manta Ray Idle/frame_1_delay-0.2s.png" id="4_day71"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_wc45h"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_5mdax"]
+[ext_resource type="Texture2D" uid="uid://bpcr48xvuhrwn" path="res://ModelContents/Enemies/Manta Ray Idle/frame_2_delay-0.2s.png" id="5_cao22"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_4aocb"]
+[ext_resource type="Texture2D" uid="uid://c6f0jgevm67jp" path="res://ModelContents/Enemies/Manta Ray Idle/frame_3_delay-0.2s.png" id="6_g3sgq"]
+[ext_resource type="Texture2D" uid="uid://7khqtturc7ie" path="res://ModelContents/Enemies/Manta Ray Idle/frame_4_delay-0.2s.png" id="7_67x4y"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_pw1qw"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_a3t1t"]
+[ext_resource type="Texture2D" uid="uid://cgl64r5jxngq1" path="res://ModelContents/Enemies/Manta Ray Idle/frame_5_delay-0.2s.png" id="8_cjqmb"]
+[ext_resource type="Texture2D" uid="uid://dnep6um1gqy1p" path="res://ModelContents/Enemies/Manta Ray Idle/frame_6_delay-0.2s.png" id="9_g7sv3"]
+[ext_resource type="Texture2D" uid="uid://2dljeeivtfx1" path="res://ModelContents/Enemies/Manta Ray Idle/frame_7_delay-0.2s.png" id="10_18whn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 13.0
@@ -20,6 +27,38 @@ height = 26.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 26.0
 height = 60.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gasf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_28731")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_day71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cao22")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g3sgq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_67x4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cjqmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g7sv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_18whn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 6.5
+}]
 
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
@@ -355,17 +394,19 @@ path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="MantaRay_Enemy/ColliderBox"]
 
-[node name="Sprite2D" type="Sprite2D" parent="MantaRay_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(40.938, -14.96)
+[node name="Animations" type="AnimatedSprite2D" parent="MantaRay_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(43, -14)
 scale = Vector2(0.131, 0.146)
-texture = ExtResource("3_wk8tt")
+sprite_frames = SubResource("SpriteFrames_gasf5")
+animation = &"Idle"
+frame_progress = 0.58211
 
 [node name="Shadow" type="Sprite2D" parent="MantaRay_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
 show_behind_parent = true
 z_index = -1
 texture_filter = 1
-position = Vector2(2.5, 23.5)
+position = Vector2(-3, 23)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("4_wc45h")
 centered = false

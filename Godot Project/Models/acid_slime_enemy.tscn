@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://btgbwiyajh4kn"]
+[gd_scene load_steps=23 format=3 uid="uid://btgbwiyajh4kn"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_d45te"]
 [ext_resource type="Script" path="res://Models/acid_slime_enemy.gd" id="2_8hmad"]
-[ext_resource type="Texture2D" uid="uid://4ewi8a6pqjn2" path="res://ModelContents/Enemies/AcidSlime_Enemy/AcidSlime_Still.png" id="3_mlysd"]
+[ext_resource type="Texture2D" uid="uid://py3u1ebhhq1i" path="res://ModelContents/Enemies/Acid Slime Idle/frame_0_delay-0.3s.png" id="3_bwnsb"]
+[ext_resource type="Texture2D" uid="uid://bt884j6124imd" path="res://ModelContents/Enemies/Acid Slime Idle/frame_1_delay-0.3s.png" id="4_qyd5n"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_rgs7f"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_bn2hw"]
+[ext_resource type="Texture2D" uid="uid://ootlk3xnvtgo" path="res://ModelContents/Enemies/Acid Slime Idle/frame_2_delay-0.3s.png" id="5_caupu"]
+[ext_resource type="Texture2D" uid="uid://clqgycjv1lqy5" path="res://ModelContents/Enemies/Acid Slime Idle/frame_3_delay-0.3s.png" id="6_hvtai"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_jm76o"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_nuxl7"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_y3gru"]
@@ -20,6 +23,26 @@ height = 19.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 18.0
 height = 38.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_safud"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bwnsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qyd5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_caupu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hvtai")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.5
+}]
 
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
@@ -439,10 +462,12 @@ path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="AcidSlime_Enemy/ColliderBox"]
 
-[node name="Sprite2D" type="Sprite2D" parent="AcidSlime_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(0.583939, 6.16478)
+[node name="Animations" type="AnimatedSprite2D" parent="AcidSlime_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(4, 7)
 scale = Vector2(0.126592, 0.128373)
-texture = ExtResource("3_mlysd")
+sprite_frames = SubResource("SpriteFrames_safud")
+animation = &"Idle"
+frame_progress = 0.069635
 
 [node name="Shadow" type="Sprite2D" parent="AcidSlime_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

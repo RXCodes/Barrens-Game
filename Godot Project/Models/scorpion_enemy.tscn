@@ -1,13 +1,29 @@
-[gd_scene load_steps=19 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=36 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
-[ext_resource type="Texture2D" uid="uid://br3hdm7fg53r5" path="res://ModelContents/Enemies/Scorpion_Enemy/Scorpion_Still.PNG" id="3_o8wl3"]
+[ext_resource type="Texture2D" uid="uid://ddg0wupoc4exc" path="res://ModelContents/Enemies/Scorpion Idle/frame_0_delay-0.3s.png" id="3_6ngoo"]
+[ext_resource type="Texture2D" uid="uid://brms5703d7h4a" path="res://ModelContents/Enemies/Scorpion Idle/frame_1_delay-0.3s.png" id="4_vvk3e"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_y5pvb"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_nq8aj"]
+[ext_resource type="Texture2D" uid="uid://buk7po7danwn3" path="res://ModelContents/Enemies/Scorpion Idle/frame_2_delay-0.3s.png" id="5_w21hc"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_htbbk"]
+[ext_resource type="Texture2D" uid="uid://xff2samihdmu" path="res://ModelContents/Enemies/Scorpion Idle/frame_3_delay-0.3s.png" id="6_ypoey"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_mkrhd"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_6tml8"]
+[ext_resource type="Texture2D" uid="uid://keb6smnojgdo" path="res://ModelContents/Enemies/Scorpion Attack/frame_05_delay-0.3s.png" id="8_rwx8o"]
+[ext_resource type="Texture2D" uid="uid://ggwbsbnjkego" path="res://ModelContents/Enemies/Scorpion Attack/frame_06_delay-0.1s.png" id="9_pts8l"]
+[ext_resource type="Texture2D" uid="uid://bt23n0y0o8dcj" path="res://ModelContents/Enemies/Scorpion Attack/frame_07_delay-0.08s.png" id="10_6nbbm"]
+[ext_resource type="Texture2D" uid="uid://retlw2ed7ey7" path="res://ModelContents/Enemies/Scorpion Attack/frame_08_delay-0.07s.png" id="11_wmrqs"]
+[ext_resource type="Texture2D" uid="uid://byh848me7k7fb" path="res://ModelContents/Enemies/Scorpion Attack/frame_09_delay-0.06s.png" id="12_0q4x8"]
+[ext_resource type="Texture2D" uid="uid://dpc43kyypcsu1" path="res://ModelContents/Enemies/Scorpion Attack/frame_10_delay-0.06s.png" id="13_7aag1"]
+[ext_resource type="Texture2D" uid="uid://6gtuyh1cnxfr" path="res://ModelContents/Enemies/Scorpion Attack/frame_11_delay-0.05s.png" id="14_wd6nc"]
+[ext_resource type="Texture2D" uid="uid://bjc1kfg5sp4av" path="res://ModelContents/Enemies/Scorpion Attack/frame_12_delay-0.05s.png" id="15_njygn"]
+[ext_resource type="Texture2D" uid="uid://hlsyugxw3ihc" path="res://ModelContents/Enemies/Scorpion Attack/frame_13_delay-0.05s.png" id="16_3bnhw"]
+[ext_resource type="Texture2D" uid="uid://dqohq0awc8pam" path="res://ModelContents/Enemies/Scorpion Attack/frame_14_delay-0.08s.png" id="17_qelig"]
+[ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
+[ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
+[ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 22.0
@@ -20,6 +36,73 @@ height = 66.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 44.0
 height = 154.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ydutp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_rwx8o")
+}, {
+"duration": 0.75,
+"texture": ExtResource("9_pts8l")
+}, {
+"duration": 0.75,
+"texture": ExtResource("10_6nbbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wmrqs")
+}, {
+"duration": 0.5,
+"texture": ExtResource("12_0q4x8")
+}, {
+"duration": 0.5,
+"texture": ExtResource("13_7aag1")
+}, {
+"duration": 0.75,
+"texture": ExtResource("14_wd6nc")
+}, {
+"duration": 0.75,
+"texture": ExtResource("15_njygn")
+}, {
+"duration": 0.5,
+"texture": ExtResource("16_3bnhw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("17_qelig")
+}, {
+"duration": 0.5,
+"texture": ExtResource("18_38jjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_xv7kr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_miwk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rwx8o")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6ngoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vvk3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w21hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ypoey")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.5
+}]
 
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
@@ -355,10 +438,11 @@ path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(43.6679, -47.9355)
-scale = Vector2(0.147432, 0.123196)
-texture = ExtResource("3_o8wl3")
+[node name="Animations" type="AnimatedSprite2D" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(33, -52)
+scale = Vector2(0.276011, 0.231704)
+sprite_frames = SubResource("SpriteFrames_ydutp")
+animation = &"Idle"
 
 [node name="Shadow" type="Sprite2D" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

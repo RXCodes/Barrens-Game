@@ -1,21 +1,8 @@
 extends EnemyAI
 class_name ScorpionEnemy
 
-# States for the scorpion
-enum State {
-	IDLE,
-	MOVING,
-	ATTACKING,
-	DEAD
-}
-
-var current_state: State = State.IDLE
 var player: Node2D
 var is_player_in_range: bool = false
-
-# Timer for attack cooldown
-var attack_cooldown: float = 1.5
-var last_attack_time: float = -1.0
 
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
@@ -23,116 +10,18 @@ func onStart() -> void:
 		setTarget(Player.current, 70)
 		# Loop this while the enemy is alive
 		while not dead:
-			# Wait until the enemy is within range of the player
+			$ColliderBox/FlipTransform/Animations.play("Idle")
+			walkMovementSpeed = 2
 			await enemyReachedTarget
 			# Make the enemy attack while in range of the player
 			while withinRangeOfTarget():
 				# Face towards the player
 				faceTarget()
+				walkMovementSpeed = 4
 				# Play an attack animation
-				playAnimation("ClawStrike")
+				$ColliderBox/FlipTransform/Animations.play("Attack")
 				# Use the hurtbox to deal damage to the player
 				var damage = randf_range(8, 14) # random float from 8 to 14
 				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
-				# Wait for the enemy's attack animation to finish before attacking again
-				await enemyAnimationFinished
 				# Little delay before enemy attacks again
-				await TimeManager.wait(0.2)
-			# A little delay before the loop restarts
-			await TimeManager.wait(0.6)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if current_state == State.DEAD:
-		return  # Skip the rest if the scorpion is dead
-
-	if Player.current != null and collisionRigidBody != null:
-		is_player_in_range = (Player.current.global_position - collisionRigidBody.global_position).length() <= 70
-
-	if current_state == State.IDLE:
-		if is_player_in_range:
-			current_state = State.MOVING  # Move towards the player if in range
-
-	elif current_state == State.MOVING:
-		if is_player_in_range:
-			move_towards_player(delta)
-		else:
-			current_state = State.IDLE  # If player is out of range, go back to idle
-
-	elif current_state == State.ATTACKING:
-		# If we're attacking, check if we can attack again
-		if (get_tree().get_ticks_msec() - last_attack_time) >= attack_cooldown * 1000:
-			last_attack_time = get_tree().get_ticks_msec()
-			attack_player()
-
-# Function to move towards the player
-func move_towards_player(delta: float) -> void:
-	if Player.current != null and collisionRigidBody != null:
-		var direction = (Player.current.global_position - collisionRigidBody.global_position).normalized()
-		collisionRigidBody.move_and_collide(direction * walkMovementSpeed * delta)
-
-		# If close enough to attack, switch to attack state
-		if (Player.current.global_position - collisionRigidBody.global_position).length() <= 15:
-			current_state = State.ATTACKING
-
-# Function for attacking the player
-func attack_player() -> void:
-	# Example: Deal damage to the player (assuming player has a take_damage function)
-	if Player.current != null:
-		Player.current.take_damage(22)  # Adjust damage value as needed
-	current_state = State.IDLE  # Switch back to idle after attack
-
-# Function to handle taking damage
-func take_damage(amount: int) -> void:
-	currentHealth -= amount
-	if currentHealth <= 0:
-		currentHealth = 0
-		kill()
-
-# Handle death and drop cash
-func kill() -> void:
-	current_state = State.DEAD
-	# Drop cash (assuming you have a method to drop cash in the scene)
-	# drop_cash()
-	queue_free()  # Remove the scorpion from the scene
-
-# Update Health Bar
-func updateHealthBar() -> void:
-	if healthBar != null:
-		healthBar.progress = (currentHealth / maxHealth) * 100.0
-
-# Handle death animations and state changes
-func onDeath() -> void:
-	# Death animation and removal logic here
-	pass
-
-# Called when enemy is damaged
-func onDamage() -> void:
-	# Play damage animations and sounds
-	if actionAnimationPlayer != null:
-		actionAnimationPlayer.play(hitFrontAnimation)
-	pass
-
-# Pathfinding and movement functionality
-func navigate() -> void:
-	navigationAgent.target_desired_distance = targetDistance
-	if withinRangeOfTarget():
-		reachedTarget()
-		return
-
-	if mainAnimationPlayer != null:
-		if mainAnimationPlayer.current_animation != walkAnimation:
-			mainAnimationPlayer.stop()
-			mainAnimationPlayer.play(walkAnimation)
-
-	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
-	var movementVector = pathfindDirectionVector * walkMovementSpeed
-	faceTarget()
-	collisionRigidBody.move_and_collide(movementVector)
-
-# Called when enemy reaches its target and is ready to attack
-func reachedTarget() -> void:
-	if mainAnimationPlayer != null and mainAnimationPlayer.current_animation != idleAnimation:
-		mainAnimationPlayer.stop()
-		mainAnimationPlayer.play(idleAnimation)
-	enemyReachedTarget.emit()
+				await TimeManager.wait(1.5)

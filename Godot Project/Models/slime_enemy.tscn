@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://bkp4ikyughfp2"]
+[gd_scene load_steps=23 format=3 uid="uid://bkp4ikyughfp2"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_du5u0"]
 [ext_resource type="Script" path="res://Models/slime_enemy.gd" id="2_2hwj0"]
-[ext_resource type="Texture2D" uid="uid://cd7gvtj3ko3p" path="res://ModelContents/Enemies/Slime_Enemy/Slime_Still.PNG" id="3_hx3s7"]
+[ext_resource type="Texture2D" uid="uid://73oouvidq0ly" path="res://ModelContents/Enemies/Slime Idle/frame_0_delay-0.3s.png" id="3_f4dna"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_07hsu"]
+[ext_resource type="Texture2D" uid="uid://bhtlolytny4tn" path="res://ModelContents/Enemies/Slime Idle/frame_1_delay-0.3s.png" id="4_dgnvb"]
+[ext_resource type="Texture2D" uid="uid://gs1dw8pfw7q" path="res://ModelContents/Enemies/Slime Idle/frame_2_delay-0.3s.png" id="5_hd4rk"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_jmxvo"]
+[ext_resource type="Texture2D" uid="uid://bb4qr0or02ik6" path="res://ModelContents/Enemies/Slime Idle/frame_3_delay-0.3s.png" id="6_b7qw4"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_iefwo"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_lt26i"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_lp8jn"]
@@ -20,6 +23,26 @@ height = 19.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 19.0
 height = 40.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ct0n3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f4dna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgnvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hd4rk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b7qw4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.5
+}]
 
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
@@ -440,10 +463,11 @@ path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="Slime_Enemy/ColliderBox"]
 
-[node name="Sprite2D" type="Sprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(-1.5815, 8.418)
-scale = Vector2(0.131, 0.146)
-texture = ExtResource("3_hx3s7")
+[node name="Animations" type="AnimatedSprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(1.5815, 9.582)
+scale = Vector2(0.123338, 0.130809)
+sprite_frames = SubResource("SpriteFrames_ct0n3")
+animation = &"Idle"
 
 [node name="Shadow" type="Sprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
