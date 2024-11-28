@@ -212,6 +212,7 @@ offset_top = -413.0
 offset_right = -645.0
 offset_bottom = -373.0
 scale = Vector2(1.06187, 0.941122)
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Under" type="Node2D" parent="."]
@@ -2021,10 +2022,10 @@ shape = SubResource("CapsuleShape2D_df5u7")
 [node name="HintText" type="Label" parent="Barrier2/StaticBody2D"]
 self_modulate = Color(0.99248, 0.543984, 0.504537, 1)
 z_index = 1000
-offset_left = 29.1848
-offset_top = 69.3481
-offset_right = 227.185
-offset_bottom = 129.348
+offset_left = 28.9043
+offset_top = 76.9995
+offset_right = 230.904
+offset_bottom = 144.0
 rotation = -1.56396
 scale = Vector2(1.4, 1.4)
 pivot_offset = Vector2(20, 30.8889)

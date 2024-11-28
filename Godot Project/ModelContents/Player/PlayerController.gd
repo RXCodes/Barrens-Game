@@ -101,7 +101,8 @@ func _process(delta: float) -> void:
 	
 	# weapon functionality
 	if shooting and not dead:
-		var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
+		var originPosition = global_position + Vector2(0, -48)
+		var aimAngle = originPosition.angle_to_point(Crosshair.current.cursorPosition)
 		gunInteractor.currentWeapon.fire(true, aimAngle)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
 	

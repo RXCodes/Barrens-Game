@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	# wait for all enemies to be defeated
 	while true:
-		await TimeManager.wait(0.5)
+		await TimeManager.wait(0.25)
 		var enemies = get_tree().get_nodes_in_group("TutorialDummy")
 		if enemies.size() == 0:
 			break
@@ -36,3 +36,22 @@ func _ready() -> void:
 
 	await $"../TutorialTrigger3".body_entered
 	GamePopup.openPopup("TutorialShop")
+
+	# wait for the player to buy an item from the shop
+	while true:
+		await TimeManager.wait(0.25)
+		var weaponItems = get_tree().get_nodes_in_group("Weapon")
+		if weaponItems.size() > 0:
+			break
+	await TimeManager.wait(2.5)
+	GamePopup.openPopup("TutorialItemPickup")
+	
+	# wait for the player to pick up the gun
+	while true:
+		await TimeManager.wait(0.25)
+		if Player.current.holdingWeapons.size() == 2:
+			break
+	await TimeManager.wait(1.5)
+	$"../Barrier2/StaticBody2D".queue_free()
+	$"../Barrier2".emitting = false
+	GamePopup.openPopup("TutorialComplete")

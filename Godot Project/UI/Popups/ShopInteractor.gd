@@ -1,7 +1,7 @@
 class_name ShopInteractor extends VBoxContainer
 
-# Called when the node enters the scene tree for the first time.
 var shopItemDisplays: Array
+
 func _ready() -> void:
 	# hide buy button
 	$"../../../BuyButton".hide()

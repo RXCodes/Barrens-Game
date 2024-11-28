@@ -1,7 +1,7 @@
 class_name Bullet extends NinePatchRect
 
 ## this is used for animating the bullet (only visual)
-static var targetBulletTravelSpeed = 200
+static var targetBulletTravelSpeed = 100
 static var bulletTravelSpeedDeviation = 15
 static var rotationOffset = -deg_to_rad(90.0)
 static var bulletScale = 1.5
@@ -30,14 +30,14 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	fireBullet.pivot_offset = Vector2(4, 8)
 	fireBullet.rotation = bulletAngle
 	fireBullet.self_modulate = gun.bulletFireColor
-	fireBullet.fadeTime = randfn(0.3, 0.1)
 	fireBullet.maximumDistance = (travelDistance / bulletScale) + 10
 	var canvasItemMaterial = CanvasItemMaterial.new()
 	canvasItemMaterial.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	fireBullet.material = canvasItemMaterial
 	fireBullet.gun = gun
 	fireBullet.sourceNode = sourceNode
-	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
+	fireBullet.z_index = 3
+	smokeBullet.add_sibling(fireBullet)
 
 # bullet functionality
 var fadeTime: float = 0.3
@@ -47,20 +47,22 @@ func _ready() -> void:
 	texture = load("res://WeaponsContents/BulletTrail.png")
 	region_rect = Rect2(8, 0, 16, 32)
 	patch_margin_left = 4
-	patch_margin_top = 4
+	patch_margin_top = 0
 	patch_margin_right = 4
-	patch_margin_bottom = 4
+	patch_margin_bottom = 0
 	scale = Vector2(bulletScale, bulletScale)
 	normalDirection = Vector2.from_angle(rotation - rotationOffset)
 	if normalDirection.y > 0:
 		z_index = 1
 	if not smokeBullet:
-		size.x += 5
-	var tween = NodeRelations.createTween()
-	var finalColor = self_modulate
-	finalColor.a = 0.0
-	tween.tween_property(self, "self_modulate", finalColor, fadeTime)
-	tween.tween_callback(free)
+		size.x += 8
+		position -= normalDirection * speed * 0.5
+	else:
+		var tween = NodeRelations.createTween()
+		var finalColor = self_modulate
+		finalColor.a = 0.0
+		tween.tween_property(self, "self_modulate", finalColor, fadeTime)
+		tween.tween_callback(free)
 
 var smokeBullet = false
 var speed = randfn(targetBulletTravelSpeed, bulletTravelSpeedDeviation)
@@ -70,24 +72,21 @@ var frames: int = 0
 var gun: Gun
 func _process(delta: float) -> void:
 	if smokeBullet:
-		size.y += speed * 0.7
-		distanceTravelled += speed * 0.7
+		size.y += speed * 0.5
+		distanceTravelled += speed * 0.5
 		if distanceTravelled >= maximumDistance:
 			size.y = maximumDistance
 	else:
-		if frames == 0:
-			global_position -= normalDirection * speed * 0.5
-		size.y += speed * 0.8
-		scale.x *= 0.95
-		global_position += normalDirection * speed * 0.4
-		distanceTravelled += speed * 1.2
+		var bulletLength = 75
+		size.y += speed
+		if size.y >= bulletLength:
+			global_position += normalDirection * speed
+			size.y = bulletLength
 		if distanceTravelled >= maximumDistance:
-			size.y -= speed * 0.95
-			if size.y <= 10 and frames >= 3:
-				free()
-			elif size.y <= 10:
-				size.y = maximumDistance * 0.5
-	frames += 1
+			size.y -= speed * 2
+		distanceTravelled += speed
+		if size.y <= 0.05:
+			queue_free()
 
 var needsRaycast = true
 func _physics_process(delta: float) -> void:
