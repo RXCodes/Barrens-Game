@@ -76,7 +76,6 @@ script/source = "extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().physics_frame
-	Player.current.holdingWeapons.append(Gun.gunFromString(\"MachineGun\"))
 	Player.current.pickupCash(100000)
 "
 
@@ -414,6 +413,30 @@ type = 2
 itemIdentifier = "SpeedyRecovery"
 upgradeAmounts = Array[float]([35.0])
 costIncrementMultiplier = 1.075
+
+[node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 130
+type = 2
+itemIdentifier = "BigHeart"
+upgradeAmounts = Array[float]([5.0])
+costIncrementMultiplier = 1.35
+
+[node name="EnduranceUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 90
+type = 2
+itemIdentifier = "Endurance"
+upgradeAmounts = Array[float]([8.0])
+costIncrementMultiplier = 1.2
+
+[node name="EnergeticUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "Energetic"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)

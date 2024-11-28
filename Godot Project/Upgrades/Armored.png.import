@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwwywpuiayvln"
-path="res://.godot/imported/SpeedyRecovery.png-4f19ae43c573cadac21171d160ac869c.ctex"
+uid="uid://dnb0274qrppsc"
+path="res://.godot/imported/Armored.png-28ad3779221bbd5ef5b673ee4aac3c6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Upgrades/SpeedyRecovery.png"
-dest_files=["res://.godot/imported/SpeedyRecovery.png-4f19ae43c573cadac21171d160ac869c.ctex"]
+source_file="res://Upgrades/Armored.png"
+dest_files=["res://.godot/imported/Armored.png-28ad3779221bbd5ef5b673ee4aac3c6e.ctex"]
 
 [params]
 

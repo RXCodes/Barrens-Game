@@ -148,6 +148,7 @@ var defenseDivisor: float = 1.0
 var pickUpRangeMultiplier: float = 1.0
 var regenerationRateMultiplier: float = 1.0
 var maximumHealth: int = 100
+var sprintDecreaseRateDivisor: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -157,7 +158,8 @@ func _physics_process(delta: float) -> void:
 	if not dead:
 		health += regenerationRate * regenerationRateMultiplier * delta
 		health = min(health, maximumHealth)
-		PlayerHealthBar.setProgress(health)
+		PlayerHealthBar.setHealth(health)
+		PlayerHealthBar.setMaxHealth(maximumHealth)
 	
 	# player movement
 	if currentMovementKeypresses.size() > 0:
@@ -179,10 +181,12 @@ func _physics_process(delta: float) -> void:
 		
 		# finally move the player
 		var speedMultiplier = movementSpeedMultiplier
+		if movementSpeedMultiplier < 1:
+			speedMultiplier = 1.0 / absf(movementSpeedMultiplier - 2)
 		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
 			if sprintPower > 0:
 				speedMultiplier *= sprintingSpeedMultiplier
-				sprintPower -= sprintDecreaseRate * delta
+				sprintPower -= (sprintDecreaseRate * delta) / sprintDecreaseRateDivisor
 		else:
 			sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta * 0.5
 		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
@@ -372,7 +376,7 @@ func damage(amount: float, source: Node2D) -> void:
 	PlayerCamera.current.playerDamaged()
 	
 	# update health
-	PlayerHealthBar.setProgress(health)
+	PlayerHealthBar.setHealth(health)
 	if health <= 0:
 		HurtVignette.animate(1.0, 5.0)
 		health = 0

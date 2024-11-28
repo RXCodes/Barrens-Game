@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b00wviasjnkox"]
 
 [ext_resource type="Script" path="res://Upgrades/SpeedyRecovery.gd" id="1_lh5ie"]
-[ext_resource type="Texture2D" uid="uid://bkgvoqpr4bdey" path="res://Upgrades/SpeedyRecovery.png" id="2_t0s6f"]
+[ext_resource type="Texture2D" uid="uid://dwwywpuiayvln" path="res://Upgrades/SpeedyRecovery.png" id="2_t0s6f"]
 
 [node name="SpeedyRecovery" type="Node"]
 script = ExtResource("1_lh5ie")

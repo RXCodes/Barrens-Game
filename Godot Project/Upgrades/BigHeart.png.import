@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwwywpuiayvln"
-path="res://.godot/imported/SpeedyRecovery.png-4f19ae43c573cadac21171d160ac869c.ctex"
+uid="uid://bkgvoqpr4bdey"
+path="res://.godot/imported/BigHeart.png-b4a42ba6ebc65dffd2c905fe6aff3351.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Upgrades/SpeedyRecovery.png"
-dest_files=["res://.godot/imported/SpeedyRecovery.png-4f19ae43c573cadac21171d160ac869c.ctex"]
+source_file="res://Upgrades/BigHeart.png"
+dest_files=["res://.godot/imported/BigHeart.png-b4a42ba6ebc65dffd2c905fe6aff3351.ctex"]
 
 [params]
 

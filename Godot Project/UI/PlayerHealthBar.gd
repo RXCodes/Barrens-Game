@@ -6,6 +6,7 @@ static var progressBarUnder: TextureProgressBar
 static var progress = 100.0
 static var healthText: Label
 static var maxHP: int = 100
+static var health: float = 100.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -20,6 +21,11 @@ func _process(delta: float) -> void:
 	var difference = progress - progressBarUnder.value
 	progressBarUnder.value += difference * healthBarDampingMultiplier
 
-static func setProgress(newProgress: float) -> void:
-	progress = max(0, newProgress)
-	healthText.text = str(ceil((progress / 100.0) * maxHP)) + "/" + str(maxHP) + "HP"
+static func setHealth(newHealth: float) -> void:
+	progress = (newHealth / maxHP) * 100.0
+	health = newHealth
+	healthText.text = str(round(newHealth)) + "/" + str(maxHP) + "HP"
+
+static func setMaxHealth(newMaxHealth: int) -> void:
+	maxHP = newMaxHealth
+	setHealth(health)
