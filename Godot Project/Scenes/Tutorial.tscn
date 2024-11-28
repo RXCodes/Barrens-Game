@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=90 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="2_bcbjt"]
@@ -43,7 +43,9 @@
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="44_7pwp5"]
 [ext_resource type="PackedScene" uid="uid://bghr0faxa387a" path="res://Models/ShopVan.tscn" id="44_hstqr"]
 [ext_resource type="PackedScene" uid="uid://dl5upgb4r3jku" path="res://Environment/Decoration/FallenTree1.tscn" id="45_75gqq"]
+[ext_resource type="Script" path="res://Models/ShopItem.gd" id="45_s7ya3"]
 [ext_resource type="PackedScene" uid="uid://dutchm520hefn" path="res://Environment/Decoration/FallenTree2.tscn" id="46_2urrm"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="46_6r2j8"]
 [ext_resource type="Script" path="res://Scenes/TutorialManager.gd" id="46_n1i4t"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="47_3v38m"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="47_jbsjw"]
@@ -1851,6 +1853,16 @@ position = Vector2(2952, -359)
 [node name="ShopVan" parent="Level" instance=ExtResource("44_hstqr")]
 position = Vector2(3360, -28)
 
+[node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("45_s7ya3")
+displayName = "AK47"
+displayTexture = ExtResource("46_6r2j8")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 20
+description = "A weapon with a decent fire rate and deals average damage."
+itemIdentifier = "AK47"
+
 [node name="FallenTree16" parent="Level" instance=ExtResource("46_2urrm")]
 position = Vector2(2469, -417)
 flip_h = true
@@ -1932,8 +1944,12 @@ shape = SubResource("RectangleShape2D_r3t2l")
 debug_color = Color(0.194038, 0.623016, 0.443458, 0.42)
 
 [node name="AmmoDispenser" parent="." instance=ExtResource("47_jbsjw")]
-position = Vector2(2432, 53)
-respawnCooldown = 20.0
+position = Vector2(2338, 56)
+respawnCooldown = 25.0
+
+[node name="AmmoDispenser2" parent="." instance=ExtResource("47_jbsjw")]
+position = Vector2(2526, 55)
+respawnCooldown = 25.0
 
 [node name="Barrier" type="CPUParticles2D" parent="."]
 texture_filter = 1
@@ -2005,15 +2021,16 @@ shape = SubResource("CapsuleShape2D_df5u7")
 [node name="HintText" type="Label" parent="Barrier2/StaticBody2D"]
 self_modulate = Color(0.99248, 0.543984, 0.504537, 1)
 z_index = 1000
-offset_left = 61.5715
-offset_top = 36.7275
-offset_right = 241.572
-offset_bottom = 75.7275
-rotation = -1.5708
+offset_left = 29.1848
+offset_top = 69.3481
+offset_right = 227.185
+offset_bottom = 129.348
+rotation = -1.56396
 scale = Vector2(1.4, 1.4)
 pivot_offset = Vector2(20, 30.8889)
-text = "Buy a gun from
-the shop to pass!"
+text = "buy the gun
+from the shop and
+pick it up to pass!"
 label_settings = SubResource("LabelSettings_42dhk")
 horizontal_alignment = 1
 

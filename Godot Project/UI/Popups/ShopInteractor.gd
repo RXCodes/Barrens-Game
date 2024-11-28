@@ -66,6 +66,9 @@ func _on_button_button_down() -> void:
 			if selectedShopItem.type == ShopItem.ItemType.GUN:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
 				EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
+				await get_tree().physics_frame
+				newGun.currentMagCapacity = newGun.maximumMagCapacity
+				newGun.leftoverAmmoCount = newGun.maximumMagCapacity * 2
 				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
 				var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()

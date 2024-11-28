@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
 [ext_resource type="Script" path="res://Scenes/InfiniteMoneyTest.gd" id="15_mokh8"]
 [ext_resource type="Script" path="res://Scenes/GoToVillageOneTest.gd" id="16_e3y2f"]
-[ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
@@ -186,9 +185,6 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 [node name="Level" type="Node2D" parent="." groups=["NavigationGroup"]]
 process_priority = 100
 y_sort_enabled = true
-
-[node name="ExampleRender" parent="Level" instance=ExtResource("17_75868")]
-position = Vector2(330, -11)
 
 [node name="DummyRender" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(731, 431)
@@ -436,6 +432,20 @@ price = 75
 type = 2
 itemIdentifier = "Energetic"
 upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="ArmoredUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 300
+type = 2
+itemIdentifier = "Armored"
+costIncrementMultiplier = 1.2
+
+[node name="SacrificeUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 325
+type = 2
+itemIdentifier = "Sacrifice"
 costIncrementMultiplier = 1.2
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]

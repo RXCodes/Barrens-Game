@@ -436,3 +436,24 @@ func selectWeapon(gun: Gun) -> void:
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()
 	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
+
+func pickupWeapon(gun: Gun) -> void:
+	selectWeapon(gun)
+	
+	# if you only have a single gun, the new gun can populate the second slot
+	if holdingWeapons.size() == 1:
+		holdingWeapons.append(gun)
+		currentWeaponSlot = 2
+		WeaponSlots.selectSecondary()
+		WeaponSlots.secondaryWeaponPickedUp()
+	else:
+		# if you already have two weapons, the one you're holding must be replaced
+		var previousGun: Gun = holdingWeapons[currentWeaponSlot - 1]
+		EnemySpawner.spawnWeapon(previousGun, global_position)
+		holdingWeapons[currentWeaponSlot - 1] = gun
+	
+	# update weapon slot display
+	if currentWeaponSlot == 1:
+		WeaponSlots.setPrimaryWeapon(gun)
+	elif currentWeaponSlot == 2:
+		WeaponSlots.setSecondaryWeapon(gun)
