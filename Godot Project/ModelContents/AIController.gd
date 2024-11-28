@@ -133,10 +133,15 @@ func _process(delta: float) -> void:
 			damageIndicatorPosition.x += randfn(0, 15)
 			damageIndicatorPosition.y += randfn(0, 20)
 			var damageValue = damageInTick[nodeRid]
-			DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageValue, instance_from_id(nodeRid))
+			var indicator = DamageIndicator.createDamageIndicator(damageIndicatorPosition, damageValue, instance_from_id(nodeRid), criticalDamaged)
+			if criticalDamaged:
+				renderer.material = ShaderMaterial.new()
+				renderer.material.shader = criticalHitShader
 		damageInTick.clear()
+		criticalDamaged = false
 
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
+static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader")
 var renderer: EntityRender
 
 # called when enemy is hit
@@ -172,9 +177,19 @@ func playHitSound() -> void:
 
 # called when enemy is damaged
 var damageInTick := {}
+var criticalDamaged = false
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
+		
+	# critical damage functionality
+	if source is Player:
+		var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
+		var roll = randf_range(0, 100.0)
+		if criticalChance >= roll:
+			criticalDamaged = true
+			amount *= 12.5
+	
 	enemyDamaged.emit()
 	onDamage()
 	if not damageInTick.has(source.get_instance_id()):
@@ -251,7 +266,15 @@ static func runNavigationQueue() -> void:
 		enemyQueueIndex += 1
 		if enemyQueueIndex >= enemies.size():
 			enemyQueueIndex = 0
+		if not is_instance_valid(enemies[enemyQueueIndex]):
+			enemies.remove_at(enemyQueueIndex)
+			enemyQueueIndex -= 1
+			continue
 		var currentAI: EnemyAI = enemies[enemyQueueIndex]
+		if not currentAI.hasAI:
+			continue
+		if not is_instance_valid(currentAI.target):
+			continue
 		if currentAI.target:
 			currentAI.navigationAgent.target_position = currentAI.target.global_position
 	await TimeManager.wait(navigateQueueInterval)

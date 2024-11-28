@@ -1,0 +1,174 @@
+[gd_scene load_steps=20 format=3 uid="uid://cm54f2le73ghg"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_ajm4p"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_3e8k5"]
+[ext_resource type="Script" path="res://UI/UpgradesListInteractor.gd" id="3_blbi5"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_poegw"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="5_m85cn"]
+[ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="7_i888u"]
+[ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="8_bw1kg"]
+[ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="9_75f4d"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="11_whqws"]
+[ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="12_wvltl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4airn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4d2wy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nrkmt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0xdsl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tgonr"]
+
+[sub_resource type="Theme" id="Theme_yhavq"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_4airn")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_4d2wy")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_nrkmt")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_0xdsl")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_tgonr")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("5_m85cn")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hcuy1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_fmn4k"]
+events = [SubResource("InputEventKey_hcuy1")]
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 793)
+script = ExtResource("1_ajm4p")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.556982, 0.465959, 0.724872, 1)
+texture_filter = 1
+offset_left = -369.0
+offset_top = -310.0
+offset_right = -74.0
+offset_bottom = -57.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_3e8k5")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="SquareUI2" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(0.393413, 0.24103, 0.463551, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 287.0
+offset_bottom = 244.0
+texture = ExtResource("2_3e8k5")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Popup/SquareUI/SquareUI2"]
+custom_minimum_size = Vector2(276, 162)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 278.0
+offset_bottom = 203.0
+theme = SubResource("Theme_yhavq")
+horizontal_scroll_mode = 0
+
+[node name="UpgradesItemContainer" type="VBoxContainer" parent="Popup/SquareUI/SquareUI2/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("3_blbi5")
+
+[node name="Separator2" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 19.0
+offset_right = 291.0
+offset_bottom = 301.0
+rotation = 1.5708
+texture = ExtResource("4_poegw")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Description" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.605632, 0.406934, 0.806718, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.4
+offset_right = 1253.0
+offset_bottom = 109.4
+scale = Vector2(0.225, 0.225)
+text = "get upgrades from shops or from completing waves."
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NoUpgrades" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.86342, 0.454062, 0.51241, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 109.0
+offset_right = 946.0
+offset_bottom = 194.0
+scale = Vector2(0.3, 0.3)
+text = "You don't have any upgrades yet!"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 63.1
+offset_top = 3.0
+offset_right = 549.1
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Your upgrades"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 280.8
+offset_top = 4.00001
+offset_right = 290.8
+offset_bottom = 14.0
+shortcut = SubResource("Shortcut_fmn4k")
+texture_normal = ExtResource("7_i888u")
+texture_pressed = ExtResource("7_i888u")
+texture_hover = ExtResource("8_bw1kg")
+script = ExtResource("9_75f4d")
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_wvltl")
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_whqws")
+volume_db = 5.0
+
+[connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]

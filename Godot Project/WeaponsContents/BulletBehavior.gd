@@ -38,9 +38,6 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	fireBullet.gun = gun
 	fireBullet.sourceNode = sourceNode
 	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
-	
-	# forcefully order the bullets for this frame
-	ZIndexSorter.sort()
 
 # bullet functionality
 var fadeTime: float = 0.3
@@ -54,17 +51,11 @@ func _ready() -> void:
 	patch_margin_right = 4
 	patch_margin_bottom = 4
 	scale = Vector2(bulletScale, bulletScale)
-	var zScore = global_position.y
 	normalDirection = Vector2.from_angle(rotation - rotationOffset)
-	if normalDirection.y < 0:
-		zScore -= 50
-	else:
-		zScore += 50
-	if smokeBullet:
-		zScore -= 1
-	else:
+	if normalDirection.y > 0:
+		z_index = 1
+	if not smokeBullet:
 		size.x += 5
-	set_meta(ZIndexSorter.zScoreKey, zScore)
 	var tween = NodeRelations.createTween()
 	var finalColor = self_modulate
 	finalColor.a = 0.0
@@ -108,14 +99,15 @@ func _physics_process(delta: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, mask)
-	var result = space_state.intersect_ray(query)
+	var originPosition = global_position - (normalDirection * 17.5)
+	var enemyQuery = PhysicsRayQueryParameters2D.create(originPosition, global_position + projectoryVector, mask)
+	var result = space_state.intersect_ray(enemyQuery)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale
 		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
 		if enemy and gun:
 			enemy.call("onHit", result.position)
-			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread), sourceNode)
+			enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
 		return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)

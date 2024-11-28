@@ -1,6 +1,6 @@
 extends CanvasGroup
 class_name EntityRender
-var targetNode: Node2D
+var targetNode: Node
 
 # this is what will be used to render the player, all enemies and npcs
 ## how much to offset the z index
@@ -9,17 +9,20 @@ var targetNode: Node2D
 ## should the enemy face left?
 @export var flipX = false
 
-var layerIndex
+var colliderBoxNode: RigidBody2D
+var initialPosition: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	targetNode = get_children()[0]
 	if targetNode is EnemyAI:
 		targetNode.flipX = flipX
+		colliderBoxNode = targetNode.collisionRigidBody
+	if colliderBoxNode:
+		initialPosition = colliderBoxNode.position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var zScore = targetNode.global_position.y + entityZIndexOffset
-	if targetNode is EnemyAI:
-		zScore = targetNode.collisionRigidBody.global_position.y + entityZIndexOffset
-	set_meta(ZIndexSorter.zScoreKey, zScore)
+	if colliderBoxNode:
+		var offset = colliderBoxNode.position - initialPosition
+		global_position += offset
+		colliderBoxNode.position = initialPosition

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=65 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
@@ -29,6 +29,11 @@
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="23_do1ik"]
 [ext_resource type="AudioStream" uid="uid://bi5j2x76m6e2i" path="res://ModelContents/Cash/CashPickup.mp3" id="27_81mt3"]
 [ext_resource type="Texture2D" uid="uid://cjywsmy7355c1" path="res://WeaponsContents/MachineGun/MachineGunUnload.png" id="28_c2fqk"]
+[ext_resource type="AudioStream" uid="uid://dqe5vnlqqndvy" path="res://UI/AmmoCollect.mp3" id="30_io53c"]
+[ext_resource type="AudioStream" uid="uid://v07am62heufw" path="res://UI/Hit1.mp3" id="31_pd38e"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="32_n3gs1"]
+[ext_resource type="AudioStream" uid="uid://73ri4vju6n2q" path="res://UI/Hit3.mp3" id="33_ywklp"]
+[ext_resource type="AudioStream" uid="uid://bo7xa5mk3lu7w" path="res://UI/Death.mp3" id="34_7x3y7"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_12evv"]
 viewport_path = NodePath("Player/Subviewport")
@@ -1215,7 +1220,6 @@ radius = 13.0
 height = 48.0
 
 [node name="PlayerRender" type="CanvasGroup"]
-process_priority = 5
 texture_filter = 1
 script = ExtResource("1_t84kj")
 entityZIndexOffset = 42
@@ -1225,12 +1229,12 @@ texture_filter = 1
 script = ExtResource("2_opaao")
 
 [node name="SprintBar" type="TextureProgressBar" parent="Player"]
-z_index = 1
+z_index = 2
 texture_filter = 1
 offset_left = -31.0
-offset_top = -75.0
+offset_top = -116.0
 offset_right = 31.0
-offset_bottom = -67.0
+offset_bottom = -108.0
 pivot_offset = Vector2(31, 3)
 step = 0.0
 value = 100.0
@@ -1268,6 +1272,7 @@ max_polyphony = 2
 
 [node name="TextureDisplay" type="Sprite2D" parent="Player"]
 texture = SubResource("ViewportTexture_12evv")
+offset = Vector2(-1, -41)
 
 [node name="PlayerCamera" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
@@ -1275,6 +1280,7 @@ position_smoothing_speed = 6.0
 script = ExtResource("3_ucqgu")
 
 [node name="Subviewport" type="SubViewport" parent="Player"]
+own_world_3d = true
 transparent_bg = true
 canvas_item_default_texture_filter = 0
 gui_disable_input = true
@@ -1330,51 +1336,51 @@ scale = Vector2(1, 1)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(14.6559, -18.1435)
-rotation = -0.128946
-scale = Vector2(0.999863, 0.999863)
+position = Vector2(14.6467, -18.105)
+rotation = -0.139846
+scale = Vector2(1.00181, 1.00181)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/RightElbow"]
-position = Vector2(5.32566, 17.5347)
-rotation = -0.498311
-scale = Vector2(0.999907, 0.999907)
+position = Vector2(5.34308, 17.5351)
+rotation = -0.507293
+scale = Vector2(0.999911, 0.999911)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
-position = Vector2(-17.0925, -20.074)
-rotation = 0.32761
-scale = Vector2(0.996508, 0.996508)
+position = Vector2(-17.0925, -20.0726)
+rotation = 0.320947
+scale = Vector2(0.998733, 0.998733)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(10.4033, 14.4263)
-rotation = -0.250111
-scale = Vector2(0.999437, 0.999437)
+position = Vector2(10.4071, 14.4523)
+rotation = -0.242772
+scale = Vector2(0.999483, 0.999483)
 texture = ExtResource("22_t2au1")
 
 [node name="RightHand" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(30.2404, -1.84608)
-rotation = 3.03904
-scale = Vector2(1.00384, -1.00384)
-skew = -0.00151503
+position = Vector2(30.227, -1.83482)
+rotation = 3.0389
+scale = Vector2(1.00351, -1.00351)
+skew = -0.00149798
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-5.1344, 12.0849)
-rotation = -0.349402
-scale = Vector2(0.999954, 0.999954)
+position = Vector2(-5.12652, 12.081)
+rotation = -0.347596
+scale = Vector2(1, 1)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 
 [node name="Head" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(0.163589, -24.5995)
-rotation = -0.00378535
-scale = Vector2(0.999794, 0.999794)
+rotation = 0.00204094
+scale = Vector2(0.999791, 0.999791)
 texture = ExtResource("16_m686t")
 offset = Vector2(1, 22)
 
@@ -1392,7 +1398,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.999794, 0.999794)
+scale = Vector2(0.999791, 0.999791)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0
@@ -1605,7 +1611,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, 41)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aydp0")
 debug_color = Color(0, 0.634491, 0.42842, 0.42)
@@ -1617,8 +1622,28 @@ current = true
 stream = ExtResource("27_81mt3")
 max_polyphony = 10
 
+[node name="AmmoPickup" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("30_io53c")
+volume_db = -15.0
+max_polyphony = 2
+
+[node name="HitSounds" type="Node" parent="Player"]
+
+[node name="Hit1" type="AudioStreamPlayer" parent="Player/HitSounds"]
+stream = ExtResource("31_pd38e")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="Player/HitSounds"]
+stream = ExtResource("32_n3gs1")
+
+[node name="Hit3" type="AudioStreamPlayer" parent="Player/HitSounds"]
+stream = ExtResource("33_ywklp")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("34_7x3y7")
+volume_db = 3.0
+
 [node name="Hitbox" type="RigidBody2D" parent="."]
-position = Vector2(-2, 24)
+position = Vector2(-2, -21)
 collision_layer = 0
 collision_mask = 8
 gravity_scale = 0.0

@@ -15,16 +15,26 @@ var cash = 0
 
 var sprintZoomOffset = -0.125
 var sprintZoomDampening = 0.075
+var currentScrollZoom = 1.0
+var scrollZoomDampening = 0.12
+var minScrollZoom = 0.65
+var maxScrollZoom = 1.5
 
 var gunInteractor: Gun.Interactor
 var gunFireShakeDampening = 0.1
-var reloadSpeedMultiplier = 0.5
+var reloadMovementSpeedMultiplier = 0.5
 var shooting = false
+
+var holdingWeapons = []
+var currentWeaponSlot = 1
 
 # setup renderer and gun interactor
 var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
+	TutorialManager.shouldDisableControls = false
+	Upgrade.playerUpgrades.clear()
+	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
 	current = self
 	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
@@ -33,7 +43,7 @@ func _ready() -> void:
 	textureOutput = $TextureDisplay
 	sprintBar = $SprintBar
 	sprintBar.modulate = Color.TRANSPARENT
-	await get_tree().process_frame
+	await get_tree().physics_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
 	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon
@@ -42,7 +52,8 @@ func _ready() -> void:
 	gunInteractor.onFinishReload = self.onFinishReload
 	gunInteractor.onReloadInterrupted = self.onReloadInterrupted
 	gunInteractor.onReload = self.onReload
-	selectWeapon("Shotgun")
+	gunInteractor.sourcePositionOffset = Vector2(0, -48)
+	selectWeapon(holdingWeapons[0])
 	refreshAmmoDisplay()
 	hitBoxRigidBody = $"../Hitbox"
 	hitboxShape = hitBoxRigidBody.get_children()[0]
@@ -61,6 +72,12 @@ var animationValues = {
 
 var sprintBarHidden = true
 func _process(delta: float) -> void:
+	# interrupt controls if needed
+	if GamePopup.current or TutorialManager.shouldDisableControls:
+		currentMovementKeypresses.clear()
+		isSprinting = false
+		shooting = false
+	
 	# blend animations so we can have smoother transitions between them
 	var animSpeed = delta * blendSpeed
 	match currentAnimation:
@@ -71,10 +88,6 @@ func _process(delta: float) -> void:
 		animationValues[key] = clampf(animationValues[key], 0.0, 1.0)
 		animationTree[key] = animationValues[key]
 	
-	# flashing shader animation
-	if renderer.material is ShaderMaterial:
-		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
-	
 	# calculate normal vector to crosshair and flip player if needed
 	var crosshairNormal = Vector2.from_angle(global_position.angle_to_point(Crosshair.current.cursorPosition))
 	facingLeft = crosshairNormal.x < 0
@@ -84,6 +97,7 @@ func _process(delta: float) -> void:
 	var shouldZoomCamera = Input.is_key_pressed(KEY_SHIFT) and walking and not walkingBackwards and sprintPower > 0
 	var targetZoomOffset = sprintZoomOffset if shouldZoomCamera else 0.0
 	PlayerCamera.current.sprintingZoomOffset += (targetZoomOffset - PlayerCamera.current.sprintingZoomOffset) * sprintZoomDampening
+	PlayerCamera.current.zoomMultiplier += (currentScrollZoom - PlayerCamera.current.zoomMultiplier) * scrollZoomDampening
 	
 	# weapon functionality
 	if shooting and not dead:
@@ -117,16 +131,35 @@ func _process(delta: float) -> void:
 	else:
 		sprintBar.stopFlashing()
 
-# Called every physics tick.
 var walking = false
 var walkingBackwards = false
 var facingLeft = false
 var sprintPower = 100.0
 var sprintDecreaseRate = 20
 var sprintRecoveryRate = 30
+var regenerationRate = 1.0 / 10.0 # one hp every 10 seconds
+
+# properties that can be modified during runtime (Upgrades)
+var criticalDamageMultiplier: float = 1.0
+var movementSpeedMultiplier: float = 1.0
+var sprintRecoveryMultiplier: float = 1.0
+var reloadSpeedDivisor: float = 1.0
+var defenseDivisor: float = 1.0
+var pickUpRangeMultiplier: float = 1.0
+var regenerationRateMultiplier: float = 1.0
+var maximumHealth: int = 100
+var sprintDecreaseRateDivisor: float = 1.0
+
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	
+	# passive regeneration
+	if not dead:
+		health += regenerationRate * regenerationRateMultiplier * delta
+		health = min(health, maximumHealth)
+		PlayerHealthBar.setHealth(health)
+		PlayerHealthBar.setMaxHealth(maximumHealth)
 	
 	# player movement
 	if currentMovementKeypresses.size() > 0:
@@ -147,15 +180,17 @@ func _physics_process(delta: float) -> void:
 			currentAnimation = IDLE
 		
 		# finally move the player
-		var speedMultiplier = 1.0
+		var speedMultiplier = movementSpeedMultiplier
+		if movementSpeedMultiplier < 1:
+			speedMultiplier = 1.0 / absf(movementSpeedMultiplier - 2)
 		if isSprinting and not gunInteractor.currentWeapon.reloading and not walkingBackwards:
 			if sprintPower > 0:
 				speedMultiplier *= sprintingSpeedMultiplier
-				sprintPower -= sprintDecreaseRate * delta
+				sprintPower -= (sprintDecreaseRate * delta) / sprintDecreaseRateDivisor
 		else:
-			sprintPower += sprintRecoveryRate * delta * 0.5
+			sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta * 0.5
 		if gunInteractor != null and gunInteractor.currentWeapon.reloading:
-			speedMultiplier *= reloadSpeedMultiplier
+			speedMultiplier *= reloadMovementSpeedMultiplier
 		if sprintPower == 0:
 			# sprint has exhausted, slow down player
 			speedMultiplier *= 0.6
@@ -166,7 +201,7 @@ func _physics_process(delta: float) -> void:
 		move_and_collide(Vector2(movementVector.x, 0))
 		move_and_collide(Vector2(0, movementVector.y))
 	else:
-		sprintPower += sprintRecoveryRate * delta
+		sprintPower += sprintRecoveryRate * sprintRecoveryMultiplier * delta
 		currentAnimation = IDLE
 		walking = false
 	sprintPower = clampf(sprintPower, 0.0, 100.0)
@@ -185,6 +220,11 @@ var movementKeyBinds = {
 }
 func _input(event: InputEvent) -> void:
 	if dead:
+		return
+	if GamePopup.current or TutorialManager.shouldDisableControls:
+		currentMovementKeypresses.clear()
+		isSprinting = false
+		shooting = false
 		return
 	if event is InputEventKey:
 		var key: String = event.as_text_key_label()
@@ -205,13 +245,20 @@ func _input(event: InputEvent) -> void:
 		if not gunInteractor.currentWeapon.reloading and gunInteractor.currentWeapon.canFire:
 			if event.pressed:
 				if key == "1":
-					selectWeapon("Shotgun")
+					currentWeaponSlot = 1
+					WeaponSlots.selectPrimary()
+					selectWeapon(holdingWeapons[0])
 				elif key == "2":
-					selectWeapon("AK47")
-				elif key == "3":
-					selectWeapon("MachineGun")
-	
+					if holdingWeapons.size() >= 2:
+						currentWeaponSlot = 2
+						WeaponSlots.selectSecondary()
+						selectWeapon(holdingWeapons[1])
+				
+	# mouse clicks and scrolling
 	if event is InputEventMouseButton:
+		# don't register clicks when hovering over buttons
+		if Crosshair.hoveringOverButton:
+			return
 		# handle left click
 		if event.button_index == 1:
 			shooting = event.pressed
@@ -224,7 +271,16 @@ func _input(event: InputEvent) -> void:
 				if gunInteractor.currentWeapon.reloading:
 					gunInteractor.currentWeapon.cancelReload()
 				else:
+					gunInteractor.reloadSpeedDivisor = self.reloadSpeedDivisor
 					gunInteractor.currentWeapon.reload(false)
+		# scrolling up should reduce zoom
+		elif event.button_index == 4:
+			currentScrollZoom *= 0.975
+			currentScrollZoom = maxf(currentScrollZoom, minScrollZoom)
+		# scrolling down should increase zoom
+		elif event.button_index == 5:
+			currentScrollZoom *= 1.025
+			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
 	
 	# player is sprinting while shift is held
 	isSprinting = Input.is_key_pressed(KEY_SHIFT)
@@ -242,32 +298,33 @@ func onFire() -> void:
 	
 	# play shoot animation
 	actionAnimationPlayer.stop()
-	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName)
+	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	gunInteractor.currentWeapon.cockedGun = false
 	var shootAnimationTime = actionAnimationPlayer.current_animation_length
 	var currentGunIdentifier = gunInteractor.currentWeapon.fileName
 	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
-	await TimeManager.wait(shootAnimationTime)
+	await TimeManager.wait(shootAnimationTime / gunInteractor.fireRateDivisor)
 	if currentGunIdentifier == gunInteractor.currentWeapon.fileName:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
 		else:
 			# player has no ammo left in magazine - let's reload
 			if gunInteractor.currentWeapon.leftoverAmmoCount > 0:
+				gunInteractor.reloadSpeedDivisor = self.reloadSpeedDivisor
 				gunInteractor.currentWeapon.reload(true)
 			else:
 				# oh, there's no leftover ammo - player can't reload
 				print("No ammo left")
 
 func onCockWeapon() -> void:
-	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName)
+	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
-	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName)
-	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime)
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName, -1, reloadSpeedDivisor)
+	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime / reloadSpeedDivisor)
 
 func onFinishReload() -> void:
 	AmmoInfoDisplay.gunReloaded()
@@ -292,22 +349,47 @@ var damageInTick := {}
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
-	flashWhite(true)
+	
+	# apply defense
+	if defenseDivisor >= 1:
+		amount /= defenseDivisor
+	else:
+		# case for negative defense
+		amount *= absf(defenseDivisor - 2)
+		
+	# play random hit sound
+	var hitSounds = $HitSounds.get_children()
+	var hitSound: AudioStreamPlayer = hitSounds.pick_random()
+	hitSound.pitch_scale = randfn(1.0, 0.075)
+	hitSound.play()
+	
+	# keep track of damage
 	if not damageInTick.has(source.get_instance_id()):
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	
+	# animate hurt vignette and camera
+	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
+	var animationTime = lerpf(2.0, 0.6, health / 100.0)
+	HurtVignette.animate(hurtVignetteOpacity, animationTime)
+	PlayerCamera.current.playerDamaged()
+	
+	# update health
+	PlayerHealthBar.setHealth(health)
 	if health <= 0:
+		HurtVignette.animate(1.0, 5.0)
 		health = 0
 		kill()
-	await TimeManager.wait(0.05)
-	flashWhite(false)
 
 # called when player dies
 func kill() -> void:
 	if dead:
 		return
 	dead = true
+	GamePopup.closeCurrent()
+	$DeathSound.play()
+	TutorialManager.shouldDisableControls = true
 	hitBoxRigidBody.collision_mask = 0
 	hitBoxRigidBody.collision_layer = 0
 	self.collision_mask = 0
@@ -323,28 +405,34 @@ func kill() -> void:
 	await TimeManager.wait(2.25)
 	NodeRelations.loadScene("res://Scenes/Debug.tscn")
 
-# called when changing the flashing state of the player
-static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
-func flashWhite(flashing: bool) -> void:
-	if flashing:
-		renderer.material = ShaderMaterial.new()
-		renderer.material.shader = flashWhiteShader
-	else:
-		renderer.material = null
-
 func playWalkSound() -> void:
 	var walkSounds = $WalkSounds.get_children()
 	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
-	walkSound.pitch_scale = randfn(1.0, 0.2)
+	walkSound.pitch_scale = randfn(1.0, 0.1)
 	walkSound.play()
 
 func pickupCash(amount: int) -> void:
 	cash += amount
-	$CashPickup.pitch_scale = randfn(1.0, 0.05)
+	MoneyDisplay.setMoney(cash)
+	$CashPickup.pitch_scale = randfn(1.0, 0.075)
 	$CashPickup.play()
 
-func selectWeapon(name: String) -> void:
-	gunInteractor.currentWeapon = Gun.gunFromString(name)
+func pickupAmmo() -> void:
+	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
+	$AmmoPickup.play()
+	for gun: Gun in holdingWeapons:
+		var ammoToAdd = min(gun.maximumMagCapacity, 50)
+		if ammoToAdd < 10:
+			ammoToAdd *= 2
+		gun.leftoverAmmoCount += ammoToAdd
+	if gunInteractor.currentWeapon.currentMagCapacity == 0:
+		gunInteractor.currentWeapon.reload(true)
+	AmmoInfoDisplay.gunReloaded()
+	refreshAmmoDisplay()
+
+func selectWeapon(gun: Gun) -> void:
+	gunInteractor.currentWeapon = gun
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()
+	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)

@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cju5qhfith7mh"]
+[gd_scene load_steps=4 format=3 uid="uid://cju5qhfith7mh"]
 
 [ext_resource type="Texture2D" uid="uid://c5mu1rilokt4f" path="res://Environment/Cactus/Cactus2.png" id="1_d56sc"]
-[ext_resource type="Script" path="res://Scenes/EnvironmentSprite.gd" id="2_hgurx"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="3_lgmxt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5v7y"]
@@ -13,7 +12,6 @@ texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("1_d56sc")
 offset = Vector2(0.5, -22)
-script = ExtResource("2_hgurx")
 
 [node name="RigidBody2D" type="StaticBody2D" parent="."]
 collision_layer = 5

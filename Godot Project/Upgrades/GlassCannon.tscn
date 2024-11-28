@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ioc5xw8g34vb"]
+
+[ext_resource type="Script" path="res://Upgrades/GlassCannon.gd" id="1_tg8pd"]
+[ext_resource type="Texture2D" uid="uid://c22yhogti2rxe" path="res://Upgrades/GlassCannon.png" id="2_qw027"]
+
+[node name="GlassCannon" type="Node"]
+script = ExtResource("1_tg8pd")
+upgradeName = "Glass Cannon"
+description = "increase damage by [amt]% but decrease defense by [amt2]%"
+preferredUpgradeAmounts = Array[float]([20.0, 30.0])
+texture = ExtResource("2_qw027")

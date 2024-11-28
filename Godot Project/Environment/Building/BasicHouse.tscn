@@ -26,79 +26,82 @@ position = Vector2(0, -1)
 script = ExtResource("1_5dskk")
 
 [node name="Origin" type="Node2D" parent="."]
-position = Vector2(608, -124)
+position = Vector2(3, 2)
 
 [node name="Wall" parent="." instance=ExtResource("3_ppmx0")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -196.0
+offset_top = -231.0
+offset_right = -159.0
+offset_bottom = -200.0
 scale = Vector2(12.0882, 6.56532)
 depth = 76.0
 
 [node name="SalonDoorFrame" parent="." instance=ExtResource("3_cinr0")]
-position = Vector2(657, -296)
+position = Vector2(52, -170)
 
 [node name="WindowFrame" parent="." instance=ExtResource("4_66k71")]
-position = Vector2(495, -292)
+position = Vector2(-110, -166)
 
 [node name="WindowFrame2" parent="." instance=ExtResource("4_66k71")]
-position = Vector2(766, -294)
+position = Vector2(161, -168)
 texture = ExtResource("5_hx1vu")
 windowType = 2
 
 [node name="Roof" parent="." instance=ExtResource("2_irbya")]
-offset_left = 385.0
-offset_top = -653.0
-offset_right = 402.0
-offset_bottom = -643.0
+offset_left = -220.0
+offset_top = -527.0
+offset_right = -203.0
+offset_bottom = -517.0
 scale = Vector2(29.1528, 29.8659)
 
 [node name="Wall2" parent="." instance=ExtResource("3_ppmx0")]
-offset_left = 409.0
-offset_top = -357.0
-offset_right = 446.0
-offset_bottom = -326.0
+offset_left = -196.0
+offset_top = -231.0
+offset_right = -159.0
+offset_bottom = -200.0
 scale = Vector2(12.0882, 6.56532)
 wallType = 1
 depth = 76.0
 
 [node name="VerticalBeam" parent="." instance=ExtResource("4_0oj6d")]
-offset_top = -358.0
-offset_bottom = -327.0
+offset_left = -22.0
+offset_top = -232.0
+offset_right = 15.0
+offset_bottom = -201.0
 scale = Vector2(2, 6.50785)
 
 [node name="HouseFoundation" parent="." instance=ExtResource("5_0vapo")]
-offset_left = 404.0
-offset_top = -106.0
-offset_right = 421.0
-offset_bottom = -96.0
+offset_left = -201.0
+offset_top = 20.0
+offset_right = -184.0
+offset_bottom = 30.0
 scale = Vector2(27.2205, 1)
 
 [node name="Fence" parent="." instance=ExtResource("6_wqvec")]
-offset_left = 419.0
-offset_top = -155.0
-offset_right = 433.0
-offset_bottom = -145.0
+offset_left = -186.0
+offset_top = -29.0
+offset_right = -172.0
+offset_bottom = -19.0
 showLeftFencePole = false
 showRightFencePole = false
 
 [node name="Fence2" parent="." instance=ExtResource("6_wqvec")]
-offset_left = 737.0
-offset_top = -154.0
-offset_right = 751.0
-offset_bottom = -144.0
+offset_left = 132.0
+offset_top = -28.0
+offset_right = 146.0
+offset_bottom = -18.0
 scale = Vector2(11.61, 1)
 showRightFencePole = false
 
 [node name="Stairs" parent="." instance=ExtResource("7_tl7yb")]
-offset_left = 601.0
-offset_top = -152.0
-offset_right = 641.0
-offset_bottom = -112.0
+offset_left = -4.0
+offset_top = -26.0
+offset_right = 36.0
+offset_bottom = 14.0
 scale = Vector2(3.49736, 2.64641)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-605, 126)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -114,6 +117,7 @@ shape = SubResource("RectangleShape2D_fsais")
 debug_color = Color(0, 0.595, 0.7, 0.219608)
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-605, 126)
 script = ExtResource("8_e8wpf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

@@ -4,8 +4,9 @@
 
 [resource]
 font = ExtResource("1_lsfv0")
-font_size = 28
-outline_size = 10
+font_size = 20
+outline_size = 7
 outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
-shadow_offset = Vector2(1, 5)
+shadow_offset = Vector2(0, 3)

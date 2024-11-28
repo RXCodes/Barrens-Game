@@ -3,7 +3,7 @@ class_name EnemySpawner
 static func spawnEnemy(name: String, position: Vector2) -> Node2D:
 	var newEnemy: PackedScene = load("res://Models/" + name + ".tscn")
 	var newEnemyInstance = newEnemy.instantiate()
-	newEnemyInstance.get_children()[0].position = position
+	newEnemyInstance.position = position
 	NodeRelations.rootNode.find_child("Level").add_child(newEnemyInstance)
 	return newEnemyInstance
 
@@ -28,3 +28,10 @@ static func spawnMoney(amount: int, position: Vector2) -> void:
 		newCashDrop.amount = potentialCashValues[index]
 		amount -= potentialCashValues[index]
 		await TimeManager.wait(0.025)
+
+static var gunPickup = preload("res://Models/WeaponPickup.tscn")
+static func spawnWeapon(gun: Gun, position: Vector2) -> void:
+	var newWeaponEntity: WeaponEntity = gunPickup.instantiate()
+	newWeaponEntity.setupWithGun(gun)
+	newWeaponEntity.global_position = position
+	NodeRelations.rootNode.find_child("Level").add_child(newWeaponEntity)

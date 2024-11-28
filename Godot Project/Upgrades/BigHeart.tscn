@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://lehoanq3gcfl"]
+
+[ext_resource type="Script" path="res://Upgrades/BigHeart.gd" id="1_1fjfu"]
+[ext_resource type="Texture2D" uid="uid://bkgvoqpr4bdey" path="res://Upgrades/BigHeart.png" id="2_b1704"]
+
+[node name="BigHeart" type="Node"]
+script = ExtResource("1_1fjfu")
+upgradeName = "Heart Healthy"
+description = "increase maximum hp by [amt]"
+accumativeDescription = "+[amt] maximum hp"
+preferredUpgradeAmounts = Array[float]([3.0])
+upgradeIdentifier = "health"
+texture = ExtResource("2_b1704")

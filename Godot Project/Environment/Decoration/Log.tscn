@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd5p33ybg8ngx"]
+
+[ext_resource type="Texture2D" uid="uid://b2o7lwc476bh4" path="res://Environment/Decoration/Log.png" id="1_sbfn5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iafyx"]
+radius = 7.79456
+height = 23.9285
+
+[node name="Log" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_sbfn5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.499997, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iafyx")

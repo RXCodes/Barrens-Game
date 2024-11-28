@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqjwukc5bch23"]
+
+[ext_resource type="Script" path="res://UI/UpgradeItemDisplay.gd" id="1_wrlet"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_55kc5"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_880hd"]
+[ext_resource type="Texture2D" uid="uid://cnu2xr3i6k48r" path="res://Upgrades/BulletStorm.png" id="4_mlmqj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lvsub"]
+font = ExtResource("3_880hd")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[node name="UpgradeItemDisplay" type="Control"]
+custom_minimum_size = Vector2(272, 45)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wrlet")
+
+[node name="Container" type="NinePatchRect" parent="."]
+self_modulate = Color(0.87465, 0.741333, 0.52763, 1)
+texture_filter = 1
+custom_minimum_size = Vector2(270, 45)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 274.0
+offset_bottom = 48.0
+texture = ExtResource("2_55kc5")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Description" type="Label" parent="Container"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 1.0
+offset_right = 779.0
+offset_bottom = 144.0
+scale = Vector2(0.3, 0.3)
+text = "+10% movement speed"
+label_settings = SubResource("LabelSettings_lvsub")
+vertical_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Icon" type="Sprite2D" parent="Container"]
+position = Vector2(23, 22)
+texture = ExtResource("4_mlmqj")

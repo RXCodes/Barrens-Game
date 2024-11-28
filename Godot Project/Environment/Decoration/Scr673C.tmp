@@ -1,0 +1,157 @@
+[gd_scene load_steps=15 format=3 uid="uid://oc0fa0b3t0mo"]
+
+[ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
+[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
+[ext_resource type="Script" path="res://UI/CrosshairController.gd" id="3_na6ej"]
+[ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_7w5bb"]
+[ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_xwyaq"]
+[ext_resource type="Script" path="res://UI/AmmoInfoDisplay.gd" id="6_meu8m"]
+[ext_resource type="Texture2D" uid="uid://bexajak04gpbq" path="res://UI/AmmoUIBackground.png" id="7_dwn10"]
+[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="8_75vom"]
+[ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="9_gdfer"]
+[ext_resource type="Script" path="res://UI/MoneyDisplay.gd" id="10_3pf0b"]
+[ext_resource type="Texture2D" uid="uid://dayr2ucnwkj3m" path="res://UI/HealthBarIcon.png" id="11_fisi3"]
+[ext_resource type="Script" path="res://UI/PlayerHealthBar.gd" id="12_h5lnw"]
+[ext_resource type="Texture2D" uid="uid://dwjlnjbs3w8at" path="res://UI/PlayerHealthBarUnder.png" id="12_iad2n"]
+[ext_resource type="Texture2D" uid="uid://ddxuv6xx34fja" path="res://UI/PlayerHealthBarOver.png" id="13_aieh8"]
+
+[node name="ScreenUI" type="CanvasLayer"]
+process_priority = 10
+layer = 128
+script = ExtResource("1_1kk4v")
+metadata/_edit_use_anchors_ = true
+
+[node name="Crosshair" type="TextureRect" parent="."]
+z_index = 999
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = -26.0
+offset_right = -169.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(21, 21)
+texture = ExtResource("2_28phi")
+script = ExtResource("3_na6ej")
+
+[node name="ReloadingIcon" type="TextureProgressBar" parent="."]
+visible = false
+z_index = 999
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(16, 16)
+fill_mode = 4
+texture_under = ExtResource("4_7w5bb")
+texture_progress = ExtResource("5_xwyaq")
+
+[node name="AmmoInfo" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+pivot_offset = Vector2(0, 400)
+script = ExtResource("6_meu8m")
+
+[node name="AmmoBackdrop" type="TextureRect" parent="AmmoInfo"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = 350.0
+offset_right = 100.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(100, 0)
+texture = ExtResource("7_dwn10")
+
+[node name="AmmoLeft" type="Label" parent="AmmoInfo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -57.0
+offset_top = 358.0
+offset_right = 5.0
+offset_bottom = 384.0
+pivot_offset = Vector2(61, 14)
+text = "0"
+label_settings = ExtResource("8_75vom")
+horizontal_alignment = 2
+
+[node name="MagCapacity" type="Label" parent="AmmoInfo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 34.0
+offset_top = 358.0
+offset_right = 101.0
+offset_bottom = 384.0
+pivot_offset = Vector2(0, 14)
+text = "0"
+label_settings = ExtResource("8_75vom")
+
+[node name="Slash" type="Label" parent="AmmoInfo"]
+modulate = Color(0.627047, 0.597041, 0.555939, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 358.0
+offset_right = 35.0
+offset_bottom = 384.0
+text = "/"
+label_settings = ExtResource("8_75vom")
+horizontal_alignment = 1
+
+[node name="Money" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-618, -320)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("9_gdfer")
+offset = Vector2(14, 13)
+script = ExtResource("10_3pf0b")
+
+[node name="MoneyAmount" type="Label" parent="Money"]
+texture_filter = 1
+offset_left = 38.0
+offset_right = 149.0
+offset_bottom = 26.0
+scale = Vector2(0.9, 0.9)
+text = "0
+"
+label_settings = ExtResource("8_75vom")
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBar" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-587, -358)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("11_fisi3")
+script = ExtResource("12_h5lnw")
+
+[node name="ProgressBarUnder" type="TextureProgressBar" parent="HealthBar"]
+offset_left = 38.0
+offset_top = -56.0
+offset_right = 563.0
+offset_bottom = 53.0
+step = 0.0
+value = 100.0
+texture_under = ExtResource("12_iad2n")
+texture_progress = ExtResource("13_aieh8")
+texture_progress_offset = Vector2(10, 7)
+tint_progress = Color(0.947375, 0.31939, 0.329442, 1)
+
+[node name="ProgressBar" type="TextureProgressBar" parent="HealthBar/ProgressBarUnder"]
+offset_right = 525.0
+offset_bottom = 109.0
+step = 0.0
+value = 100.0
+texture_progress = ExtResource("13_aieh8")
+texture_progress_offset = Vector2(10, 7)
+tint_progress = Color(0.47292, 0.84, 0.3612, 1)

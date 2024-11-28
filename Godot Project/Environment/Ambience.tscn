@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca028heqxjty6"]
+[gd_scene load_steps=3 format=3 uid="uid://bhv6i8jxkr20m"]
 
 [ext_resource type="AudioStream" uid="uid://cfmv0u0wutu0w" path="res://Scenes/Ambience.mp3" id="1_xix7n"]
+[ext_resource type="Script" path="res://Environment/Ambience.gd" id="2_1eea7"]
 
 [node name="Ambience" type="AudioStreamPlayer"]
 stream = ExtResource("1_xix7n")
 volume_db = -5.0
 autoplay = true
 parameters/looping = true
+script = ExtResource("2_1eea7")

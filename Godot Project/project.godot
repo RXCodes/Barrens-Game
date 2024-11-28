@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Barrens"
-run/main_scene="res://Scenes/Debug.tscn"
+run/main_scene="res://Scenes/Intro.tscn"
+run/print_header=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [display]
@@ -26,13 +27,17 @@ folder_colors={
 "res://Environment/": "yellow",
 "res://HelperClasses/": "pink",
 "res://ModelContents/": "red",
+"res://ModelContents/AmmoDispenser/": "orange",
+"res://ModelContents/AmmoDrop/": "orange",
 "res://ModelContents/Cash/": "orange",
 "res://ModelContents/Dummy/": "orange",
 "res://ModelContents/Player/": "yellow",
+"res://ModelContents/VanShop/": "orange",
 "res://Models/": "gray",
 "res://Particles/": "pink",
 "res://Scenes/": "green",
 "res://UI/": "purple",
+"res://Upgrades/": "yellow",
 "res://Weapons/": "gray",
 "res://WeaponsContents/": "red",
 "res://WeaponsContents/AK47/": "pink",
