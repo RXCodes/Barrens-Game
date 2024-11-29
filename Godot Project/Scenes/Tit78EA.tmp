@@ -40,7 +40,6 @@ script/source = "extends TextureButton
 @export var popupData: Dictionary
 @export var signalID: String
 @export var targetScene: String
-@export var temporaryFlag: String
 
 func _on_pressed() -> void:
 	if not TitleScreenManager.canInteract or GamePopup.current:
@@ -57,7 +56,6 @@ func _on_mouse_exited() -> void:
 func _ready() -> void:
 	if not signalID.is_empty():
 		ConfirmationPrompt.onAccept(signalID, func():
-			Save.setTemporaryValue(temporaryFlag, true)
 			var fadeOut: ColorRect = $\"../../../ScreenUI/FadeOut\"
 			fadeOut.show()
 			fadeOut.color = Color(0, 0, 0, 0)
@@ -422,7 +420,6 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 script = SubResource("GDScript_8j3o8")
 popupName = "StartGame"
-temporaryFlag = "startedGame"
 
 [node name="StartTutorial" type="Label" parent="GameButtons"]
 offset_left = 432.0
@@ -452,7 +449,6 @@ popupData = {
 }
 signalID = "Tutorial"
 targetScene = "res://Scenes/Tutorial.tscn"
-temporaryFlag = "promptedTutorial"
 
 [node name="ReplayIntro" type="Label" parent="GameButtons"]
 offset_left = 432.0
@@ -482,7 +478,6 @@ popupData = {
 }
 signalID = "ReplayIntro"
 targetScene = "res://Scenes/Intro.tscn"
-temporaryFlag = "promptedIntro"
 
 [node name="GameCredits" type="Label" parent="GameButtons"]
 offset_left = 432.0

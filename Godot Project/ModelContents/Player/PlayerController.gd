@@ -272,7 +272,8 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == 1:
 			shooting = event.pressed
 			if event.pressed and gunInteractor != null:
-				var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
+				var originPosition = global_position + Vector2(0, -48)
+				var aimAngle = originPosition.angle_to_point(Crosshair.current.cursorPosition)
 				gunInteractor.currentWeapon.fire(false, aimAngle)
 		# handle right click
 		elif event.button_index == 2:

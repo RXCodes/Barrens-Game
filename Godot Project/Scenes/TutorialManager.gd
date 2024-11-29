@@ -73,5 +73,6 @@ func _ready() -> void:
 	# tutorial has been completed
 	var fadeOutTween = NodeRelations.createTween()
 	fadeOutTween.tween_property(fadeIn, "self_modulate", Color.BLACK, 3.0)
+	Save.saveValue("completedTutorial", true)
 	await TimeManager.wait(3.5)
 	NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
