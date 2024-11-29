@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://bghr0faxa387a"]
+
+[ext_resource type="Texture2D" uid="uid://bfbmvvw5qkque" path="res://ModelContents/VanShop/ShopTruck.png" id="1_d03pn"]
+[ext_resource type="Script" path="res://Models/ShopVan.gd" id="2_7ouje"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="4_ewknn"]
+[ext_resource type="Texture2D" uid="uid://x38qn86l5le5" path="res://UI/Key.png" id="5_wq1g8"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="6_udlot"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oharx"]
+size = Vector2(63.4605, 16.5766)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkh2n"]
+size = Vector2(157.75, 72.375)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fjf21"]
+font = ExtResource("6_udlot")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kmg6o"]
+font = ExtResource("6_udlot")
+font_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[node name="ShopVan" type="Sprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_d03pn")
+offset = Vector2(0.5, -17.5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-707, 180)
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(709, -184.5)
+rotation = 1.57483
+scale = Vector2(0.480472, 6.83067)
+shape = SubResource("RectangleShape2D_oharx")
+debug_color = Color(0, 0.595, 0.7, 0.188235)
+
+[node name="Shop" type="Area2D" parent="."]
+position = Vector2(-707, 180)
+script = ExtResource("2_7ouje")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop"]
+position = Vector2(707, -184.5)
+shape = SubResource("RectangleShape2D_bkh2n")
+debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
+
+[node name="Interact" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(6, -313)
+
+[node name="SquareUI" type="NinePatchRect" parent="Interact"]
+self_modulate = Color(0.726579, 0.414556, 0.472832, 1)
+texture_filter = 1
+offset_left = -60.0
+offset_top = 229.0
+offset_right = 51.0
+offset_bottom = 257.0
+texture = ExtResource("4_ewknn")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="WASD" type="Sprite2D" parent="Interact/SquareUI"]
+position = Vector2(13.5, 14)
+texture = ExtResource("5_wq1g8")
+
+[node name="Label2" type="Label" parent="Interact/SquareUI"]
+layout_mode = 0
+offset_left = 25.5
+offset_top = 8.0
+offset_right = 292.5
+offset_bottom = 49.0
+scale = Vector2(0.3, 0.3)
+text = "Open Shop"
+label_settings = SubResource("LabelSettings_fjf21")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Interact/SquareUI"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.5
+offset_right = 40.0
+offset_bottom = 45.5
+scale = Vector2(0.45, 0.45)
+text = "E"
+label_settings = SubResource("LabelSettings_kmg6o")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="body_shape_entered" from="Shop" to="Shop" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Shop" to="Shop" method="_on_body_shape_exited"]

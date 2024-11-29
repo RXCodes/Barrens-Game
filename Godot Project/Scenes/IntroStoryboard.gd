@@ -27,6 +27,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	preloadParticles()
 	await TimeManager.wait(0.5)
+	show()
 	
 	# Slide 1
 	IntroAmbience.fadeIn(1.5)
@@ -295,4 +296,4 @@ func _ready() -> void:
 	if get_tree() == null:
 		return
 	await TimeManager.wait(3.0)
-	NodeRelations.loadScene("res://Scenes/Village1.tscn")
+	NodeRelations.loadScene("res://Scenes/Tutorial.tscn")

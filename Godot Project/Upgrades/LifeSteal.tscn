@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4a4uu6s7ftcr"]
+
+[ext_resource type="Script" path="res://Upgrades/LifeSteal.gd" id="1_s2yeo"]
+[ext_resource type="Texture2D" uid="uid://dgq6el40lt2no" path="res://Upgrades/LifeSteal.png" id="2_0y250"]
+
+[node name="LifeSteal" type="Node"]
+script = ExtResource("1_s2yeo")
+upgradeName = "Life Steal"
+description = "defeated enemies heal you by [amt]% of their total health"
+accumativeDescription = "+[amt]% life steal"
+preferredUpgradeAmounts = Array[float]([2.0])
+upgradeIdentifier = "lifeSteal"
+texture = ExtResource("2_0y250")
+minRandomUpgradeAmountMultiplier = 1.0

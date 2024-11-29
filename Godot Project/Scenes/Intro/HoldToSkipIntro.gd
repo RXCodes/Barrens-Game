@@ -13,6 +13,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	await TimeManager.wait(2.0)
 	print("Display skip button")
+	show()
 	canSkip = true
 	var tween = NodeRelations.createTween()
 	tween.tween_property(self, "self_modulate", Color.WEB_GRAY, 1.0)
@@ -28,8 +29,16 @@ func _process(delta: float) -> void:
 	if holdingSkip and canSkip:
 		holdProgress += delta / timeToHold
 		if holdProgress >= 1.0:
-			NodeRelations.loadScene("res://Scenes/Village1.tscn")
 			canSkip = false
+			$"../Click".play()
+			$"../Storyboard".queue_free()
+			$SkipProgress.hide()
+			text = "Intro has been skipped!"
+			await TimeManager.wait(0.5)
+			var tween = NodeRelations.createTween()
+			tween.tween_property(self, "self_modulate", Color.TRANSPARENT, 1.0)
+			await TimeManager.wait(1.2)
+			NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
 	else:
 		holdProgress = 0.0
 	$SkipProgress.scale.x = holdProgress

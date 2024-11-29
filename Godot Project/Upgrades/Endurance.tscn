@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv8bb5wgsd7qg"]
+
+[ext_resource type="Script" path="res://Upgrades/Endurance.gd" id="1_gh3hn"]
+[ext_resource type="Texture2D" uid="uid://svm1xswdjqcq" path="res://Upgrades/Endurance.png" id="2_vdmte"]
+
+[node name="Endurance" type="Node"]
+script = ExtResource("1_gh3hn")
+upgradeName = "Endurance"
+description = "decrease stamina exhaustion rate by [amt]%"
+accumativeDescription = "-[amt]% stamina exhaustion rate"
+preferredUpgradeAmounts = Array[float]([4.0])
+upgradeIdentifier = "staminaExhaustion"
+texture = ExtResource("2_vdmte")

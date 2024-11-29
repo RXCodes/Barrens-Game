@@ -9,6 +9,7 @@ var pickupDuration = 0.35
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Cash.scale = Vector2.ZERO
+	$CashShadow.scale = Vector2.ZERO
 	$AnimationPlayer.speed_scale = randfn(1.0, 0.15)
 	$AnimationPlayer.play("CashBounce")
 	var moveTween = NodeRelations.createTween()
@@ -26,8 +27,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if canBePickedUp:
-		var distanceToPlayer = Player.current.global_position.distance_squared_to(global_position)
-		if distanceToPlayer <= pickupDistance ** 2:
+		var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
+		if distanceToPlayerSquared <= (pickupDistance * Player.current.pickUpRangeMultiplier) ** 2:
 			pickup()
 	if pickingUp:
 		pickupAnimationProgress += delta / pickupDuration

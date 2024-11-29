@@ -1,7 +1,7 @@
 class_name Bullet extends NinePatchRect
 
 ## this is used for animating the bullet (only visual)
-static var targetBulletTravelSpeed = 200
+static var targetBulletTravelSpeed = 100
 static var bulletTravelSpeedDeviation = 15
 static var rotationOffset = -deg_to_rad(90.0)
 static var bulletScale = 1.5
@@ -30,14 +30,14 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	fireBullet.pivot_offset = Vector2(4, 8)
 	fireBullet.rotation = bulletAngle
 	fireBullet.self_modulate = gun.bulletFireColor
-	fireBullet.fadeTime = randfn(0.3, 0.1)
 	fireBullet.maximumDistance = (travelDistance / bulletScale) + 10
 	var canvasItemMaterial = CanvasItemMaterial.new()
 	canvasItemMaterial.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
 	fireBullet.material = canvasItemMaterial
 	fireBullet.gun = gun
 	fireBullet.sourceNode = sourceNode
-	NodeRelations.rootNode.find_child("Level").add_child(fireBullet)
+	fireBullet.z_index = 3
+	smokeBullet.add_sibling(fireBullet)
 
 # bullet functionality
 var fadeTime: float = 0.3
@@ -47,25 +47,22 @@ func _ready() -> void:
 	texture = load("res://WeaponsContents/BulletTrail.png")
 	region_rect = Rect2(8, 0, 16, 32)
 	patch_margin_left = 4
-	patch_margin_top = 4
+	patch_margin_top = 0
 	patch_margin_right = 4
-	patch_margin_bottom = 4
+	patch_margin_bottom = 0
 	scale = Vector2(bulletScale, bulletScale)
-	var zScore = global_position.y
 	normalDirection = Vector2.from_angle(rotation - rotationOffset)
-	if normalDirection.y < 0:
-		zScore -= 50
+	if normalDirection.y > 0:
+		z_index = 1
+	if not smokeBullet:
+		size.x += 8
+		position -= normalDirection * speed * 0.5
 	else:
-		zScore += 50
-	if smokeBullet:
-		zScore -= 1
-	else:
-		size.x += 5
-	var tween = NodeRelations.createTween()
-	var finalColor = self_modulate
-	finalColor.a = 0.0
-	tween.tween_property(self, "self_modulate", finalColor, fadeTime)
-	tween.tween_callback(free)
+		var tween = NodeRelations.createTween()
+		var finalColor = self_modulate
+		finalColor.a = 0.0
+		tween.tween_property(self, "self_modulate", finalColor, fadeTime)
+		tween.tween_callback(free)
 
 var smokeBullet = false
 var speed = randfn(targetBulletTravelSpeed, bulletTravelSpeedDeviation)
@@ -75,24 +72,21 @@ var frames: int = 0
 var gun: Gun
 func _process(delta: float) -> void:
 	if smokeBullet:
-		size.y += speed * 0.7
-		distanceTravelled += speed * 0.7
+		size.y += speed * 0.5
+		distanceTravelled += speed * 0.5
 		if distanceTravelled >= maximumDistance:
 			size.y = maximumDistance
 	else:
-		if frames == 0:
-			global_position -= normalDirection * speed * 0.5
-		size.y += speed * 0.8
-		scale.x *= 0.95
-		global_position += normalDirection * speed * 0.4
-		distanceTravelled += speed * 1.2
+		var bulletLength = 75
+		size.y += speed
+		if size.y >= bulletLength:
+			global_position += normalDirection * speed
+			size.y = bulletLength
 		if distanceTravelled >= maximumDistance:
-			size.y -= speed * 0.95
-			if size.y <= 10 and frames >= 3:
-				free()
-			elif size.y <= 10:
-				size.y = maximumDistance * 0.5
-	frames += 1
+			size.y -= speed * 2
+		distanceTravelled += speed
+		if size.y <= 0.05:
+			queue_free()
 
 var needsRaycast = true
 func _physics_process(delta: float) -> void:
@@ -104,14 +98,15 @@ func _physics_process(delta: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
-	var query = PhysicsRayQueryParameters2D.create(global_position, global_position + projectoryVector, mask)
-	var result = space_state.intersect_ray(query)
+	var originPosition = global_position - (normalDirection * 17.5)
+	var enemyQuery = PhysicsRayQueryParameters2D.create(originPosition, global_position + projectoryVector, mask)
+	var result = space_state.intersect_ray(enemyQuery)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale
 		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
 		if enemy and gun:
 			enemy.call("onHit", result.position)
-			enemy.call("damage", randfn(gun.targetDamage, gun.damageSpread), sourceNode)
+			enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
 		return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)

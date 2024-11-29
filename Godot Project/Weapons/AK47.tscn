@@ -25,6 +25,7 @@ texture = ExtResource("2_meaok")
 shellTexture = ExtResource("3_i4os7")
 magazineTexture = ExtResource("4_vtw2n")
 drawingOffset = Vector2(10, 0)
+dropTextureOffset = Vector2(-9.652, 33.235)
 shootSound = ExtResource("5_jif8r")
 shootVolumeOffset = -12.0
 shootPitchVariance = 0.1

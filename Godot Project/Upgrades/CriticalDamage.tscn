@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdnv1qsdedxvo"]
+
+[ext_resource type="Script" path="res://Upgrades/CriticalDamage.gd" id="1_5iedc"]
+[ext_resource type="Texture2D" uid="uid://b6ki3owib2o3w" path="res://Upgrades/CriticalDamage.png" id="2_1kmup"]
+
+[node name="CriticalDamage" type="Node"]
+script = ExtResource("1_5iedc")
+upgradeName = "Critical Damage"
+description = "increase chance to strike a critical hit by [amt]%"
+accumativeDescription = "+[amt]% increased chance to deal a critical hit"
+preferredUpgradeAmounts = Array[float]([25.0])
+upgradeIdentifier = "criticalDamage"
+texture = ExtResource("2_1kmup")

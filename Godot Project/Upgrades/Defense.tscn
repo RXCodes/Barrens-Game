@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://tr5svkfp0rey"]
+
+[ext_resource type="Script" path="res://Upgrades/Defense.gd" id="1_lqqrp"]
+[ext_resource type="Texture2D" uid="uid://b4ygubttmqo0h" path="res://Upgrades/Defense.png" id="2_0w80u"]
+
+[node name="Defense" type="Node"]
+script = ExtResource("1_lqqrp")
+upgradeName = "Defense"
+description = "decrease damage taken from enemies by [amt]%"
+accumativeDescription = "-[amt]% damage from enemies"
+preferredUpgradeAmounts = Array[float]([2.0])
+upgradeIdentifier = "defense"
+texture = ExtResource("2_0w80u")

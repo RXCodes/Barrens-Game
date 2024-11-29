@@ -8,7 +8,7 @@ void fragment() {
 	vec4 c = textureLod(screen_texture, SCREEN_UV, 0.0);
 	c.rgb = vec3(0.0);
 	if (c.a > 0.1) {
-		c.a = 0.35;
+		c.a = 0.2;
 	}
 	COLOR = c;
 }

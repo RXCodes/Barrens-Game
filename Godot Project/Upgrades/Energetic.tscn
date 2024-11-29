@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://x23nfquqj6dh"]
+
+[ext_resource type="Script" path="res://Upgrades/Energetic.gd" id="1_vsstl"]
+[ext_resource type="Texture2D" uid="uid://jjju8y0kvy41" path="res://Upgrades/Energetic.png" id="2_fw084"]
+
+[node name="Energetic" type="Node"]
+script = ExtResource("1_vsstl")
+upgradeName = "Energetic"
+description = "increase stamina recovery rate by [amt]%"
+accumativeDescription = "+[amt]% stamina recovery rate"
+preferredUpgradeAmounts = Array[float]([5.0])
+upgradeIdentifier = "staminaRecovery"
+texture = ExtResource("2_fw084")

@@ -1,0 +1,176 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqxjo5xjxe2r5"]
+
+[ext_resource type="Script" path="res://Models/AmmoPickup.gd" id="1_71e0v"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="2_2ybcr"]
+[ext_resource type="Texture2D" uid="uid://dfhk7j2g4ou7i" path="res://ModelContents/AmmoDrop/BulletPickup.png" id="3_eb0cg"]
+[ext_resource type="Texture2D" uid="uid://dk1yh7mwv1k7y" path="res://Particles/HitAnimation/0.png" id="4_hsua5"]
+
+[sub_resource type="Animation" id="Animation_i6vst"]
+resource_name = "AmmoPickup"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.85, 0.85), Vector2(0.745816, 0.745816), Vector2(0.664678, 0.664678), Vector2(0.603704, 0.603704), Vector2(0.560014, 0.560014), Vector2(0.530727, 0.530727), Vector2(0.512963, 0.512963), Vector2(0.503841, 0.503841), Vector2(0.50048, 0.50048), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ammo:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.2, 3), Vector2(1.43813, 2.70233), Vector2(1.62359, 2.47051), Vector2(1.76296, 2.2963), Vector2(1.86283, 2.17147), Vector2(1.92977, 2.08779), Vector2(1.97037, 2.03704), Vector2(1.99122, 2.01097), Vector2(1.9989, 2.00137), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Ammo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23), Vector2(-5.67773e-06, 12.0002), Vector2(-4.15777e-06, 3.43361), Vector2(-3.01555e-06, -3.00403), Vector2(-2.19711e-06, -7.61684), Vector2(-1.64849e-06, -10.7089), Vector2(-1.31571e-06, -12.5845), Vector2(-1.14483e-06, -13.5476), Vector2(-1.08187e-06, -13.9024), Vector2(-1.07288e-06, -13.9531)]
+}
+
+[sub_resource type="Animation" id="Animation_cgted"]
+resource_name = "AmmoSpawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.268231, 0.268231), Vector2(0.454942, 0.454942), Vector2(0.573474, 0.573474), Vector2(0.637167, 0.637167), Vector2(0.659363, 0.659363), Vector2(0.653404, 0.653404), Vector2(0.632629, 0.632629), Vector2(0.610381, 0.610381), Vector2(0.6, 0.6), Vector2(0.604287, 0.604287), Vector2(0.617149, 0.617149), Vector2(0.638584, 0.638584), Vector2(0.668594, 0.668594), Vector2(0.707178, 0.707178), Vector2(0.754337, 0.754337), Vector2(0.81007, 0.81007), Vector2(0.838662, 0.838662), Vector2(0.813329, 0.813329), Vector2(0.79657, 0.79657), Vector2(0.788386, 0.788386), Vector2(0.788776, 0.788776), Vector2(0.79774, 0.79774), Vector2(0.815278, 0.815278), Vector2(0.84139, 0.84139), Vector2(0.840363, 0.840363), Vector2(0.834517, 0.834517), Vector2(0.837245, 0.837245), Vector2(0.848547, 0.848547), Vector2(0.846103, 0.846103), Vector2(0.85, 0.85)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ammo:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 0), Vector2(2, 0.78398), Vector2(2, 1.78122), Vector2(2, 2.5), Vector2(2, 2.74583), Vector2(2, 2.59197), Vector2(2, 2.25), Vector2(2, 1.93109), Vector2(2, 1.75871), Vector2(2, 1.75), Vector2(2, 1.848), Vector2(2, 1.97265), Vector2(2, 2.0625), Vector2(2, 2.09323), Vector2(2, 2.074), Vector2(2, 2.03125), Vector2(2, 1.99139), Vector2(2, 1.96984), Vector2(2, 1.96875), Vector2(2, 1.981), Vector2(2, 1.99658), Vector2(2, 2.00781), Vector2(2, 2.01165), Vector2(2, 2.00925), Vector2(2, 2.00391), Vector2(2, 1.99892), Vector2(2, 1.99623), Vector2(2, 1.99609), Vector2(2, 1.99762), Vector2(2, 1.99957), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Ammo:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23), Vector2(-6.14097e-06, 14.6111), Vector2(-4.70975e-06, 6.54461), Vector2(-3.39073e-06, -0.889521), Vector2(-2.2346e-06, -7.40559), Vector2(-1.28578e-06, -12.7532), Vector2(-5.80753e-07, -16.7268), Vector2(-1.46597e-07, -19.1738), Vector2(0, -20), Vector2(-1.19209e-07, -19.3281), Vector2(-4.76837e-07, -17.3125), Vector2(-1.07288e-06, -13.9531), Vector2(-1.90735e-06, -9.25), Vector2(-2.98023e-06, -3.20313), Vector2(-4.29153e-06, 4.1875), Vector2(-5.84125e-06, 12.9219), Vector2(-7.62939e-06, 23), Vector2(-6.79493e-06, 18.2969), Vector2(-6.19888e-06, 14.9375), Vector2(-5.84125e-06, 12.9219), Vector2(-5.72204e-06, 12.25), Vector2(-5.84125e-06, 12.9219), Vector2(-6.19888e-06, 14.9375), Vector2(-6.79493e-06, 18.2969), Vector2(-7.62939e-06, 23), Vector2(-7.27176e-06, 20.9844), Vector2(-7.15255e-06, 20.3125), Vector2(-7.27176e-06, 20.9844), Vector2(-7.62939e-06, 23), Vector2(-7.51018e-06, 22.3281), Vector2(-7.62939e-06, 23)]
+}
+
+[sub_resource type="Animation" id="Animation_a3sfp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.85, 0.85)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Ammo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Ammo:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocr2j"]
+_data = {
+"AmmoPickup": SubResource("Animation_i6vst"),
+"AmmoSpawn": SubResource("Animation_cgted"),
+"RESET": SubResource("Animation_a3sfp")
+}
+
+[sub_resource type="Gradient" id="Gradient_qf6wg"]
+offsets = PackedFloat32Array(0, 0.2021, 0.850394, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 1, 0)
+
+[node name="AmmoEntity" type="Node2D"]
+position = Vector2(0, -35)
+script = ExtResource("1_71e0v")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AmmoShadow")
+libraries = {
+"": SubResource("AnimationLibrary_ocr2j")
+}
+
+[node name="AmmoShadow" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.286275)
+texture_filter = 1
+position = Vector2(0, 33)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("2_2ybcr")
+offset = Vector2(-1.78281, -37.0169)
+
+[node name="Ammo" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-7.62939e-06, 23)
+scale = Vector2(2, 2)
+texture = ExtResource("3_eb0cg")
+offset = Vector2(2.38419e-06, -0.693151)
+
+[node name="AmmoParticles" type="CPUParticles2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 21)
+amount = 6
+lifetime = 2.0
+randomness = 0.25
+texture = ExtResource("4_hsua5")
+emission_shape = 1
+emission_sphere_radius = 23.13
+gravity = Vector2(0, -5)
+angle_min = -50.0
+angle_max = 50.0
+scale_amount_min = 0.4
+scale_amount_max = 1.4
+color_ramp = SubResource("Gradient_qf6wg")

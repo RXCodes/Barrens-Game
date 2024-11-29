@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://whhijajq77mm"]
+
+[ext_resource type="Script" path="res://Upgrades/SpeedBoost.gd" id="1_453mx"]
+[ext_resource type="Texture2D" uid="uid://bi7ul53db8i01" path="res://Upgrades/SpeedBoost.png" id="2_ok8x5"]
+
+[node name="SpeedBoost" type="Node"]
+script = ExtResource("1_453mx")
+upgradeName = "Speed Boost"
+description = "increase movement speed by [amt]%"
+accumativeDescription = "+[amt]% movement speed"
+preferredUpgradeAmounts = Array[float]([1.2])
+upgradeIdentifier = "movementSpeed"
+texture = ExtResource("2_ok8x5")

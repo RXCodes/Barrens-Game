@@ -28,6 +28,7 @@ shellTexture = ExtResource("3_3fs4u")
 magazineTexture = ExtResource("4_gn353")
 drawingOffset = Vector2(48, -4)
 rightHandOffset = Vector2(-16, 10)
+dropTextureOffset = Vector2(11.348, 24.235)
 shootSound = ExtResource("5_cjnv5")
 shootVolumeOffset = -4.0
 shootPitchVariance = 0.05
