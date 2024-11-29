@@ -1946,23 +1946,23 @@ position = Vector2(5156, 138)
 flipX = true
 
 [node name="DummyRender18" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(4857, 205)
+position = Vector2(4857, 202)
 flipX = true
 
 [node name="DummyRender19" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(4943, 204)
+position = Vector2(4943, 201)
 flipX = true
 
 [node name="DummyRender20" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5030, 205)
+position = Vector2(5030, 202)
 flipX = true
 
 [node name="DummyRender21" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5115, 207)
+position = Vector2(5115, 204)
 flipX = true
 
 [node name="DummyRender22" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5201, 207)
+position = Vector2(5201, 204)
 flipX = true
 
 [node name="DummyRender24" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
@@ -1982,23 +1982,23 @@ position = Vector2(5155, 272)
 flipX = true
 
 [node name="DummyRender28" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(4858, 329)
+position = Vector2(4858, 327)
 flipX = true
 
 [node name="DummyRender29" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(4944, 328)
+position = Vector2(4944, 326)
 flipX = true
 
 [node name="DummyRender30" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5031, 329)
+position = Vector2(5031, 327)
 flipX = true
 
 [node name="DummyRender31" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5116, 331)
+position = Vector2(5116, 329)
 flipX = true
 
 [node name="DummyRender32" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
-position = Vector2(5202, 331)
+position = Vector2(5202, 329)
 flipX = true
 
 [node name="TimeManager" parent="." instance=ExtResource("27_rwois")]

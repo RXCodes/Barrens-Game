@@ -1,0 +1,364 @@
+[gd_scene load_steps=22 format=3 uid="uid://cffrwkp3qr2x7"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_djgmf"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_qakkk"]
+[ext_resource type="Texture2D" uid="uid://cs1dwa1ohc6ae" path="res://Scenes/Intro/Images/Slide14.png" id="3_6do1r"]
+[ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_2336j"]
+[ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="6_kvaso"]
+[ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_1jf8o"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="10_kxgp6"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="11_kojta"]
+[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="13_c2xpd"]
+[ext_resource type="Texture2D" uid="uid://dq11xdygrj2ar" path="res://UI/EnemyHealthBarEmpty.png" id="13_ui30x"]
+[ext_resource type="Texture2D" uid="uid://3vsk53crm10j" path="res://UI/EnemyHealthBar.png" id="14_uajqw"]
+[ext_resource type="AudioStream" uid="uid://hslx4gjkh0rq" path="res://UI/Popups/TutorialJingle.mp3" id="15_lhony"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="16_qx1fm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("11_kojta")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hcuy1"]
+device = -1
+physical_keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_35fly"]
+events = [SubResource("InputEventKey_hcuy1")]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3k4x"]
+font = ExtResource("11_kojta")
+font_size = 20
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="GDScript" id="GDScript_kc6f5"]
+resource_name = "HoldToStart"
+script/source = "extends Label
+
+var canSkip = false
+var holdingSkip = false
+var holdProgress = 0.0
+var timeToHold = 1.5
+var startingGame = false
+var loadProgress = 0.0
+var canLoadScene = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	modulate = Color.TRANSPARENT
+	$\"../../FadeToBlack\".hide()
+	$\"../../AnimationPlayer\".play()
+	await get_tree().physics_frame
+	await TimeManager.wait(1.0)
+	canSkip = true
+	var tween = NodeRelations.createTween()
+	tween.tween_property(self, \"modulate\", Color.WHITE, 0.75)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if startingGame:
+		$SkipProgress.value = loadProgress * 100.0
+		if loadProgress == 1.0:
+			text = \"Starting Game\"
+		else:
+			text = \"Loading (\" + str(floor(loadProgress * 100)) + \"%)\"
+		if canLoadScene and loadProgress == 1.0:
+			startLoadScene()
+		return
+	if holdingSkip and canSkip:
+		holdProgress += delta / timeToHold
+		if holdProgress >= 1.0:
+			canSkip = false
+			TitleScreenManager.canInteract = false
+			modulate = Color.GOLDENROD
+			$\"../ExitButton\".disabled = true
+			$\"../../../Start\".play()
+			$SkipProgress.value = true
+			$SkipProgress.value = 0
+			var thread = Thread.new()
+			thread.start(loadAssets)
+			startingGame = true
+			await TimeManager.wait(2.5)
+			canLoadScene = true
+	else:
+		holdProgress = 0.0
+	$SkipProgress.value = holdProgress * 100.0
+
+func _input(event: InputEvent) -> void:
+	if event.as_text() != \"Space\":
+		return
+	holdingSkip = event.is_pressed()
+
+func loadAssets() -> void:
+	# load assets to memory to prevent performance drops during gameplay
+	var assetsToLoad = []
+	var directoriesToExplore = exploreDirectory(\"res://\")
+	
+	print(\"---- Start Loading ----\")
+	
+	# search the whole project for audio and images to load
+	while directoriesToExplore.size() > 0:
+		var newDirectories = []
+		for directory in directoriesToExplore:
+			newDirectories.append_array(exploreDirectory(directory))
+			for assetPath in DirAccess.get_files_at(directory):
+				if assetPath.ends_with(\".png\") or assetPath.ends_with(\".mp3\"):
+					assetsToLoad.append(directory + assetPath)
+				# also load models (not from res://Scene)
+				if not assetPath.begins_with(\"res://Scene\") and assetPath.ends_with(\".tscn\"):
+					assetsToLoad.append(directory + assetPath)
+		directoriesToExplore = newDirectories
+	
+	# create a placeholder sprite and audio player for loading
+	var placeholderSprite = Sprite2D.new()
+	var placeholderAudioPlayer = AudioStreamPlayer.new()
+	NodeRelations.rootNode.add_child(placeholderSprite)
+	NodeRelations.rootNode.add_child(placeholderAudioPlayer)
+	placeholderSprite.position = Vector2(-1000000, -1000000)
+	
+	# start loading the resources
+	var totalEntries = assetsToLoad.size()
+	var currentEntry = 0.0
+	for assetPath in assetsToLoad:
+		if assetPath.ends_with(\".png\"):
+			placeholderSprite.texture = load(assetPath)
+		if assetPath.ends_with(\".mp3\"):
+			placeholderAudioPlayer.stream = load(assetPath)
+		if assetPath.ends_with(\".tscn\"):
+			var instance = load(assetPath).instantiate()
+			instance.queue_free()
+		currentEntry += 1
+		loadProgress = currentEntry / totalEntries
+		print(\"Loading \" + str(round(loadProgress * 100)) + \"%\")
+	
+	# clean up
+	placeholderSprite.queue_free()
+	placeholderAudioPlayer.queue_free()
+	print(\"---- Stop Loading ----\")
+
+func exploreDirectory(path: String) -> Array:
+	var directories = []
+	for directory in DirAccess.get_directories_at(path):
+		directories.append(path + directory + \"/\")
+	return directories
+
+func startLoadScene() -> void:
+	canLoadScene = false
+	var fadeToBlack = $\"../../FadeToBlack\"
+	fadeToBlack.show()
+	var tween = NodeRelations.createTween()
+	tween.tween_property(fadeToBlack, \"color\", Color.BLACK, 2.0)
+	await TimeManager.wait(2.15)
+	GamePopup.current = null
+	await get_tree().physics_frame
+	NodeRelations.loadScene(\"res://Scenes/Village1.tscn\")
+"
+
+[sub_resource type="Animation" id="Animation_ouhm4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SquareUI/Thumbnail:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 300, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_c5el2"]
+resource_name = "StartGame"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SquareUI/Thumbnail:region_rect")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.03333, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 300, 100), Rect2(0, 100, 300, 100), Rect2(0, 0, 300, 100)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekf2i"]
+_data = {
+"RESET": SubResource("Animation_ouhm4"),
+"StartGame": SubResource("Animation_c5el2")
+}
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 864)
+script = ExtResource("1_djgmf")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.440127, 0.503688, 0.764535, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -233.0
+offset_right = -69.0
+offset_bottom = -47.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_qakkk")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Thumbnail" type="Sprite2D" parent="Popup/SquareUI"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(138, 69.2)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("3_6do1r")
+region_enabled = true
+region_rect = Rect2(0, 0, 300, 100)
+
+[node name="Thumbnail2" type="Sprite2D" parent="Popup/SquareUI/Thumbnail"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("3_6do1r")
+region_enabled = true
+region_rect = Rect2(0, 0, 303, 103)
+
+[node name="Separator2" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 270.6
+offset_top = 19.0
+offset_right = 272.6
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("10_kxgp6")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.569733, 0.608967, 0.705495, 1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 117.2
+offset_right = 1082.0
+offset_bottom = 309.2
+scale = Vector2(0.24, 0.24)
+text = "Fend off waves of enemies in your village. Earn cash and use it to buy items and upgrades. Be strategic with every move and action. Survive as long as you can!"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Start Game
+"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 3.6
+offset_right = 274.0
+offset_bottom = 13.6
+shortcut = SubResource("Shortcut_35fly")
+texture_normal = ExtResource("5_2336j")
+texture_pressed = ExtResource("5_2336j")
+texture_hover = ExtResource("6_kvaso")
+script = ExtResource("7_1jf8o")
+
+[node name="HoldToContinue" type="Label" parent="Popup/SquareUI"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -68.5
+offset_top = -24.4
+offset_right = 203.5
+offset_bottom = 1.59998
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+text = "Hold Spacebar to Start"
+label_settings = SubResource("LabelSettings_n3k4x")
+horizontal_alignment = 1
+script = SubResource("GDScript_kc6f5")
+
+[node name="SkipProgress" type="TextureProgressBar" parent="Popup/SquareUI/HoldToContinue"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.8
+offset_bottom = 4.2
+grow_horizontal = 2
+grow_vertical = 0
+step = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_under = ExtResource("13_ui30x")
+texture_progress = ExtResource("14_uajqw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Popup"]
+libraries = {
+"": SubResource("AnimationLibrary_ekf2i")
+}
+
+[node name="FadeToBlack" type="ColorRect" parent="Popup"]
+visible = false
+offset_left = -1301.0
+offset_top = -940.0
+offset_right = 1457.0
+offset_bottom = 849.0
+color = Color(0, 0, 0, 0)
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_lhony")
+volume_db = 5.0
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_qx1fm")
+volume_db = 5.0
+
+[node name="Start" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c2xpd")
+volume_db = 5.0
+
+[connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]

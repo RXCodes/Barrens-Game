@@ -19,6 +19,8 @@ func _ready() -> void:
 
 # move crosshair every frame
 func _process(delta: float) -> void:
+	if not PlayerCamera.current:
+		return
 	position = get_viewport().get_mouse_position() - (size / 2.0)
 	position -= get_viewport_rect().size / 2.0
 	reloadingIcon.position = get_viewport().get_mouse_position() - (reloadingIcon.size / 2.0)

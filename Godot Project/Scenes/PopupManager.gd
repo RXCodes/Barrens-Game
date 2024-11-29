@@ -6,6 +6,7 @@ var background: ColorRect
 var tween: Tween
 var data: Dictionary
 
+## used in tutorial scene - quiets the ambience when the popup is enabled
 @export var silencesAmbience = false
 
 # Called when the node enters the scene tree for the first time.

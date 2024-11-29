@@ -27,6 +27,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	preloadParticles()
 	await TimeManager.wait(0.5)
+	show()
 	
 	# Slide 1
 	IntroAmbience.fadeIn(1.5)

@@ -68,9 +68,10 @@ func _ready() -> void:
 		await TimeManager.wait(0.25)
 		if not is_instance_valid(GamePopup.current):
 			break
+	await TimeManager.wait(1.0)
 	
 	# tutorial has been completed
 	var fadeOutTween = NodeRelations.createTween()
 	fadeOutTween.tween_property(fadeIn, "self_modulate", Color.BLACK, 3.0)
 	await TimeManager.wait(3.5)
-	NodeRelations.loadScene("res://Scenes/Village1.tscn")
+	NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")

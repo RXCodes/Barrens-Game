@@ -1,0 +1,341 @@
+[gd_scene load_steps=14 format=3 uid="uid://duoky85j1r6gx"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_cudko"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_2oegm"]
+[ext_resource type="Texture2D" uid="uid://cuiicpwe414tj" path="res://UI/BarrensLogo.png" id="3_wee0g"]
+[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="9_f1xfh"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="10_y1xmh"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="11_y1kn6"]
+[ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="12_whljy"]
+[ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="13_fdjcg"]
+[ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="14_m1q72"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="16_bhe2s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("11_y1kn6")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hcuy1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_retvf"]
+events = [SubResource("InputEventKey_hcuy1")]
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 894)
+script = ExtResource("1_cudko")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.672553, 0.46575, 0.36969, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -300.0
+offset_right = -69.0
+offset_bottom = -60.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_2oegm")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Bullet" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(138, 54.8)
+texture = ExtResource("3_wee0g")
+
+[node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 0
+offset_left = 262.2
+offset_top = 95.6
+offset_right = 264.2
+offset_bottom = 342.6
+rotation = 1.5708
+scale = Vector2(0.538776, 1)
+texture = ExtResource("10_y1xmh")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Separator2" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("10_y1xmh")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.69276, 0.581337, 0.548797, 1)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 71.0
+offset_right = 1011.0
+offset_bottom = 171.0
+scale = Vector2(0.25, 0.25)
+text = "Game developed by a group of students from the university of louisville for CSE 350."
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.618087, 0.783893, 0.579046, 1)
+layout_mode = 0
+offset_left = 9.99994
+offset_top = 100.8
+offset_right = 867.0
+offset_bottom = 159.8
+scale = Vector2(0.3, 0.3)
+text = "We Thank you for playing our game!"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label4" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.976089, 0.616912, 0.601671, 1)
+layout_mode = 0
+offset_left = 11.6
+offset_top = 120.0
+offset_right = 430.6
+offset_bottom = 179.0
+scale = Vector2(0.23, 0.23)
+text = "Robinson X."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label9" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.735763, 0.728778, 0.709799, 1)
+layout_mode = 0
+offset_left = 70.2
+offset_top = 120.0
+offset_right = 119.2
+offset_bottom = 179.0
+scale = Vector2(0.23, 0.23)
+text = "-"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label10" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.735763, 0.728778, 0.709799, 1)
+layout_mode = 0
+offset_left = 58.8
+offset_top = 142.0
+offset_right = 107.8
+offset_bottom = 201.0
+scale = Vector2(0.23, 0.23)
+text = "-"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label11" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.735763, 0.728778, 0.709799, 1)
+layout_mode = 0
+offset_left = 48.8
+offset_top = 153.2
+offset_right = 97.8
+offset_bottom = 212.2
+scale = Vector2(0.23, 0.23)
+text = "-"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label12" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.735763, 0.728778, 0.709799, 1)
+layout_mode = 0
+offset_left = 60.0
+offset_top = 176.4
+offset_right = 109.0
+offset_bottom = 235.4
+scale = Vector2(0.23, 0.23)
+text = "-"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label13" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.735763, 0.728778, 0.709799, 1)
+layout_mode = 0
+offset_left = 54.0
+offset_top = 196.8
+offset_right = 103.0
+offset_bottom = 255.8
+scale = Vector2(0.23, 0.23)
+text = "-"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label5" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.976089, 0.616912, 0.601671, 1)
+layout_mode = 0
+offset_left = 11.6
+offset_top = 141.6
+offset_right = 430.6
+offset_bottom = 200.6
+scale = Vector2(0.23, 0.23)
+text = "Justin R."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.976089, 0.616912, 0.601671, 1)
+layout_mode = 0
+offset_left = 11.6
+offset_top = 152.8
+offset_right = 430.6
+offset_bottom = 211.8
+scale = Vector2(0.23, 0.23)
+text = "Grey N."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label7" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.976089, 0.616912, 0.601671, 1)
+layout_mode = 0
+offset_left = 11.6
+offset_top = 176.0
+offset_right = 430.6
+offset_bottom = 235.0
+scale = Vector2(0.23, 0.23)
+text = "Joseph N."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label8" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.976089, 0.616912, 0.601671, 1)
+layout_mode = 0
+offset_left = 11.6
+offset_top = 196.8
+offset_right = 430.6
+offset_bottom = 255.8
+scale = Vector2(0.23, 0.23)
+text = "Chris P."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label19" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.901119, 0.60603, 0.919121, 1)
+layout_mode = 0
+offset_left = 13.2
+offset_top = 223.2
+offset_right = 1091.2
+offset_bottom = 282.2
+scale = Vector2(0.23, 0.23)
+text = "CSE 350: Section 50 - Group 3"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label14" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.557271, 0.767417, 0.839921, 1)
+layout_mode = 0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 903.0
+offset_bottom = 179.0
+scale = Vector2(0.23, 0.23)
+text = "Project manager, UI/UX design, animation, graphic and audio design"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label15" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.557271, 0.767417, 0.839921, 1)
+layout_mode = 0
+offset_left = 71.2
+offset_top = 142.4
+offset_right = 894.2
+offset_bottom = 217.4
+scale = Vector2(0.23, 0.23)
+text = "UI, enemy and environment design"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label16" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.557271, 0.767417, 0.839921, 1)
+layout_mode = 0
+offset_left = 60.0
+offset_top = 153.0
+offset_right = 978.0
+offset_bottom = 228.0
+scale = Vector2(0.23, 0.23)
+text = "Enemy design, environment/level design and quality assurance"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label17" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.557271, 0.767417, 0.839921, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 176.0
+offset_right = 920.0
+offset_bottom = 251.0
+scale = Vector2(0.23, 0.23)
+text = "environment/level design, enemy design and quality assurance"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label18" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.557271, 0.767417, 0.839921, 1)
+layout_mode = 0
+offset_left = 64.0
+offset_top = 196.0
+offset_right = 939.0
+offset_bottom = 271.0
+scale = Vector2(0.23, 0.23)
+text = "Level design, ui design and beta testing/quality assurance"
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Game Credits
+"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 3.6
+offset_right = 274.0
+offset_bottom = 13.6
+shortcut = SubResource("Shortcut_retvf")
+texture_normal = ExtResource("12_whljy")
+texture_pressed = ExtResource("12_whljy")
+texture_hover = ExtResource("13_fdjcg")
+script = ExtResource("14_m1q72")
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_f1xfh")
+volume_db = -4.0
+pitch_scale = 6.0
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_bhe2s")
+volume_db = 5.0
+
+[connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]

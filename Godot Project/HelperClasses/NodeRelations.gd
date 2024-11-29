@@ -27,5 +27,15 @@ static func loadScene(path: String) -> void:
 	# free old scene
 	oldRootNode.queue_free()
 
+static func setSceneRoot(node: Node) -> void:
+	# remove the old scene
+	var parent = rootNode.get_parent()
+	var oldRootNode = rootNode
+	oldRootNode.process_mode = Node.PROCESS_MODE_DISABLED
+	parent.remove_child(oldRootNode)
+	
+	# set it with the node
+	parent.add_child(node)
+
 static func createTween() -> Tween:
 	return NodeRelations.rootNode.create_tween()
