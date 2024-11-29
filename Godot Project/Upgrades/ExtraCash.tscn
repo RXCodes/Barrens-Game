@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% cash dropped from enemies"
 preferredUpgradeAmounts = Array[float]([5.0])
 upgradeIdentifier = "extraCash"
 texture = ExtResource("2_v3841")
+maxRandomUpgradeAmountMultiplier = 1.5

@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% magazine capacity"
 preferredUpgradeAmounts = Array[float]([4.0])
 upgradeIdentifier = "magazineCapacity"
 texture = ExtResource("2_36iap")
+maxRandomUpgradeAmountMultiplier = 1.0

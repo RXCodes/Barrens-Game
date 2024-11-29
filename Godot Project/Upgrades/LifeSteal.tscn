@@ -11,4 +11,4 @@ accumativeDescription = "+[amt]% life steal"
 preferredUpgradeAmounts = Array[float]([2.0])
 upgradeIdentifier = "lifeSteal"
 texture = ExtResource("2_0y250")
-minRandomUpgradeAmountMultiplier = 1.0
+maxRandomUpgradeAmountMultiplier = 1.5

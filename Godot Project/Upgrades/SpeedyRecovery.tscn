@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% passive regeneration rate"
 preferredUpgradeAmounts = Array[float]([15.0])
 upgradeIdentifier = "regenerateRate"
 texture = ExtResource("2_t0s6f")
+maxRandomUpgradeAmountMultiplier = 3.0

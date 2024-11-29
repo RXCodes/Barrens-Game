@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="21_6bqoh"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="21_40mk5"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="21_evfkg"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
@@ -292,6 +293,20 @@ limitAmount = 1
 canRestock = true
 restockTime = 10
 restockAmount = 1
+
+[node name="LuckyCoin" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Lucky Coin"
+displayTexture = ExtResource("21_6bqoh")
+price = 100
+description = "Grants the choice to choose an upgrade."
+type = 3
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+costIncrementMultiplier = 1.125
 
 [node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")

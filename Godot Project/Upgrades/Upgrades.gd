@@ -67,6 +67,7 @@ func getDescription(amounts: Array) -> String:
 	return outputDescription
 
 # this sets up all the upgrades found in res://Upgrades
+static var upgradeNames = []
 static func _static_init() -> void:
 	print("--- Setting up upgrades ---")
 	var filePaths = DirAccess.get_files_at("res://Upgrades/")
@@ -76,14 +77,22 @@ static func _static_init() -> void:
 			var currentUpgrade: Upgrade = load(upgradePath).instantiate()
 			var upgradeStruct = currentUpgrade.getUpgradeStruct()
 			upgradeStructs.append(upgradeStruct)
+			upgradeNames.append(filePath.trim_suffix(".tscn"))
 			currentUpgrade.queue_free()
 			print("Setup upgrade: " + filePath)
 	print("--- Finished setting up upgrades ---")
 
+static func pickRandomUpgrades(count: int) -> Array:
+	var upgrades = []
+	upgradeNames.shuffle()
+	for i in range(count):
+		var upgradeName = upgradeNames[i]
+		upgrades.append(upgradeForName(upgradeName))
+	return upgrades
+
 static func upgradeForName(name: String) -> Upgrade:
 	var path = "res://Upgrades/" + name + ".tscn"
 	var upgrade = load(path).instantiate()
-	upgrade.queue_free()
 	return upgrade
 
 static func getCurrentUpgradeStructs() -> Array:

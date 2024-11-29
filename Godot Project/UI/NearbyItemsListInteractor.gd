@@ -6,7 +6,7 @@ static var showingDropdown: bool = false:
 		clickSound.play()
 static var current: NearbyItemsListInteractor
 static var clickSound: AudioStreamPlayer
-var scanRadius = 75
+var scanRadius = 140
 var discoveredItems = []
 
 func _ready() -> void:

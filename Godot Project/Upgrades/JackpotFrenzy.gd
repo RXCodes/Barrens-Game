@@ -6,5 +6,7 @@ func onUpgrade(amounts: Array) -> void:
 	Player.current.pickupCash(payout)
 	
 func getDescription(amounts: Array) -> String:
+	if not Player.current:
+		return "Player not found"
 	var payout = max(round(Player.current.totalCashEarned * 0.25) + 500, 1000)
 	return "Claim " + str(payout) + " cash"

@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% bounty for enemies"
 preferredUpgradeAmounts = Array[float]([10.0])
 upgradeIdentifier = "bigBounty"
 texture = ExtResource("2_475f7")
+maxRandomUpgradeAmountMultiplier = 1.0

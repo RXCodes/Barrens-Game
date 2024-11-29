@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% stamina recovery rate"
 preferredUpgradeAmounts = Array[float]([5.0])
 upgradeIdentifier = "staminaRecovery"
 texture = ExtResource("2_fw084")
+maxRandomUpgradeAmountMultiplier = 1.2

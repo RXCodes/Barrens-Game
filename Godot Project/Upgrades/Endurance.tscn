@@ -11,3 +11,4 @@ accumativeDescription = "-[amt]% stamina exhaustion rate"
 preferredUpgradeAmounts = Array[float]([4.0])
 upgradeIdentifier = "staminaExhaustion"
 texture = ExtResource("2_vdmte")
+maxRandomUpgradeAmountMultiplier = 2.0

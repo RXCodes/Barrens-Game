@@ -11,3 +11,4 @@ accumativeDescription = "-[amt]% shop prices"
 preferredUpgradeAmounts = Array[float]([5.0])
 upgradeIdentifier = "shopPrices"
 texture = ExtResource("2_hxml8")
+maxRandomUpgradeAmountMultiplier = 1.0

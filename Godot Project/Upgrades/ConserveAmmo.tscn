@@ -11,3 +11,4 @@ accumativeDescription = "-[amt]% ammo consumption"
 preferredUpgradeAmounts = Array[float]([1.0])
 upgradeIdentifier = "ammoConsumption"
 texture = ExtResource("2_j0mmk")
+maxRandomUpgradeAmountMultiplier = 2.5

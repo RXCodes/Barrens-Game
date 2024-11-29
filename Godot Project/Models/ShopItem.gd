@@ -21,7 +21,7 @@ class_name ShopItem extends Node
 ## how many items to sell per purchase
 @export var amount: int = 1
 
-enum ItemType {GUN, ITEM, UPGRADE}
+enum ItemType {GUN, ITEM, UPGRADE, LUCKY_COIN}
 @export var type: ItemType
 
 ## e.g., "Shotgun", "MachineGun" for GUN item type

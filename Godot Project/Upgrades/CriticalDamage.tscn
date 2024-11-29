@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% increased chance to deal a critical hit"
 preferredUpgradeAmounts = Array[float]([25.0])
 upgradeIdentifier = "criticalDamage"
 texture = ExtResource("2_1kmup")
+maxRandomUpgradeAmountMultiplier = 1.2

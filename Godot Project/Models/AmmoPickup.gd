@@ -1,7 +1,7 @@
 extends Node2D
 
 var canBePickedUp = false
-var pickupDistance = 75
+var pickupDistance = 120
 var pickingUp = false
 var pickupDuration = 0.25
 
