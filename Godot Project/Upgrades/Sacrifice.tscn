@@ -9,3 +9,4 @@ upgradeName = "Sacrifice"
 description = "increase damage, fire rate and reload speed by [amt]% but sacrifice [amt2]% of your maximum health"
 preferredUpgradeAmounts = Array[float]([30.0, 10.0])
 texture = ExtResource("2_yfkr4")
+maxRandomUpgradeAmountMultiplier = 2.5

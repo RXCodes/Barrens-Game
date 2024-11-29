@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://x7qfw3g1v32j"]
+
+[ext_resource type="Script" path="res://Upgrades/BigBounty.gd" id="1_i4vew"]
+[ext_resource type="Texture2D" uid="uid://cjq4npkkdnwfh" path="res://Upgrades/BigBounty.png" id="2_475f7"]
+
+[node name="BigBounty" type="Node"]
+script = ExtResource("1_i4vew")
+upgradeName = "Big Bounty"
+description = "defeated enemies drop [amt]% of their total health as cash"
+accumativeDescription = "+[amt]% bounty for enemies"
+preferredUpgradeAmounts = Array[float]([10.0])
+upgradeIdentifier = "bigBounty"
+texture = ExtResource("2_475f7")

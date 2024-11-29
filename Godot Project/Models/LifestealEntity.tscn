@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://6s3cslbh1cqh"]
+
+[ext_resource type="Texture2D" uid="uid://cq47i78b0lalb" path="res://Particles/HitAnimation/1.png" id="1_ecs6w"]
+[ext_resource type="AudioStream" uid="uid://dk8elshdbbxin" path="res://ModelContents/Lifesteal.mp3" id="2_61wgh"]
+
+[sub_resource type="Curve" id="Curve_cvfkl"]
+_data = [Vector2(0.00318471, 0), 0.0, 0.0, 0, 0, Vector2(0.130573, 0.991751), 0.0, 0.0, 0, 0, Vector2(0.55414, 0.86802), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_lbkfs"]
+offsets = PackedFloat32Array(0, 0.524476, 1)
+colors = PackedColorArray(1, 0, 0.133333, 1, 0.638211, 0.0700674, 0.244779, 1, 0.798436, 0.10952, 0.565786, 1)
+
+[sub_resource type="GDScript" id="GDScript_kqi2s"]
+resource_name = "Lifesteal"
+script/source = "extends CPUParticles2D
+
+# Called when the node enters the scene tree for the first time.
+var initialPosition: Vector2
+var progress = 0.0
+var duration = 0.75
+var exhausted: bool = false
+var healthIncrease: float = 0
+var riseSpeed = 500
+
+func _ready() -> void:
+	await get_tree().physics_frame
+	initialPosition = global_position
+	
+func _physics_process(delta: float) -> void:
+	progress += delta / duration
+	var playerPosition = Player.current.global_position + Vector2(0, -50)
+	global_position = initialPosition.lerp(playerPosition, progress)
+	initialPosition.y -= delta * riseSpeed
+	if progress >= 1.0 and not exhausted:
+		emitting = false
+		$Lifesteal.pitch_scale = randfn(1.0, 0.08)
+		Player.current.health = max(healthIncrease, Player.current.maximumHealth)
+		$Lifesteal.play()
+		$Explode.emitting = true
+		exhausted = true
+		await TimeManager.wait(2.0)
+		queue_free()
+"
+
+[node name="LifestealEntity" type="CPUParticles2D"]
+z_index = 2
+position = Vector2(-453, 159)
+amount = 30
+lifetime_randomness = 0.2
+texture = ExtResource("1_ecs6w")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_cvfkl")
+color_ramp = SubResource("Gradient_lbkfs")
+script = SubResource("GDScript_kqi2s")
+
+[node name="Explode" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+texture = ExtResource("1_ecs6w")
+emission_shape = 1
+emission_sphere_radius = 10.0
+spread = 177.15
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 160.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_cvfkl")
+color_ramp = SubResource("Gradient_lbkfs")
+
+[node name="Lifesteal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_61wgh")

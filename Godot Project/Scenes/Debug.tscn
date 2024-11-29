@@ -448,6 +448,54 @@ type = 2
 itemIdentifier = "Sacrifice"
 costIncrementMultiplier = 1.2
 
+[node name="ExtraCashUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "ExtraCash"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.06
+
+[node name="Gamble" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+type = 2
+itemIdentifier = "Gamble"
+costIncrementMultiplier = 1.1
+
+[node name="JackpotFrenzy" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+type = 2
+itemIdentifier = "JackpotFrenzy"
+costIncrementMultiplier = 1.1
+
+[node name="LifeSteal" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 150
+type = 2
+itemIdentifier = "LifeSteal"
+costIncrementMultiplier = 1.1
+
+[node name="BigBounty" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 100
+type = 2
+itemIdentifier = "BigBounty"
+costIncrementMultiplier = 1.1
+
+[node name="CompoundInterest" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 100
+type = 2
+itemIdentifier = "CompoundInterest"
+costIncrementMultiplier = 1.1
+
+[node name="Bargain" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 120
+type = 2
+itemIdentifier = "Bargain"
+costIncrementMultiplier = 1.1
+
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)
 respawnCooldown = 10.0

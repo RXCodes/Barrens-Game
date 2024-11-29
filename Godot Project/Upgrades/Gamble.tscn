@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d053i84tyg8tv"]
+
+[ext_resource type="Script" path="res://Upgrades/Gamble.gd" id="1_r7qw7"]
+[ext_resource type="Texture2D" uid="uid://b8fulqju2i5tg" path="res://Upgrades/Gamble.png" id="2_4rbf1"]
+
+[node name="Gamble" type="Node"]
+script = ExtResource("1_r7qw7")
+upgradeName = "Gamble"
+description = "either increase your total cash by [amt]% or lose [amt2]% of it"
+preferredUpgradeAmounts = Array[float]([300.0, 50.0])
+upgradeIdentifier = "gamble"
+texture = ExtResource("2_4rbf1")
+maxRandomUpgradeAmountMultiplier = 1.5

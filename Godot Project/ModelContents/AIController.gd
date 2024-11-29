@@ -342,8 +342,12 @@ func kill() -> void:
 	await TimeManager.wait(0.05)
 	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)
 	enemies.erase(self)
-	var cashAmountToDrop = ceil(randfn(cashDrop, cashDropVariance))
+	var cashAmountToDrop = ceil(randfn(cashDrop, cashDropVariance) * Player.current.enemyCashDropMultiplier)
+	cashAmountToDrop += ceil(maxHealth * Player.current.bountyMultiplier)
 	EnemySpawner.spawnMoney(cashAmountToDrop, collisionRigidBody.global_position)
+	if Player.current.lifestealMultiplier > 0 and Player.current.health < Player.current.maximumHealth:
+		var lifestealEntity = EnemySpawner.spawnEnemy("LifestealEntity", global_position)
+		lifestealEntity.healthIncrease = maxHealth * Player.current.lifestealMultiplier
 	get_parent().queue_free()
 
 enum HurtBoxType {PLAYER, ENEMY, ALL}

@@ -8,7 +8,6 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 	currentShop = shop
 	shopItem.shopInteractor = currentShop
 	$Shop/Title.text = shopItem.displayName
-	$Shop/Description.text = shopItem.description
 	$ItemFrame/Mask/Amount.text = "x" + str(shopItem.amount)
 	$ItemFrame/Mask/Amount.visible = shopItem.amount > 1
 	$ItemFrame/Mask/Preview.texture = shopItem.displayTexture
@@ -24,8 +23,9 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 				
 func refresh() -> void:
 	$ItemFrame/Mask/SlotInfo.hide()
+	$Shop/Description.text = shopItem.getDescription()
 	$ItemFrame/Mask/SlotInfo.self_modulate = Color.WHITE
-	$Shop/Cost.text = str(shopItem.price)
+	$Shop/Cost.text = str(ceil(shopItem.price / Player.current.shopPriceDivisor))
 	if shopItem.limitSales:
 		if shopItem.limitAmount > 1:
 			$ItemFrame/Mask/SlotInfo.show()

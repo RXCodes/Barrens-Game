@@ -31,7 +31,7 @@ func selectItem(newItemDisplay: ShopItemDisplay) -> void:
 	$"../../../BuyButton".show()
 	$"../../../Title".text = selectedShopItem.displayName
 	$"../../../Description".text = selectedShopItem.description
-	$"../../../BuyButton/Price".text = str(selectedShopItem.price)
+	$"../../../BuyButton/Price".text = str(ceil(selectedShopItem.price / Player.current.shopPriceDivisor))
 	for itemNode: ShopItemDisplay in shopItemDisplays:
 		if itemNode == selectedShopItemDisplay:
 			itemNode.select()

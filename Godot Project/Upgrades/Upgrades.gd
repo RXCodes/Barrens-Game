@@ -23,6 +23,12 @@ class_name Upgrade extends Node
 ## can this effect stack? if not, it can only be received once
 @export var stackable: bool = true
 
+## the minimum number in which these amounts are multiplied when the upgrade is randomly drawn
+@export var minRandomUpgradeAmountMultiplier: float = 0.5
+
+## the maximum number which these amounts are multiplied when the upgrade is randomly drawn
+@export var maxRandomUpgradeAmountMultiplier: float = 4.0
+
 static var playerUpgrades: Dictionary = {}
 static var upgradeStructs: Array = []
 
@@ -31,6 +37,7 @@ func onUpgrade(amounts: Array) -> void:
 	pass
 
 ## Use this to track upgrade statistics
+
 func incrementUpgradeStat(increase: float) -> void:
 	if upgradeIdentifier not in playerUpgrades.keys():
 		playerUpgrades[upgradeIdentifier] = 0

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7u4vxmpxwi4w"]
+
+[ext_resource type="Script" path="res://Upgrades/Bargain.gd" id="1_86k4s"]
+[ext_resource type="Texture2D" uid="uid://cyr4d3bli3ekp" path="res://Upgrades/Bargain.png" id="2_hxml8"]
+
+[node name="Bargain" type="Node"]
+script = ExtResource("1_86k4s")
+upgradeName = "Bargain"
+description = "decrease shop prices by [amt]%"
+accumativeDescription = "-[amt]% shop prices"
+preferredUpgradeAmounts = Array[float]([5.0])
+upgradeIdentifier = "shopPrices"
+texture = ExtResource("2_hxml8")

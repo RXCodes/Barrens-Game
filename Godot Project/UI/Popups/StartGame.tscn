@@ -54,7 +54,7 @@ var canLoadScene = false
 func _ready() -> void:
 	modulate = Color.TRANSPARENT
 	$\"../../FadeToBlack\".hide()
-	$\"../../AnimationPlayer\".play()
+	$\"../../AnimationPlayer\".play(\"StartGame\")
 	await get_tree().physics_frame
 	await TimeManager.wait(1.0)
 	canSkip = true

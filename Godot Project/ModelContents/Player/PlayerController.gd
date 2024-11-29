@@ -150,6 +150,14 @@ var pickUpRangeMultiplier: float = 1.0
 var regenerationRateMultiplier: float = 1.0
 var maximumHealth: int = 100
 var sprintDecreaseRateDivisor: float = 1.0
+var enemyCashDropMultiplier: float = 1.0
+var shopPriceDivisor: float = 1.0
+var bountyMultiplier: float = 0.0
+var compoundInterest: float = 0.0
+var lifestealMultiplier: float = 0.0
+
+# statistics
+var totalCashEarned: int = 0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -414,6 +422,8 @@ func playWalkSound() -> void:
 
 func pickupCash(amount: int) -> void:
 	cash += amount
+	if amount > 0:
+		totalCashEarned += amount
 	MoneyDisplay.setMoney(cash)
 	$CashPickup.pitch_scale = randfn(1.0, 0.075)
 	$CashPickup.play()
