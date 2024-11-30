@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://co86lgmmekh8l"]
+
+[ext_resource type="Script" path="res://Upgrades/JackpotFrenzy.gd" id="1_sne1y"]
+[ext_resource type="Texture2D" uid="uid://bfp7jle17bkls" path="res://Upgrades/JackpotFrenzy.png" id="2_savb6"]
+
+[node name="JackpotFrenzy" type="Node"]
+script = ExtResource("1_sne1y")
+upgradeName = "Jackpot Frenzy"
+preferredUpgradeAmounts = Array[float]([0.0])
+upgradeIdentifier = "jackpotFrenzy"
+texture = ExtResource("2_savb6")
+minRandomUpgradeAmountMultiplier = 1.0
+maxRandomUpgradeAmountMultiplier = 1.0

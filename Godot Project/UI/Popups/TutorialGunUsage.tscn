@@ -74,7 +74,6 @@ texture = ExtResource("3_k8jns")
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 1.2)
-scale = Vector2(1, 1)
 texture = ExtResource("3_k8jns")
 
 [node name="Mouse" type="Sprite2D" parent="Popup/SquareUI"]
@@ -90,7 +89,6 @@ texture = ExtResource("6_uye4i")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 1.6)
-scale = Vector2(1, 1)
 texture = ExtResource("6_uye4i")
 
 [node name="Gun2" type="Sprite2D" parent="Popup/SquareUI"]
@@ -102,12 +100,10 @@ texture = ExtResource("7_vbb5d")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 2.40001)
-scale = Vector2(1, 1)
 texture = ExtResource("7_vbb5d")
 
 [node name="Death" type="Sprite2D" parent="Popup/SquareUI"]
 position = Vector2(32.4, 153.2)
-scale = Vector2(1, 1)
 texture = ExtResource("7_tp5i0")
 
 [node name="Death2" type="Sprite2D" parent="Popup/SquareUI/Death"]
@@ -125,7 +121,6 @@ texture = ExtResource("8_7elq6")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 3.2)
-scale = Vector2(1, 1)
 texture = ExtResource("8_7elq6")
 
 [node name="Cash2" type="Sprite2D" parent="Popup/SquareUI"]
@@ -137,7 +132,6 @@ texture = ExtResource("9_i0iyf")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(1.52588e-05, 3.2)
-scale = Vector2(1, 1)
 texture = ExtResource("9_i0iyf")
 
 [node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://y04tfi76c0b8"]
+
+[ext_resource type="Script" path="res://Upgrades/Armored.gd" id="1_jgpc0"]
+[ext_resource type="Texture2D" uid="uid://dnb0274qrppsc" path="res://Upgrades/Armored.png" id="2_0yu1y"]
+
+[node name="Armored" type="Node"]
+script = ExtResource("1_jgpc0")
+upgradeName = "Armored"
+description = "increase defense by [amt]% but reduce movement speed by [amt2]%"
+preferredUpgradeAmounts = Array[float]([250.0, 25.0])
+texture = ExtResource("2_0yu1y")
+maxRandomUpgradeAmountMultiplier = 2.0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b60tsw0u05puc"]
+
+[ext_resource type="Script" path="res://Upgrades/ExtraCash.gd" id="1_cadev"]
+[ext_resource type="Texture2D" uid="uid://b0gntdbsfi7t2" path="res://Upgrades/ExtraCash.png" id="2_v3841"]
+
+[node name="ExtraCash" type="Node"]
+script = ExtResource("1_cadev")
+upgradeName = "Extra Cash"
+description = "increase cash dropped from enemies by [amt]%"
+accumativeDescription = "+[amt]% cash dropped from enemies"
+preferredUpgradeAmounts = Array[float]([5.0])
+upgradeIdentifier = "extraCash"
+texture = ExtResource("2_v3841")
+maxRandomUpgradeAmountMultiplier = 1.5

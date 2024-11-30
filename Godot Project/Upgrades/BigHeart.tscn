@@ -11,3 +11,4 @@ accumativeDescription = "+[amt] maximum hp"
 preferredUpgradeAmounts = Array[float]([3.0])
 upgradeIdentifier = "health"
 texture = ExtResource("2_b1704")
+maxRandomUpgradeAmountMultiplier = 2.0

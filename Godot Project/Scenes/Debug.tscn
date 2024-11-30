@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://brwc5onyibsfh" path="res://Models/Player.tscn" id="15_1u73x"]
 [ext_resource type="Script" path="res://Scenes/InfiniteMoneyTest.gd" id="15_mokh8"]
 [ext_resource type="Script" path="res://Scenes/GoToVillageOneTest.gd" id="16_e3y2f"]
-[ext_resource type="PackedScene" uid="uid://cjvmd0xr387n2" path="res://Models/ExampleEnemy.tscn" id="17_75868"]
 [ext_resource type="PackedScene" uid="uid://bo62kguip1s3f" path="res://Environment/Cactus/Cactus1.tscn" id="19_i8kru"]
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="21_6bqoh"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="21_40mk5"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="21_evfkg"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
@@ -192,9 +192,6 @@ navigation_polygon = SubResource("NavigationPolygon_mt871")
 process_priority = 100
 y_sort_enabled = true
 
-[node name="ExampleRender" parent="Level" instance=ExtResource("17_75868")]
-position = Vector2(330, -11)
-
 [node name="DummyRender" parent="Level" instance=ExtResource("33_b2gow")]
 position = Vector2(731, 431)
 
@@ -301,6 +298,20 @@ limitAmount = 1
 canRestock = true
 restockTime = 10
 restockAmount = 1
+
+[node name="LuckyCoin" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Lucky Coin"
+displayTexture = ExtResource("21_6bqoh")
+price = 100
+description = "Grants the choice to choose an upgrade."
+type = 3
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+costIncrementMultiplier = 1.125
 
 [node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
@@ -442,6 +453,68 @@ type = 2
 itemIdentifier = "Energetic"
 upgradeAmounts = Array[float]([6.0])
 costIncrementMultiplier = 1.2
+
+[node name="ArmoredUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 300
+type = 2
+itemIdentifier = "Armored"
+costIncrementMultiplier = 1.2
+
+[node name="SacrificeUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 325
+type = 2
+itemIdentifier = "Sacrifice"
+costIncrementMultiplier = 1.2
+
+[node name="ExtraCashUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "ExtraCash"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.06
+
+[node name="Gamble" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+type = 2
+itemIdentifier = "Gamble"
+costIncrementMultiplier = 1.1
+
+[node name="JackpotFrenzy" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+type = 2
+itemIdentifier = "JackpotFrenzy"
+costIncrementMultiplier = 1.1
+
+[node name="LifeSteal" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 150
+type = 2
+itemIdentifier = "LifeSteal"
+costIncrementMultiplier = 1.1
+
+[node name="BigBounty" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 100
+type = 2
+itemIdentifier = "BigBounty"
+costIncrementMultiplier = 1.1
+
+[node name="CompoundInterest" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 100
+type = 2
+itemIdentifier = "CompoundInterest"
+costIncrementMultiplier = 1.1
+
+[node name="Bargain" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 120
+type = 2
+itemIdentifier = "Bargain"
+costIncrementMultiplier = 1.1
 
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)

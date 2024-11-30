@@ -25,8 +25,21 @@ func preloadParticles() -> void:
 func _ready() -> void:
 	$IntroAnimatic.hide()
 	await get_tree().physics_frame
+	
+	var promptedIntro = Save.getTemporaryValue("promptedIntro", false)
+	if not promptedIntro:
+		var watchedIntro = Save.loadValue("watchedIntro", false)
+		var completedTutorial = Save.loadValue("completedTutorial", false)
+		if watchedIntro:
+			if not completedTutorial:
+				NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
+			else:
+				NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
+			return
+	
 	preloadParticles()
 	await TimeManager.wait(0.5)
+	show()
 	
 	# Slide 1
 	IntroAmbience.fadeIn(1.5)
@@ -294,5 +307,9 @@ func _ready() -> void:
 
 	if get_tree() == null:
 		return
+	Save.saveValue("watchedIntro", true)
 	await TimeManager.wait(3.0)
-	NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
+	if promptedIntro:
+		NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
+	else:
+		NodeRelations.loadScene("res://Scenes/Tutorial.tscn")

@@ -4,12 +4,11 @@ extends Sprite2D
 @export var respawnCooldown = 80.0
 
 var lastSpawnedAmmo
-var currentCooldown = 0
+var currentCooldown = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	await get_tree().physics_frame
-	spawnAmmo()
+	currentCooldown = randf_range(1.0, 5.0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

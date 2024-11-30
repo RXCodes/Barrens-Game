@@ -19,6 +19,8 @@ func _ready() -> void:
 
 # move crosshair every frame
 func _process(delta: float) -> void:
+	if not PlayerCamera.current:
+		return
 	position = get_viewport().get_mouse_position() - (size / 2.0)
 	position -= get_viewport_rect().size / 2.0
 	reloadingIcon.position = get_viewport().get_mouse_position() - (reloadingIcon.size / 2.0)
@@ -43,6 +45,8 @@ func _process(delta: float) -> void:
 static var reloadTimer: SceneTreeTimer
 static var reloadTween: Tween
 static func reloadWeapon(time: float) -> void:
+	if not is_instance_valid(current):
+		return
 	if reloadTween:
 		reloadTween.kill()
 	current.visible = false
@@ -61,6 +65,8 @@ static func reloadWeapon(time: float) -> void:
 	stopReloadingWeapon()
 
 static func stopReloadingWeapon() -> void:
+	if not is_instance_valid(current):
+		return
 	current.visible = true
 	reloadingIcon.visible = false
 	reloadTimer = null

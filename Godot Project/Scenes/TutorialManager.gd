@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	# wait for all enemies to be defeated
 	while true:
-		await TimeManager.wait(0.5)
+		await TimeManager.wait(0.25)
 		var enemies = get_tree().get_nodes_in_group("TutorialDummy")
 		if enemies.size() == 0:
 			break
@@ -36,3 +36,43 @@ func _ready() -> void:
 
 	await $"../TutorialTrigger3".body_entered
 	GamePopup.openPopup("TutorialShop")
+
+	# wait for the player to buy an item from the shop
+	while true:
+		await TimeManager.wait(0.25)
+		var weaponItems = get_tree().get_nodes_in_group("Weapon")
+		if weaponItems.size() > 0:
+			break
+	await TimeManager.wait(2.5)
+	GamePopup.openPopup("TutorialItemPickup")
+	
+	# wait for the player to pick up the gun
+	while true:
+		await TimeManager.wait(0.25)
+		if Player.current.holdingWeapons.size() == 2:
+			break
+	$"../Barrier2/StaticBody2D".queue_free()
+	$"../FinalText".show()
+	$"../Barrier2".emitting = false
+	
+	# wait for the player to defeat all the enemies at the end
+	while true:
+		await TimeManager.wait(0.25)
+		var enemies = get_tree().get_nodes_in_group("TutorialDummyFinal")
+		if enemies.size() == 0:
+			break
+	GamePopup.openPopup("TutorialComplete")
+	
+	# wait for the player to close the last popup
+	while true:
+		await TimeManager.wait(0.25)
+		if not is_instance_valid(GamePopup.current):
+			break
+	await TimeManager.wait(1.0)
+	
+	# tutorial has been completed
+	var fadeOutTween = NodeRelations.createTween()
+	fadeOutTween.tween_property(fadeIn, "self_modulate", Color.BLACK, 3.0)
+	Save.saveValue("completedTutorial", true)
+	await TimeManager.wait(3.5)
+	NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")

@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% pick up range"
 preferredUpgradeAmounts = Array[float]([4.0])
 upgradeIdentifier = "magnet"
 texture = ExtResource("2_017x6")
+maxRandomUpgradeAmountMultiplier = 3.0

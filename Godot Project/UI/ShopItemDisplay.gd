@@ -8,7 +8,6 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 	currentShop = shop
 	shopItem.shopInteractor = currentShop
 	$Shop/Title.text = shopItem.displayName
-	$Shop/Description.text = shopItem.description
 	$ItemFrame/Mask/Amount.text = "x" + str(shopItem.amount)
 	$ItemFrame/Mask/Amount.visible = shopItem.amount > 1
 	$ItemFrame/Mask/Preview.texture = shopItem.displayTexture
@@ -20,16 +19,19 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 		$Shop/ItemType.text = "Item"
 	elif shopItem.type == ShopItem.ItemType.UPGRADE:
 		$Shop/ItemType.text = "Upgrade"
+	else:
+		$Shop/ItemType.text = "Special"
 	refresh()
 				
 func refresh() -> void:
 	$ItemFrame/Mask/SlotInfo.hide()
+	$Shop/Description.text = shopItem.getDescription()
 	$ItemFrame/Mask/SlotInfo.self_modulate = Color.WHITE
-	$Shop/Cost.text = str(shopItem.price)
+	$Shop/Cost.text = str(ceil(shopItem.price / Player.current.shopPriceDivisor))
 	if shopItem.limitSales:
 		if shopItem.limitAmount > 1:
 			$ItemFrame/Mask/SlotInfo.show()
-		$ItemFrame/Mask/SlotInfo.text = str(shopItem.itemsLeft) + "Left"
+		$ItemFrame/Mask/SlotInfo.text = str(shopItem.itemsLeft) + " Left"
 		if shopItem.canRestock:
 			$ItemFrame/Mask/SlotInfo.hide()
 		if shopItem.itemsLeft == 0:

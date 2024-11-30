@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% reload speed"
 preferredUpgradeAmounts = Array[float]([2.5])
 upgradeIdentifier = "reloadSpeed"
 texture = ExtResource("2_lxiij")
+maxRandomUpgradeAmountMultiplier = 2.0

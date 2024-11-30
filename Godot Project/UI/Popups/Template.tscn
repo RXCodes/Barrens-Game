@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://cfihvgpibcorx"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_66ixn"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_g6gfh"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_jf7tk"]
+[ext_resource type="Texture2D" uid="uid://06hggffynh3o" path="res://ModelContents/ReplaceSprite.png" id="5_fvpi0"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="5_hi342"]
+[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="6_m8xgn"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="10_l2vws"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("5_hi342")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+metadata/_edit_lock_ = true
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 793)
+script = ExtResource("1_66ixn")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.440127, 0.503688, 0.764535, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -259.0
+offset_right = -69.0
+offset_bottom = -53.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_g6gfh")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="Title" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Template Popup"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TopSeparator" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("4_jf7tk")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="ExampleImage" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(138.8, 59.2)
+texture = ExtResource("5_fvpi0")
+
+[node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 0
+offset_left = 266.0
+offset_top = 86.8
+offset_right = 268.0
+offset_bottom = 345.8
+rotation = 1.5708
+scale = Vector2(0.538776, 1)
+texture = ExtResource("4_jf7tk")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Description" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.569733, 0.608967, 0.705495, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 92.0
+offset_right = 843.0
+offset_bottom = 445.0
+scale = Vector2(0.3, 0.3)
+text = "This is a template popup. Once you have duplicated this scene, feel free to edit it! 
+
+Add sprite2d for images, duplicate this label for additional text, and refer to other popups to copy elements if needed. See docs for more details."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_m8xgn")
+volume_db = -4.0
+pitch_scale = 6.0
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_l2vws")
+pitch_scale = 2.0

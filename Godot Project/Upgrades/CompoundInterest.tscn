@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6shbcpisev0a"]
+
+[ext_resource type="Script" path="res://Upgrades/CompoundInterest.gd" id="1_v8xat"]
+[ext_resource type="Texture2D" uid="uid://0rgoc7rbxrke" path="res://Upgrades/CompoundInterest.png" id="2_qt8dl"]
+
+[node name="CompoundInterest" type="Node"]
+script = ExtResource("1_v8xat")
+upgradeName = "Compound Interest"
+description = "your total cash increases by [amt]% after each wave"
+accumativeDescription = "+[amt]% total cash after each wave"
+preferredUpgradeAmounts = Array[float]([3.5])
+upgradeIdentifier = "compoundInterest"
+texture = ExtResource("2_qt8dl")
+maxRandomUpgradeAmountMultiplier = 2.0

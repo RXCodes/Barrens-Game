@@ -21,7 +21,7 @@ class_name ShopItem extends Node
 ## how many items to sell per purchase
 @export var amount: int = 1
 
-enum ItemType {GUN, ITEM, UPGRADE}
+enum ItemType {GUN, ITEM, UPGRADE, LUCKY_COIN}
 @export var type: ItemType
 
 ## e.g., "Shotgun", "MachineGun" for GUN item type
@@ -53,6 +53,7 @@ enum ItemType {GUN, ITEM, UPGRADE}
 var itemsLeft: int = INF
 var restocking: bool = false
 var shopInteractor: ShopInteractor
+var automaticallyPopulateDescription: bool = false
 
 func _ready() -> void:
 	if limitSales:
@@ -68,6 +69,7 @@ func _ready() -> void:
 			for s in range(upgradeAmounts.size()):
 				newUpgradeAmounts[s] = upgradeAmounts[s]
 			description = upgrade.getDescription(newUpgradeAmounts)
+			automaticallyPopulateDescription = true
 
 func purchasedItem() -> void:
 	if limitSales:
@@ -80,3 +82,12 @@ func purchasedItem() -> void:
 			if is_instance_valid(shopInteractor):
 				shopInteractor.refreshShopItems()
 	price = round(price * costIncrementMultiplier)
+
+func getDescription() -> String:
+	if type == ItemType.UPGRADE and automaticallyPopulateDescription:
+		var upgrade: Upgrade = Upgrade.upgradeForName(itemIdentifier)
+		var newUpgradeAmounts = upgrade.preferredUpgradeAmounts
+		for s in range(upgradeAmounts.size()):
+			newUpgradeAmounts[s] = upgradeAmounts[s]
+		return upgrade.getDescription(newUpgradeAmounts)
+	return description

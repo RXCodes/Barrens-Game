@@ -1,0 +1,223 @@
+[gd_scene load_steps=16 format=3 uid="uid://ci08nh0qaits8"]
+
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_0fl23"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_eacm0"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_eccua"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_teoj6"]
+[ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_oondl"]
+[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="6_hvpc5"]
+[ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="6_nd47a"]
+[ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_brhof"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="7_mfkt6"]
+[ext_resource type="Script" path="res://UI/Popups/ConfirmationPrompt.gd" id="8_wrk2h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("3_eccua")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="InputEventKey" id="InputEventKey_hcuy1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_jateg"]
+events = [SubResource("InputEventKey_hcuy1")]
+
+[sub_resource type="GDScript" id="GDScript_5taif"]
+resource_name = "CancelButton"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	GamePopup.closeCurrent()
+"
+
+[sub_resource type="GDScript" id="GDScript_0hc86"]
+resource_name = "ConfirmButton"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	ConfirmationPrompt.currentAccepted()
+	GamePopup.closeCurrent()
+"
+
+[node name="PopupBackground" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.72549)
+metadata/_edit_lock_ = true
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 793)
+script = ExtResource("1_0fl23")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.56984, 0.516283, 0.39633, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -145.0
+offset_right = -69.0
+offset_bottom = -29.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_eacm0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("8_wrk2h")
+
+[node name="Title" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Title"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TopSeparator" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("4_teoj6")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Description" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.704294, 0.585546, 0.467099, 1)
+layout_mode = 0
+offset_left = 9.99994
+offset_top = 27.0
+offset_right = 869.0
+offset_bottom = 221.0
+scale = Vector2(0.3, 0.3)
+text = "This is a popup with two buttons: cancel and confirm."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 3.6
+offset_right = 274.0
+offset_bottom = 13.6
+shortcut = SubResource("Shortcut_jateg")
+texture_normal = ExtResource("5_oondl")
+texture_pressed = ExtResource("5_oondl")
+texture_hover = ExtResource("6_nd47a")
+script = ExtResource("7_brhof")
+
+[node name="Cancel" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.749301, 0.404896, 0.419714, 1)
+texture_filter = 1
+offset_left = -324.0
+offset_top = 56.0
+offset_right = -203.0
+offset_bottom = 83.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_eacm0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_5taif")
+
+[node name="Text" type="Label" parent="Popup/Cancel"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.8
+offset_right = 396.0
+offset_bottom = 80.8
+scale = Vector2(0.3, 0.3)
+text = "Cancel"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/Cancel"]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 27.0
+
+[node name="Confirm" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.409236, 0.58007, 0.356323, 1)
+texture_filter = 1
+offset_left = 23.0
+offset_top = 56.0
+offset_right = 144.0
+offset_bottom = 83.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_eacm0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_0hc86")
+
+[node name="Text" type="Label" parent="Popup/Confirm"]
+layout_mode = 0
+offset_left = 1.20002
+offset_top = 7.8
+offset_right = 396.2
+offset_bottom = 80.8
+scale = Vector2(0.3, 0.3)
+text = "Confirm
+"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/Confirm"]
+layout_mode = 0
+offset_right = 121.0
+offset_bottom = 27.0
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hvpc5")
+volume_db = -4.0
+pitch_scale = 6.0
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_mfkt6")
+pitch_scale = 2.0
+
+[connection signal="pressed" from="Popup/SquareUI/ExitButton" to="Popup/SquareUI/ExitButton" method="_on_pressed"]
+[connection signal="mouse_entered" from="Popup/Cancel" to="Popup/Cancel" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Cancel" to="Popup/Cancel" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/Cancel/Button" to="Popup/Cancel" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/Cancel/Button" to="Popup/Cancel" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Cancel/Button" to="Popup/Cancel" method="_on_button_mouse_exited"]
+[connection signal="mouse_entered" from="Popup/Confirm" to="Popup/Confirm" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Confirm" to="Popup/Confirm" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/Confirm/Button" to="Popup/Confirm" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/Confirm/Button" to="Popup/Confirm" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Confirm/Button" to="Popup/Confirm" method="_on_button_mouse_exited"]

@@ -11,3 +11,4 @@ accumativeDescription = "-[amt]% damage from enemies"
 preferredUpgradeAmounts = Array[float]([2.0])
 upgradeIdentifier = "defense"
 texture = ExtResource("2_0w80u")
+maxRandomUpgradeAmountMultiplier = 3.0

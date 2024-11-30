@@ -1,7 +1,7 @@
 class_name ShopInteractor extends VBoxContainer
 
-# Called when the node enters the scene tree for the first time.
 var shopItemDisplays: Array
+
 func _ready() -> void:
 	# hide buy button
 	$"../../../BuyButton".hide()
@@ -31,7 +31,7 @@ func selectItem(newItemDisplay: ShopItemDisplay) -> void:
 	$"../../../BuyButton".show()
 	$"../../../Title".text = selectedShopItem.displayName
 	$"../../../Description".text = selectedShopItem.description
-	$"../../../BuyButton/Price".text = str(selectedShopItem.price)
+	$"../../../BuyButton/Price".text = str(ceil(selectedShopItem.price / Player.current.shopPriceDivisor))
 	for itemNode: ShopItemDisplay in shopItemDisplays:
 		if itemNode == selectedShopItemDisplay:
 			itemNode.select()
@@ -66,6 +66,9 @@ func _on_button_button_down() -> void:
 			if selectedShopItem.type == ShopItem.ItemType.GUN:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
 				EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
+				await get_tree().physics_frame
+				newGun.currentMagCapacity = newGun.maximumMagCapacity
+				newGun.leftoverAmmoCount = newGun.maximumMagCapacity * 2
 				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
 				var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()
@@ -74,6 +77,8 @@ func _on_button_button_down() -> void:
 					upgradeAmounts[s] = selectedShopItem.upgradeAmounts[s]
 				newUpgrade.onUpgrade(upgradeAmounts)
 				newUpgrade.queue_free()
+			if selectedShopItem.type == ShopItem.ItemType.LUCKY_COIN:
+				GamePopup.openPopup("UpgradeSelection")
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()

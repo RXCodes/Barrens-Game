@@ -11,3 +11,4 @@ accumativeDescription = "+[amt]% increased fire rate"
 preferredUpgradeAmounts = Array[float]([2.5])
 upgradeIdentifier = "fireRate"
 texture = ExtResource("2_8qlqa")
+maxRandomUpgradeAmountMultiplier = 2.0

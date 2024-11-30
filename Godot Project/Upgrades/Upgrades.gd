@@ -23,6 +23,12 @@ class_name Upgrade extends Node
 ## can this effect stack? if not, it can only be received once
 @export var stackable: bool = true
 
+## the minimum number in which these amounts are multiplied when the upgrade is randomly drawn
+@export var minRandomUpgradeAmountMultiplier: float = 0.5
+
+## the maximum number which these amounts are multiplied when the upgrade is randomly drawn
+@export var maxRandomUpgradeAmountMultiplier: float = 4.0
+
 static var playerUpgrades: Dictionary = {}
 static var upgradeStructs: Array = []
 
@@ -31,6 +37,7 @@ func onUpgrade(amounts: Array) -> void:
 	pass
 
 ## Use this to track upgrade statistics
+
 func incrementUpgradeStat(increase: float) -> void:
 	if upgradeIdentifier not in playerUpgrades.keys():
 		playerUpgrades[upgradeIdentifier] = 0
@@ -60,6 +67,7 @@ func getDescription(amounts: Array) -> String:
 	return outputDescription
 
 # this sets up all the upgrades found in res://Upgrades
+static var upgradeNames = []
 static func _static_init() -> void:
 	print("--- Setting up upgrades ---")
 	var filePaths = DirAccess.get_files_at("res://Upgrades/")
@@ -69,14 +77,22 @@ static func _static_init() -> void:
 			var currentUpgrade: Upgrade = load(upgradePath).instantiate()
 			var upgradeStruct = currentUpgrade.getUpgradeStruct()
 			upgradeStructs.append(upgradeStruct)
+			upgradeNames.append(filePath.trim_suffix(".tscn"))
 			currentUpgrade.queue_free()
 			print("Setup upgrade: " + filePath)
 	print("--- Finished setting up upgrades ---")
 
+static func pickRandomUpgrades(count: int) -> Array:
+	var upgrades = []
+	upgradeNames.shuffle()
+	for i in range(count):
+		var upgradeName = upgradeNames[i]
+		upgrades.append(upgradeForName(upgradeName))
+	return upgrades
+
 static func upgradeForName(name: String) -> Upgrade:
 	var path = "res://Upgrades/" + name + ".tscn"
 	var upgrade = load(path).instantiate()
-	upgrade.queue_free()
 	return upgrade
 
 static func getCurrentUpgradeStructs() -> Array:

@@ -101,7 +101,8 @@ func _process(delta: float) -> void:
 	
 	# weapon functionality
 	if shooting and not dead:
-		var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
+		var originPosition = global_position + Vector2(0, -48)
+		var aimAngle = originPosition.angle_to_point(Crosshair.current.cursorPosition)
 		gunInteractor.currentWeapon.fire(true, aimAngle)
 	PlayerCamera.current.gunFireShakeOffset *= 1.0 - gunFireShakeDampening
 	
@@ -149,6 +150,14 @@ var pickUpRangeMultiplier: float = 1.0
 var regenerationRateMultiplier: float = 1.0
 var maximumHealth: int = 100
 var sprintDecreaseRateDivisor: float = 1.0
+var enemyCashDropMultiplier: float = 1.0
+var shopPriceDivisor: float = 1.0
+var bountyMultiplier: float = 0.0
+var compoundInterest: float = 0.0
+var lifestealMultiplier: float = 0.0
+
+# statistics
+var totalCashEarned: int = 0
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -263,7 +272,8 @@ func _input(event: InputEvent) -> void:
 		if event.button_index == 1:
 			shooting = event.pressed
 			if event.pressed and gunInteractor != null:
-				var aimAngle = global_position.angle_to_point(Crosshair.current.cursorPosition)
+				var originPosition = global_position + Vector2(0, -48)
+				var aimAngle = originPosition.angle_to_point(Crosshair.current.cursorPosition)
 				gunInteractor.currentWeapon.fire(false, aimAngle)
 		# handle right click
 		elif event.button_index == 2:
@@ -413,6 +423,8 @@ func playWalkSound() -> void:
 
 func pickupCash(amount: int) -> void:
 	cash += amount
+	if amount > 0:
+		totalCashEarned += amount
 	MoneyDisplay.setMoney(cash)
 	$CashPickup.pitch_scale = randfn(1.0, 0.075)
 	$CashPickup.play()
@@ -423,7 +435,7 @@ func pickupAmmo() -> void:
 	for gun: Gun in holdingWeapons:
 		var ammoToAdd = min(gun.maximumMagCapacity, 50)
 		if ammoToAdd < 10:
-			ammoToAdd *= 2
+			ammoToAdd = round(ammoToAdd * 1.5)
 		gun.leftoverAmmoCount += ammoToAdd
 	if gunInteractor.currentWeapon.currentMagCapacity == 0:
 		gunInteractor.currentWeapon.reload(true)
@@ -432,7 +444,29 @@ func pickupAmmo() -> void:
 
 func selectWeapon(gun: Gun) -> void:
 	gunInteractor.currentWeapon = gun
+	InventoryManager.selectSlot(-1)
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()
 	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
+
+func pickupWeapon(gun: Gun) -> void:
+	selectWeapon(gun)
+	
+	# if you only have a single gun, the new gun can populate the second slot
+	if holdingWeapons.size() == 1:
+		holdingWeapons.append(gun)
+		currentWeaponSlot = 2
+		WeaponSlots.selectSecondary()
+		WeaponSlots.secondaryWeaponPickedUp()
+	else:
+		# if you already have two weapons, the one you're holding must be replaced
+		var previousGun: Gun = holdingWeapons[currentWeaponSlot - 1]
+		EnemySpawner.spawnWeapon(previousGun, global_position)
+		holdingWeapons[currentWeaponSlot - 1] = gun
+	
+	# update weapon slot display
+	if currentWeaponSlot == 1:
+		WeaponSlots.setPrimaryWeapon(gun)
+	elif currentWeaponSlot == 2:
+		WeaponSlots.setSecondaryWeapon(gun)
