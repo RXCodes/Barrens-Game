@@ -82,6 +82,9 @@ static var enemyAIKey = "EnemyAI"
 		if healthBar:
 			healthBar.setHealthBarColor(healthBarColor)
 
+## If enabled, the enemy will face the opposite direction
+@export var invertXFlip: bool = false
+
 @export_category("Audio")
 
 ## How long to wait before a hit sound effect can be played again
@@ -123,6 +126,8 @@ func _ready() -> void:
 var flipX = false
 func _process(delta: float) -> void:
 	flipTransform.scale.x = -1 if flipX else 1
+	if invertXFlip:
+		flipTransform.scale.x *= -1
 	if renderer.material is ShaderMaterial:
 		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
 	runNavigationQueue()
@@ -364,7 +369,12 @@ func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) 
 			var collider = dictionary.collider
 			var parent = collider.get_meta(parentControllerKey)
 			if parent:
-				parent.damage(damage, collisionRigidBody)
+				if type == HurtBoxType.ALL:
+					parent.damage(damage, collisionRigidBody)
+				elif parent is EnemyAI and type == HurtBoxType.ENEMY:
+					parent.damage(damage, collisionRigidBody)
+				elif parent is Player and type == HurtBoxType.PLAYER:
+					parent.damage(damage, collisionRigidBody)
 	shapeTests.append(newIntersectionTest)
 	
 	# let's also make it flash so we can see it being activated in debug

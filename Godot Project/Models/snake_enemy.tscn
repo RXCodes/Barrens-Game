@@ -31,16 +31,16 @@
 [ext_resource type="Texture2D" uid="uid://domq4gu10x5ad" path="res://ModelContents/Enemies/Snake Idle/frame_15_delay-0.2s.png" id="25_4o5nt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
-radius = 19.4225
-height = 49.7291
+radius = 27.0
+height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 2.0
-height = 42.0
+radius = 6.5
+height = 47.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 36.0167
-height = 101.39
+radius = 94.0
+height = 188.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rc37x"]
 animations = [{
@@ -95,7 +95,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 7.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -396,7 +396,6 @@ _data = {
 [node name="Snake_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-position = Vector2(304, -52)
 script = ExtResource("1_j3v26")
 entityZIndexOffset = 24
 
@@ -414,6 +413,7 @@ walkAnimation = "Walk"
 deathAnimation = "Death"
 hitFrontAnimation = "Hit"
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+invertXFlip = true
 
 [node name="Hitbox" type="RigidBody2D" parent="Snake_Enemy"]
 collision_layer = 4
@@ -424,8 +424,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/Hitbox"]
 z_index = -2
-position = Vector2(-53, 7)
-rotation = -1.309
+position = Vector2(0, -41)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
@@ -436,7 +435,7 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-50, 36)
+position = Vector2(1, 0)
 rotation = 1.5708
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
@@ -444,8 +443,7 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-54, 6)
-rotation = 1.8326
+position = Vector2(0, -42)
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
 debug_color = Color(0, 0.92, 0.720667, 0.184314)
@@ -457,23 +455,26 @@ path_max_distance = 120.0
 path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="Snake_Enemy/ColliderBox"]
+position = Vector2(1, -41)
 
 [node name="Shadow" type="Sprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
 show_behind_parent = true
 z_index = -1
 texture_filter = 1
-position = Vector2(-146, -26)
+position = Vector2(-91.9896, -26)
 scale = Vector2(1.42188, 0.969202)
 texture = ExtResource("4_py10l")
 centered = false
 offset = Vector2(0, -39.2243)
 
 [node name="Animations" type="AnimatedSprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(-75, 1)
+position = Vector2(-1.33514e-05, 31)
 scale = Vector2(0.305638, 0.254181)
 sprite_frames = SubResource("SpriteFrames_rc37x")
 animation = &"Idle"
+frame_progress = 0.579889
+offset = Vector2(-68.6747, -118.026)
 
 [node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Snake_Enemy/ColliderBox/FlipTransform"]
 root_node = NodePath("../..")

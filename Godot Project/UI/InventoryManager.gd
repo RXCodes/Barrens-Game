@@ -27,6 +27,8 @@ func _ready() -> void:
 
 static func selectSlot(index: int) -> void:
 	for slot in slots:
+		if not is_instance_valid(slot):
+			return
 		slot.deselect()
 	if index == currentSlotIndex or index < 0:
 		currentSlotIndex = -1
