@@ -20,7 +20,7 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 	elif shopItem.type == ShopItem.ItemType.UPGRADE:
 		$Shop/ItemType.text = "Upgrade"
 	else:
-		$Shop/ItemType.text = ""
+		$Shop/ItemType.text = "Special"
 	refresh()
 				
 func refresh() -> void:
@@ -31,7 +31,7 @@ func refresh() -> void:
 	if shopItem.limitSales:
 		if shopItem.limitAmount > 1:
 			$ItemFrame/Mask/SlotInfo.show()
-		$ItemFrame/Mask/SlotInfo.text = str(shopItem.itemsLeft) + "Left"
+		$ItemFrame/Mask/SlotInfo.text = str(shopItem.itemsLeft) + " Left"
 		if shopItem.canRestock:
 			$ItemFrame/Mask/SlotInfo.hide()
 		if shopItem.itemsLeft == 0:

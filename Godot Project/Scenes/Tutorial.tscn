@@ -2038,11 +2038,11 @@ debug_color = Color(0.194038, 0.623016, 0.443458, 0.42)
 
 [node name="AmmoDispenser" parent="." instance=ExtResource("47_jbsjw")]
 position = Vector2(2338, 56)
-respawnCooldown = 25.0
+respawnCooldown = 15.0
 
 [node name="AmmoDispenser2" parent="." instance=ExtResource("47_jbsjw")]
 position = Vector2(2526, 55)
-respawnCooldown = 25.0
+respawnCooldown = 15.0
 
 [node name="AmmoDispenser3" parent="." instance=ExtResource("47_jbsjw")]
 position = Vector2(4599, 180)

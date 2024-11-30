@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 static var reloadTimer: SceneTreeTimer
 static var reloadTween: Tween
 static func reloadWeapon(time: float) -> void:
+	if not is_instance_valid(current):
+		return
 	if reloadTween:
 		reloadTween.kill()
 	current.visible = false
@@ -63,6 +65,8 @@ static func reloadWeapon(time: float) -> void:
 	stopReloadingWeapon()
 
 static func stopReloadingWeapon() -> void:
+	if not is_instance_valid(current):
+		return
 	current.visible = true
 	reloadingIcon.visible = false
 	reloadTimer = null

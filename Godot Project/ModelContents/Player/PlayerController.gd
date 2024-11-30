@@ -435,7 +435,7 @@ func pickupAmmo() -> void:
 	for gun: Gun in holdingWeapons:
 		var ammoToAdd = min(gun.maximumMagCapacity, 50)
 		if ammoToAdd < 10:
-			ammoToAdd *= 2
+			ammoToAdd = round(ammoToAdd * 1.5)
 		gun.leftoverAmmoCount += ammoToAdd
 	if gunInteractor.currentWeapon.currentMagCapacity == 0:
 		gunInteractor.currentWeapon.reload(true)

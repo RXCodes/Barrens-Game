@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=103 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -40,13 +40,21 @@
 [ext_resource type="Texture2D" uid="uid://bu2ad15hd15h4" path="res://Environment/Building/Support/FencePole.png" id="44_xtygw"]
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="45_cpv0j"]
 [ext_resource type="PackedScene" uid="uid://d37xd83dbrt2p" path="res://Environment/Decoration/FallenTrashCan.tscn" id="46_libqt"]
+[ext_resource type="PackedScene" uid="uid://bghr0faxa387a" path="res://Models/ShopVan.tscn" id="46_vpcry"]
 [ext_resource type="Script" path="res://Scenes/VillageController.gd" id="47_nbbyl"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="47_ofusp"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="47_rliu7"]
+[ext_resource type="Script" path="res://Models/ShopItem.gd" id="47_ud1rn"]
+[ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="48_fbn0p"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="48_m57vu"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="49_nrmn6"]
+[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="50_jb14m"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="51_abhol"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="51_imopv"]
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="52_bomwk"]
 [ext_resource type="Texture2D" uid="uid://cmvlklxuckjqv" path="res://Environment/Border.png" id="52_dttcw"]
+[ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="52_wb7qa"]
+[ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l6bmr"]
@@ -4362,9 +4370,65 @@ flip_h = true
 [node name="DummyRender" parent="Level" instance=ExtResource("47_ofusp")]
 position = Vector2(2073, 1053)
 
+[node name="DummyRender3" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(1941, 777)
+
 [node name="DummyRender2" parent="Level" instance=ExtResource("47_ofusp")]
-position = Vector2(2524, 685)
+position = Vector2(2588, 691)
 flipX = true
+
+[node name="DummyRender4" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(2780, 845)
+flipX = true
+
+[node name="DummyRender5" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(5358, -451)
+flipX = true
+
+[node name="DummyRender6" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(5291, -337)
+flipX = true
+
+[node name="DummyRender7" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(3345, 2167)
+flipX = true
+
+[node name="DummyRender10" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(3520, 2348)
+flipX = true
+
+[node name="DummyRender11" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(3362, 2523)
+flipX = true
+
+[node name="DummyRender12" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(2812, 2443)
+
+[node name="DummyRender15" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(2883, 2149)
+
+[node name="DummyRender16" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(2710, 2282)
+
+[node name="DummyRender17" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(-177, 3456)
+
+[node name="DummyRender18" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(-167, 473)
+
+[node name="DummyRender19" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(710, 1401)
+
+[node name="DummyRender20" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(1760, 1679)
+flipX = true
+
+[node name="DummyRender21" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(3141, -1579)
+flipX = true
+
+[node name="DummyRender22" parent="Level" instance=ExtResource("47_ofusp")]
+position = Vector2(2874, -1584)
 
 [node name="WaterFountain" parent="Level" instance=ExtResource("48_m57vu")]
 position = Vector2(2284, 838)
@@ -4877,6 +4941,298 @@ position = Vector2(7, 986)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jr2kn")
 
+[node name="ShopVan" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(2424, 548)
+flip_h = true
+
+[node name="AmmoShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+displayName = "Ammo"
+displayTexture = ExtResource("48_fbn0p")
+displayScale = 0.5
+price = 35
+description = "Salted, polished, and works with any gun."
+type = 1
+itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+
+[node name="LuckyCoin" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+displayName = "Lucky Coin"
+displayTexture = ExtResource("49_nrmn6")
+price = 120
+description = "Grants the choice to choose an upgrade."
+type = 3
+limitAmount = 1
+restockTime = 10
+restockAmount = 1
+costIncrementMultiplier = 1.125
+
+[node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+displayName = "AK47"
+displayTexture = ExtResource("51_imopv")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 200
+description = "A weapon with a decent fire rate and deals average damage."
+itemIdentifier = "AK47"
+
+[node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+price = 120
+type = 2
+itemIdentifier = "BigHeart"
+upgradeAmounts = Array[float]([5.0])
+costIncrementMultiplier = 1.35
+
+[node name="SaltedBulletsUpgrade" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 2
+itemIdentifier = "SaltedBullets"
+upgradeAmounts = Array[float]([5.0])
+costIncrementMultiplier = 1.125
+
+[node name="ShopVan2" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(2445, -1028)
+
+[node name="AmmoShopItem" type="Node" parent="Level/ShopVan2"]
+script = ExtResource("47_ud1rn")
+displayName = "Ammo"
+displayTexture = ExtResource("48_fbn0p")
+displayScale = 0.5
+price = 55
+description = "Salted, polished, and works with any gun."
+amount = 2
+type = 1
+itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 40
+restockAmount = 1
+
+[node name="MachineGunShopItem" type="Node" parent="Level/ShopVan2"]
+script = ExtResource("47_ud1rn")
+displayName = "Machine Gun"
+displayTexture = ExtResource("52_wb7qa")
+displayTextureOffset = Vector2(-5, 0)
+displayScale = 0.5
+price = 750
+description = "A weapon with a fast fire rate, but deals less damage."
+itemIdentifier = "MachineGun"
+
+[node name="SpeedBoostUpgrade" type="Node" parent="Level/ShopVan2"]
+script = ExtResource("47_ud1rn")
+price = 90
+type = 2
+itemIdentifier = "SpeedBoost"
+upgradeAmounts = Array[float]([2.0])
+costIncrementMultiplier = 1.6
+
+[node name="DefenseUpgrade" type="Node" parent="Level/ShopVan2"]
+script = ExtResource("47_ud1rn")
+price = 120
+type = 2
+itemIdentifier = "Defense"
+upgradeAmounts = Array[float]([2.5])
+costIncrementMultiplier = 1.25
+
+[node name="ShopVan3" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(5236, -2186)
+flip_h = true
+
+[node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+price = 100
+type = 2
+itemIdentifier = "BulletStorm"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 5
+costIncrementMultiplier = 1.25
+
+[node name="ShotgunShopItem" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+displayName = "Shotgun"
+displayTexture = ExtResource("50_jb14m")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 75
+description = "Great for targets within short range."
+itemIdentifier = "Shotgun"
+
+[node name="SpeedyRecoveryUpgrade" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+price = 80
+type = 2
+itemIdentifier = "SpeedyRecovery"
+upgradeAmounts = Array[float]([35.0])
+costIncrementMultiplier = 1.075
+
+[node name="ExtraCashUpgrade" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 2
+itemIdentifier = "ExtraCash"
+upgradeAmounts = Array[float]([10.0])
+limitAmount = 5
+costIncrementMultiplier = 1.05
+
+[node name="ShopVan4" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(-175, -2232)
+flip_h = true
+
+[node name="EnergeticUpgrade" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 2
+itemIdentifier = "Energetic"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="DexterityUpgrade" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+price = 120
+type = 2
+itemIdentifier = "Dexterity"
+upgradeAmounts = Array[float]([4.0])
+costIncrementMultiplier = 1.4
+
+[node name="ResourceMagnetUpgrade" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 2
+itemIdentifier = "ResourceMagnet"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.3
+
+[node name="ShopVan5" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(-480, 765)
+
+[node name="CriticalDamageUpgrade" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 2
+itemIdentifier = "CriticalDamage"
+upgradeAmounts = Array[float]([30.0])
+costIncrementMultiplier = 1.05
+
+[node name="ExtendedMagazineUpgrade" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+price = 150
+type = 2
+itemIdentifier = "ExtendedMagazine"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.4
+
+[node name="MachineGunShopItem" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+displayName = "Machine Gun"
+displayTexture = ExtResource("52_wb7qa")
+displayTextureOffset = Vector2(-5, 0)
+displayScale = 0.5
+price = 800
+description = "A weapon with a fast fire rate, but deals less damage."
+itemIdentifier = "MachineGun"
+
+[node name="LuckyCoin" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+displayName = "Lucky Coin"
+displayTexture = ExtResource("49_nrmn6")
+price = 90
+description = "Grants the choice to choose an upgrade."
+type = 3
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+costIncrementMultiplier = 1.125
+
+[node name="ShopVan6" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(1069, 3200)
+flip_h = true
+
+[node name="LifeSteal" type="Node" parent="Level/ShopVan6"]
+script = ExtResource("47_ud1rn")
+price = 150
+type = 2
+itemIdentifier = "LifeSteal"
+limitSales = true
+limitAmount = 3
+costIncrementMultiplier = 1.1
+
+[node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan6"]
+script = ExtResource("47_ud1rn")
+price = 180
+type = 2
+itemIdentifier = "BigHeart"
+upgradeAmounts = Array[float]([10.0])
+costIncrementMultiplier = 1.35
+
+[node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan6"]
+script = ExtResource("47_ud1rn")
+price = 100
+type = 2
+itemIdentifier = "BulletStorm"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 3
+costIncrementMultiplier = 1.25
+
+[node name="ShopVan7" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(4710, 3229)
+
+[node name="GlassCannonUpgrade" type="Node" parent="Level/ShopVan7"]
+script = ExtResource("47_ud1rn")
+price = 200
+type = 2
+itemIdentifier = "GlassCannon"
+limitSales = true
+limitAmount = 1
+costIncrementMultiplier = 1.2
+
+[node name="BigBounty" type="Node" parent="Level/ShopVan7"]
+script = ExtResource("47_ud1rn")
+price = 100
+type = 2
+itemIdentifier = "BigBounty"
+limitSales = true
+limitAmount = 2
+costIncrementMultiplier = 1.1
+
+[node name="Bargain" type="Node" parent="Level/ShopVan7"]
+script = ExtResource("47_ud1rn")
+price = 120
+type = 2
+itemIdentifier = "Bargain"
+costIncrementMultiplier = 1.1
+
+[node name="ShopVan8" parent="Level" instance=ExtResource("46_vpcry")]
+position = Vector2(5124, 899)
+
+[node name="AmmoShopItem" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+displayName = "Ammo"
+displayTexture = ExtResource("48_fbn0p")
+displayScale = 0.5
+price = 125
+description = "Salted, polished, and works with any gun."
+amount = 3
+type = 1
+itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 90
+restockAmount = 1
+
 [node name="BorderVertical9" type="NinePatchRect" parent="Level"]
 z_index = 10
 texture_filter = 1
@@ -4903,6 +5259,56 @@ y_sort_enabled = true
 position = Vector2(7, 986)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jr2kn")
+
+[node name="AmmoDispenser" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(2023, 834)
+respawnCooldown = 100.0
+
+[node name="AmmoDispenser2" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(2540, 842)
+respawnCooldown = 100.0
+
+[node name="AmmoDispenser18" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(2294, -911)
+respawnCooldown = 40.0
+
+[node name="AmmoDispenser5" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(-640, 596)
+
+[node name="AmmoDispenser6" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(-895, -2117)
+respawnCooldown = 20.0
+
+[node name="AmmoDispenser9" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(5072, -1597)
+
+[node name="AmmoDispenser11" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(3516, -483)
+
+[node name="AmmoDispenser12" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(4359, 1050)
+
+[node name="AmmoDispenser13" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(5372, 2232)
+respawnCooldown = 25.0
+
+[node name="AmmoDispenser14" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(3200, 3437)
+
+[node name="AmmoDispenser16" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(1870, 2368)
+
+[node name="AmmoDispenser17" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(931, 1706)
+respawnCooldown = 50.0
+
+[node name="AmmoDispenser19" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(3095, 2119)
+respawnCooldown = 150.0
+
+[node name="AmmoDispenser20" parent="Level" instance=ExtResource("53_351gy")]
+position = Vector2(3097, 2459)
+respawnCooldown = 150.0
 
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")
