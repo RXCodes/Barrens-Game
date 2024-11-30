@@ -15,3 +15,4 @@ func _ready() -> void:
 	# here we can start waves
 	await TimeManager.wait(5.0)
 	print("Starting!")
+	

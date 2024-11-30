@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=55 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -35,6 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="30_qn6y7"]
 [ext_resource type="Script" path="res://UI/HideItemDropdownButton.gd" id="32_g7q23"]
 [ext_resource type="AudioStream" uid="uid://dbs0wrf66wnua" path="res://UI/AmmoDispense.mp3" id="33_6wxp8"]
+[ext_resource type="Texture2D" uid="uid://dbpy5qcc4o58a" path="res://UI/InventorySlot.png" id="36_2ahnw"]
+[ext_resource type="Script" path="res://UI/InventoryManager.gd" id="36_ayq42"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="38_8qcta"]
+[ext_resource type="Script" path="res://UI/InventorySlot.gd" id="38_cbyrv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -570,6 +574,67 @@ pitch_scale = 2.0
 position = Vector2(-4.5, 0)
 shape = SubResource("RectangleShape2D_01m7r")
 debug_color = Color(0.64, 0.36672, 0.2496, 0.156863)
+
+[node name="Inventory" type="Node2D" parent="."]
+z_index = -2
+position = Vector2(-206, -369)
+script = ExtResource("36_ayq42")
+
+[node name="Slot" type="Sprite2D" parent="Inventory"]
+texture_filter = 1
+position = Vector2(-154, 37)
+scale = Vector2(3, 3)
+texture = ExtResource("36_2ahnw")
+script = ExtResource("38_cbyrv")
+
+[node name="Item" type="Sprite2D" parent="Inventory/Slot"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("38_8qcta")
+
+[node name="Key" type="Label" parent="Inventory/Slot"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+offset_left = -12.3335
+offset_top = -14.0
+offset_right = 0.666504
+offset_bottom = 12.0
+scale = Vector2(0.275, 0.275)
+text = "3"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="Amount" type="Label" parent="Inventory/Slot"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+offset_left = -1.66667
+offset_top = 6.66669
+offset_right = 38.3333
+offset_bottom = 32.6667
+scale = Vector2(0.35, 0.35)
+text = "x10"
+label_settings = SubResource("LabelSettings_60nyp")
+horizontal_alignment = 2
+
+[node name="ItemName" type="Label" parent="Inventory"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+texture_filter = 1
+offset_left = -200.0
+offset_top = 89.0
+offset_right = -95.0
+offset_bottom = 115.0
+text = "Item name"
+label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="ItemDescription" type="Label" parent="Inventory"]
+modulate = Color(0.864675, 0.864675, 0.864675, 1)
+self_modulate = Color(0.65834, 0.65834, 0.65834, 1)
+texture_filter = 1
+offset_left = -200.0
+offset_top = 108.0
+offset_right = -95.0
+offset_bottom = 134.0
+scale = Vector2(0.8, 0.8)
+text = "item description"
+label_settings = SubResource("LabelSettings_60nyp")
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]

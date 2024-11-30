@@ -444,6 +444,7 @@ func pickupAmmo() -> void:
 
 func selectWeapon(gun: Gun) -> void:
 	gunInteractor.currentWeapon = gun
+	InventoryManager.selectSlot(-1)
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	refreshAmmoDisplay()
