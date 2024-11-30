@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c76l57b4psv0s"]
+[gd_scene load_steps=21 format=3 uid="uid://bc7hpgmmusmbv"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_nyisu"]
 [ext_resource type="Texture2D" uid="uid://b0tbduu8itbyj" path="res://Environment/MainMenuBackgroundGradient.png" id="1_tkqks"]
@@ -401,6 +401,15 @@ texture = ExtResource("5_tt3yn")
 offset = Vector2(0, 6.66667)
 
 [node name="GameButtons" type="Node2D" parent="."]
+
+[node name="Version" type="Label" parent="GameButtons"]
+offset_left = 10.0
+offset_top = 768.0
+offset_right = 188.0
+offset_bottom = 790.0
+mouse_filter = 1
+text = "v1.0 beta release"
+label_settings = ExtResource("8_4nxs1")
 
 [node name="StartGame" type="Label" parent="GameButtons"]
 offset_left = 465.0

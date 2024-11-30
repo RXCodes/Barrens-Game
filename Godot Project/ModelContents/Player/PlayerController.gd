@@ -433,9 +433,9 @@ func pickupAmmo() -> void:
 	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
 	$AmmoPickup.play()
 	for gun: Gun in holdingWeapons:
-		var ammoToAdd = min(gun.maximumMagCapacity, 50)
-		if ammoToAdd < 10:
-			ammoToAdd = round(ammoToAdd * 1.5)
+		var ammoToAdd = min(gun.maximumMagCapacity, 100)
+		if ammoToAdd < 30:
+			ammoToAdd = round(ammoToAdd * 2)
 		gun.leftoverAmmoCount += ammoToAdd
 	if gunInteractor.currentWeapon.currentMagCapacity == 0:
 		gunInteractor.currentWeapon.reload(true)

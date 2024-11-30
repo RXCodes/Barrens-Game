@@ -124,8 +124,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var flipX = false
+var timeAlive: float = 0.0
 func _process(delta: float) -> void:
 	flipTransform.scale.x = -1 if flipX else 1
+	timeAlive += delta
 	if invertXFlip:
 		flipTransform.scale.x *= -1
 	if renderer.material is ShaderMaterial:
@@ -237,11 +239,27 @@ func _physics_process(delta: float) -> void:
 
 # pathfinding and movement functionality
 var targetDistance: float = 30
+var previousPosition: Vector2
+var samePositionThresholdSquared = 20 ** 2
+var samePositionTime = 0
+var lastNavigationCheck: float = 0
 func navigate() -> void:
 	navigationAgent.target_desired_distance = targetDistance
+	var timeElapsed = timeAlive - lastNavigationCheck
+	lastNavigationCheck = timeAlive
 	if withinRangeOfTarget():
 		reachedTarget()
 		return
+	
+	# if this enemy is stuck in the same spot for too long, adjust its pathfinding
+	if previousPosition.distance_squared_to(collisionRigidBody.global_position) < samePositionThresholdSquared:
+		samePositionTime += timeElapsed
+		if samePositionTime >= 7.5:
+			navigationAgent.avoidance_enabled = true
+	else:
+		previousPosition = collisionRigidBody.global_position
+		samePositionTime = 0.0
+	
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()
 		mainAnimationPlayer.play(walkAnimation)

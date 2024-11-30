@@ -36,7 +36,6 @@ static func start(waveNumber: int, countdownSeconds: int) -> void:
 	
 	# countdown has ended - fade out
 	seconds.text = "0"
-	await TimeManager.wait(1.5)
 	var fadeOut = NodeRelations.createTween()
 	fadeOut.set_ease(Tween.EASE_OUT)
 	fadeOut.set_trans(Tween.TRANS_EXPO)

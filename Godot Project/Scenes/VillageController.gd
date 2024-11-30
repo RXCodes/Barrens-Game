@@ -54,7 +54,7 @@ func spawnEnemies(wave: int) -> void:
 				continue
 			
 			# determine a random point on the traversable map
-			var randomPoint = NavigationServer2D.region_get_random_point($"../NavigationRegion".get_rid(), 1, false)
+			var randomPoint = NavigationServer2D.region_get_random_point($"../NavigationRegions/Small (30px)".get_rid(), 1, false)
 			
 			# check if it is within range of the player, but not too close
 			var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
@@ -63,11 +63,30 @@ func spawnEnemies(wave: int) -> void:
 				continue
 			
 			# spawn the enemy
-			var enemy = EnemySpawner.spawnEnemy("slime_enemy", randomPoint)
+			var enemyEntries = determineEnemies(wave)
+			var enemy = EnemySpawner.spawnEnemy(enemyEntries.pick_random(), randomPoint)
 			enemy.add_to_group("Enemy")
 			await TimeManager.wait(0.1)
 			break
 	spawningEnemies = false
+
+# determine what enemies should be spawned for a particular wave
+# adjust how frequent a particular enemy spawns by adding more entries
+func determineEnemies(wave: int) -> Array:
+	var enemyNames = ["slime_enemy"]
+	if wave >= 2:
+		enemyNames.append("acid_slime_enemy")
+		enemyNames.append("slime_enemy")
+	if wave >= 3:
+		enemyNames.append("manta_ray_enemy")
+	if wave >= 5:
+		enemyNames.append("slime_enemy")
+		enemyNames.append("scorpion_enemy")
+	if wave >= 7:
+		enemyNames.append("slime_enemy")
+		enemyNames.append("manta_ray_enemy")
+		enemyNames.append("worm_enemy")
+	return enemyNames
 
 func _process(delta: float) -> void:
 	# check if the wave is completed

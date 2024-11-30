@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://n0e8t8q312gb"]
+[gd_scene load_steps=23 format=3 uid="uid://djwcqm8rm7o0d"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
 [ext_resource type="Script" path="res://Models/worm_enemy.gd" id="2_8ctff"]
@@ -17,12 +17,12 @@ radius = 37.5
 height = 107.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 7.00001
-height = 59.0
+radius = 10.0
+height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 75.0
-height = 218.0
+radius = 147.0
+height = 300.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w35xc"]
 animations = [{
@@ -315,7 +315,6 @@ _data = {
 [node name="Worm_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-position = Vector2(84, 46)
 script = ExtResource("1_i73wb")
 entityZIndexOffset = 24
 
@@ -345,7 +344,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/Hitbox"]
 z_index = -2
-position = Vector2(27, 17)
+position = Vector2(1, -103)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
@@ -356,15 +355,14 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(28, 124)
+position = Vector2(1, 1.52588e-05)
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(27, 15)
+position = Vector2(35, -70)
 rotation = 3.14159
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
@@ -377,9 +375,10 @@ path_max_distance = 120.0
 path_metadata_flags = 0
 
 [node name="FlipTransform" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+scale = Vector2(-1, 1)
 
 [node name="Animations" type="AnimatedSprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(31, -12)
+position = Vector2(11.4998, -132.399)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
 animation = &"Idle"
@@ -390,7 +389,7 @@ modulate = Color(1, 1, 1, 0.231373)
 show_behind_parent = true
 z_index = -1
 texture_filter = 1
-position = Vector2(16, 124)
+position = Vector2(-3.50015, 3.6012)
 scale = Vector2(2.19531, 1.51712)
 texture = ExtResource("4_aabbn")
 offset = Vector2(0, -39.2243)
@@ -408,6 +407,7 @@ libraries = {
 }
 
 [node name="HitSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+position = Vector2(-27, -122)
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
 stream = ExtResource("5_2m7wb")

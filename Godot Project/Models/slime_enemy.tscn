@@ -17,8 +17,8 @@ radius = 10.2907
 height = 20.5815
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 4.291
-height = 20.4185
+radius = 6.0
+height = 25.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 38.582
@@ -115,9 +115,8 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Slime_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-0.581501, -2.582)
+position = Vector2(0, -4)
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
@@ -134,6 +133,7 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
+radius = 30.0
 
 [node name="FlipTransform" type="Node2D" parent="Slime_Enemy/ColliderBox"]
 position = Vector2(0, -25)

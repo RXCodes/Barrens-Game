@@ -35,8 +35,8 @@ radius = 27.0
 height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 6.5
-height = 47.0
+radius = 7.0
+height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 94.0
@@ -435,9 +435,8 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(1, 0)
+position = Vector2(1, -6)
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
@@ -453,6 +452,8 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
+radius = 30.0
+neighbor_distance = 100.0
 
 [node name="FlipTransform" type="Node2D" parent="Snake_Enemy/ColliderBox"]
 position = Vector2(1, -41)
