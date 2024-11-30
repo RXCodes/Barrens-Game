@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dl638gwgcs0dr"]
+[gd_scene load_steps=16 format=3 uid="uid://cqidlc2s5gynw"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_dbfgx"]
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_vy8mu"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_66625"]
 [ext_resource type="Script" path="res://UI/Popups/NoticePrompt.gd" id="3_0nqde"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="4_t7mv3"]
@@ -41,6 +42,7 @@ func _on_button_button_down() -> void:
 "
 
 [node name="PopupBackground" type="ColorRect"]
+material = ExtResource("1_vy8mu")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -50,7 +52,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 0.72549)
+color = Color(0, 0, 0, 0.376471)
 metadata/_edit_lock_ = true
 
 [node name="Popup" type="Node2D" parent="."]

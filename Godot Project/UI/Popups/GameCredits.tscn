@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://duoky85j1r6gx"]
+[gd_scene load_steps=15 format=3 uid="uid://bbaao6dvrrh25"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_cudko"]
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_fj7xl"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_2oegm"]
 [ext_resource type="Texture2D" uid="uid://cuiicpwe414tj" path="res://UI/BarrensLogo.png" id="3_wee0g"]
 [ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="9_f1xfh"]
@@ -27,6 +28,7 @@ keycode = 4194305
 events = [SubResource("InputEventKey_hcuy1")]
 
 [node name="PopupBackground" type="ColorRect"]
+material = ExtResource("1_fj7xl")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,7 +38,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 0.72549)
+color = Color(0, 0, 0, 0.376471)
 
 [node name="Popup" type="Node2D" parent="."]
 process_priority = -2

@@ -31,6 +31,7 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://Environment/": "yellow",
 "res://HelperClasses/": "pink",
+"res://Items/": "teal",
 "res://ModelContents/": "red",
 "res://ModelContents/AmmoDispenser/": "orange",
 "res://ModelContents/AmmoDrop/": "orange",

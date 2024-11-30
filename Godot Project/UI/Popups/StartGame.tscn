@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://cffrwkp3qr2x7"]
+[gd_scene load_steps=23 format=3 uid="uid://bw3gxirav5rd2"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_djgmf"]
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_fghou"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_qakkk"]
 [ext_resource type="Texture2D" uid="uid://cs1dwa1ohc6ae" path="res://Scenes/Intro/Images/Slide14.png" id="3_6do1r"]
 [ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_2336j"]
@@ -200,6 +201,7 @@ _data = {
 }
 
 [node name="PopupBackground" type="ColorRect"]
+material = ExtResource("1_fghou")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -209,7 +211,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 0.72549)
+color = Color(0, 0, 0, 0.376471)
 
 [node name="Popup" type="Node2D" parent="."]
 process_priority = -2

@@ -47,7 +47,7 @@
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="47_ud1rn"]
 [ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="48_fbn0p"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="48_m57vu"]
-[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="49_nrmn6"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="49_nrmn6"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="50_jb14m"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="51_abhol"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="51_imopv"]

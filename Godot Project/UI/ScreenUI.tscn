@@ -37,7 +37,7 @@
 [ext_resource type="AudioStream" uid="uid://dbs0wrf66wnua" path="res://UI/AmmoDispense.mp3" id="33_6wxp8"]
 [ext_resource type="Texture2D" uid="uid://dbpy5qcc4o58a" path="res://UI/InventorySlot.png" id="36_2ahnw"]
 [ext_resource type="Script" path="res://UI/InventoryManager.gd" id="36_ayq42"]
-[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="38_8qcta"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="38_8qcta"]
 [ext_resource type="Script" path="res://UI/InventorySlot.gd" id="38_cbyrv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]

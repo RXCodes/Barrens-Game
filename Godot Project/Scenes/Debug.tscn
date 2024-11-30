@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
-[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="21_6bqoh"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="21_6bqoh"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="21_40mk5"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="21_evfkg"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]

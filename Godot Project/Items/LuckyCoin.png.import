@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7wm6rcggce47"
-path="res://.godot/imported/LuckyCoin.png-0e101c68fdfb9c305e18b43f8781cdb2.ctex"
+path="res://.godot/imported/LuckyCoin.png-abe9b0f670dccfbd4d1bdf886ec17dc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Popups/LuckyCoin.png"
-dest_files=["res://.godot/imported/LuckyCoin.png-0e101c68fdfb9c305e18b43f8781cdb2.ctex"]
+source_file="res://Items/LuckyCoin.png"
+dest_files=["res://.godot/imported/LuckyCoin.png-abe9b0f670dccfbd4d1bdf886ec17dc9.ctex"]
 
 [params]
 

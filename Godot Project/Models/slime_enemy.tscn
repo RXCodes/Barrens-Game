@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_lp8jn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
-radius = 10.2908
+radius = 10.2907
 height = 20.5815
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
@@ -21,8 +21,8 @@ radius = 4.291
 height = 20.4185
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 25.582
-height = 51.164
+radius = 38.582
+height = 77.164
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ct0n3"]
 animations = [{
