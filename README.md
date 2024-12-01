@@ -1,10 +1,12 @@
 ![BarrensLogo](https://github.com/user-attachments/assets/69e5aa4d-276e-4df4-bc66-503adcd03680)
 
 # Description
-
 An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
 
-**Barrens** is a top-down story-based western shooter where you can navigate through villages and fight enemies. You can upgrade your gear to make progressing through the game easier. Interact with NPCs throughout the world, find spells, browse the shop and more!
+![In-Game Cinematic](https://github.com/user-attachments/assets/636f8d66-7ad8-4bf3-8753-d78d57a962bd)
+![In-Game Screenshot](https://github.com/user-attachments/assets/6391c1ed-455c-4f05-be74-938d250eb7a8)
+
+**Barrens** is an infinite top-down western shooter where you can explore your village, and fight enemies. You can upgrade your gear to make yourself stronger, purchase items in shops, engage in intense battles and more!
 
 # Credits
 Thanks to students at **UofL J.B. Speed School of Engineering** for this project.
@@ -18,7 +20,7 @@ CSE 350 - Section 50 **(Group 3)**
 # Technical Info
 - This game is supported on all devices with a keyboard and mouse/trackpad.
 - You can play this game on the browser by using one of the links under the **Try It Out** section of this page.
-- Due to technical limitations, this game may not be able to run on iOS devices.
+- Due to technical limitations, this game may not be able to run properly on iOS devices.
 
 # Project Goal & Relevance
 *This is top-down western shooter game created using Godot for CSE 350.* The goal of our project is to develop an engaging 2D top-down game using the **Godot** engine. Our game will focus on creating an appealing and immersive world where players can interact with a variety of mechanics. Our aim is to build core mechanics related to game design, such as: character movement, AI, level design, and sprite animations to enhance the experience and make the game not only fun, but interactive in every way.
