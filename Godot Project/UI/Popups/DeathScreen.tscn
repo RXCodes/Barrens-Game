@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3x1x7kgbcsry"]
+[gd_scene load_steps=14 format=3 uid="uid://b3x1x7kgbcsry"]
 
 [ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_ee3yw"]
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="2_nlobv"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="3_4aadd"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="4_7w7fg"]
+[ext_resource type="Script" path="res://UI/Popups/DeathScreen.gd" id="4_f7dql"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="5_uaqct"]
 [ext_resource type="Texture2D" uid="uid://di7w3670f3fn8" path="res://UI/DeathIllustration.png" id="6_mudtp"]
 [ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="7_w2mjd"]
@@ -64,7 +65,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.59, 0.0885, 0, 0.364706)
+color = Color(0.311764, 0.004018, 0.0104912, 0.458824)
 metadata/_edit_lock_ = true
 
 [node name="Popup" type="Node2D" parent="."]
@@ -85,6 +86,7 @@ patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+script = ExtResource("4_f7dql")
 
 [node name="Title" type="Label" parent="Popup/SquareUI"]
 layout_mode = 0
@@ -130,7 +132,6 @@ texture = ExtResource("6_mudtp")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 2)
-scale = Vector2(1, 1)
 texture = ExtResource("6_mudtp")
 
 [node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
@@ -162,7 +163,7 @@ label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 
 [node name="StatisticValues" type="Label" parent="Popup/SquareUI"]
-modulate = Color(0.88, 0.5808, 0.605733, 1)
+modulate = Color(0.88, 0.88, 0.88, 1)
 layout_mode = 0
 offset_left = 139.6
 offset_top = 78.0

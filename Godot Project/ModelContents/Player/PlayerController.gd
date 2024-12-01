@@ -158,10 +158,18 @@ var lifestealMultiplier: float = 0.0
 
 # statistics
 var totalCashEarned: int = 0
+var timeSurvived: float = 0
+var enemiesDefeated: int = 0
+var upgradesReceived: int = 0
+var wavesCompleted: int = 0
+var damageDealt: float = 0
+var damageTaken: float = 0
+var bulletsFired: int = 0
 
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	timeSurvived += delta
 	
 	# passive regeneration
 	if not dead:
@@ -301,6 +309,7 @@ func onFire() -> void:
 	var random = Vector2(randf_range(-250, 250), randf_range(-250, 250))
 	var crosshairNormal = Vector2.from_angle(Crosshair.current.cursorPosition.angle_to_point(global_position + random)).normalized()
 	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier
+	bulletsFired += 1
 	
 	# update ammo info and animate it
 	AmmoInfoDisplay.gunFired()
@@ -378,6 +387,7 @@ func damage(amount: float, source: Node2D) -> void:
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	damageTaken += amount
 	
 	# animate hurt vignette and camera
 	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
@@ -407,6 +417,7 @@ func kill() -> void:
 	actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play("death")
+	$WalkSounds.queue_free()
 	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
 	DeathSmokeParticles.spawnParticle(global_position, 1)
 	Crosshair.stopReloadingWeapon()
@@ -427,6 +438,8 @@ func kill() -> void:
 	ScreenUI.fadeToScene("res://Scenes/TitleScreen.tscn")
 
 func playWalkSound() -> void:
+	if dead:
+		return
 	var walkSounds = $WalkSounds.get_children()
 	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
 	walkSound.pitch_scale = randfn(1.0, 0.1)

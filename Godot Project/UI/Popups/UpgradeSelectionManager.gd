@@ -52,6 +52,7 @@ static func confirmButtonPressed() -> void:
 	if not selectedUpgrade or not active:
 		return
 	active = false
+	Player.current.upgradesReceived += 1
 	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
 	if selectedUpgrade.upgradeName == "Gamble":
 		return

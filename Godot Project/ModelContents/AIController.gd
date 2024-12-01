@@ -196,6 +196,7 @@ func damage(amount: float, source: Node2D) -> void:
 		if criticalChance >= roll:
 			criticalDamaged = true
 			amount *= 12.5
+		Player.current.damageDealt += amount
 	
 	enemyDamaged.emit()
 	onDamage()
@@ -205,6 +206,8 @@ func damage(amount: float, source: Node2D) -> void:
 	currentHealth -= amount
 	if currentHealth <= 0:
 		currentHealth = 0
+		if source is Player:
+			Player.current.enemiesDefeated += 1
 		kill()
 	updateHealthBar()
 

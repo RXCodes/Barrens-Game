@@ -75,6 +75,7 @@ func _on_button_button_down() -> void:
 				var upgradeAmounts = newUpgrade.preferredUpgradeAmounts
 				for s in range(selectedShopItem.upgradeAmounts.size()):
 					upgradeAmounts[s] = selectedShopItem.upgradeAmounts[s]
+				Player.current.upgradesReceived += 1
 				newUpgrade.onUpgrade(upgradeAmounts)
 				newUpgrade.queue_free()
 			if selectedShopItem.type == ShopItem.ItemType.LUCKY_COIN:
