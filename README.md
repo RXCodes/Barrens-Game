@@ -4,7 +4,7 @@
 An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
 
 ![In-Game Cinematic](https://github.com/user-attachments/assets/636f8d66-7ad8-4bf3-8753-d78d57a962bd)
-![In-Game Screenshot](https://github.com/user-attachments/assets/6391c1ed-455c-4f05-be74-938d250eb7a8)
+![In-Game Screenshot](https://github.com/user-attachments/assets/b319e839-cc29-4e87-956a-773a4bf9e1c0)
 
 **Barrens** is an infinite top-down western shooter where you can explore your village, and fight enemies. You can upgrade your gear to make yourself stronger, purchase items in shops, engage in intense battles and more!
 
