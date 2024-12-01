@@ -1,4 +1,4 @@
-![BarrensLogo](https://github.com/user-attachments/assets/69e5aa4d-276e-4df4-bc66-503adcd03680)
+![Barren Logo](https://github.com/user-attachments/assets/b0475001-9831-4db0-a683-7f19aad5bd0e)
 
 # Description
 An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
@@ -6,7 +6,7 @@ An evil tribe has invaded your land and inflicted chaos on multiple villages. Th
 ![In-Game Cinematic](https://github.com/user-attachments/assets/636f8d66-7ad8-4bf3-8753-d78d57a962bd)
 ![In-Game Screenshot](https://github.com/user-attachments/assets/b319e839-cc29-4e87-956a-773a4bf9e1c0)
 
-**Barrens** is an infinite top-down western shooter where you can explore your village, and fight enemies. You can upgrade your gear to make yourself stronger, purchase items in shops, engage in intense battles and more!
+**Barren** is an infinite top-down western shooter where you can explore your village, and fight enemies. You can upgrade your gear to make yourself stronger, purchase items in shops, engage in intense battles and more!
 
 # Credits
 Thanks to students at **UofL J.B. Speed School of Engineering** for this project.
