@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_cudko"]
 [ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_fj7xl"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_2oegm"]
-[ext_resource type="Texture2D" uid="uid://cuiicpwe414tj" path="res://UI/BarrensLogo.png" id="3_wee0g"]
+[ext_resource type="Texture2D" uid="uid://gue6nfabuugj" path="res://UI/BarrenLogo.png" id="4_jji1o"]
 [ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="9_f1xfh"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="10_y1xmh"]
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="11_y1kn6"]
@@ -60,8 +60,8 @@ patch_margin_right = 10
 patch_margin_bottom = 10
 
 [node name="Bullet" type="Sprite2D" parent="Popup/SquareUI"]
-position = Vector2(138, 54.8)
-texture = ExtResource("3_wee0g")
+position = Vector2(138, 44.8)
+texture = ExtResource("4_jji1o")
 
 [node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
 self_modulate = Color(1, 1, 1, 0.533333)
@@ -260,12 +260,12 @@ autowrap_mode = 2
 [node name="Label15" type="Label" parent="Popup/SquareUI"]
 modulate = Color(0.557271, 0.767417, 0.839921, 1)
 layout_mode = 0
-offset_left = 71.2
-offset_top = 142.4
-offset_right = 894.2
-offset_bottom = 217.4
+offset_left = 71.0
+offset_top = 142.0
+offset_right = 920.0
+offset_bottom = 217.0
 scale = Vector2(0.23, 0.23)
-text = "UI, enemy and environment design"
+text = "concept, enemy, and environment design"
 label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 

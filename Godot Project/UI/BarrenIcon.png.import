@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuiicpwe414tj"
-path="res://.godot/imported/BarrensLogo.png-e3e11dcd83658bdc4e881ff39cbb45d4.ctex"
+uid="uid://55n415r6iioj"
+path="res://.godot/imported/BarrenIcon.png-7704853df09305e5b076f04c015253a0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/BarrensLogo.png"
-dest_files=["res://.godot/imported/BarrensLogo.png-e3e11dcd83658bdc4e881ff39cbb45d4.ctex"]
+source_file="res://UI/BarrenIcon.png"
+dest_files=["res://.godot/imported/BarrenIcon.png-7704853df09305e5b076f04c015253a0.ctex"]
 
 [params]
 

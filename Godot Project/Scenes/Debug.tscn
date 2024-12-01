@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
-[ext_resource type="PackedScene" uid="uid://bkp4ikyughfp2" path="res://Models/slime_enemy.tscn" id="28_3nth0"]
+[ext_resource type="PackedScene" uid="uid://cxnpl8vckivfy" path="res://Models/scorpion_enemy.tscn" id="28_1rse8"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -447,9 +447,6 @@ respawnCooldown = 10.0
 position = Vector2(-435, 301)
 respawnCooldown = 10.0
 
-[node name="Slime_Enemy" parent="Level" instance=ExtResource("28_3nth0")]
-position = Vector2(63, -351)
-
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
@@ -458,3 +455,6 @@ position = Vector2(63, -351)
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
+
+[node name="Scorpion_Enemy" parent="." instance=ExtResource("28_1rse8")]
+position = Vector2(-119, -315)

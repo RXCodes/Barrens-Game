@@ -12,7 +12,6 @@ func onStart() -> void:
 		
 		# enemy jumps towards the player while in range
 		while withinRangeOfTarget():
-			canDealDamage = true
 			faceTarget()
 			walkMovementSpeed = 0  
 			mainAnimationPlayer.stop()

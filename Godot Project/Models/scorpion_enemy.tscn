@@ -183,7 +183,7 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Scorpion_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(0, -42)
+position = Vector2(0, -13)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
