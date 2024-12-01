@@ -22,11 +22,12 @@ static func fadeToScene(scenePath: String) -> void:
 	var tween = NodeRelations.createTween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_method(setOverlayAlpha, 0.0, 1.0, 2.5)
-	tween.parallel().tween_property(overlayRect, "color", Color(0, 0, 0, 1), 4.0)
-	await TimeManager.wait(4.1)
+	tween.tween_method(setOverlayAlpha, 0.0, 1.0, 1.5)
+	tween.parallel().tween_property(overlayRect, "color", Color(0, 0, 0, 1), 2.5)
+	await TimeManager.wait(2.6)
 	NodeRelations.loadScene(scenePath)
 
+## controls the blur of the ovrelay - used when transitioning back to title screen
 static func setOverlayAlpha(amount: float) -> void:
 	var shaderMaterial = overlayRect.material as ShaderMaterial
 	shaderMaterial.set_shader_parameter("alpha", amount)

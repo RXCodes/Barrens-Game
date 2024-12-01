@@ -396,6 +396,7 @@ cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
 hasAI = true
+pathfindAgentSize = 1
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 walkAnimation = "Walk"
 deathAnimation = "Death"

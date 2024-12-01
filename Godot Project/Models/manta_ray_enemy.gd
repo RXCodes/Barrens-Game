@@ -4,6 +4,7 @@ class_name MantaRayEnemy
 var player: Node2D
 var dashing = false
 var dashNormal: Vector2
+var pathfindNormal: bool
 
 signal hitWithDash
 
@@ -13,18 +14,22 @@ func onStart() -> void:
 	while not dead:
 		# get within range to dash to player
 		walkMovementSpeed = 2.5
-		setTarget(Player.current, 250)
+		if pathfindNormal:
+			setTarget(Player.current, 80)
+		else:
+			setTarget(Player.current, 250)
 		$ColliderBox/FlipTransform/Animations.play("Idle")
 		await enemyReachedTarget
 		walkMovementSpeed = 0
-		dashNormal = (getTargetPosition() - getPosition()).normalized()
 		faceTarget()
 		mainAnimationPlayer.stop()
-		if dashNormal.x < 0:
-			playAnimation("Dash-Left")
-		else:
-			playAnimation("Dash-Right")
-		await TimeManager.wait(0.5)
+		if not pathfindNormal:
+			dashNormal = (getTargetPosition() - getPosition()).normalized()
+			if dashNormal.x < 0:
+				playAnimation("Dash-Left")
+			else:
+				playAnimation("Dash-Right")
+			await TimeManager.wait(0.5)
 		
 		# dash to the player
 		dashing = true
@@ -53,7 +58,13 @@ func onStart() -> void:
 
 func physicsProcess(delta: float) -> void:
 	if dashing:
-		var result = collisionRigidBody.move_and_collide(dashNormal * 11.5)
+		var result: KinematicCollision2D = collisionRigidBody.move_and_collide(dashNormal * 11.5)
 		if result:
 			hitWithDash.emit()
 			$ColliderBox/HitParticles.emitting = true
+			if result.get_collider() is not Player:
+				# the enemy hit a wall, just pathfind like normal for a few seconds
+				# don't try to charge again for a bit
+				pathfindNormal = true
+				await TimeManager.wait(6.0)
+				pathfindNormal = false

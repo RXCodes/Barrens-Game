@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if progress >= 1.0 and not exhausted:
 		emitting = false
 		$Lifesteal.pitch_scale = randfn(1.0, 0.08)
-		Player.current.health = min(Player.current.maximumHealth + healthIncrease, Player.current.maximumHealth)
+		Player.current.health = min(Player.current.health + healthIncrease, Player.current.maximumHealth)
 		$Lifesteal.play()
 		$Explode.emitting = true
 		exhausted = true
