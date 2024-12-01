@@ -48,8 +48,8 @@ radius = 6.0
 height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 67.0
-height = 142.0
+radius = 46.0
+height = 92.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ct0n3"]
 animations = [{
@@ -141,6 +141,29 @@ animations = [{
 "loop": false,
 "name": &"Attack",
 "speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_3ssli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_3ssli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_l3gd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jphvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_d85ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3g7ej")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -303,6 +326,54 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_fkkh3"]
 resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, 67), Vector2(-14, 62.2961), Vector2(-14, 56.3127), Vector2(-14, 52), Vector2(-14, 50.525), Vector2(-14, 51.4482), Vector2(-14, 53.5), Vector2(-14, 55.4135), Vector2(-14, 56.4477), Vector2(-14, 56.5), Vector2(-14, 55.912), Vector2(-14, 55.1641), Vector2(-14, 54.625), Vector2(-14, 54.4406), Vector2(-14, 54.556), Vector2(-14, 54.8125), Vector2(-14, 55.0517), Vector2(-14, 55.181), Vector2(-14, 55.1875), Vector2(-14, 55.114), Vector2(-14, 55.0205), Vector2(-14, 54.9531), Vector2(-14, 54.9301), Vector2(-14, 54.9445), Vector2(-14, 54.9766), Vector2(-14, 55.0065), Vector2(-14, 55.0226), Vector2(-14, 55.0234), Vector2(-14, 55.0143), Vector2(-14, 55.0026), Vector2(-14, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1.065), Vector2(1, 0.941523), Vector2(1, 0.784458), Vector2(1, 0.67125), Vector2(1, 0.632531), Vector2(1, 0.656765), Vector2(1, 0.710625), Vector2(1, 0.760854), Vector2(1, 0.788003), Vector2(1, 0.789375), Vector2(1, 0.77394), Vector2(1, 0.754307), Vector2(1, 0.740156), Vector2(1, 0.735316), Vector2(1, 0.738346), Vector2(1, 0.745078), Vector2(1, 0.751357), Vector2(1, 0.75475), Vector2(1, 0.754922), Vector2(1, 0.752993), Vector2(1, 0.750538), Vector2(1, 0.74877), Vector2(1, 0.748165), Vector2(1, 0.748543), Vector2(1, 0.749385), Vector2(1, 0.75017), Vector2(1, 0.750594), Vector2(1, 0.750615), Vector2(1, 0.750374), Vector2(1, 0.750067), Vector2(1, 0.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(0.31864, 0.594605),
+"update": 0,
+"values": [0, 5]
+}
 
 [sub_resource type="Animation" id="Animation_82ynv"]
 length = 0.001
@@ -465,7 +536,7 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Slime_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(0, -3)
+position = Vector2(1, -7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
