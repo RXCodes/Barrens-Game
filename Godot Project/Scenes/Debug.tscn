@@ -183,6 +183,7 @@ script = ExtResource("16_e3y2f")
 visible = false
 position = Vector2(-3474, -4504)
 navigation_polygon = SubResource("NavigationPolygon_mt871")
+navigation_layers = 15
 
 [node name="Level" type="Node2D" parent="." groups=["NavigationGroup"]]
 process_priority = 100

@@ -5521,6 +5521,9 @@ position = Vector2(-621, -1981)
 [node name="DummyRender4" parent="Level" instance=ExtResource("55_133kb")]
 position = Vector2(-352, -2333)
 
+[node name="Tree65" parent="Level" instance=ExtResource("41_6klyx")]
+position = Vector2(-1082, -1844)
+
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")
 
@@ -5541,9 +5544,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="WaveDisplay" parent="ScreenUI" instance=ExtResource("57_g185c")]
 position = Vector2(0, -200)
-
-[node name="Tree3" parent="." instance=ExtResource("41_6klyx")]
-position = Vector2(-1082, -1844)
 
 [connection signal="body_shape_entered" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_exited"]

@@ -221,12 +221,13 @@ func updateHealthBar() -> void:
 	healthBar.progress = (currentHealth / maxHealth) * 100.0
 	
 # called when changing the flashing state of the enemy
+var defaultMaterial: ShaderMaterial = null
 func flashWhite(flashing: bool) -> void:
 	if flashing:
 		renderer.material = ShaderMaterial.new()
 		renderer.material.shader = flashWhiteShader
 	else:
-		renderer.material = null
+		renderer.material = defaultMaterial
 
 # called on every physics tick
 var shapeTests: Array[ShapeIntersectionTest] = []
