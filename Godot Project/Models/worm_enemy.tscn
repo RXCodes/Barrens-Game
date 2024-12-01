@@ -1,16 +1,26 @@
-[gd_scene load_steps=23 format=3 uid="uid://n0e8t8q312gb"]
+[gd_scene load_steps=33 format=3 uid="uid://n0e8t8q312gb"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
 [ext_resource type="Script" path="res://Models/worm_enemy.gd" id="2_8ctff"]
-[ext_resource type="Texture2D" uid="uid://bm5th4ocels7v" path="res://ModelContents/Enemies/Worm Attack/frame_0_delay-0.3s.png" id="3_ky14l"]
+[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Worm Attack/frame_0_delay-0.3s.png" id="3_ky14l"]
+[ext_resource type="Texture2D" uid="uid://ddrj5fbfe2c6x" path="res://ModelContents/Enemies/Worm Attack/frame_00_delay-0.2s.png" id="3_ori48"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_aabbn"]
-[ext_resource type="Texture2D" uid="uid://bitkxflpc4y4n" path="res://ModelContents/Enemies/Worm Attack/frame_1_delay-0.3s.png" id="4_te62f"]
+[ext_resource type="Texture2D" uid="uid://cdajcjqedqxux" path="res://ModelContents/Enemies/Worm Attack/frame_05_delay-0.2s.png" id="4_nwk5m"]
+[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Worm Attack/frame_1_delay-0.3s.png" id="4_te62f"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_2m7wb"]
-[ext_resource type="Texture2D" uid="uid://lr7drejvim5j" path="res://ModelContents/Enemies/Worm Attack/frame_2_delay-0.2s.png" id="5_bbfb2"]
+[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Worm Attack/frame_2_delay-0.2s.png" id="5_bbfb2"]
+[ext_resource type="Texture2D" uid="uid://4kgrua7lni7x" path="res://ModelContents/Enemies/Worm Attack/frame_06_delay-0.2s.png" id="5_lup1a"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_aibhf"]
-[ext_resource type="Texture2D" uid="uid://c4cx3rmwce66t" path="res://ModelContents/Enemies/Worm Attack/frame_3_delay-0.2s.png" id="6_cht0k"]
+[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Worm Attack/frame_3_delay-0.2s.png" id="6_cht0k"]
+[ext_resource type="Texture2D" uid="uid://bxl2sra7ig38u" path="res://ModelContents/Enemies/Worm Attack/frame_07_delay-0.2s.png" id="6_sgwqo"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_a64jw"]
+[ext_resource type="Texture2D" uid="uid://cd7kt11nm0s5" path="res://ModelContents/Enemies/Worm Attack/frame_08_delay-0.2s.png" id="7_no8au"]
+[ext_resource type="Texture2D" uid="uid://ce0rmmrjcew7j" path="res://ModelContents/Enemies/Worm Attack/frame_09_delay-0.2s.png" id="8_obdlo"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_q36qw"]
+[ext_resource type="Texture2D" uid="uid://ci74d5bou8vxn" path="res://ModelContents/Enemies/Worm Attack/frame_10_delay-0.2s.png" id="9_u385s"]
+[ext_resource type="Texture2D" uid="uid://dd7pm25o3ce0h" path="res://ModelContents/Enemies/Worm Attack/frame_11_delay-0.2s.png" id="10_m2m5v"]
+[ext_resource type="Texture2D" uid="uid://bf8uf5v7insyi" path="res://ModelContents/Enemies/Worm Attack/frame_12_delay-0.2s.png" id="11_8titr"]
+[ext_resource type="Texture2D" uid="uid://c8n1npt4dyist" path="res://ModelContents/Enemies/Worm Attack/frame_13_delay-0.2s.png" id="12_0qnut"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 37.5
@@ -25,6 +35,41 @@ height = 300.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w35xc"]
 animations = [{
+"frames": [{
+"duration": 1.8,
+"texture": ExtResource("3_ori48")
+}, {
+"duration": 1.8,
+"texture": ExtResource("4_nwk5m")
+}, {
+"duration": 1.8,
+"texture": ExtResource("5_lup1a")
+}, {
+"duration": 1.8,
+"texture": ExtResource("6_sgwqo")
+}, {
+"duration": 8.0,
+"texture": ExtResource("7_no8au")
+}, {
+"duration": 1.2,
+"texture": ExtResource("8_obdlo")
+}, {
+"duration": 1.2,
+"texture": ExtResource("9_u385s")
+}, {
+"duration": 1.2,
+"texture": ExtResource("10_m2m5v")
+}, {
+"duration": 2.0,
+"texture": ExtResource("11_8titr")
+}, {
+"duration": 2.0,
+"texture": ExtResource("12_0qnut")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_ky14l")
@@ -380,8 +425,8 @@ scale = Vector2(-1, 1)
 position = Vector2(11.4998, -132.399)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
-animation = &"Idle"
-frame_progress = 0.331535
+animation = &"Attack"
+frame_progress = 0.912754
 
 [node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

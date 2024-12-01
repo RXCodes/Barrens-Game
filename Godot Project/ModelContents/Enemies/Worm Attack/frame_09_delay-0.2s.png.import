@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bm5th4ocels7v"
-path="res://.godot/imported/frame_0_delay-0.3s.png-373543015e70d6a1eee1c1d34ea51c5b.ctex"
+uid="uid://ce0rmmrjcew7j"
+path="res://.godot/imported/frame_09_delay-0.2s.png-39041710c24303273ae6f23d9c61d9c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModelContents/Enemies/Worm Attack/frame_0_delay-0.3s.png"
-dest_files=["res://.godot/imported/frame_0_delay-0.3s.png-373543015e70d6a1eee1c1d34ea51c5b.ctex"]
+source_file="res://ModelContents/Enemies/Worm Attack/frame_09_delay-0.2s.png"
+dest_files=["res://.godot/imported/frame_09_delay-0.2s.png-39041710c24303273ae6f23d9c61d9c3.ctex"]
 
 [params]
 
