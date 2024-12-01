@@ -1,47 +1,23 @@
-[gd_scene load_steps=23 format=3 uid="uid://n0e8t8q312gb"]
+[gd_scene load_steps=20 format=3 uid="uid://7db2211c465g"]
 
-[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
-[ext_resource type="Script" path="res://Models/worm_enemy.gd" id="2_8ctff"]
-[ext_resource type="Texture2D" uid="uid://bm5th4ocels7v" path="res://ModelContents/Enemies/Worm Attack/frame_0_delay-0.3s.png" id="3_ky14l"]
-[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_aabbn"]
-[ext_resource type="Texture2D" uid="uid://bitkxflpc4y4n" path="res://ModelContents/Enemies/Worm Attack/frame_1_delay-0.3s.png" id="4_te62f"]
-[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_2m7wb"]
-[ext_resource type="Texture2D" uid="uid://lr7drejvim5j" path="res://ModelContents/Enemies/Worm Attack/frame_2_delay-0.2s.png" id="5_bbfb2"]
-[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_aibhf"]
-[ext_resource type="Texture2D" uid="uid://c4cx3rmwce66t" path="res://ModelContents/Enemies/Worm Attack/frame_3_delay-0.2s.png" id="6_cht0k"]
-[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_a64jw"]
-[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_q36qw"]
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_cy6od"]
+[ext_resource type="Script" path="res://ModelContents/AIController.gd" id="2_vhvmc"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="3_tgdfa"]
+[ext_resource type="Texture2D" uid="uid://dkpps3q1nmmro" path="res://ModelContents/Dummy/Base.png" id="4_sab4o"]
+[ext_resource type="Texture2D" uid="uid://c2le345d36g4p" path="res://ModelContents/Dummy/Body.png" id="5_25gpe"]
+[ext_resource type="Texture2D" uid="uid://bhxd72k2ycswe" path="res://ModelContents/Dummy/Head.png" id="6_g7rj4"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="7_8eq8v"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="8_0ieea"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="9_iepvf"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="10_smhbv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
-radius = 37.5
-height = 107.0
+radius = 15.0
+height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-height = 50.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 147.0
-height = 300.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_w35xc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ky14l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_te62f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_bbfb2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_cht0k")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 3.5
-}]
+radius = 6.0
+height = 15.0
 
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
@@ -80,6 +56,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1.10957, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-0.20944, -0.127341, -0.0229109, 0.0523599, 0.0781036, 0.0619909, 0.0261799, -0.00721648, -0.0252677, -0.0261799, -0.0159177, -0.00286386, 0.00654498, 0.00976295, 0.00774885, 0.00327249, -0.000902063, -0.00315847, -0.00327249, -0.00198971, -0.000357979, 0.000818123, 0.00122037, 0.0009686, 0.000409062, -0.000112752, -0.000394805, -0.000409062, -0.00024871, -4.47536e-05, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Shadow:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.5, 23.5), Vector2(1.05823, 23.5), Vector2(-0.435426, 23.5), Vector2(-0.932151, 23.5), Vector2(-0.557269, 23.5), Vector2(0.0246162, 23.5), Vector2(0.317597, 23.5), Vector2(0.255763, 23.5), Vector2(0.0473974, 23.5), Vector2(-0.0960732, 23.5), Vector2(-0.106574, 23.5), Vector2(-0.0390625, 23.5), Vector2(0.0236831, 23.5), Vector2(0.0408514, 23.5), Vector2(0.0219722, 23.5), Vector2(-0.00315285, 23.5), Vector2(-0.0143697, 23.5), Vector2(-0.0104861, 23.5), Vector2(-0.00122523, 23.5), Vector2(0.00454688, 23.5), Vector2(0.00450182, 23.5), Vector2(0.00138974, 23.5), Vector2(0, 23.5)]
 }
 
 [sub_resource type="Animation" id="Animation_d470x"]
@@ -120,6 +108,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.279253, 0.169788, 0.0305479, -0.0698132, -0.104138, -0.0826545, -0.0349066, 0.00962197, 0.0336903, 0.0349066, 0.0212235, 0.00381847, -0.00872665, -0.0130173, -0.0103318, -0.00436332, 0.00120275, 0.00421129, 0.00436332, 0.00265294, 0.000477305, -0.00109083, -0.00162716, -0.00129147, -0.000545415, 0.000150335, 0.000526407, 0.000545415, 0.000331613, 5.96715e-05, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Shadow:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.5, 23.5), Vector2(-1.05823, 23.5), Vector2(0.435426, 23.5), Vector2(0.932151, 23.5), Vector2(0.557269, 23.5), Vector2(-0.0246162, 23.5), Vector2(-0.317597, 23.5), Vector2(-0.255763, 23.5), Vector2(-0.0473974, 23.5), Vector2(0.0960732, 23.5), Vector2(0.106574, 23.5), Vector2(0.0390625, 23.5), Vector2(-0.0236831, 23.5), Vector2(-0.0408514, 23.5), Vector2(-0.0219722, 23.5), Vector2(0.00315285, 23.5), Vector2(0.0143697, 23.5), Vector2(0.0104861, 23.5), Vector2(0.00122523, 23.5), Vector2(-0.00454688, 23.5), Vector2(-0.00450182, 23.5), Vector2(-0.00138974, 23.5), Vector2(0, 23.5)]
+}
 
 [sub_resource type="Animation" id="Animation_bm7uj"]
 length = 0.001
@@ -146,6 +146,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Shadow:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 23.5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b64k"]
@@ -184,46 +196,70 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("FlipTransform/Base/Body/Head:visible")
+tracks/2/path = NodePath("FlipTransform/Shadow:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-2.5, 23.5), Vector2(-2.59159, 23.5), Vector2(-2.86635, 23.5), Vector2(-3.32429, 23.5), Vector2(-3.9654, 23.5), Vector2(-4.78968, 23.5), Vector2(-5.79715, 23.5), Vector2(-5.59808, 23.5), Vector2(-5.27336, 23.5), Vector2(-5.13181, 23.5), Vector2(-5.17344, 23.5), Vector2(-5.39825, 23.5), Vector2(-5.80623, 23.5), Vector2(-5.85694, 23.5), Vector2(-5.78201, 23.5), Vector2(-5.89025, 23.5), Vector2(-5.95004, 23.5), Vector2(-6, 23.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Shadow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(0.366022, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.85, 0.85)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/Base/Body/Head:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlipTransform/DetachedHead:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("FlipTransform/DetachedHead:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlipTransform/DetachedHead:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlipTransform/DetachedHead:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.594604, 0.594604),
 "update": 0,
 "values": [Vector2(1, -42), Vector2(3.47372, -37.2058), Vector2(7.5, -40.5), Vector2(13, -45), Vector2(14.8772, -34.9882), Vector2(16.7082, -25.2229), Vector2(18.4479, -15.9446), Vector2(20.0534, -7.38174), Vector2(21.4853, 0.254833), Vector2(22.7082, 6.77708), Vector2(23.6921, 12.0244), Vector2(24.4127, 15.8676), Vector2(24.8523, 18.2121), Vector2(25, 19), Vector2(28, 19)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("FlipTransform/DetachedHead:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FlipTransform/DetachedHead:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.287175, 1),
 "update": 0,
@@ -259,46 +295,70 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("FlipTransform/Base/Body/Head:visible")
+tracks/2/path = NodePath("FlipTransform/Shadow:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(-2.5, 23.5)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("FlipTransform/DetachedHead:visible")
+tracks/3/path = NodePath("FlipTransform/Shadow:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("FlipTransform/DetachedHead:position")
+tracks/4/path = NodePath("FlipTransform/Base/Body/Head:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2, -36)]
+"update": 1,
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("FlipTransform/DetachedHead:rotation")
+tracks/5/path = NodePath("FlipTransform/DetachedHead:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("FlipTransform/DetachedHead:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, -36)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("FlipTransform/DetachedHead:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -311,120 +371,128 @@ _data = {
 "RESET": SubResource("Animation_82ynv")
 }
 
-[node name="Worm_Enemy" type="CanvasGroup"]
+[node name="InvincibleDummyRender" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-script = ExtResource("1_i73wb")
+script = ExtResource("1_cy6od")
 entityZIndexOffset = 24
 
-[node name="Worm_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
-script = ExtResource("2_8ctff")
-enemyName = "Slime"
-maxHealth = 500
-cashDrop = 100
-cashDropVariance = 25
+[node name="Dummy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+position = Vector2(0, -23)
+script = ExtResource("2_vhvmc")
+enemyName = "InvincibleDummy"
+maxHealth = 100000
+cashDrop = 1
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
-hasAI = true
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
-walkAnimation = "Walk"
 deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
-hitFrontAnimation = "Hit"
-healthBarPositionOffset = Vector2(0, 75)
-healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+hitFrontAnimation = "Hit-Front"
+hitBackAnimation = "Hit-Back"
 
-[node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
+[node name="Hitbox" type="RigidBody2D" parent="Dummy"]
 collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
 
-[node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/Hitbox"]
+[node name="Shape" type="CollisionShape2D" parent="Dummy/Hitbox"]
 z_index = -2
-position = Vector2(1, -103)
+position = Vector2(0, -12)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
 
-[node name="ColliderBox" type="RigidBody2D" parent="Worm_Enemy"]
+[node name="ColliderBox" type="RigidBody2D" parent="Dummy"]
 gravity_scale = 0.0
 lock_rotation = true
 
-[node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
+[node name="Shape" type="CollisionShape2D" parent="Dummy/ColliderBox"]
 z_index = -1
-position = Vector2(1, 1.52588e-05)
+position = Vector2(0, 22)
 rotation = 1.5708
+scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
-[node name="Hurtbox" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
-z_index = -1
-position = Vector2(35, -70)
-rotation = 3.14159
-shape = SubResource("CapsuleShape2D_aosje")
-disabled = true
-debug_color = Color(0, 0.92, 0.720667, 0.184314)
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Worm_Enemy/ColliderBox"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Dummy/ColliderBox"]
 path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
 
-[node name="FlipTransform" type="Node2D" parent="Worm_Enemy/ColliderBox"]
-scale = Vector2(-1, 1)
+[node name="FlipTransform" type="Node2D" parent="Dummy/ColliderBox"]
 
-[node name="Animations" type="AnimatedSprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(11.4998, -132.399)
-scale = Vector2(0.353168, 0.376503)
-sprite_frames = SubResource("SpriteFrames_w35xc")
-animation = &"Idle"
-frame_progress = 0.331535
-
-[node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
+[node name="Shadow" type="Sprite2D" parent="Dummy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
 show_behind_parent = true
 z_index = -1
 texture_filter = 1
-position = Vector2(-3.50015, 3.6012)
-scale = Vector2(2.19531, 1.51712)
-texture = ExtResource("4_aabbn")
+position = Vector2(-2.5, 23.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_tgdfa")
 offset = Vector2(0, -39.2243)
 
-[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Worm_Enemy/ColliderBox/FlipTransform"]
+[node name="Base" type="Sprite2D" parent="Dummy/ColliderBox/FlipTransform"]
+texture_filter = 1
+position = Vector2(0, 24.5)
+scale = Vector2(2, 2)
+texture = ExtResource("4_sab4o")
+offset = Vector2(0, -24.5)
+
+[node name="Body" type="Sprite2D" parent="Dummy/ColliderBox/FlipTransform/Base"]
+texture_filter = 1
+position = Vector2(0, -12.5)
+texture = ExtResource("5_25gpe")
+offset = Vector2(0, -6.5)
+
+[node name="Head" type="Sprite2D" parent="Dummy/ColliderBox/FlipTransform/Base/Body"]
+texture_filter = 1
+position = Vector2(1, -18)
+texture = ExtResource("6_g7rj4")
+offset = Vector2(-1, 13.5)
+
+[node name="DetachedHead" type="Sprite2D" parent="Dummy/ColliderBox/FlipTransform"]
+visible = false
+texture_filter = 1
+position = Vector2(2, -36)
+scale = Vector2(2, 2)
+texture = ExtResource("6_g7rj4")
+offset = Vector2(-0.5, 17.5)
+
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Dummy/ColliderBox/FlipTransform"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_3b64k")
 }
 
-[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Worm_Enemy/ColliderBox/FlipTransform"]
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Dummy/ColliderBox/FlipTransform"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_4vkjs")
 }
 
-[node name="HitSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]
-position = Vector2(-27, -122)
+[node name="HitSounds" type="Node2D" parent="Dummy/ColliderBox"]
 
-[node name="Hit1" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("5_2m7wb")
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("7_8eq8v")
 volume_db = 4.0
 attenuation = 0.707107
 
-[node name="Hit2" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("6_aibhf")
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("8_0ieea")
 volume_db = 4.0
 attenuation = 0.707107
 
-[node name="Hit3" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("7_a64jw")
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/HitSounds"]
+stream = ExtResource("9_iepvf")
 volume_db = 4.0
 attenuation = 0.707107
 
-[node name="DeathSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]
+[node name="DeathSounds" type="Node2D" parent="Dummy/ColliderBox"]
 
-[node name="Death" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox/DeathSounds"]
-stream = ExtResource("8_q36qw")
+[node name="Death" type="AudioStreamPlayer2D" parent="Dummy/ColliderBox/DeathSounds"]
+stream = ExtResource("10_smhbv")
 volume_db = 4.0

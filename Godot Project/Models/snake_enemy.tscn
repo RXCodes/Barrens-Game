@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ge1chou4evxe"]
+[gd_scene load_steps=39 format=3 uid="uid://ge1chou4evxe"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_j3v26"]
 [ext_resource type="Script" path="res://Models/snake_enemy.gd" id="2_jrh8w"]
@@ -20,9 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://b8bs5aibkvdug" path="res://ModelContents/Enemies/Snake Attack/frame_10_delay-0.2s.png" id="14_whmve"]
 [ext_resource type="Texture2D" uid="uid://d1e6ifht1g68d" path="res://ModelContents/Enemies/Snake Attack/frame_11_delay-0.2s.png" id="15_nndlm"]
 [ext_resource type="Texture2D" uid="uid://c0882xk2mkw43" path="res://ModelContents/Enemies/Snake Attack/frame_12_delay-0.1s.png" id="16_f7be0"]
-[ext_resource type="Texture2D" uid="uid://cm5a1wsup2lft" path="res://ModelContents/Enemies/Snake Attack/frame_13_delay-0.2s.png" id="17_f1jet"]
-[ext_resource type="Texture2D" uid="uid://c7ak3ad1uui67" path="res://ModelContents/Enemies/Snake Attack/frame_14_delay-0.2s.png" id="18_dwbax"]
-[ext_resource type="Texture2D" uid="uid://pvfbihb8a1bp" path="res://ModelContents/Enemies/Snake Attack/frame_15_delay-0.2s.png" id="19_5y0oo"]
 [ext_resource type="Texture2D" uid="uid://b0lnplpvs5h" path="res://ModelContents/Enemies/Snake Idle/frame_00_delay-0.2s.png" id="20_47lno"]
 [ext_resource type="Texture2D" uid="uid://o0xoqtybpwex" path="res://ModelContents/Enemies/Snake Idle/frame_01_delay-0.2s.png" id="21_ya6xb"]
 [ext_resource type="Texture2D" uid="uid://bxj6k5goamevp" path="res://ModelContents/Enemies/Snake Idle/frame_12_delay-0.1s.png" id="22_np46c"]
@@ -39,25 +36,25 @@ radius = 7.0
 height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 94.0
-height = 188.0
+radius = 105.0
+height = 214.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rc37x"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("4_10cbw")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("5_wxemh")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("6_qsnhg")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("7_x6s55")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("8_xkhns")
 }, {
 "duration": 1.0,
@@ -83,15 +80,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_f7be0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_f1jet")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_dwbax")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_5y0oo")
 }],
 "loop": false,
 "name": &"Attack",
@@ -402,8 +390,8 @@ entityZIndexOffset = 24
 [node name="Snake_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer")]
 script = ExtResource("2_jrh8w")
 enemyName = "Snake"
-maxHealth = 75
-cashDrop = 30
+maxHealth = 130
+cashDrop = 45
 cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
@@ -442,7 +430,7 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(0, -42)
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
 debug_color = Color(0, 0.92, 0.720667, 0.184314)
@@ -473,8 +461,9 @@ offset = Vector2(0, -39.2243)
 position = Vector2(-1.33514e-05, 31)
 scale = Vector2(0.305638, 0.254181)
 sprite_frames = SubResource("SpriteFrames_rc37x")
-animation = &"Idle"
-frame_progress = 0.579889
+animation = &"Attack"
+frame = 12
+frame_progress = 1.0
 offset = Vector2(-68.6747, -118.026)
 
 [node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Snake_Enemy/ColliderBox/FlipTransform"]

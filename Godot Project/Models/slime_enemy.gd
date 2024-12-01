@@ -7,7 +7,7 @@ var is_player_in_range: bool = false
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
 	if Player.current != null:
-		setTarget(Player.current, 30)
+		setTarget(Player.current, 60)
 		# Loop this while the enemy is alive
 		while not dead:
 			$ColliderBox/FlipTransform/Animations.play("Idle")
@@ -21,7 +21,8 @@ func onStart() -> void:
 				# Play an attack animation
 				$ColliderBox/FlipTransform/Animations.play("Attack")
 				# Use the hurtbox to deal damage to the player
+				await TimeManager.wait(.7)
 				var damage = randf_range(2, 4)  # Random float from 6 to 10
 				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
 				# Little delay before base slime attacks again
-				await TimeManager.wait(1.5)
+				await TimeManager.wait(.7)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cju5qhfith7mh" path="res://Environment/Cactus/Cactus2.tscn" id="20_87lhf"]
 [ext_resource type="Script" path="res://Models/ShopItem.gd" id="20_hs1rk"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="20_xgqmk"]
-[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="21_6bqoh"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="21_40mk5"]
 [ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="21_evfkg"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="21_khkv7"]
@@ -27,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
-[ext_resource type="PackedScene" uid="uid://dyyc2ylbiu7lm" path="res://Models/manta_ray_enemy.tscn" id="27_v7y67"]
+[ext_resource type="PackedScene" uid="uid://ckq8ygp0nkyp1" path="res://Models/manta_ray_enemy.tscn" id="28_fxg30"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
@@ -295,20 +294,6 @@ canRestock = true
 restockTime = 10
 restockAmount = 1
 
-[node name="LuckyCoin" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-displayName = "Lucky Coin"
-displayTexture = ExtResource("21_6bqoh")
-price = 100
-description = "Grants the choice to choose an upgrade."
-type = 3
-limitSales = true
-limitAmount = 1
-canRestock = true
-restockTime = 10
-restockAmount = 1
-costIncrementMultiplier = 1.125
-
 [node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
 displayName = "Shotgun"
@@ -450,68 +435,6 @@ itemIdentifier = "Energetic"
 upgradeAmounts = Array[float]([6.0])
 costIncrementMultiplier = 1.2
 
-[node name="ArmoredUpgrade" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 300
-type = 2
-itemIdentifier = "Armored"
-costIncrementMultiplier = 1.2
-
-[node name="SacrificeUpgrade" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 325
-type = 2
-itemIdentifier = "Sacrifice"
-costIncrementMultiplier = 1.2
-
-[node name="ExtraCashUpgrade" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 75
-type = 2
-itemIdentifier = "ExtraCash"
-upgradeAmounts = Array[float]([10.0])
-costIncrementMultiplier = 1.06
-
-[node name="Gamble" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-type = 2
-itemIdentifier = "Gamble"
-costIncrementMultiplier = 1.1
-
-[node name="JackpotFrenzy" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-type = 2
-itemIdentifier = "JackpotFrenzy"
-costIncrementMultiplier = 1.1
-
-[node name="LifeSteal" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 150
-type = 2
-itemIdentifier = "LifeSteal"
-costIncrementMultiplier = 1.1
-
-[node name="BigBounty" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 100
-type = 2
-itemIdentifier = "BigBounty"
-costIncrementMultiplier = 1.1
-
-[node name="CompoundInterest" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 100
-type = 2
-itemIdentifier = "CompoundInterest"
-costIncrementMultiplier = 1.1
-
-[node name="Bargain" type="Node" parent="Level/ShopVan"]
-script = ExtResource("20_hs1rk")
-price = 120
-type = 2
-itemIdentifier = "Bargain"
-costIncrementMultiplier = 1.1
-
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)
 respawnCooldown = 10.0
@@ -524,9 +447,6 @@ respawnCooldown = 10.0
 position = Vector2(-435, 301)
 respawnCooldown = 10.0
 
-[node name="MantaRay_Enemy" parent="Level" instance=ExtResource("27_v7y67")]
-position = Vector2(777, 21)
-
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
@@ -535,3 +455,6 @@ position = Vector2(777, 21)
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
+
+[node name="MantaRay_Enemy" parent="." instance=ExtResource("28_fxg30")]
+position = Vector2(115, -321)

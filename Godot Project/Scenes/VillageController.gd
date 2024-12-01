@@ -1,8 +1,8 @@
-extends Node
+class_name VillageController extends Node
 
 # this is where the game actually happens (waves, enemy spawning, etc.)
 signal completedWave
-
+static var currentWave = 1
 func _ready() -> void:
 	# first fade in
 	var fadeIn = $"../ScreenUI/FadeIn"
@@ -18,7 +18,6 @@ func _ready() -> void:
 	WaveDisplay.start(1, 30)
 	await TimeManager.wait(30)
 	
-	var currentWave = 1
 	while true:
 		waveStarted = true
 		spawnEnemies(currentWave)
@@ -54,7 +53,7 @@ func spawnEnemies(wave: int) -> void:
 			# make sure to not exceed enemy count at once
 			var enemyCount = get_tree().get_nodes_in_group("Enemy").size()
 			if enemyCount > maximumActiveEnemyCount:
-				await TimeManager.wait(0.1)
+				await TimeManager.wait(0.01)
 				continue
 			
 			# determine a random point on the traversable map
@@ -63,14 +62,14 @@ func spawnEnemies(wave: int) -> void:
 			# check if it is within range of the player, but not too close
 			var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
 			if distanceSquared < minimumSpawningRadiusSquared or distanceSquared > maximumSpawningRadiusSquared:
-				await TimeManager.wait(0.1)
+				await TimeManager.wait(0.01)
 				continue
 			
 			# spawn the enemy
 			var enemyEntries = determineEnemies(wave)
 			var enemy = EnemySpawner.spawnEnemy(enemyEntries.pick_random(), randomPoint)
 			enemy.add_to_group("Enemy")
-			await TimeManager.wait(0.1)
+			await TimeManager.wait(0.01)
 			break
 	spawningEnemies = false
 
@@ -79,16 +78,18 @@ func spawnEnemies(wave: int) -> void:
 func determineEnemies(wave: int) -> Array:
 	var enemyNames = ["slime_enemy"]
 	if wave >= 2:
-		enemyNames.append("acid_slime_enemy")
 		enemyNames.append("slime_enemy")
 	if wave >= 3:
 		enemyNames.append("manta_ray_enemy")
+		enemyNames.append("acid_slime_enemy")
 	if wave >= 5:
 		enemyNames.append("slime_enemy")
 		enemyNames.append("scorpion_enemy")
 	if wave >= 7:
 		enemyNames.append("slime_enemy")
 		enemyNames.append("manta_ray_enemy")
+		enemyNames.append("snake_enemy")
+	if wave >= 10:
 		enemyNames.append("worm_enemy")
 	return enemyNames
 

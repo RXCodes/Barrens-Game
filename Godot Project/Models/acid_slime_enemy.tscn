@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b77fuslrnqos0"]
+[gd_scene load_steps=23 format=3 uid="uid://btgbwiyajh4kn"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_d45te"]
 [ext_resource type="Script" path="res://Models/acid_slime_enemy.gd" id="2_8hmad"]
