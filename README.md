@@ -12,7 +12,7 @@ An evil tribe has invaded your land and inflicted chaos on multiple villages. Th
 Thanks to students at **UofL J.B. Speed School of Engineering** for this project.
 CSE 350 - Section 50 **(Group 3)**
 - **Robinson X.** - Project Manager, UI/UX Design, Animation, Graphic and Audio Design
-- **Justin R.** - Enemy Design, Environment/Level Design and UI Design
+- **Justin R.** - Enemy Design, Environment/Level Design and Concept Design
 - **Grey N.** - Enemy Design, Environment/Level Design, and Quality Assurance
 - **Joseph N.** - Environment/Level Design, Enemy Design, and Quality Assurance
 - **Chris P.** - Level Design, UI Design, and Beta Testing/Quality Assurance
