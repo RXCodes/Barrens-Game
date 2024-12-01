@@ -22,7 +22,7 @@ func onStart() -> void:
 				$ColliderBox/FlipTransform/Animations.play("Attack")
 				await TimeManager.wait(.3)
 				# Use the hurtbox to deal damage to the player
-				var damage = randf_range(8, 12) # random float from 6 to 12
+				var damage = randf_range(14, 22) # random float from 6 to 12
 				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
 				# Little delay before enemy attacks again
 				await TimeManager.wait(1.2)

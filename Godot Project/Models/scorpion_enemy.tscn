@@ -140,8 +140,8 @@ entityZIndexOffset = 24
 [node name="Scorpion_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
 script = ExtResource("2_auyif")
 enemyName = "Scorpion"
-maxHealth = 75
-cashDrop = 30
+maxHealth = 150
+cashDrop = 45
 cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")

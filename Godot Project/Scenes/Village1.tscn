@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=106 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -56,6 +56,8 @@
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="52_wb7qa"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
+[ext_resource type="Script" path="res://Scenes/EasterEgg.gd" id="54_fqu2u"]
+[ext_resource type="PackedScene" uid="uid://7db2211c465g" path="res://Models/InvincibleDummy.tscn" id="55_133kb"]
 [ext_resource type="PackedScene" path="res://UI/WaveDisplay.tscn" id="57_g185c"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1kdcy"]
@@ -277,7 +279,7 @@ metadata/_edit_lock_ = true
 
 [node name="GraveyardShadow" type="Sprite2D" parent="Under"]
 texture_filter = 1
-position = Vector2(989, 576)
+position = Vector2(-928, -2066)
 scale = Vector2(2, 2)
 texture = ExtResource("15_uro5h")
 
@@ -4393,7 +4395,7 @@ position = Vector2(4072, -126)
 [node name="Graveyard" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(986, 494)
+position = Vector2(-931, -2148)
 scale = Vector2(2, 2)
 texture = ExtResource("51_abhol")
 offset = Vector2(0, -16)
@@ -4410,7 +4412,7 @@ shape = SubResource("CapsuleShape2D_dg2tr")
 [node name="Graveyard2" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
 texture_filter = 1
-position = Vector2(985, 616)
+position = Vector2(-932, -2026)
 scale = Vector2(2, 2)
 texture = ExtResource("52_bomwk")
 offset = Vector2(0, -8.5)
@@ -4426,7 +4428,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_dg2tr")
 
 [node name="Tree62" parent="Level" instance=ExtResource("39_8t8j5")]
-position = Vector2(820, 553)
+position = Vector2(795, 552)
 
 [node name="Tree63" parent="Level" instance=ExtResource("40_i0vvq")]
 position = Vector2(1144, 552)
@@ -5030,7 +5032,7 @@ limitAmount = 5
 costIncrementMultiplier = 1.05
 
 [node name="ShopVan4" parent="Level" instance=ExtResource("46_vpcry")]
-position = Vector2(-175, -2232)
+position = Vector2(451, -2293)
 flip_h = true
 
 [node name="EnergeticUpgrade" type="Node" parent="Level/ShopVan4"]
@@ -5222,7 +5224,7 @@ respawnCooldown = 40.0
 position = Vector2(-640, 596)
 
 [node name="AmmoDispenser6" parent="Level" instance=ExtResource("53_351gy")]
-position = Vector2(-895, -2117)
+position = Vector2(-374, -1826)
 respawnCooldown = 20.0
 
 [node name="AmmoDispenser9" parent="Level" instance=ExtResource("53_351gy")]
@@ -5256,6 +5258,19 @@ respawnCooldown = 150.0
 position = Vector2(3097, 2459)
 respawnCooldown = 150.0
 
+[node name="EasterEggNode" type="Node2D" parent="Level"]
+position = Vector2(-932, -2130)
+script = ExtResource("54_fqu2u")
+
+[node name="FallenTree37" parent="Level" instance=ExtResource("42_t6u1e")]
+position = Vector2(-804, -2239)
+
+[node name="Tree64" parent="Level" instance=ExtResource("39_8t8j5")]
+position = Vector2(-621, -1981)
+
+[node name="DummyRender4" parent="Level" instance=ExtResource("55_133kb")]
+position = Vector2(-352, -2333)
+
 [node name="TimeManager" type="Node" parent="."]
 script = ExtResource("19_13i64")
 
@@ -5276,6 +5291,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="WaveDisplay" parent="ScreenUI" instance=ExtResource("57_g185c")]
 position = Vector2(0, -200)
+
+[node name="Tree3" parent="." instance=ExtResource("41_6klyx")]
+position = Vector2(-1082, -1844)
 
 [connection signal="body_shape_entered" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_exited"]

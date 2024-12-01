@@ -16,12 +16,12 @@ func onStart() -> void:
 			# Make the enemy attack while in range of the player
 			# Face towards the player
 			faceTarget()
-			walkMovementSpeed = 1
+			walkMovementSpeed = 1.5
 			# Play an attack animation
 			$ColliderBox/FlipTransform/Animations.play("Attack")
 			await TimeManager.wait(.3)
 			# Use the hurtbox to deal damage to the player
-			var damage = randf_range(14, 22) # random float from 8 to 14
+			var damage = randf_range(18, 26) # random float from 8 to 14
 			activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
 			# Little delay before enemy attacks again
 			await TimeManager.wait(.8)

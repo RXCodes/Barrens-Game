@@ -390,8 +390,8 @@ entityZIndexOffset = 24
 [node name="Snake_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer")]
 script = ExtResource("2_jrh8w")
 enemyName = "Snake"
-maxHealth = 75
-cashDrop = 30
+maxHealth = 130
+cashDrop = 45
 cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
