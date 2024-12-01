@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bqajj07by8tuk"]
+[gd_scene load_steps=36 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
@@ -30,11 +30,11 @@ size = Vector2(72, 39.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
 radius = 7.0
-height = 65.0
+height = 58.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 90.0
-height = 210.0
+radius = 107.0
+height = 214.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ydutp"]
 animations = [{

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dyyc2ylbiu7lm"]
+[gd_scene load_steps=27 format=3 uid="uid://ckq8ygp0nkyp1"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_uv8cb"]
 [ext_resource type="Script" path="res://Models/manta_ray_enemy.gd" id="2_k54m4"]

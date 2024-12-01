@@ -1,16 +1,28 @@
-[gd_scene load_steps=23 format=3 uid="uid://c141eb6pwio21"]
+[gd_scene load_steps=35 format=3 uid="uid://bkp4ikyughfp2"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_du5u0"]
 [ext_resource type="Script" path="res://Models/slime_enemy.gd" id="2_2hwj0"]
 [ext_resource type="Texture2D" uid="uid://73oouvidq0ly" path="res://ModelContents/Enemies/Slime Idle/frame_0_delay-0.3s.png" id="3_f4dna"]
+[ext_resource type="Texture2D" uid="uid://b0gh4mplcgcp0" path="res://ModelContents/Enemies/Slime Attack CROP/frame_13_delay-0.06s.png" id="3_j47m4"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_07hsu"]
 [ext_resource type="Texture2D" uid="uid://bhtlolytny4tn" path="res://ModelContents/Enemies/Slime Idle/frame_1_delay-0.3s.png" id="4_dgnvb"]
+[ext_resource type="Texture2D" uid="uid://dullelubotdi2" path="res://ModelContents/Enemies/Slime Attack CROP/frame_15_delay-0.06s.png" id="4_dojrq"]
 [ext_resource type="Texture2D" uid="uid://gs1dw8pfw7q" path="res://ModelContents/Enemies/Slime Idle/frame_2_delay-0.3s.png" id="5_hd4rk"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_jmxvo"]
 [ext_resource type="Texture2D" uid="uid://bb4qr0or02ik6" path="res://ModelContents/Enemies/Slime Idle/frame_3_delay-0.3s.png" id="6_b7qw4"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_iefwo"]
+[ext_resource type="Texture2D" uid="uid://qr888ig3051s" path="res://ModelContents/Enemies/Slime Attack CROP/frame_21_delay-0.06s.png" id="7_7ao87"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_lt26i"]
+[ext_resource type="Texture2D" uid="uid://cdobe78x5s8h2" path="res://ModelContents/Enemies/Slime Attack CROP/frame_22_delay-0.06s.png" id="8_0oy30"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_lp8jn"]
+[ext_resource type="Texture2D" uid="uid://b66exnry2ci0d" path="res://ModelContents/Enemies/Slime Attack CROP/frame_23_delay-0.06s.png" id="9_puknr"]
+[ext_resource type="Texture2D" uid="uid://bj48ue6223vy6" path="res://ModelContents/Enemies/Slime Attack CROP/frame_24_delay-0.06s.png" id="10_a0g6n"]
+[ext_resource type="Texture2D" uid="uid://28l68y4r6yad" path="res://ModelContents/Enemies/Slime Attack CROP/frame_25_delay-0.06s.png" id="11_cv56l"]
+[ext_resource type="Texture2D" uid="uid://q3rhuobkdbmf" path="res://ModelContents/Enemies/Slime Attack CROP/frame_26_delay-0.06s.png" id="12_ian14"]
+[ext_resource type="Texture2D" uid="uid://craxbsxlir3ty" path="res://ModelContents/Enemies/Slime Attack CROP/frame_27_delay-0.06s.png" id="13_3p71g"]
+[ext_resource type="Texture2D" uid="uid://d4ikfodmpkj6a" path="res://ModelContents/Enemies/Slime Attack CROP/frame_28_delay-0.06s.png" id="14_x7mus"]
+[ext_resource type="Texture2D" uid="uid://b8cpr3flpgnq7" path="res://ModelContents/Enemies/Slime Attack CROP/frame_29_delay-0.06s.png" id="15_4slnx"]
+[ext_resource type="Texture2D" uid="uid://6yf4b0x6jpo2" path="res://ModelContents/Enemies/Slime Attack CROP/frame_30_delay-0.06s.png" id="16_0lhti"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 10.2907
@@ -21,11 +33,67 @@ radius = 6.0
 height = 25.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 38.582
-height = 77.164
+radius = 54.0
+height = 108.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ct0n3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_0lhti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4slnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0oy30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7ao87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j47m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dojrq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_j47m4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7ao87")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0oy30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_puknr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a0g6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_cv56l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ian14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3p71g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_x7mus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4slnx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0lhti")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 11.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_f4dna")
@@ -122,7 +190,7 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Slime_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(0.418499, -15.582)
+position = Vector2(0, -4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
@@ -139,10 +207,11 @@ radius = 30.0
 position = Vector2(0, -25)
 
 [node name="Animations" type="AnimatedSprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(0, 22)
+position = Vector2(-31, -2)
 scale = Vector2(0.123338, 0.130809)
 sprite_frames = SubResource("SpriteFrames_ct0n3")
-animation = &"Idle"
+animation = &"Attack"
+frame_progress = 0.676422
 offset = Vector2(12.8225, -94.9323)
 
 [node name="Shadow" type="Sprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]

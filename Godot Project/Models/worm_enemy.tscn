@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://djwcqm8rm7o0d"]
+[gd_scene load_steps=23 format=3 uid="uid://n0e8t8q312gb"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
 [ext_resource type="Script" path="res://Models/worm_enemy.gd" id="2_8ctff"]
@@ -17,7 +17,6 @@ radius = 37.5
 height = 107.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 10.0
 height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
@@ -382,7 +381,7 @@ position = Vector2(11.4998, -132.399)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
 animation = &"Idle"
-frame_progress = 0.183867
+frame_progress = 0.167176
 
 [node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
