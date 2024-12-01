@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4a4uu6s7ftcr"]
+[gd_scene load_steps=3 format=3 uid="uid://bksalp1m38vgr"]
 
 [ext_resource type="Script" path="res://Upgrades/LifeSteal.gd" id="1_s2yeo"]
 [ext_resource type="Texture2D" uid="uid://dgq6el40lt2no" path="res://Upgrades/LifeSteal.png" id="2_0y250"]

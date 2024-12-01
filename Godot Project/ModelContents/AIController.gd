@@ -120,6 +120,7 @@ func _ready() -> void:
 	hitboxShape.add_child(healthBar)
 	healthBar.setHealthBarColor(healthBarColor)
 	await get_tree().physics_frame
+	await get_tree().physics_frame
 	onStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -230,7 +231,8 @@ func _physics_process(delta: float) -> void:
 	if dead:
 		return
 	if hasAI:
-		navigate()
+		if walkMovementSpeed > 0:
+			navigate()
 		if shapeTests.size() > 0:
 			var directPhysicsState = get_world_2d().direct_space_state
 			for shapeTest in shapeTests:
@@ -239,6 +241,7 @@ func _physics_process(delta: float) -> void:
 					if shapeTest.onSuccess:
 						shapeTest.onSuccess.call(intersectedShapes)
 			shapeTests.clear()
+	physicsProcess(delta)
 
 # pathfinding and movement functionality
 var targetDistance: float = 30
@@ -316,6 +319,12 @@ func setTarget(targetNode: Node2D, newTargetDistance: float) -> void:
 	targetDistance = newTargetDistance
 	navigationAgent.target_position = target.global_position
 
+# targets a specific position
+func setTargetWorldPosition(targetPosition: Vector2, newTargetDistance: float) -> void:
+	target = null
+	targetDistance = newTargetDistance
+	navigationAgent.target_position = targetPosition
+
 # plays an animation from the Main Animation Player
 func playAnimation(animationName: String) -> void:
 	if dead:
@@ -327,15 +336,25 @@ func playAnimation(animationName: String) -> void:
 
 # makes the enemy face the target
 func faceTarget() -> void:
-	if dead:
+	if dead or not target:
 		return
 	var directionVector = target.global_position - collisionRigidBody.global_position
 	flipX = directionVector.x < 0
 
 # checks if the enemy is within the range of the target
 func withinRangeOfTarget() -> bool:
+	if not target:
+		return false
 	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
 	return distanceSquared <= targetDistance ** 2
+
+# gets the position of the enemy in global coordinates
+func getPosition() -> Vector2:
+	return collisionRigidBody.global_position
+
+# gets the position of the target in global coordinates
+func getTargetPosition() -> Vector2:
+	return target.global_position
 
 var dead = false
 # kills the enemy - setting dead to true
@@ -418,6 +437,10 @@ func onDeath() -> void:
 
 # define what happened when the enemy is damaged
 func onDamage() -> void:
+	pass
+
+# define what happens in each physics tick
+func physicsProcess(delta: float) -> void:
 	pass
 
 #                     #

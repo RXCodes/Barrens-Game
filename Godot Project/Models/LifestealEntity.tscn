@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://6s3cslbh1cqh"]
+[gd_scene load_steps=6 format=3 uid="uid://vwkxtwxaj22"]
 
 [ext_resource type="Texture2D" uid="uid://cq47i78b0lalb" path="res://Particles/HitAnimation/1.png" id="1_ecs6w"]
 [ext_resource type="AudioStream" uid="uid://dk8elshdbbxin" path="res://ModelContents/Lifesteal.mp3" id="2_61wgh"]
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 	if progress >= 1.0 and not exhausted:
 		emitting = false
 		$Lifesteal.pitch_scale = randfn(1.0, 0.08)
-		Player.current.health = max(healthIncrease, Player.current.maximumHealth)
+		Player.current.health = min(Player.current.maximumHealth + healthIncrease, Player.current.maximumHealth)
 		$Lifesteal.play()
 		$Explode.emitting = true
 		exhausted = true

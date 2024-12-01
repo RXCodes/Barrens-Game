@@ -4905,18 +4905,6 @@ canRestock = true
 restockTime = 10
 restockAmount = 1
 
-[node name="LuckyCoin" type="Node" parent="Level/ShopVan"]
-script = ExtResource("47_ud1rn")
-displayName = "Lucky Coin"
-displayTexture = ExtResource("49_nrmn6")
-price = 120
-description = "Grants the choice to choose an upgrade."
-type = 3
-limitAmount = 1
-restockTime = 10
-restockAmount = 1
-costIncrementMultiplier = 1.125
-
 [node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("47_ud1rn")
 displayName = "AK47"
@@ -5090,15 +5078,15 @@ itemIdentifier = "MachineGun"
 script = ExtResource("47_ud1rn")
 displayName = "Lucky Coin"
 displayTexture = ExtResource("49_nrmn6")
-price = 90
+price = 150
 description = "Grants the choice to choose an upgrade."
 type = 3
 limitSales = true
 limitAmount = 1
 canRestock = true
-restockTime = 10
+restockTime = 120
 restockAmount = 1
-costIncrementMultiplier = 1.125
+costIncrementMultiplier = 1.15
 
 [node name="ShopVan6" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(1069, 3200)

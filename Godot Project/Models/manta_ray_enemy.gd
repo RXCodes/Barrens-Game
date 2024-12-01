@@ -2,26 +2,58 @@ extends EnemyAI
 class_name MantaRayEnemy
 
 var player: Node2D
-var is_player_in_range: bool = false
+var dashing = false
+var dashNormal: Vector2
+
+signal hitWithDash
 
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
-	if Player.current != null:
-		setTarget(Player.current, 50)
-		# Loop this while the enemy is alive
-		while not dead:
-			$ColliderBox/FlipTransform/Animations.play("Idle")
-			walkMovementSpeed = 2  # Manta ray moves fast when approaching the player
-			await enemyReachedTarget
-			# Make the enemy attack while in range of the player
-			while withinRangeOfTarget():
-				# Face towards the player
-				faceTarget()
-				walkMovementSpeed = 4  # Manta ray moves at super speed when attacking
-				# Play an attack animation
-				$ColliderBox/FlipTransform/Animations.play("Attack")
-				# Use the hurtbox to deal damage to the player
-				var damage = randf_range(4, 6)  # Random float from 12 to 18
-				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
-				# Little delay before manta ray attacks again
-				await TimeManager.wait(1.2)
+	# Loop this while the enemy is alive
+	while not dead:
+		# get within range to dash to player
+		walkMovementSpeed = 2.5
+		setTarget(Player.current, 250)
+		$ColliderBox/FlipTransform/Animations.play("Idle")
+		await enemyReachedTarget
+		walkMovementSpeed = 0
+		dashNormal = (getTargetPosition() - getPosition()).normalized()
+		faceTarget()
+		mainAnimationPlayer.stop()
+		if dashNormal.x < 0:
+			playAnimation("Dash-Left")
+		else:
+			playAnimation("Dash-Right")
+		await TimeManager.wait(0.5)
+		
+		# dash to the player
+		dashing = true
+		$ColliderBox/DashParticles.emitting = true
+		var rigidBody = $ColliderBox as RigidBody2D
+		await TimeManager.promise([hitWithDash, TimeManager.wait(0.75)])
+		activateHurtBox($ColliderBox/Hurtbox,  randf_range(12, 18), HurtBoxType.PLAYER)
+		$ColliderBox/DashParticles.emitting = false
+		faceTarget()
+		dashing = false
+		
+		await TimeManager.wait(0.75)
+		
+		# start attacking close range
+		setTarget(Player.current, 80)
+		while withinRangeOfTarget():
+			walkMovementSpeed = 0
+			faceTarget()
+			mainAnimationPlayer.stop()
+			playAnimation("Attack")
+			await TimeManager.wait(0.15)
+			var damage = randf_range(5, 9)
+			activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
+			await enemyAnimationFinished
+			await TimeManager.wait(0.05)
+
+func physicsProcess(delta: float) -> void:
+	if dashing:
+		var result = collisionRigidBody.move_and_collide(dashNormal * 11.5)
+		if result:
+			hitWithDash.emit()
+			$ColliderBox/HitParticles.emitting = true
