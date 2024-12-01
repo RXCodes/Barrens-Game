@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6shbcpisev0a"]
+[gd_scene load_steps=3 format=3 uid="uid://bp2ac1tfkuca3"]
 
 [ext_resource type="Script" path="res://Upgrades/CompoundInterest.gd" id="1_v8xat"]
 [ext_resource type="Texture2D" uid="uid://0rgoc7rbxrke" path="res://Upgrades/CompoundInterest.png" id="2_qt8dl"]

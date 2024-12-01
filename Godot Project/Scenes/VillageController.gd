@@ -25,6 +25,9 @@ func _ready() -> void:
 		await completedWave
 		waveStarted = false
 		currentWave += 1
+		var earnings = round(Player.current.compoundInterest * Player.current.cash)
+		earnings += max(currentWave * 25, 200)
+		Player.current.pickupCash(earnings)
 		WaveDisplay.start(currentWave, 30)
 		await TimeManager.wait(1.5)
 		GamePopup.openPopup("UpgradeSelection")

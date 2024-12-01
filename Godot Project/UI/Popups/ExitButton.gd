@@ -6,4 +6,8 @@ func _on_pressed() -> void:
 	if exited:
 		return
 	exited = true
-	GamePopup.closeCurrent()
+	var shouldOpenDeathScreen = GamePopup.current.data.get("deathScreen", false)
+	if shouldOpenDeathScreen:
+		GamePopup.openPopup("DeathScreen")
+	else:
+		GamePopup.closeCurrent()

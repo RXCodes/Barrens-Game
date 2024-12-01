@@ -18,3 +18,4 @@ func _ready() -> void:
 	$"../Title".show()
 	await TimeManager.wait(5.0)
 	canInteract = true
+	GamePopup.current = null

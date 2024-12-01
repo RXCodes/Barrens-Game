@@ -408,12 +408,23 @@ func kill() -> void:
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play("death")
 	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
-	DeathSmokeParticles.spawnParticle(global_position, z_index)
+	DeathSmokeParticles.spawnParticle(global_position, 1)
+	Crosshair.stopReloadingWeapon()
 	hide()
 	
-	# after dying, restart scene - we'll change this to be the death screen
-	await TimeManager.wait(2.25)
-	NodeRelations.loadScene("res://Scenes/Debug.tscn")
+	# after dying, open the death screen
+	await TimeManager.wait(2.5)
+	GamePopup.openPopup("DeathScreen")
+	await TimeManager.wait(1.0)
+	
+	# wait for popup to close
+	while true:
+		await TimeManager.wait(0.1)
+		if not GamePopup.current:
+			break
+	
+	# fade out and open title screen
+	ScreenUI.fadeToScene("res://Scenes/TitleScreen.tscn")
 
 func playWalkSound() -> void:
 	var walkSounds = $WalkSounds.get_children()

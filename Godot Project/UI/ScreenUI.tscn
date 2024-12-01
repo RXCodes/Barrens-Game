@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=57 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" path="res://UI/InventoryManager.gd" id="36_ayq42"]
 [ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="38_8qcta"]
 [ext_resource type="Script" path="res://UI/InventorySlot.gd" id="38_cbyrv"]
+[ext_resource type="Shader" path="res://Environment/Blur.gdshader" id="40_kju6r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -100,6 +101,11 @@ VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_tgonr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01m7r"]
 size = Vector2(347, 306)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_semmm"]
+shader = ExtResource("40_kju6r")
+shader_parameter/lod = 4.0
+shader_parameter/alpha = 0.0
 
 [node name="ScreenUI" type="CanvasLayer"]
 process_priority = 10
@@ -635,6 +641,16 @@ offset_bottom = 134.0
 scale = Vector2(0.8, 0.8)
 text = "item description"
 label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="OverlayRect" type="ColorRect" parent="."]
+visible = false
+z_index = 100
+material = SubResource("ShaderMaterial_semmm")
+offset_left = -2149.0
+offset_top = -1955.0
+offset_right = 2195.0
+offset_bottom = 1398.0
+color = Color(0, 0, 0, 0)
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]
