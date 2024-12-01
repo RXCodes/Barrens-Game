@@ -30,6 +30,10 @@ static var enemyAIKey = "EnemyAI"
 ## Speed when enemy travels
 @export var walkMovementSpeed: float = 1
 
+enum PathfindAgentSize {SMALL, MEDIUM, LARGE}
+## Larger enemies should use larger sizes - small = 40px, medium = 60px, large = 80px
+@export var pathfindAgentSize: PathfindAgentSize = PathfindAgentSize.SMALL
+
 @export_subgroup("")
 @export_subgroup("Gun")
 
@@ -250,6 +254,16 @@ var samePositionThresholdSquared = 20 ** 2
 var samePositionTime = 0
 var lastNavigationCheck: float = 0
 func navigate() -> void:
+	# adjust navigation properties depending on defined propreties
+	if pathfindAgentSize == PathfindAgentSize.SMALL:
+		navigationAgent.avoidance_layers = 1
+		navigationAgent.navigation_layers = 1
+	elif pathfindAgentSize == PathfindAgentSize.MEDIUM:
+		navigationAgent.avoidance_layers = 2
+		navigationAgent.navigation_layers = 2
+	elif pathfindAgentSize == PathfindAgentSize.LARGE:
+		navigationAgent.avoidance_layers = 4
+		navigationAgent.navigation_layers = 4
 	navigationAgent.target_desired_distance = targetDistance
 	var timeElapsed = timeAlive - lastNavigationCheck
 	lastNavigationCheck = timeAlive

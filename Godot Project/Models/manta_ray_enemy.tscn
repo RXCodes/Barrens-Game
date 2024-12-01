@@ -33,8 +33,7 @@ radius = 19.5
 height = 39.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 6.0
-height = 31.938
+radius = 5.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 55.0
@@ -735,7 +734,6 @@ lock_rotation = true
 z_index = -1
 position = Vector2(0.938, 0)
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 

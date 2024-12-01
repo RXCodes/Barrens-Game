@@ -17,7 +17,8 @@ radius = 37.5
 height = 107.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-height = 50.0
+radius = 20.0
+height = 70.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 147.0
@@ -326,13 +327,16 @@ cashDropVariance = 25
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
 hasAI = true
+pathfindAgentSize = 2
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 walkAnimation = "Walk"
+idleAnimation = "Walk"
 deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
 hitFrontAnimation = "Hit"
 healthBarPositionOffset = Vector2(0, 75)
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+invertXFlip = true
 
 [node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
 collision_layer = 4
@@ -354,7 +358,7 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(1, 1.52588e-05)
+position = Vector2(-5, -0.999985)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
