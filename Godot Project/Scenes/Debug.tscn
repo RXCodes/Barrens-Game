@@ -447,6 +447,9 @@ respawnCooldown = 10.0
 position = Vector2(-435, 301)
 respawnCooldown = 10.0
 
+[node name="Slime_Enemy" parent="Level" instance=ExtResource("28_3nth0")]
+position = Vector2(63, -351)
+
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
@@ -455,6 +458,3 @@ respawnCooldown = 10.0
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
-
-[node name="Slime_Enemy" parent="." instance=ExtResource("28_3nth0")]
-position = Vector2(63, -351)
