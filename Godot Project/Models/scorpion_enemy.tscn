@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=39 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dqohq0awc8pam" path="res://ModelContents/Enemies/Scorpion Attack/frame_14_delay-0.08s.png" id="17_qelig"]
 [ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
 [ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
+[ext_resource type="Shader" path="res://ModelContents/EntityGlow.gdshader" id="21_t8a8o"]
 [ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxepw"]
@@ -111,9 +112,65 @@ resource_name = "Hit-Front"
 
 [sub_resource type="Animation" id="Animation_bm7uj"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:material:shader_parameter/glowAmount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdtfa"]
+shader = ExtResource("21_t8a8o")
+shader_parameter/glowAmount = 0.0
+
+[sub_resource type="Animation" id="Animation_om7xp"]
+resource_name = "Glow"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_bdtfa"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:material:shader_parameter/glowAmount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.35, 0.0, 0.35, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b64k"]
 _data = {
+"Glow": SubResource("Animation_om7xp"),
 "Hit-Back": SubResource("Animation_qf741"),
 "Hit-Front": SubResource("Animation_d470x"),
 "RESET": SubResource("Animation_bm7uj")

@@ -363,6 +363,13 @@ func withinRangeOfTarget() -> bool:
 	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
 	return distanceSquared <= targetDistance ** 2
 
+# checks if the enemy is within a specified distance of the target
+func withinDistanceOfTarget(distance: float) -> bool:
+	if not target:
+		return false
+	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
+	return distanceSquared <= distance ** 2
+
 # gets the position of the enemy in global coordinates
 func getPosition() -> Vector2:
 	return collisionRigidBody.global_position

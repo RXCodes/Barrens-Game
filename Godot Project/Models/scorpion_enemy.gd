@@ -22,16 +22,19 @@ func onStart() -> void:
 		walkMovementSpeed = 0
 		if canDash:
 			var targetPosition = Player.current.position
-			await TimeManager.wait(0.5)
+			defaultMaterial = ShaderMaterial.new()
+			defaultMaterial.shader = preload("res://ModelContents/EntityGlow.gdshader")
+			playAnimation("Glow")
+			await TimeManager.wait(0.7)
+			defaultMaterial = null
 			dashTowardsPosition(targetPosition)
 			await dashComplete
 			activateHurtBox($ColliderBox/Hurtbox, randf_range(25, 35), HurtBoxType.PLAYER)
-			if not withinRangeOfTarget():
-				$ColliderBox/FlipTransform/Animations.stop()
-				await TimeManager.wait(0.75)
+			$ColliderBox/FlipTransform/Animations.stop()
+			await TimeManager.wait(0.5)
 		
 		# Make the enemy attack while in range of the player
-		while withinRangeOfTarget():
+		while withinDistanceOfTarget(100):
 			faceTarget()
 			$ColliderBox/FlipTransform/Animations.play("Attack")
 			await TimeManager.wait(.3)
