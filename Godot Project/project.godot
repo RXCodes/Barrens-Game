@@ -16,11 +16,12 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="Barrens"
-run/main_scene="res://Scenes/Debug.tscn"
+run/main_scene="res://Scenes/Intro.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/image="res://UI/BarrensLogo.png"
 boot_splash/use_filter=false
+config/icon="res://UI/BarrensIcon.png"
 
 [display]
 

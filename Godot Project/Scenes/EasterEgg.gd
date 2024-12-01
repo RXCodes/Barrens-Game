@@ -1,9 +1,14 @@
 extends Node2D
 
 var activated = false
+var timeStayed = 0.0
 func _process(delta: float) -> void:
 	if not activated:
-		if Player.current.global_position.distance_squared_to(global_position) > 25:
+		if Player.current.global_position.distance_squared_to(global_position) > 50:
+			timeStayed = 0
+			return
+		timeStayed += delta
+		if timeStayed < 5:
 			return
 		activated = true
 
