@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3x1x7kgbcsry"]
+[gd_scene load_steps=15 format=3 uid="uid://b3x1x7kgbcsry"]
 
 [ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_ee3yw"]
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="2_nlobv"]
@@ -51,6 +51,21 @@ func _on_button_mouse_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_button_down() -> void:
+	GamePopup.closeCurrent()
+"
+
+[sub_resource type="GDScript" id="GDScript_nn2kp"]
+resource_name = "RestartButton"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	Player.current.shouldRestartScene = true
 	GamePopup.closeCurrent()
 "
 
@@ -183,7 +198,7 @@ self_modulate = Color(0.594667, 0.52, 0.8, 1)
 texture_filter = 1
 offset_left = -324.0
 offset_top = 167.0
-offset_right = -214.0
+offset_right = -226.0
 offset_bottom = 194.0
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_4aadd")
@@ -195,10 +210,10 @@ script = SubResource("GDScript_31xgb")
 
 [node name="Text" type="Label" parent="Popup/SeeUpgrades"]
 layout_mode = 0
-offset_left = -4.19977
-offset_top = 7.8
-offset_right = 390.8
-offset_bottom = 80.8
+offset_left = 0.599976
+offset_top = 8.0
+offset_right = 322.6
+offset_bottom = 81.0
 scale = Vector2(0.3, 0.3)
 text = "See Upgrades"
 label_settings = SubResource("LabelSettings_wk4mf")
@@ -207,15 +222,15 @@ autowrap_mode = 2
 
 [node name="Button" type="TextureButton" parent="Popup/SeeUpgrades"]
 layout_mode = 0
-offset_right = 110.0
+offset_right = 98.0
 offset_bottom = 27.0
 
 [node name="Exit" type="NinePatchRect" parent="Popup"]
-self_modulate = Color(0.492925, 0.528372, 0.922736, 1)
+self_modulate = Color(0.84, 0.378, 0.6321, 1)
 texture_filter = 1
-offset_left = -30.0
+offset_left = 121.0
 offset_top = 167.0
-offset_right = 110.0
+offset_right = 202.0
 offset_bottom = 194.0
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_4aadd")
@@ -227,19 +242,51 @@ script = SubResource("GDScript_2sqmp")
 
 [node name="Text" type="Label" parent="Popup/Exit"]
 layout_mode = 0
-offset_left = 10.6
-offset_top = 7.8
-offset_right = 405.6
-offset_bottom = 80.8
+offset_left = 4.19999
+offset_top = 8.0
+offset_right = 246.2
+offset_bottom = 81.0
 scale = Vector2(0.3, 0.3)
-text = "Go to Title screen"
+text = "Main menu"
 label_settings = SubResource("LabelSettings_wk4mf")
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Button" type="TextureButton" parent="Popup/Exit"]
 layout_mode = 0
-offset_right = 130.0
+offset_right = 81.0
+offset_bottom = 27.0
+
+[node name="RestartButton" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.492925, 0.528372, 0.922736, 1)
+texture_filter = 1
+offset_left = -64.0
+offset_top = 167.0
+offset_right = 4.00001
+offset_bottom = 194.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_4aadd")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_nn2kp")
+
+[node name="Text" type="Label" parent="Popup/RestartButton"]
+layout_mode = 0
+offset_left = 2.59999
+offset_top = 8.0
+offset_right = 211.6
+offset_bottom = 81.0
+scale = Vector2(0.3, 0.3)
+text = "Restart"
+label_settings = SubResource("LabelSettings_wk4mf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/RestartButton"]
+layout_mode = 0
+offset_right = 68.0
 offset_bottom = 27.0
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
@@ -259,3 +306,8 @@ stream = ExtResource("8_br7x0")
 [connection signal="button_down" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_button_down"]
 [connection signal="mouse_entered" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_mouse_exited"]
+[connection signal="mouse_entered" from="Popup/RestartButton" to="Popup/RestartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/RestartButton" to="Popup/RestartButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_mouse_exited"]

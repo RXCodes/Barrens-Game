@@ -403,6 +403,7 @@ func damage(amount: float, source: Node2D) -> void:
 		kill()
 
 # called when player dies
+var shouldRestartScene: bool = false
 func kill() -> void:
 	if dead:
 		return
@@ -434,8 +435,11 @@ func kill() -> void:
 		if not GamePopup.current:
 			break
 	
-	# fade out and open title screen
-	ScreenUI.fadeToScene("res://Scenes/TitleScreen.tscn")
+	# fade out and open title screen or restart scene
+	if shouldRestartScene:
+		ScreenUI.fadeToScene("res://Scenes/Village1.tscn")
+	else:
+		ScreenUI.fadeToScene("res://Scenes/TitleScreen.tscn")
 
 func playWalkSound() -> void:
 	if dead:

@@ -8,6 +8,7 @@ func _ready() -> void:
 	# first fade in
 	var fadeIn = $"../ScreenUI/FadeIn"
 	fadeIn.scale = Vector2(1000, 1000)
+	currentWave = 1
 	await get_tree().physics_frame
 	await TimeManager.wait(0.5)
 	TutorialManager.shouldDisableControls = false
