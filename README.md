@@ -1,4 +1,7 @@
+![BarrensLogo](https://github.com/user-attachments/assets/69e5aa4d-276e-4df4-bc66-503adcd03680)
+
 # Description
+
 An evil tribe has invaded your land and inflicted chaos on multiple villages. They drained all of the water and life force of your territory, leaving everything barren. Your father died in a tragic battle against these monsters, and you are the last hope to protect and serve your land. Your people are counting on you to restore peace - can you do it?
 
 **Barrens** is a top-down story-based western shooter where you can navigate through villages and fight enemies. You can upgrade your gear to make progressing through the game easier. Interact with NPCs throughout the world, find spells, browse the shop and more!
