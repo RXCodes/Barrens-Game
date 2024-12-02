@@ -5366,13 +5366,13 @@ itemIdentifier = "MachineGun"
 script = ExtResource("47_ud1rn")
 displayName = "Lucky Coin"
 displayTexture = ExtResource("49_nrmn6")
-price = 90
+price = 120
 description = "Grants the choice to choose an upgrade."
 type = 3
 limitSales = true
 limitAmount = 1
 canRestock = true
-restockTime = 10
+restockTime = 130
 restockAmount = 1
 costIncrementMultiplier = 1.125
 
@@ -5600,6 +5600,7 @@ offset_right = 8447.0
 offset_bottom = 6865.0
 mouse_filter = 2
 color = Color(0.54, 0.38556, 0.1836, 0.498039)
+metadata/_edit_lock_ = true
 
 [connection signal="body_shape_entered" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_exited"]

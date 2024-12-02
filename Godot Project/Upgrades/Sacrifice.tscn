@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpev0m5u5ddfx"]
+[gd_scene load_steps=3 format=3 uid="uid://c2jdsfyrow3ff"]
 
 [ext_resource type="Script" path="res://Upgrades/Sacrifice.gd" id="1_8snqn"]
 [ext_resource type="Texture2D" uid="uid://ca4ctbmp2n8v" path="res://Upgrades/Sacrifice.png" id="2_yfkr4"]
@@ -6,7 +6,7 @@
 [node name="Sacrifice" type="Node"]
 script = ExtResource("1_8snqn")
 upgradeName = "Sacrifice"
-description = "increase damage, fire rate and reload speed by [amt]% but sacrifice [amt2]% of your maximum health"
-preferredUpgradeAmounts = Array[float]([30.0, 10.0])
+description = "increase damage and reload speed by [amt]%, increase fire rate by [amt2]%, but sacrifice [amt3]% of your maximum health"
+preferredUpgradeAmounts = Array[float]([30.0, 6.0, 10.0])
 texture = ExtResource("2_yfkr4")
 maxRandomUpgradeAmountMultiplier = 2.5

@@ -2178,6 +2178,7 @@ offset_right = 8700.0
 offset_bottom = 5501.0
 mouse_filter = 2
 color = Color(0.541176, 0.384314, 0.184314, 0.498039)
+metadata/_edit_lock_ = true
 
 [connection signal="body_shape_entered" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_exited"]

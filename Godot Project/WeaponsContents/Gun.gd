@@ -151,7 +151,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 	if gunInteractor.onFire:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
-		Bullet.fire(gunInteractor.originNode.global_position + gunInteractor.sourcePositionOffset, angleRadians, self, sourceNode)
+		Bullet.fire(gunInteractor.originNode.global_position, angleRadians, self, sourceNode, gunInteractor.sourcePositionOffset)
 	await TimeManager.wait(fireRate / gunInteractor.fireRateDivisor)
 	canFire = true
 

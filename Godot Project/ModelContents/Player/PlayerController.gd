@@ -376,9 +376,10 @@ func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
 	
-	if source is EnemyAI:
+	if source.get_meta(EnemyAI.enemyAIKey) is EnemyAI:
+		var enemy: EnemyAI = source.get_meta(EnemyAI.enemyAIKey)
 		# 30% chance for an acid enemy to deliver poison status effect
-		if source.variantType == EnemyAI.EnemyVariantType.ACID:
+		if enemy.variantType == EnemyAI.EnemyVariantType.ACID:
 			if randf() < 0.3:
 				applyPoison()
 	

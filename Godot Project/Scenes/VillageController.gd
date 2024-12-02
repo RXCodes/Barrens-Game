@@ -46,7 +46,7 @@ func _ready() -> void:
 var minimumSpawningRadiusSquared = 1000 ** 2
 var maximumSpawningRadiusSquared = 2500 ** 2
 var targetEnemyCount = 0
-var maximumActiveEnemyCount = 60
+var maximumActiveEnemyCount = 50
 var waveStarted = false
 var enemyObjectPool = []
 var enemySpawnNames = []
@@ -54,8 +54,8 @@ var enemySpawnNames = []
 # asychronously instantiate enemy objects on another thread
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
-	var amountToSpawn = sqrt(((45 * currentWave) ** 1.2) * currentWave * 0.3)
-	amountToSpawn = clampf(amountToSpawn, 10, 100)
+	var amountToSpawn = sqrt(((30 * (currentWave - 1)) ** 1.25) * (currentWave - 1) * 0.3)
+	amountToSpawn = clampf(amountToSpawn, 10, 150)
 	targetEnemyCount = round(amountToSpawn)
 	
 	# prepare an array of enemy names that will spawn
@@ -77,6 +77,11 @@ func spawnEnemies() -> void:
 	var index = 0
 	for enemy: Node2D in enemyObjectPool:
 		while true:
+			# make sure we don't reach the max active enemy count
+			var currentEnemyCount = get_tree().get_nodes_in_group("Enemy").size()
+			if currentEnemyCount >= maximumActiveEnemyCount:
+				await TimeManager.wait(1.0)
+				continue
 
 			# determine a random point on the traversable map
 			var randomPoint = getRandomSpawnPoint()
@@ -107,12 +112,15 @@ func spawnEnemies() -> void:
 func determineEnemies() -> Array:
 	var enemyNames = ["slime_enemy"]
 	if currentWave >= 3:
+		enemyNames.append("slime_enemy")
+		enemyNames.append("slime_enemy")
+		enemyNames.append("slime_enemy")
 		enemyNames.append("manta_ray_enemy")
 	if currentWave >= 5:
-		enemyNames.append("slime_enemy")
+		enemyNames.erase("slime_enemy")
 		enemyNames.append("snake_enemy")
 	if currentWave >= 7:
-		enemyNames.append("slime_enemy")
+		enemyNames.append("snake_enemy")
 		enemyNames.append("manta_ray_enemy")
 		enemyNames.append("scorpion_enemy")
 	if currentWave >= 10:
