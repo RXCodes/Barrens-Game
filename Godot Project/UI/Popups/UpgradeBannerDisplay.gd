@@ -15,7 +15,6 @@ func setupWithUpgrade(upgrade: Upgrade) -> void:
 	$Icon.texture = upgrade.texture
 	$AnimationPlayer.play("Summon")
 	playExplodeParticleEffect()
-	await get_tree().physics_frame
 	show()
 
 func deselect() -> void:

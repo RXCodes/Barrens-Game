@@ -7,6 +7,8 @@ func _enter_tree() -> void:
 	offset = Vector2(640, 400)
 	overlayRect = $OverlayRect
 	current = self
+	if OS.has_feature("web"):
+		$ScreenShader.queue_free()
 	show()
 
 static func hideUI() -> void:

@@ -354,6 +354,7 @@ color = Color(0, 0, 0, 0)
 stream = ExtResource("15_lhony")
 volume_db = 5.0
 autoplay = true
+stream_paused = true
 
 [node name="Close" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_qx1fm")

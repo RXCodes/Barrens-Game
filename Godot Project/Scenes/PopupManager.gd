@@ -15,6 +15,8 @@ static var popupClosed: Signal
 func _ready() -> void:
 	background = $".."
 	background.modulate = Color.TRANSPARENT
+	if OS.has_feature("web"):
+		background.material = null
 	scale = Vector2(0.9, 0.9)
 	await get_tree().physics_frame
 	tween = NodeRelations.createTween()

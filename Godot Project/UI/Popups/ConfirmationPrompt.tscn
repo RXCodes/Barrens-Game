@@ -6,11 +6,11 @@
 [ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="3_eccua"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_teoj6"]
 [ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="5_oondl"]
-[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="6_hvpc5"]
 [ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="6_nd47a"]
 [ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_brhof"]
 [ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="7_mfkt6"]
 [ext_resource type="Script" path="res://UI/Popups/ConfirmationPrompt.gd" id="8_wrk2h"]
+[ext_resource type="AudioStream" uid="uid://b1esu52rpw1lu" path="res://UI/Popups/MenuOpen.mp3" id="10_742t8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
 font = ExtResource("3_eccua")
@@ -203,9 +203,7 @@ offset_right = 121.0
 offset_bottom = 27.0
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_hvpc5")
-volume_db = -4.0
-pitch_scale = 6.0
+stream = ExtResource("10_742t8")
 autoplay = true
 
 [node name="Close" type="AudioStreamPlayer" parent="."]

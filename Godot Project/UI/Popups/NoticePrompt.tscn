@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://buna2v43gi7fu" path="res://UI/Exit.png" id="6_7pgh0"]
 [ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="7_a1ftb"]
 [ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="8_hilyf"]
-[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="9_dba1a"]
+[ext_resource type="AudioStream" uid="uid://b1esu52rpw1lu" path="res://UI/Popups/MenuOpen.mp3" id="10_awuyt"]
 [ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="10_o2oa4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
@@ -156,9 +156,7 @@ offset_right = 159.0
 offset_bottom = 27.0
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("9_dba1a")
-volume_db = -4.0
-pitch_scale = 6.0
+stream = ExtResource("10_awuyt")
 autoplay = true
 
 [node name="Close" type="AudioStreamPlayer" parent="."]

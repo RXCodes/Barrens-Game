@@ -83,15 +83,15 @@ static func waveStarted() -> void:
 	tween.tween_property(waveStartedNode, "modulate", Color.WHITE, 1.0)
 	tween.parallel().tween_property(waveStartedNode, "scale", Vector2.ONE, 1.0)
 	
-	await TimeManager.wait(3.0)
+	await TimeManager.wait(4.5)
 	var fadeOut = NodeRelations.createTween()
 	fadeOut.set_ease(Tween.EASE_OUT)
 	fadeOut.set_trans(Tween.TRANS_EXPO)
-	fadeOut.tween_property(waveStartedNode, "modulate", Color.TRANSPARENT, 1.0)
-	fadeOut.parallel().tween_property(waveStartedNode, "scale", Vector2(0.75, 0.75), 1.0)
+	fadeOut.tween_property(waveStartedNode, "modulate", Color.TRANSPARENT, 1.5)
+	fadeOut.parallel().tween_property(waveStartedNode, "scale", Vector2(0.75, 0.75), 1.5)
 	
 	# after a delay, hide the element
-	await TimeManager.wait(1.1)
+	await TimeManager.wait(1.6)
 	waveStartedNode.hide()
 
 static func waveCompleted(earnings: int) -> void:

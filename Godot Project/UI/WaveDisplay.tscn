@@ -184,4 +184,4 @@ patch_margin_bottom = 6
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WaveCompleted"]
 stream = ExtResource("7_6r8qd")
-volume_db = -6.0
+volume_db = -10.0

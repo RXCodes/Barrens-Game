@@ -14,6 +14,7 @@ func _ready() -> void:
 	# pause the scene
 	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_DISABLED
 	TutorialManager.shouldDisableControls = true
+	await get_tree().physics_frame
 	
 	# setup 2 more banners
 	current = self
@@ -22,7 +23,6 @@ func _ready() -> void:
 	confirmButton = $"../Confirm"
 	selectSound = $Select
 	appearSound = $Appear
-	await get_tree().physics_frame
 	var middleBanner = $"../Banner"
 	var leftBanner = middleBanner.duplicate()
 	get_parent().add_child((leftBanner))
@@ -58,9 +58,11 @@ static func confirmButtonPressed() -> void:
 	active = false
 	Player.current.upgradesReceived += 1
 	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
-	if selectedUpgrade.upgradeName == "Gamble":
-		return
 	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
+	if selectedUpgrade.upgradeName == "Gamble":
+		await TimeManager.wait(0.1)
+		TutorialManager.shouldDisableControls = false
+		return
 	GamePopup.closeCurrent()
 	await TimeManager.wait(0.1)
 	TutorialManager.shouldDisableControls = false

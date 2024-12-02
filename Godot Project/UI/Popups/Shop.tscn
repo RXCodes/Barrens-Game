@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://cfw4thwn4mwks" path="res://ModelContents/Cash/Cash2.png" id="6_p7kix"]
 [ext_resource type="Texture2D" uid="uid://h2ly6y1sst6y" path="res://UI/ExitHover.png" id="6_xqf83"]
 [ext_resource type="Script" path="res://UI/Popups/ExitButton.gd" id="7_j5pfl"]
-[ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="8_k3cbs"]
 [ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="10_gcvg0"]
 [ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="11_c2pl6"]
+[ext_resource type="AudioStream" uid="uid://b1esu52rpw1lu" path="res://UI/Popups/MenuOpen.mp3" id="11_u5wkm"]
 [ext_resource type="AudioStream" uid="uid://bf2dxbqe73u84" path="res://UI/ShopPurchase.mp3" id="12_idri2"]
 [ext_resource type="AudioStream" uid="uid://cxs6lbq4tcq1q" path="res://UI/Error.mp3" id="14_qkdjc"]
 
@@ -218,8 +218,8 @@ texture_hover = ExtResource("6_xqf83")
 script = ExtResource("7_j5pfl")
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_k3cbs")
-pitch_scale = 5.0
+stream = ExtResource("11_u5wkm")
+pitch_scale = 0.8
 autoplay = true
 
 [node name="Close" type="AudioStreamPlayer" parent="."]
