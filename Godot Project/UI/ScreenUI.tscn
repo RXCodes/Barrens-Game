@@ -426,7 +426,7 @@ script = ExtResource("19_cvkcw")
 metadata/_edit_lock_ = true
 
 [node name="PoisonVignette" type="NinePatchRect" parent="."]
-self_modulate = Color(0.3996, 0.54, 0.2592, 0)
+self_modulate = Color(1, 1, 1, 0)
 z_index = -50
 texture_filter = 1
 anchors_preset = 8

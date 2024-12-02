@@ -26,10 +26,8 @@ vec3 hsv2rgb(vec3 c) {
 }
 
 void fragment() {
-	// compute the color and deform it
-	vec2 scroll = (scrollAmount * TIME);
-	vec2 distortionUV = SCREEN_UV + (texture(noise_texture, UV + scroll).r - 0.5) * multiplier;
-	vec4 c = texture(screen_texture, distortionUV);
+	// compute the color
+	vec4 c = texture(screen_texture, SCREEN_UV);
 	
 	// make this enemy green
 	vec3 hsv = rgb2hsv(c.rgb);

@@ -94,6 +94,11 @@ enum PathfindAgentSize {SMALL, MEDIUM, LARGE}
 ## How long to wait before a hit sound effect can be played again
 @export var hitSoundDelay: float = 0.05
 
+@export_category("Debug")
+enum EnemyVariantType {NORMAL, ACID}
+## for debugging purposes, you can edit this variable but make sure to revert it back when done
+@export var variantType: EnemyVariantType = EnemyVariantType.NORMAL
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: Node2D
@@ -102,6 +107,7 @@ var flipTransform: Node2D
 var target: Node2D = Player.current
 var healthBar: EnemyHealthBar
 func _ready() -> void:
+	# setup the enemy
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
 	flipTransform = find_child("FlipTransform")
@@ -109,6 +115,8 @@ func _ready() -> void:
 	enemies.append(self)
 	hitboxShapeInitialPosition = hitboxShape.position
 	currentHealth = maxHealth
+	
+	# setup hitboxes, health bar, etc.
 	if not hitBoxRigidBody:
 		hitBoxRigidBody = find_child("Hitbox")
 	if hitBoxRigidBody:
@@ -123,14 +131,19 @@ func _ready() -> void:
 	healthBar.position += healthBarPositionOffset
 	hitboxShape.add_child(healthBar)
 	healthBar.setHealthBarColor(healthBarColor)
+	
+	# material has been set on instantiation for variants
 	if not defaultMaterial:
 		defaultMaterial = ShaderMaterial.new()
 		defaultMaterial.shader = defaultEnemyShader
 	renderer.material = defaultMaterial
+	
+	# deeal with different variants
+	setVariantType(variantType)
 	if variantType == EnemyVariantType.ACID:
 		damageMultiplier = 1.5
-		maxHealth *= 2.0
-		currentHealth *= 2.0
+		maxHealth *= 2.5
+		currentHealth *= 2.5
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -179,8 +192,6 @@ func animateBrightness(newValue: float, duration: float) -> Signal:
 	tween.tween_property(self, "brightness", newValue, duration)
 	return TimeManager.wait(duration)
 
-enum EnemyVariantType {NORMAL, ACID}
-var variantType: EnemyVariantType = EnemyVariantType.NORMAL
 var damageMultiplier: float = 1.0
 
 # set the enemy's variant type
@@ -318,8 +329,9 @@ func navigate() -> void:
 	# if this enemy is stuck in the same spot for too long, adjust its pathfinding
 	if previousPosition.distance_squared_to(collisionRigidBody.global_position) < samePositionThresholdSquared:
 		samePositionTime += timeElapsed
-		if samePositionTime >= 7.5:
+		if samePositionTime >= 10.0:
 			navigationAgent.avoidance_enabled = true
+			pathfindAgentSize = PathfindAgentSize.LARGE
 	else:
 		previousPosition = collisionRigidBody.global_position
 		samePositionTime = 0.0
@@ -329,7 +341,9 @@ func navigate() -> void:
 		mainAnimationPlayer.play(walkAnimation)
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
 	var movementVector = pathfindDirectionVector * walkMovementSpeed
-	faceTarget()
+	flipX = movementVector.x < 0
+	if movementVector.x == 0:
+		faceTarget()
 	collisionRigidBody.move_and_collide(movementVector)
 
 # called when enemy reaches its target and is ready to attack

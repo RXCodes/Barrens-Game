@@ -171,9 +171,10 @@ func _physics_process(delta: float) -> void:
 		return
 	timeSurvived += delta
 	poisonTime -= delta
+	poisonTime = max(poisonTime, 0)
 	
 	# poison functionality
-	if poisonTime > 3.0:
+	if poisonTime > 6.0:
 		poisonTickTime -= delta
 		if poisonTickTime <= 0.0:
 			poisonTickTime = 1.5
@@ -376,12 +377,14 @@ func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
 	
-	if source.get_meta(EnemyAI.enemyAIKey) is EnemyAI:
-		var enemy: EnemyAI = source.get_meta(EnemyAI.enemyAIKey)
-		# 30% chance for an acid enemy to deliver poison status effect
+	var enemy = source.get_meta(EnemyAI.parentControllerKey)
+	if enemy is EnemyAI:
+		# acid enemy delivers poison
 		if enemy.variantType == EnemyAI.EnemyVariantType.ACID:
-			if randf() < 0.3:
-				applyPoison()
+			if poisonTime <= 3.0:
+				applyPoison(12.0)
+			else:
+				applyPoison(5.0)
 	
 	# apply defense
 	if defenseDivisor >= 1:
@@ -514,6 +517,7 @@ func pickupWeapon(gun: Gun) -> void:
 		WeaponSlots.setSecondaryWeapon(gun)
 
 var poisonTime = 0.0
-var poisonTickTime = 0.0
-func applyPoison() -> void:
-	poisonTime = 15.0
+var poisonTickTime = 1.0
+func applyPoison(time: float) -> void:
+	poisonTime += time
+	poisonTime = min(poisonTime, 25)

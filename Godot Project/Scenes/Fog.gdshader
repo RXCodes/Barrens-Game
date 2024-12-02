@@ -1,5 +1,4 @@
 shader_type canvas_item;
-//render_mode unshaded; // optional
 
 // Noise texture
 uniform sampler2D noise_texture: repeat_enable, filter_nearest;

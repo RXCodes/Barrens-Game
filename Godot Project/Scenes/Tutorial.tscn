@@ -208,7 +208,6 @@ frequency = 0.0125
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uh31f"]
 width = 600
 height = 300
-in_3d_space = true
 seamless = true
 noise = SubResource("FastNoiseLite_6w3h6")
 

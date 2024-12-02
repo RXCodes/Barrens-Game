@@ -46,7 +46,10 @@ func _ready() -> void:
 var minimumSpawningRadiusSquared = 1000 ** 2
 var maximumSpawningRadiusSquared = 2500 ** 2
 var targetEnemyCount = 0
+
+# controls how many enemies are active at once, not total spawned
 var maximumActiveEnemyCount = 50
+
 var waveStarted = false
 var enemyObjectPool = []
 var enemySpawnNames = []
@@ -54,7 +57,7 @@ var enemySpawnNames = []
 # asychronously instantiate enemy objects on another thread
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
-	var amountToSpawn = sqrt(((30 * (currentWave - 1)) ** 1.25) * (currentWave - 1) * 0.3)
+	var amountToSpawn = sqrt(((20 * (currentWave - 1)) ** 1.25) * (currentWave - 1) * 0.3)
 	amountToSpawn = clampf(amountToSpawn, 10, 150)
 	targetEnemyCount = round(amountToSpawn)
 	
@@ -115,8 +118,11 @@ func determineEnemies() -> Array:
 		enemyNames.append("slime_enemy")
 		enemyNames.append("slime_enemy")
 		enemyNames.append("slime_enemy")
+		enemyNames.append("slime_enemy")
+		enemyNames.append("slime_enemy")
 		enemyNames.append("manta_ray_enemy")
 	if currentWave >= 5:
+		enemyNames.erase("slime_enemy")
 		enemyNames.erase("slime_enemy")
 		enemyNames.append("snake_enemy")
 	if currentWave >= 7:

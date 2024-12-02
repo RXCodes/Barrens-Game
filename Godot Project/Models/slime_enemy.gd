@@ -11,6 +11,7 @@ func onStart() -> void:
 		walkMovementSpeed = 2
 		walkMovementSpeed = 2 * (1 + (wave - 1) * 0.05)
 		walkMovementSpeed = min(walkMovementSpeed, 6)
+		mainAnimationPlayer.play("Walk")
 		
 		await enemyReachedTarget
 		
