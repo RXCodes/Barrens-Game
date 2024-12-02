@@ -23,12 +23,11 @@ func onStart() -> void:
 		# dash towards the player if needed
 		walkMovementSpeed = 0
 		if canDash:
-			var targetPosition = Player.current.position
-			defaultMaterial = ShaderMaterial.new()
-			defaultMaterial.shader = preload("res://ModelContents/EntityGlow.gdshader")
-			playAnimation("Glow")
-			await TimeManager.wait(0.7)
-			defaultMaterial = null
+			var targetPosition = getTargetPosition()
+			await animateBrightness(0.5, 0.2)
+			await animateBrightness(0, 0.2)
+			await animateBrightness(0.5, 0.2)
+			await animateBrightness(0, 0.2)
 			dashTowardsPosition(targetPosition)
 			await dashComplete
 			activateHurtBox($ColliderBox/Hurtbox, randf_range(25, 35), HurtBoxType.PLAYER)

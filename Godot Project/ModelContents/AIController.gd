@@ -123,6 +123,9 @@ func _ready() -> void:
 	healthBar.position += healthBarPositionOffset
 	hitboxShape.add_child(healthBar)
 	healthBar.setHealthBarColor(healthBarColor)
+	if not defaultMaterial:
+		defaultMaterial = ShaderMaterial.new()
+		defaultMaterial.shader = defaultEnemyShader
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -154,7 +157,21 @@ func _process(delta: float) -> void:
 
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader")
+static var defaultEnemyShader = preload("res://ModelContents/DefaultEnemy.gdshader")
 var renderer: EntityRender
+
+# adjust brightness of enemy - used in special heavy attacks
+var brightness: float = 0.0:
+	set(newBrightness):
+		brightness = newBrightness
+		var shaderMaterial: ShaderMaterial = renderer.material
+		shaderMaterial.set_shader_parameter("brightness", newBrightness)
+
+# animate brightness - returns a signal that emits when the animation is complete
+func animateBrightness(newValue: float, duration: float) -> Signal:
+	var tween = NodeRelations.createTween()
+	tween.tween_property(self, "brightness", newValue, duration)
+	return TimeManager.wait(duration)
 
 # called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
@@ -221,8 +238,11 @@ func updateHealthBar() -> void:
 	healthBar.progress = (currentHealth / maxHealth) * 100.0
 	
 # called when changing the flashing state of the enemy
-var defaultMaterial: ShaderMaterial = null
+var defaultMaterial: ShaderMaterial
+var canFlash = true
 func flashWhite(flashing: bool) -> void:
+	if not canFlash:
+		return
 	if flashing:
 		renderer.material = ShaderMaterial.new()
 		renderer.material.shader = flashWhiteShader
