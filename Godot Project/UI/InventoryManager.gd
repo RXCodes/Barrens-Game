@@ -12,6 +12,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	
 	# create slots (keys 3 to 7)
+	slots.clear()
 	slots.append($Slot)
 	var separation = 104
 	$Slot.setupSlot(3)
@@ -24,9 +25,12 @@ func _ready() -> void:
 		newSlot.setupSlot(slotIndex)
 		slotIndex += 1
 	selectSlot(-1)
+	hideItemInfo()
 
 static func selectSlot(index: int) -> void:
 	for slot in slots:
+		if not is_instance_valid(slot):
+			continue
 		slot.deselect()
 	if index == currentSlotIndex or index < 0:
 		currentSlotIndex = -1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c76l57b4psv0s"]
+[gd_scene load_steps=21 format=3 uid="uid://bc7hpgmmusmbv"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_nyisu"]
 [ext_resource type="Texture2D" uid="uid://b0tbduu8itbyj" path="res://Environment/MainMenuBackgroundGradient.png" id="1_tkqks"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bryra10fhy4a" path="res://Environment/Sun.png" id="3_xgr2x"]
 [ext_resource type="Texture2D" uid="uid://bme2m3h8ludxa" path="res://Environment/TitleScreenLandscape.png" id="4_sfi83"]
 [ext_resource type="Shader" path="res://Environment/HeatWave.gdshader" id="4_xjdft"]
-[ext_resource type="Texture2D" uid="uid://cuiicpwe414tj" path="res://UI/BarrensLogo.png" id="5_tt3yn"]
 [ext_resource type="Script" path="res://Scenes/TitleScreenManager.gd" id="6_170ut"]
+[ext_resource type="Texture2D" uid="uid://gue6nfabuugj" path="res://UI/BarrenLogo.png" id="7_50fqb"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="8_4nxs1"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="9_jxyth"]
 [ext_resource type="AudioStream" uid="uid://bxq2lwvor3137" path="res://UI/OpeningSting.mp3" id="9_nmbd5"]
@@ -397,10 +397,19 @@ texture = SubResource("NoiseTexture2D_pduyk")
 texture_filter = 1
 position = Vector2(640, 410)
 scale = Vector2(3, 3)
-texture = ExtResource("5_tt3yn")
-offset = Vector2(0, 6.66667)
+texture = ExtResource("7_50fqb")
+offset = Vector2(0, -0.33333)
 
 [node name="GameButtons" type="Node2D" parent="."]
+
+[node name="Version" type="Label" parent="GameButtons"]
+offset_left = 10.0
+offset_top = 768.0
+offset_right = 188.0
+offset_bottom = 790.0
+mouse_filter = 1
+text = "v1.0 beta release (expect bugs and incomplete features)"
+label_settings = ExtResource("8_4nxs1")
 
 [node name="StartGame" type="Label" parent="GameButtons"]
 offset_left = 465.0

@@ -16,8 +16,9 @@ func _ready() -> void:
 	moveTween.set_ease(Tween.EASE_OUT)
 	moveTween.set_trans(Tween.TRANS_CUBIC)
 	var newPosition = global_position
-	newPosition.x += randfn(0, 40)
-	newPosition.y += randfn(0, 25)
+	var randomNormal = Vector2.from_angle(randf_range(0, 360))
+	newPosition.x += randomNormal.x * randf_range(35, 80)
+	newPosition.y += randomNormal.y * randf_range(20, 35)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
 	moveTween.parallel().tween_property($Cash, "rotation_degrees", randfn(0, 15), tweenDuration)
@@ -26,6 +27,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Player.current.dead:
+		return
 	if canBePickedUp:
 		var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
 		if distanceToPlayerSquared <= (pickupDistance * Player.current.pickUpRangeMultiplier) ** 2:

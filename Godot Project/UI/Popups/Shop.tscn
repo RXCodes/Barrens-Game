@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmwpbhirw7ahf"]
+[gd_scene load_steps=25 format=3 uid="uid://cmwpbhirw7ahf"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_6apie"]
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_mt2pq"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_3are3"]
 [ext_resource type="Script" path="res://UI/Popups/ShopInteractor.gd" id="3_7evts"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_5cchh"]
@@ -49,6 +50,7 @@ events = [SubResource("InputEventKey_hcuy1")]
 
 [node name="PopupBackground" type="ColorRect"]
 z_index = -2
+material = ExtResource("1_mt2pq")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -58,7 +60,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 0.72549)
+color = Color(0, 0, 0, 0.376471)
 
 [node name="Popup" type="Node2D" parent="."]
 process_priority = -2
@@ -233,6 +235,7 @@ max_polyphony = 5
 
 [node name="Error" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_qkdjc")
+volume_db = -10.0
 max_polyphony = 5
 
 [connection signal="button_down" from="Popup/SquareUI/BuyButton/Button" to="Popup/SquareUI/SquareUI2/ScrollContainer/ShopItemContainer" method="_on_button_button_down"]

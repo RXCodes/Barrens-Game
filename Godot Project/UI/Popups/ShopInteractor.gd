@@ -54,7 +54,7 @@ func _on_button_mouse_exited() -> void:
 
 func _on_button_button_down() -> void:
 	var playerCash = Player.current.cash
-	var price = selectedShopItem.price
+	var price = ceil(selectedShopItem.price /  Player.current.shopPriceDivisor)
 	if playerCash >= price:
 		Player.current.pickupCash(-price)
 		selectedShopItem.purchasedItem()
@@ -75,6 +75,7 @@ func _on_button_button_down() -> void:
 				var upgradeAmounts = newUpgrade.preferredUpgradeAmounts
 				for s in range(selectedShopItem.upgradeAmounts.size()):
 					upgradeAmounts[s] = selectedShopItem.upgradeAmounts[s]
+				Player.current.upgradesReceived += 1
 				newUpgrade.onUpgrade(upgradeAmounts)
 				newUpgrade.queue_free()
 			if selectedShopItem.type == ShopItem.ItemType.LUCKY_COIN:

@@ -1,63 +1,60 @@
-[gd_scene load_steps=42 format=3 uid="uid://oijfjb87joah"]
+[gd_scene load_steps=39 format=3 uid="uid://ge1chou4evxe"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_j3v26"]
 [ext_resource type="Script" path="res://Models/snake_enemy.gd" id="2_jrh8w"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_00_delay-0.2s.png" id="4_10cbw"]
+[ext_resource type="Texture2D" uid="uid://c4rmnvat46526" path="res://ModelContents/Enemies/Snake Attack/frame_00_delay-0.2s.png" id="4_10cbw"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_py10l"]
 [ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_4nv2j"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_01_delay-0.2s.png" id="5_wxemh"]
+[ext_resource type="Texture2D" uid="uid://bobi5nnwgi3r8" path="res://ModelContents/Enemies/Snake Attack/frame_01_delay-0.2s.png" id="5_wxemh"]
 [ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_dgyuq"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_02_delay-0.2s.png" id="6_qsnhg"]
+[ext_resource type="Texture2D" uid="uid://d1pkectd8nqau" path="res://ModelContents/Enemies/Snake Attack/frame_02_delay-0.2s.png" id="6_qsnhg"]
 [ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_ay5ug"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_03_delay-0.2s.png" id="7_x6s55"]
+[ext_resource type="Texture2D" uid="uid://dxbbjutdgyk30" path="res://ModelContents/Enemies/Snake Attack/frame_03_delay-0.2s.png" id="7_x6s55"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_tpaa1"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_04_delay-0.1s.png" id="8_xkhns"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_05_delay-0.1s.png" id="9_o3kn0"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_06_delay-0.2s.png" id="10_ho2tv"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_07_delay-0.2s.png" id="11_vk4qg"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_08_delay-0.2s.png" id="12_5r10o"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_09_delay-0.2s.png" id="13_8uqv1"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_10_delay-0.2s.png" id="14_whmve"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_11_delay-0.2s.png" id="15_nndlm"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_12_delay-0.1s.png" id="16_f7be0"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_13_delay-0.2s.png" id="17_f1jet"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_14_delay-0.2s.png" id="18_dwbax"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Attack/frame_15_delay-0.2s.png" id="19_5y0oo"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_00_delay-0.2s.png" id="20_47lno"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_01_delay-0.2s.png" id="21_ya6xb"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_12_delay-0.1s.png" id="22_np46c"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_13_delay-0.2s.png" id="23_fssmk"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_14_delay-0.2s.png" id="24_1sh2c"]
-[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake Idle/frame_15_delay-0.2s.png" id="25_4o5nt"]
+[ext_resource type="Texture2D" uid="uid://c2odwgfeetqq0" path="res://ModelContents/Enemies/Snake Attack/frame_04_delay-0.1s.png" id="8_xkhns"]
+[ext_resource type="Texture2D" uid="uid://df5qsssvuara1" path="res://ModelContents/Enemies/Snake Attack/frame_05_delay-0.1s.png" id="9_o3kn0"]
+[ext_resource type="Texture2D" uid="uid://daj336hl1h6w" path="res://ModelContents/Enemies/Snake Attack/frame_06_delay-0.2s.png" id="10_ho2tv"]
+[ext_resource type="Texture2D" uid="uid://bu0bvvd0sqla4" path="res://ModelContents/Enemies/Snake Attack/frame_07_delay-0.2s.png" id="11_vk4qg"]
+[ext_resource type="Texture2D" uid="uid://beqm1py7o57bu" path="res://ModelContents/Enemies/Snake Attack/frame_08_delay-0.2s.png" id="12_5r10o"]
+[ext_resource type="Texture2D" uid="uid://dek0d0h65p3dj" path="res://ModelContents/Enemies/Snake Attack/frame_09_delay-0.2s.png" id="13_8uqv1"]
+[ext_resource type="Texture2D" uid="uid://b8bs5aibkvdug" path="res://ModelContents/Enemies/Snake Attack/frame_10_delay-0.2s.png" id="14_whmve"]
+[ext_resource type="Texture2D" uid="uid://d1e6ifht1g68d" path="res://ModelContents/Enemies/Snake Attack/frame_11_delay-0.2s.png" id="15_nndlm"]
+[ext_resource type="Texture2D" uid="uid://c0882xk2mkw43" path="res://ModelContents/Enemies/Snake Attack/frame_12_delay-0.1s.png" id="16_f7be0"]
+[ext_resource type="Texture2D" uid="uid://b0lnplpvs5h" path="res://ModelContents/Enemies/Snake Idle/frame_00_delay-0.2s.png" id="20_47lno"]
+[ext_resource type="Texture2D" uid="uid://o0xoqtybpwex" path="res://ModelContents/Enemies/Snake Idle/frame_01_delay-0.2s.png" id="21_ya6xb"]
+[ext_resource type="Texture2D" uid="uid://bxj6k5goamevp" path="res://ModelContents/Enemies/Snake Idle/frame_12_delay-0.1s.png" id="22_np46c"]
+[ext_resource type="Texture2D" uid="uid://casd58wdw55gd" path="res://ModelContents/Enemies/Snake Idle/frame_13_delay-0.2s.png" id="23_fssmk"]
+[ext_resource type="Texture2D" uid="uid://bbuwp4yuvxvkk" path="res://ModelContents/Enemies/Snake Idle/frame_14_delay-0.2s.png" id="24_1sh2c"]
+[ext_resource type="Texture2D" uid="uid://domq4gu10x5ad" path="res://ModelContents/Enemies/Snake Idle/frame_15_delay-0.2s.png" id="25_4o5nt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
-radius = 19.4225
-height = 49.7291
+radius = 27.0
+height = 54.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 2.0
-height = 42.0
+radius = 7.0
+height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
-radius = 36.0167
-height = 101.39
+radius = 105.0
+height = 214.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rc37x"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("4_10cbw")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("5_wxemh")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("6_qsnhg")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("7_x6s55")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("8_xkhns")
 }, {
 "duration": 1.0,
@@ -83,19 +80,10 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("16_f7be0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_f1jet")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_dwbax")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_5y0oo")
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 7.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -396,24 +384,25 @@ _data = {
 [node name="Snake_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-position = Vector2(304, -52)
 script = ExtResource("1_j3v26")
 entityZIndexOffset = 24
 
 [node name="Snake_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer")]
 script = ExtResource("2_jrh8w")
 enemyName = "Snake"
-maxHealth = 75
-cashDrop = 30
+maxHealth = 130
+cashDrop = 45
 cashDropVariance = 10
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")
 hasAI = true
+pathfindAgentSize = 1
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 walkAnimation = "Walk"
 deathAnimation = "Death"
 hitFrontAnimation = "Hit"
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+invertXFlip = true
 
 [node name="Hitbox" type="RigidBody2D" parent="Snake_Enemy"]
 collision_layer = 4
@@ -424,8 +413,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/Hitbox"]
 z_index = -2
-position = Vector2(-53, 7)
-rotation = -1.309
+position = Vector2(0, -41)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
@@ -436,16 +424,14 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-50, 36)
+position = Vector2(1, -6)
 rotation = 1.5708
-scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
 
 [node name="Hurtbox" type="CollisionShape2D" parent="Snake_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-54, 6)
-rotation = 1.8326
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
 debug_color = Color(0, 0.92, 0.720667, 0.184314)
@@ -455,25 +441,31 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
+radius = 30.0
+neighbor_distance = 100.0
 
 [node name="FlipTransform" type="Node2D" parent="Snake_Enemy/ColliderBox"]
+position = Vector2(1, -41)
 
 [node name="Shadow" type="Sprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)
 show_behind_parent = true
 z_index = -1
 texture_filter = 1
-position = Vector2(-146, -26)
+position = Vector2(-91.9896, -26)
 scale = Vector2(1.42188, 0.969202)
 texture = ExtResource("4_py10l")
 centered = false
 offset = Vector2(0, -39.2243)
 
 [node name="Animations" type="AnimatedSprite2D" parent="Snake_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(-75, 1)
+position = Vector2(-1.33514e-05, 31)
 scale = Vector2(0.305638, 0.254181)
 sprite_frames = SubResource("SpriteFrames_rc37x")
-animation = &"Idle"
+animation = &"Attack"
+frame = 12
+frame_progress = 1.0
+offset = Vector2(-68.6747, -118.026)
 
 [node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Snake_Enemy/ColliderBox/FlipTransform"]
 root_node = NodePath("../..")

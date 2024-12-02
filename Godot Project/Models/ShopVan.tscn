@@ -45,6 +45,7 @@ debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Shop" type="Area2D" parent="."]
 position = Vector2(-707, 180)
+collision_layer = 0
 script = ExtResource("2_7ouje")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shop"]

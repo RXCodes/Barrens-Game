@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://de7jw5std7hee"]
+[gd_scene load_steps=16 format=3 uid="uid://dt2picavdm0fp"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_g4xgc"]
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_hce33"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_2vehf"]
 [ext_resource type="Texture2D" uid="uid://dh52r2p4gsopb" path="res://UI/NumberKeys.png" id="3_ifb1y"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="4_cthop"]
@@ -31,6 +32,7 @@ shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(0, 4)
 
 [node name="PopupBackground" type="ColorRect"]
+material = ExtResource("1_hce33")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -40,7 +42,7 @@ offset_right = 3.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.2, 0.2, 0.2, 0.72549)
+color = Color(0, 0, 0, 0.376471)
 
 [node name="Popup" type="Node2D" parent="."]
 process_priority = -2
@@ -75,7 +77,6 @@ texture = ExtResource("4_elfkg")
 self_modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 2.4)
-scale = Vector2(1, 1)
 texture = ExtResource("4_elfkg")
 
 [node name="ItemPickup" type="Sprite2D" parent="Popup/SquareUI"]

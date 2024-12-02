@@ -30,6 +30,10 @@ static var enemyAIKey = "EnemyAI"
 ## Speed when enemy travels
 @export var walkMovementSpeed: float = 1
 
+enum PathfindAgentSize {SMALL, MEDIUM, LARGE}
+## Larger enemies should use larger sizes - small = 40px, medium = 60px, large = 80px
+@export var pathfindAgentSize: PathfindAgentSize = PathfindAgentSize.SMALL
+
 @export_subgroup("")
 @export_subgroup("Gun")
 
@@ -82,6 +86,9 @@ static var enemyAIKey = "EnemyAI"
 		if healthBar:
 			healthBar.setHealthBarColor(healthBarColor)
 
+## If enabled, the enemy will face the opposite direction
+@export var invertXFlip: bool = false
+
 @export_category("Audio")
 
 ## How long to wait before a hit sound effect can be played again
@@ -116,13 +123,22 @@ func _ready() -> void:
 	healthBar.position += healthBarPositionOffset
 	hitboxShape.add_child(healthBar)
 	healthBar.setHealthBarColor(healthBarColor)
+	if not defaultMaterial:
+		defaultMaterial = ShaderMaterial.new()
+		defaultMaterial.shader = defaultEnemyShader
+	renderer.material = defaultMaterial
+	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 var flipX = false
+var timeAlive: float = 0.0
 func _process(delta: float) -> void:
 	flipTransform.scale.x = -1 if flipX else 1
+	timeAlive += delta
+	if invertXFlip:
+		flipTransform.scale.x *= -1
 	if renderer.material is ShaderMaterial:
 		renderer.material.set_shader_parameter("normalizedRandom", randf_range(0.6, 1.0))
 	runNavigationQueue()
@@ -142,7 +158,41 @@ func _process(delta: float) -> void:
 
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader")
+static var defaultEnemyShader = preload("res://ModelContents/DefaultEnemy.gdshader")
+static var acidEnemyShader = preload("res://ModelContents/Acid.gdshader")
 var renderer: EntityRender
+
+# adjust brightness of enemy - used in special heavy attacks
+var brightness: float = 0.0:
+	set(newBrightness):
+		brightness = newBrightness
+		var shaderMaterial: ShaderMaterial = renderer.material
+		shaderMaterial.set_shader_parameter("brightness", newBrightness)
+
+# animate brightness - returns a signal that emits when the animation is complete
+func animateBrightness(newValue: float, duration: float) -> Signal:
+	var tween = NodeRelations.createTween()
+	tween.tween_property(self, "brightness", newValue, duration)
+	return TimeManager.wait(duration)
+
+enum EnemyVariantType {NORMAL, ACID}
+var variantType: EnemyVariantType = EnemyVariantType.NORMAL
+var damageMultiplier: float = 1.0
+
+# set the enemy's variant type
+func setVariantType(type: EnemyVariantType) -> void:
+	variantType = type
+	defaultMaterial = ShaderMaterial.new()
+	if type == EnemyVariantType.NORMAL:
+		defaultMaterial.shader = defaultEnemyShader
+		damageMultiplier = 1.0
+	if type == EnemyVariantType.ACID:
+		defaultMaterial.shader = acidEnemyShader
+		damageMultiplier = 1.5
+		maxHealth *= 2.0
+		currentHealth = maxHealth
+	if renderer:
+		renderer.material = defaultMaterial
 
 # called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
@@ -189,6 +239,7 @@ func damage(amount: float, source: Node2D) -> void:
 		if criticalChance >= roll:
 			criticalDamaged = true
 			amount *= 12.5
+		Player.current.damageDealt += amount
 	
 	enemyDamaged.emit()
 	onDamage()
@@ -198,6 +249,8 @@ func damage(amount: float, source: Node2D) -> void:
 	currentHealth -= amount
 	if currentHealth <= 0:
 		currentHealth = 0
+		if source is Player:
+			Player.current.enemiesDefeated += 1
 		kill()
 	updateHealthBar()
 
@@ -206,12 +259,16 @@ func updateHealthBar() -> void:
 	healthBar.progress = (currentHealth / maxHealth) * 100.0
 	
 # called when changing the flashing state of the enemy
+var defaultMaterial: ShaderMaterial
+var canFlash = true
 func flashWhite(flashing: bool) -> void:
+	if not canFlash:
+		return
 	if flashing:
 		renderer.material = ShaderMaterial.new()
 		renderer.material.shader = flashWhiteShader
 	else:
-		renderer.material = null
+		renderer.material = defaultMaterial
 
 # called on every physics tick
 var shapeTests: Array[ShapeIntersectionTest] = []
@@ -220,7 +277,8 @@ func _physics_process(delta: float) -> void:
 	if dead:
 		return
 	if hasAI:
-		navigate()
+		if walkMovementSpeed > 0:
+			navigate()
 		if shapeTests.size() > 0:
 			var directPhysicsState = get_world_2d().direct_space_state
 			for shapeTest in shapeTests:
@@ -229,14 +287,41 @@ func _physics_process(delta: float) -> void:
 					if shapeTest.onSuccess:
 						shapeTest.onSuccess.call(intersectedShapes)
 			shapeTests.clear()
+	physicsProcess(delta)
 
 # pathfinding and movement functionality
 var targetDistance: float = 30
+var previousPosition: Vector2
+var samePositionThresholdSquared = 20 ** 2
+var samePositionTime = 0
+var lastNavigationCheck: float = 0
 func navigate() -> void:
+	# adjust navigation properties depending on defined propreties
+	if pathfindAgentSize == PathfindAgentSize.SMALL:
+		navigationAgent.avoidance_layers = 1
+		navigationAgent.navigation_layers = 1
+	elif pathfindAgentSize == PathfindAgentSize.MEDIUM:
+		navigationAgent.avoidance_layers = 2
+		navigationAgent.navigation_layers = 2
+	elif pathfindAgentSize == PathfindAgentSize.LARGE:
+		navigationAgent.avoidance_layers = 4
+		navigationAgent.navigation_layers = 4
 	navigationAgent.target_desired_distance = targetDistance
+	var timeElapsed = timeAlive - lastNavigationCheck
+	lastNavigationCheck = timeAlive
 	if withinRangeOfTarget():
 		reachedTarget()
 		return
+	
+	# if this enemy is stuck in the same spot for too long, adjust its pathfinding
+	if previousPosition.distance_squared_to(collisionRigidBody.global_position) < samePositionThresholdSquared:
+		samePositionTime += timeElapsed
+		if samePositionTime >= 7.5:
+			navigationAgent.avoidance_enabled = true
+	else:
+		previousPosition = collisionRigidBody.global_position
+		samePositionTime = 0.0
+	
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()
 		mainAnimationPlayer.play(walkAnimation)
@@ -290,6 +375,12 @@ func setTarget(targetNode: Node2D, newTargetDistance: float) -> void:
 	targetDistance = newTargetDistance
 	navigationAgent.target_position = target.global_position
 
+# targets a specific position
+func setTargetWorldPosition(targetPosition: Vector2, newTargetDistance: float) -> void:
+	target = null
+	targetDistance = newTargetDistance
+	navigationAgent.target_position = targetPosition
+
 # plays an animation from the Main Animation Player
 func playAnimation(animationName: String) -> void:
 	if dead:
@@ -301,15 +392,32 @@ func playAnimation(animationName: String) -> void:
 
 # makes the enemy face the target
 func faceTarget() -> void:
-	if dead:
+	if dead or not target:
 		return
 	var directionVector = target.global_position - collisionRigidBody.global_position
 	flipX = directionVector.x < 0
 
 # checks if the enemy is within the range of the target
 func withinRangeOfTarget() -> bool:
+	if not target:
+		return false
 	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
 	return distanceSquared <= targetDistance ** 2
+
+# checks if the enemy is within a specified distance of the target
+func withinDistanceOfTarget(distance: float) -> bool:
+	if not target:
+		return false
+	var distanceSquared = collisionRigidBody.global_position.distance_squared_to(target.global_position)
+	return distanceSquared <= distance ** 2
+
+# gets the position of the enemy in global coordinates
+func getPosition() -> Vector2:
+	return collisionRigidBody.global_position
+
+# gets the position of the target in global coordinates
+func getTargetPosition() -> Vector2:
+	return target.global_position
 
 var dead = false
 # kills the enemy - setting dead to true
@@ -323,7 +431,8 @@ func kill() -> void:
 	collisionRigidBody.collision_mask = 0
 	collisionRigidBody.collision_layer = 0
 	hasAI = false
-	actionAnimationPlayer.stop()
+	if actionAnimationPlayer:
+		actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play(deathAnimation)
 	var deathSounds = $ColliderBox/DeathSounds
@@ -354,6 +463,7 @@ enum HurtBoxType {PLAYER, ENEMY, ALL}
 static var parentControllerKey = "ParentControllerKey"
 # checks if a shape intersects with other players and enemies, dealing damage
 func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) -> void:
+	damage *= damageMultiplier
 	var newIntersectionTest = ShapeIntersectionTest.new()
 	newIntersectionTest.setDetectionType(type)
 	newIntersectionTest.setCollisionShape(shape)
@@ -363,7 +473,12 @@ func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) 
 			var collider = dictionary.collider
 			var parent = collider.get_meta(parentControllerKey)
 			if parent:
-				parent.damage(damage, collisionRigidBody)
+				if type == HurtBoxType.ALL:
+					parent.damage(damage, collisionRigidBody)
+				elif parent is EnemyAI and type == HurtBoxType.ENEMY:
+					parent.damage(damage, collisionRigidBody)
+				elif parent is Player and type == HurtBoxType.PLAYER:
+					parent.damage(damage, collisionRigidBody)
 	shapeTests.append(newIntersectionTest)
 	
 	# let's also make it flash so we can see it being activated in debug
@@ -386,6 +501,10 @@ func onDeath() -> void:
 
 # define what happened when the enemy is damaged
 func onDamage() -> void:
+	pass
+
+# define what happens in each physics tick
+func physicsProcess(delta: float) -> void:
 	pass
 
 #                     #

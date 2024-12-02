@@ -158,17 +158,32 @@ var lifestealMultiplier: float = 0.0
 
 # statistics
 var totalCashEarned: int = 0
+var timeSurvived: float = 0
+var enemiesDefeated: int = 0
+var upgradesReceived: int = 0
+var wavesCompleted: int = 0
+var damageDealt: float = 0
+var damageTaken: float = 0
+var bulletsFired: int = 0
 
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
+	timeSurvived += delta
+	poisonTime -= delta
+	
+	# poison functionality
+	if poisonTime > 3.0:
+		poisonTickTime -= delta
+		if poisonTickTime <= 0.0:
+			poisonTickTime = 1.5
+			damage(randf_range(1, 2), self)
 	
 	# passive regeneration
-	if not dead:
-		health += regenerationRate * regenerationRateMultiplier * delta
-		health = min(health, maximumHealth)
-		PlayerHealthBar.setHealth(health)
-		PlayerHealthBar.setMaxHealth(maximumHealth)
+	health += regenerationRate * regenerationRateMultiplier * delta
+	health = min(health, maximumHealth)
+	PlayerHealthBar.setHealth(health)
+	PlayerHealthBar.setMaxHealth(maximumHealth)
 	
 	# player movement
 	if currentMovementKeypresses.size() > 0:
@@ -301,6 +316,7 @@ func onFire() -> void:
 	var random = Vector2(randf_range(-250, 250), randf_range(-250, 250))
 	var crosshairNormal = Vector2.from_angle(Crosshair.current.cursorPosition.angle_to_point(global_position + random)).normalized()
 	PlayerCamera.current.gunFireShakeOffset += crosshairNormal * recoilMultiplier
+	bulletsFired += 1
 	
 	# update ammo info and animate it
 	AmmoInfoDisplay.gunFired()
@@ -360,6 +376,12 @@ func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
 	
+	if source is EnemyAI:
+		# 30% chance for an acid enemy to deliver poison status effect
+		if source.variantType == EnemyAI.EnemyVariantType.ACID:
+			if randf() < 0.3:
+				applyPoison()
+	
 	# apply defense
 	if defenseDivisor >= 1:
 		amount /= defenseDivisor
@@ -378,6 +400,7 @@ func damage(amount: float, source: Node2D) -> void:
 		damageInTick[source.get_instance_id()] = 0
 	damageInTick[source.get_instance_id()] += amount
 	health -= amount
+	damageTaken += amount
 	
 	# animate hurt vignette and camera
 	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
@@ -393,6 +416,7 @@ func damage(amount: float, source: Node2D) -> void:
 		kill()
 
 # called when player dies
+var shouldRestartScene: bool = false
 func kill() -> void:
 	if dead:
 		return
@@ -407,15 +431,32 @@ func kill() -> void:
 	actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play("death")
+	$WalkSounds.queue_free()
 	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
-	DeathSmokeParticles.spawnParticle(global_position, z_index)
+	DeathSmokeParticles.spawnParticle(global_position, 1)
+	Crosshair.stopReloadingWeapon()
 	hide()
 	
-	# after dying, restart scene - we'll change this to be the death screen
-	await TimeManager.wait(2.25)
-	NodeRelations.loadScene("res://Scenes/Debug.tscn")
+	# after dying, open the death screen
+	await TimeManager.wait(2.5)
+	GamePopup.openPopup("DeathScreen")
+	await TimeManager.wait(1.0)
+	
+	# wait for popup to close
+	while true:
+		await TimeManager.wait(0.1)
+		if not GamePopup.current:
+			break
+	
+	# fade out and open title screen or restart scene
+	if shouldRestartScene:
+		ScreenUI.fadeToScene("res://Scenes/Village1.tscn")
+	else:
+		ScreenUI.fadeToScene("res://Scenes/TitleScreen.tscn")
 
 func playWalkSound() -> void:
+	if dead:
+		return
 	var walkSounds = $WalkSounds.get_children()
 	var walkSound: AudioStreamPlayer2D = walkSounds.pick_random()
 	walkSound.pitch_scale = randfn(1.0, 0.1)
@@ -433,9 +474,9 @@ func pickupAmmo() -> void:
 	$AmmoPickup.pitch_scale = randfn(1.0, 0.085)
 	$AmmoPickup.play()
 	for gun: Gun in holdingWeapons:
-		var ammoToAdd = min(gun.maximumMagCapacity, 50)
-		if ammoToAdd < 10:
-			ammoToAdd = round(ammoToAdd * 1.5)
+		var ammoToAdd = min(gun.maximumMagCapacity, 100)
+		if ammoToAdd < 30:
+			ammoToAdd = round(ammoToAdd * 2)
 		gun.leftoverAmmoCount += ammoToAdd
 	if gunInteractor.currentWeapon.currentMagCapacity == 0:
 		gunInteractor.currentWeapon.reload(true)
@@ -470,3 +511,8 @@ func pickupWeapon(gun: Gun) -> void:
 		WeaponSlots.setPrimaryWeapon(gun)
 	elif currentWeaponSlot == 2:
 		WeaponSlots.setSecondaryWeapon(gun)
+
+var poisonTime = 0.0
+var poisonTickTime = 0.0
+func applyPoison() -> void:
+	poisonTime = 15.0

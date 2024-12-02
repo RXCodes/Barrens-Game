@@ -1,0 +1,607 @@
+[gd_scene load_steps=52 format=3 uid="uid://bkp4ikyughfp2"]
+
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_du5u0"]
+[ext_resource type="Script" path="res://Models/slime_enemy.gd" id="2_2hwj0"]
+[ext_resource type="Texture2D" uid="uid://c1inalowug3yd" path="res://ModelContents/Enemies/Slime Attack/0.png" id="3_ajiwi"]
+[ext_resource type="Texture2D" uid="uid://73oouvidq0ly" path="res://ModelContents/Enemies/Slime Idle/frame_0_delay-0.3s.png" id="3_f4dna"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_07hsu"]
+[ext_resource type="Texture2D" uid="uid://bhtlolytny4tn" path="res://ModelContents/Enemies/Slime Idle/frame_1_delay-0.3s.png" id="4_dgnvb"]
+[ext_resource type="Texture2D" uid="uid://bj45gl5kcbxq" path="res://ModelContents/Enemies/Slime Attack/1.png" id="4_yu6qd"]
+[ext_resource type="Texture2D" uid="uid://gs1dw8pfw7q" path="res://ModelContents/Enemies/Slime Idle/frame_2_delay-0.3s.png" id="5_hd4rk"]
+[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_jmxvo"]
+[ext_resource type="Texture2D" uid="uid://co5yi3ulma7jl" path="res://ModelContents/Enemies/Slime Attack/2.png" id="5_m501v"]
+[ext_resource type="Texture2D" uid="uid://dvo14ht1uhl0c" path="res://ModelContents/Enemies/Slime Attack/3.png" id="6_3g7ej"]
+[ext_resource type="Texture2D" uid="uid://bb4qr0or02ik6" path="res://ModelContents/Enemies/Slime Idle/frame_3_delay-0.3s.png" id="6_b7qw4"]
+[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_iefwo"]
+[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_lt26i"]
+[ext_resource type="Texture2D" uid="uid://q8xe1v28lc64" path="res://ModelContents/Enemies/Slime Attack/4.png" id="7_sa0oi"]
+[ext_resource type="Texture2D" uid="uid://b2yeynhuxame1" path="res://ModelContents/Enemies/Slime Attack/5.png" id="8_awnd4"]
+[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_lp8jn"]
+[ext_resource type="Texture2D" uid="uid://demrqufesrrpt" path="res://ModelContents/Enemies/Slime Attack/6.png" id="9_uatc5"]
+[ext_resource type="Texture2D" uid="uid://fq76eaanh8eu" path="res://ModelContents/Enemies/Slime Attack/7.png" id="10_i8lxa"]
+[ext_resource type="Texture2D" uid="uid://c70ggamiedhok" path="res://ModelContents/Enemies/Slime Attack/8.png" id="11_q30ps"]
+[ext_resource type="Texture2D" uid="uid://w3cwmpel5q0e" path="res://ModelContents/Enemies/Slime Attack/9.png" id="12_lmobc"]
+[ext_resource type="Texture2D" uid="uid://cebpol16s582p" path="res://ModelContents/Enemies/Slime Attack/10.png" id="13_wbkhy"]
+[ext_resource type="Texture2D" uid="uid://xlp5bwaj6nuc" path="res://ModelContents/Enemies/Slime Attack/11.png" id="14_yy3yv"]
+[ext_resource type="Texture2D" uid="uid://blght70yc5nug" path="res://ModelContents/Enemies/Slime Attack/12.png" id="15_ahijn"]
+[ext_resource type="Texture2D" uid="uid://be55asyeruiia" path="res://ModelContents/Enemies/Slime Attack/13.png" id="16_duk7e"]
+[ext_resource type="Texture2D" uid="uid://dqsbi2bgubtqj" path="res://ModelContents/Enemies/Slime Attack/14.png" id="17_30q36"]
+[ext_resource type="Texture2D" uid="uid://v8rc3dia5o5a" path="res://ModelContents/Enemies/Slime Attack/15.png" id="18_2f8jr"]
+[ext_resource type="Texture2D" uid="uid://cx8lj8u0w4bsc" path="res://ModelContents/Enemies/Slime Attack/16.png" id="19_i8kqw"]
+[ext_resource type="Texture2D" uid="uid://cejg2eg2ctjac" path="res://ModelContents/Enemies/Slime Attack/17.png" id="20_jlnnr"]
+[ext_resource type="Texture2D" uid="uid://bw20lpmepqxhq" path="res://ModelContents/Enemies/Slime Attack/18.png" id="21_ayeh7"]
+[ext_resource type="Texture2D" uid="uid://g1yxrh2v13bh" path="res://ModelContents/Enemies/Slime Attack/19.png" id="22_b4r44"]
+[ext_resource type="Texture2D" uid="uid://dgemurgfgqvfg" path="res://ModelContents/Enemies/Slime Attack/20.png" id="23_kcyml"]
+[ext_resource type="Texture2D" uid="uid://x5wixuiij52n" path="res://ModelContents/Enemies/Slime Attack/21.png" id="24_jefc5"]
+[ext_resource type="Texture2D" uid="uid://b0myf3anig1e7" path="res://ModelContents/Enemies/Slime Attack/22.png" id="25_wk5ej"]
+[ext_resource type="Texture2D" uid="uid://bd12kvwbumxwu" path="res://ModelContents/Enemies/Slime Attack/23.png" id="26_d85ad"]
+[ext_resource type="Texture2D" uid="uid://duoacp7ubkp7y" path="res://ModelContents/Enemies/Slime Attack/24.png" id="27_jphvj"]
+[ext_resource type="Texture2D" uid="uid://iecbmwst53gs" path="res://ModelContents/Enemies/Slime Attack/25.png" id="28_l3gd0"]
+[ext_resource type="Texture2D" uid="uid://qcp5qr15j3x3" path="res://ModelContents/Enemies/Slime Attack/26.png" id="29_3ssli"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
+radius = 10.2907
+height = 20.5815
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
+radius = 46.0
+height = 92.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ct0n3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ajiwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yu6qd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_m501v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3g7ej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sa0oi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_awnd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uatc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i8lxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q30ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_lmobc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wbkhy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_yy3yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ahijn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_duk7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_30q36")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2f8jr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_i8kqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jlnnr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ayeh7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_b4r44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_kcyml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jefc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_wk5ej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_d85ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jphvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_l3gd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_3ssli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ajiwi")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_3ssli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_3ssli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_l3gd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jphvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_d85ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_3g7ej")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_f4dna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgnvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hd4rk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_b7qw4")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 3.5
+}]
+
+[sub_resource type="Animation" id="Animation_6kdg7"]
+resource_name = "Attack"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 27]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.065)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 67)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.666667, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.638804, 0.638804), Vector2(0.596314, 0.596314), Vector2(0.566812, 0.566812), Vector2(0.546328, 0.546328), Vector2(0.532106, 0.532106), Vector2(0.522231, 0.522231), Vector2(0.515374, 0.515374), Vector2(0.510614, 0.510614), Vector2(0.507308, 0.507308), Vector2(0.505013, 0.505013), Vector2(0.50342, 0.50342), Vector2(0.502313, 0.502313), Vector2(0.501545, 0.501545), Vector2(0.501012, 0.501012), Vector2(0.500641, 0.500641), Vector2(0.500384, 0.500384), Vector2(0.500206, 0.500206), Vector2(0.500082, 0.500082), Vector2(0.5, 0.5), Vector2(0.505234, 0.505234), Vector2(0.520934, 0.520934), Vector2(0.547102, 0.547102), Vector2(0.583737, 0.583737), Vector2(0.630839, 0.630839), Vector2(0.688408, 0.688408), Vector2(0.677033, 0.677033), Vector2(0.658477, 0.658477), Vector2(0.650389, 0.650389), Vector2(0.652768, 0.652768), Vector2(0.665614, 0.665614), Vector2(0.688927, 0.688927), Vector2(0.691825, 0.691825), Vector2(0.687543, 0.687543), Vector2(0.693728, 0.693728), Vector2(0.697145, 0.697145), Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="Animation" id="Animation_qf741"]
+resource_name = "Hit-Back"
+
+[sub_resource type="Animation" id="Animation_d470x"]
+resource_name = "Hit-Front"
+
+[sub_resource type="Animation" id="Animation_bm7uj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 67)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.065)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.7, 0.7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3b64k"]
+_data = {
+"Attack": SubResource("Animation_6kdg7"),
+"Hit-Back": SubResource("Animation_qf741"),
+"Hit-Front": SubResource("Animation_d470x"),
+"RESET": SubResource("Animation_bm7uj")
+}
+
+[sub_resource type="Animation" id="Animation_fkkh3"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-14, 67), Vector2(-14, 62.2961), Vector2(-14, 56.3127), Vector2(-14, 52), Vector2(-14, 50.525), Vector2(-14, 51.4482), Vector2(-14, 53.5), Vector2(-14, 55.4135), Vector2(-14, 56.4477), Vector2(-14, 56.5), Vector2(-14, 55.912), Vector2(-14, 55.1641), Vector2(-14, 54.625), Vector2(-14, 54.4406), Vector2(-14, 54.556), Vector2(-14, 54.8125), Vector2(-14, 55.0517), Vector2(-14, 55.181), Vector2(-14, 55.1875), Vector2(-14, 55.114), Vector2(-14, 55.0205), Vector2(-14, 54.9531), Vector2(-14, 54.9301), Vector2(-14, 54.9445), Vector2(-14, 54.9766), Vector2(-14, 55.0065), Vector2(-14, 55.0226), Vector2(-14, 55.0234), Vector2(-14, 55.0143), Vector2(-14, 55.0026), Vector2(-14, 55)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1.065), Vector2(1, 0.941523), Vector2(1, 0.784458), Vector2(1, 0.67125), Vector2(1, 0.632531), Vector2(1, 0.656765), Vector2(1, 0.710625), Vector2(1, 0.760854), Vector2(1, 0.788003), Vector2(1, 0.789375), Vector2(1, 0.77394), Vector2(1, 0.754307), Vector2(1, 0.740156), Vector2(1, 0.735316), Vector2(1, 0.738346), Vector2(1, 0.745078), Vector2(1, 0.751357), Vector2(1, 0.75475), Vector2(1, 0.754922), Vector2(1, 0.752993), Vector2(1, 0.750538), Vector2(1, 0.74877), Vector2(1, 0.748165), Vector2(1, 0.748543), Vector2(1, 0.749385), Vector2(1, 0.75017), Vector2(1, 0.750594), Vector2(1, 0.750615), Vector2(1, 0.750374), Vector2(1, 0.750067), Vector2(1, 0.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(0.31864, 0.594605),
+"update": 0,
+"values": [0, 5]
+}
+
+[sub_resource type="Animation" id="Animation_82ynv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.123338, 0.130809)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_v6ycw"]
+resource_name = "Walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.123338, 0.130809), Vector2(0.12, 0.14), Vector2(0.123338, 0.130809)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, 21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4vkjs"]
+_data = {
+"Death": SubResource("Animation_fkkh3"),
+"RESET": SubResource("Animation_82ynv"),
+"Walk": SubResource("Animation_v6ycw")
+}
+
+[node name="Slime_Enemy" type="CanvasGroup"]
+process_priority = 5
+texture_filter = 1
+script = ExtResource("1_du5u0")
+entityZIndexOffset = 24
+
+[node name="Slime_Enemy" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+script = ExtResource("2_2hwj0")
+enemyName = "Slime"
+maxHealth = 30
+cashDrop = 10
+cashDropVariance = 3
+hitBoxRigidBody = NodePath("Hitbox")
+collisionRigidBody = NodePath("ColliderBox")
+hasAI = true
+mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
+walkAnimation = "Walk"
+deathAnimation = "Death"
+actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
+hitFrontAnimation = "Hit"
+hitBackAnimation = "Hit"
+healthBarPositionOffset = Vector2(0, 10)
+invertXFlip = true
+
+[node name="Hitbox" type="RigidBody2D" parent="Slime_Enemy"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Slime_Enemy/Hitbox"]
+z_index = -2
+position = Vector2(0.418499, -17)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_64nc2")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)
+
+[node name="ColliderBox" type="RigidBody2D" parent="Slime_Enemy"]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Shape" type="CollisionShape2D" parent="Slime_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_a2did")
+debug_color = Color(0, 0.648944, 0.163145, 0.42)
+
+[node name="Hurtbox" type="CollisionShape2D" parent="Slime_Enemy/ColliderBox"]
+z_index = -1
+position = Vector2(1, -7)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aosje")
+disabled = true
+debug_color = Color(0, 0.92, 0.720667, 0.184314)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Slime_Enemy/ColliderBox"]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+path_max_distance = 120.0
+path_metadata_flags = 0
+radius = 30.0
+
+[node name="FlipTransform" type="Node2D" parent="Slime_Enemy/ColliderBox"]
+position = Vector2(0, -25)
+
+[node name="Animations" type="AnimatedSprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
+position = Vector2(-2, 21)
+scale = Vector2(0.123338, 0.130809)
+sprite_frames = SubResource("SpriteFrames_ct0n3")
+animation = &"Idle"
+offset = Vector2(12.8225, -94.9323)
+
+[node name="Shadow" type="Sprite2D" parent="Slime_Enemy/ColliderBox/FlipTransform"]
+modulate = Color(1, 1, 1, 0.231373)
+show_behind_parent = true
+z_index = -1
+texture_filter = 1
+position = Vector2(-2.5, 21.5)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_07hsu")
+offset = Vector2(0, -39.2243)
+
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Slime_Enemy/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3b64k")
+}
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Slime_Enemy/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4vkjs")
+}
+
+[node name="HitSounds" type="Node2D" parent="Slime_Enemy/ColliderBox"]
+position = Vector2(0.418499, -15.582)
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("5_jmxvo")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("6_iefwo")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
+stream = ExtResource("7_lt26i")
+volume_db = 4.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="Slime_Enemy/ColliderBox"]
+position = Vector2(0.418499, -15.582)
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/DeathSounds"]
+stream = ExtResource("8_lp8jn")
+volume_db = 4.0

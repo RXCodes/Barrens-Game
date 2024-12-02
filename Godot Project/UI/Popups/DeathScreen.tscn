@@ -1,0 +1,313 @@
+[gd_scene load_steps=15 format=3 uid="uid://b3x1x7kgbcsry"]
+
+[ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_ee3yw"]
+[ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="2_nlobv"]
+[ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="3_4aadd"]
+[ext_resource type="FontFile" uid="uid://dkuhw5md47aq3" path="res://UI/upheavtt.ttf" id="4_7w7fg"]
+[ext_resource type="Script" path="res://UI/Popups/DeathScreen.gd" id="4_f7dql"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="5_uaqct"]
+[ext_resource type="Texture2D" uid="uid://di7w3670f3fn8" path="res://UI/DeathIllustration.png" id="6_mudtp"]
+[ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="7_w2mjd"]
+[ext_resource type="AudioStream" uid="uid://rc2dlq8x41ot" path="res://UI/Popups/TutorialClose.mp3" id="8_br7x0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
+font = ExtResource("4_7w7fg")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="GDScript" id="GDScript_31xgb"]
+resource_name = "SeeUpgrades"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	GamePopup.openPopup(\"PlayerUpgradesList\", {\"deathScreen\": true})
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_wk4mf"]
+font = ExtResource("4_7w7fg")
+font_size = 40
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 5)
+
+[sub_resource type="GDScript" id="GDScript_2sqmp"]
+resource_name = "ExitToTitleScreen"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	GamePopup.closeCurrent()
+"
+
+[sub_resource type="GDScript" id="GDScript_nn2kp"]
+resource_name = "RestartButton"
+script/source = "extends NinePatchRect
+
+func _on_button_mouse_entered() -> void:
+	modulate = Color(0.8, 0.8, 0.8)
+
+func _on_button_mouse_exited() -> void:
+	modulate = Color.WHITE
+
+func _on_button_button_down() -> void:
+	Player.current.shouldRestartScene = true
+	GamePopup.closeCurrent()
+"
+
+[node name="PopupBackground" type="ColorRect"]
+material = ExtResource("1_ee3yw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1276.0
+offset_top = -794.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.311764, 0.004018, 0.0104912, 0.458824)
+metadata/_edit_lock_ = true
+
+[node name="Popup" type="Node2D" parent="."]
+process_priority = -2
+position = Vector2(1276, 793)
+script = ExtResource("2_nlobv")
+
+[node name="SquareUI" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.765186, 0.391628, 0.417681, 1)
+texture_filter = 1
+offset_left = -346.0
+offset_top = -259.0
+offset_right = -69.0
+offset_bottom = -53.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_4aadd")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = ExtResource("4_f7dql")
+
+[node name="Title" type="Label" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 3.0
+offset_right = 539.5
+offset_bottom = 44.0
+scale = Vector2(0.35, 0.35)
+text = "Game over"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Title2" type="Label" parent="Popup/SquareUI"]
+self_modulate = Color(1, 0.46, 0.523, 1)
+layout_mode = 0
+offset_left = 78.0
+offset_top = 61.2
+offset_right = 564.0
+offset_bottom = 102.2
+scale = Vector2(0.25, 0.25)
+text = "Your Stats"
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TopSeparator" type="NinePatchRect" parent="Popup/SquareUI"]
+layout_mode = 0
+offset_left = 271.0
+offset_top = 19.0
+offset_right = 273.0
+offset_bottom = 283.0
+rotation = 1.5708
+texture = ExtResource("5_uaqct")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="Icon" type="Sprite2D" parent="Popup/SquareUI"]
+position = Vector2(138.4, 39.6)
+texture = ExtResource("6_mudtp")
+
+[node name="Icon2" type="Sprite2D" parent="Popup/SquareUI/Icon"]
+self_modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(0, 2)
+texture = ExtResource("6_mudtp")
+
+[node name="Separator" type="NinePatchRect" parent="Popup/SquareUI"]
+self_modulate = Color(1, 1, 1, 0.533333)
+layout_mode = 0
+offset_left = 268.0
+offset_top = 73.6
+offset_right = 270.0
+offset_bottom = 332.6
+rotation = 1.5708
+scale = Vector2(0.538776, 1)
+texture = ExtResource("5_uaqct")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="StatisticNames" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.804182, 0.518862, 0.54043, 1)
+layout_mode = 0
+offset_left = 12.0
+offset_top = 78.0
+offset_right = 513.0
+offset_bottom = 475.0
+scale = Vector2(0.25, 0.25)
+text = "stat 1:
+stat 2:
+stat 3:
+......."
+label_settings = SubResource("LabelSettings_hdjlq")
+autowrap_mode = 2
+
+[node name="StatisticValues" type="Label" parent="Popup/SquareUI"]
+modulate = Color(0.88, 0.88, 0.88, 1)
+layout_mode = 0
+offset_left = 139.6
+offset_top = 78.0
+offset_right = 640.6
+offset_bottom = 475.0
+scale = Vector2(0.25, 0.25)
+text = "100
+105
+200
+...."
+label_settings = SubResource("LabelSettings_hdjlq")
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="SeeUpgrades" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.594667, 0.52, 0.8, 1)
+texture_filter = 1
+offset_left = -324.0
+offset_top = 167.0
+offset_right = -226.0
+offset_bottom = 194.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_4aadd")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_31xgb")
+
+[node name="Text" type="Label" parent="Popup/SeeUpgrades"]
+layout_mode = 0
+offset_left = 0.599976
+offset_top = 8.0
+offset_right = 322.6
+offset_bottom = 81.0
+scale = Vector2(0.3, 0.3)
+text = "See Upgrades"
+label_settings = SubResource("LabelSettings_wk4mf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/SeeUpgrades"]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 27.0
+
+[node name="Exit" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.84, 0.378, 0.6321, 1)
+texture_filter = 1
+offset_left = 121.0
+offset_top = 167.0
+offset_right = 202.0
+offset_bottom = 194.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_4aadd")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_2sqmp")
+
+[node name="Text" type="Label" parent="Popup/Exit"]
+layout_mode = 0
+offset_left = 4.19999
+offset_top = 8.0
+offset_right = 246.2
+offset_bottom = 81.0
+scale = Vector2(0.3, 0.3)
+text = "Main menu"
+label_settings = SubResource("LabelSettings_wk4mf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/Exit"]
+layout_mode = 0
+offset_right = 81.0
+offset_bottom = 27.0
+
+[node name="RestartButton" type="NinePatchRect" parent="Popup"]
+self_modulate = Color(0.492925, 0.528372, 0.922736, 1)
+texture_filter = 1
+offset_left = -64.0
+offset_top = 167.0
+offset_right = 4.00001
+offset_bottom = 194.0
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_4aadd")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+script = SubResource("GDScript_nn2kp")
+
+[node name="Text" type="Label" parent="Popup/RestartButton"]
+layout_mode = 0
+offset_left = 2.59999
+offset_top = 8.0
+offset_right = 211.6
+offset_bottom = 81.0
+scale = Vector2(0.3, 0.3)
+text = "Restart"
+label_settings = SubResource("LabelSettings_wk4mf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="TextureButton" parent="Popup/RestartButton"]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 27.0
+
+[node name="Open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_w2mjd")
+autoplay = true
+
+[node name="Close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_br7x0")
+
+[connection signal="mouse_entered" from="Popup/SeeUpgrades" to="Popup/SeeUpgrades" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/SeeUpgrades" to="Popup/SeeUpgrades" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/SeeUpgrades/Button" to="Popup/SeeUpgrades" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/SeeUpgrades/Button" to="Popup/SeeUpgrades" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/SeeUpgrades/Button" to="Popup/SeeUpgrades" method="_on_button_mouse_exited"]
+[connection signal="mouse_entered" from="Popup/Exit" to="Popup/Exit" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Exit" to="Popup/Exit" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/Exit/Button" to="Popup/Exit" method="_on_button_mouse_exited"]
+[connection signal="mouse_entered" from="Popup/RestartButton" to="Popup/RestartButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/RestartButton" to="Popup/RestartButton" method="_on_mouse_exited"]
+[connection signal="button_down" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Popup/RestartButton/Button" to="Popup/RestartButton" method="_on_button_mouse_exited"]

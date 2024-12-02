@@ -8,12 +8,19 @@
 
 config_version=5
 
+[animation]
+
+warnings/check_invalid_track_paths=false
+warnings/check_angle_interpolation_type_conflicting=false
+
 [application]
 
-config/name="Barrens"
+config/name="Barren"
 run/main_scene="res://Scenes/Intro.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/use_filter=false
+config/icon="res://UI/BarrensIcon.png"
 
 [display]
 
@@ -26,6 +33,7 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://Environment/": "yellow",
 "res://HelperClasses/": "pink",
+"res://Items/": "teal",
 "res://ModelContents/": "red",
 "res://ModelContents/AmmoDispenser/": "orange",
 "res://ModelContents/AmmoDrop/": "orange",

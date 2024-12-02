@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=60 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://UI/HurtVignette.gd" id="19_cvkcw"]
 [ext_resource type="Texture2D" uid="uid://o7g6hva8yyic" path="res://UI/UpgradesListButton.png" id="24_ukd3x"]
 [ext_resource type="Script" path="res://UI/UpgradesListButton.gd" id="25_48dft"]
+[ext_resource type="Script" path="res://UI/PoisonVignette.gd" id="25_qtgg1"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="26_jshui"]
 [ext_resource type="Texture2D" uid="uid://5o2g5av07m5d" path="res://UI/ItemPickupButton.png" id="26_w41u4"]
 [ext_resource type="Script" path="res://UI/ItemDropdownButton.gd" id="26_ygm3m"]
@@ -37,8 +38,10 @@
 [ext_resource type="AudioStream" uid="uid://dbs0wrf66wnua" path="res://UI/AmmoDispense.mp3" id="33_6wxp8"]
 [ext_resource type="Texture2D" uid="uid://dbpy5qcc4o58a" path="res://UI/InventorySlot.png" id="36_2ahnw"]
 [ext_resource type="Script" path="res://UI/InventoryManager.gd" id="36_ayq42"]
-[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://UI/Popups/LuckyCoin.png" id="38_8qcta"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="38_8qcta"]
 [ext_resource type="Script" path="res://UI/InventorySlot.gd" id="38_cbyrv"]
+[ext_resource type="Shader" path="res://Environment/Blur.gdshader" id="40_kju6r"]
+[ext_resource type="Shader" path="res://Environment/ScreenShader.gdshader" id="42_yj7vc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -100,6 +103,14 @@ VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_tgonr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_01m7r"]
 size = Vector2(347, 306)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_semmm"]
+shader = ExtResource("40_kju6r")
+shader_parameter/lod = 4.0
+shader_parameter/alpha = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xsud2"]
+shader = ExtResource("42_yj7vc")
 
 [node name="ScreenUI" type="CanvasLayer"]
 process_priority = 10
@@ -414,6 +425,30 @@ patch_margin_bottom = 60
 script = ExtResource("19_cvkcw")
 metadata/_edit_lock_ = true
 
+[node name="PoisonVignette" type="NinePatchRect" parent="."]
+self_modulate = Color(0.3996, 0.54, 0.2592, 0)
+z_index = -50
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1328.0
+offset_top = -849.0
+offset_right = -1052.0
+offset_bottom = -669.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5, 5)
+texture = ExtResource("18_nr68i")
+patch_margin_left = 60
+patch_margin_top = 60
+patch_margin_right = 60
+patch_margin_bottom = 60
+script = ExtResource("25_qtgg1")
+metadata/_edit_lock_ = true
+
 [node name="UpgradesListButton" type="TextureButton" parent="."]
 z_index = -2
 texture_filter = 1
@@ -635,6 +670,24 @@ offset_bottom = 134.0
 scale = Vector2(0.8, 0.8)
 text = "item description"
 label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="OverlayRect" type="ColorRect" parent="."]
+visible = false
+z_index = 100
+material = SubResource("ShaderMaterial_semmm")
+offset_left = -2149.0
+offset_top = -1955.0
+offset_right = 2195.0
+offset_bottom = 1398.0
+color = Color(0, 0, 0, 0)
+
+[node name="ScreenShader" type="ColorRect" parent="."]
+z_index = -10
+material = SubResource("ShaderMaterial_xsud2")
+offset_left = -2149.0
+offset_top = -1955.0
+offset_right = 2195.0
+offset_bottom = 1398.0
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]
