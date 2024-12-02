@@ -30,7 +30,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var shaderMaterial = background.material as ShaderMaterial
-	shaderMaterial.set_shader_parameter("alpha", background.modulate.a)
+	if shaderMaterial:
+		shaderMaterial.set_shader_parameter("alpha", background.modulate.a)
 
 static func closeCurrent() -> void:
 	if not is_instance_valid(current):

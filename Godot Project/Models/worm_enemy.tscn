@@ -383,6 +383,7 @@ healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
 invertXFlip = true
 
 [node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
+position = Vector2(0, 24)
 collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
@@ -391,7 +392,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/Hitbox"]
 z_index = -2
-position = Vector2(1, -103)
+position = Vector2(-4, -101)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)

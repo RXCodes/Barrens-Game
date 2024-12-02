@@ -11,7 +11,7 @@
 script = ExtResource("1_k2unm")
 displayName = "AK47"
 fireRate = 0.12
-maximumMagCapacity = 30
+maximumMagCapacity = 40
 startingAmmoCount = 120
 bulletSpreadDegrees = 3.0
 targetRange = 850.0

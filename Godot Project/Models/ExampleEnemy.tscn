@@ -280,7 +280,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="ExampleEnemy/Hitbox"]
 z_index = -2
-position = Vector2(0, -12)
+position = Vector2(0, -4)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_64nc2")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)

@@ -12,12 +12,12 @@ static var appearSound: AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# pause the scene
+	current = self
 	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_DISABLED
 	TutorialManager.shouldDisableControls = true
-	await get_tree().physics_frame
+	await TimeManager.wait(0.05)
 	
 	# setup 2 more banners
-	current = self
 	active = true
 	selectedUpgrade = null
 	confirmButton = $"../Confirm"

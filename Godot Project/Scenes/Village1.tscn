@@ -295,6 +295,7 @@ metadata/_edit_horizontal_guides_ = [-32.0, 361.0]
 [node name="Ambience" parent="." instance=ExtResource("2_q3l28")]
 
 [node name="NavigationRegions" type="Node2D" parent="."]
+visible = false
 
 [node name="Small" type="NavigationRegion2D" parent="NavigationRegions"]
 visible = false
@@ -314,7 +315,6 @@ navigation_polygon = SubResource("NavigationPolygon_svcax")
 navigation_layers = 4
 
 [node name="Spawn" type="NavigationRegion2D" parent="NavigationRegions"]
-visible = false
 position = Vector2(-3474, -4504)
 navigation_polygon = SubResource("NavigationPolygon_towpr")
 navigation_layers = 4
