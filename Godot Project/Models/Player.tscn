@@ -1332,7 +1332,6 @@ offset = Vector2(7.8855, -30.6798)
 
 [node name="Coat" type="Sprite2D" parent="Player/Subviewport/Transform/Torso"]
 position = Vector2(-7.62939e-06, -4.60002)
-scale = Vector2(1, 1)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/Subviewport/Transform/Torso/Coat"]
@@ -1398,7 +1397,7 @@ rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/Subviewport/Transform/Skeleton2D/Torso"]
 position = Vector2(25.9995, 0.163675)
-scale = Vector2(0.999792, 0.999792)
+scale = Vector2(0.999793, 0.999793)
 rest = Transform2D(1, 0, 0, 1, 25.9995, 0.163675)
 auto_calculate_length_and_angle = false
 length = 16.0

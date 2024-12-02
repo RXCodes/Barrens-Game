@@ -126,6 +126,7 @@ func _ready() -> void:
 	if not defaultMaterial:
 		defaultMaterial = ShaderMaterial.new()
 		defaultMaterial.shader = defaultEnemyShader
+	renderer.material = defaultMaterial
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -158,6 +159,7 @@ func _process(delta: float) -> void:
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader")
 static var defaultEnemyShader = preload("res://ModelContents/DefaultEnemy.gdshader")
+static var acidEnemyShader = preload("res://ModelContents/Acid.gdshader")
 var renderer: EntityRender
 
 # adjust brightness of enemy - used in special heavy attacks
@@ -172,6 +174,25 @@ func animateBrightness(newValue: float, duration: float) -> Signal:
 	var tween = NodeRelations.createTween()
 	tween.tween_property(self, "brightness", newValue, duration)
 	return TimeManager.wait(duration)
+
+enum EnemyVariantType {NORMAL, ACID}
+var variantType: EnemyVariantType = EnemyVariantType.NORMAL
+var damageMultiplier: float = 1.0
+
+# set the enemy's variant type
+func setVariantType(type: EnemyVariantType) -> void:
+	variantType = type
+	defaultMaterial = ShaderMaterial.new()
+	if type == EnemyVariantType.NORMAL:
+		defaultMaterial.shader = defaultEnemyShader
+		damageMultiplier = 1.0
+	if type == EnemyVariantType.ACID:
+		defaultMaterial.shader = acidEnemyShader
+		damageMultiplier = 1.5
+		maxHealth *= 2.0
+		currentHealth = maxHealth
+	if renderer:
+		renderer.material = defaultMaterial
 
 # called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
@@ -442,6 +463,7 @@ enum HurtBoxType {PLAYER, ENEMY, ALL}
 static var parentControllerKey = "ParentControllerKey"
 # checks if a shape intersects with other players and enemies, dealing damage
 func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) -> void:
+	damage *= damageMultiplier
 	var newIntersectionTest = ShapeIntersectionTest.new()
 	newIntersectionTest.setDetectionType(type)
 	newIntersectionTest.setCollisionShape(shape)

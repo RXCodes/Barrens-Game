@@ -32,10 +32,24 @@ func _ready() -> void:
 		var earnings = round(Player.current.compoundInterest * Player.current.cash)
 		earnings += max(currentWave * 25, 200)
 		Player.current.pickupCash(earnings)
-		WaveDisplay.start(currentWave, 25)
 		Player.current.wavesCompleted += 1
-		await TimeManager.wait(1.5)
+		WaveDisplay.waveCompleted(earnings)
+		await TimeManager.wait(3.0)
+		
+		# bring up upgrades, but make sure to pause oncurring stuff
 		GamePopup.openPopup("UpgradeSelection")
+		$"../Level".process_mode = Node.PROCESS_MODE_DISABLED
+		TutorialManager.shouldDisableControls = true
+		await TimeManager.wait(1.0)
+		
+		# when the player picks up an upgrade, resume everything
+		await GamePopup.popupClosed
+		$"../Level".process_mode = Node.PROCESS_MODE_INHERIT
+		await TimeManager.wait(0.1)
+		TutorialManager.shouldDisableControls = false
+		
+		await TimeManager.wait(3.0)
+		WaveDisplay.start(currentWave, 25)
 		prepareEnemies()
 		await TimeManager.wait(25 - 1.5)
 
@@ -45,30 +59,32 @@ var targetEnemyCount = 0
 var maximumActiveEnemyCount = 60
 var waveStarted = false
 var enemyObjectPool = []
+var enemySpawnNames = []
 
 # asychronously instantiate enemy objects on another thread
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
-	var amountToSpawn = sqrt(((80 * currentWave) ** 1.1) * currentWave * 0.3)
+	var amountToSpawn = sqrt(((45 * currentWave) ** 1.2) * currentWave * 0.3)
 	amountToSpawn = clampf(amountToSpawn, 10, 100)
 	targetEnemyCount = round(amountToSpawn)
 	
 	# prepare an array of enemy names that will spawn
 	enemyObjectPool.clear()
-	var enemySpawnEntries = []
 	var possibleEnemyTypes = determineEnemies()
-	enemySpawnEntries = []
+	enemySpawnNames = []
 	for i in range(round(amountToSpawn)):
-		enemySpawnEntries.append(possibleEnemyTypes.pick_random())
+		enemySpawnNames.append(possibleEnemyTypes.pick_random())
 	
 	# now create all the enemies in another thread
 	# this prevents performance drops while instantiating massive amounts of enemies
-	var batchRequest = EnemySpawner.batchInstantiateEnemies(enemySpawnEntries)
+	var batchRequest = EnemySpawner.batchInstantiateEnemies(enemySpawnNames)
 	await batchRequest.completed
 	enemyObjectPool = batchRequest.nodes
 	
 # spawn all the enemies into the map
 func spawnEnemies() -> void:
+	var variationChances = determineEnemyVariationChances()
+	var index = 0
 	for enemy: Node2D in enemyObjectPool:
 		while true:
 
@@ -81,10 +97,17 @@ func spawnEnemies() -> void:
 				await TimeManager.wait(0.01)
 				continue
 			
+			# determine if this enemy should be a variant
+			var variantChance = variationChances[enemySpawnNames[index]]
+			if randf() <= variantChance:
+				var enemyAI: EnemyAI = enemy.get_children()[0]
+				enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
+			
 			# add the enemy to the scene then move on to the next enemy
 			NodeRelations.rootNode.find_child("Level").add_child(enemy)
 			enemy.add_to_group("Enemy")
 			enemy.position = randomPoint
+			index += 1
 			await TimeManager.wait(0.01)
 			break
 	finishedSpawningEnemies.emit()
@@ -105,6 +128,21 @@ func determineEnemies() -> Array:
 	if currentWave >= 10:
 		enemyNames.append("worm_enemy")
 	return enemyNames
+
+# determines how often a variant should spawn for a particular enemy
+func determineEnemyVariationChances() -> Dictionary:
+	var slimeVariantChance = min((currentWave - 2.0) * 0.05, 0.5)
+	var mantaRayVariantChance = min((currentWave - 7.0) * 0.05, 0.5)
+	var scorpionVariantChance = min((currentWave - 9.0) * 0.05, 0.5)
+	var snakeVariantChance = min((currentWave - 11.0) * 0.05, 0.5)
+	var wormVariantChance = min((currentWave - 12.0) * 0.05, 0.5)
+	return {
+		"slime_enemy": slimeVariantChance,
+		"manta_ray_enemy": mantaRayVariantChance,
+		"snake_enemy": snakeVariantChance,
+		"scorpion_enemy": scorpionVariantChance,
+		"worm_enemy": wormVariantChance
+	}
 
 # get a random point on the traversable map
 func getRandomSpawnPoint() -> Vector2:

@@ -27,8 +27,8 @@ radius = 37.5
 height = 107.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2did"]
-radius = 20.0
-height = 70.0
+radius = 13.0
+height = 56.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 147.0
@@ -359,7 +359,6 @@ _data = {
 
 [node name="Worm_Enemy" type="CanvasGroup"]
 process_priority = 5
-texture_filter = 1
 script = ExtResource("1_i73wb")
 entityZIndexOffset = 24
 
@@ -403,7 +402,7 @@ lock_rotation = true
 
 [node name="Shape" type="CollisionShape2D" parent="Worm_Enemy/ColliderBox"]
 z_index = -1
-position = Vector2(-5, -0.999985)
+position = Vector2(-8, -0.999985)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a2did")
 debug_color = Color(0, 0.648944, 0.163145, 0.42)
@@ -429,8 +428,8 @@ scale = Vector2(-1, 1)
 position = Vector2(11.4998, -132.399)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
-animation = &"Idle"
-frame_progress = 0.635957
+animation = &"Attack"
+frame_progress = 0.335877
 
 [node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

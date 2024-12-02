@@ -170,13 +170,20 @@ func _physics_process(delta: float) -> void:
 	if dead:
 		return
 	timeSurvived += delta
+	poisonTime -= delta
+	
+	# poison functionality
+	if poisonTime > 3.0:
+		poisonTickTime -= delta
+		if poisonTickTime <= 0.0:
+			poisonTickTime = 1.5
+			damage(randf_range(1, 2), self)
 	
 	# passive regeneration
-	if not dead:
-		health += regenerationRate * regenerationRateMultiplier * delta
-		health = min(health, maximumHealth)
-		PlayerHealthBar.setHealth(health)
-		PlayerHealthBar.setMaxHealth(maximumHealth)
+	health += regenerationRate * regenerationRateMultiplier * delta
+	health = min(health, maximumHealth)
+	PlayerHealthBar.setHealth(health)
+	PlayerHealthBar.setMaxHealth(maximumHealth)
 	
 	# player movement
 	if currentMovementKeypresses.size() > 0:
@@ -369,6 +376,12 @@ func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
 	
+	if source is EnemyAI:
+		# 30% chance for an acid enemy to deliver poison status effect
+		if source.variantType == EnemyAI.EnemyVariantType.ACID:
+			if randf() < 0.3:
+				applyPoison()
+	
 	# apply defense
 	if defenseDivisor >= 1:
 		amount /= defenseDivisor
@@ -498,3 +511,8 @@ func pickupWeapon(gun: Gun) -> void:
 		WeaponSlots.setPrimaryWeapon(gun)
 	elif currentWeaponSlot == 2:
 		WeaponSlots.setSecondaryWeapon(gun)
+
+var poisonTime = 0.0
+var poisonTickTime = 0.0
+func applyPoison() -> void:
+	poisonTime = 15.0

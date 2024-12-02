@@ -5,6 +5,8 @@ var open = true
 var background: ColorRect
 var tween: Tween
 var data: Dictionary
+signal popupClosedLocal
+static var popupClosed
 
 ## used in tutorial scene - quiets the ambience when the popup is enabled
 @export var silencesAmbience = false
@@ -20,6 +22,7 @@ func _ready() -> void:
 	tween.set_trans(Tween.TRANS_EXPO)
 	tween.tween_property(background, "modulate", Color.WHITE, 0.6)
 	tween.parallel().tween_property(self, "scale", Vector2.ONE, 0.6)
+	popupClosed = popupClosedLocal
 	if silencesAmbience:
 		tween.parallel().tween_property(InGameAmbience.current, "volume_db", -20, 0.6)
 
@@ -32,6 +35,7 @@ static func closeCurrent() -> void:
 		return
 	if not current.open:
 		return
+	popupClosed.emit()
 	var closeSound = current.background.find_child("Close")
 	if closeSound and closeSound is AudioStreamPlayer:
 		closeSound.play()

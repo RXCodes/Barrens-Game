@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdig706m75kke"]
+[gd_scene load_steps=8 format=3 uid="uid://cdig706m75kke"]
 
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="1_0hxje"]
 [ext_resource type="Script" path="res://UI/WaveDisplay.gd" id="1_103in"]
 [ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="2_gobbf"]
+[ext_resource type="AudioStream" uid="uid://bvgr41pappb7v" path="res://UI/RoundPrepare.mp3" id="4_2lt1a"]
 [ext_resource type="AudioStream" uid="uid://tudkkbijmcfe" path="res://Scenes/Intro/Bell.mp3" id="4_txco5"]
+[ext_resource type="AudioStream" uid="uid://c2okubyhh3qxj" path="res://UI/Countdown.mp3" id="5_gfoki"]
+[ext_resource type="AudioStream" uid="uid://cke0dkf7v4gjk" path="res://UI/WaveCompleted.mp3" id="7_6r8qd"]
 
 [node name="WaveDisplay" type="Node2D"]
 z_index = -2
@@ -11,6 +14,7 @@ texture_filter = 1
 script = ExtResource("1_103in")
 
 [node name="WaveStarting" type="Node2D" parent="."]
+visible = false
 
 [node name="WaveCount" type="Label" parent="WaveStarting"]
 self_modulate = Color(0.83, 0.5146, 0.803717, 1)
@@ -77,4 +81,106 @@ patch_margin_top = 6
 patch_margin_bottom = 6
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WaveStarting"]
+stream = ExtResource("4_2lt1a")
+
+[node name="Countdown" type="AudioStreamPlayer" parent="WaveStarting"]
+stream = ExtResource("5_gfoki")
+
+[node name="WaveStarted" type="Node2D" parent="."]
+visible = false
+
+[node name="Title" type="Label" parent="WaveStarted"]
+self_modulate = Color(0.994248, 0.439931, 0.478398, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -48.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Wave Started"
+label_settings = ExtResource("1_0hxje")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="WaveStarted"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 5.0
+offset_right = 136.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Defeat all enemies!"
+label_settings = ExtResource("1_0hxje")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator" type="NinePatchRect" parent="WaveStarted"]
+offset_left = 154.0
+offset_right = 157.0
+offset_bottom = 309.0
+rotation = 1.5708
+texture = ExtResource("2_gobbf")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WaveStarted"]
 stream = ExtResource("4_txco5")
+
+[node name="WaveCompleted" type="Node2D" parent="."]
+
+[node name="Title" type="Label" parent="WaveCompleted"]
+self_modulate = Color(1, 0.816667, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -48.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+text = "Wave Beaten"
+label_settings = ExtResource("1_0hxje")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="WaveCompleted"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 5.0
+offset_right = 136.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You got 1500 cash!"
+label_settings = ExtResource("1_0hxje")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Separator" type="NinePatchRect" parent="WaveCompleted"]
+offset_left = 154.0
+offset_right = 157.0
+offset_bottom = 309.0
+rotation = 1.5708
+texture = ExtResource("2_gobbf")
+patch_margin_top = 6
+patch_margin_bottom = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="WaveCompleted"]
+stream = ExtResource("7_6r8qd")

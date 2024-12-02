@@ -54,7 +54,7 @@ func _on_button_mouse_exited() -> void:
 
 func _on_button_button_down() -> void:
 	var playerCash = Player.current.cash
-	var price = selectedShopItem.price
+	var price = ceil(selectedShopItem.price /  Player.current.shopPriceDivisor)
 	if playerCash >= price:
 		Player.current.pickupCash(-price)
 		selectedShopItem.purchasedItem()
