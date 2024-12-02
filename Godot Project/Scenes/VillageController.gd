@@ -97,11 +97,11 @@ func determineEnemies() -> Array:
 		enemyNames.append("manta_ray_enemy")
 	if currentWave >= 5:
 		enemyNames.append("slime_enemy")
-		enemyNames.append("scorpion_enemy")
+		enemyNames.append("snake_enemy")
 	if currentWave >= 7:
 		enemyNames.append("slime_enemy")
 		enemyNames.append("manta_ray_enemy")
-		enemyNames.append("snake_enemy")
+		enemyNames.append("scorpion_enemy")
 	if currentWave >= 10:
 		enemyNames.append("worm_enemy")
 	return enemyNames
