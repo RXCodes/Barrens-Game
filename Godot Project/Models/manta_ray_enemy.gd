@@ -10,10 +10,13 @@ signal hitWithDash
 
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
+	var wave = VillageController.currentWave
 	# Loop this while the enemy is alive
 	while not dead:
 		# get within range to dash to player
 		walkMovementSpeed = 2.5
+		walkMovementSpeed = 2.5 * (1 + (wave - 4) * 0.05)
+		walkMovementSpeed = min(walkMovementSpeed, 7)
 		if pathfindNormal:
 			setTarget(Player.current, 80)
 		else:

@@ -5,9 +5,13 @@ var canDealDamage = false
 
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
+	var wave = VillageController.currentWave
 	setTarget(Player.current, 100)
 	while not dead:
 		walkMovementSpeed = 2
+		walkMovementSpeed = 2 * (1 + (wave - 1) * 0.05)
+		walkMovementSpeed = min(walkMovementSpeed, 6)
+		
 		await enemyReachedTarget
 		
 		# enemy jumps towards the player while in range

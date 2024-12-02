@@ -183,6 +183,70 @@ animations = [{
 "speed": 3.5
 }]
 
+[sub_resource type="Animation" id="Animation_6kdg7"]
+resource_name = "Attack"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Attack"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.23333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 27]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.065)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FlipTransform/Animations:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 67)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("FlipTransform/Shadow:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.666667, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.7, 0.7), Vector2(0.638804, 0.638804), Vector2(0.596314, 0.596314), Vector2(0.566812, 0.566812), Vector2(0.546328, 0.546328), Vector2(0.532106, 0.532106), Vector2(0.522231, 0.522231), Vector2(0.515374, 0.515374), Vector2(0.510614, 0.510614), Vector2(0.507308, 0.507308), Vector2(0.505013, 0.505013), Vector2(0.50342, 0.50342), Vector2(0.502313, 0.502313), Vector2(0.501545, 0.501545), Vector2(0.501012, 0.501012), Vector2(0.500641, 0.500641), Vector2(0.500384, 0.500384), Vector2(0.500206, 0.500206), Vector2(0.500082, 0.500082), Vector2(0.5, 0.5), Vector2(0.505234, 0.505234), Vector2(0.520934, 0.520934), Vector2(0.547102, 0.547102), Vector2(0.583737, 0.583737), Vector2(0.630839, 0.630839), Vector2(0.688408, 0.688408), Vector2(0.677033, 0.677033), Vector2(0.658477, 0.658477), Vector2(0.650389, 0.650389), Vector2(0.652768, 0.652768), Vector2(0.665614, 0.665614), Vector2(0.688927, 0.688927), Vector2(0.691825, 0.691825), Vector2(0.687543, 0.687543), Vector2(0.693728, 0.693728), Vector2(0.697145, 0.697145), Vector2(0.7, 0.7)]
+}
+
 [sub_resource type="Animation" id="Animation_qf741"]
 resource_name = "Hit-Back"
 
@@ -250,70 +314,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.7, 0.7)]
-}
-
-[sub_resource type="Animation" id="Animation_6kdg7"]
-resource_name = "Attack"
-length = 1.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlipTransform/Animations:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FlipTransform/Animations:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.23333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1, 27]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("FlipTransform/Animations:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1.065)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("FlipTransform/Animations:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-14, 67)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("FlipTransform/Shadow:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.666667, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.7, 0.7), Vector2(0.638804, 0.638804), Vector2(0.596314, 0.596314), Vector2(0.566812, 0.566812), Vector2(0.546328, 0.546328), Vector2(0.532106, 0.532106), Vector2(0.522231, 0.522231), Vector2(0.515374, 0.515374), Vector2(0.510614, 0.510614), Vector2(0.507308, 0.507308), Vector2(0.505013, 0.505013), Vector2(0.50342, 0.50342), Vector2(0.502313, 0.502313), Vector2(0.501545, 0.501545), Vector2(0.501012, 0.501012), Vector2(0.500641, 0.500641), Vector2(0.500384, 0.500384), Vector2(0.500206, 0.500206), Vector2(0.500082, 0.500082), Vector2(0.5, 0.5), Vector2(0.505234, 0.505234), Vector2(0.520934, 0.520934), Vector2(0.547102, 0.547102), Vector2(0.583737, 0.583737), Vector2(0.630839, 0.630839), Vector2(0.688408, 0.688408), Vector2(0.677033, 0.677033), Vector2(0.658477, 0.658477), Vector2(0.650389, 0.650389), Vector2(0.652768, 0.652768), Vector2(0.665614, 0.665614), Vector2(0.688927, 0.688927), Vector2(0.691825, 0.691825), Vector2(0.687543, 0.687543), Vector2(0.693728, 0.693728), Vector2(0.697145, 0.697145), Vector2(0.7, 0.7)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b64k"]

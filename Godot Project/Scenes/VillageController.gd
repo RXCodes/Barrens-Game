@@ -93,11 +93,8 @@ func spawnEnemies() -> void:
 # adjust how frequent a particular enemy spawns by adding more entries
 func determineEnemies() -> Array:
 	var enemyNames = ["slime_enemy"]
-	if currentWave >= 2:
-		enemyNames.append("slime_enemy")
 	if currentWave >= 3:
 		enemyNames.append("manta_ray_enemy")
-		enemyNames.append("acid_slime_enemy")
 	if currentWave >= 5:
 		enemyNames.append("slime_enemy")
 		enemyNames.append("scorpion_enemy")

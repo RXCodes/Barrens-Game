@@ -9,13 +9,15 @@ signal dashComplete
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
 	dashLoop()
-	
+	var wave = VillageController.currentWave
 	# Loop this while the enemy is alive
 	while not dead:
 		
 		# slowly travel towards the player
 		$ColliderBox/FlipTransform/Animations.play("Idle")
 		walkMovementSpeed = 1.5
+		walkMovementSpeed = 1.5 * (1 + (wave - 6) * 0.05)
+		walkMovementSpeed = min(walkMovementSpeed, 3)
 		await enemyReachedTarget
 		
 		# dash towards the player if needed
@@ -44,7 +46,11 @@ func onStart() -> void:
 # dash at random times
 func dashLoop() -> void:
 	while not dead:
-		await TimeManager.wait(randf_range(4.0, 8.0))
+		var wave = VillageController.currentWave
+		var cooldownScorpion = (randf_range(4.0, 8.0))
+		cooldownScorpion /= 1 + (wave * .05)
+		cooldownScorpion = max(cooldownScorpion, 2)
+		await TimeManager.wait(cooldownScorpion)
 		canDash = true
 
 # dash towards a point
