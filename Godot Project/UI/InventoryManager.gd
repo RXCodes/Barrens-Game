@@ -4,11 +4,15 @@ static var slots = []
 static var currentSlotIndex = -1
 static var itemName: Label
 static var itemDescription: Label
+static var inventory = []
+static var maxStackCount = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	itemName = $ItemName
 	itemDescription = $ItemDescription
+	maxStackCount = 5
+	inventory.clear()
 	await get_tree().physics_frame
 	
 	# create slots (keys 3 to 7)
@@ -68,4 +72,46 @@ func _input(event: InputEvent) -> void:
 			"5": selectSlot(2)
 			"6": selectSlot(3)
 			"7": selectSlot(4)
-			
+
+# picks up an item and attempts to collect all of it
+static func pickupItem(item: Item.Entity) -> void:
+	var previousEntity: Item.Entity = item
+	var currentEntity: Item.Entity
+	for i in range(5):
+		currentEntity = attemptPickupItem(item)
+		
+		# all of the items were able to be collected
+		if currentEntity.amount == 0:
+			return
+		
+		# there were some left over items
+		if previousEntity.amount == currentEntity.amount:
+			Player.current.dropItem(currentEntity)
+			return
+
+# tries to pick up an item and fill a slot (don't call this method directly)
+static func attemptPickupItem(item: Item.Entity) -> Item.Entity:
+	for slot: InventorySlot in slots:
+		var itemEntity = slot.itemEntity
+		if itemEntity == null:
+			var newAmount = min(item.amount, maxStackCount)
+			var leftover = newAmount - item.amount
+			item.amount = newAmount
+			slot.itemEntity = item
+			var newItemEntity: Item.Entity = item.duplicate()
+			newItemEntity.amount = leftover
+			return newItemEntity
+		if itemEntity.identifier == item.identifier:
+			var newAmount = min(itemEntity.amount + item.amount, maxStackCount)
+			var leftover = newAmount - item.amount
+			var newItemEntity: Item.Entity = item.duplicate()
+			newItemEntity.amount = leftover
+			return newItemEntity
+	return null
+
+# refreshes the entire inventory
+static func refreshInventory() -> void:
+	for slot: InventorySlot in slots:
+		slot.setupWithItemEntity(slot.itemEntity)
+	if currentSlotIndex > 0:
+		selectSlot(0)

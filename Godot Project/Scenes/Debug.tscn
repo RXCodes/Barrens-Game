@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=37 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://vt5wg04hgbxd" path="res://Environment/Cactus/Cactus3.tscn" id="21_l2y18"]
 [ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="21_lkc5g"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="21_mbysx"]
+[ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="21_yy8wj"]
 [ext_resource type="PackedScene" uid="uid://bghr0faxa387a" path="res://Models/ShopVan.tscn" id="22_5ghfe"]
 [ext_resource type="PackedScene" uid="uid://didew2dkxonny" path="res://Environment/Cactus/Cactus4.tscn" id="22_by7ak"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="22_n87nw"]
@@ -287,8 +288,24 @@ displayTexture = ExtResource("21_lkc5g")
 displayScale = 0.5
 price = 50
 description = "Salted, polished, and works with any gun."
-type = 1
+type = 4
 itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+
+[node name="ExampleItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Lucky Coin"
+displayTexture = ExtResource("21_yy8wj")
+displayScale = 0.5
+price = 50
+description = "Salted, polished, and works with any gun."
+amount = 5
+type = 1
+itemIdentifier = "LuckyCoin"
 limitSales = true
 limitAmount = 1
 canRestock = true

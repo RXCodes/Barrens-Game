@@ -48,7 +48,7 @@ keycode = 4194305
 [sub_resource type="Shortcut" id="Shortcut_fmn4k"]
 events = [SubResource("InputEventKey_hcuy1")]
 
-[node name="PopupBackground" type="ColorRect"]
+[node name="PopupBackground2" type="ColorRect"]
 z_index = -2
 material = ExtResource("1_mt2pq")
 anchors_preset = 15

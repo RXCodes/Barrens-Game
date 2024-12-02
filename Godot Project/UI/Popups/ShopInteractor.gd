@@ -60,8 +60,8 @@ func _on_button_button_down() -> void:
 		selectedShopItem.purchasedItem()
 		$"../../../../../Purchase".play()
 		for i in range(selectedShopItem.amount):
-			if selectedShopItem.type == ShopItem.ItemType.ITEM:
-				EnemySpawner.spawnEnemy(selectedShopItem.itemIdentifier, Player.current.global_position + Vector2(0, 15))
+			if selectedShopItem.type == ShopItem.ItemType.AMMO:
+				Player.current.pickupAmmo()
 				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.GUN:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
@@ -79,8 +79,10 @@ func _on_button_button_down() -> void:
 				newUpgrade.onUpgrade(upgradeAmounts)
 				newUpgrade.queue_free()
 			if selectedShopItem.type == ShopItem.ItemType.LUCKY_COIN:
-				# bring up upgrades, but make sure to pause oncurring stuff
 				GamePopup.openPopup("UpgradeSelection")
+		if selectedShopItem.type == ShopItem.ItemType.ITEM:
+			Item.spawnItem(selectedShopItem.itemIdentifier, selectedShopItem.amount, Player.current.global_position + Vector2(0, 15))
+			GamePopup.closeCurrent()
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()

@@ -516,8 +516,13 @@ func pickupWeapon(gun: Gun) -> void:
 	elif currentWeaponSlot == 2:
 		WeaponSlots.setSecondaryWeapon(gun)
 
+# poison status effect
 var poisonTime = 0.0
 var poisonTickTime = 1.0
 func applyPoison(time: float) -> void:
 	poisonTime += time
 	poisonTime = min(poisonTime, 25)
+
+# drops an item at the player's position
+func dropItem(item: Item.Entity) -> void:
+	Item.spawnItem(item.identifier, item.amount, global_position)
