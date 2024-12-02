@@ -6,7 +6,7 @@ var background: ColorRect
 var tween: Tween
 var data: Dictionary
 signal popupClosedLocal
-static var popupClosed
+static var popupClosed: Signal
 
 ## used in tutorial scene - quiets the ambience when the popup is enabled
 @export var silencesAmbience = false

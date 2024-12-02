@@ -688,6 +688,7 @@ offset_left = -2149.0
 offset_top = -1955.0
 offset_right = 2195.0
 offset_bottom = 1398.0
+mouse_filter = 2
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]

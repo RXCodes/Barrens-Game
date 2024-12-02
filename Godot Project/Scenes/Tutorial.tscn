@@ -1587,7 +1587,7 @@ position = Vector2(3600, 14)
 position = Vector2(3707, 56)
 
 [node name="Cactus26" parent="Level" instance=ExtResource("24_2pvp0")]
-position = Vector2(2690, -271)
+position = Vector2(2754, -356)
 
 [node name="Cactus27" parent="Level" instance=ExtResource("22_wkert")]
 position = Vector2(710, 502)
@@ -1632,7 +1632,7 @@ position = Vector2(964, -68)
 position = Vector2(1839, 624)
 
 [node name="Tree5" parent="Level" instance=ExtResource("42_tc770")]
-position = Vector2(2492, -345)
+position = Vector2(2168, -377)
 
 [node name="FallenTree" parent="Level" instance=ExtResource("45_75gqq")]
 position = Vector2(1112, -230)
@@ -1669,7 +1669,7 @@ position = Vector2(3290, -155)
 position = Vector2(3819, 67)
 
 [node name="Tree11" parent="Level" instance=ExtResource("41_875lx")]
-position = Vector2(2559, -305)
+position = Vector2(2567, -440)
 
 [node name="Tree12" parent="Level" instance=ExtResource("42_tc770")]
 position = Vector2(4725, 44)
@@ -1869,6 +1869,9 @@ flip_h = true
 [node name="FallenTree15" parent="Level" instance=ExtResource("46_2urrm")]
 position = Vector2(2952, -359)
 
+[node name="FallenTree17" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(2512, -320)
+
 [node name="ShopVan" parent="Level" instance=ExtResource("44_hstqr")]
 position = Vector2(3360, -28)
 
@@ -1883,8 +1886,11 @@ description = "A weapon with a decent fire rate and deals average damage."
 itemIdentifier = "AK47"
 
 [node name="FallenTree16" parent="Level" instance=ExtResource("46_2urrm")]
-position = Vector2(2469, -417)
+position = Vector2(2458, -406)
 flip_h = true
+
+[node name="FallenTree18" parent="Level" instance=ExtResource("46_2urrm")]
+position = Vector2(2597, -372)
 
 [node name="Log3" parent="Level" instance=ExtResource("18_muafu")]
 position = Vector2(4388, 657)
@@ -2164,13 +2170,14 @@ label_settings = SubResource("LabelSettings_42dhk")
 horizontal_alignment = 1
 
 [node name="Fog" type="ColorRect" parent="."]
-z_index = 10
+z_index = 5
 material = SubResource("ShaderMaterial_6td4r")
 offset_left = -3733.0
 offset_top = -5427.0
 offset_right = 8700.0
 offset_bottom = 5501.0
-color = Color(0.54, 0.38556, 0.1836, 0.45098)
+mouse_filter = 2
+color = Color(0.541176, 0.384314, 0.184314, 0.498039)
 
 [connection signal="body_shape_entered" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House2/Area2D" to="Level/House2/Area2D" method="_on_body_shape_exited"]

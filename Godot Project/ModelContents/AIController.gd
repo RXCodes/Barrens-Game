@@ -127,6 +127,10 @@ func _ready() -> void:
 		defaultMaterial = ShaderMaterial.new()
 		defaultMaterial.shader = defaultEnemyShader
 	renderer.material = defaultMaterial
+	if variantType == EnemyVariantType.ACID:
+		damageMultiplier = 1.5
+		maxHealth *= 2.0
+		currentHealth *= 2.0
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -188,8 +192,6 @@ func setVariantType(type: EnemyVariantType) -> void:
 		damageMultiplier = 1.0
 	if type == EnemyVariantType.ACID:
 		defaultMaterial.shader = acidEnemyShader
-		damageMultiplier = 1.5
-		maxHealth *= 2.0
 		currentHealth = maxHealth
 	if renderer:
 		renderer.material = defaultMaterial

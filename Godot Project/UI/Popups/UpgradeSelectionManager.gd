@@ -11,6 +11,10 @@ static var appearSound: AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# pause the scene
+	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_DISABLED
+	TutorialManager.shouldDisableControls = true
+	
 	# setup 2 more banners
 	current = self
 	active = true
@@ -56,4 +60,7 @@ static func confirmButtonPressed() -> void:
 	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
 	if selectedUpgrade.upgradeName == "Gamble":
 		return
+	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
 	GamePopup.closeCurrent()
+	await TimeManager.wait(0.1)
+	TutorialManager.shouldDisableControls = false

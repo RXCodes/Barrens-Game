@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfsg5osu4aetd"]
+[gd_scene load_steps=6 format=3 uid="uid://8a6bnfr4nj23"]
 
 [ext_resource type="Script" path="res://UI/NearbyItemDisplay.gd" id="1_nitx1"]
 [ext_resource type="Texture2D" uid="uid://ctc2wgurbaps4" path="res://UI/BoxUI.png" id="2_4ujvy"]

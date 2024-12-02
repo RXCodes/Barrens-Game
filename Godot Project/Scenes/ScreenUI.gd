@@ -2,7 +2,7 @@ class_name ScreenUI extends CanvasLayer
 static var current: ScreenUI
 static var overlayRect: ColorRect
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	# half the viewport size
 	offset = Vector2(640, 400)
 	overlayRect = $OverlayRect

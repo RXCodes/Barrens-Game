@@ -6,7 +6,7 @@ signal finishedSpawningEnemies
 static var currentWave = 1
 func _ready() -> void:
 	# first fade in
-	var fadeIn = $"../ScreenUI/FadeIn"
+	var fadeIn = ScreenUI.current.find_child("FadeIn")
 	fadeIn.scale = Vector2(1000, 1000)
 	currentWave = 1
 	await get_tree().physics_frame
@@ -35,23 +35,13 @@ func _ready() -> void:
 		Player.current.wavesCompleted += 1
 		WaveDisplay.waveCompleted(earnings)
 		await TimeManager.wait(3.0)
-		
-		# bring up upgrades, but make sure to pause oncurring stuff
 		GamePopup.openPopup("UpgradeSelection")
-		$"../Level".process_mode = Node.PROCESS_MODE_DISABLED
-		TutorialManager.shouldDisableControls = true
-		await TimeManager.wait(1.0)
-		
-		# when the player picks up an upgrade, resume everything
+		await TimeManager.wait(0.5)
 		await GamePopup.popupClosed
-		$"../Level".process_mode = Node.PROCESS_MODE_INHERIT
-		await TimeManager.wait(0.1)
-		TutorialManager.shouldDisableControls = false
-		
-		await TimeManager.wait(3.0)
+		await TimeManager.wait(2.0)
 		WaveDisplay.start(currentWave, 25)
 		prepareEnemies()
-		await TimeManager.wait(25 - 1.5)
+		await TimeManager.wait(26)
 
 var minimumSpawningRadiusSquared = 1000 ** 2
 var maximumSpawningRadiusSquared = 2500 ** 2

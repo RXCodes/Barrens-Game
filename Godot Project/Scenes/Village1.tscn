@@ -5573,6 +5573,7 @@ position = Vector2(-784, -534)
 script = ExtResource("19_13i64")
 
 [node name="VillageController" type="Node" parent="."]
+process_priority = 100
 script = ExtResource("47_nbbyl")
 
 [node name="ScreenUI" parent="." instance=ExtResource("47_rliu7")]
@@ -5593,11 +5594,12 @@ position = Vector2(0, -200)
 [node name="Fog" type="ColorRect" parent="."]
 z_index = 10
 material = SubResource("ShaderMaterial_sksu3")
-offset_left = -3733.0
-offset_top = -5427.0
-offset_right = 8700.0
-offset_bottom = 5501.0
-color = Color(0.541176, 0.384314, 0.184314, 0.376471)
+offset_left = -3986.0
+offset_top = -4063.0
+offset_right = 8447.0
+offset_bottom = 6865.0
+mouse_filter = 2
+color = Color(0.54, 0.38556, 0.1836, 0.498039)
 
 [connection signal="body_shape_entered" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House8/Area2D" to="Level/House8/Area2D" method="_on_body_shape_exited"]
