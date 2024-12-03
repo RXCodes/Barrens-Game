@@ -15,7 +15,7 @@ static func onConsume() -> void:
 
 static func consumeTest() -> bool:
 	# player must be below max healh
-	if Player.current.health > Player.current.maximumHealth:
+	if Player.current.health >= Player.current.maximumHealth:
 		TextAlert.setupAlert("You're already at full health!", Color.TOMATO)
 		return false
 	return true
