@@ -137,6 +137,7 @@ patch_margin_bottom = 6
 stream = ExtResource("4_txco5")
 
 [node name="WaveCompleted" type="Node2D" parent="."]
+visible = false
 
 [node name="Title" type="Label" parent="WaveCompleted"]
 self_modulate = Color(1, 0.816667, 0, 1)

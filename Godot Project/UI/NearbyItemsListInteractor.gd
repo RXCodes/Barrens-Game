@@ -47,6 +47,28 @@ func _ready() -> void:
 			newItemPickup.itemDisplay = itemDisplay
 			add_child(itemDisplay)
 			move_child(spacer, discoveredItems.size())
+		
+		# now scan for item drops
+		var items = get_tree().get_nodes_in_group("Item")
+		for item: Item in items:
+			if item in discoveredItems:
+				continue
+			var distanceSquared = Player.current.global_position.distance_squared_to(item.global_position)
+			if distanceSquared > (scanRadius * Player.current.pickUpRangeMultiplier) ** 2:
+				continue
+			discoveredItems.append(item)
+			var newItemPickup = ItemPickup.new()
+			newItemPickup.displayName = item.entity.displayName
+			newItemPickup.texture = item.entity.itemTexture
+			newItemPickup.correspondingNode = item
+			newItemPickup.amount = item.entity.amount
+			newItemPickup.type = ItemType.ITEM
+			item.pickupItem = newItemPickup
+			var itemDisplay = preload("res://UI/NearbyItemDisplay.tscn").instantiate()
+			itemDisplay.setupWithItemPickUp(newItemPickup)
+			newItemPickup.itemDisplay = itemDisplay
+			add_child(itemDisplay)
+			move_child(spacer, discoveredItems.size())
 			
 		# iterate through all discovered items to make sure they're still within range
 		for item: Node2D in discoveredItems:
@@ -66,6 +88,11 @@ static func pickupItem(itemPickup: ItemPickup) -> void:
 		Player.current.pickupWeapon(itemPickup.correspondingNode.gun)
 		itemPickup.correspondingNode.queue_free()
 		clickSound.play()
+	elif itemPickup.type == ItemType.ITEM:
+		itemPickup.itemDisplay.queue_free()
+		current.discoveredItems.erase(itemPickup.correspondingNode)
+		itemPickup.correspondingNode.pickup()
+		clickSound.play()
 
 func _on_touch_absorber_mouse_entered() -> void:
 	Crosshair.hoveringOverButton = true
@@ -73,7 +100,7 @@ func _on_touch_absorber_mouse_entered() -> void:
 func _on_touch_absorber_mouse_exited() -> void:
 	Crosshair.hoveringOverButton = false
 
-enum ItemType {WEAPON, CONSUMABLE, THROWABLE}
+enum ItemType {WEAPON, ITEM}
 
 class ItemPickup:
 	var displayName: String

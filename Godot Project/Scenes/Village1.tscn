@@ -5176,12 +5176,12 @@ displayTexture = ExtResource("48_fbn0p")
 displayScale = 0.5
 price = 35
 description = "Salted, polished, and works with any gun."
-type = 1
+type = 4
 itemIdentifier = "AmmoPickup"
 limitSales = true
-limitAmount = 1
+limitAmount = 3
 canRestock = true
-restockTime = 10
+restockTime = 100
 restockAmount = 1
 
 [node name="AK47ShopItem" type="Node" parent="Level/ShopVan"]
@@ -5210,6 +5210,28 @@ itemIdentifier = "SaltedBullets"
 upgradeAmounts = Array[float]([5.0])
 costIncrementMultiplier = 1.125
 
+[node name="Bandages" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+price = 75
+amount = 4
+type = 1
+itemIdentifier = "Bandages"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 2
+canRestock = true
+restockAmount = 2
+
+[node name="HealthKit" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+price = 110
+type = 1
+itemIdentifier = "HealthKit"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+
 [node name="ShopVan2" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(2437, -1052)
 
@@ -5221,7 +5243,7 @@ displayScale = 0.5
 price = 55
 description = "Salted, polished, and works with any gun."
 amount = 2
-type = 1
+type = 4
 itemIdentifier = "AmmoPickup"
 limitSales = true
 limitAmount = 1
@@ -5254,6 +5276,14 @@ type = 2
 itemIdentifier = "Defense"
 upgradeAmounts = Array[float]([2.5])
 costIncrementMultiplier = 1.25
+
+[node name="ElixirOfFortune" type="Node" parent="Level/ShopVan2"]
+script = ExtResource("47_ud1rn")
+price = 250
+type = 1
+itemIdentifier = "ElixirOfFortune"
+upgradeAmounts = Array[float]([5.0])
+costIncrementMultiplier = 1.05
 
 [node name="ShopVan3" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(5236, -2186)
@@ -5296,6 +5326,17 @@ upgradeAmounts = Array[float]([10.0])
 limitAmount = 5
 costIncrementMultiplier = 1.05
 
+[node name="PotionOfRage" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+price = 350
+type = 1
+itemIdentifier = "PotionOfRage"
+upgradeAmounts = Array[float]([10.0])
+limitSales = true
+limitAmount = 1
+restockAmount = 1
+costIncrementMultiplier = 1.05
+
 [node name="ShopVan4" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(451, -2293)
 flip_h = true
@@ -5323,6 +5364,25 @@ type = 2
 itemIdentifier = "ResourceMagnet"
 upgradeAmounts = Array[float]([10.0])
 costIncrementMultiplier = 1.3
+
+[node name="Bandages" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+price = 60
+amount = 3
+type = 1
+itemIdentifier = "Bandages"
+upgradeAmounts = Array[float]([5.0])
+
+[node name="EnergyDrink" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+price = 120
+amount = 2
+type = 1
+itemIdentifier = "EnergyDrink"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
 
 [node name="ShopVan5" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(-480, 765)
@@ -5367,6 +5427,17 @@ restockTime = 130
 restockAmount = 1
 costIncrementMultiplier = 1.125
 
+[node name="ShieldSpireSerum" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 1
+itemIdentifier = "ShieldSpireSerum"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockAmount = 1
+
 [node name="ShopVan6" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(1069, 3200)
 flip_h = true
@@ -5389,6 +5460,17 @@ itemIdentifier = "BigHeart"
 upgradeAmounts = Array[float]([10.0])
 costIncrementMultiplier = 1.35
 
+[node name="HealingPotion" type="Node" parent="Level/ShopVan6"]
+script = ExtResource("47_ud1rn")
+price = 90
+type = 1
+itemIdentifier = "PotionOfHealing"
+upgradeAmounts = Array[float]([10.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 40
+
 [node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan6"]
 script = ExtResource("47_ud1rn")
 price = 100
@@ -5398,6 +5480,17 @@ upgradeAmounts = Array[float]([5.0])
 limitSales = true
 limitAmount = 3
 costIncrementMultiplier = 1.25
+
+[node name="WarriorSerum" type="Node" parent="Level/ShopVan6"]
+script = ExtResource("47_ud1rn")
+price = 75
+type = 1
+itemIdentifier = "WarriorSerum"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockAmount = 1
 
 [node name="ShopVan7" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(4710, 3229)
@@ -5427,6 +5520,18 @@ type = 2
 itemIdentifier = "Bargain"
 costIncrementMultiplier = 1.1
 
+[node name="Bandages" type="Node" parent="Level/ShopVan7"]
+script = ExtResource("47_ud1rn")
+price = 65
+amount = 3
+type = 1
+itemIdentifier = "Bandages"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockAmount = 1
+
 [node name="ShopVan8" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(5124, 899)
 
@@ -5438,8 +5543,58 @@ displayScale = 0.5
 price = 125
 description = "Salted, polished, and works with any gun."
 amount = 3
-type = 1
+type = 4
 itemIdentifier = "AmmoPickup"
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 90
+restockAmount = 1
+
+[node name="Bandages" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+price = 100
+amount = 5
+type = 1
+itemIdentifier = "Bandages"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 90
+restockAmount = 1
+
+[node name="EnergyDrink" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+price = 100
+amount = 2
+type = 1
+itemIdentifier = "EnergyDrink"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
+restockTime = 90
+restockAmount = 1
+
+[node name="PotionOfHealing" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+price = 85
+type = 1
+itemIdentifier = "PotionOfHealing"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 2
+canRestock = true
+restockTime = 90
+restockAmount = 2
+
+[node name="HealthKit" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+price = 110
+type = 1
+itemIdentifier = "HealthKit"
+upgradeAmounts = Array[float]([5.0])
 limitSales = true
 limitAmount = 1
 canRestock = true

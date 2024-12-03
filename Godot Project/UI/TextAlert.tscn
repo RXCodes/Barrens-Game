@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3n2txcgiplvt"]
+
+[ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="1_05mar"]
+[ext_resource type="Script" path="res://UI/TextAlert.gd" id="1_jca4e"]
+[ext_resource type="Texture2D" uid="uid://xbfhplg0qwri" path="res://UI/UILine.png" id="2_58qmo"]
+
+[node name="TextAlert" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_jca4e")
+
+[node name="Separator" type="NinePatchRect" parent="."]
+offset_left = 220.0
+offset_top = -25.0
+offset_right = 245.0
+offset_bottom = 415.0
+rotation = 1.5708
+texture = ExtResource("2_58qmo")
+patch_margin_top = 12
+patch_margin_bottom = 12
+
+[node name="Separator2" type="NinePatchRect" parent="."]
+offset_left = 198.0
+offset_top = -25.0
+offset_right = 223.0
+offset_bottom = 371.0
+rotation = 1.5708
+texture = ExtResource("2_58qmo")
+patch_margin_top = 12
+patch_margin_bottom = 12
+
+[node name="Description" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = -25.0
+offset_right = 207.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A message"
+label_settings = ExtResource("1_05mar")
+horizontal_alignment = 1
+vertical_alignment = 1

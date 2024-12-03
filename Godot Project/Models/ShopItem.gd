@@ -21,7 +21,7 @@ class_name ShopItem extends Node
 ## how many items to sell per purchase
 @export var amount: int = 1
 
-enum ItemType {GUN, ITEM, UPGRADE, LUCKY_COIN}
+enum ItemType {GUN, ITEM, UPGRADE, LUCKY_COIN, AMMO}
 @export var type: ItemType
 
 ## e.g., "Shotgun", "MachineGun" for GUN item type
@@ -70,6 +70,14 @@ func _ready() -> void:
 				newUpgradeAmounts[s] = upgradeAmounts[s]
 			description = upgrade.getDescription(newUpgradeAmounts)
 			automaticallyPopulateDescription = true
+	if type == ItemType.ITEM:
+		var item: Item.Entity = Item.getEntity(itemIdentifier)
+		if displayName.is_empty():
+			displayName = item.displayName
+		if not displayTexture:
+			displayTexture = item.itemTexture
+		if description.is_empty():
+			description = item.description
 
 func purchasedItem() -> void:
 	if limitSales:

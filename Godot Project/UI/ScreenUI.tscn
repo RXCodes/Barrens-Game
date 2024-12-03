@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=61 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://UI/InventorySlot.gd" id="38_cbyrv"]
 [ext_resource type="Shader" path="res://Environment/Blur.gdshader" id="40_kju6r"]
 [ext_resource type="Shader" path="res://Environment/ScreenShader.gdshader" id="42_yj7vc"]
+[ext_resource type="PackedScene" uid="uid://c3n2txcgiplvt" path="res://UI/TextAlert.tscn" id="43_qyj2u"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -689,6 +690,11 @@ offset_top = -1955.0
 offset_right = 2195.0
 offset_bottom = 1398.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TextAlert" parent="." instance=ExtResource("43_qyj2u")]
+z_index = 120
+position = Vector2(0, -112)
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]

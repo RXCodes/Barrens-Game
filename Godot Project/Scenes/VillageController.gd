@@ -18,6 +18,7 @@ func _ready() -> void:
 	# here we can start waves
 	await TimeManager.wait(4.5)
 	WaveDisplay.start(1, 30)
+	startSpawnLoop()
 	prepareEnemies()
 	await TimeManager.wait(30)
 	
@@ -159,3 +160,24 @@ func _process(delta: float) -> void:
 		var enemyCount = get_tree().get_nodes_in_group("Enemy").size()
 		if enemyCount == 0:
 			completedWave.emit()
+
+func startSpawnLoop() -> void:
+	while not Player.current.dead:
+		# determine a random point on the traversable map
+		var randomPoint = getRandomSpawnPoint()
+			
+		# check if it is within range of the player, but not too close
+		var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
+		if distanceSquared < minimumSpawningRadiusSquared or distanceSquared > maximumSpawningRadiusSquared:
+			await TimeManager.wait(0.01)
+			continue
+		
+		# randomly spawn items throughout the map
+		if randi_range(1, 40) == 1:
+			Item.spawnItem("Bandages", randi_range(1, 3), randomPoint)
+		if randi_range(1, 75) == 1:
+			Item.spawnItem("HealthKit", randi_range(1, 2), randomPoint)
+		if randi_range(1, 160) == 1:
+			var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
+			Item.spawnItem(potions.pick_random(), randi_range(1, 2), randomPoint)
+		await TimeManager.wait(1.0)

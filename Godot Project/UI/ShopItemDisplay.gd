@@ -17,6 +17,8 @@ func setupWithShopItemNode(newShopItem: ShopItem, shop: ShopInteractor) -> void:
 		$Shop/ItemType.text = "Weapon"
 	elif shopItem.type == ShopItem.ItemType.ITEM:
 		$Shop/ItemType.text = "Item"
+	elif shopItem.type == ShopItem.ItemType.AMMO:
+		$Shop/ItemType.text = "Ammo"
 	elif shopItem.type == ShopItem.ItemType.UPGRADE:
 		$Shop/ItemType.text = "Upgrade"
 	else:

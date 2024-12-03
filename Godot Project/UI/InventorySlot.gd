@@ -1,7 +1,7 @@
 class_name InventorySlot extends Sprite2D
 
 var index: int = 0
-var itemEntity: ItemEntity
+var itemEntity: Item.Entity
 
 func setupSlot(index: int) -> void:
 	$Key.text = str(index)
@@ -20,22 +20,17 @@ func setItemCount(count: int) -> void:
 	if count == 0:
 		clearSlot()
 
-func setupWithItemEntity(entity: ItemEntity) -> void:
+func setupWithItemEntity(entity: Item.Entity) -> void:
+	if entity == null:
+		clearSlot()
+		return
 	setItemCount(entity.amount)
+	$Item.show()
 	$Item.texture = entity.itemTexture
 	$Item.offset = entity.itemOffset
-	$Item.scale = Vector2(entity.itemScale, entity.itemScale)
 
 func select() -> void:
 	texture = preload("res://UI/SelectedInventorySlot.png")
 
 func deselect() -> void:
 	texture = preload("res://UI/InventorySlot.png")
-
-class ItemEntity:
-	var displayName: String
-	var description: String
-	var itemTexture: Texture2D
-	var itemOffset: Vector2
-	var itemScale: float
-	var amount: int

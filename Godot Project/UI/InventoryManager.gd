@@ -4,11 +4,13 @@ static var slots = []
 static var currentSlotIndex = -1
 static var itemName: Label
 static var itemDescription: Label
+static var maxStackCount = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	itemName = $ItemName
 	itemDescription = $ItemDescription
+	maxStackCount = 5
 	await get_tree().physics_frame
 	
 	# create slots (keys 3 to 7)
@@ -45,6 +47,7 @@ static func showItemInfo() -> void:
 	var selectedSlot: InventorySlot = slots[currentSlotIndex]
 	var item = selectedSlot.itemEntity
 	if not item:
+		hideItemInfo()
 		return
 	itemDescription.text = item.description
 	itemName.text = item.displayName
@@ -68,4 +71,89 @@ func _input(event: InputEvent) -> void:
 			"5": selectSlot(2)
 			"6": selectSlot(3)
 			"7": selectSlot(4)
-			
+
+# picks up an item and attempts to collect all of it
+# returns false if none of the items can be picked up (inventory full)
+static func pickupItem(item: Item.Entity) -> bool:
+	var initialAmount = item.amount
+	var leftover = item.amount
+	for slot: InventorySlot in slots:
+		if leftover <= 0:
+			break
+		if not slot.itemEntity:
+			var amountToAdd = min(leftover, maxStackCount)
+			leftover -= amountToAdd
+			slot.itemEntity = item.copy()
+			slot.itemEntity.amount = amountToAdd
+		elif slot.itemEntity.identifier == item.identifier:
+			var newAmount = min(slot.itemEntity.amount + leftover, maxStackCount)
+			var amountToAdd = newAmount - slot.itemEntity.amount
+			slot.itemEntity.amount += amountToAdd
+			leftover -= amountToAdd
+	if leftover > 0:
+		var newItem = item.copy()
+		newItem.amount = leftover
+		Player.current.dropItem(newItem)
+	refreshInventory()
+	return initialAmount != leftover
+
+# refreshes the entire inventory
+static func refreshInventory() -> void:
+	for slot: InventorySlot in slots:
+		slot.setupWithItemEntity(slot.itemEntity)
+	if currentSlotIndex < 0:
+		return
+	showItemInfo()
+
+# drops one of the currently selected item
+static func dropItem() -> void:
+	var currentItem = getCurrentItem()
+	if not currentItem:
+		return
+	currentItem.amount -= 1
+	
+	# all of the items are gone for this slot - shift items to the left
+	if currentItem.amount == 0:
+		currentItem.queue_free()
+		for i in range(currentSlotIndex, slots.size()):
+			if i == slots.size() - 1:
+				slots[i].itemEntity = null
+			else:
+				slots[i].itemEntity = slots[i + 1].itemEntity
+	
+	# create the item to drop into the scene
+	var droppingItem = currentItem.copy()
+	droppingItem.amount = 1
+	Player.current.dropItem(droppingItem)
+	
+	# refresh the inventory
+	refreshInventory()
+
+# consumes one of the currently selected item
+static func consumeItem() -> void:
+	var currentItem = getCurrentItem()
+	if not currentItem:
+		return
+	currentItem.amount -= 1
+	
+	# all of the items are gone for this slot - shift items to the left
+	if currentItem.amount == 0:
+		currentItem.queue_free()
+		for i in range(currentSlotIndex, slots.size()):
+			if i == slots.size() - 1:
+				slots[i].itemEntity = null
+			else:
+				slots[i].itemEntity = slots[i + 1].itemEntity
+	
+	# refresh the inventory
+	refreshInventory()
+
+# gets the current item if it exists
+static func getCurrentItem() -> Item.Entity:
+	if currentSlotIndex < 0:
+		return null
+	var selectedSlot: InventorySlot = slots[currentSlotIndex]
+	var item = selectedSlot.itemEntity
+	if not item:
+		return null
+	return item
