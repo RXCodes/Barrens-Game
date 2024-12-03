@@ -63,6 +63,7 @@ folder_colors={
 [global_group]
 
 NavigationGroup="Nodes in this group will have all collisions used in pathfinding."
+Item=""
 
 [gui]
 

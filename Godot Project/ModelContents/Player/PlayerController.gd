@@ -373,8 +373,9 @@ func callGunMethod(string: String):
 
 # called when player is damaged
 var damageInTick := {}
+var invicibilityFrame = false
 func damage(amount: float, source: Node2D) -> void:
-	if dead:
+	if dead or invicibilityFrame:
 		return
 	
 	var enemy = source.get_meta(EnemyAI.parentControllerKey)
@@ -418,6 +419,11 @@ func damage(amount: float, source: Node2D) -> void:
 		HurtVignette.animate(1.0, 5.0)
 		health = 0
 		kill()
+	else:
+		# player cannot be hit again until 0.2s later
+		invicibilityFrame = true
+		await TimeManager.wait(0.2)
+		invicibilityFrame = false
 
 # called when player dies
 var shouldRestartScene: bool = false

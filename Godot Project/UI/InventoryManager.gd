@@ -4,7 +4,6 @@ static var slots = []
 static var currentSlotIndex = -1
 static var itemName: Label
 static var itemDescription: Label
-static var inventory = []
 static var maxStackCount = 5
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +11,6 @@ func _ready() -> void:
 	itemName = $ItemName
 	itemDescription = $ItemDescription
 	maxStackCount = 5
-	inventory.clear()
 	await get_tree().physics_frame
 	
 	# create slots (keys 3 to 7)
@@ -49,6 +47,7 @@ static func showItemInfo() -> void:
 	var selectedSlot: InventorySlot = slots[currentSlotIndex]
 	var item = selectedSlot.itemEntity
 	if not item:
+		hideItemInfo()
 		return
 	itemDescription.text = item.description
 	itemName.text = item.displayName
@@ -74,44 +73,33 @@ func _input(event: InputEvent) -> void:
 			"7": selectSlot(4)
 
 # picks up an item and attempts to collect all of it
-static func pickupItem(item: Item.Entity) -> void:
-	var previousEntity: Item.Entity = item
-	var currentEntity: Item.Entity
-	for i in range(5):
-		currentEntity = attemptPickupItem(item)
-		
-		# all of the items were able to be collected
-		if currentEntity.amount == 0:
-			return
-		
-		# there were some left over items
-		if previousEntity.amount == currentEntity.amount:
-			Player.current.dropItem(currentEntity)
-			return
-
-# tries to pick up an item and fill a slot (don't call this method directly)
-static func attemptPickupItem(item: Item.Entity) -> Item.Entity:
+# returns false if none of the items can be picked up (inventory full)
+static func pickupItem(item: Item.Entity) -> bool:
+	var initialAmount = item.amount
+	var leftover = item.amount
 	for slot: InventorySlot in slots:
-		var itemEntity = slot.itemEntity
-		if itemEntity == null:
-			var newAmount = min(item.amount, maxStackCount)
-			var leftover = newAmount - item.amount
-			item.amount = newAmount
-			slot.itemEntity = item
-			var newItemEntity: Item.Entity = item.duplicate()
-			newItemEntity.amount = leftover
-			return newItemEntity
-		if itemEntity.identifier == item.identifier:
-			var newAmount = min(itemEntity.amount + item.amount, maxStackCount)
-			var leftover = newAmount - item.amount
-			var newItemEntity: Item.Entity = item.duplicate()
-			newItemEntity.amount = leftover
-			return newItemEntity
-	return null
+		if leftover <= 0:
+			break
+		if not slot.itemEntity:
+			var amountToAdd = min(leftover, maxStackCount)
+			leftover -= amountToAdd
+			slot.itemEntity = item.copy()
+			slot.itemEntity.amount = amountToAdd
+		elif slot.itemEntity.identifier == item.identifier:
+			var newAmount = min(slot.itemEntity.amount + leftover, maxStackCount)
+			var amountToAdd = newAmount - slot.itemEntity.amount
+			slot.itemEntity.amount += amountToAdd
+			leftover -= amountToAdd
+	if leftover > 0:
+		var newItem = item.copy()
+		newItem.amount = leftover
+		Player.current.dropItem(newItem)
+	refreshInventory()
+	return initialAmount != leftover
 
 # refreshes the entire inventory
 static func refreshInventory() -> void:
 	for slot: InventorySlot in slots:
 		slot.setupWithItemEntity(slot.itemEntity)
 	if currentSlotIndex > 0:
-		selectSlot(0)
+		selectSlot(currentSlotIndex)

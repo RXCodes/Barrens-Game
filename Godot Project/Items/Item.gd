@@ -1,6 +1,7 @@
 class_name Item extends Node2D
 
 var entity: Item.Entity
+var pickupItem: NearbyItemsListInteractor.ItemPickup
 var canBePickedUp = true
 var pickingUp = false
 var pickupDuration = 0.25
@@ -23,17 +24,18 @@ static func _static_init() -> void:
 static func spawnItem(identifier: String, amount: int, position: Vector2) -> void:
 	var newItem: Item = preload("res://Items/Item.tscn").instantiate()
 	newItem.setupWithItemEntity(itemData[identifier])
+	newItem.entity.amount = amount
 	newItem.global_position = position
 	NodeRelations.rootNode.find_child("Level").add_child(newItem)
 
-static func registerItem(identifier: String, entity: Item.Entity) -> void:
-	print("Registered item with identifier: " + identifier)
-	itemData[identifier] = entity
+static func registerItem(entity: Item.Entity) -> void:
+	print("Registered item with identifier: " + entity.identifier)
+	itemData[entity.identifier] = entity
 
 func setupWithItemEntity(newEntity: Item.Entity) -> void:
-	entity = newEntity
-	$Item.texture = entity.itemTexture
-	$Item.offset = entity.itemOffset
+	entity = newEntity.copy()
+	$Item.texture = newEntity.itemTexture
+	$Item.offset = newEntity.itemOffset
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,8 +52,6 @@ func _ready() -> void:
 	newPosition.y += randfn(0, 12.5)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
-	await TimeManager.wait(1.25)
-	canBePickedUp = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -65,7 +65,8 @@ func _process(delta: float) -> void:
 		$Item.rotation_degrees += (global_position.x - Player.current.global_position.x) * delta
 		z_index = 4096
 		if pickupAnimationProgress >= 1.0:
-			Player.current
+			if not InventoryManager.pickupItem(entity):
+				TextAlert.setupAlert("Your inventory is full!", Color.TOMATO)
 			queue_free()
 
 var pickupAnimationProgress = 0.0
@@ -77,6 +78,7 @@ func pickup() -> void:
 	pickingUp = true
 	originalPosition = global_position
 	$AnimationPlayer.play("Pickup")
+	remove_from_group("Item")
 
 # override this method to define what happens when the user consumes this item
 # if left blank, the item will not be a consumable
@@ -89,5 +91,16 @@ class Entity extends Node:
 	var description: String
 	var itemTexture: Texture2D
 	var itemOffset: Vector2
-	var amount: int
+	var amount: int = 1
 	var onConsume: Callable
+	
+	func copy() -> Item.Entity:
+		var copy = Item.Entity.new()
+		copy.identifier = identifier
+		copy.displayName = displayName
+		copy.description = description
+		copy.itemTexture = itemTexture
+		copy.itemOffset = itemOffset
+		copy.amount = amount
+		copy.onConsume = onConsume
+		return copy

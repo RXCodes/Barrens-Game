@@ -21,10 +21,13 @@ func setItemCount(count: int) -> void:
 		clearSlot()
 
 func setupWithItemEntity(entity: Item.Entity) -> void:
+	if entity == null:
+		clearSlot()
+		return
 	setItemCount(entity.amount)
+	$Item.show()
 	$Item.texture = entity.itemTexture
 	$Item.offset = entity.itemOffset
-	$Item.scale = Vector2(entity.itemScale, entity.itemScale)
 
 func select() -> void:
 	texture = preload("res://UI/SelectedInventorySlot.png")

@@ -10,10 +10,8 @@ func setupWithItemPickUp(itemPickUp: NearbyItemsListInteractor.ItemPickup) -> vo
 	$ItemFrame/Amount.visible = itemPickUp.amount != 1
 	if itemPickUp.type == NearbyItemsListInteractor.ItemType.WEAPON:
 		$Shop/Type.text = "Weapon"
-	elif itemPickUp.type == NearbyItemsListInteractor.ItemType.CONSUMABLE:
-		$Shop/Type.text = "Consumable"
-	elif itemPickUp.type == NearbyItemsListInteractor.ItemType.THROWABLE:
-		$Shop/Type.text = "Throwable"
+	elif itemPickUp.type == NearbyItemsListInteractor.ItemType.ITEM:
+		$Shop/Type.text = "Item"
 
 func _on_button_mouse_entered() -> void:
 	$".".modulate = Color(0.9, 0.9, 0.9, 1.0)
@@ -24,5 +22,4 @@ func _on_button_mouse_exited() -> void:
 
 func _on_button_button_down() -> void:
 	Crosshair.hoveringOverButton = true
-	if item.type == NearbyItemsListInteractor.ItemType.WEAPON:
-		NearbyItemsListInteractor.pickupItem(item)
+	NearbyItemsListInteractor.pickupItem(item)

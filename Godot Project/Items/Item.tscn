@@ -30,7 +30,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1.2, 3), Vector2(1.43813, 2.70233), Vector2(1.62359, 2.47051), Vector2(1.76296, 2.2963), Vector2(1.86283, 2.17147), Vector2(1.92977, 2.08779), Vector2(1.97037, 2.03704), Vector2(1.99122, 2.01097), Vector2(1.9989, 2.00137), Vector2(2, 2)]
+"values": [Vector2(0.8, 2), Vector2(0.868558, 1.65721), Vector2(0.921097, 1.39451), Vector2(0.964502, 1.17749), Vector2(0.998711, 1.00644), Vector2(1.01621, 0.918956), Vector2(1.00967, 0.951628), Vector2(0.995005, 1.02498), Vector2(1.00016, 0.999194), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -134,7 +134,7 @@ _data = {
 offsets = PackedFloat32Array(0, 0.2021, 0.850394, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 1, 0)
 
-[node name="ItemEntity" type="Node2D"]
+[node name="ItemEntity" type="Node2D" groups=["Item"]]
 position = Vector2(0, -35)
 script = ExtResource("1_q60hx")
 
