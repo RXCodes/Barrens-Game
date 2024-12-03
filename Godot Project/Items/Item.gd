@@ -13,6 +13,8 @@ static func _static_init() -> void:
 		if filePath.ends_with(".gd"):
 			var itemPath = "res://Items/" + filePath
 			var currentScript: Script = load(itemPath)
+			if not currentScript:
+				continue
 			if currentScript.has_method("setup"):
 				currentScript.setup()
 				print("Setup item: " + itemPath)
@@ -21,6 +23,8 @@ static func _static_init() -> void:
 static func spawnItem(identifier: String, amount: int, position: Vector2) -> void:
 	var newItem: Item = preload("res://Items/Item.tscn").instantiate()
 	newItem.setupWithItemEntity(itemData[identifier])
+	newItem.global_position = position
+	NodeRelations.rootNode.find_child("Level").add_child(newItem)
 
 static func registerItem(identifier: String, entity: Item.Entity) -> void:
 	print("Registered item with identifier: " + identifier)

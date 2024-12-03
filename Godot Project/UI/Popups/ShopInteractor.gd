@@ -62,7 +62,6 @@ func _on_button_button_down() -> void:
 		for i in range(selectedShopItem.amount):
 			if selectedShopItem.type == ShopItem.ItemType.AMMO:
 				Player.current.pickupAmmo()
-				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.GUN:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
 				EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
@@ -82,7 +81,6 @@ func _on_button_button_down() -> void:
 				GamePopup.openPopup("UpgradeSelection")
 		if selectedShopItem.type == ShopItem.ItemType.ITEM:
 			Item.spawnItem(selectedShopItem.itemIdentifier, selectedShopItem.amount, Player.current.global_position + Vector2(0, 15))
-			GamePopup.closeCurrent()
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()
