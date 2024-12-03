@@ -12,9 +12,9 @@ func onStart() -> void:
 		# Loop this while the enemy is alive
 		while not dead:
 			$ColliderBox/FlipTransform/Animations.play("Idle")
-			walkMovementSpeed = 2  # Snake moves at a slow speed by default
-			walkMovementSpeed = 2 * (1 + (wave - 8) * 0.05)
-			walkMovementSpeed = min(walkMovementSpeed, 6)
+			walkMovementSpeed = 3  # Snake moves at a slow speed by default
+			walkMovementSpeed = 3 * (1 + (wave - 8) * 0.05)
+			walkMovementSpeed = min(walkMovementSpeed, 8)
 			await enemyReachedTarget
 			# Make the enemy attack while in range of the player
 			while withinRangeOfTarget():

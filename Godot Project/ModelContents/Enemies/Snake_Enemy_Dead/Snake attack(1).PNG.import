@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd7gvtj3ko3p"
-path="res://.godot/imported/Slime_Still.PNG-3b36888e984fd447e3e2e76b508ed90b.ctex"
+uid="uid://bp1yd07scxjfe"
+path="res://.godot/imported/Snake attack(1).PNG-e96e2b99a1decf124024de410bb2f380.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModelContents/Enemies/Slime_Enemy_Still/Slime_Still.PNG"
-dest_files=["res://.godot/imported/Slime_Still.PNG-3b36888e984fd447e3e2e76b508ed90b.ctex"]
+source_file="res://ModelContents/Enemies/Snake_Enemy_Dead/Snake attack(1).PNG"
+dest_files=["res://.godot/imported/Snake attack(1).PNG-e96e2b99a1decf124024de410bb2f380.ctex"]
 
 [params]
 

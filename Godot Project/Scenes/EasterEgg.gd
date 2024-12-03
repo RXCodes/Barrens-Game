@@ -8,20 +8,20 @@ func _process(delta: float) -> void:
 			timeStayed = 0
 			return
 		timeStayed += delta
-		if timeStayed < 5:
+		if timeStayed < 2.5:
 			return
 		activated = true
 
-		Player.current.pickupCash(999999999)
+		Player.current.pickupCash(9999999)
 		for i in range(100):
 			Player.current.pickupAmmo()
-		Player.current.maximumHealth = 9999
-		Player.current.health = 9999
-		Player.current.criticalDamageMultiplier = 99999
-		Player.current.playerSpeed = 14
-		Player.current.sprintPower = 100
+		Player.current.maximumHealth = 999
+		Player.current.health = 500
+		Player.current.criticalDamageMultiplier = 500
+		Player.current.playerSpeed = 10
+		Player.current.sprintPower = 14
 		Player.current.sprintDecreaseRate = 5
-		Player.current.sprintRecoveryRate = 100
+		Player.current.sprintRecoveryRate = 45
 		Player.current.regenerationRate = 0
 		Player.current.reloadSpeedDivisor = 5.0
 		Player.current.reloadMovementSpeedMultiplier = 5.0

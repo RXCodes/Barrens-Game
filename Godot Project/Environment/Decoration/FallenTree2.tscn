@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dutchm520hefn"]
+[gd_scene load_steps=2 format=3 uid="uid://dutchm520hefn"]
 
 [ext_resource type="Texture2D" uid="uid://d2qbx5kd5bidr" path="res://Environment/Decoration/FallenTree2.png" id="1_21nkp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n1on"]
-size = Vector2(56.1243, 12.2876)
 
 [node name="FallenTree2" type="Sprite2D"]
 texture_filter = 1
@@ -14,9 +11,8 @@ texture = ExtResource("1_21nkp")
 position = Vector2(-707, 180)
 collision_layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(703.98, -173.686)
 rotation = 1.57483
 scale = Vector2(0.480472, 6.83067)
-shape = SubResource("RectangleShape2D_2n1on")
-debug_color = Color(0, 0.595, 0.7, 0.188235)
+polygon = PackedVector2Array(18.3758, 5.18905, -8.68072, 5.19672, -18.3529, -0.144123, -17.5137, -3.65795, 13.6675, -4.3256, 31.5304, -1.32947, 14.9097, -0.81236, 19.1814, 1.08962)

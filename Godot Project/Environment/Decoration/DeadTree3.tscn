@@ -1,11 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1kagn22hckke"]
+[gd_scene load_steps=5 format=3 uid="uid://d1kagn22hckke"]
 
 [ext_resource type="Texture2D" uid="uid://cm6jrtdugsc62" path="res://Environment/Decoration/Tree3.png" id="1_ruams"]
 [ext_resource type="Script" path="res://Environment/Building/BehindBuilding.gd" id="2_s4ne6"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj2om"]
-radius = 0.39813
-height = 1.42932
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e065e"]
 size = Vector2(52.5, 45.75)
@@ -23,12 +19,11 @@ offset = Vector2(1.23535, -53.9875)
 position = Vector2(-707, 180)
 collision_layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(710, -180)
 rotation = 1.57483
 scale = Vector2(25.1172, 20.9916)
-shape = SubResource("CapsuleShape2D_wj2om")
-debug_color = Color(0, 0.595, 0.7, 0.188235)
+polygon = PackedVector2Array(0.20035, 0.380141, 0.237674, -0.358436, -0.0810714, -0.428355, -0.240083, -0.35613, -0.297955, 0.191992)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(-707, 180)

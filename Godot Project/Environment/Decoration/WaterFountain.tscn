@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cmegyo6do5mif" path="res://Environment/Decoration/WaterFountain.png" id="1_u04px"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2kq4"]
-radius = 24.0
-height = 97.0
+radius = 21.5
+height = 84.0
 
 [node name="WaterFountain" type="Sprite2D"]
 texture_filter = 1
@@ -16,6 +16,6 @@ offset = Vector2(0, -22)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-0.500003, -3)
+position = Vector2(-0.5, 2.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g2kq4")

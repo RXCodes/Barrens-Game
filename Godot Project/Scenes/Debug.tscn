@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=47 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -28,7 +28,17 @@
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="PackedScene" uid="uid://bkp4ikyughfp2" path="res://Models/slime_enemy.tscn" id="28_qn52p"]
+[ext_resource type="PackedScene" uid="uid://bss2jrmb3hn12" path="res://Environment/Decoration/DeadTree1.tscn" id="30_3isup"]
+[ext_resource type="PackedScene" uid="uid://dyxjgcni6mq3o" path="res://Environment/Decoration/DeadTree2.tscn" id="31_t8gop"]
+[ext_resource type="PackedScene" uid="uid://d1kagn22hckke" path="res://Environment/Decoration/DeadTree3.tscn" id="32_57kur"]
 [ext_resource type="PackedScene" uid="uid://1m47f1qmoc5v" path="res://Models/Dummy.tscn" id="33_b2gow"]
+[ext_resource type="PackedScene" uid="uid://dl5upgb4r3jku" path="res://Environment/Decoration/FallenTree1.tscn" id="33_gy7qm"]
+[ext_resource type="PackedScene" uid="uid://dutchm520hefn" path="res://Environment/Decoration/FallenTree2.tscn" id="34_w45en"]
+[ext_resource type="PackedScene" uid="uid://d37xd83dbrt2p" path="res://Environment/Decoration/FallenTrashCan.tscn" id="35_sqfay"]
+[ext_resource type="PackedScene" uid="uid://dd5p33ybg8ngx" path="res://Environment/Decoration/Log.tscn" id="36_0sxu3"]
+[ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="37_7q8re"]
+[ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="38_i01l7"]
+[ext_resource type="PackedScene" uid="uid://ge1chou4evxe" path="res://Models/snake_enemy.tscn" id="39_2xwqi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
 texture = ExtResource("10_q0e8j")
@@ -472,4 +482,34 @@ respawnCooldown = 10.0
 script = SubResource("GDScript_farfr")
 
 [node name="Slime_Enemy" parent="." instance=ExtResource("28_qn52p")]
-position = Vector2(21, -426)
+position = Vector2(1286, -714)
+
+[node name="Tree" parent="." instance=ExtResource("30_3isup")]
+position = Vector2(-1075, -376)
+
+[node name="Tree2" parent="." instance=ExtResource("31_t8gop")]
+position = Vector2(-841, -390)
+
+[node name="Tree3" parent="." instance=ExtResource("32_57kur")]
+position = Vector2(-678, -419)
+
+[node name="FallenTree" parent="." instance=ExtResource("33_gy7qm")]
+position = Vector2(-1219, -152)
+
+[node name="FallenTree2" parent="." instance=ExtResource("34_w45en")]
+position = Vector2(-829, -120)
+
+[node name="TrashCan2" parent="." instance=ExtResource("35_sqfay")]
+position = Vector2(-936, 217)
+
+[node name="Log" parent="." instance=ExtResource("36_0sxu3")]
+position = Vector2(-1045, 172)
+
+[node name="TrashCan" parent="." instance=ExtResource("37_7q8re")]
+position = Vector2(-866, 152)
+
+[node name="WaterFountain2" parent="." instance=ExtResource("38_i01l7")]
+position = Vector2(-1163, 80)
+
+[node name="Snake_Enemy" parent="." instance=ExtResource("39_2xwqi")]
+position = Vector2(-33, -222)

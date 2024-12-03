@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://b2o7lwc476bh4" path="res://Environment/Decoration/Log.png" id="1_sbfn5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iafyx"]
-radius = 7.79456
-height = 23.9285
+radius = 5.0
+height = 19.0
 
 [node name="Log" type="Sprite2D"]
 texture_filter = 1
@@ -15,6 +15,6 @@ texture = ExtResource("1_sbfn5")
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0.499997, 3)
+position = Vector2(-0.5, 3)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iafyx")

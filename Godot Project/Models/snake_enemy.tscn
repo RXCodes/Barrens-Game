@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://ge1chou4evxe"]
+[gd_scene load_steps=40 format=3 uid="uid://ge1chou4evxe"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_j3v26"]
 [ext_resource type="Script" path="res://Models/snake_enemy.gd" id="2_jrh8w"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://b0lnplpvs5h" path="res://ModelContents/Enemies/Snake Idle/frame_00_delay-0.2s.png" id="20_47lno"]
 [ext_resource type="Texture2D" uid="uid://o0xoqtybpwex" path="res://ModelContents/Enemies/Snake Idle/frame_01_delay-0.2s.png" id="21_ya6xb"]
 [ext_resource type="Texture2D" uid="uid://bxj6k5goamevp" path="res://ModelContents/Enemies/Snake Idle/frame_12_delay-0.1s.png" id="22_np46c"]
+[ext_resource type="Texture2D" path="res://ModelContents/Enemies/Snake_Enemy_Dead/Snake attack.png" id="23_1lna4"]
 [ext_resource type="Texture2D" uid="uid://casd58wdw55gd" path="res://ModelContents/Enemies/Snake Idle/frame_13_delay-0.2s.png" id="23_fssmk"]
 [ext_resource type="Texture2D" uid="uid://bbuwp4yuvxvkk" path="res://ModelContents/Enemies/Snake Idle/frame_14_delay-0.2s.png" id="24_1sh2c"]
 [ext_resource type="Texture2D" uid="uid://domq4gu10x5ad" path="res://ModelContents/Enemies/Snake Idle/frame_15_delay-0.2s.png" id="25_4o5nt"]
@@ -84,6 +85,17 @@ animations = [{
 "loop": false,
 "name": &"Attack",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 5.0,
+"texture": ExtResource("23_1lna4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_1lna4")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -462,9 +474,7 @@ offset = Vector2(0, -39.2243)
 position = Vector2(-1.33514e-05, 31)
 scale = Vector2(0.305638, 0.254181)
 sprite_frames = SubResource("SpriteFrames_rc37x")
-animation = &"Attack"
-frame = 12
-frame_progress = 1.0
+animation = &"Death"
 offset = Vector2(-68.6747, -118.026)
 
 [node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Snake_Enemy/ColliderBox/FlipTransform"]

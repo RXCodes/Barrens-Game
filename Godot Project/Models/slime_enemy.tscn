@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bkp4ikyughfp2"]
+[gd_scene load_steps=51 format=3 uid="uid://bkp4ikyughfp2"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_du5u0"]
 [ext_resource type="Script" path="res://Models/slime_enemy.gd" id="2_2hwj0"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://duoacp7ubkp7y" path="res://ModelContents/Enemies/Slime Attack/24.png" id="27_jphvj"]
 [ext_resource type="Texture2D" uid="uid://iecbmwst53gs" path="res://ModelContents/Enemies/Slime Attack/25.png" id="28_l3gd0"]
 [ext_resource type="Texture2D" uid="uid://qcp5qr15j3x3" path="res://ModelContents/Enemies/Slime Attack/26.png" id="29_3ssli"]
+[ext_resource type="Texture2D" uid="uid://b2o6pm317k31y" path="res://ModelContents/Enemies/Slime_Enemy_Dead/Slime Dead.PNG" id="30_y2ra2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 10.2907
@@ -159,7 +160,7 @@ animations = [{
 "texture": ExtResource("26_d85ad")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_3g7ej")
+"texture": ExtResource("30_y2ra2")
 }],
 "loop": false,
 "name": &"Death",

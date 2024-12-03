@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br3hdm7fg53r5"
-path="res://.godot/imported/Scorpion_Still.PNG-33ba91ac834d84fa2c1a20fda976c10b.ctex"
+uid="uid://c2v7yu3alaa7b"
+path="res://.godot/imported/Dead Snake.PNG-a07815a3f453a9cb69c1e89162c1d7ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModelContents/Enemies/Scorpion_Enemy_Still/Scorpion_Still.PNG"
-dest_files=["res://.godot/imported/Scorpion_Still.PNG-33ba91ac834d84fa2c1a20fda976c10b.ctex"]
+source_file="res://ModelContents/Enemies/Snake_Enemy_Dead/Dead Snake.PNG"
+dest_files=["res://.godot/imported/Dead Snake.PNG-a07815a3f453a9cb69c1e89162c1d7ec.ctex"]
 
 [params]
 

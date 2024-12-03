@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dkive8ayq2yon" path="res://Environment/Decoration/TrashCan.png" id="1_qfb0b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ijcnl"]
-radius = 11.0
-height = 33.0
+radius = 6.29456
+height = 22.0
 
 [node name="TrashCan" type="Sprite2D"]
 texture_filter = 1
@@ -15,6 +15,6 @@ texture = ExtResource("1_qfb0b")
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1.46423, 8.70544)
+position = Vector2(0.5, 11.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ijcnl")

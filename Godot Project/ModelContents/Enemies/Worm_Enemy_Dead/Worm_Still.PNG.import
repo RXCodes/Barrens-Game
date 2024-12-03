@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8vqt3ejkpkxu"
-path="res://.godot/imported/Snake_Still.PNG-7786c0fb76ee09d0307c158fb3d64bb2.ctex"
+uid="uid://c41vu2uwx1ekr"
+path="res://.godot/imported/Worm_Still.PNG-12acfbd76285f17c7726848487baafd8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModelContents/Enemies/Snake_Enemy_Still/Snake_Still.PNG"
-dest_files=["res://.godot/imported/Snake_Still.PNG-7786c0fb76ee09d0307c158fb3d64bb2.ctex"]
+source_file="res://ModelContents/Enemies/Worm_Enemy_Dead/Worm_Still.PNG"
+dest_files=["res://.godot/imported/Worm_Still.PNG-12acfbd76285f17c7726848487baafd8.ctex"]
 
 [params]
 
