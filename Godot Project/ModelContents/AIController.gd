@@ -440,6 +440,7 @@ var dead = false
 func kill() -> void:
 	if dead:
 		return
+	enemyDied.emit()
 	onDeath()
 	dead = true
 	hitBoxRigidBody.collision_mask = 0
@@ -550,6 +551,9 @@ signal enemyAnimationFinished
 
 # when the enemy was damaged
 signal enemyDamaged
+
+# when the enemy has been killed
+signal enemyDied
 
 #            #
 # STRUCTURES #

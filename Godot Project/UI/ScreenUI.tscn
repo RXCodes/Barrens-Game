@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=64 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ddxuv6xx34fja" path="res://UI/PlayerHealthBarOver.png" id="13_aieh8"]
 [ext_resource type="AudioStream" uid="uid://dwue7dxw755h" path="res://UI/WeaponPick.mp3" id="13_c8cim"]
 [ext_resource type="Texture2D" uid="uid://cycyexib503yu" path="res://UI/WhiteVignette.png" id="18_nr68i"]
+[ext_resource type="Script" path="res://UI/WaveInfoDisplay.gd" id="19_5h3i8"]
 [ext_resource type="Script" path="res://UI/HurtVignette.gd" id="19_cvkcw"]
 [ext_resource type="Texture2D" uid="uid://o7g6hva8yyic" path="res://UI/UpgradesListButton.png" id="24_ukd3x"]
 [ext_resource type="Script" path="res://UI/UpgradesListButton.gd" id="25_48dft"]
@@ -43,6 +44,8 @@
 [ext_resource type="Shader" path="res://Environment/Blur.gdshader" id="40_kju6r"]
 [ext_resource type="Shader" path="res://Environment/ScreenShader.gdshader" id="42_yj7vc"]
 [ext_resource type="PackedScene" uid="uid://c3n2txcgiplvt" path="res://UI/TextAlert.tscn" id="43_qyj2u"]
+[ext_resource type="Texture2D" uid="uid://cjdf25vyfl13e" path="res://UI/EnemyIcon.png" id="44_2b04s"]
+[ext_resource type="Texture2D" uid="uid://bkbpicxgyxpa" path="res://UI/WaveIcon.png" id="45_856uh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
 font = ExtResource("7_egwtw")
@@ -353,6 +356,46 @@ offset_top = 0.800037
 offset_right = 147.0
 offset_bottom = 26.8
 scale = Vector2(1.2, 1.2)
+text = "0
+"
+label_settings = ExtResource("8_75vom")
+metadata/_edit_use_anchors_ = true
+
+[node name="WaveInfoDisplay" type="Node2D" parent="."]
+position = Vector2(-623, -269)
+script = ExtResource("19_5h3i8")
+
+[node name="Enemies" type="Sprite2D" parent="WaveInfoDisplay"]
+texture_filter = 1
+position = Vector2(18, 0)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("44_2b04s")
+
+[node name="Amount" type="Label" parent="WaveInfoDisplay/Enemies"]
+texture_filter = 1
+offset_left = 10.8
+offset_top = -5.60001
+offset_right = 121.8
+offset_bottom = 20.4
+scale = Vector2(0.6, 0.6)
+text = "0
+"
+label_settings = ExtResource("8_75vom")
+metadata/_edit_use_anchors_ = true
+
+[node name="Wave" type="Sprite2D" parent="WaveInfoDisplay"]
+texture_filter = 1
+position = Vector2(18, 40)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("45_856uh")
+
+[node name="Amount" type="Label" parent="WaveInfoDisplay/Wave"]
+texture_filter = 1
+offset_left = 10.8
+offset_top = -5.60001
+offset_right = 121.8
+offset_bottom = 20.4
+scale = Vector2(0.6, 0.6)
 text = "0
 "
 label_settings = ExtResource("8_75vom")

@@ -18,8 +18,11 @@ func _ready() -> void:
 	# here we can start waves
 	await TimeManager.wait(4.5)
 	WaveDisplay.start(1, 30)
-	startSpawnLoop()
+	startItemSpawnLoop()
 	prepareEnemies()
+	WaveInfoDisplay.setCurrentWave(1, false)
+	WaveInfoDisplay.setEnemyCount(targetEnemyCount, false)
+	WaveInfoDisplay.revealDisplay()
 	await TimeManager.wait(30)
 	
 	# the game loop: prepare enemies -> wait -> spawn enemies -> wait for player to complete wave -> repeat
@@ -42,6 +45,8 @@ func _ready() -> void:
 		await TimeManager.wait(2.0)
 		WaveDisplay.start(currentWave, 25)
 		prepareEnemies()
+		WaveInfoDisplay.setCurrentWave(currentWave)
+		WaveInfoDisplay.setEnemyCount(targetEnemyCount)
 		await TimeManager.wait(26)
 
 var minimumSpawningRadiusSquared = 1000 ** 2
@@ -59,6 +64,7 @@ var enemySpawnNames = []
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
 	var amountToSpawn = sqrt(((20 * (currentWave - 1)) ** 1.25) * (currentWave - 1) * 0.3)
+	amountToSpawn += randfn(0, 5)
 	amountToSpawn = clampf(amountToSpawn, 10, 150)
 	targetEnemyCount = round(amountToSpawn)
 	
@@ -97,14 +103,16 @@ func spawnEnemies() -> void:
 				continue
 			
 			# determine if this enemy should be a variant
+			var enemyAI: EnemyAI = enemy.get_children()[0]
 			var variantChance = variationChances[enemySpawnNames[index]]
 			if randf() <= variantChance:
-				var enemyAI: EnemyAI = enemy.get_children()[0]
 				enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
 			
 			# add the enemy to the scene then move on to the next enemy
 			NodeRelations.rootNode.find_child("Level").add_child(enemy)
+			enemyAI.enemyDied.connect(enemyKilled)
 			enemy.add_to_group("Enemy")
+			
 			enemy.position = randomPoint
 			index += 1
 			await TimeManager.wait(0.01)
@@ -161,7 +169,7 @@ func _process(delta: float) -> void:
 		if enemyCount == 0:
 			completedWave.emit()
 
-func startSpawnLoop() -> void:
+func startItemSpawnLoop() -> void:
 	while not Player.current.dead:
 		# determine a random point on the traversable map
 		var randomPoint = getRandomSpawnPoint()
@@ -181,3 +189,8 @@ func startSpawnLoop() -> void:
 			var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 			Item.spawnItem(potions.pick_random(), randi_range(1, 2), randomPoint)
 		await TimeManager.wait(1.0)
+
+# called every time an enemy has been killed
+func enemyKilled() -> void:
+	targetEnemyCount -= 1
+	WaveInfoDisplay.setEnemyCount(targetEnemyCount)
