@@ -70,6 +70,14 @@ func _ready() -> void:
 				newUpgradeAmounts[s] = upgradeAmounts[s]
 			description = upgrade.getDescription(newUpgradeAmounts)
 			automaticallyPopulateDescription = true
+	if type == ItemType.ITEM:
+		var item: Item.Entity = Item.getEntity(itemIdentifier)
+		if displayName.is_empty():
+			displayName = item.displayName
+		if not displayTexture:
+			displayTexture = item.itemTexture
+		if description.is_empty():
+			description = item.description
 
 func purchasedItem() -> void:
 	if limitSales:

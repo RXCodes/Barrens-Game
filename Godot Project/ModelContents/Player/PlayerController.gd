@@ -155,6 +155,7 @@ var shopPriceDivisor: float = 1.0
 var bountyMultiplier: float = 0.0
 var compoundInterest: float = 0.0
 var lifestealMultiplier: float = 0.0
+var unlimitedSprint: bool = false
 
 # statistics
 var totalCashEarned: int = 0
@@ -230,6 +231,8 @@ func _physics_process(delta: float) -> void:
 		currentAnimation = IDLE
 		walking = false
 	sprintPower = clampf(sprintPower, 0.0, 100.0)
+	if unlimitedSprint:
+		sprintPower = 100.0
 	
 	# move player hitbox
 	if hitboxShape:

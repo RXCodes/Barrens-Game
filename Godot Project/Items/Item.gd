@@ -32,6 +32,9 @@ static func registerItem(entity: Item.Entity) -> void:
 	print("Registered item with identifier: " + entity.identifier)
 	itemData[entity.identifier] = entity
 
+static func getEntity(identifier: String) -> Item.Entity:
+	return itemData[identifier]
+
 func setupWithItemEntity(newEntity: Item.Entity) -> void:
 	entity = newEntity.copy()
 	$Item.texture = newEntity.itemTexture
