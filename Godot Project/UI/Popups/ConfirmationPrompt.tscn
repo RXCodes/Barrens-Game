@@ -92,9 +92,9 @@ script = ExtResource("8_wrk2h")
 
 [node name="Title" type="Label" parent="Popup/SquareUI"]
 layout_mode = 0
-offset_left = 53.5
+offset_left = 10.6
 offset_top = 3.0
-offset_right = 539.5
+offset_right = 743.6
 offset_bottom = 44.0
 scale = Vector2(0.35, 0.35)
 text = "Title"

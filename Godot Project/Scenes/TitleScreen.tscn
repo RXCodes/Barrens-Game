@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bc7hpgmmusmbv"]
+[gd_scene load_steps=22 format=3 uid="uid://bc7hpgmmusmbv"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_nyisu"]
 [ext_resource type="Texture2D" uid="uid://b0tbduu8itbyj" path="res://Environment/MainMenuBackgroundGradient.png" id="1_tkqks"]
@@ -31,6 +31,37 @@ seamless = true
 seamless_blend_skirt = 0.13
 color_ramp = SubResource("Gradient_elaae")
 noise = SubResource("FastNoiseLite_7nme7")
+
+[sub_resource type="GDScript" id="GDScript_n2iuh"]
+resource_name = "StartGame"
+script/source = "extends TextureButton
+
+func _on_pressed() -> void:
+	if not TitleScreenManager.canInteract or GamePopup.current:
+		return
+	if not Save.loadValue(\"completedTutorial\", false):
+		GamePopup.openPopup(\"ConfirmationPrompt\", {
+			\"title\": \"Play the tutorial first?\",
+			\"description\": \"It looks like you haven't played the tutorial. Are you sure you want to continue?\",
+			\"cancelText\": \"Go Back\",
+			\"confirmText\": \"Play Game\",
+			\"signalID\": \"NoTutorial\"
+		})
+		return
+	GamePopup.openPopup(\"StartGame\")
+
+func _on_mouse_entered() -> void:
+	get_parent().self_modulate = Color(0.7, 0.7, 0.7)
+
+func _on_mouse_exited() -> void:
+	get_parent().self_modulate = Color.WHITE
+
+func _ready() -> void:
+	ConfirmationPrompt.onAccept(\"NoTutorial\", func():
+		await TimeManager.wait(0.25)
+		GamePopup.openPopup(\"StartGame\")
+	)
+"
 
 [sub_resource type="GDScript" id="GDScript_8j3o8"]
 resource_name = "StartGame"
@@ -429,9 +460,7 @@ offset_right = 179.0
 offset_bottom = 22.0
 shortcut_feedback = false
 shortcut_in_tooltip = false
-script = SubResource("GDScript_8j3o8")
-popupName = "StartGame"
-temporaryFlag = "startedGame"
+script = SubResource("GDScript_n2iuh")
 
 [node name="StartTutorial" type="Label" parent="GameButtons"]
 offset_left = 432.0

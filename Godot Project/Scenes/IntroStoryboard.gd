@@ -29,12 +29,8 @@ func _ready() -> void:
 	var promptedIntro = Save.getTemporaryValue("promptedIntro", false)
 	if not promptedIntro:
 		var watchedIntro = Save.loadValue("watchedIntro", false)
-		var completedTutorial = Save.loadValue("completedTutorial", false)
 		if watchedIntro:
-			if not completedTutorial:
-				NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
-			else:
-				NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
+			NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
 			return
 	
 	preloadParticles()
@@ -309,7 +305,4 @@ func _ready() -> void:
 		return
 	Save.saveValue("watchedIntro", true)
 	await TimeManager.wait(3.0)
-	if promptedIntro:
-		NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
-	else:
-		NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
+	NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
