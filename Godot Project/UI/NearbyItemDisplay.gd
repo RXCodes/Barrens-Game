@@ -6,8 +6,8 @@ func setupWithItemPickUp(itemPickUp: NearbyItemsListInteractor.ItemPickup) -> vo
 	item = itemPickUp
 	$Shop/Title.text = itemPickUp.displayName
 	$ItemFrame/Mask/Preview.texture = itemPickUp.texture
-	$ItemFrame/Amount.text = "x" + str(itemPickUp.amount)
-	$ItemFrame/Amount.visible = itemPickUp.amount != 1
+	$ItemFrame/Mask/Amount.text = "x" + str(itemPickUp.amount)
+	$ItemFrame/Mask/Amount.visible = itemPickUp.amount != 1
 	if itemPickUp.type == NearbyItemsListInteractor.ItemType.WEAPON:
 		$Shop/Type.text = "Weapon"
 		$ItemFrame/Mask/Preview.scale = Vector2(0.5, 0.5)

@@ -30,6 +30,8 @@ func _ready() -> void:
 	hideItemInfo()
 
 static func selectSlot(index: int) -> void:
+	if getCurrentItem():
+		promptTip()
 	for slot in slots:
 		if not is_instance_valid(slot):
 			continue
@@ -71,6 +73,15 @@ func _input(event: InputEvent) -> void:
 			"5": selectSlot(2)
 			"6": selectSlot(3)
 			"7": selectSlot(4)
+
+# prompt a tip that can help users
+static var promptedTip = false
+static func promptTip() -> void:
+	if promptedTip:
+		return
+	promptedTip = true
+	await TimeManager.wait(2.0)
+	TextAlert.setupAlert("TIP: Right click to drop items.", Color.HOT_PINK)
 
 # picks up an item and attempts to collect all of it
 # returns false if none of the items can be picked up (inventory full)

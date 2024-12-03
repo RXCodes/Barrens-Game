@@ -5532,6 +5532,17 @@ limitAmount = 1
 canRestock = true
 restockAmount = 1
 
+[node name="Grenade" type="Node" parent="Level/ShopVan7"]
+script = ExtResource("47_ud1rn")
+price = 120
+type = 1
+itemIdentifier = "Grenade"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 3
+canRestock = true
+restockAmount = 2
+
 [node name="ShopVan8" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(5124, 899)
 
@@ -5599,6 +5610,17 @@ limitSales = true
 limitAmount = 1
 canRestock = true
 restockTime = 90
+restockAmount = 1
+
+[node name="Molotov" type="Node" parent="Level/ShopVan8"]
+script = ExtResource("47_ud1rn")
+price = 110
+type = 1
+itemIdentifier = "MolotovCocktail"
+upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 1
+canRestock = true
 restockAmount = 1
 
 [node name="BorderVertical9" type="NinePatchRect" parent="Level"]

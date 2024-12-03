@@ -1,3 +1,5 @@
+static var active = false
+
 static func setup() -> void:
 	var item = Item.Entity.new()
 	item.identifier = "PotionOfRage"
@@ -11,13 +13,15 @@ static func setup() -> void:
 
 static func onConsume() -> void:
 	TextAlert.setupAlert("granted 100% critical damage for 15 s", Color.DEEP_SKY_BLUE)
-	Player.current.criticalDamageMultiplier *= 10000
+	Player.current.criticalDamageMultiplier += 100000
+	active = true
 	await TimeManager.wait(15)
-	Player.current.criticalDamageMultiplier /= 10000
+	active = false
+	Player.current.criticalDamageMultiplier -= 100000
 
 static func consumeTest() -> bool:
 	# cannot consume this potion again if rage is already active
-	if Player.current.criticalDamageMultiplier >= 10000:
+	if active:
 		TextAlert.setupAlert("Rage is already active!", Color.TOMATO)
 		return false
 	return true

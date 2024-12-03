@@ -71,7 +71,7 @@ func _ready() -> void:
 			move_child(spacer, discoveredItems.size())
 			
 		# iterate through all discovered items to make sure they're still within range
-		for item: Node2D in discoveredItems:
+		for item in discoveredItems:
 			var distanceSquared = Player.current.global_position.distance_squared_to(item.global_position)
 			if distanceSquared <= (scanRadius * Player.current.pickUpRangeMultiplier) ** 2:
 				continue
@@ -80,6 +80,10 @@ func _ready() -> void:
 			
 		# when there's no item, show indication
 		$"../../../NoItems".visible = discoveredItems.size() == 0
+
+static func removeItem(item: Node) -> void:
+	item.pickupItem.itemDisplay.queue_free()
+	current.discoveredItems.erase(item)
 
 static func pickupItem(itemPickup: ItemPickup) -> void:
 	if itemPickup.type == ItemType.WEAPON:

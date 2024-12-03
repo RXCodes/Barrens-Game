@@ -4,7 +4,9 @@ var entity: Item.Entity
 var pickupItem: NearbyItemsListInteractor.ItemPickup
 var canBePickedUp = true
 var pickingUp = false
+var pickupDistance = 120
 var pickupDuration = 0.25
+var autoPickupDelay = 1.5
 static var itemData = {}
 
 static func _static_init() -> void:
@@ -21,19 +23,22 @@ static func _static_init() -> void:
 				print("Setup item: " + itemPath)
 	print("------- End setup items -------")
 
-static func spawnItem(identifier: String, amount: int, position: Vector2) -> void:
+static func spawnItem(identifier: String, amount: int, position: Vector2) -> Item:
+	if identifier not in itemData.keys():
+		return
 	var newItem: Item = preload("res://Items/Item.tscn").instantiate()
 	newItem.setupWithItemEntity(itemData[identifier])
 	newItem.entity.amount = amount
 	newItem.global_position = position
 	NodeRelations.rootNode.find_child("Level").add_child(newItem)
+	return newItem
 
 static func registerItem(entity: Item.Entity) -> void:
 	print("Registered item with identifier: " + entity.identifier)
 	itemData[entity.identifier] = entity
 
 static func getEntity(identifier: String) -> Item.Entity:
-	return itemData[identifier]
+	return itemData.get(identifier)
 
 func setupWithItemEntity(newEntity: Item.Entity) -> void:
 	entity = newEntity.copy()
@@ -60,6 +65,14 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Player.current.dead:
 		return
+	autoPickupDelay -= delta
+	if autoPickupDelay <= 0.0 and not pickingUp:
+		if Save.loadValue("autoPickupItems", true):
+			var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
+			if distanceToPlayerSquared <= (pickupDistance * Player.current.pickUpRangeMultiplier) ** 2:
+				if pickupItem:
+					NearbyItemsListInteractor.removeItem(self)
+				pickup()
 	if pickingUp:
 		pickupAnimationProgress += delta / pickupDuration
 		var targetPosition = Player.current.global_position + Vector2(0, -35)

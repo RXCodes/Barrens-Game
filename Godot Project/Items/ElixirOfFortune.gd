@@ -1,3 +1,5 @@
+static var active = false
+
 static func setup() -> void:
 	var item = Item.Entity.new()
 	item.identifier = "ElixirOfFortune"
@@ -11,9 +13,15 @@ static func setup() -> void:
 
 static func onConsume() -> void:
 	TextAlert.setupAlert("granted 5x cash for 60 s", Color.DEEP_SKY_BLUE)
-	Player.current.enemyCashDropMultiplier *= 5.0
+	var amountAdded = Player.current.enemyCashDropMultiplier * 4.0
+	Player.current.enemyCashDropMultiplier += amountAdded
+	active = true
 	await TimeManager.wait(60)
-	Player.current.enemyCashDropMultiplier /= 5.0
+	active = false
+	Player.current.enemyCashDropMultiplier -= amountAdded
 
 static func consumeTest() -> bool:
+	if active:
+		TextAlert.setupAlert("Elixir of fortune is already active!", Color.TOMATO)
+		return false
 	return true

@@ -64,10 +64,13 @@ func _on_button_button_down() -> void:
 				Player.current.pickupAmmo()
 			if selectedShopItem.type == ShopItem.ItemType.GUN:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
-				EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
-				await get_tree().physics_frame
 				newGun.currentMagCapacity = newGun.maximumMagCapacity
 				newGun.leftoverAmmoCount = newGun.startingAmmoCount
+				if Save.loadValue("autoPickupWeapons", true):
+					Player.current.pickupWeapon(newGun)
+					TextAlert.setupAlert("Automatically equipped " + newGun.displayName, Color.WHITE)
+				else:
+					EnemySpawner.spawnWeapon(newGun, Player.current.global_position)
 				GamePopup.closeCurrent()
 			if selectedShopItem.type == ShopItem.ItemType.UPGRADE:
 				var newUpgrade: Upgrade = load("res://Upgrades/" + selectedShopItem.itemIdentifier + ".tscn").instantiate()

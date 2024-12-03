@@ -520,6 +520,7 @@ func selectWeapon(gun: Gun) -> void:
 
 func pickupWeapon(gun: Gun) -> void:
 	selectWeapon(gun)
+	TextAlert.setupAlert("Equipped " + gun.displayName, Color.WHITE)
 	
 	# if you only have a single gun, the new gun can populate the second slot
 	if holdingWeapons.size() == 1:
@@ -548,7 +549,8 @@ func applyPoison(time: float) -> void:
 
 # drops an item at the player's position
 func dropItem(item: Item.Entity) -> void:
-	Item.spawnItem(item.identifier, item.amount, global_position)
+	var spawnedItem = Item.spawnItem(item.identifier, item.amount, global_position)
+	spawnedItem.autoPickupDelay = 30
 	TextAlert.setupAlert("Dropped " + item.displayName, Color.WHITE)
 	$Click.play()
 
