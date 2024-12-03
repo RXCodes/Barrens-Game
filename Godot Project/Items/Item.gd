@@ -80,19 +80,20 @@ func pickup() -> void:
 	$AnimationPlayer.play("Pickup")
 	remove_from_group("Item")
 
-# override this method to define what happens when the user consumes this item
-# if left blank, the item will not be a consumable
-func onConsume() -> void:
-	pass
-
 class Entity extends Node:
 	var identifier: String
 	var displayName: String
 	var description: String
 	var itemTexture: Texture2D
 	var itemOffset: Vector2
+	var consumable: bool = false
 	var amount: int = 1
+	
+	## override this method to define what happens when the user consumes this item
 	var onConsume: Callable
+	
+	## this method should return bool and determines if an item can be consumed at a given point
+	var consumeTest: Callable
 	
 	func copy() -> Item.Entity:
 		var copy = Item.Entity.new()
@@ -101,6 +102,9 @@ class Entity extends Node:
 		copy.description = description
 		copy.itemTexture = itemTexture
 		copy.itemOffset = itemOffset
+		copy.consumable = consumable
+		copy.onConsume = onConsume
+		copy.consumeTest = consumeTest
 		copy.amount = amount
 		copy.onConsume = onConsume
 		return copy

@@ -549,9 +549,13 @@ func dropItem(item: Item.Entity) -> void:
 	TextAlert.setupAlert("Dropped " + item.displayName, Color.WHITE)
 	$Click.play()
 
-# handle item interaction for inventories
+# handle item interaction for the currently selected item (right click on item)
 func handleItemInteraction() -> void:
 	var currentItem = InventoryManager.getCurrentItem()
-	if currentItem.onConsume:
+	if currentItem.consumable and currentItem.onConsume:
+		if currentItem.consumeTest:
+			var result = currentItem.consumeTest.call()
+			if not result:
+				return
 		InventoryManager.consumeItem()
 		currentItem.onConsume.call()

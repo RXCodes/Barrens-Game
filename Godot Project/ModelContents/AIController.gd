@@ -465,6 +465,12 @@ func kill() -> void:
 		await TimeManager.wait(0.05)
 	flashWhite(true)
 	await TimeManager.wait(0.05)
+	
+	# rare chance to spawn a lucky coin
+	var roll = randi_range(1, 150)
+	if roll == 1:
+		Item.spawnItem("LuckyCoin", 1, collisionRigidBody.global_position)
+	
 	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)
 	enemies.erase(self)
 	var cashAmountToDrop = ceil(randfn(cashDrop, cashDropVariance) * Player.current.enemyCashDropMultiplier)
