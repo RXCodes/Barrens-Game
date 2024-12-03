@@ -84,4 +84,5 @@ func _on_button_button_down() -> void:
 	else:
 		MoneyDisplay.error()
 		$"../../../../../Error".play()
+		TextAlert.setupAlert("Insufficient funds!", Color.TOMATO)
 	refreshShopItems()

@@ -300,7 +300,6 @@ restockAmount = 1
 script = ExtResource("20_hs1rk")
 displayName = "Lucky Coin"
 displayTexture = ExtResource("21_yy8wj")
-displayScale = 0.5
 price = 50
 description = "Salted, polished, and works with any gun."
 type = 1

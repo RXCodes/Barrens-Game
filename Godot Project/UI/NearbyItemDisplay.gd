@@ -10,8 +10,12 @@ func setupWithItemPickUp(itemPickUp: NearbyItemsListInteractor.ItemPickup) -> vo
 	$ItemFrame/Amount.visible = itemPickUp.amount != 1
 	if itemPickUp.type == NearbyItemsListInteractor.ItemType.WEAPON:
 		$Shop/Type.text = "Weapon"
+		$ItemFrame/Mask/Preview.scale = Vector2(0.5, 0.5)
+		$ItemFrame/Mask/Preview.offset = Vector2(-18, 0)
 	elif itemPickUp.type == NearbyItemsListInteractor.ItemType.ITEM:
 		$Shop/Type.text = "Item"
+		$ItemFrame/Mask/Preview.scale = Vector2.ONE
+		$ItemFrame/Mask/Preview.offset = Vector2.ZERO
 
 func _on_button_mouse_entered() -> void:
 	$".".modulate = Color(0.9, 0.9, 0.9, 1.0)

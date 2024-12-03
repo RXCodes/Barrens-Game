@@ -693,7 +693,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="TextAlert" parent="." instance=ExtResource("43_qyj2u")]
-position = Vector2(0, -140)
+position = Vector2(0, -112)
 
 [connection signal="mouse_entered" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UpgradesListButton" to="UpgradesListButton" method="_on_mouse_exited"]

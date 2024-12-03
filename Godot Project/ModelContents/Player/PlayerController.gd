@@ -284,8 +284,16 @@ func _input(event: InputEvent) -> void:
 		# don't register clicks when hovering over buttons
 		if Crosshair.hoveringOverButton:
 			return
+		
+		# get what the player is currently holding
+		var currentItem = InventoryManager.getCurrentItem()
+		
 		# handle left click
 		if event.button_index == 1:
+			if currentItem:
+				if event.pressed:
+					handleItemInteraction()
+				return
 			shooting = event.pressed
 			if event.pressed and gunInteractor != null:
 				var originPosition = global_position + Vector2(0, -48)
@@ -294,6 +302,9 @@ func _input(event: InputEvent) -> void:
 		# handle right click
 		elif event.button_index == 2:
 			if event.pressed:
+				if currentItem:
+					InventoryManager.dropItem()
+					return
 				if gunInteractor.currentWeapon.reloading:
 					gunInteractor.currentWeapon.cancelReload()
 				else:
@@ -309,7 +320,9 @@ func _input(event: InputEvent) -> void:
 			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
 	
 	# player is sprinting while shift is held
-	isSprinting = Input.is_key_pressed(KEY_SHIFT)
+	if event is InputEventKey:
+		var key: String = event.as_text_key_label()
+		isSprinting = key.begins_with("Shift")
 
 func onFire() -> void:
 	# briefly shake screen
@@ -330,6 +343,10 @@ func onFire() -> void:
 	var shootAnimationTime = actionAnimationPlayer.current_animation_length
 	var currentGunIdentifier = gunInteractor.currentWeapon.fileName
 	
+	# notify the player that they're out of ammo if necessary
+	if gunInteractor.currentWeapon.currentMagCapacity == 0 and gunInteractor.currentWeapon.leftoverAmmoCount == 0:
+		TextAlert.setupAlert("Out of ammo!", Color.TOMATO)
+	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
 	await TimeManager.wait(shootAnimationTime / gunInteractor.fireRateDivisor)
@@ -341,9 +358,6 @@ func onFire() -> void:
 			if gunInteractor.currentWeapon.leftoverAmmoCount > 0:
 				gunInteractor.reloadSpeedDivisor = self.reloadSpeedDivisor
 				gunInteractor.currentWeapon.reload(true)
-			else:
-				# oh, there's no leftover ammo - player can't reload
-				print("No ammo left")
 
 func onCockWeapon() -> void:
 	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
@@ -532,3 +546,12 @@ func applyPoison(time: float) -> void:
 # drops an item at the player's position
 func dropItem(item: Item.Entity) -> void:
 	Item.spawnItem(item.identifier, item.amount, global_position)
+	TextAlert.setupAlert("Dropped " + item.displayName, Color.WHITE)
+	$Click.play()
+
+# handle item interaction for inventories
+func handleItemInteraction() -> void:
+	var currentItem = InventoryManager.getCurrentItem()
+	if currentItem.onConsume:
+		InventoryManager.consumeItem()
+		currentItem.onConsume.call()
