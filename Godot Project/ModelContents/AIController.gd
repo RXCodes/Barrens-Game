@@ -476,7 +476,7 @@ func kill() -> void:
 	if randi_range(1, 60) == 1:
 		Item.spawnItem("HealthKit", randi_range(1, 2), collisionRigidBody.global_position)
 	if randi_range(1, 75) == 1:
-		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminPotion", "WarriorSerum"]
+		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(potions.pick_random(), randi_range(1, 2), collisionRigidBody.global_position)
 	
 	DeathSmokeParticles.spawnParticle(collisionRigidBody.global_position, z_index)

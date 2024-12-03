@@ -70,6 +70,8 @@ func _process(delta: float) -> void:
 		if pickupAnimationProgress >= 1.0:
 			if not InventoryManager.pickupItem(entity):
 				TextAlert.setupAlert("Your inventory is full!", Color.TOMATO)
+			else:
+				TextAlert.setupAlert("Picked up x" + str(entity.amount) +  " " + entity.displayName, Color.WHITE)
 			queue_free()
 
 var pickupAnimationProgress = 0.0
