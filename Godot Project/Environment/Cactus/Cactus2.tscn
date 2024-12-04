@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://c5mu1rilokt4f" path="res://Environment/Cactus/Cactus2.png" id="1_d56sc"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="3_lgmxt"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x5v7y"]
-radius = 4.5
-height = 17.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql36k"]
+size = Vector2(8, 20)
 
 [node name="Cactus" type="Sprite2D"]
 texture_filter = 1
@@ -17,9 +16,9 @@ offset = Vector2(0.5, -22)
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(1, -0.5)
+position = Vector2(1, -1)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_x5v7y")
+shape = SubResource("RectangleShape2D_ql36k")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.231373)

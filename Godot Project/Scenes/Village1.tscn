@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=129 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -57,8 +57,8 @@
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
 [ext_resource type="Script" path="res://Scenes/EasterEgg.gd" id="54_fqu2u"]
-[ext_resource type="PackedScene" uid="uid://7db2211c465g" path="res://Models/InvincibleDummy.tscn" id="55_133kb"]
-[ext_resource type="PackedScene" path="res://UI/WaveDisplay.tscn" id="57_g185c"]
+[ext_resource type="PackedScene" path="res://Models/InvincibleDummy.tscn" id="55_133kb"]
+[ext_resource type="PackedScene" uid="uid://cdig706m75kke" path="res://UI/WaveDisplay.tscn" id="57_g185c"]
 [ext_resource type="Shader" path="res://Scenes/Fog.gdshader" id="60_75dms"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1kdcy"]
@@ -231,9 +231,35 @@ size = Vector2(27, 15.9632)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ak21"]
 size = Vector2(404, 24.3341)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dg2tr"]
-radius = 6.0
-height = 105.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkch0"]
+size = Vector2(17.9999, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3synn"]
+size = Vector2(17.4997, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghy5o"]
+size = Vector2(17.9999, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw7ro"]
+size = Vector2(18.4998, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6vvq"]
+size = Vector2(28.4999, 100.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhsey"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_anldv"]
+size = Vector2(52.9996, 103.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg8fw"]
+size = Vector2(20, 111.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhuj3"]
+size = Vector2(20, 101)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qjtf"]
+size = Vector2(20, 98.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1hko7"]
 size = Vector2(33.7498, 392.25)
@@ -4544,8 +4570,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard/StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(0.5, -1.00012)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_gkch0")
 
 [node name="Graveyard2" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4561,9 +4588,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard2/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 0.5)
+position = Vector2(0.5, -0.25)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_3synn")
 
 [node name="Graveyard3" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4580,8 +4607,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard3/StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(-0.5, -1.00012)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_ghy5o")
 
 [node name="Graveyard4" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4597,9 +4625,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard4/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 0.5)
+position = Vector2(2, -0.749939)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_fw7ro")
 
 [node name="Graveyard5" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4616,8 +4644,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard5/StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(3.25003, -7.75012)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_p6vvq")
 
 [node name="Graveyard6" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4633,9 +4662,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard6/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 0.5)
+position = Vector2(1, 0.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_yhsey")
 
 [node name="Graveyard7" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4651,8 +4680,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard7/StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(-0.75, -19.5001)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_anldv")
 
 [node name="Graveyard8" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4668,9 +4698,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard8/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 0.5)
+position = Vector2(-0.75, 0.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_rg8fw")
 
 [node name="Graveyard9" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4686,8 +4716,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard9/StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(3.05176e-05, 0)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_vhuj3")
 
 [node name="Graveyard10" type="Sprite2D" parent="Level"]
 y_sort_enabled = true
@@ -4703,9 +4734,9 @@ collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Graveyard10/StaticBody2D"]
 y_sort_enabled = true
-position = Vector2(0, 0.5)
+position = Vector2(0.75, 0.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_dg2tr")
+shape = SubResource("RectangleShape2D_3qjtf")
 
 [node name="Tree62" parent="Level" instance=ExtResource("39_8t8j5")]
 position = Vector2(795, 552)
