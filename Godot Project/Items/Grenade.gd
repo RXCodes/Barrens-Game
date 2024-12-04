@@ -11,7 +11,6 @@ static func setup() -> void:
 
 static func onConsume() -> void:
 	var grenade: Grenade = EnemySpawner.spawnEnemy("Grenade", Player.current.global_position)
-	await grenade.get_tree().physics_frame
 	grenade.goToPosition(Crosshair.current.cursorPosition)
 
 static func consumeTest() -> bool:

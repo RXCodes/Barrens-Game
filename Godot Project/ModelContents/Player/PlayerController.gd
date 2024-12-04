@@ -167,6 +167,9 @@ var damageDealt: float = 0
 var damageTaken: float = 0
 var bulletsFired: int = 0
 
+var burnTime = 0.0
+var fireTick = 1.0
+
 func _physics_process(delta: float) -> void:
 	if dead:
 		return
@@ -180,6 +183,14 @@ func _physics_process(delta: float) -> void:
 		if poisonTickTime <= 0.0:
 			poisonTickTime = 1.5
 			damage(randf_range(1, 2), self)
+	
+	# burning functionality
+	if burnTime > 0.0:
+		burnTime -= delta
+		fireTick -= delta
+		if fireTick <= 0.0:
+			fireTick = 1.0
+			damage(randf_range(2, 4), self)
 	
 	# passive regeneration
 	health += regenerationRate * regenerationRateMultiplier * delta

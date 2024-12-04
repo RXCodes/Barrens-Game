@@ -101,7 +101,7 @@ enum EnemyVariantType {NORMAL, ACID}
 
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
-var hitboxShape: Node2D
+var hitboxShape: CollisionShape2D
 var hitboxShapeInitialPosition: Vector2
 var flipTransform: Node2D
 var target: Node2D = Player.current
@@ -243,6 +243,7 @@ func playHitSound() -> void:
 # called when enemy is damaged
 var damageInTick := {}
 var criticalDamaged = false
+var lastTouchedMolotovFire: MolotovFire
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
@@ -256,6 +257,17 @@ func damage(amount: float, source: Node2D) -> void:
 			amount *= 12.5
 		Player.current.damageDealt += amount
 	if source is Explosion:
+		if source.isFromPlayer:
+			var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
+			var roll = randf_range(0, 100.0)
+			if criticalChance >= roll:
+				criticalDamaged = true
+				amount *= 12.5
+			Player.current.damageDealt += amount
+	
+	# burning effect from molotov
+	if source is MolotovFire:
+		lastTouchedMolotovFire = source
 		if source.isFromPlayer:
 			var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
 			var roll = randf_range(0, 100.0)
@@ -294,11 +306,16 @@ func flashWhite(flashing: bool) -> void:
 		renderer.material = defaultMaterial
 
 # called on every physics tick
+var burningTime = 0.0
+var burnTick = 1.0
+var burnFX: EntityFire
 var shapeTests: Array[ShapeIntersectionTest] = []
 func _physics_process(delta: float) -> void:
 	hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
 	if dead:
 		return
+	
+	# pathfinding and attacks
 	if hasAI:
 		if walkMovementSpeed > 0:
 			navigate()
@@ -310,7 +327,30 @@ func _physics_process(delta: float) -> void:
 					if shapeTest.onSuccess:
 						shapeTest.onSuccess.call(intersectedShapes)
 			shapeTests.clear()
+	
+	# burning effect from molotov
+	if burningTime > 0:
+		burningTime -= delta
+		burnTick -= delta
+		if not burnFX:
+			createBurnFX()
+		if burnTick <= 0:
+			damage(randf_range(2.0, 5.0), lastTouchedMolotovFire)
+			burnTick = 1.0
+	else:
+		if burnFX:
+			burnFX.stopEmitting()
+			burnFX = null
+	
 	physicsProcess(delta)
+
+# create particle effects for when the enemy is burning
+func createBurnFX() -> void:
+	burnFX = EntityFire.create()
+	hitboxShape.add_child(burnFX)
+	var width = hitboxShape.shape.get_rect().size.x / 25.0
+	var height = hitboxShape.shape.get_rect().size.y / 25.0
+	burnFX.scale = Vector2(width, height)
 
 # pathfinding and movement functionality
 var targetDistance: float = 30

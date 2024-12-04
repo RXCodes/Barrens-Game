@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://da85q1ufjxvts"]
+
+[ext_resource type="Script" path="res://Models/MolotovCocktail.gd" id="1_c1oc2"]
+[ext_resource type="AudioStream" uid="uid://ho6xpk8h1com" path="res://ModelContents/MolotovCocktail/MolotovThrow.mp3" id="2_muhcy"]
+[ext_resource type="Texture2D" uid="uid://5txeohgsusfr" path="res://Items/MolotovCocktail.png" id="4_j5go7"]
+[ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_nfn4f"]
+
+[sub_resource type="Animation" id="Animation_a3sfp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.85, 0.85)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Molotov:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 23)]
+}
+
+[sub_resource type="Animation" id="Animation_i6vst"]
+resource_name = "Summon"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466666, 0.5, 0.533333, 0.566666, 0.6, 0.633333, 0.666666, 0.7, 0.733333, 0.766666, 0.8, 0.833333, 0.866666, 0.9, 0.933333, 0.966666, 1, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0.487946, 0.487946), Vector2(0.476068, 0.476068), Vector2(0.46454, 0.46454), Vector2(0.453528, 0.453528), Vector2(0.443194, 0.443194), Vector2(0.433688, 0.433688), Vector2(0.425149, 0.425149), Vector2(0.417702, 0.417702), Vector2(0.411454, 0.411454), Vector2(0.406498, 0.406498), Vector2(0.402906, 0.402906), Vector2(0.400729, 0.400729), Vector2(0.4, 0.4), Vector2(0.400761, 0.4), Vector2(0.403038, 0.4), Vector2(0.406815, 0.4), Vector2(0.412061, 0.4), Vector2(0.418738, 0.4), Vector2(0.426795, 0.4), Vector2(0.43617, 0.4), Vector2(0.446791, 0.4), Vector2(0.458579, 0.4), Vector2(0.471442, 0.4), Vector2(0.485285, 0.4), Vector2(0.5, 0.4), Vector2(0.515476, 0.4), Vector2(0.531596, 0.4), Vector2(0.548236, 0.4), Vector2(0.56527, 0.4), Vector2(0.582569, 0.4), Vector2(0.6, 0.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Molotov:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466666, 0.5, 0.533333, 0.566666, 0.6, 0.633333, 0.666666, 0.7, 0.733333, 0.766666, 0.8, 0.833333, 0.866666, 0.9, 0.933333, 0.966666, 1, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -40), Vector2(0, -44.8215), Vector2(0, -49.5726), Vector2(0, -54.1842), Vector2(0, -58.5889), Vector2(0, -62.7226), Vector2(0, -66.5249), Vector2(0, -69.9404), Vector2(0, -72.9194), Vector2(0, -75.4182), Vector2(0, -77.4007), Vector2(0, -78.8377), Vector2(0, -79.7084), Vector2(0, -80), Vector2(0, -79.7184), Vector2(0, -78.8758), Vector2(0, -77.4785), Vector2(0, -75.5373), Vector2(0, -73.0668), Vector2(0, -70.0859), Vector2(0, -66.6173), Vector2(0, -62.6873), Vector2(0, -58.3259), Vector2(0, -53.5663), Vector2(0, -48.4447), Vector2(0, -43), Vector2(0, -37.2738), Vector2(0, -31.3095), Vector2(0, -25.1527), Vector2(0, -18.85), Vector2(0, -12.4496), Vector2(0, -6)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_muhcy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ocr2j"]
+_data = {
+"RESET": SubResource("Animation_a3sfp"),
+"Summon": SubResource("Animation_i6vst")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6nvjv"]
+radius = 8.0
+
+[node name="MolotovEntity" type="Node2D"]
+script = ExtResource("1_c1oc2")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RigidBody2D"]
+root_node = NodePath("../Shadow")
+libraries = {
+"": SubResource("AnimationLibrary_ocr2j")
+}
+
+[node name="Shadow" type="Sprite2D" parent="RigidBody2D"]
+self_modulate = Color(1, 1, 1, 0.286275)
+texture_filter = 1
+position = Vector2(0, -2)
+scale = Vector2(0.85, 0.85)
+texture = ExtResource("4_nfn4f")
+offset = Vector2(-1.78281, -37.0169)
+
+[node name="Molotov" type="Sprite2D" parent="RigidBody2D"]
+texture_filter = 1
+position = Vector2(-7.62939e-06, 23)
+texture = ExtResource("4_j5go7")
+offset = Vector2(-0.999998, -4.69315)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_6nvjv")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RigidBody2D"]
+max_distance = 900.0

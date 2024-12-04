@@ -1,4 +1,4 @@
-class_name Grenade extends Node2D
+class_name MolotovCocktail extends Node2D
 
 var targetPosition: Vector2
 var maxDistance = 800
@@ -10,19 +10,14 @@ func _ready() -> void:
 	# play rolling animation
 	$RigidBody2D/AnimationPlayer.play("Summon")
 	var highlight = $RigidBody2D/Grenade/Highlight
-	await TimeManager.wait(0.75)
-	for i in range(3):
-		var tween = NodeRelations.createTween()
-		tween.tween_property(highlight, "modulate", Color.WHITE, 0.1)
-		tween.tween_property(highlight, "modulate", Color.TRANSPARENT, 0.1)
-		await TimeManager.wait(0.2)
+	await TimeManager.wait(1.0)
 	
-	# create explosion
-	var explosion = Explosion.create($RigidBody2D/Grenade.global_position, 250 * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
-	explosion.isFromPlayer = true
+	# create burning area
+	var molotoveFire = MolotovFire.create($RigidBody2D/Molotov.global_position, 40 * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
+	molotoveFire.isFromPlayer = true
 	queue_free()
 
-# determines the trajectory of the grenade
+# determines the trajectory of the molotov
 func goToPosition(newTargetPosition: Vector2) -> void:
 	canTravel = true
 	var distance = global_position.distance_to(newTargetPosition)
@@ -36,7 +31,7 @@ func goToPosition(newTargetPosition: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if not canTravel:
 		return
-	$RigidBody2D/Grenade.rotation_degrees += delta * targetVelocity.x * 2
+	$RigidBody2D/Molotov.rotation_degrees += delta * targetVelocity.x * 2
 	targetVelocity *= 0.98 # damp the target velocity for smoother deceleration
 	var collision = $RigidBody2D.move_and_collide(targetVelocity * delta)
 	# the grenade cannot move anymore once it hits a wall

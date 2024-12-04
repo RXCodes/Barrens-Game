@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://digntxx61ljpx"]
+
+[ext_resource type="Texture2D" uid="uid://cudmpkepecqne" path="res://ModelContents/MolotovCocktail/Fire.png" id="1_irtlb"]
+[ext_resource type="Script" path="res://Models/EntityFire.gd" id="2_hmqy2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sedd6"]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_2cx3d"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 57.7681), 0.0, 179.671, 0, 0, Vector2(0.140449, -1.96936), 0.0, 0.0, 0, 0, Vector2(0.991573, 0.875275), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_sf5qd"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 23.6503, 0, 0, Vector2(0.050505, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_j2o6r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.184035, 0.837364), 0.0, 0.0, 0, 0, Vector2(0.370288, 1), 0.0, 0.0, 0, 0, Vector2(0.547672, 0.902419), 0.0, 0.0, 0, 0, Vector2(0.718404, 0.994579), 0.0, 0.0, 0, 0, Vector2(0.858093, 0.848207), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="Gradient" id="Gradient_i1412"]
+offsets = PackedFloat32Array(0, 0.101655, 0.716312, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Fire" type="CPUParticles2D"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_sedd6")
+scale = Vector2(2, 2)
+amount = 22
+randomness = 0.3
+texture = ExtResource("1_irtlb")
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(0, -1)
+spread = 140.0
+gravity = Vector2(0, 0)
+linear_accel_curve = SubResource("Curve_2cx3d")
+damping_min = 14.0
+damping_max = 24.0
+damping_curve = SubResource("Curve_sf5qd")
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_j2o6r")
+color_ramp = SubResource("Gradient_i1412")
+anim_speed_min = 1.0
+anim_speed_max = 1.75
+script = ExtResource("2_hmqy2")
