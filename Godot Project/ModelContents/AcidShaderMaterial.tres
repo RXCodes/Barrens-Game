@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://y2hutqkqawdw"]
+
+[ext_resource type="Shader" path="res://ModelContents/Acid.gdshader" id="1_3o02a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ecsbv"]
+noise_type = 3
+fractal_octaves = 1
+fractal_lacunarity = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yudid"]
+seamless = true
+noise = SubResource("FastNoiseLite_ecsbv")
+
+[resource]
+shader = ExtResource("1_3o02a")
+shader_parameter/scrollAmount = Vector2(0, 0.2)
+shader_parameter/multiplier = 0.01
+shader_parameter/brightness = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_yudid")

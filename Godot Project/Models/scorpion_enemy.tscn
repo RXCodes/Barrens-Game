@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=41 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
@@ -27,7 +27,7 @@
 [ext_resource type="Shader" path="res://ModelContents/DefaultEnemy.gdshader" id="21_t8a8o"]
 [ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdtfa"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bacxl"]
 shader = ExtResource("21_t8a8o")
 shader_parameter/brightness = 0.0
 
@@ -41,6 +41,9 @@ height = 75.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aosje"]
 radius = 107.0
 height = 214.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iyxph"]
+radius = 50.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ydutp"]
 animations = [{
@@ -171,7 +174,7 @@ _data = {
 [node name="Scorpion_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-material = SubResource("ShaderMaterial_bdtfa")
+material = SubResource("ShaderMaterial_bacxl")
 script = ExtResource("1_3oudb")
 entityZIndexOffset = 24
 
@@ -203,7 +206,7 @@ freeze = true
 
 [node name="Shape" type="CollisionShape2D" parent="Scorpion_Enemy/Hitbox"]
 z_index = -2
-position = Vector2(0, -38.5)
+position = Vector2(0, -37.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_rxepw")
 debug_color = Color(0.984956, 0, 0.338532, 0.42)
@@ -227,11 +230,21 @@ shape = SubResource("CapsuleShape2D_aosje")
 disabled = true
 debug_color = Color(0, 0.92, 0.720667, 0.184314)
 
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Scorpion_Enemy/ColliderBox"]
+shape = SubResource("CircleShape2D_iyxph")
+target_position = Vector2(0, 0)
+collision_mask = 5
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Scorpion_Enemy/ColliderBox"]
-path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
+avoidance_enabled = true
+radius = 200.0
+neighbor_distance = 1200.0
+time_horizon_agents = 2.0
+max_speed = 1000.0
+debug_enabled = true
 
 [node name="FlipTransform" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
 position = Vector2(0, -29)

@@ -34,7 +34,7 @@ colors = PackedColorArray(0.605274, 0.605274, 0.605274, 1, 1, 1, 1, 1)
 blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5wvo6"]
-radius = 335.006
+radius = 254.002
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_lulrj")
@@ -87,7 +87,7 @@ max_distance = 3000.0
 collision_layer = 0
 
 [node name="Hurtbox" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -4)
+position = Vector2(0, -43)
 shape = SubResource("CircleShape2D_5wvo6")
 disabled = true
 debug_color = Color(0.86, 0.2924, 0.50998, 0.0823529)

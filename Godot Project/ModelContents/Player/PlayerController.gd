@@ -169,6 +169,7 @@ var bulletsFired: int = 0
 
 var burnTime = 0.0
 var fireTick = 1.0
+var burnFX: EntityFire
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -186,11 +187,17 @@ func _physics_process(delta: float) -> void:
 	
 	# burning functionality
 	if burnTime > 0.0:
+		if not burnFX:
+			createBurnFX()
 		burnTime -= delta
 		fireTick -= delta
 		if fireTick <= 0.0:
 			fireTick = 1.0
 			damage(randf_range(2, 4), self)
+	else:
+		if burnFX:
+			burnFX.stopEmitting()
+			burnFX = null
 	
 	# passive regeneration
 	health += regenerationRate * regenerationRateMultiplier * delta
@@ -336,6 +343,13 @@ func _input(event: InputEvent) -> void:
 	# player is sprinting while shift is held
 	isSprinting = Input.is_action_pressed("shift")
 
+# create particle effects for when the enemy is burning
+func createBurnFX() -> void:
+	burnFX = EntityFire.create()
+	add_child(burnFX)
+	burnFX.position.y -= 50
+	burnFX.scale.x = 0.6
+
 func onFire() -> void:
 	# briefly shake screen
 	var recoilMultiplier = gunInteractor.currentWeapon.recoilAmount
@@ -412,6 +426,10 @@ func damage(amount: float, source: Node2D) -> void:
 				applyPoison(12.0)
 			else:
 				applyPoison(5.0)
+		
+		# lightning enemy delivers burning effect
+		if enemy.variantType == EnemyAI.EnemyVariantType.LIGHTNING:
+			burnTime = 10.0
 	
 	# apply defense
 	if defenseDivisor >= 1:

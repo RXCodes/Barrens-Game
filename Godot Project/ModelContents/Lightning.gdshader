@@ -26,19 +26,20 @@ vec3 hsv2rgb(vec3 c) {
 }
 
 void fragment() {
-	// compute the color - use noise to displace texture and adjust brightness
-	vec2 scroll = scrollAmount * TIME;
-	vec2 displacement = texture(noise_texture, SCREEN_UV + scroll).rb;
-	vec4 c = texture(screen_texture, SCREEN_UV + (displacement - vec2(0.5, 0.5)) * multiplier);
-	if (c.a < 1.0) {
-		c.a = 0.0;
-	}
+	// compute the color
+	vec4 c = texture(screen_texture, SCREEN_UV);
 	
-	// make this enemy green
+	// make this enemy yellow
 	vec3 hsv = rgb2hsv(c.rgb);
-	hsv.r += 0.7 + (displacement.x * 0.2);
-	hsv.b += -0.1 + (displacement.y * 0.15);
+	hsv.r -= 0.45;
+	hsv.b += 0.05;
 	c.rgb = hsv2rgb(hsv);
+	
+	if (c.a > 0.0001) {
+		vec2 scroll = scrollAmount * TIME;
+		vec4 noiseColor = texture(noise_texture, SCREEN_UV + scroll);
+		c.rgb += noiseColor.rgb * 0.4;
+	}
 	
 	c.rgb += brightness;
 	if (c.a > 0.0001) {

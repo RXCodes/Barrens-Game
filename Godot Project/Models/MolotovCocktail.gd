@@ -37,6 +37,6 @@ func _physics_process(delta: float) -> void:
 	$RigidBody2D/Molotov.rotation_degrees += delta * targetVelocity.x * 2
 	targetVelocity *= 0.98 # damp the target velocity for smoother deceleration
 	var collision = $RigidBody2D.move_and_collide(targetVelocity * delta)
-	# the grenade cannot move anymore once it hits a wall
+	# the molotov cannot move anymore once it hits a wall
 	if collision:
 		canTravel = false

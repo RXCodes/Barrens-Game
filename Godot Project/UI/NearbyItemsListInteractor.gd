@@ -84,6 +84,8 @@ func _ready() -> void:
 static func removeItem(item: Node) -> void:
 	if not is_instance_valid(item):
 		return
+	if not is_instance_valid(item.pickupItem.itemDisplay):
+		return
 	item.pickupItem.itemDisplay.queue_free()
 	current.discoveredItems.erase(item)
 

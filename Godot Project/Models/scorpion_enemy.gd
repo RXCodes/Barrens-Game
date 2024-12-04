@@ -10,6 +10,8 @@ signal dashComplete
 func onStart() -> void:
 	dashLoop()
 	var wave = VillageController.currentWave
+	var shapeCast: ShapeCast2D = $ColliderBox/ShapeCast2D
+	shapeCast.add_exception($Hitbox)
 	# Loop this while the enemy is alive
 	while not dead:
 		
@@ -21,18 +23,34 @@ func onStart() -> void:
 		await enemyReachedTarget
 		
 		# dash towards the player if needed
-		walkMovementSpeed = 0
 		if canDash:
-			var targetPosition = getTargetPosition()
-			await animateBrightness(0.5, 0.2)
-			await animateBrightness(0, 0.2)
-			await animateBrightness(0.5, 0.2)
-			await animateBrightness(0, 0.2)
-			dashTowardsPosition(targetPosition)
-			await dashComplete
-			activateHurtBox($ColliderBox/Hurtbox, randf_range(25, 35), HurtBoxType.PLAYER)
-			$ColliderBox/FlipTransform/Animations.stop()
-			await TimeManager.wait(0.5)
+			var trajectoryLength = 600
+			var trajectory = (getTargetPosition() - getPosition()).normalized() * trajectoryLength
+			
+			# check if the scorpion can even get to the target
+			shapeCast.target_position = trajectory
+			var shouldDash = true
+			if shapeCast.is_colliding():
+				shouldDash = false
+				for i in range(shapeCast.get_collision_count()):
+					var collider = shapeCast.get_collider(i)
+					if collider is Player:
+						shouldDash = true
+						break
+			
+			if shouldDash:
+				walkMovementSpeed = 0
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
+				dashTowardsPosition(getTargetPosition())
+				await dashComplete
+				activateHurtBox($ColliderBox/Hurtbox, randf_range(25, 35), HurtBoxType.PLAYER)
+				$ColliderBox/FlipTransform/Animations.stop()
+				await TimeManager.wait(0.5)
+			else:
+				canDash = false
 		
 		# Make the enemy attack while in range of the player
 		while withinDistanceOfTarget(100):
@@ -69,8 +87,13 @@ func physicsProcess(delta: float) -> void:
 	else:
 		setTarget(Player.current, 100)
 	if dashing:
+		# dash until it hits the player or a wall
 		var result: KinematicCollision2D = collisionRigidBody.move_and_collide(dashNormal * 12.5)
 		if result:
-			$ColliderBox/Shape.scale = Vector2(1, 1)
-			dashComplete.emit()
-			dashing = false
+			var collider = result.get_collider()
+			if collider.has_meta(EnemyAI.parentControllerKey):
+				collider = collider.get_meta(EnemyAI.parentControllerKey)
+			if collider is Player or collider is not EnemyAI:
+				$ColliderBox/Shape.scale = Vector2(1, 1)
+				dashComplete.emit()
+				dashing = false

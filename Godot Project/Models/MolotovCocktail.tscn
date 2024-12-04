@@ -139,9 +139,10 @@ texture = ExtResource("4_j5go7")
 offset = Vector2(-0.999998, -4.69315)
 
 [node name="Fire" type="CPUParticles2D" parent="RigidBody2D/Molotov"]
+show_behind_parent = true
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_86jrn")
-position = Vector2(-11, -16)
+position = Vector2(-11, -18)
 scale = Vector2(2, 2)
 amount = 30
 lifetime = 1.5

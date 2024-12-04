@@ -95,7 +95,7 @@ enum PathfindAgentSize {SMALL, MEDIUM, LARGE}
 @export var hitSoundDelay: float = 0.05
 
 @export_category("Debug")
-enum EnemyVariantType {NORMAL, ACID}
+enum EnemyVariantType {NORMAL, ACID, LIGHTNING}
 ## for debugging purposes, you can edit this variable but make sure to revert it back when done
 @export var variantType: EnemyVariantType = EnemyVariantType.NORMAL
 
@@ -126,6 +126,7 @@ func _ready() -> void:
 	if hitBackAnimation.is_empty():
 		hitBackAnimation = hitFrontAnimation
 	navigationAgent.target_reached.connect(reachedTarget)
+	navigationAgent.velocity_computed.connect(velocityComputed)
 	var children = NodeRelations.getChildrenRecursive(self)
 	for child: Node in children:
 		child.set_meta(EnemyAI.parentControllerKey, self)
@@ -146,6 +147,12 @@ func _ready() -> void:
 		damageMultiplier = 1.5
 		maxHealth *= 2.5
 		currentHealth *= 2.5
+		cashDrop *= 2.0
+	if variantType == EnemyVariantType.LIGHTNING:
+		damageMultiplier = 2.0
+		maxHealth *= 4.0
+		currentHealth *= 4.0
+		cashDrop *= 3.0
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -178,7 +185,8 @@ func _process(delta: float) -> void:
 static var flashWhiteShader = preload("res://ModelContents/EntityFlashWhite.gdshader")
 static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader")
 static var defaultEnemyShader = preload("res://ModelContents/DefaultEnemy.gdshader")
-static var acidEnemyShader = preload("res://ModelContents/Acid.gdshader")
+static var acidEnemyShaderMaterial = preload("res://ModelContents/AcidShaderMaterial.tres")
+static var lightningEnemyShaderMaterial = preload("res://ModelContents/LightningShaderMaterial.tres")
 var renderer: EntityRender
 
 # adjust brightness of enemy - used in special heavy attacks
@@ -204,7 +212,10 @@ func setVariantType(type: EnemyVariantType) -> void:
 		defaultMaterial.shader = defaultEnemyShader
 		damageMultiplier = 1.0
 	if type == EnemyVariantType.ACID:
-		defaultMaterial.shader = acidEnemyShader
+		defaultMaterial = acidEnemyShaderMaterial
+		currentHealth = maxHealth
+	if type == EnemyVariantType.LIGHTNING:
+		defaultMaterial = lightningEnemyShaderMaterial
 		currentHealth = maxHealth
 	if renderer:
 		renderer.material = defaultMaterial
@@ -390,11 +401,20 @@ func navigate() -> void:
 		mainAnimationPlayer.stop()
 		mainAnimationPlayer.play(walkAnimation)
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
-	var movementVector = pathfindDirectionVector * walkMovementSpeed
-	flipX = movementVector.x < 0
-	if movementVector.x == 0:
+	var newVelocity = pathfindDirectionVector * walkMovementSpeed
+	if not navigationAgent.avoidance_enabled:
+		collisionRigidBody.move_and_collide(newVelocity)
+	else:
+		navigationAgent.max_speed = walkMovementSpeed
+		navigationAgent.set_velocity(newVelocity)
+	flipX = newVelocity.x < 0
+	if newVelocity.x == 0:
 		faceTarget()
-	collisionRigidBody.move_and_collide(movementVector)
+
+func velocityComputed(vector: Vector2) -> void:
+	if dead:
+		return
+	collisionRigidBody.move_and_collide(vector)
 
 # called when enemy reaches its target and is ready to attack
 func reachedTarget() -> void:
