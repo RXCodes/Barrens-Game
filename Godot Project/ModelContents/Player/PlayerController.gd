@@ -323,9 +323,7 @@ func _input(event: InputEvent) -> void:
 			currentScrollZoom = minf(currentScrollZoom, maxScrollZoom)
 	
 	# player is sprinting while shift is held
-	if event is InputEventKey:
-		var key: String = event.as_text_key_label()
-		isSprinting = key.begins_with("Shift")
+	isSprinting = Input.is_action_pressed("shift")
 
 func onFire() -> void:
 	# briefly shake screen
@@ -439,7 +437,7 @@ func damage(amount: float, source: Node2D) -> void:
 	else:
 		# player cannot be hit again until 0.2s later
 		invicibilityFrame = true
-		await TimeManager.wait(0.2)
+		await TimeManager.wait(0.4)
 		invicibilityFrame = false
 
 # called when player dies

@@ -66,7 +66,8 @@ func _input(event: InputEvent) -> void:
 	if not event.is_pressed():
 		return
 	if event is InputEventKey:
-		var key = event.as_text()
+		var key = event.as_text_key_label()
+		key = key.trim_prefix("Shift+")
 		match key:
 			"3": selectSlot(0)
 			"4": selectSlot(1)

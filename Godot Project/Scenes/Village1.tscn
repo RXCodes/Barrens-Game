@@ -1,4 +1,4 @@
-[gd_scene load_steps=119 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=120 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -161,6 +161,9 @@ size = Vector2(4.26002, 4.50079)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lxle"]
 size = Vector2(499, 341)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djstj"]
+size = Vector2(509, 359)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hpu0p"]
 size = Vector2(18.2345, 11.6237)
@@ -1297,12 +1300,12 @@ shape = SubResource("RectangleShape2D_64qng")
 debug_color = Color(0, 0.595, 0.7, 0.188235)
 
 [node name="Area2D" type="Area2D" parent="Level/House14"]
-position = Vector2(-629, 119)
+position = Vector2(-624, 126)
 script = ExtResource("24_4u4j0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/House14/Area2D"]
-position = Vector2(633.5, -482.5)
-shape = SubResource("RectangleShape2D_0lxle")
+position = Vector2(628.5, -505.5)
+shape = SubResource("RectangleShape2D_djstj")
 debug_color = Color(0.77, 0.424142, 0.3927, 0.160784)
 
 [node name="House12" type="CanvasGroup" parent="Level"]
@@ -5778,10 +5781,14 @@ metadata/_edit_lock_ = true
 [connection signal="body_shape_exited" from="Level/House7/Area2D" to="Level/House7/Area2D" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="Level/House14/Area2D" to="Level/House14/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House14/Area2D" to="Level/House14/Area2D" method="_on_body_shape_exited"]
+[connection signal="mouse_entered" from="Level/House14/Area2D" to="Level/House14/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Level/House14/Area2D" to="Level/House14/Area2D" method="_on_mouse_exited"]
 [connection signal="body_shape_entered" from="Level/House12/Area2D" to="Level/House12/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House12/Area2D" to="Level/House12/Area2D" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="Level/House24/Area2D" to="Level/House24/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House24/Area2D" to="Level/House24/Area2D" method="_on_body_shape_exited"]
+[connection signal="mouse_entered" from="Level/House24/Area2D" to="Level/House24/Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Level/House24/Area2D" to="Level/House24/Area2D" method="_on_mouse_exited"]
 [connection signal="body_shape_entered" from="Level/House3/Area2D" to="Level/House3/Area2D" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="Level/House3/Area2D" to="Level/House3/Area2D" method="_on_body_shape_exited"]
 [connection signal="body_shape_entered" from="Level/House26/Area2D" to="Level/House26/Area2D" method="_on_body_shape_entered"]

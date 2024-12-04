@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=66 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -69,8 +69,14 @@ device = -1
 physical_keycode = 73
 unicode = 105
 
+[sub_resource type="InputEventKey" id="InputEventKey_wwgxh"]
+device = -1
+shift_pressed = true
+keycode = 73
+unicode = 73
+
 [sub_resource type="Shortcut" id="Shortcut_54vr2"]
-events = [SubResource("InputEventKey_pd0gf")]
+events = [SubResource("InputEventKey_pd0gf"), SubResource("InputEventKey_wwgxh")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hdjlq"]
 font = ExtResource("7_egwtw")
@@ -85,8 +91,14 @@ device = -1
 physical_keycode = 73
 unicode = 105
 
+[sub_resource type="InputEventKey" id="InputEventKey_mwkpx"]
+device = -1
+shift_pressed = true
+keycode = 73
+unicode = 73
+
 [sub_resource type="Shortcut" id="Shortcut_fmn4k"]
-events = [SubResource("InputEventKey_hcuy1")]
+events = [SubResource("InputEventKey_hcuy1"), SubResource("InputEventKey_mwkpx")]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4airn"]
 

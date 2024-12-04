@@ -63,7 +63,7 @@ var enemySpawnNames = []
 # asychronously instantiate enemy objects on another thread
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
-	var amountToSpawn = sqrt(((20 * (currentWave - 1)) ** 1.25) * (currentWave - 1) * 0.3)
+	var amountToSpawn = sqrt(((25 * (currentWave - 1) + 10) ** 1.25) * (currentWave - 1) * 0.3)
 	amountToSpawn += randfn(0, 5)
 	amountToSpawn = clampf(amountToSpawn, 10, 150)
 	targetEnemyCount = round(amountToSpawn)
@@ -169,25 +169,36 @@ func _process(delta: float) -> void:
 		if enemyCount == 0:
 			completedWave.emit()
 
+var maxItemDrops = 25
 func startItemSpawnLoop() -> void:
 	while not Player.current.dead:
+		# make sure we can never exceed over 25 items at any given time on the map
+		# this doesn't count player dropped items or items bought from shops
+		var currentItemCount = get_tree().get_nodes_in_group("SpawnedItem").size()
+		if currentItemCount >= 25:
+			await TimeManager.wait(2.0)
+			continue
+		
 		# determine a random point on the traversable map
 		var randomPoint = getRandomSpawnPoint()
 			
 		# check if it is within range of the player, but not too close
 		var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
 		if distanceSquared < minimumSpawningRadiusSquared or distanceSquared > maximumSpawningRadiusSquared:
-			await TimeManager.wait(0.01)
+			await TimeManager.wait(0.5)
 			continue
 		
 		# randomly spawn items throughout the map
-		if randi_range(1, 40) == 1:
-			Item.spawnItem("Bandages", randi_range(1, 3), randomPoint)
-		if randi_range(1, 75) == 1:
-			Item.spawnItem("HealthKit", randi_range(1, 2), randomPoint)
-		if randi_range(1, 160) == 1:
+		if randi_range(1, 60) == 1:
+			var item = Item.spawnItem("Bandages", randi_range(1, 3), randomPoint)
+			item.add_to_group("SpawnedItem")
+		if randi_range(1, 110) == 1:
+			var item = Item.spawnItem("HealthKit", randi_range(1, 2), randomPoint)
+			item.add_to_group("SpawnedItem")
+		if randi_range(1, 220) == 1:
 			var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
-			Item.spawnItem(potions.pick_random(), randi_range(1, 2), randomPoint)
+			var item = Item.spawnItem(potions.pick_random(), randi_range(1, 2), randomPoint)
+			item.add_to_group("SpawnedItem")
 		await TimeManager.wait(1.0)
 
 # called every time an enemy has been killed

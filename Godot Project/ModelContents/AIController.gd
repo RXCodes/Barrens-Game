@@ -468,15 +468,15 @@ func kill() -> void:
 	await TimeManager.wait(0.05)
 	
 	# rare chance to spawn a lucky coin
-	if randi_range(1, 150) == 1:
+	if randi_range(1, 350) == 1:
 		Item.spawnItem("LuckyCoin", 1, collisionRigidBody.global_position)
 	
 	# chances to drop random items
-	if randi_range(1, 20) == 1:
-		Item.spawnItem("Bandages", randi_range(1, 3), collisionRigidBody.global_position)
-	if randi_range(1, 60) == 1:
-		Item.spawnItem("HealthKit", randi_range(1, 2), collisionRigidBody.global_position)
 	if randi_range(1, 75) == 1:
+		Item.spawnItem("Bandages", randi_range(1, 2), collisionRigidBody.global_position)
+	if randi_range(1, 140) == 1:
+		Item.spawnItem("HealthKit", 1, collisionRigidBody.global_position)
+	if randi_range(1, 175) == 1:
 		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(potions.pick_random(), randi_range(1, 2), collisionRigidBody.global_position)
 	
