@@ -122,7 +122,7 @@ func spawnEnemies() -> void:
 					elif roll <= 8:
 						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
 					else:
-						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.INFERNO)
 			else:
 				enemyAI.setVariantType(EnemyAI.EnemyVariantType.NORMAL)
 			

@@ -36,7 +36,7 @@ void fragment() {
 	
 	// make this enemy red
 	vec3 hsv = rgb2hsv(c.rgb);
-	hsv.r += 0.4 + (displacement.x * 0.15);
+	hsv.r += 0.375 + (displacement.x * 0.075);
 	hsv.b += -0.1 + (displacement.y * 0.35);
 	c.rgb = hsv2rgb(hsv);
 	
