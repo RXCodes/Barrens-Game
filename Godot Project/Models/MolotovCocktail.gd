@@ -15,6 +15,9 @@ func _ready() -> void:
 	# create burning area
 	var molotoveFire = MolotovFire.create($RigidBody2D/Molotov.global_position, 40 * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
 	molotoveFire.isFromPlayer = true
+	$RigidBody2D/Molotov.self_modulate = Color.TRANSPARENT
+	$RigidBody2D/Shadow.queue_free()
+	await TimeManager.wait(2.0)
 	queue_free()
 
 # determines the trajectory of the molotov
