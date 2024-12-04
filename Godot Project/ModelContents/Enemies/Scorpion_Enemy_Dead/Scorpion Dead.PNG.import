@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnwemvpkki30m"
-path="res://.godot/imported/MantaRay_Still.PNG-76b2080662a9cccca5416bc3bab384a8.ctex"
+uid="uid://cl78xn6ycyxq5"
+path="res://.godot/imported/Scorpion Dead.PNG-9074d5097c9daabf7035384c3a402210.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ModelContents/Enemies/MantaRay_Enemy_Still/MantaRay_Still.PNG"
-dest_files=["res://.godot/imported/MantaRay_Still.PNG-76b2080662a9cccca5416bc3bab384a8.ctex"]
+source_file="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Scorpion Dead.PNG"
+dest_files=["res://.godot/imported/Scorpion Dead.PNG-9074d5097c9daabf7035384c3a402210.ctex"]
 
 [params]
 

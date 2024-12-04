@@ -15,8 +15,8 @@ func onStart() -> void:
 		
 		# slowly travel towards the player
 		$ColliderBox/FlipTransform/Animations.play("Idle")
-		walkMovementSpeed = 1.5
-		walkMovementSpeed = 1.5 * (1 + (wave - 6) * 0.05)
+		walkMovementSpeed = 2
+		walkMovementSpeed = 2 * (1 + (wave - 6) * 0.05)
 		walkMovementSpeed = min(walkMovementSpeed, 3)
 		await enemyReachedTarget
 		

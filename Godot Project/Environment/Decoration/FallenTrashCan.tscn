@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://d37xd83dbrt2p"]
+[gd_scene load_steps=2 format=3 uid="uid://d37xd83dbrt2p"]
 
 [ext_resource type="Texture2D" uid="uid://dnhrhhbm6krbe" path="res://Environment/Decoration/FallenTrashCan.png" id="1_hib2o"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wktc"]
-radius = 12.5
-height = 69.0
 
 [node name="TrashCan2" type="Sprite2D"]
 texture_filter = 1
@@ -14,7 +10,7 @@ texture = ExtResource("1_hib2o")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-2, 0.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_1wktc")
+polygon = PackedVector2Array(8.99991, -25.5, 3.49989, -30.5, -2.0001, -26.5, -5.00007, -20, -6.00001, -1.99998, -12, 1.00004, -14.9999, 21.5001, -6.99991, 24.5, 5.0001, 27.5, 8.00005, 13)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=40 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://hlsyugxw3ihc" path="res://ModelContents/Enemies/Scorpion Attack/frame_13_delay-0.05s.png" id="16_3bnhw"]
 [ext_resource type="Texture2D" uid="uid://dqohq0awc8pam" path="res://ModelContents/Enemies/Scorpion Attack/frame_14_delay-0.08s.png" id="17_qelig"]
 [ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
+[ext_resource type="Texture2D" uid="uid://cl78xn6ycyxq5" path="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Scorpion Dead.PNG" id="19_pt6to"]
 [ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
 [ext_resource type="Shader" path="res://ModelContents/DefaultEnemy.gdshader" id="21_t8a8o"]
 [ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
@@ -89,6 +90,20 @@ animations = [{
 "loop": false,
 "name": &"Attack",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6ngoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w21hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pt6to")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
