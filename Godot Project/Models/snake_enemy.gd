@@ -22,6 +22,7 @@ func onStart() -> void:
 				faceTarget()
 				walkMovementSpeed = 0  # Increase speed when attacking
 				# Play an attack animation
+				$ColliderBox/AttackSound.play()
 				$ColliderBox/FlipTransform/Animations.play("Attack")
 				await TimeManager.wait(.3)
 				# Use the hurtbox to deal damage to the player

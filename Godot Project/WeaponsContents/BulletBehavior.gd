@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
 	var enemyQuery = PhysicsRayQueryParameters2D.create(originPosition, global_position + projectoryVector, mask)
+	enemyQuery.hit_from_inside = true
 	var result = space_state.intersect_ray(enemyQuery)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale

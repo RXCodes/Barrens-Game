@@ -8,7 +8,7 @@ var is_player_in_range: bool = false
 func onStart() -> void:
 	var wave = VillageController.currentWave
 	if Player.current != null:
-		setTarget(Player.current, 60)
+		setTarget(Player.current, 600)
 		# Loop this while the enemy is alive
 		while not dead:
 			$ColliderBox/FlipTransform/Animations.play("Idle")
@@ -20,11 +20,16 @@ func onStart() -> void:
 			while withinRangeOfTarget():
 				# Face towards the player
 				faceTarget()
-				walkMovementSpeed = 2  # Worm moves faster when attacking
-				# Play an attack animation
-				$ColliderBox/FlipTransform/Animations.play("Attack")
-				# Use the hurtbox to deal damage to the player
-				var damage = randf_range(16, 24)  # Random float from 10 to 20
-				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
-				# Little delay before worm attacks again
-				await TimeManager.wait(2.0)
+				walkMovementSpeed = 0  # Worm doesn't move while attacking
+				# Play attack animation
+				playAnimation("Attack")
+				await enemyAnimationFinished
+				await TimeManager.wait(0.05)
+				$ColliderBox/FlipTransform/Animations.play("Idle")
+				
+				# delay before worm attacks again
+				var cooldown = max(4.0 - (wave - 11) * 0.15, 2.0)
+				await TimeManager.wait(4.0)
+
+func summonProjectile() -> void:
+	pass

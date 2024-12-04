@@ -8,15 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bhtlolytny4tn" path="res://ModelContents/Enemies/Slime Idle/frame_1_delay-0.3s.png" id="4_dgnvb"]
 [ext_resource type="Texture2D" uid="uid://bj45gl5kcbxq" path="res://ModelContents/Enemies/Slime Attack/1.png" id="4_yu6qd"]
 [ext_resource type="Texture2D" uid="uid://gs1dw8pfw7q" path="res://ModelContents/Enemies/Slime Idle/frame_2_delay-0.3s.png" id="5_hd4rk"]
-[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_jmxvo"]
 [ext_resource type="Texture2D" uid="uid://co5yi3ulma7jl" path="res://ModelContents/Enemies/Slime Attack/2.png" id="5_m501v"]
 [ext_resource type="Texture2D" uid="uid://dvo14ht1uhl0c" path="res://ModelContents/Enemies/Slime Attack/3.png" id="6_3g7ej"]
 [ext_resource type="Texture2D" uid="uid://bb4qr0or02ik6" path="res://ModelContents/Enemies/Slime Idle/frame_3_delay-0.3s.png" id="6_b7qw4"]
-[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_iefwo"]
-[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_lt26i"]
 [ext_resource type="Texture2D" uid="uid://q8xe1v28lc64" path="res://ModelContents/Enemies/Slime Attack/4.png" id="7_sa0oi"]
 [ext_resource type="Texture2D" uid="uid://b2yeynhuxame1" path="res://ModelContents/Enemies/Slime Attack/5.png" id="8_awnd4"]
-[ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_lp8jn"]
 [ext_resource type="Texture2D" uid="uid://demrqufesrrpt" path="res://ModelContents/Enemies/Slime Attack/6.png" id="9_uatc5"]
 [ext_resource type="Texture2D" uid="uid://fq76eaanh8eu" path="res://ModelContents/Enemies/Slime Attack/7.png" id="10_i8lxa"]
 [ext_resource type="Texture2D" uid="uid://c70ggamiedhok" path="res://ModelContents/Enemies/Slime Attack/8.png" id="11_q30ps"]
@@ -39,6 +35,10 @@
 [ext_resource type="Texture2D" uid="uid://iecbmwst53gs" path="res://ModelContents/Enemies/Slime Attack/25.png" id="28_l3gd0"]
 [ext_resource type="Texture2D" uid="uid://qcp5qr15j3x3" path="res://ModelContents/Enemies/Slime Attack/26.png" id="29_3ssli"]
 [ext_resource type="Texture2D" uid="uid://b2o6pm317k31y" path="res://ModelContents/Enemies/Slime_Enemy_Dead/Slime Dead.PNG" id="30_y2ra2"]
+[ext_resource type="AudioStream" uid="uid://by4qnqdvny81s" path="res://ModelContents/Enemies/SlimeJump.mp3" id="36_3fqrc"]
+[ext_resource type="AudioStream" uid="uid://f0grliu0l212" path="res://ModelContents/Enemies/SlimeLand.mp3" id="37_01ejk"]
+[ext_resource type="AudioStream" uid="uid://b6x5au3ivxvs4" path="res://ModelContents/Enemies/SlimeHit1.mp3" id="38_n24ut"]
+[ext_resource type="AudioStream" uid="uid://dwb4nnenm4bl5" path="res://ModelContents/Enemies/SlimeHit2.mp3" id="39_8sqh2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 10.2907
@@ -247,6 +247,25 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0.7, 0.7), Vector2(0.638804, 0.638804), Vector2(0.596314, 0.596314), Vector2(0.566812, 0.566812), Vector2(0.546328, 0.546328), Vector2(0.532106, 0.532106), Vector2(0.522231, 0.522231), Vector2(0.515374, 0.515374), Vector2(0.510614, 0.510614), Vector2(0.507308, 0.507308), Vector2(0.505013, 0.505013), Vector2(0.50342, 0.50342), Vector2(0.502313, 0.502313), Vector2(0.501545, 0.501545), Vector2(0.501012, 0.501012), Vector2(0.500641, 0.500641), Vector2(0.500384, 0.500384), Vector2(0.500206, 0.500206), Vector2(0.500082, 0.500082), Vector2(0.5, 0.5), Vector2(0.505234, 0.505234), Vector2(0.520934, 0.520934), Vector2(0.547102, 0.547102), Vector2(0.583737, 0.583737), Vector2(0.630839, 0.630839), Vector2(0.688408, 0.688408), Vector2(0.677033, 0.677033), Vector2(0.658477, 0.658477), Vector2(0.650389, 0.650389), Vector2(0.652768, 0.652768), Vector2(0.665614, 0.665614), Vector2(0.688927, 0.688927), Vector2(0.691825, 0.691825), Vector2(0.687543, 0.687543), Vector2(0.693728, 0.693728), Vector2(0.697145, 0.697145), Vector2(0.7, 0.7)]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("36_3fqrc")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("37_01ejk")
+}],
+"times": PackedFloat32Array(0.133333, 0.966667)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bm7uj"]
 length = 0.001
@@ -574,27 +593,26 @@ libraries = {
 "": SubResource("AnimationLibrary_4vkjs")
 }
 
+[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox"]
+position = Vector2(0.418499, -15.582)
+volume_db = 4.0
+attenuation = 0.707107
+
 [node name="HitSounds" type="Node2D" parent="Slime_Enemy/ColliderBox"]
 position = Vector2(0.418499, -15.582)
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("5_jmxvo")
-volume_db = 4.0
+stream = ExtResource("38_n24ut")
 attenuation = 0.707107
 
 [node name="Hit2" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("6_iefwo")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit3" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("7_lt26i")
-volume_db = 4.0
+stream = ExtResource("39_8sqh2")
 attenuation = 0.707107
 
 [node name="DeathSounds" type="Node2D" parent="Slime_Enemy/ColliderBox"]
 position = Vector2(0.418499, -15.582)
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Slime_Enemy/ColliderBox/DeathSounds"]
-stream = ExtResource("8_lp8jn")
-volume_db = 4.0
+stream = ExtResource("37_01ejk")
+volume_db = -1.0
+pitch_scale = 0.7

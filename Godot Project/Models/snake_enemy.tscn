@@ -2,13 +2,11 @@
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_j3v26"]
 [ext_resource type="Script" path="res://Models/snake_enemy.gd" id="2_jrh8w"]
+[ext_resource type="AudioStream" uid="uid://b25ao13jkcnem" path="res://ModelContents/Enemies/SnakeAttack.mp3" id="3_lmvuf"]
 [ext_resource type="Texture2D" uid="uid://c4rmnvat46526" path="res://ModelContents/Enemies/Snake Attack/frame_00_delay-0.2s.png" id="4_10cbw"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_py10l"]
-[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_4nv2j"]
 [ext_resource type="Texture2D" uid="uid://bobi5nnwgi3r8" path="res://ModelContents/Enemies/Snake Attack/frame_01_delay-0.2s.png" id="5_wxemh"]
-[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_dgyuq"]
 [ext_resource type="Texture2D" uid="uid://d1pkectd8nqau" path="res://ModelContents/Enemies/Snake Attack/frame_02_delay-0.2s.png" id="6_qsnhg"]
-[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_ay5ug"]
 [ext_resource type="Texture2D" uid="uid://dxbbjutdgyk30" path="res://ModelContents/Enemies/Snake Attack/frame_03_delay-0.2s.png" id="7_x6s55"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_tpaa1"]
 [ext_resource type="Texture2D" uid="uid://c2odwgfeetqq0" path="res://ModelContents/Enemies/Snake Attack/frame_04_delay-0.1s.png" id="8_xkhns"]
@@ -25,7 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://bxj6k5goamevp" path="res://ModelContents/Enemies/Snake Idle/frame_12_delay-0.1s.png" id="22_np46c"]
 [ext_resource type="Texture2D" uid="uid://casd58wdw55gd" path="res://ModelContents/Enemies/Snake Idle/frame_13_delay-0.2s.png" id="23_fssmk"]
 [ext_resource type="Texture2D" uid="uid://bbuwp4yuvxvkk" path="res://ModelContents/Enemies/Snake Idle/frame_14_delay-0.2s.png" id="24_1sh2c"]
+[ext_resource type="AudioStream" uid="uid://7kgwqu53mly1" path="res://ModelContents/Enemies/SnakeHit1.mp3" id="24_7l1tl"]
 [ext_resource type="Texture2D" uid="uid://domq4gu10x5ad" path="res://ModelContents/Enemies/Snake Idle/frame_15_delay-0.2s.png" id="25_4o5nt"]
+[ext_resource type="AudioStream" uid="uid://bdaybakd141a7" path="res://ModelContents/Enemies/SnakeHit2.mp3" id="25_cdbav"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 27.0
@@ -455,6 +455,11 @@ path_metadata_flags = 0
 radius = 30.0
 neighbor_distance = 100.0
 
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox"]
+stream = ExtResource("3_lmvuf")
+volume_db = 4.0
+attenuation = 0.707107
+
 [node name="FlipTransform" type="Node2D" parent="Snake_Enemy/ColliderBox"]
 position = Vector2(1, -41)
 
@@ -491,17 +496,12 @@ libraries = {
 [node name="HitSounds" type="Node2D" parent="Snake_Enemy/ColliderBox"]
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("5_4nv2j")
+stream = ExtResource("24_7l1tl")
 volume_db = 4.0
 attenuation = 0.707107
 
 [node name="Hit2" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("6_dgyuq")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit3" type="AudioStreamPlayer2D" parent="Snake_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("7_ay5ug")
+stream = ExtResource("25_cdbav")
 volume_db = 4.0
 attenuation = 0.707107
 

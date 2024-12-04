@@ -36,6 +36,7 @@ func onStart() -> void:
 		
 		# dash to the player
 		dashing = true
+		$ColliderBox/AttackSound.play()
 		$ColliderBox/DashParticles.emitting = true
 		var rigidBody = $ColliderBox as RigidBody2D
 		await TimeManager.promise([hitWithDash, TimeManager.wait(0.75)])

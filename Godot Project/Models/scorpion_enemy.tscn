@@ -1,15 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=38 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
 [ext_resource type="Texture2D" uid="uid://ddg0wupoc4exc" path="res://ModelContents/Enemies/Scorpion Idle/frame_0_delay-0.3s.png" id="3_6ngoo"]
 [ext_resource type="Texture2D" uid="uid://brms5703d7h4a" path="res://ModelContents/Enemies/Scorpion Idle/frame_1_delay-0.3s.png" id="4_vvk3e"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_y5pvb"]
-[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_nq8aj"]
 [ext_resource type="Texture2D" uid="uid://buk7po7danwn3" path="res://ModelContents/Enemies/Scorpion Idle/frame_2_delay-0.3s.png" id="5_w21hc"]
-[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_htbbk"]
 [ext_resource type="Texture2D" uid="uid://xff2samihdmu" path="res://ModelContents/Enemies/Scorpion Idle/frame_3_delay-0.3s.png" id="6_ypoey"]
-[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_mkrhd"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_6tml8"]
 [ext_resource type="Texture2D" uid="uid://keb6smnojgdo" path="res://ModelContents/Enemies/Scorpion Attack/frame_05_delay-0.3s.png" id="8_rwx8o"]
 [ext_resource type="Texture2D" uid="uid://ggwbsbnjkego" path="res://ModelContents/Enemies/Scorpion Attack/frame_06_delay-0.1s.png" id="9_pts8l"]
@@ -24,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
 [ext_resource type="Texture2D" uid="uid://cl78xn6ycyxq5" path="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Scorpion Dead.PNG" id="19_pt6to"]
 [ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
+[ext_resource type="AudioStream" uid="uid://dmpqjbvaleuuy" path="res://ModelContents/Enemies/ScorpionAttack.mp3" id="22_4n6vr"]
+[ext_resource type="AudioStream" uid="uid://cng4wtl2u4wf5" path="res://ModelContents/Enemies/ScorpionHit.mp3" id="22_b8o04"]
 [ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxepw"]
@@ -247,7 +246,9 @@ position = Vector2(0, -29)
 position = Vector2(0, 20)
 scale = Vector2(0.276011, 0.231704)
 sprite_frames = SubResource("SpriteFrames_ydutp")
-animation = &"Idle"
+animation = &"Attack"
+frame = 13
+frame_progress = 1.0
 offset = Vector2(20.1314, -193.849)
 
 [node name="Shadow" type="Sprite2D" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
@@ -272,22 +273,16 @@ libraries = {
 "": SubResource("AnimationLibrary_4vkjs")
 }
 
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="Scorpion_Enemy/ColliderBox"]
+position = Vector2(-36, 0)
+stream = ExtResource("22_4n6vr")
+attenuation = 0.707107
+
 [node name="HitSounds" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
 position = Vector2(-36, 0)
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="Scorpion_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("5_nq8aj")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit2" type="AudioStreamPlayer2D" parent="Scorpion_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("6_htbbk")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit3" type="AudioStreamPlayer2D" parent="Scorpion_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("7_mkrhd")
-volume_db = 4.0
+stream = ExtResource("22_b8o04")
 attenuation = 0.707107
 
 [node name="DeathSounds" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
@@ -296,3 +291,4 @@ position = Vector2(-36, 0)
 [node name="Death" type="AudioStreamPlayer2D" parent="Scorpion_Enemy/ColliderBox/DeathSounds"]
 stream = ExtResource("8_6tml8")
 volume_db = 4.0
+pitch_scale = 0.9

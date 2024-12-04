@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ckq8ygp0nkyp1"]
+[gd_scene load_steps=46 format=3 uid="uid://ckq8ygp0nkyp1"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_uv8cb"]
 [ext_resource type="Script" path="res://Models/manta_ray_enemy.gd" id="2_k54m4"]
@@ -7,15 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dqv4uoohfiptx" path="res://ModelContents/Enemies/Manta Ray Idle/frame_1_delay-0.2s.png" id="4_day71"]
 [ext_resource type="Texture2D" uid="uid://cevmxootdvr3" path="res://ModelContents/Enemies/Manta Ray Attack/frame_21_delay-0.1s.png" id="4_fanly"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="4_wc45h"]
-[ext_resource type="AudioStream" uid="uid://0gt17mukxqkn" path="res://ModelContents/Dummy/Hit1.mp3" id="5_5mdax"]
 [ext_resource type="Texture2D" uid="uid://cku15thhjaria" path="res://ModelContents/Enemies/Manta Ray Attack/frame_22_delay-0.1s.png" id="5_825ch"]
 [ext_resource type="Texture2D" uid="uid://bpcr48xvuhrwn" path="res://ModelContents/Enemies/Manta Ray Idle/frame_2_delay-0.2s.png" id="5_cao22"]
-[ext_resource type="AudioStream" uid="uid://d1jaixqacj0oj" path="res://ModelContents/Dummy/Hit2.mp3" id="6_4aocb"]
 [ext_resource type="Texture2D" uid="uid://c6f0jgevm67jp" path="res://ModelContents/Enemies/Manta Ray Idle/frame_3_delay-0.2s.png" id="6_g3sgq"]
 [ext_resource type="Texture2D" uid="uid://sn865ayg54vg" path="res://ModelContents/Enemies/Manta Ray Attack/frame_23_delay-0.06s.png" id="6_ylrl2"]
 [ext_resource type="Texture2D" uid="uid://7khqtturc7ie" path="res://ModelContents/Enemies/Manta Ray Idle/frame_4_delay-0.2s.png" id="7_67x4y"]
 [ext_resource type="Texture2D" uid="uid://bwr0y0ylbswod" path="res://ModelContents/Enemies/Manta Ray Attack/frame_24_delay-0.1s.png" id="7_b215f"]
-[ext_resource type="AudioStream" uid="uid://dumo7dtg4okx3" path="res://ModelContents/Dummy/Hit3.mp3" id="7_pw1qw"]
 [ext_resource type="AudioStream" uid="uid://b0yykfe1f7d51" path="res://ModelContents/Dummy/Death.mp3" id="8_a3t1t"]
 [ext_resource type="Texture2D" uid="uid://cgl64r5jxngq1" path="res://ModelContents/Enemies/Manta Ray Idle/frame_5_delay-0.2s.png" id="8_cjqmb"]
 [ext_resource type="Texture2D" uid="uid://cj26uueuah4u5" path="res://ModelContents/Enemies/Manta Ray Attack/frame_25_delay-0.1s.png" id="8_p22m1"]
@@ -27,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://bwwdcgkq5xg3u" path="res://ModelContents/Enemies/Manta Ray Attack/frame_29_delay-0.1s.png" id="12_tbhx2"]
 [ext_resource type="Texture2D" uid="uid://coxlg6h2g3xfq" path="res://ModelContents/Enemies/Manta Ray Attack/frame_30_delay-0.1s.png" id="13_itegc"]
 [ext_resource type="Texture2D" uid="uid://dgxt8durmhptq" path="res://ModelContents/Enemies/Manta Ray Attack/frame_31_delay-0.1s.png" id="14_3nv7n"]
+[ext_resource type="AudioStream" uid="uid://c8vlhwu82fhp5" path="res://ModelContents/Enemies/MantaRayHit.mp3" id="24_2o62u"]
+[ext_resource type="AudioStream" uid="uid://cwv5m87j7j1m" path="res://ModelContents/Enemies/MantaRayAttack.mp3" id="24_ynkmr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_64nc2"]
 radius = 19.5
@@ -786,22 +785,17 @@ libraries = {
 "": SubResource("AnimationLibrary_4vkjs")
 }
 
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="MantaRay_Enemy/ColliderBox"]
+position = Vector2(-42, -68)
+stream = ExtResource("24_ynkmr")
+max_distance = 1600.0
+attenuation = 0.707107
+
 [node name="HitSounds" type="Node2D" parent="MantaRay_Enemy/ColliderBox"]
 position = Vector2(-42, -68)
 
 [node name="Hit1" type="AudioStreamPlayer2D" parent="MantaRay_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("5_5mdax")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit2" type="AudioStreamPlayer2D" parent="MantaRay_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("6_4aocb")
-volume_db = 4.0
-attenuation = 0.707107
-
-[node name="Hit3" type="AudioStreamPlayer2D" parent="MantaRay_Enemy/ColliderBox/HitSounds"]
-stream = ExtResource("7_pw1qw")
-volume_db = 4.0
+stream = ExtResource("24_2o62u")
 attenuation = 0.707107
 
 [node name="DeathSounds" type="Node2D" parent="MantaRay_Enemy/ColliderBox"]
@@ -809,7 +803,6 @@ position = Vector2(-42, -68)
 
 [node name="Death" type="AudioStreamPlayer2D" parent="MantaRay_Enemy/ColliderBox/DeathSounds"]
 stream = ExtResource("8_a3t1t")
-volume_db = 4.0
 
 [node name="IdleParticles" type="CPUParticles2D" parent="MantaRay_Enemy/ColliderBox"]
 position = Vector2(0, -79)
