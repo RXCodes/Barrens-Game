@@ -123,6 +123,8 @@ func spawnEnemies() -> void:
 						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
 					else:
 						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
+			else:
+				enemyAI.setVariantType(EnemyAI.EnemyVariantType.NORMAL)
 			
 			# add the enemy to the scene then move on to the next enemy
 			NodeRelations.rootNode.find_child("Level").add_child(enemy)

@@ -190,7 +190,6 @@ hitFrontAnimation = "Hit"
 healthBarPositionOffset = Vector2(0, 26)
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
 invertXFlip = true
-variantType = 2
 
 [node name="Hitbox" type="RigidBody2D" parent="Scorpion_Enemy"]
 collision_layer = 4
