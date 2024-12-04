@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4dfhwd2srm64"]
+
+[ext_resource type="Texture2D" uid="uid://d3o3h014v7rkf" path="res://Particles/SmokeAnimation/SmokeAnimation.png" id="1_kq11p"]
+[ext_resource type="Script" path="res://Models/EntityAcid.gd" id="2_iknfj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_sedd6"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 4
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_2cx3d"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 57.7681), 0.0, 179.671, 0, 0, Vector2(0.140449, -1.96936), 0.0, 0.0, 0, 0, Vector2(0.991573, 0.875275), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_sf5qd"]
+max_value = 100.0
+_data = [Vector2(0, 0), 0.0, 23.6503, 0, 0, Vector2(0.050505, 100), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_i1412"]
+offsets = PackedFloat32Array(0, 0.101655, 0.716312, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_34u23"]
+colors = PackedColorArray(0, 0.368238, 0.233646, 1, 0.21, 1, 0.4865, 1)
+
+[node name="Acid" type="CPUParticles2D"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_sedd6")
+scale = Vector2(2, 2)
+amount = 9
+lifetime = 3.0
+randomness = 0.3
+texture = ExtResource("1_kq11p")
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector2(0, -1)
+spread = 140.0
+gravity = Vector2(0, 0)
+linear_accel_curve = SubResource("Curve_2cx3d")
+damping_min = 14.0
+damping_max = 24.0
+damping_curve = SubResource("Curve_sf5qd")
+scale_amount_max = 3.0
+color = Color(1, 1, 1, 0.556863)
+color_ramp = SubResource("Gradient_i1412")
+color_initial_ramp = SubResource("Gradient_34u23")
+anim_speed_min = 1.0
+anim_speed_max = 1.75
+script = ExtResource("2_iknfj")

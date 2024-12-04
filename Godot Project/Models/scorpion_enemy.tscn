@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cxnpl8vckivfy"]
+[gd_scene load_steps=39 format=3 uid="uid://cxnpl8vckivfy"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_3oudb"]
 [ext_resource type="Script" path="res://Models/scorpion_enemy.gd" id="2_auyif"]
@@ -24,12 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
 [ext_resource type="Texture2D" uid="uid://cl78xn6ycyxq5" path="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Scorpion Dead.PNG" id="19_pt6to"]
 [ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
-[ext_resource type="Shader" path="res://ModelContents/DefaultEnemy.gdshader" id="21_t8a8o"]
 [ext_resource type="Texture2D" uid="uid://ukxmtt7hh3yq" path="res://ModelContents/Enemies/Scorpion Attack/frame_19_delay-0.3s.png" id="22_miwk6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bacxl"]
-shader = ExtResource("21_t8a8o")
-shader_parameter/brightness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxepw"]
 size = Vector2(72, 39.5)
@@ -174,7 +169,6 @@ _data = {
 [node name="Scorpion_Enemy" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-material = SubResource("ShaderMaterial_bacxl")
 script = ExtResource("1_3oudb")
 entityZIndexOffset = 24
 
@@ -196,6 +190,7 @@ hitFrontAnimation = "Hit"
 healthBarPositionOffset = Vector2(0, 26)
 healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
 invertXFlip = true
+variantType = 2
 
 [node name="Hitbox" type="RigidBody2D" parent="Scorpion_Enemy"]
 collision_layer = 4

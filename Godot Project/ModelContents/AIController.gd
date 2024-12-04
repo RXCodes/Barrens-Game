@@ -95,7 +95,7 @@ enum PathfindAgentSize {SMALL, MEDIUM, LARGE}
 @export var hitSoundDelay: float = 0.05
 
 @export_category("Debug")
-enum EnemyVariantType {NORMAL, ACID, LIGHTNING}
+enum EnemyVariantType {NORMAL, ACID, LIGHTNING, INFERNO}
 ## for debugging purposes, you can edit this variable but make sure to revert it back when done
 @export var variantType: EnemyVariantType = EnemyVariantType.NORMAL
 
@@ -148,11 +148,23 @@ func _ready() -> void:
 		maxHealth *= 2.5
 		currentHealth *= 2.5
 		cashDrop *= 2.0
+		createAcidFX()
+		acidFX.modulate = Color(1, 1, 1, 0.4)
+		acidFX.amount = 6
 	if variantType == EnemyVariantType.LIGHTNING:
 		damageMultiplier = 2.0
 		maxHealth *= 4.0
 		currentHealth *= 4.0
 		cashDrop *= 3.0
+		createLightningFX()
+	if variantType == EnemyVariantType.INFERNO:
+		damageMultiplier = 2.5
+		maxHealth *= 6.0
+		currentHealth *= 6.0
+		cashDrop *= 5.0
+		createBurnFX()
+		burnFX.modulate = Color(1, 1, 1, 0.4)
+		burnFX.amount = 4
 	await get_tree().physics_frame
 	await get_tree().physics_frame
 	onStart()
@@ -187,6 +199,7 @@ static var criticalHitShader = preload("res://ModelContents/CriticalHit.gdshader
 static var defaultEnemyShader = preload("res://ModelContents/DefaultEnemy.gdshader")
 static var acidEnemyShaderMaterial = preload("res://ModelContents/AcidShaderMaterial.tres")
 static var lightningEnemyShaderMaterial = preload("res://ModelContents/LightningShaderMaterial.tres")
+static var infernoEnemyShaderMaterial = preload("res://ModelContents/InfernoShaderMaterial.tres")
 var renderer: EntityRender
 
 # adjust brightness of enemy - used in special heavy attacks
@@ -212,10 +225,13 @@ func setVariantType(type: EnemyVariantType) -> void:
 		defaultMaterial.shader = defaultEnemyShader
 		damageMultiplier = 1.0
 	if type == EnemyVariantType.ACID:
-		defaultMaterial = acidEnemyShaderMaterial
+		defaultMaterial = acidEnemyShaderMaterial.duplicate()
 		currentHealth = maxHealth
 	if type == EnemyVariantType.LIGHTNING:
-		defaultMaterial = lightningEnemyShaderMaterial
+		defaultMaterial = lightningEnemyShaderMaterial.duplicate()
+		currentHealth = maxHealth
+	if type == EnemyVariantType.INFERNO:
+		defaultMaterial = infernoEnemyShaderMaterial.duplicate()
 		currentHealth = maxHealth
 	if renderer:
 		renderer.material = defaultMaterial
@@ -320,6 +336,8 @@ func flashWhite(flashing: bool) -> void:
 var burningTime = 0.0
 var burnTick = 1.0
 var burnFX: EntityFire
+var acidFX: EntityAcid
+var lightningFX: EntityLightning
 var shapeTests: Array[ShapeIntersectionTest] = []
 func _physics_process(delta: float) -> void:
 	hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
@@ -340,18 +358,20 @@ func _physics_process(delta: float) -> void:
 			shapeTests.clear()
 	
 	# burning effect from molotov
-	if burningTime > 0:
-		burningTime -= delta
-		burnTick -= delta
-		if not burnFX:
-			createBurnFX()
-		if burnTick <= 0:
-			damage(randf_range(2.0, 5.0), lastTouchedMolotovFire)
-			burnTick = 1.0
-	else:
-		if burnFX:
-			burnFX.stopEmitting()
-			burnFX = null
+	# inferno enemies are immune to burning
+	if variantType != EnemyVariantType.INFERNO:
+		if burningTime > 0:
+			burningTime -= delta
+			burnTick -= delta
+			if not burnFX:
+				createBurnFX()
+			if burnTick <= 0:
+				damage(randf_range(2.0, 5.0), lastTouchedMolotovFire)
+				burnTick = 1.0
+		else:
+			if burnFX:
+				burnFX.stopEmitting()
+				burnFX = null
 	
 	physicsProcess(delta)
 
@@ -362,6 +382,22 @@ func createBurnFX() -> void:
 	var width = hitboxShape.shape.get_rect().size.x / 25.0
 	var height = hitboxShape.shape.get_rect().size.y / 25.0
 	burnFX.scale = Vector2(width, height)
+
+# create particle effects for acid enemies
+func createAcidFX() -> void:
+	acidFX = EntityAcid.create()
+	hitboxShape.add_child(acidFX)
+	var width = hitboxShape.shape.get_rect().size.x / 25.0
+	var height = hitboxShape.shape.get_rect().size.y / 25.0
+	acidFX.scale = Vector2(width, height)
+
+# create particle effects for acid enemies
+func createLightningFX() -> void:
+	lightningFX = EntityLightning.create()
+	hitboxShape.add_child(lightningFX)
+	var width = hitboxShape.shape.get_rect().size.x / 25.0
+	var height = hitboxShape.shape.get_rect().size.y / 25.0
+	lightningFX.scale = Vector2(width, height)
 
 # pathfinding and movement functionality
 var targetDistance: float = 30

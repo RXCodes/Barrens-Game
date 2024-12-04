@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c6sgrrxmd5ic8"]
+
+[ext_resource type="Shader" path="res://ModelContents/Inferno.gdshader" id="1_n8aok"]
+
+[sub_resource type="Gradient" id="Gradient_us8ny"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5mnrd"]
+noise_type = 0
+frequency = 0.0054
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g6nsv"]
+seamless = true
+seamless_blend_skirt = 0.155
+color_ramp = SubResource("Gradient_us8ny")
+noise = SubResource("FastNoiseLite_5mnrd")
+
+[resource]
+shader = ExtResource("1_n8aok")
+shader_parameter/scrollAmount = Vector2(0.1, 0.5)
+shader_parameter/multiplier = 0.001
+shader_parameter/brightness = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_g6nsv")

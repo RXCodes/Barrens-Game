@@ -170,6 +170,7 @@ var bulletsFired: int = 0
 var burnTime = 0.0
 var fireTick = 1.0
 var burnFX: EntityFire
+var poisonFX: EntityAcid
 
 func _physics_process(delta: float) -> void:
 	if dead:
@@ -180,10 +181,16 @@ func _physics_process(delta: float) -> void:
 	
 	# poison functionality
 	if poisonTime > 6.0:
+		if not poisonFX:
+			createPoisonEffect()
 		poisonTickTime -= delta
 		if poisonTickTime <= 0.0:
 			poisonTickTime = 1.5
 			damage(randf_range(1, 2), self)
+	if poisonTime <= 3.0:
+		if poisonFX:
+			poisonFX.stopEmitting()
+			poisonFX = null
 	
 	# burning functionality
 	if burnTime > 0.0:
@@ -350,6 +357,12 @@ func createBurnFX() -> void:
 	burnFX.position.y -= 50
 	burnFX.scale.x = 0.6
 
+func createPoisonEffect() -> void:
+	poisonFX = EntityAcid.create()
+	add_child(poisonFX)
+	poisonFX.position.y -= 50
+	poisonFX.scale.x = 0.6
+
 func onFire() -> void:
 	# briefly shake screen
 	var recoilMultiplier = gunInteractor.currentWeapon.recoilAmount
@@ -427,8 +440,10 @@ func damage(amount: float, source: Node2D) -> void:
 			else:
 				applyPoison(5.0)
 		
-		# lightning enemy delivers burning effect
+		# lightning and inferno enemies delivers burning effect
 		if enemy.variantType == EnemyAI.EnemyVariantType.LIGHTNING:
+			burnTime = 6.0
+		if enemy.variantType == EnemyAI.EnemyVariantType.INFERNO:
 			burnTime = 10.0
 	
 	# apply defense

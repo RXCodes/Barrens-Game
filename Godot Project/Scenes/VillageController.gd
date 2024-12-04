@@ -106,7 +106,23 @@ func spawnEnemies() -> void:
 			var enemyAI: EnemyAI = enemy.get_children()[0]
 			var variantChance = variationChances[enemySpawnNames[index]]
 			if randf() <= variantChance:
-				enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
+				# after a specific amount of waves, include other variants
+				if currentWave <= 12:
+					enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
+				elif currentWave > 12 and currentWave < 18:
+					var roll = randi_range(1, 10)
+					if roll <= 7:
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
+					else:
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
+				else:
+					var roll = randi_range(1, 10)
+					if roll <= 3:
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.ACID)
+					elif roll <= 8:
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
+					else:
+						enemyAI.setVariantType(EnemyAI.EnemyVariantType.LIGHTNING)
 			
 			# add the enemy to the scene then move on to the next enemy
 			NodeRelations.rootNode.find_child("Level").add_child(enemy)
