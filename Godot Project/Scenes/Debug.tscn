@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=51 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="37_7q8re"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="38_i01l7"]
 [ext_resource type="PackedScene" uid="uid://ge1chou4evxe" path="res://Models/snake_enemy.tscn" id="39_2xwqi"]
+[ext_resource type="Texture2D" uid="uid://bryra10fhy4a" path="res://Environment/Sun.png" id="40_rluml"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
 texture = ExtResource("10_q0e8j")
@@ -79,6 +80,49 @@ source_geometry_mode = 1
 source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
+
+[sub_resource type="GDScript" id="GDScript_jchs8"]
+resource_name = "DummyArmyTest"
+script/source = "extends Node2D
+
+var enabled = false
+var rows = 15
+var columns = 15
+var spacing = 100
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if not enabled:
+		return
+	await get_tree().physics_frame
+	for x in range(rows):
+		for y in range(columns):
+			var spawnPosition = global_position
+			spawnPosition.x += x * spacing
+			spawnPosition.y += y * spacing
+			EnemySpawner.spawnEnemy(\"Dummy\", spawnPosition)
+"
+
+[sub_resource type="GDScript" id="GDScript_vutwu"]
+resource_name = "mousetest"
+script/source = "extends Sprite2D
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if not Crosshair.current:
+		return
+	global_position = Crosshair.current.cursorPosition
+"
+
+[sub_resource type="GDScript" id="GDScript_y3n4r"]
+resource_name = "throwable test"
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	await get_tree().physics_frame
+	Item.spawnItem(\"Grenade\", 100, global_position)
+	Item.spawnItem(\"MolotovCocktail\", 100, global_position)
+"
 
 [sub_resource type="GDScript" id="GDScript_farfr"]
 resource_name = "DebugSceneDemo"
@@ -319,6 +363,16 @@ canRestock = true
 restockTime = 10
 restockAmount = 1
 
+[node name="ExampleItem2" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 50
+type = 1
+itemIdentifier = "Grenade"
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+
 [node name="ShotgunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
 displayName = "Shotgun"
@@ -472,6 +526,53 @@ respawnCooldown = 10.0
 position = Vector2(-435, 301)
 respawnCooldown = 10.0
 
+[node name="DummyArmyTest" type="Node2D" parent="Level"]
+position = Vector2(1777, 751)
+script = SubResource("GDScript_jchs8")
+
+[node name="Slime_Enemy" parent="Level" instance=ExtResource("28_qn52p")]
+position = Vector2(1286, -714)
+
+[node name="Tree" parent="Level" instance=ExtResource("30_3isup")]
+position = Vector2(-1075, -376)
+
+[node name="Tree2" parent="Level" instance=ExtResource("31_t8gop")]
+position = Vector2(-841, -390)
+
+[node name="Tree3" parent="Level" instance=ExtResource("32_57kur")]
+position = Vector2(-678, -419)
+
+[node name="FallenTree" parent="Level" instance=ExtResource("33_gy7qm")]
+position = Vector2(-1219, -152)
+
+[node name="FallenTree2" parent="Level" instance=ExtResource("34_w45en")]
+position = Vector2(-829, -120)
+
+[node name="TrashCan2" parent="Level" instance=ExtResource("35_sqfay")]
+position = Vector2(-936, 217)
+
+[node name="Log" parent="Level" instance=ExtResource("36_0sxu3")]
+position = Vector2(-1045, 172)
+
+[node name="TrashCan" parent="Level" instance=ExtResource("37_7q8re")]
+position = Vector2(-866, 152)
+
+[node name="WaterFountain2" parent="Level" instance=ExtResource("38_i01l7")]
+position = Vector2(-1163, 80)
+
+[node name="Snake_Enemy" parent="Level" instance=ExtResource("39_2xwqi")]
+position = Vector2(-33, -222)
+
+[node name="Mouse test" type="Sprite2D" parent="Level"]
+visible = false
+position = Vector2(-207.193, -758.828)
+texture = ExtResource("40_rluml")
+script = SubResource("GDScript_vutwu")
+
+[node name="Throwable test" type="Node2D" parent="Level"]
+position = Vector2(74, -339)
+script = SubResource("GDScript_y3n4r")
+
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
 [node name="Ambience" parent="." instance=ExtResource("27_l6ryw")]
@@ -480,36 +581,3 @@ respawnCooldown = 10.0
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
-
-[node name="Slime_Enemy" parent="." instance=ExtResource("28_qn52p")]
-position = Vector2(1286, -714)
-
-[node name="Tree" parent="." instance=ExtResource("30_3isup")]
-position = Vector2(-1075, -376)
-
-[node name="Tree2" parent="." instance=ExtResource("31_t8gop")]
-position = Vector2(-841, -390)
-
-[node name="Tree3" parent="." instance=ExtResource("32_57kur")]
-position = Vector2(-678, -419)
-
-[node name="FallenTree" parent="." instance=ExtResource("33_gy7qm")]
-position = Vector2(-1219, -152)
-
-[node name="FallenTree2" parent="." instance=ExtResource("34_w45en")]
-position = Vector2(-829, -120)
-
-[node name="TrashCan2" parent="." instance=ExtResource("35_sqfay")]
-position = Vector2(-936, 217)
-
-[node name="Log" parent="." instance=ExtResource("36_0sxu3")]
-position = Vector2(-1045, 172)
-
-[node name="TrashCan" parent="." instance=ExtResource("37_7q8re")]
-position = Vector2(-866, 152)
-
-[node name="WaterFountain2" parent="." instance=ExtResource("38_i01l7")]
-position = Vector2(-1163, 80)
-
-[node name="Snake_Enemy" parent="." instance=ExtResource("39_2xwqi")]
-position = Vector2(-33, -222)

@@ -169,6 +169,8 @@ static func consumeItem() -> void:
 static func getCurrentItem() -> Item.Entity:
 	if currentSlotIndex < 0:
 		return null
+	if not slots[currentSlotIndex]:
+		return null
 	var selectedSlot: InventorySlot = slots[currentSlotIndex]
 	var item = selectedSlot.itemEntity
 	if not item:

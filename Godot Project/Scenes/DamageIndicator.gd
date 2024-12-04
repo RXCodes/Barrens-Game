@@ -3,18 +3,23 @@ class_name DamageIndicator extends Label
 static var damageIndicator = preload("res://UI/DamageIndicator.tscn")
 static func createDamageIndicator(position: Vector2, amount: int, originNode: Node2D, criticalHit: bool = false) -> Node2D:
 	var newIndicator: Node2D = damageIndicator.instantiate()
-	var indicatorLabel: Label = newIndicator.find_child("DamageIndicator")
+	var indicatorLabel: DamageIndicator = newIndicator.find_child("DamageIndicator")
 	indicatorLabel.criticalHit = criticalHit
 	indicatorLabel.text = str(amount)
 	indicatorLabel.originNode = originNode
 	newIndicator.global_position = position
 	newIndicator.z_index = 4000
+	if criticalHit:
+		indicatorLabel.knockbackMultiplier += 0.25
+	if amount >= 100:
+		indicatorLabel.knockbackMultiplier += min((amount - 100) * 0.025, 1.5)
 	NodeRelations.rootNode.add_child(newIndicator)
 	return newIndicator
 
 # Called when the node enters the scene tree for the first time.
 var criticalHit = false
 var originNode: Node2D
+var knockbackMultiplier = 1.0
 func _ready() -> void:
 	var finalScale = Vector2(1.35, 1.35)
 	if criticalHit:

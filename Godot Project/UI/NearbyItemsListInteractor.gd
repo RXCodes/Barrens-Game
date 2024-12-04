@@ -82,6 +82,8 @@ func _ready() -> void:
 		$"../../../NoItems".visible = discoveredItems.size() == 0
 
 static func removeItem(item: Node) -> void:
+	if not is_instance_valid(item):
+		return
 	item.pickupItem.itemDisplay.queue_free()
 	current.discoveredItems.erase(item)
 

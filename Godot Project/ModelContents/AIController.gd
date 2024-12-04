@@ -106,13 +106,14 @@ var hitboxShapeInitialPosition: Vector2
 var flipTransform: Node2D
 var target: Node2D = Player.current
 var healthBar: EnemyHealthBar
+var hitboxOffset = Vector2(0, 24)
 func _ready() -> void:
 	# setup the enemy
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
 	flipTransform = find_child("FlipTransform")
 	hitboxShape = hitBoxRigidBody.get_child(0)
-	hitBoxRigidBody.global_position += Vector2(0, -48) # vertical offset so bullets can hit enemies
+	hitboxShape.global_position += hitboxOffset # vertical offset so bullets can hit enemies
 	enemies.append(self)
 	hitboxShapeInitialPosition = hitboxShape.position
 	currentHealth = maxHealth
@@ -129,7 +130,7 @@ func _ready() -> void:
 	for child: Node in children:
 		child.set_meta(EnemyAI.parentControllerKey, self)
 	healthBar = preload("res://UI/EnemyHealthBar.tscn").instantiate()
-	healthBar.position += healthBarPositionOffset
+	healthBar.position += healthBarPositionOffset - (hitboxOffset / 2.0)
 	hitboxShape.add_child(healthBar)
 	healthBar.setHealthBarColor(healthBarColor)
 	
@@ -254,6 +255,14 @@ func damage(amount: float, source: Node2D) -> void:
 			criticalDamaged = true
 			amount *= 12.5
 		Player.current.damageDealt += amount
+	if source is Explosion:
+		if source.isFromPlayer:
+			var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
+			var roll = randf_range(0, 100.0)
+			if criticalChance >= roll:
+				criticalDamaged = true
+				amount *= 12.5
+			Player.current.damageDealt += amount
 	
 	enemyDamaged.emit()
 	onDamage()

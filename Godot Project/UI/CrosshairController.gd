@@ -1,5 +1,5 @@
 class_name Crosshair extends TextureRect
-static var current: Control
+static var current: Crosshair
 static var reloadingIcon: TextureProgressBar
 static var hoveringOverButton: bool = false
 
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	reloadingIcon.position = get_viewport().get_mouse_position() - (reloadingIcon.size / 2.0)
 	reloadingIcon.position += Vector2(4, 4)
 	reloadingIcon.position -= get_viewport_rect().size / 2.0
-	cursorPosition = global_position + PlayerCamera.current.get_screen_center_position()
+	cursorPosition = (position / PlayerCamera.current.zoom) + PlayerCamera.current.get_screen_center_position()
 	
 	# offset camera depending on vector from player
 	var targetOffset = (cursorPosition - Player.current.global_position) * cameraOffsetMultiplier
