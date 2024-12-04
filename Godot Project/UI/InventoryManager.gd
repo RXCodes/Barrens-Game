@@ -5,11 +5,13 @@ static var currentSlotIndex = -1
 static var itemName: Label
 static var itemDescription: Label
 static var maxStackCount = 5
+static var clickSound: AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	itemName = $ItemName
 	itemDescription = $ItemDescription
+	clickSound = $Click
 	maxStackCount = 5
 	await get_tree().physics_frame
 	
@@ -30,6 +32,7 @@ func _ready() -> void:
 	hideItemInfo()
 
 static func selectSlot(index: int) -> void:
+	clickSound.play()
 	if getCurrentItem():
 		promptTip()
 	for slot in slots:
@@ -87,6 +90,7 @@ static func promptTip() -> void:
 # picks up an item and attempts to collect all of it
 # returns false if none of the items can be picked up (inventory full)
 static func pickupItem(item: Item.Entity) -> bool:
+	clickSound.play()
 	var initialAmount = item.amount
 	var leftover = item.amount
 	for slot: InventorySlot in slots:
@@ -122,6 +126,7 @@ static func dropItem() -> void:
 	var currentItem = getCurrentItem()
 	if not currentItem:
 		return
+	clickSound.play()
 	currentItem.amount -= 1
 	
 	# all of the items are gone for this slot - shift items to the left

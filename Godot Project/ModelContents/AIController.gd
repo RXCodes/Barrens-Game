@@ -111,7 +111,8 @@ func _ready() -> void:
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
 	flipTransform = find_child("FlipTransform")
-	hitboxShape = hitBoxRigidBody.get_children()[0]
+	hitboxShape = hitBoxRigidBody.get_child(0)
+	hitBoxRigidBody.global_position += Vector2(0, -48) # vertical offset so bullets can hit enemies
 	enemies.append(self)
 	hitboxShapeInitialPosition = hitboxShape.position
 	currentHealth = maxHealth

@@ -14,6 +14,7 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	# create the trail that's behind the bullet
 	var smokeBullet = Bullet.new()
 	smokeBullet.global_position = position + visualOffset
+	smokeBullet.originPosition = position
 	smokeBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	smokeBullet.pivot_offset = Vector2(4, 8)
 	smokeBullet.rotation = bulletAngle
@@ -26,6 +27,7 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	# create the bullet with fire color
 	var fireBullet = Bullet.new()
 	fireBullet.global_position = position + visualOffset
+	fireBullet.originPosition = position
 	fireBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	fireBullet.pivot_offset = Vector2(4, 8)
 	fireBullet.rotation = bulletAngle
@@ -89,6 +91,7 @@ func _process(delta: float) -> void:
 			queue_free()
 
 var needsRaycast = true
+var originPosition: Vector2
 func _physics_process(delta: float) -> void:
 	if not needsRaycast:
 		return
@@ -98,7 +101,6 @@ func _physics_process(delta: float) -> void:
 	var space_state = get_world_2d().direct_space_state
 	var projectoryVector = maximumDistance * normalDirection * bulletScale
 	var mask = 2**(3-1) # layer 3
-	var originPosition = global_position
 	var enemyQuery = PhysicsRayQueryParameters2D.create(originPosition, global_position + projectoryVector, mask)
 	var result = space_state.intersect_ray(enemyQuery)
 	if result:

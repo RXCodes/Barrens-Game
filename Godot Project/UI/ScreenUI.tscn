@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=67 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
 [ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
@@ -45,6 +45,7 @@
 [ext_resource type="Shader" path="res://Environment/ScreenShader.gdshader" id="42_yj7vc"]
 [ext_resource type="PackedScene" uid="uid://c3n2txcgiplvt" path="res://UI/TextAlert.tscn" id="43_qyj2u"]
 [ext_resource type="Texture2D" uid="uid://cjdf25vyfl13e" path="res://UI/EnemyIcon.png" id="44_2b04s"]
+[ext_resource type="AudioStream" uid="uid://kaj8k6dnpm81" path="res://UI/Click.mp3" id="44_tk8ou"]
 [ext_resource type="Texture2D" uid="uid://bkbpicxgyxpa" path="res://UI/WaveIcon.png" id="45_856uh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_60nyp"]
@@ -726,6 +727,9 @@ offset_bottom = 134.0
 scale = Vector2(0.8, 0.8)
 text = "item description"
 label_settings = SubResource("LabelSettings_60nyp")
+
+[node name="Click" type="AudioStreamPlayer" parent="Inventory"]
+stream = ExtResource("44_tk8ou")
 
 [node name="OverlayRect" type="ColorRect" parent="."]
 visible = false
