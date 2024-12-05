@@ -3,7 +3,7 @@ extends Node2D
 var activated = false
 var timeStayed = 0.0
 func _process(delta: float) -> void:
-	if not activated:
+	if not activated and Player.current:
 		if Player.current.global_position.distance_squared_to(global_position) > 75:
 			timeStayed = 0
 			return

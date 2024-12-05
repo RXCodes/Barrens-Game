@@ -281,7 +281,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Death"]
+"values": [&"Idle"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vkjs"]
@@ -357,7 +357,7 @@ scale = Vector2(-1, 1)
 position = Vector2(6, -142)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
-animation = &"Death"
+animation = &"Idle"
 
 [node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

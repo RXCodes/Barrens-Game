@@ -111,7 +111,11 @@ static func pickupItem(item: Item.Entity) -> bool:
 		newItem.amount = leftover
 		Player.current.dropItem(newItem)
 	refreshInventory()
-	return initialAmount != leftover
+	if initialAmount != leftover:
+		var pickedUp = initialAmount - leftover
+		TextAlert.setupAlert("Picked up x" + str(initialAmount) +  " " + item.displayName, Color.WHITE)
+		return true
+	return false
 
 # refreshes the entire inventory
 static func refreshInventory() -> void:

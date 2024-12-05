@@ -50,3 +50,7 @@ func summonProjectile() -> void:
 	fireball.material.set_shader_parameter("brightness", 0)
 	fireball.wormType = variantType
 	fireball.goToPosition(getTargetPosition())
+
+func onDeath() -> void:
+	actionAnimationPlayer.stop()
+	mainAnimationPlayer.play("Death")

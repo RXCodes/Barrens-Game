@@ -56,6 +56,7 @@ var shopInteractor: ShopInteractor
 var automaticallyPopulateDescription: bool = false
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	if limitSales:
 		itemsLeft = limitAmount
 	if type == ItemType.UPGRADE:

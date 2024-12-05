@@ -12,15 +12,21 @@ static var itemData = {}
 static func _static_init() -> void:
 	print("------- Setting up items -------")
 	var filePaths = DirAccess.get_files_at("res://Items/")
+	var loadedPaths = []
 	for filePath in filePaths:
 		if filePath.ends_with(".gd"):
 			var itemPath = "res://Items/" + filePath
-			var currentScript: Script = load(itemPath)
+			var currentScript: Script = ResourceLoader.load(itemPath)
 			if not currentScript:
 				continue
 			if currentScript.has_method("setup"):
 				currentScript.setup()
-				print("Setup item: " + itemPath)
+				loadedPaths.append(itemPath)
+				print("preload(\"" + itemPath + "\"),")
+	if loadedPaths.size() == 0:
+		print("No item paths found - loading them from predefined item paths")
+		for preloadedScript in PreloadContents.preloadedItemPaths:
+			preloadedScript.setup()
 	print("------- End setup items -------")
 
 static func spawnItem(identifier: String, amount: int, position: Vector2) -> Item:
@@ -83,8 +89,6 @@ func _process(delta: float) -> void:
 		if pickupAnimationProgress >= 1.0:
 			if not InventoryManager.pickupItem(entity):
 				TextAlert.setupAlert("Your inventory is full!", Color.TOMATO)
-			else:
-				TextAlert.setupAlert("Picked up x" + str(entity.amount) +  " " + entity.displayName, Color.WHITE)
 			queue_free()
 
 var pickupAnimationProgress = 0.0

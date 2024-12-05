@@ -104,11 +104,12 @@ var navigationAgent: NavigationAgent2D
 var hitboxShape: CollisionShape2D
 var hitboxShapeInitialPosition: Vector2
 var flipTransform: Node2D
-var target: Node2D = Player.current
+var target: Node2D
 var healthBar: EnemyHealthBar
 var hitboxOffset = Vector2(0, 24)
 func _ready() -> void:
 	# setup the enemy
+	await get_tree().physics_frame
 	renderer = get_parent()
 	navigationAgent = find_child("NavigationAgent2D")
 	flipTransform = find_child("FlipTransform")
@@ -173,6 +174,8 @@ func _ready() -> void:
 var flipX = false
 var timeAlive: float = 0.0
 func _process(delta: float) -> void:
+	if not flipTransform:
+		return
 	flipTransform.scale.x = -1 if flipX else 1
 	timeAlive += delta
 	if invertXFlip:
@@ -341,7 +344,8 @@ var acidFX: EntityAcid
 var lightningFX: EntityLightning
 var shapeTests: Array[ShapeIntersectionTest] = []
 func _physics_process(delta: float) -> void:
-	hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
+	if hitboxShape:
+		hitboxShape.global_position = collisionRigidBody.global_position + hitboxShapeInitialPosition
 	if dead:
 		return
 	

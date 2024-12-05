@@ -38,11 +38,7 @@ func _process(delta: float) -> void:
 			var tween = NodeRelations.createTween()
 			tween.tween_property(self, "self_modulate", Color.TRANSPARENT, 1.0)
 			await TimeManager.wait(1.2)
-			var completedTutorial = Save.loadValue("completedTutorial", false)
-			if completedTutorial:
-				NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
-			else:
-				NodeRelations.loadScene("res://Scenes/Tutorial.tscn")
+			NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
 	else:
 		holdProgress = 0.0
 	$SkipProgress.scale.x = holdProgress

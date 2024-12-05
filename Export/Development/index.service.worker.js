@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1733375288|211822705';
+const CACHE_VERSION = '1733384150|2294432670';
 /** @type {string} */
 const CACHE_PREFIX = 'Barren-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;

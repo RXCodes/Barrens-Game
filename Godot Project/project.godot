@@ -16,6 +16,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="Barren"
+config/version="1.0"
 run/main_scene="res://Scenes/Intro.tscn"
 run/print_header=false
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -23,17 +24,14 @@ boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://UI/BarrenLogo.png"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://UI/BarrenIcon.png"
+config/icon="res://GameIcon.png"
+config/windows_native_icon="res://GameIcon.ico"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=800
 window/stretch/mode="viewport"
-
-[editor]
-
-export/convert_text_resources_to_binary=false
 
 [file_customization]
 
