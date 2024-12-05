@@ -32,6 +32,7 @@ var currentWeaponSlot = 1
 var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
+	await get_tree().physics_frame
 	TutorialManager.shouldDisableControls = false
 	Upgrade.playerUpgrades.clear()
 	holdingWeapons.append(Gun.gunFromString("Shotgun"))
@@ -43,7 +44,6 @@ func _ready() -> void:
 	textureOutput = $TextureDisplay
 	sprintBar = $SprintBar
 	sprintBar.modulate = Color.TRANSPARENT
-	await get_tree().physics_frame
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
 	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon

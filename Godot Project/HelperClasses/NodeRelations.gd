@@ -10,7 +10,7 @@ static func getChildrenRecursive(node: Node, array:=[]) -> Array:
 ## gets the root node
 static var rootNode: Node
 func _ready() -> void:
-	rootNode = get_tree().root.get_children()[0]
+	rootNode = get_tree().root.get_child(0)
 
 static func loadScene(path: String) -> void:
 	# remove the old scene

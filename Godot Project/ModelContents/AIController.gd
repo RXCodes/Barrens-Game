@@ -99,6 +99,8 @@ enum EnemyVariantType {NORMAL, ACID, LIGHTNING, INFERNO}
 ## for debugging purposes, you can edit this variable but make sure to revert it back when done
 @export var variantType: EnemyVariantType = EnemyVariantType.NORMAL
 
+static var parentControllerKey = "ParentControllerKey"
+
 # Called when the node enters the scene tree for the first time.
 var navigationAgent: NavigationAgent2D
 var hitboxShape: CollisionShape2D
@@ -137,7 +139,7 @@ func _ready() -> void:
 	healthBar.setHealthBarColor(healthBarColor)
 	
 	# material has been set on instantiation for variants
-	if not defaultMaterial:
+	if not renderer.material:
 		defaultMaterial = ShaderMaterial.new()
 		defaultMaterial.shader = defaultEnemyShader
 	renderer.material = defaultMaterial
@@ -166,8 +168,6 @@ func _ready() -> void:
 		createBurnFX()
 		burnFX.modulate = Color(1, 1, 1, 0.4)
 		burnFX.amount = 4
-	await get_tree().physics_frame
-	await get_tree().physics_frame
 	onStart()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -223,10 +223,6 @@ var damageMultiplier: float = 1.0
 # set the enemy's variant type
 func setVariantType(type: EnemyVariantType) -> void:
 	variantType = type
-	defaultMaterial = ShaderMaterial.new()
-	if type == EnemyVariantType.NORMAL:
-		defaultMaterial.shader = defaultEnemyShader
-		damageMultiplier = 1.0
 	if type == EnemyVariantType.ACID:
 		defaultMaterial = acidEnemyShaderMaterial.duplicate()
 		currentHealth = maxHealth
@@ -236,8 +232,6 @@ func setVariantType(type: EnemyVariantType) -> void:
 	if type == EnemyVariantType.INFERNO:
 		defaultMaterial = infernoEnemyShaderMaterial.duplicate()
 		currentHealth = maxHealth
-	if renderer:
-		renderer.material = defaultMaterial
 
 # called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
@@ -603,7 +597,7 @@ func kill() -> void:
 	get_parent().queue_free()
 
 enum HurtBoxType {PLAYER, ENEMY, ALL}
-static var parentControllerKey = "ParentControllerKey"
+
 # checks if a shape intersects with other players and enemies, dealing damage
 func activateHurtBox(shape: CollisionShape2D, damage: float, type: HurtBoxType) -> void:
 	damage *= damageMultiplier

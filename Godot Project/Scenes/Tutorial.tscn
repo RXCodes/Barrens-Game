@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=4 uid="uid://86b8i277husq"]
+[gd_scene load_steps=97 format=4 uid="uid://86b8i277husq"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_hihye"]
 [ext_resource type="PackedScene" uid="uid://oc0fa0b3t0mo" path="res://UI/ScreenUI.tscn" id="2_bcbjt"]
@@ -7,6 +7,7 @@
 [ext_resource type="TileSet" uid="uid://ca83qlkhrmspj" path="res://Scenes/Tilemap.tres" id="11_3ds43"]
 [ext_resource type="Texture2D" uid="uid://cd5uck0450p8b" path="res://Environment/Sand.png" id="12_ecap2"]
 [ext_resource type="Script" path="res://Environment/ground.gd" id="13_3im5g"]
+[ext_resource type="Shader" path="res://ModelContents/DefaultEnemy.gdshader" id="13_g6ky5"]
 [ext_resource type="Texture2D" uid="uid://dylvv10wwke0e" path="res://Environment/Graveyard/GraveyardFloor.png" id="14_pkr2h"]
 [ext_resource type="Shader" path="res://Environment/Shadow.gdshader" id="15_ctpe2"]
 [ext_resource type="Texture2D" uid="uid://bu8phupfe0dy1" path="res://Environment/Building/ShadowHouse.png" id="16_b2xyr"]
@@ -97,6 +98,10 @@ source_geometry_group_name = &"NavigationGroup"
 cell_size = 16.0
 agent_radius = 40.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_63kd3"]
+shader = ExtResource("13_g6ky5")
+shader_parameter/brightness = 0.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_27vwu"]
 radius = 6.0
 height = 105.0
@@ -174,6 +179,10 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(1, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tggj"]
+shader = ExtResource("13_g6ky5")
+shader_parameter/brightness = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3t2l"]
 
@@ -589,27 +598,34 @@ position = Vector2(1574, 385)
 flip_h = true
 
 [node name="DummyRender" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2238, -56)
 
 [node name="DummyRender2" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2558, 238)
 flipX = true
 
 [node name="DummyRender3" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2655, -5)
 flipX = true
 
 [node name="DummyRender4" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2237, 203)
 
 [node name="DummyRender5" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2363, -104)
 
 [node name="DummyRender7" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2529, -81)
 flipX = true
 
 [node name="DummyRender6" parent="Level" groups=["TutorialDummy"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_63kd3")
 position = Vector2(2379, 248)
 flipX = true
 
@@ -1933,94 +1949,117 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="DummyRender8" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4855, 70)
 flipX = true
 
 [node name="DummyRender9" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4941, 69)
 flipX = true
 
 [node name="DummyRender10" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5028, 70)
 flipX = true
 
 [node name="DummyRender11" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5113, 72)
 flipX = true
 
 [node name="DummyRender12" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5199, 72)
 flipX = true
 
 [node name="DummyRender14" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4898, 135)
 flipX = true
 
 [node name="DummyRender15" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4985, 136)
 flipX = true
 
 [node name="DummyRender16" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5070, 138)
 flipX = true
 
 [node name="DummyRender17" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5156, 138)
 flipX = true
 
 [node name="DummyRender18" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4857, 202)
 flipX = true
 
 [node name="DummyRender19" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4943, 201)
 flipX = true
 
 [node name="DummyRender20" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5030, 202)
 flipX = true
 
 [node name="DummyRender21" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5115, 204)
 flipX = true
 
 [node name="DummyRender22" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5201, 204)
 flipX = true
 
 [node name="DummyRender24" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4897, 269)
 flipX = true
 
 [node name="DummyRender25" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4984, 270)
 flipX = true
 
 [node name="DummyRender26" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5069, 272)
 flipX = true
 
 [node name="DummyRender27" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5155, 272)
 flipX = true
 
 [node name="DummyRender28" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4858, 327)
 flipX = true
 
 [node name="DummyRender29" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(4944, 326)
 flipX = true
 
 [node name="DummyRender30" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5031, 327)
 flipX = true
 
 [node name="DummyRender31" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5116, 329)
 flipX = true
 
 [node name="DummyRender32" parent="Level" groups=["TutorialDummyFinal"] instance=ExtResource("20_ewlqk")]
+material = SubResource("ShaderMaterial_4tggj")
 position = Vector2(5202, 329)
 flipX = true
 

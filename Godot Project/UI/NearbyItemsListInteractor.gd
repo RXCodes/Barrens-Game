@@ -19,8 +19,7 @@ func _ready() -> void:
 	spacer.custom_minimum_size = Vector2(0, 15)
 	add_child(spacer)
 	
-	if not Player.current:
-		return
+	await TimeManager.wait(1.0)
 	
 	while not Player.current.dead:
 		# slight delay

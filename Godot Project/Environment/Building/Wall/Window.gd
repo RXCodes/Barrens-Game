@@ -34,6 +34,6 @@ func updateStructure() -> void:
 	if windowType == WindowType.FOUR:
 		type = "4"
 	
-	self.texture = load("res://Environment/Building/Wall/Window" + type + ".png")
-	window.texture = load("res://Environment/Building/Wall/Glass" + type + ".png")
-	highlight.texture = load("res://Environment/Building/Wall/GlassHighlight" + type + ".png")
+	self.texture = ResourceLoader.load("res://Environment/Building/Wall/Window" + type + ".png")
+	window.texture = ResourceLoader.load("res://Environment/Building/Wall/Glass" + type + ".png")
+	highlight.texture = ResourceLoader.load("res://Environment/Building/Wall/GlassHighlight" + type + ".png")

@@ -5,7 +5,7 @@ static var targetBulletTravelSpeed = 100
 static var bulletTravelSpeedDeviation = 15
 static var rotationOffset = -deg_to_rad(90.0)
 static var bulletScale = 1.5
-static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: Node2D, visualOffset: Vector2) -> void:
+static func fire(firePosition: Vector2, angleRadians: float, gun: Gun, sourceNode: Node2D, visualOffset: Vector2) -> void:
 	var spreadRadians = deg_to_rad(gun.bulletSpreadDegrees)
 	var bulletAngle = randfn(angleRadians, spreadRadians) + rotationOffset
 	var maximumDistance = randfn(gun.targetRange, gun.rangeSpread)
@@ -13,8 +13,8 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	
 	# create the trail that's behind the bullet
 	var smokeBullet = Bullet.new()
-	smokeBullet.global_position = position + visualOffset
-	smokeBullet.originPosition = position
+	smokeBullet.global_position = firePosition + visualOffset
+	smokeBullet.originPosition = firePosition
 	smokeBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	smokeBullet.pivot_offset = Vector2(4, 8)
 	smokeBullet.rotation = bulletAngle
@@ -26,8 +26,8 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	
 	# create the bullet with fire color
 	var fireBullet = Bullet.new()
-	fireBullet.global_position = position + visualOffset
-	fireBullet.originPosition = position
+	fireBullet.global_position = firePosition + visualOffset
+	fireBullet.originPosition = firePosition
 	fireBullet.size = Vector2(gun.bulletSize / bulletScale, 8)
 	fireBullet.pivot_offset = Vector2(4, 8)
 	fireBullet.rotation = bulletAngle
@@ -40,13 +40,15 @@ static func fire(position: Vector2, angleRadians: float, gun: Gun, sourceNode: N
 	fireBullet.sourceNode = sourceNode
 	fireBullet.z_index = 3
 	smokeBullet.add_sibling(fireBullet)
+	
+	print("Bullet shot")
 
 # bullet functionality
 var fadeTime: float = 0.3
 var normalDirection: Vector2
 var sourceNode: Node2D
 func _ready() -> void:
-	texture = load("res://WeaponsContents/BulletTrail.png")
+	texture = preload("res://WeaponsContents/BulletTrail.png")
 	region_rect = Rect2(8, 0, 16, 32)
 	patch_margin_left = 4
 	patch_margin_top = 0
@@ -64,7 +66,8 @@ func _ready() -> void:
 		var finalColor = self_modulate
 		finalColor.a = 0.0
 		tween.tween_property(self, "self_modulate", finalColor, fadeTime)
-		tween.tween_callback(free)
+	await TimeManager.wait(fadeTime)
+	queue_free()
 
 var smokeBullet = false
 var speed = randfn(targetBulletTravelSpeed, bulletTravelSpeedDeviation)

@@ -26,7 +26,6 @@ func explode() -> void:
 
 # determines the trajectory of the fireball - assume this is called on start as intended
 func goToPosition(newTargetPosition: Vector2) -> void:
-	$SmokeStart.emitting = true
 	$RigidBody2D/AnimationPlayer.play("Summon")
 	var distance = global_position.distance_to(newTargetPosition)
 	var normal = (newTargetPosition - global_position).normalized()
