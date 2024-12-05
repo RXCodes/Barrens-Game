@@ -559,7 +559,8 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
-radius = 30.0
+radius = 45.0
+neighbor_distance = 400.0
 
 [node name="FlipTransform" type="Node2D" parent="Slime_Enemy/ColliderBox"]
 position = Vector2(0, -25)

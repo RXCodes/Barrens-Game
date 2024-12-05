@@ -7,6 +7,10 @@ var canDealDamage = false
 func onStart() -> void:
 	var wave = VillageController.currentWave
 	setTarget(Player.current, 100)
+	
+	if wave >= 5:
+		navigationAgent.avoidance_enabled = true
+	
 	while not dead:
 		walkMovementSpeed = 2
 		walkMovementSpeed = 2 * (1 + (wave - 1) * 0.05)

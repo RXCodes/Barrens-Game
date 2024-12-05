@@ -263,7 +263,10 @@ debug_color = Color(0, 0.648944, 0.163145, 0.42)
 path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
+navigation_layers = 4
 path_metadata_flags = 0
+avoidance_layers = 4
+avoidance_mask = 4
 
 [node name="FlipTransform" type="Node2D" parent="Worm_Enemy/ColliderBox"]
 scale = Vector2(-1, 1)

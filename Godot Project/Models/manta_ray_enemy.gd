@@ -11,6 +11,10 @@ signal hitWithDash
 # Function called when the enemy spawns into the scene
 func onStart() -> void:
 	var wave = VillageController.currentWave
+	
+	if wave >= 8:
+		navigationAgent.avoidance_enabled = true
+	
 	# Loop this while the enemy is alive
 	while not dead:
 		# get within range to dash to player
@@ -27,6 +31,7 @@ func onStart() -> void:
 		faceTarget()
 		mainAnimationPlayer.stop()
 		if not pathfindNormal:
+			navigationAgent.radius = 85
 			dashNormal = (getTargetPosition() - getPosition()).normalized()
 			if dashNormal.x < 0:
 				playAnimation("Dash-Left")
@@ -40,6 +45,7 @@ func onStart() -> void:
 		$ColliderBox/DashParticles.emitting = true
 		var rigidBody = $ColliderBox as RigidBody2D
 		await TimeManager.promise([hitWithDash, TimeManager.wait(0.75)])
+		navigationAgent.radius = 40
 		activateHurtBox($ColliderBox/Hurtbox,  randf_range(12, 18), HurtBoxType.PLAYER)
 		$ColliderBox/DashParticles.emitting = false
 		faceTarget()

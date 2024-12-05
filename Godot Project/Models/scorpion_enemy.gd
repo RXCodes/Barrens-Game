@@ -39,7 +39,7 @@ func onStart() -> void:
 						break
 			
 			if shouldDash:
-				navigationAgent.avoidance_enabled = false
+				navigationAgent.radius = 150
 				walkMovementSpeed = 0
 				await animateBrightness(0.5, 0.2)
 				await animateBrightness(0, 0.2)
@@ -47,17 +47,16 @@ func onStart() -> void:
 				await animateBrightness(0, 0.2)
 				dashTowardsPosition(getTargetPosition())
 				await dashComplete
+				navigationAgent.radius = 50
 				activateHurtBox($ColliderBox/Hurtbox, randf_range(25, 35), HurtBoxType.PLAYER)
 				$ColliderBox/FlipTransform/Animations.stop()
 				await TimeManager.wait(0.5)
-				navigationAgent.avoidance_enabled = true
 			else:
 				canDash = false
 		
 		# Make the enemy attack while in range of the player
 		while withinDistanceOfTarget(100):
 			faceTarget()
-			navigationAgent.avoidance_enabled = false
 			walkMovementSpeed = 0
 			$ColliderBox/AttackSound.play()
 			$ColliderBox/FlipTransform/Animations.stop()
@@ -65,7 +64,6 @@ func onStart() -> void:
 			await TimeManager.wait(.3)
 			activateHurtBox($ColliderBox/Hurtbox, randf_range(18, 25), HurtBoxType.PLAYER)
 			await TimeManager.wait(0.7)
-		navigationAgent.avoidance_enabled = true
 
 # dash at random times
 func dashLoop() -> void:

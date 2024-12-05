@@ -408,15 +408,14 @@ var lastNavigationCheck: float = 0
 func navigate() -> void:
 	# adjust navigation properties depending on defined propreties
 	if pathfindAgentSize == PathfindAgentSize.SMALL:
-		navigationAgent.avoidance_layers = 1
 		navigationAgent.navigation_layers = 1
 	elif pathfindAgentSize == PathfindAgentSize.MEDIUM:
-		navigationAgent.avoidance_layers = 2
 		navigationAgent.navigation_layers = 2
 	elif pathfindAgentSize == PathfindAgentSize.LARGE:
-		navigationAgent.avoidance_layers = 4
 		navigationAgent.navigation_layers = 4
 	navigationAgent.target_desired_distance = targetDistance
+	navigationAgent.avoidance_layers = 1
+	navigationAgent.avoidance_mask = 1
 	var timeElapsed = timeAlive - lastNavigationCheck
 	lastNavigationCheck = timeAlive
 	if withinRangeOfTarget():
@@ -449,6 +448,8 @@ func navigate() -> void:
 
 func velocityComputed(vector: Vector2) -> void:
 	if dead:
+		return
+	if walkMovementSpeed == 0:
 		return
 	collisionRigidBody.move_and_collide(vector)
 

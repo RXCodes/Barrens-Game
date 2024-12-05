@@ -233,10 +233,11 @@ target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
 avoidance_enabled = true
-radius = 200.0
-neighbor_distance = 1200.0
+radius = 50.0
 time_horizon_agents = 2.0
 max_speed = 1000.0
+avoidance_layers = 7
+avoidance_mask = 7
 debug_enabled = true
 
 [node name="FlipTransform" type="Node2D" parent="Scorpion_Enemy/ColliderBox"]
