@@ -48,6 +48,6 @@ Although not everything is documented, most of the code should be self-explanato
 - May contain unintended bugs and incomplete features.
 
 **Production Version**
--> https://rxcodes.github.io/Barren-Game/Export/Production/index.html
+-> https://rxcodes.itch.io/barren
 - This version is ready for the public to play and represents a playable official release.
 - What you see is what is intended - bugs encountered should be minimal to none.
