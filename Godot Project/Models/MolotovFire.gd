@@ -22,6 +22,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	for i in range(12):
 		activateHurtBox(damagePerSecond, hurtBoxType)
+		activateHurtBox(5, EnemyAI.HurtBoxType.PLAYER)
 		if i == 10:
 			$Fire.emitting = false
 			var fadeOut = NodeRelations.createTween()

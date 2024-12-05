@@ -167,7 +167,7 @@ var damageDealt: float = 0
 var damageTaken: float = 0
 var bulletsFired: int = 0
 
-var burnTime = 0.0
+var burningTime = 0.0
 var fireTick = 1.0
 var burnFX: EntityFire
 var poisonFX: EntityAcid
@@ -193,10 +193,10 @@ func _physics_process(delta: float) -> void:
 			poisonFX = null
 	
 	# burning functionality
-	if burnTime > 0.0:
+	if burningTime > 0.0:
 		if not burnFX:
 			createBurnFX()
-		burnTime -= delta
+		burningTime -= delta
 		fireTick -= delta
 		if fireTick <= 0.0:
 			fireTick = 1.0
@@ -442,9 +442,9 @@ func damage(amount: float, source: Node2D) -> void:
 		
 		# lightning and inferno enemies delivers burning effect
 		if enemy.variantType == EnemyAI.EnemyVariantType.LIGHTNING:
-			burnTime = 6.0
+			burningTime = 6.0
 		if enemy.variantType == EnemyAI.EnemyVariantType.INFERNO:
-			burnTime = 10.0
+			burningTime = 10.0
 	
 	# apply defense
 	if defenseDivisor >= 1:

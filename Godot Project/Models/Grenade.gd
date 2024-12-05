@@ -20,6 +20,8 @@ func _ready() -> void:
 	# create explosion
 	var explosion = Explosion.create($RigidBody2D/Grenade.global_position, 250 * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
 	explosion.isFromPlayer = true
+	# hurt the player too
+	Explosion.create($RigidBody2D/Grenade.global_position, 15, EnemyAI.HurtBoxType.PLAYER)
 	queue_free()
 
 # determines the trajectory of the grenade
