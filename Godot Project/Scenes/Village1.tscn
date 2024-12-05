@@ -57,8 +57,8 @@
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
 [ext_resource type="Script" path="res://Scenes/EasterEgg.gd" id="54_fqu2u"]
-[ext_resource type="PackedScene" uid="uid://7db2211c465g" path="res://Models/InvincibleDummy.tscn" id="55_133kb"]
-[ext_resource type="PackedScene" path="res://UI/WaveDisplay.tscn" id="57_g185c"]
+[ext_resource type="PackedScene" path="res://Models/InvincibleDummy.tscn" id="55_133kb"]
+[ext_resource type="PackedScene" uid="uid://cdig706m75kke" path="res://UI/WaveDisplay.tscn" id="57_g185c"]
 [ext_resource type="Shader" path="res://Scenes/Fog.gdshader" id="60_75dms"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1kdcy"]

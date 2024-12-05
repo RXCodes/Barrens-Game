@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bdysxjig8gkn5"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://c6sgrrxmd5ic8"]
 
 [ext_resource type="Shader" path="res://ModelContents/Inferno.gdshader" id="1_n8aok"]
 

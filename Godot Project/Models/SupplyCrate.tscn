@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://fsvkps20epu2"]
+
+[ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_nevhh"]
+[ext_resource type="Script" path="res://Models/SupplyCrate.gd" id="2_snofn"]
+[ext_resource type="Texture2D" uid="uid://5sw0wgekdmlc" path="res://ModelContents/SupplyDrop.png" id="3_kc7h6"]
+[ext_resource type="AudioStream" uid="uid://cpd41fyndlphy" path="res://ModelContents/Grenade/GrenadeBounce.mp3" id="4_ok15j"]
+[ext_resource type="AudioStream" uid="uid://dcey6t6jbgx6m" path="res://UI/CriticalHit.mp3" id="5_iat6k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n1x3"]
+size = Vector2(46.5, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdhpo"]
+size = Vector2(11.5323, 45.314)
+
+[sub_resource type="Animation" id="Animation_7b51g"]
+resource_name = "Hit-Front"
+
+[sub_resource type="Animation" id="Animation_uiv5y"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p6ixi"]
+_data = {
+"Hit-Front": SubResource("Animation_7b51g"),
+"RESET": SubResource("Animation_uiv5y")
+}
+
+[sub_resource type="Animation" id="Animation_y14ci"]
+resource_name = "Death"
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_2dwbs"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_525mk"]
+_data = {
+"Death": SubResource("Animation_y14ci"),
+"RESET": SubResource("Animation_2dwbs")
+}
+
+[node name="SupplyCrate" type="CanvasGroup"]
+process_priority = 5
+texture_filter = 1
+position = Vector2(-785.628, 541.064)
+script = ExtResource("1_nevhh")
+
+[node name="Crate" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
+position = Vector2(0, -23)
+script = ExtResource("2_snofn")
+maxHealth = 300
+cashDrop = 500
+cashDropVariance = 100
+hitBoxRigidBody = NodePath("Hitbox")
+collisionRigidBody = NodePath("ColliderBox")
+walkMovementSpeed = 0.0
+mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
+actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
+
+[node name="Hitbox" type="RigidBody2D" parent="Crate"]
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+lock_rotation = true
+freeze = true
+
+[node name="Shape" type="CollisionShape2D" parent="Crate/Hitbox"]
+z_index = -2
+position = Vector2(0.127808, -16.5644)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_8n1x3")
+debug_color = Color(0.984956, 0, 0.338532, 0.42)
+
+[node name="ColliderBox" type="RigidBody2D" parent="Crate"]
+gravity_scale = 0.0
+lock_rotation = true
+
+[node name="Shape" type="CollisionShape2D" parent="Crate/ColliderBox"]
+z_index = -1
+position = Vector2(0.313721, 3.46783)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_fdhpo")
+debug_color = Color(0, 0.648944, 0.163145, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Crate/ColliderBox"]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+path_max_distance = 120.0
+path_metadata_flags = 0
+
+[node name="FlipTransform" type="Node2D" parent="Crate/ColliderBox"]
+
+[node name="Base" type="Sprite2D" parent="Crate/ColliderBox/FlipTransform"]
+texture_filter = 1
+position = Vector2(-1.37219, 4.93561)
+scale = Vector2(2, 2)
+texture = ExtResource("3_kc7h6")
+offset = Vector2(0.686096, -6.7178)
+
+[node name="ActionAnimationPlayer" type="AnimationPlayer" parent="Crate/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_p6ixi")
+}
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="Crate/ColliderBox/FlipTransform"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_525mk")
+}
+
+[node name="HitSounds" type="Node2D" parent="Crate/ColliderBox"]
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Crate/ColliderBox/HitSounds"]
+stream = ExtResource("4_ok15j")
+pitch_scale = 2.0
+attenuation = 0.707107
+
+[node name="DeathSounds" type="Node2D" parent="Crate/ColliderBox"]
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Crate/ColliderBox/DeathSounds"]
+stream = ExtResource("5_iat6k")
+pitch_scale = 0.5

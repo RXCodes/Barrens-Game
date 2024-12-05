@@ -19,6 +19,7 @@ func _ready() -> void:
 	await TimeManager.wait(4.5)
 	WaveDisplay.start(1, 30)
 	startItemSpawnLoop()
+	startSupplyDropLoop()
 	prepareEnemies()
 	WaveInfoDisplay.setCurrentWave(1, false)
 	WaveInfoDisplay.setEnemyCount(targetEnemyCount, false)
@@ -182,6 +183,7 @@ func getRandomSpawnPoint() -> Vector2:
 
 func _process(delta: float) -> void:
 	# check if the wave is completed
+	currentSupplyDropCooldown -= delta
 	if waveStarted:
 		var enemyCount = get_tree().get_nodes_in_group("Enemy").size()
 		if enemyCount == 0:
@@ -190,6 +192,12 @@ func _process(delta: float) -> void:
 var maxItemDrops = 25
 func startItemSpawnLoop() -> void:
 	while not Player.current.dead:
+		
+		# this shouldn't happen while the game is paused
+		if GamePopup.current:
+			await TimeManager.wait(2.0)
+			continue
+		
 		# make sure we can never exceed over 25 items at any given time on the map
 		# this doesn't count player dropped items or items bought from shops
 		var currentItemCount = get_tree().get_nodes_in_group("SpawnedItem").size()
@@ -218,6 +226,36 @@ func startItemSpawnLoop() -> void:
 			var item = Item.spawnItem(potions.pick_random(), randi_range(1, 2), randomPoint)
 			item.add_to_group("SpawnedItem")
 		await TimeManager.wait(1.0)
+
+var supplyDropCooldown: float = 100.0
+var currentSupplyDropCooldown: float = 0.0
+func startSupplyDropLoop() -> void:
+	while not Player.current.dead:
+		
+		if currentSupplyDropCooldown > 0:
+			await TimeManager.wait(2.0)
+			continue
+		
+		# this shouldn't happen while the game is paused
+		if GamePopup.current:
+			await TimeManager.wait(2.0)
+			continue
+		
+		# determine a random point on the traversable map
+		var randomPoint = getRandomSpawnPoint()
+			
+		# check if it is within range of the player, but not too close
+		var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
+		if distanceSquared < minimumSpawningRadiusSquared or distanceSquared > maximumSpawningRadiusSquared:
+			await TimeManager.wait(0.5)
+			continue
+		
+		# small chance of supply drop spawning
+		var roll = randi_range(0, 160)
+		if roll == 1:
+			currentSupplyDropCooldown = supplyDropCooldown
+			EnemySpawner.spawnEnemy("SupplyCrate", randomPoint)
+			TextAlert.setupAlert("A supply crate has been summoned!", Color.MEDIUM_PURPLE)
 
 # called every time an enemy has been killed
 func enemyKilled() -> void:
