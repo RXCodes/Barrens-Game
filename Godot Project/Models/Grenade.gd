@@ -36,9 +36,14 @@ func goToPosition(newTargetPosition: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if not canTravel:
 		return
+	var rigidBody: RigidBody2D = $RigidBody2D
 	$RigidBody2D/Grenade.rotation_degrees += delta * targetVelocity.x * 2
 	targetVelocity *= 0.98 # damp the target velocity for smoother deceleration
-	var collision = $RigidBody2D.move_and_collide(targetVelocity * delta)
+	var collision = rigidBody.move_and_collide(targetVelocity * delta)
 	# the grenade cannot move anymore once it hits a wall
 	if collision:
-		canTravel = false
+		var collider = collision.get_collider()
+		if not collider.has_meta(EnemyAI.parentControllerKey):
+			canTravel = false
+		else:
+			rigidBody.add_collision_exception_with(collider)

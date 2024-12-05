@@ -22,7 +22,7 @@ _data = [Vector2(0, 0), 0.0, 23.6503, 0, 0, Vector2(0.050505, 100), 0.0, 0.0, 0,
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_34u23"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.812229, 0.462968, 1)
+colors = PackedColorArray(0.734419, 0.946343, 0.997334, 1, 0.14, 0.312, 1, 1)
 
 [node name="Lightning" type="CPUParticles2D"]
 texture_filter = 1

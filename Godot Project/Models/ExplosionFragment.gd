@@ -1,13 +1,16 @@
 class_name ExplosionFragment extends Node2D
 
-static func create(position: Vector2) -> void:
+static func create(position: Vector2, color: Color) -> void:
 	var explosion = preload("res://Models/ExplosionFragment.tscn").instantiate()
 	explosion.global_position = position
+	explosion.color = color
 	NodeRelations.rootNode.find_child("Level").add_child(explosion)
 
 # Called when the node enters the scene tree for the first time.
+var color: Color
 func _ready() -> void:
 	var flash = $Flash
+	flash.self_modulate = color
 	var tween = NodeRelations.createTween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_EXPO)

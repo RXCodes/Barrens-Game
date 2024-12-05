@@ -30,9 +30,6 @@ void fragment() {
 	vec2 scroll = scrollAmount * TIME;
 	vec2 displacement = texture(noise_texture, SCREEN_UV + scroll).rb;
 	vec4 c = texture(screen_texture, SCREEN_UV);
-	if (c.a < 0.25) {
-		c.a = 0.0;
-	}
 	
 	// make this enemy red
 	vec3 hsv = rgb2hsv(c.rgb);

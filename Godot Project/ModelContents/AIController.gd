@@ -240,10 +240,6 @@ func setVariantType(type: EnemyVariantType) -> void:
 func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
-	var random = Vector2(randfn(0, 10), randfn(0, 10))
-	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
-	playHitSound()
-	flashWhite(true)
 	if actionAnimationPlayer:
 		actionAnimationPlayer.stop()
 		var directionVector = globalPosition - collisionRigidBody.global_position
@@ -251,8 +247,8 @@ func onHit(globalPosition: Vector2) -> void:
 			actionAnimationPlayer.play(hitFrontAnimation)
 		else:
 			actionAnimationPlayer.play(hitBackAnimation)
-	await TimeManager.wait(0.05)
-	flashWhite(false)
+	var random = Vector2(randfn(0, 10), randfn(0, 10))
+	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
 	pass
 
 var canPlayHitSound = true
@@ -315,6 +311,11 @@ func damage(amount: float, source: Node2D) -> void:
 			Player.current.enemiesDefeated += 1
 		kill()
 	updateHealthBar()
+	
+	playHitSound()
+	flashWhite(true)
+	await TimeManager.wait(0.05)
+	flashWhite(false)
 
 # called when health bar needs to update
 func updateHealthBar() -> void:

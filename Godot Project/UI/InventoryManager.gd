@@ -152,6 +152,7 @@ static func consumeItem() -> void:
 	if not currentItem:
 		return
 	currentItem.amount -= 1
+	clickSound.play()
 	
 	# all of the items are gone for this slot - shift items to the left
 	if currentItem.amount == 0:

@@ -12,7 +12,6 @@ func onStart() -> void:
 		# Loop this while the enemy is alive
 		while not dead:
 			$ColliderBox/FlipTransform/Animations.play("Idle")
-			walkMovementSpeed = 1  # Worm moves slowly when approaching the player
 			walkMovementSpeed = (1 + (wave - 11) * 0.05)
 			walkMovementSpeed = min(walkMovementSpeed, 2.5)
 			await enemyReachedTarget
@@ -23,13 +22,30 @@ func onStart() -> void:
 				walkMovementSpeed = 0  # Worm doesn't move while attacking
 				# Play attack animation
 				playAnimation("Attack")
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
+				await animateBrightness(0.5, 0.2)
+				await animateBrightness(0, 0.2)
 				await enemyAnimationFinished
 				await TimeManager.wait(0.05)
 				$ColliderBox/FlipTransform/Animations.play("Idle")
 				
+				# move closer to the player
+				setTarget(Player.current, 50)
+				walkMovementSpeed = (1 + (wave - 11) * 0.05)
+				walkMovementSpeed = min(walkMovementSpeed, 2.5)
+				
 				# delay before worm attacks again
-				var cooldown = max(4.0 - (wave - 11) * 0.15, 2.0)
-				await TimeManager.wait(4.0)
+				var cooldown = max(5.0 - (wave - 11) * 0.15, 2.0)
+				await TimeManager.wait(cooldown)
+				setTarget(Player.current, 600)
 
 func summonProjectile() -> void:
-	pass
+	var fireball: WormFireball = EnemySpawner.spawnEnemy("WormFireball", getPosition())
+	fireball.material = renderer.material.duplicate()
+	fireball.material.set_shader_parameter("brightness", 0)
+	fireball.goToPosition(getTargetPosition())

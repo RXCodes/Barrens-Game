@@ -231,8 +231,9 @@ deathAnimation = "Death"
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
 hitFrontAnimation = "Hit"
 healthBarPositionOffset = Vector2(0, 60)
-healthBarColor = Color(0.737751, 0.516541, 0.888771, 1)
+healthBarColor = Color(0.778099, 0.487252, 0.897949, 1)
 invertXFlip = true
+variantType = 2
 
 [node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
 collision_layer = 4
@@ -265,6 +266,7 @@ target_desired_distance = 20.0
 path_max_distance = 120.0
 navigation_layers = 4
 path_metadata_flags = 0
+avoidance_enabled = true
 avoidance_layers = 4
 avoidance_mask = 4
 

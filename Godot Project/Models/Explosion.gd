@@ -2,16 +2,19 @@ class_name Explosion extends Node2D
 
 var isFromPlayer = false
 
-static func create(position: Vector2, damage: float, hurtBoxType: EnemyAI.HurtBoxType) -> Explosion:
+static func create(position: Vector2, damage: float, hurtBoxType: EnemyAI.HurtBoxType, color: Color = Color("f2d862")) -> Explosion:
 	var explosion: Explosion = preload("res://Models/Explosion.tscn").instantiate()
 	explosion.global_position = position
+	explosion.color = color
 	NodeRelations.rootNode.find_child("Level").add_child(explosion)
 	explosion.activateHurtBox(damage, hurtBoxType)
 	return explosion
 
 # Called when the node enters the scene tree for the first time.
+var color: Color
 func _ready() -> void:
 	var flash = $Flash
+	flash.self_modulate = color
 	var tween = NodeRelations.createTween()
 	tween.tween_property(flash, "modulate", Color.TRANSPARENT, 0.25)
 	$Blast.emitting = true
@@ -20,7 +23,7 @@ func _ready() -> void:
 		var fragmentPosition = global_position
 		fragmentPosition.x += randfn(0, 75)
 		fragmentPosition.y += randfn(0, 40)
-		ExplosionFragment.create(fragmentPosition)
+		ExplosionFragment.create(fragmentPosition, color)
 	await TimeManager.wait(10.0)
 	queue_free()
 
