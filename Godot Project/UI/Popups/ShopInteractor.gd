@@ -66,7 +66,7 @@ func _on_button_button_down() -> void:
 				var newGun = Gun.gunFromString(selectedShopItem.itemIdentifier)
 				newGun.currentMagCapacity = newGun.maximumMagCapacity
 				newGun.leftoverAmmoCount = newGun.startingAmmoCount
-				if Save.loadValue("autoPickupWeapons", true):
+				if Save.loadValue("autoPickupWeapons", true) and not TutorialManager.inTutorial:
 					Player.current.pickupWeapon(newGun)
 					TextAlert.setupAlert("Automatically equipped " + newGun.displayName, Color.WHITE)
 				else:

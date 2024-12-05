@@ -1,9 +1,11 @@
 class_name TutorialManager extends Node
 
 static var shouldDisableControls = false
+static var inTutorial = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	TutorialManager.inTutorial = true
 	var fadeIn = $"../ScreenUI/FadeIn"
 	fadeIn.scale = Vector2(1000, 1000)
 	await get_tree().physics_frame
@@ -73,6 +75,7 @@ func _ready() -> void:
 	# tutorial has been completed
 	var fadeOutTween = NodeRelations.createTween()
 	fadeOutTween.tween_property(fadeIn, "self_modulate", Color.BLACK, 3.0)
+	TutorialManager.inTutorial = false
 	Save.saveValue("completedTutorial", true)
 	await TimeManager.wait(3.5)
 	NodeRelations.loadScene("res://Scenes/TitleScreen.tscn")
