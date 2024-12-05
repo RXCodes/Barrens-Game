@@ -30,3 +30,6 @@ func onStart() -> void:
 				activateHurtBox($ColliderBox/Hurtbox, damage, HurtBoxType.PLAYER)
 				# Little delay before enemy attacks again
 				await TimeManager.wait(1.2)
+
+func onDeath () -> void:
+	$ColliderBox/FlipTransform/Animations.play("Death")

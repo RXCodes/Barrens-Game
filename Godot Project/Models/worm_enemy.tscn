@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://n0e8t8q312gb"]
+[gd_scene load_steps=33 format=3 uid="uid://n0e8t8q312gb"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_i73wb"]
 [ext_resource type="Script" path="res://Models/worm_enemy.gd" id="2_8ctff"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dd7pm25o3ce0h" path="res://ModelContents/Enemies/Worm Attack/frame_11_delay-0.2s.png" id="10_m2m5v"]
 [ext_resource type="Texture2D" uid="uid://bf8uf5v7insyi" path="res://ModelContents/Enemies/Worm Attack/frame_12_delay-0.2s.png" id="11_8titr"]
 [ext_resource type="Texture2D" uid="uid://c8n1npt4dyist" path="res://ModelContents/Enemies/Worm Attack/frame_13_delay-0.2s.png" id="12_0qnut"]
+[ext_resource type="Texture2D" uid="uid://b14ud4ia8mha0" path="res://ModelContents/Enemies/Worm_Enemy_Dead/Worm Dead.PNG" id="13_t7t3k"]
 [ext_resource type="Texture2D" uid="uid://csw53oe2xpdec" path="res://ModelContents/Enemies/Worm Idle/frame_0_delay-0.3s.png" id="13_v224w"]
 [ext_resource type="Texture2D" uid="uid://d4not3pagkuel" path="res://ModelContents/Enemies/Worm Idle/frame_1_delay-0.3s.png" id="14_uxm2p"]
 [ext_resource type="Texture2D" uid="uid://bceu0h672m3p1" path="res://ModelContents/Enemies/Worm Idle/frame_2_delay-0.2s.png" id="15_gx0ad"]
@@ -65,6 +66,14 @@ animations = [{
 "loop": true,
 "name": &"Attack",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_t7t3k")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -199,9 +208,81 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_fkkh3"]
 resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.205, 0.22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-26, -85)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
 
 [sub_resource type="Animation" id="Animation_82ynv"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipTransform/Animations:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.353168, 0.376503)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipTransform/Animations:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, -142)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FlipTransform/Animations:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Death"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vkjs"]
 _data = {
@@ -233,7 +314,6 @@ hitFrontAnimation = "Hit"
 healthBarPositionOffset = Vector2(0, 60)
 healthBarColor = Color(0.778099, 0.487252, 0.897949, 1)
 invertXFlip = true
-variantType = 2
 
 [node name="Hitbox" type="RigidBody2D" parent="Worm_Enemy"]
 collision_layer = 4
@@ -274,10 +354,10 @@ avoidance_mask = 4
 scale = Vector2(-1, 1)
 
 [node name="Animations" type="AnimatedSprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
-position = Vector2(11.4998, -132.399)
+position = Vector2(6, -142)
 scale = Vector2(0.353168, 0.376503)
 sprite_frames = SubResource("SpriteFrames_w35xc")
-animation = &"Idle"
+animation = &"Death"
 
 [node name="Shadow" type="Sprite2D" parent="Worm_Enemy/ColliderBox/FlipTransform"]
 modulate = Color(1, 1, 1, 0.231373)

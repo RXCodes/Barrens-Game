@@ -38,8 +38,8 @@
 [ext_resource type="PackedScene" uid="uid://dd5p33ybg8ngx" path="res://Environment/Decoration/Log.tscn" id="36_0sxu3"]
 [ext_resource type="PackedScene" uid="uid://cxyqg2lyeonya" path="res://Environment/Decoration/TrashCan.tscn" id="37_7q8re"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="38_i01l7"]
-[ext_resource type="PackedScene" uid="uid://ge1chou4evxe" path="res://Models/snake_enemy.tscn" id="39_2xwqi"]
 [ext_resource type="Texture2D" uid="uid://bryra10fhy4a" path="res://Environment/Sun.png" id="40_rluml"]
+[ext_resource type="PackedScene" uid="uid://n0e8t8q312gb" path="res://Models/worm_enemy.tscn" id="40_vs02l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
 texture = ExtResource("10_q0e8j")
@@ -560,9 +560,6 @@ position = Vector2(-866, 152)
 [node name="WaterFountain2" parent="Level" instance=ExtResource("38_i01l7")]
 position = Vector2(-1163, 80)
 
-[node name="Snake_Enemy" parent="Level" instance=ExtResource("39_2xwqi")]
-position = Vector2(-33, -222)
-
 [node name="Mouse test" type="Sprite2D" parent="Level"]
 visible = false
 position = Vector2(-207.193, -758.828)
@@ -581,3 +578,6 @@ script = SubResource("GDScript_y3n4r")
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
+
+[node name="Worm_Enemy" parent="." instance=ExtResource("40_vs02l")]
+position = Vector2(-118, -281)

@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bjc1kfg5sp4av" path="res://ModelContents/Enemies/Scorpion Attack/frame_12_delay-0.05s.png" id="15_njygn"]
 [ext_resource type="Texture2D" uid="uid://hlsyugxw3ihc" path="res://ModelContents/Enemies/Scorpion Attack/frame_13_delay-0.05s.png" id="16_3bnhw"]
 [ext_resource type="Texture2D" uid="uid://dqohq0awc8pam" path="res://ModelContents/Enemies/Scorpion Attack/frame_14_delay-0.08s.png" id="17_qelig"]
+[ext_resource type="Texture2D" uid="uid://cy6j1ypw4fao5" path="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Dead Scorpion FR.png" id="18_3g54k"]
 [ext_resource type="Texture2D" uid="uid://bybomaophrnny" path="res://ModelContents/Enemies/Scorpion Attack/frame_15_delay-0.08s.png" id="18_38jjn"]
-[ext_resource type="Texture2D" uid="uid://cl78xn6ycyxq5" path="res://ModelContents/Enemies/Scorpion_Enemy_Dead/Scorpion Dead.PNG" id="19_pt6to"]
 [ext_resource type="Texture2D" uid="uid://bb37piqkxkf8o" path="res://ModelContents/Enemies/Scorpion Attack/frame_16_delay-0.1s.png" id="19_xv7kr"]
 [ext_resource type="AudioStream" uid="uid://dmpqjbvaleuuy" path="res://ModelContents/Enemies/ScorpionAttack.mp3" id="22_4n6vr"]
 [ext_resource type="AudioStream" uid="uid://cng4wtl2u4wf5" path="res://ModelContents/Enemies/ScorpionHit.mp3" id="22_b8o04"]
@@ -95,8 +95,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_w21hc")
 }, {
-"duration": 1.0,
-"texture": ExtResource("19_pt6to")
+"duration": 2.0,
+"texture": ExtResource("18_3g54k")
 }],
 "loop": true,
 "name": &"Death",
@@ -247,9 +247,8 @@ position = Vector2(0, -29)
 position = Vector2(0, 20)
 scale = Vector2(0.276011, 0.231704)
 sprite_frames = SubResource("SpriteFrames_ydutp")
-animation = &"Attack"
-frame = 13
-frame_progress = 1.0
+animation = &"Death"
+frame_progress = 0.790511
 offset = Vector2(20.1314, -193.849)
 
 [node name="Shadow" type="Sprite2D" parent="Scorpion_Enemy/ColliderBox/FlipTransform"]
