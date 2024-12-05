@@ -36,12 +36,13 @@ blend_mode = 1
 script = ExtResource("1_uo7y7")
 
 [node name="Blast" type="CPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.72549)
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_7xrq6")
 scale = Vector2(0.6, 0.6)
 emitting = false
 amount = 35
-lifetime = 5.0
+lifetime = 4.0
 one_shot = true
 explosiveness = 0.9
 randomness = 0.3

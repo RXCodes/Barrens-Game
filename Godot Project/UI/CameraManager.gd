@@ -28,6 +28,13 @@ func _process(delta: float) -> void:
 	finalOffset += aimingPositionOffset
 	finalOffset += gunFireShakeOffset
 	finalOffset.y += verticalOffsetShake
+	
+	# camera shake
+	var shakeX = (randf() - 0.5) * shakeMultiplier
+	var shakeY = (randf() - 0.5) * shakeMultiplier
+	finalOffset.x += shakeX
+	finalOffset.y += shakeY
+	
 	offset = finalOffset
 	
 func setZoom(zoom: float, duration: float) -> void:
@@ -50,3 +57,15 @@ func playerDamaged() -> void:
 	verticalShakeTween.set_ease(Tween.EASE_OUT)
 	verticalShakeTween.set_trans(Tween.TRANS_ELASTIC)
 	verticalShakeTween.tween_property(self, "verticalOffsetShake", 0, 1.5)
+
+
+var shakeMultiplier = 0.0
+var horizontalShakeTween: Tween
+func shakeScreen(intensity: float, time: float) -> void:
+	shakeMultiplier = intensity
+	if horizontalShakeTween:
+		horizontalShakeTween.stop()
+	horizontalShakeTween = NodeRelations.createTween()
+	horizontalShakeTween.set_ease(Tween.EASE_OUT)
+	horizontalShakeTween.set_trans(Tween.TRANS_EXPO)
+	horizontalShakeTween.tween_property(self, "shakeMultiplier", 0, time)

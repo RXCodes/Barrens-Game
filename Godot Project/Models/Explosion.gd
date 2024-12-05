@@ -15,6 +15,10 @@ var color: Color
 func _ready() -> void:
 	var flash = $Flash
 	flash.self_modulate = color
+	var distanceToPlayer = Player.current.global_position.distance_to(global_position)
+	var shakeIntensity = 40 - (distanceToPlayer * 0.035)
+	if shakeIntensity > 0:
+		PlayerCamera.current.shakeScreen(shakeIntensity, 3.0)
 	var tween = NodeRelations.createTween()
 	tween.tween_property(flash, "modulate", Color.TRANSPARENT, 0.25)
 	$Blast.emitting = true
@@ -38,7 +42,7 @@ func activateHurtBox(damage: float, type: EnemyAI.HurtBoxType) -> void:
 			var distance = collider.global_position.distance_to(global_position)
 			var parent = collider.get_meta(EnemyAI.parentControllerKey)
 			if parent:
-				var newDamage = lerpf(damage * damageFalloff, damage, distance / 260)
+				var newDamage = lerpf(damage * damageFalloff, damage, distance / 180)
 				if type == EnemyAI.HurtBoxType.ALL:
 					parent.damage(newDamage, self)
 				elif parent is EnemyAI and type == EnemyAI.HurtBoxType.ENEMY:

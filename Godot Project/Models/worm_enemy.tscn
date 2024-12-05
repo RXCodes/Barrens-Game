@@ -303,12 +303,12 @@ libraries = {
 
 [node name="ChargeSound" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox"]
 position = Vector2(-27, -122)
-volume_db = 4.0
+volume_db = -3.0
 attenuation = 0.707107
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="Worm_Enemy/ColliderBox"]
 position = Vector2(-27, -122)
-volume_db = 4.0
+volume_db = -2.0
 attenuation = 0.707107
 
 [node name="HitSounds" type="Node2D" parent="Worm_Enemy/ColliderBox"]

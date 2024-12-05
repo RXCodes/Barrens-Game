@@ -34,7 +34,7 @@ colors = PackedColorArray(0.605274, 0.605274, 0.605274, 1, 1, 1, 1, 1)
 blend_mode = 1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5wvo6"]
-radius = 254.002
+radius = 250.0
 
 [node name="Explosion" type="Node2D"]
 script = ExtResource("1_lulrj")
@@ -45,7 +45,7 @@ material = SubResource("CanvasItemMaterial_7xrq6")
 scale = Vector2(1.75, 1)
 emitting = false
 amount = 40
-lifetime = 5.0
+lifetime = 4.0
 one_shot = true
 explosiveness = 1.0
 randomness = 0.3
@@ -67,7 +67,7 @@ damping_curve = SubResource("Curve_lgja4")
 scale_amount_min = 2.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_rt27n")
-color = Color(0.321728, 0.321728, 0.321728, 0.329412)
+color = Color(0.32, 0.32, 0.32, 0.25098)
 color_initial_ramp = SubResource("Gradient_7c8pj")
 anim_speed_min = 1.0
 anim_speed_max = 1.75
@@ -80,6 +80,7 @@ texture = ExtResource("1_5gx0j")
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_wj1x6")
+volume_db = -2.0
 autoplay = true
 max_distance = 3000.0
 

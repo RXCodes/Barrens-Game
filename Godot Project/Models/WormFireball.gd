@@ -15,11 +15,11 @@ func explode() -> void:
 	# create explosion and change color based on enemy type
 	var color = Color("#7cb5eb")
 	if wormType == EnemyAI.EnemyVariantType.ACID:
-		Color("#10ed00")
+		color = Color("#10ed00")
 	if wormType == EnemyAI.EnemyVariantType.LIGHTNING:
-		Color("#ffe100")
+		color = Color("#ffe100")
 	if wormType == EnemyAI.EnemyVariantType.INFERNO:
-		Color("#ff0000")
+		color = Color("#ff0000")
 	
 	var explosion = Explosion.create($RigidBody2D/Fireball.global_position, 20, EnemyAI.HurtBoxType.PLAYER, color)
 	queue_free()
