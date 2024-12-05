@@ -70,16 +70,31 @@ func getDescription(amounts: Array) -> String:
 static var upgradeNames = []
 static func _static_init() -> void:
 	print("--- Setting up upgrades ---")
-	var filePaths = DirAccess.get_files_at("res://Upgrades/")
+	var filePaths = []
+	var directory = DirAccess.open("res://Upgrades/")
+	if directory:
+		directory.list_dir_begin()
+		var fileName = directory.get_next()
+		while fileName != "":
+			if not directory.current_is_dir():
+				print("Found file: " + fileName)
+				filePaths.append(fileName)
+			fileName = directory.get_next()
+	else:
+		print("An error occurred when trying to access upgrades folder")
+	var loadedPaths = []
 	for filePath in filePaths:
 		if filePath.ends_with(".tscn"):
 			var upgradePath = "res://Upgrades/" + filePath
-			var currentUpgrade: Upgrade = load(upgradePath).instantiate()
+			var currentUpgrade: Upgrade = ResourceLoader.load(upgradePath).instantiate()
 			var upgradeStruct = currentUpgrade.getUpgradeStruct()
+			var upgradeName = filePath.trim_suffix(".tscn")
+			loadedPaths.append(upgradePath)
 			upgradeStructs.append(upgradeStruct)
-			upgradeNames.append(filePath.trim_suffix(".tscn"))
+			upgradeNames.append(upgradeName)
 			currentUpgrade.queue_free()
 			print("Setup upgrade: " + filePath)
+	
 	print("--- Finished setting up upgrades ---")
 
 static func pickRandomUpgrades(count: int) -> Array:

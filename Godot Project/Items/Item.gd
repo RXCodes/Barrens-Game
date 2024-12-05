@@ -26,7 +26,8 @@ static func _static_init() -> void:
 	if loadedPaths.size() == 0:
 		print("No item paths found - loading them from predefined item paths")
 		for preloadedScript in PreloadContents.preloadedItemPaths:
-			preloadedScript.setup()
+			if preloadedScript.has_method("setup"):
+				preloadedScript.setup()
 	print("------- End setup items -------")
 
 static func spawnItem(identifier: String, amount: int, position: Vector2) -> Item:
