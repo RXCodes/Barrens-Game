@@ -40,8 +40,6 @@ static func fire(firePosition: Vector2, angleRadians: float, gun: Gun, sourceNod
 	fireBullet.sourceNode = sourceNode
 	fireBullet.z_index = 3
 	smokeBullet.add_sibling(fireBullet)
-	
-	print("Bullet shot")
 
 # bullet functionality
 var fadeTime: float = 0.3
