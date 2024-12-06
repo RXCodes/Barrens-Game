@@ -163,6 +163,12 @@ static func consumeItemAtIndex(index: int) -> void:
 	currentItem.amount -= 1
 	clickSound.play()
 	
+	# create a visual indicator that an item was consumed
+	var itemIndicator = preload("res://UI/ItemUsed.tscn").instantiate()
+	itemIndicator.setTexture(currentItem.itemTexture)
+	itemIndicator.position = Crosshair.current.position + Crosshair.current.pivot_offset
+	ScreenUI.current.add_child(itemIndicator) 
+	
 	# all of the items are gone for this slot - shift items to the left
 	if currentItem.amount == 0:
 		currentItem.queue_free()
