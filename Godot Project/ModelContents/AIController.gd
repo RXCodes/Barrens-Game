@@ -232,6 +232,9 @@ func setVariantType(type: EnemyVariantType) -> void:
 	if type == EnemyVariantType.INFERNO:
 		defaultMaterial = infernoEnemyShaderMaterial.duplicate()
 		currentHealth = maxHealth
+	if not renderer:
+		renderer = get_parent()
+	renderer.material = defaultMaterial
 
 # called when enemy is hit
 func onHit(globalPosition: Vector2) -> void:
@@ -241,12 +244,13 @@ func onHit(globalPosition: Vector2) -> void:
 		actionAnimationPlayer.stop()
 		var directionVector = globalPosition - collisionRigidBody.global_position
 		if directionVector.x > 0 == not flipX:
-			actionAnimationPlayer.play(hitFrontAnimation)
+			if actionAnimationPlayer.has_animation(hitFrontAnimation):
+				actionAnimationPlayer.play(hitFrontAnimation)
 		else:
-			actionAnimationPlayer.play(hitBackAnimation)
+			if actionAnimationPlayer.has_animation(hitBackAnimation):
+				actionAnimationPlayer.play(hitBackAnimation)
 	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
-	pass
 
 var canPlayHitSound = true
 func playHitSound() -> void:
@@ -433,7 +437,8 @@ func navigate() -> void:
 	
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()
-		mainAnimationPlayer.play(walkAnimation)
+		if mainAnimationPlayer.has_animation("Walk"):
+			mainAnimationPlayer.play(walkAnimation)
 	var pathfindDirectionVector = collisionRigidBody.global_position.direction_to(navigationAgent.get_next_path_position())
 	var newVelocity = pathfindDirectionVector * walkMovementSpeed
 	if not navigationAgent.avoidance_enabled:
@@ -574,13 +579,13 @@ func kill() -> void:
 	await TimeManager.wait(0.05)
 	
 	# rare chance to spawn a lucky coin
-	if randi_range(1, 350) == 1:
+	if randi_range(1, 500) == 1:
 		Item.spawnItem("LuckyCoin", 1, collisionRigidBody.global_position)
 	
 	# chances to drop random items
 	if randi_range(1, 75) == 1:
 		Item.spawnItem("Bandages", randi_range(1, 2), collisionRigidBody.global_position)
-	if randi_range(1, 140) == 1:
+	if randi_range(1, 450) == 1:
 		Item.spawnItem("HealthKit", 1, collisionRigidBody.global_position)
 	if randi_range(1, 175) == 1:
 		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]

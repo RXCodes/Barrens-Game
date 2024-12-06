@@ -20,6 +20,7 @@ func _ready() -> void:
 	add_child(spacer)
 	
 	await TimeManager.wait(1.0)
+	print("Start Nearby Item List Interactor")
 	
 	while not Player.current.dead:
 		# slight delay

@@ -62,8 +62,10 @@ var enemyObjectPool = []
 var enemySpawnNames = []
 
 # asychronously instantiate enemy objects on another thread
+var enemiesPrepared = false
 func prepareEnemies() -> void:
 	# compute the amount of enemies to spawn
+	enemiesPrepared = false
 	var amountToSpawn = sqrt(((25 * (currentWave - 1) + 10) ** 1.25) * (currentWave - 1) * 0.3)
 	amountToSpawn += randfn(0, 5)
 	amountToSpawn = clampf(amountToSpawn, 10, 150)
@@ -80,13 +82,16 @@ func prepareEnemies() -> void:
 	# this prevents performance drops while instantiating massive amounts of enemies
 	var batchRequest = EnemySpawner.batchInstantiateEnemies(enemySpawnNames)
 	await batchRequest.completed
-	enemyObjectPool = batchRequest.nodes
+	if batchRequest.success:
+		enemyObjectPool = batchRequest.nodes
+		enemiesPrepared = true
 	
 # spawn all the enemies into the map
 func spawnEnemies() -> void:
 	var variationChances = determineEnemyVariationChances()
+	var possibleEnemyTypes = determineEnemies()
 	var index = 0
-	for enemy: Node2D in enemyObjectPool:
+	for i in range(targetEnemyCount):
 		while true:
 			# make sure we don't reach the max active enemy count
 			var currentEnemyCount = get_tree().get_nodes_in_group("Enemy").size()
@@ -103,8 +108,15 @@ func spawnEnemies() -> void:
 				await TimeManager.wait(0.01)
 				continue
 			
+			var enemy: Node
+			if enemiesPrepared:
+				enemy = enemyObjectPool[i]
+			else:
+				# if the enemies have not been prepared by a thread, we have to create them synchronously
+				enemy = EnemySpawner.spawnEnemy(possibleEnemyTypes.pick_random(), randomPoint)
+			
 			# determine if this enemy should be a variant
-			var enemyAI: EnemyAI = enemy.get_children()[0]
+			var enemyAI: EnemyAI = enemy.get_child(0)
 			var variantChance = variationChances[enemySpawnNames[index]]
 			if randf() <= variantChance:
 				# after a specific amount of waves, include other variants

@@ -499,7 +499,6 @@ func kill() -> void:
 	self.collision_layer = 0
 	actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
-	mainAnimationPlayer.play("death")
 	$WalkSounds.queue_free()
 	await TimeManager.wait(mainAnimationPlayer.current_animation_length)
 	DeathSmokeParticles.spawnParticle(global_position, 1)

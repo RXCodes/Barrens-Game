@@ -9,4 +9,4 @@ func onDeath() -> void:
 		EnemySpawner.spawnEnemy("AmmoPickup", getPosition())
 	for i in range(6):
 		var special = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
-		var item = Item.spawnItem(special.pick_random(), 1, getPosition())
+		Item.spawnItem(special.pick_random(), 1, getPosition())

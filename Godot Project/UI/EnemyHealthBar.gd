@@ -7,7 +7,7 @@ func _enter_tree() -> void:
 	progressBar = $ProgressBar
 
 var healthBarDampingMultiplier = 0.1
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	progressBar.value = progress + 2.0
 	var difference = progress - self.value
 	self.value += difference * healthBarDampingMultiplier

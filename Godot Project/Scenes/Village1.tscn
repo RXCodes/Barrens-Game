@@ -5357,8 +5357,9 @@ price = 75
 type = 2
 itemIdentifier = "ExtraCash"
 upgradeAmounts = Array[float]([10.0])
+limitSales = true
 limitAmount = 5
-costIncrementMultiplier = 1.05
+costIncrementMultiplier = 1.5
 
 [node name="PotionOfRage" type="Node" parent="Level/ShopVan3"]
 script = ExtResource("47_ud1rn")

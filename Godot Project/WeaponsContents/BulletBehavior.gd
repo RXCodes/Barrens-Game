@@ -109,11 +109,12 @@ func _physics_process(delta: float) -> void:
 	var result = space_state.intersect_ray(enemyQuery)
 	if result:
 		maximumDistance = global_position.distance_to(result.position) / bulletScale
-		var enemy = result.collider.get_meta(EnemyAI.enemyAIKey)
-		if enemy and gun:
-			enemy.call("onHit", result.position)
-			enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
-		return
+		if result.collider.has_meta(EnemyAI.enemyAIKey):
+			var enemy: EnemyAI = result.collider.get_meta(EnemyAI.enemyAIKey)
+			if enemy and gun:
+				enemy.call("onHit", result.position)
+				enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
+			return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)
 	BulletHole.create(global_position + projectoryVector, true)
