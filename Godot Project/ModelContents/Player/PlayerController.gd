@@ -32,12 +32,12 @@ var currentWeaponSlot = 1
 var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
+	current = self
 	await get_tree().physics_frame
 	TutorialManager.shouldDisableControls = false
 	Upgrade.playerUpgrades.clear()
 	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
-	current = self
 	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
 	actionAnimationPlayer = $Subviewport/Transform/ActionAnimationPlayer
 	animationTree = $Subviewport/Transform/AnimationTree
@@ -79,6 +79,8 @@ func _process(delta: float) -> void:
 		shooting = false
 	
 	# blend animations so we can have smoother transitions between them
+	if not animationTree:
+		return
 	var animSpeed = delta * blendSpeed
 	match currentAnimation:
 		WALK: animationValues["parameters/WalkProgress/blend_amount"] += animSpeed * 2.0

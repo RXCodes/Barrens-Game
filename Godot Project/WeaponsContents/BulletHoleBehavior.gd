@@ -13,4 +13,5 @@ func _ready() -> void:
 	var fadeTime = randf_range(4.0, 6.0)
 	var tween = NodeRelations.createTween()
 	tween.tween_property(self, "self_modulate", Color.TRANSPARENT, fadeTime)
-	tween.tween_callback(free)
+	await TimeManager.wait(fadeTime)
+	queue_free()
