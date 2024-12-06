@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb3ah6qy2ticg"]
+
+[ext_resource type="Script" path="res://Upgrades/FlamingBullets.gd" id="1_mvtrw"]
+[ext_resource type="Texture2D" uid="uid://duyy7f3pjbvhb" path="res://Upgrades/FlamingBullets.png" id="2_e3fs3"]
+
+[node name="FlamingBullets" type="Node"]
+script = ExtResource("1_mvtrw")
+upgradeName = "Flaming Bullets"
+description = "Some of your bullets inflict burning to enemies"
+accumativeDescription = "chance to inflict burning to enemies"
+preferredUpgradeAmounts = Array[float]([5.0])
+upgradeIdentifier = "flamingBullets"
+texture = ExtResource("2_e3fs3")
+stackable = false
+maxRandomUpgradeAmountMultiplier = 1.5

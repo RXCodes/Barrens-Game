@@ -5479,12 +5479,14 @@ flip_h = true
 
 [node name="LifeSteal" type="Node" parent="Level/ShopVan6"]
 script = ExtResource("47_ud1rn")
-price = 350
+price = 300
 type = 2
 itemIdentifier = "LifeSteal"
-upgradeAmounts = Array[float]([5.0])
+upgradeAmounts = Array[float]([1.0])
 limitSales = true
 limitAmount = 3
+restockTime = 9999
+restockAmount = 1
 costIncrementMultiplier = 1.3
 
 [node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan6"]

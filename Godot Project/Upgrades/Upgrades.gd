@@ -37,7 +37,6 @@ func onUpgrade(amounts: Array) -> void:
 	pass
 
 ## Use this to track upgrade statistics
-
 func incrementUpgradeStat(increase: float) -> void:
 	if upgradeIdentifier not in playerUpgrades.keys():
 		playerUpgrades[upgradeIdentifier] = 0
@@ -94,14 +93,21 @@ static func _static_init() -> void:
 			upgradeNames.append(upgradeName)
 			currentUpgrade.queue_free()
 			print("Setup upgrade: " + filePath)
-	
 	print("--- Finished setting up upgrades ---")
 
+static var ignoreUpgradeNames = []
 static func pickRandomUpgrades(count: int) -> Array:
 	var upgrades = []
-	upgradeNames.shuffle()
+	var pickableUpgrades = upgradeNames.duplicate()
+	
+	# remove entries where the upgrade has been received and cannot be received again
+	for currentUpgradeName: String in ignoreUpgradeNames:
+		pickableUpgrades.erase(currentUpgradeName)
+	
+	# shuffle and choose (count) elements
+	pickableUpgrades.shuffle()
 	for i in range(count):
-		var upgradeName = upgradeNames[i]
+		var upgradeName = pickableUpgrades[i]
 		upgrades.append(upgradeForName(upgradeName))
 	return upgrades
 
@@ -117,6 +123,8 @@ static func getCurrentUpgradeStructs() -> Array:
 			currentStructs.append(upgrade)
 	return currentStructs
 
+# this represents a statistic of an upgrade
+# the actual values (how effective an upgrade is) is stored in playerUpgrades {identifier: value}
 class UpgradeStruct:
 	var rawDescription: String
 	var texture: Texture2D

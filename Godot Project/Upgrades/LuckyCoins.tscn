@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxlg0s5pbw1h"]
+
+[ext_resource type="Script" path="res://Upgrades/LuckyCoins.gd" id="1_acd2c"]
+[ext_resource type="Texture2D" uid="uid://bty0elnvvybrt" path="res://Upgrades/LuckyCoins.png" id="2_rorfw"]
+
+[node name="LuckyCoins" type="Node"]
+script = ExtResource("1_acd2c")
+upgradeName = "Lucky Coins"
+description = "Receive up to 3 lucky coins to grant free upgrades"
+preferredUpgradeAmounts = Array[float]([0.0])
+upgradeIdentifier = "luckyCoins"
+texture = ExtResource("2_rorfw")
+maxRandomUpgradeAmountMultiplier = 1.0

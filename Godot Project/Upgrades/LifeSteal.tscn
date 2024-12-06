@@ -6,10 +6,9 @@
 [node name="LifeSteal" type="Node"]
 script = ExtResource("1_s2yeo")
 upgradeName = "Life Steal"
-description = "defeated enemies heal you by [amt]% of their total health"
-accumativeDescription = "+[amt]% life steal"
-preferredUpgradeAmounts = Array[float]([1.5])
+description = "defeating enemies heal you by [amt] hp"
+accumativeDescription = "+[amt] hp per enemy defeated"
+preferredUpgradeAmounts = Array[float]([1.0])
 upgradeIdentifier = "lifeSteal"
 texture = ExtResource("2_0y250")
-minRandomUpgradeAmountMultiplier = 0.3
 maxRandomUpgradeAmountMultiplier = 1.0

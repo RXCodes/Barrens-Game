@@ -36,6 +36,7 @@ func _ready() -> void:
 	await get_tree().physics_frame
 	TutorialManager.shouldDisableControls = false
 	Upgrade.playerUpgrades.clear()
+	Upgrade.ignoreUpgradeNames.clear()
 	holdingWeapons.append(Gun.gunFromString("Shotgun"))
 	renderer = get_parent()
 	mainAnimationPlayer = $Subviewport/Transform/MainAnimationPlayer
@@ -156,8 +157,9 @@ var enemyCashDropMultiplier: float = 1.0
 var shopPriceDivisor: float = 1.0
 var bountyMultiplier: float = 0.0
 var compoundInterest: float = 0.0
-var lifestealMultiplier: float = 0.0
+var lifestealAmount: float = 0.0
 var unlimitedSprint: bool = false
+var flamingBullets: bool = false
 
 # statistics
 var totalCashEarned: int = 0

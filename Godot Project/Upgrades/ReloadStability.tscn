@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bouq8m3ui2tyv"]
+
+[ext_resource type="Script" path="res://Upgrades/ReloadStability.gd" id="1_0x2pk"]
+[ext_resource type="Texture2D" uid="uid://dqprqujikagoc" path="res://Upgrades/ReloadStability.png" id="2_iyaoo"]
+
+[node name="ReloadStability" type="Node"]
+script = ExtResource("1_0x2pk")
+upgradeName = "Reload Stability"
+description = "Reloading will no longer slow you down"
+accumativeDescription = "Reloading no longer slows you down"
+preferredUpgradeAmounts = Array[float]([1.0])
+upgradeIdentifier = "reloadStability"
+texture = ExtResource("2_iyaoo")
+stackable = false
+maxRandomUpgradeAmountMultiplier = 1.0

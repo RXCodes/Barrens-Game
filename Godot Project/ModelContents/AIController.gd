@@ -267,7 +267,7 @@ func playHitSound() -> void:
 # called when enemy is damaged
 var damageInTick := {}
 var criticalDamaged = false
-var lastTouchedMolotovFire: MolotovFire
+var burnNodeSource: Node2D
 func damage(amount: float, source: Node2D) -> void:
 	if dead:
 		return
@@ -280,6 +280,13 @@ func damage(amount: float, source: Node2D) -> void:
 			criticalDamaged = true
 			amount *= 12.5
 		Player.current.damageDealt += amount
+		
+		# flaming bullets effect
+		if Player.current.flamingBullets:
+			if randi_range(1, 5) == 1:
+				burnNodeSource = Player.current
+				burningTime = 10
+		
 	if source is Explosion:
 		if source.isFromPlayer:
 			var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
@@ -291,7 +298,7 @@ func damage(amount: float, source: Node2D) -> void:
 	
 	# burning effect from molotov
 	if source is MolotovFire:
-		lastTouchedMolotovFire = source
+		burnNodeSource = source
 		if source.isFromPlayer:
 			var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
 			var roll = randf_range(0, 100.0)
@@ -369,7 +376,7 @@ func _physics_process(delta: float) -> void:
 			if not burnFX:
 				createBurnFX()
 			if burnTick <= 0:
-				damage(randf_range(2.0, 5.0), lastTouchedMolotovFire)
+				damage(randf_range(2.0, 5.0), burnNodeSource)
 				burnTick = 1.0
 		else:
 			if burnFX:
@@ -585,9 +592,9 @@ func kill() -> void:
 	# chances to drop random items
 	if randi_range(1, 75) == 1:
 		Item.spawnItem("Bandages", randi_range(1, 2), collisionRigidBody.global_position)
-	if randi_range(1, 450) == 1:
+	if randi_range(1, 650) == 1:
 		Item.spawnItem("HealthKit", 1, collisionRigidBody.global_position)
-	if randi_range(1, 175) == 1:
+	if randi_range(1, 200) == 1:
 		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(potions.pick_random(), randi_range(1, 2), collisionRigidBody.global_position)
 	
@@ -596,9 +603,9 @@ func kill() -> void:
 	var cashAmountToDrop = ceil(randfn(cashDrop, cashDropVariance) * Player.current.enemyCashDropMultiplier)
 	cashAmountToDrop += ceil(maxHealth * Player.current.bountyMultiplier)
 	EnemySpawner.spawnMoney(cashAmountToDrop, collisionRigidBody.global_position)
-	if Player.current.lifestealMultiplier > 0 and Player.current.health < Player.current.maximumHealth:
+	if Player.current.lifestealAmount > 0 and Player.current.health < Player.current.maximumHealth:
 		var lifestealEntity = EnemySpawner.spawnEnemy("LifestealEntity", global_position)
-		lifestealEntity.healthIncrease = maxHealth * Player.current.lifestealMultiplier
+		lifestealEntity.healthIncrease = Player.current.lifestealAmount
 	get_parent().queue_free()
 
 enum HurtBoxType {PLAYER, ENEMY, ALL}

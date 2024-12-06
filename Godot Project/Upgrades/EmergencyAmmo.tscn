@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bf3v2rpsimatf"]
+
+[ext_resource type="Script" path="res://Upgrades/EmergencyAmmo.gd" id="1_oxq6s"]
+[ext_resource type="Texture2D" uid="uid://dr2thrm7wed5n" path="res://Upgrades/EmergencyAmmo.png" id="2_kapj2"]
+
+[node name="EmergencyAmmo" type="Node"]
+script = ExtResource("1_oxq6s")
+upgradeName = "Emergency Ammo"
+description = "Receive 5 ammo packs"
+preferredUpgradeAmounts = Array[float]([2.5])
+upgradeIdentifier = "ammo"
+texture = ExtResource("2_kapj2")

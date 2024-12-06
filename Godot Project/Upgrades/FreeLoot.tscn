@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcdqxkx8hvsr4"]
+
+[ext_resource type="Script" path="res://Upgrades/FreeLoot.gd" id="1_1j5xv"]
+[ext_resource type="Texture2D" uid="uid://b5ndor6s5od4w" path="res://Upgrades/FreeLoot.png" id="2_bh82y"]
+
+[node name="FreeLoot" type="Node"]
+script = ExtResource("1_1j5xv")
+upgradeName = "Free Loot"
+description = "Summon a supply crate near you"
+preferredUpgradeAmounts = Array[float]([1.0])
+upgradeIdentifier = "supplyCrates"
+texture = ExtResource("2_bh82y")
+minRandomUpgradeAmountMultiplier = 1.0
+maxRandomUpgradeAmountMultiplier = 1.0

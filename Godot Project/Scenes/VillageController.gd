@@ -4,8 +4,10 @@ class_name VillageController extends Node
 signal completedWave
 signal finishedSpawningEnemies
 static var currentWave = 1
+static var current: VillageController
 func _ready() -> void:
 	# first fade in
+	current = self
 	var fadeIn = ScreenUI.current.find_child("FadeIn")
 	fadeIn.scale = Vector2(1000, 1000)
 	currentWave = 1

@@ -83,7 +83,7 @@ func _ready() -> void:
 func purchasedItem() -> void:
 	if limitSales:
 		itemsLeft -= 1
-		if itemsLeft == 0:
+		if itemsLeft == 0 and canRestock:
 			restocking = true
 			await TimeManager.wait(restockTime)
 			restocking = false

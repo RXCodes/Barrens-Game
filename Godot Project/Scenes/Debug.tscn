@@ -503,6 +503,54 @@ itemIdentifier = "Energetic"
 upgradeAmounts = Array[float]([6.0])
 costIncrementMultiplier = 1.2
 
+[node name="upgradetest" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "BiggerBackpack"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="upgradetest2" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "EmergencyAmmo"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="upgradetest3" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "FlamingBullets"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="upgradetest4" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "FreeLoot"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="upgradetest5" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "ReloadStability"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
+[node name="upgradetest6" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+price = 75
+type = 2
+itemIdentifier = "LuckyCoins"
+upgradeAmounts = Array[float]([6.0])
+costIncrementMultiplier = 1.2
+
 [node name="AmmoDispenser" parent="Level" instance=ExtResource("24_tsq8j")]
 position = Vector2(-620, 154)
 respawnCooldown = 10.0

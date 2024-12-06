@@ -58,6 +58,8 @@ static func confirmButtonPressed() -> void:
 	active = false
 	Player.current.upgradesReceived += 1
 	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
+	if not selectedUpgrade.stackable:
+		Upgrade.ignoreUpgradeNames.append(selectedUpgrade.upgradeIdentifier)
 	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
 	if selectedUpgrade.upgradeName == "Gamble":
 		await TimeManager.wait(0.1)

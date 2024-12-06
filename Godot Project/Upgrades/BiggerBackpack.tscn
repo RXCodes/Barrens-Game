@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://18j8h4w3otvn"]
+
+[ext_resource type="Script" path="res://Upgrades/BiggerBackpack.gd" id="1_0vqgk"]
+[ext_resource type="Texture2D" uid="uid://c3rm2e777laef" path="res://Upgrades/BiggerBackpack.png" id="2_j4nrm"]
+
+[node name="BiggerBackpack" type="Node"]
+script = ExtResource("1_0vqgk")
+upgradeName = "Bigger Backpack"
+description = "Increase the maximum inventory stack size to 6"
+accumativeDescription = "Increased maximum inventory stack size to 6"
+preferredUpgradeAmounts = Array[float]([1.0])
+upgradeIdentifier = "inventoryStackSize"
+texture = ExtResource("2_j4nrm")
+stackable = false
+minRandomUpgradeAmountMultiplier = 1.0
+maxRandomUpgradeAmountMultiplier = 1.0
