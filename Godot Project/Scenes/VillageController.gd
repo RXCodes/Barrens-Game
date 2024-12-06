@@ -241,8 +241,8 @@ func startItemSpawnLoop() -> void:
 			item.add_to_group("SpawnedItem")
 		await TimeManager.wait(1.0)
 
-var supplyDropCooldown: float = 100.0
-var currentSupplyDropCooldown: float = 0.0
+var supplyDropCooldown: float = 120.0
+var currentSupplyDropCooldown: float = 50.0
 func startSupplyDropLoop() -> void:
 	while not Player.current.dead:
 		

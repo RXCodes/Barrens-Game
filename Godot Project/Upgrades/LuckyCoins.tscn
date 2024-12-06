@@ -6,7 +6,7 @@
 [node name="LuckyCoins" type="Node"]
 script = ExtResource("1_acd2c")
 upgradeName = "Lucky Coins"
-description = "Receive up to 3 lucky coins to grant free upgrades"
+description = "Chance to receive up to 2 lucky coins to grant free upgrades"
 preferredUpgradeAmounts = Array[float]([0.0])
 upgradeIdentifier = "luckyCoins"
 texture = ExtResource("2_rorfw")

@@ -86,6 +86,9 @@ path_desired_distance = 30.0
 target_desired_distance = 20.0
 path_max_distance = 120.0
 path_metadata_flags = 0
+avoidance_enabled = true
+radius = 85.0
+max_speed = 0.01
 
 [node name="FlipTransform" type="Node2D" parent="Crate/ColliderBox"]
 

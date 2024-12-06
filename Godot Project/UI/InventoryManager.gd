@@ -152,7 +152,12 @@ static func dropItem() -> void:
 
 # consumes one of the currently selected item
 static func consumeItem() -> void:
-	var currentItem = getCurrentItem()
+	consumeItemAtIndex(currentSlotIndex)
+
+# consumes an item for a specified index
+static func consumeItemAtIndex(index: int) -> void:
+	var selectedSlot: InventorySlot = slots[index]
+	var currentItem = selectedSlot.itemEntity
 	if not currentItem:
 		return
 	currentItem.amount -= 1
@@ -161,7 +166,7 @@ static func consumeItem() -> void:
 	# all of the items are gone for this slot - shift items to the left
 	if currentItem.amount == 0:
 		currentItem.queue_free()
-		for i in range(currentSlotIndex, slots.size()):
+		for i in range(index, slots.size()):
 			if i == slots.size() - 1:
 				slots[i].itemEntity = null
 			else:
