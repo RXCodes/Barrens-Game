@@ -98,16 +98,9 @@ static func _static_init() -> void:
 static var ignoreUpgradeNames = []
 static func pickRandomUpgrades(count: int) -> Array:
 	var upgrades = []
-	var pickableUpgrades = upgradeNames.duplicate()
-	
-	# remove entries where the upgrade has been received and cannot be received again
-	for currentUpgradeName: String in ignoreUpgradeNames:
-		pickableUpgrades.erase(currentUpgradeName)
-	
-	# shuffle and choose (count) elements
-	pickableUpgrades.shuffle()
+	upgradeNames.shuffle()
 	for i in range(count):
-		var upgradeName = pickableUpgrades[i]
+		var upgradeName = upgradeNames[i]
 		upgrades.append(upgradeForName(upgradeName))
 	return upgrades
 

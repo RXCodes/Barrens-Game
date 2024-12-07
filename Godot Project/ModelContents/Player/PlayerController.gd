@@ -471,8 +471,8 @@ func damage(amount: float, source: Node2D) -> void:
 	damageTaken += amount
 	
 	# animate hurt vignette and camera
-	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / 100.0)
-	var animationTime = lerpf(2.0, 0.6, health / 100.0)
+	var hurtVignetteOpacity = lerpf(0.75, 0.3, health / maximumHealth)
+	var animationTime = lerpf(2.0, 0.6, health / maximumHealth)
 	HurtVignette.animate(hurtVignetteOpacity, animationTime)
 	PlayerCamera.current.playerDamaged()
 	

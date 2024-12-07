@@ -23,6 +23,7 @@ func _ready() -> void:
 	startItemSpawnLoop()
 	startSupplyDropLoop()
 	prepareEnemies()
+	startBluePortalLoop()
 	WaveInfoDisplay.setCurrentWave(1, false)
 	WaveInfoDisplay.setEnemyCount(targetEnemyCount, false)
 	WaveInfoDisplay.revealDisplay()
@@ -270,6 +271,45 @@ func startSupplyDropLoop() -> void:
 			currentSupplyDropCooldown = supplyDropCooldown
 			EnemySpawner.spawnEnemy("SupplyCrate", randomPoint)
 			TextAlert.setupAlert("A supply crate has been summoned!", Color.MEDIUM_PURPLE)
+
+var currentBluePortal: BluePortal
+func startBluePortalLoop() -> void:
+	while not Player.current.dead:
+		var enemiesRequestingPortal = get_tree().get_nodes_in_group("RequestingTeleportation")
+		if enemiesRequestingPortal.size() == 0:
+			await TimeManager.wait(1.0)
+			continue
+		
+		# if there are enemies that need to teleport, move them to the current blue portal
+		if currentBluePortal:
+			if not is_instance_valid(currentBluePortal):
+				currentBluePortal = null
+				continue
+			if currentBluePortal.beingCreated:
+				await TimeManager.wait(0.25)
+				continue
+			if not currentBluePortal.shouldTeleportEnemies:
+				currentBluePortal = null
+				continue
+			var teleportingEnemy: EnemyAI = enemiesRequestingPortal.pick_random()
+			teleportingEnemy.remove_from_group("RequestingTeleportation")
+			teleportingEnemy.requestingTeleportation = false
+			teleportingEnemy.collisionRigidBody.global_position = currentBluePortal.global_position
+			await TimeManager.wait(0.3)
+			continue
+		
+		# otherwise start finding a location near the player to create a new portal
+		var randomPoint = getRandomSpawnPoint()
+		
+		# check if it is within range of the player, but not too close
+		var distanceSquared = Player.current.global_position.distance_squared_to(randomPoint)
+		if distanceSquared < 400 ** 2 and distanceSquared > 250 ** 2:
+			
+			# finally, spawn the portal
+			TextAlert.setupAlert("The wizard is summoning a portal!", Color.GOLD)
+			currentBluePortal = BluePortal.create(randomPoint)
+		
+		await TimeManager.wait(0.1)
 
 # called every time an enemy has been killed
 func enemyKilled() -> void:

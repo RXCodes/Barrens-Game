@@ -57,9 +57,14 @@ static func confirmButtonPressed() -> void:
 		return
 	active = false
 	Player.current.upgradesReceived += 1
-	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
 	if not selectedUpgrade.stackable:
+		if Upgrade.ignoreUpgradeNames.has(selectedUpgrade.upgradeName):
+			Player.current.pickupCash(1000)
+			TextAlert.setupAlert("You already have this upgrade - compensated 1,000 cash", Color.TOMATO)
+			GamePopup.closeCurrent()
+			return
 		Upgrade.ignoreUpgradeNames.append(selectedUpgrade.upgradeName)
+	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
 	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
 	if selectedUpgrade.upgradeName == "Gamble":
 		await TimeManager.wait(0.1)

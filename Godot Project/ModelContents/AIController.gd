@@ -416,6 +416,9 @@ var samePositionThresholdSquared = 25 ** 2
 var samePositionTime = 0
 var lastNavigationCheck: float = 0
 var requestingTeleportation: bool = false
+var farFromPlayerTime: float = 0
+var farFromPlayerTimeToTeleport: float = 10
+var farFromPlayerMinDistanceSquared = 1200 ** 2
 func navigate() -> void:
 	# adjust navigation properties depending on defined propreties
 	if pathfindAgentSize == PathfindAgentSize.SMALL:
@@ -436,15 +439,27 @@ func navigate() -> void:
 	# if this enemy is stuck in the same spot for too long, adjust its pathfinding
 	if previousPosition.distance_squared_to(collisionRigidBody.global_position) < samePositionThresholdSquared and not requestingTeleportation:
 		samePositionTime += timeElapsed
-		if samePositionTime >= 8.0:
+		if samePositionTime >= 5.0:
 			navigationAgent.avoidance_enabled = true
 			pathfindAgentSize = PathfindAgentSize.LARGE
-		if samePositionTime >= 15.0:
+		if samePositionTime >= 12.5:
 			requestingTeleportation = true
+			add_to_group("RequestingTeleportation")
 			print("Enemy stuck for too long, requesting teleportation...")
+			samePositionTime = 0.0
 	else:
 		previousPosition = collisionRigidBody.global_position
 		samePositionTime = 0.0
+	
+	# if this enemy is too far from the player for too long, request teleportation
+	if Player.current.global_position.distance_squared_to(collisionRigidBody.global_position) < farFromPlayerMinDistanceSquared and not requestingTeleportation:
+		farFromPlayerTime += timeElapsed
+		if farFromPlayerTime >= 10.0:
+			requestingTeleportation = true
+			add_to_group("RequestingTeleportation")
+			print("Enemy far from player for too long, requesting teleportation...")
+		else:
+			farFromPlayerTime = 0.0
 	
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()
