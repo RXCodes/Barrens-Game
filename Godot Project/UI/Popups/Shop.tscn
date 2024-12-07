@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cmwpbhirw7ahf"]
+[gd_scene load_steps=26 format=3 uid="uid://cmwpbhirw7ahf"]
 
 [ext_resource type="Script" path="res://Scenes/PopupManager.gd" id="1_6apie"]
 [ext_resource type="Material" uid="uid://dojfn1i67jcpe" path="res://UI/Popups/PopupBackgroundBlur.tres" id="1_mt2pq"]
@@ -45,8 +45,13 @@ shadow_offset = Vector2(1, 5)
 device = -1
 keycode = 4194305
 
+[sub_resource type="InputEventKey" id="InputEventKey_nl6cu"]
+device = -1
+keycode = 69
+unicode = 101
+
 [sub_resource type="Shortcut" id="Shortcut_fmn4k"]
-events = [SubResource("InputEventKey_hcuy1")]
+events = [SubResource("InputEventKey_hcuy1"), SubResource("InputEventKey_nl6cu")]
 
 [node name="PopupBackground2" type="ColorRect"]
 z_index = -2
@@ -207,14 +212,15 @@ offset_bottom = 20.0
 
 [node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
 layout_mode = 0
-offset_left = 280.8
-offset_top = 4.00001
-offset_right = 290.8
-offset_bottom = 14.0
+offset_left = 275.6
+offset_top = -0.8
+offset_right = 296.6
+offset_bottom = 19.2
 shortcut = SubResource("Shortcut_fmn4k")
 texture_normal = ExtResource("5_6havx")
 texture_pressed = ExtResource("5_6havx")
 texture_hover = ExtResource("6_xqf83")
+stretch_mode = 3
 script = ExtResource("7_j5pfl")
 
 [node name="Open" type="AudioStreamPlayer" parent="."]

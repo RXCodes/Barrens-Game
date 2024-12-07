@@ -112,14 +112,15 @@ autowrap_mode = 2
 
 [node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
 layout_mode = 0
-offset_left = 264.0
-offset_top = 3.6
-offset_right = 274.0
-offset_bottom = 13.6
+offset_left = 257.2
+offset_top = -2.4
+offset_right = 280.2
+offset_bottom = 19.6
 shortcut = SubResource("Shortcut_jateg")
 texture_normal = ExtResource("6_7pgh0")
 texture_pressed = ExtResource("6_7pgh0")
 texture_hover = ExtResource("7_a1ftb")
+stretch_mode = 3
 script = ExtResource("8_hilyf")
 
 [node name="Okay" type="NinePatchRect" parent="Popup"]

@@ -320,14 +320,15 @@ autowrap_mode = 2
 
 [node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
 layout_mode = 0
-offset_left = 264.0
-offset_top = 3.6
-offset_right = 274.0
-offset_bottom = 13.6
+offset_left = 254.4
+offset_top = -4.4
+offset_right = 281.4
+offset_bottom = 21.6
 shortcut = SubResource("Shortcut_retvf")
 texture_normal = ExtResource("12_whljy")
 texture_pressed = ExtResource("12_whljy")
 texture_hover = ExtResource("13_fdjcg")
+stretch_mode = 3
 script = ExtResource("14_m1q72")
 
 [node name="Open" type="AudioStreamPlayer" parent="."]
