@@ -21,6 +21,7 @@ static func batchInstantiateEnemies(enemyNames: Array) -> BatchInstantiateEnemyR
 			var newEnemyInstance = newEnemy.instantiate()
 			result.nodes.append(newEnemyInstance)
 			result.progress = float(result.nodes.size()) / result.total
+		thread.wait_to_finish()
 		result.success = true
 		result.completed.emit()
 		print("- Completed instantiating enemies -")
