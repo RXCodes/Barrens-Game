@@ -5265,6 +5265,7 @@ upgradeAmounts = Array[float]([5.0])
 limitSales = true
 limitAmount = 1
 canRestock = true
+restockAmount = 1
 
 [node name="ShopVan2" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(2437, -1052)
@@ -5370,7 +5371,7 @@ upgradeAmounts = Array[float]([10.0])
 limitSales = true
 limitAmount = 1
 restockAmount = 1
-costIncrementMultiplier = 1.05
+costIncrementMultiplier = 1.6
 
 [node name="ShopVan4" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(451, -2293)
@@ -5407,6 +5408,10 @@ amount = 3
 type = 1
 itemIdentifier = "Bandages"
 upgradeAmounts = Array[float]([5.0])
+limitSales = true
+limitAmount = 2
+canRestock = true
+restockAmount = 2
 
 [node name="EnergyDrink" type="Node" parent="Level/ShopVan4"]
 script = ExtResource("47_ud1rn")
@@ -5418,6 +5423,7 @@ upgradeAmounts = Array[float]([5.0])
 limitSales = true
 limitAmount = 1
 canRestock = true
+restockAmount = 1
 
 [node name="ShopVan5" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(-480, 765)
@@ -5458,9 +5464,9 @@ type = 3
 limitSales = true
 limitAmount = 1
 canRestock = true
-restockTime = 130
+restockTime = 150
 restockAmount = 1
-costIncrementMultiplier = 1.125
+costIncrementMultiplier = 1.5
 
 [node name="ShieldSpireSerum" type="Node" parent="Level/ShopVan5"]
 script = ExtResource("47_ud1rn")

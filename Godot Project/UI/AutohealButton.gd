@@ -67,5 +67,4 @@ func _on_pressed() -> void:
 			return
 		currentSlotIndex += 1
 	
-	# this should never run
-	TextAlert.setupAlert("For some reason, you couldn't heal...", Color.CORNFLOWER_BLUE)
+	TextAlert.setupAlert("You have no heals that can be consumed right now", Color.TOMATO)

@@ -454,12 +454,13 @@ func navigate() -> void:
 	# if this enemy is too far from the player for too long, request teleportation
 	if Player.current.global_position.distance_squared_to(collisionRigidBody.global_position) < farFromPlayerMinDistanceSquared and not requestingTeleportation:
 		farFromPlayerTime += timeElapsed
-		if farFromPlayerTime >= 10.0:
+		if farFromPlayerTime >= 7.5:
 			requestingTeleportation = true
 			add_to_group("RequestingTeleportation")
 			print("Enemy far from player for too long, requesting teleportation...")
 		else:
-			farFromPlayerTime = 0.0
+			farFromPlayerTime -= timeElapsed
+			farFromPlayerTime = max(0, farFromPlayerTime)
 	
 	if mainAnimationPlayer.current_animation != walkAnimation:
 		mainAnimationPlayer.stop()

@@ -26,7 +26,7 @@ func _ready() -> void:
 			PlayerCamera.current.shakeScreen(shakeIntensity, 3.5)
 	await TimeManager.wait(10.0)
 	shouldTeleportEnemies = false
-	await TimeManager.wait(2.5)
+	await TimeManager.wait(6.5)
 	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
