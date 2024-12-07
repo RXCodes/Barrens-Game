@@ -1,6 +1,7 @@
 class_name WeaponEntity extends Node2D
 
 var pickupItem: NearbyItemsListInteractor.ItemPickup
+var despawnTime = 180.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,6 +17,13 @@ func _ready() -> void:
 	newPosition.y += randfn(0, 7.5)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
+
+func _process(delta: float) -> void:
+	despawnTime -= delta
+	if despawnTime <= 0.0:
+		if pickupItem:
+			NearbyItemsListInteractor.removeItem(self)
+		queue_free()
 
 var gun: Gun
 func setupWithGun(newGun: Gun) -> void:

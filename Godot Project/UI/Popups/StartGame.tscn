@@ -84,7 +84,7 @@ func _process(delta: float) -> void:
 			$SkipProgress.value = true
 			$SkipProgress.value = 0
 			var thread = Thread.new()
-			thread.start(loadAssets)
+			thread.start(loadAssets, Thread.PRIORITY_HIGH)
 			startingGame = true
 			await TimeManager.wait(2.5)
 			canLoadScene = true

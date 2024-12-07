@@ -7,6 +7,7 @@ var pickingUp = false
 var pickupDistance = 120
 var pickupDuration = 0.25
 var autoPickupDelay = 1.5
+var timeToDespawn = 120.0
 static var itemData = {}
 
 static func _static_init() -> void:
@@ -73,6 +74,12 @@ func _process(delta: float) -> void:
 	if Player.current.dead:
 		return
 	autoPickupDelay -= delta
+	timeToDespawn -= delta
+	if timeToDespawn <= 0:
+		if pickupItem:
+			NearbyItemsListInteractor.removeItem(self)
+		queue_free()
+		return
 	if autoPickupDelay <= 0.0 and not pickingUp:
 		if Save.loadValue("autoPickupItems", true):
 			var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
