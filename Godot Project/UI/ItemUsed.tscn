@@ -101,7 +101,7 @@ _data = {
 }
 
 [node name="ItemUsed" type="Node2D"]
-z_index = 4096
+z_index = 1
 scale = Vector2(1.5, 1.5)
 script = SubResource("GDScript_n184c")
 

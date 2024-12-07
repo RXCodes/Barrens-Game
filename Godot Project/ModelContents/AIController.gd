@@ -412,13 +412,13 @@ func createLightningFX() -> void:
 # pathfinding and movement functionality
 var targetDistance: float = 30
 var previousPosition: Vector2
-var samePositionThresholdSquared = 25 ** 2
+var samePositionThresholdSquared = 75 ** 2
 var samePositionTime = 0
 var lastNavigationCheck: float = 0
 var requestingTeleportation: bool = false
 var farFromPlayerTime: float = 0
 var farFromPlayerTimeToTeleport: float = 10
-var farFromPlayerMinDistanceSquared = 1200 ** 2
+var farFromPlayerMinDistanceSquared = 750 ** 2
 func navigate() -> void:
 	# adjust navigation properties depending on defined propreties
 	if pathfindAgentSize == PathfindAgentSize.SMALL:
@@ -445,7 +445,7 @@ func navigate() -> void:
 		if samePositionTime >= 12.5:
 			requestingTeleportation = true
 			add_to_group("RequestingTeleportation")
-			print("Enemy stuck for too long, requesting teleportation...")
+			print("Enemy stuck in the same area for too long, requesting teleportation...")
 			samePositionTime = 0.0
 	else:
 		previousPosition = collisionRigidBody.global_position

@@ -61,6 +61,7 @@ static func confirmButtonPressed() -> void:
 		if Upgrade.ignoreUpgradeNames.has(selectedUpgrade.upgradeName):
 			Player.current.pickupCash(1000)
 			TextAlert.setupAlert("You already have this upgrade - compensated 1,000 cash", Color.TOMATO)
+			NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
 			GamePopup.closeCurrent()
 			return
 		Upgrade.ignoreUpgradeNames.append(selectedUpgrade.upgradeName)
