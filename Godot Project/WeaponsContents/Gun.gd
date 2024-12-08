@@ -97,6 +97,10 @@ var leftoverAmmoCount: int:
 ## drop texture scale
 @export var dropTextureScale: float = 1.0
 
+## enable if you shouldn't see the player's right arm while holding this weapon (UMP45)
+## this is used to hide the arm when the right and left hands are too close
+@export var hideRightArm: bool = false
+
 @export_group("Audio")
 
 ## the sound to use when firing the weapon

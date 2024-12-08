@@ -1,5 +1,13 @@
 class_name Crate extends EnemyAI
 
+var cashDropped = 0
+func onDamage() -> void:
+	var cashDropAmount = (maxHealth - currentHealth) / 10.0
+	var cashToDrop = round(cashDropAmount - cashDropped)
+	if cashToDrop > 0:
+		EnemySpawner.spawnMoney(cashToDrop, getPosition())
+	cashDropped = cashDropAmount
+
 func onDeath() -> void:
 	Item.spawnItem("Bandages", randi_range(1, 3), getPosition())
 	Item.spawnItem("HealthKit", randi_range(0, 2), getPosition())

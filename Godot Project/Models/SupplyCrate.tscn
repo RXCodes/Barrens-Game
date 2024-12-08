@@ -40,14 +40,12 @@ _data = {
 [node name="SupplyCrate" type="CanvasGroup"]
 process_priority = 5
 texture_filter = 1
-position = Vector2(-785.628, 541.064)
 script = ExtResource("1_nevhh")
 
 [node name="Crate" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
-position = Vector2(0, -23)
 script = ExtResource("2_snofn")
 maxHealth = 500
-cashDrop = 500
+cashDrop = 400
 cashDropVariance = 100
 hitBoxRigidBody = NodePath("Hitbox")
 collisionRigidBody = NodePath("ColliderBox")

@@ -576,8 +576,10 @@ func selectWeapon(gun: Gun) -> void:
 	InventoryManager.selectSlot(-1)
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	var leftHandlingTransform = $"Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D"
+	var rightArm = $Subviewport/Transform/Torso/Coat/RightElbow/RightArm
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	leftHandlingTransform.position = gunInteractor.currentWeapon.leftHandOffset
+	rightArm.visible = not gunInteractor.currentWeapon.hideRightArm
 	refreshAmmoDisplay()
 	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
 
