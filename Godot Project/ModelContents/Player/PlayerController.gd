@@ -33,6 +33,15 @@ var hitboxShape: Node2D
 var hitBoxRigidBody: Node2D
 func _ready() -> void:
 	current = self
+	
+	# move the transform node from the editor preview to the subviewport
+	# the subviewport handles flipping left and right
+	# it's bugged in the editor so it needs to be this way
+	var transformNode = $EditorPreview/Transform
+	$EditorPreview.remove_child(transformNode)
+	$Subviewport.add_child(transformNode)
+	
+	# declare and reset variables
 	await get_tree().physics_frame
 	TutorialManager.shouldDisableControls = false
 	Upgrade.playerUpgrades.clear()
@@ -45,6 +54,8 @@ func _ready() -> void:
 	textureOutput = $TextureDisplay
 	sprintBar = $SprintBar
 	sprintBar.modulate = Color.TRANSPARENT
+	
+	# setup the gun interactor
 	gunInteractor = Gun.Interactor.new()
 	gunInteractor.originNode = self
 	gunInteractor.gunSprite = $Subviewport/Transform/Torso/Coat/LeftElbow/Weapon
@@ -56,6 +67,8 @@ func _ready() -> void:
 	gunInteractor.sourcePositionOffset = Vector2(0, -48)
 	selectWeapon(holdingWeapons[0])
 	refreshAmmoDisplay()
+	
+	# setup the hitbox
 	hitBoxRigidBody = $"../Hitbox"
 	hitboxShape = hitBoxRigidBody.get_children()[0]
 	var children = NodeRelations.getChildrenRecursive(self)
@@ -559,7 +572,9 @@ func selectWeapon(gun: Gun) -> void:
 	gunInteractor.currentWeapon = gun
 	InventoryManager.selectSlot(-1)
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
+	var leftHandlingTransform = $"Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D"
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
+	leftHandlingTransform.position = gunInteractor.currentWeapon.leftHandOffset
 	refreshAmmoDisplay()
 	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
 

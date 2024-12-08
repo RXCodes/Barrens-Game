@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=51 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="22_n87nw"]
 [ext_resource type="LabelSettings" uid="uid://4nfmdago1iiu" path="res://UI/DefaultLabelSettings.tres" id="22_ueea8"]
 [ext_resource type="PackedScene" uid="uid://bs7upr6ikluej" path="res://Environment/Cactus/Cactus5.tscn" id="23_0a004"]
+[ext_resource type="Texture2D" uid="uid://c06jw6owawlfb" path="res://WeaponsContents/ScarL/Scar-L.png" id="24_3r8xm"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
@@ -381,6 +382,16 @@ displayScale = 0.5
 price = 200
 description = "A weapon with a decent fire rate and deals average damage."
 itemIdentifier = "AK47"
+
+[node name="ScarShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Scar-L"
+displayTexture = ExtResource("24_3r8xm")
+displayTextureOffset = Vector2(-18, 0)
+displayScale = 0.5
+price = 1500
+description = "Packs high damage but with a slower firing rate."
+itemIdentifier = "ScarL"
 
 [node name="MachineGunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")

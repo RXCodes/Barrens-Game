@@ -11,6 +11,8 @@ func _on_pressed() -> void:
 	if exited or not isReady:
 		return
 	exited = true
+	if not GamePopup.current:
+		return
 	var shouldOpenDeathScreen = GamePopup.current.data.get("deathScreen", false)
 	if shouldOpenDeathScreen:
 		GamePopup.openPopup("DeathScreen")

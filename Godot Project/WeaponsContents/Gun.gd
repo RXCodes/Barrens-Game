@@ -88,6 +88,9 @@ var leftoverAmmoCount: int:
 ## how much to offset the right hand to correctly hold the gun - affects the player model only
 @export var rightHandOffset: Vector2 = Vector2.ZERO
 
+## how much to offset where the gun is held by the land hand to correctly hold the gun - affects the player model only
+@export var leftHandOffset: Vector2 = Vector2.ZERO
+
 ## drop texture offset
 @export var dropTextureOffset: Vector2 = Vector2.ZERO
 
