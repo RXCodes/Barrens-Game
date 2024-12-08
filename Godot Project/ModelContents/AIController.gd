@@ -376,7 +376,7 @@ func _physics_process(delta: float) -> void:
 			if not burnFX:
 				createBurnFX()
 			if burnTick <= 0:
-				damage(randf_range(2.0, 5.0), burnNodeSource)
+				damage(randf_range(5.0, 10.0), burnNodeSource)
 				burnTick = 1.0
 		else:
 			if burnFX:
@@ -606,15 +606,15 @@ func kill() -> void:
 	await TimeManager.wait(0.05)
 	
 	# rare chance to spawn a lucky coin
-	if randi_range(1, 500) == 1:
+	if randi_range(1, 600) == 1:
 		Item.spawnItem("LuckyCoin", 1, collisionRigidBody.global_position)
 	
 	# chances to drop random items
-	if randi_range(1, 75) == 1:
-		Item.spawnItem("Bandages", randi_range(1, 2), collisionRigidBody.global_position)
-	if randi_range(1, 650) == 1:
-		Item.spawnItem("HealthKit", 1, collisionRigidBody.global_position)
 	if randi_range(1, 200) == 1:
+		Item.spawnItem("Bandages", randi_range(1, 2), collisionRigidBody.global_position)
+	if randi_range(1, 1000) == 1:
+		Item.spawnItem("HealthKit", 1, collisionRigidBody.global_position)
+	if randi_range(1, 250) == 1:
 		var potions = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(potions.pick_random(), randi_range(1, 2), collisionRigidBody.global_position)
 	

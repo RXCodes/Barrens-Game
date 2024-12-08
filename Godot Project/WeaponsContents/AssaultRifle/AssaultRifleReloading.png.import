@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://btag5luip6i3f"
-path="res://.godot/imported/M416Reloading.png-c30e720aafe9a427a09cacae7d3b5b49.ctex"
+path="res://.godot/imported/AssaultRifleReloading.png-e24aec911e54fde98e7fdda44b9ad802.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WeaponsContents/M416/M416Reloading.png"
-dest_files=["res://.godot/imported/M416Reloading.png-c30e720aafe9a427a09cacae7d3b5b49.ctex"]
+source_file="res://WeaponsContents/AssaultRifle/AssaultRifleReloading.png"
+dest_files=["res://.godot/imported/AssaultRifleReloading.png-e24aec911e54fde98e7fdda44b9ad802.ctex"]
 
 [params]
 

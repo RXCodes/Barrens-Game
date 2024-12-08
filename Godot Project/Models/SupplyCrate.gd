@@ -9,6 +9,7 @@ func onDamage() -> void:
 	cashDropped = cashDropAmount
 
 func onDeath() -> void:
+	# spawn some random items
 	Item.spawnItem("Bandages", randi_range(1, 3), getPosition())
 	Item.spawnItem("HealthKit", randi_range(0, 2), getPosition())
 	Item.spawnItem("MolotovCocktail", randi_range(0, 3), getPosition())
@@ -18,3 +19,17 @@ func onDeath() -> void:
 	for i in range(3):
 		var special = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(special.pick_random(), 1, getPosition())
+	
+	# chance to spawn a weapon
+	if randi_range(1, 5) == 1:
+		var gun = Gun.gunFromString("UMP45")
+		EnemySpawner.spawnWeapon(gun, getPosition())
+	if randi_range(1, 10) == 1:
+		var gun = Gun.gunFromString("AK47")
+		EnemySpawner.spawnWeapon(gun, getPosition())
+	if randi_range(1, 25) == 1:
+		var gun = Gun.gunFromString("MachineGun")
+		EnemySpawner.spawnWeapon(gun, getPosition())
+	if randi_range(1, 50) == 1:
+		var gun = Gun.gunFromString("ScarL")
+		EnemySpawner.spawnWeapon(gun, getPosition())

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqkvfv41is8o5"]
+
+[ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_dnoa1"]
+[ext_resource type="Texture2D" uid="uid://gokmugqowqd6" path="res://WeaponsContents/AssaultRifle/AssaultRifle.png" id="2_oevoj"]
+[ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_u2r7m"]
+[ext_resource type="Texture2D" uid="uid://dba8orwkfj7nb" path="res://WeaponsContents/AssaultRifle/AssaultRifleMagazine.png" id="4_3e3mq"]
+[ext_resource type="AudioStream" uid="uid://dvkbvcsvmjsal" path="res://WeaponsContents/ScarL/ScarLShoot.mp3" id="5_niic2"]
+[ext_resource type="AudioStream" uid="uid://bl4i2wtj0jujb" path="res://WeaponsContents/ScarL/ScarLReload.mp3" id="6_5v7by"]
+
+[node name="AssaultRifle" type="Node"]
+script = ExtResource("1_dnoa1")
+displayName = "M416"
+fireRate = 0.1
+recoilAmount = 4.0
+maximumMagCapacity = 40
+startingAmmoCount = 120
+reloadTime = 2.75
+bulletSpreadDegrees = 2.0
+rangeSpread = 35.0
+targetDamage = 14.0
+damageSpread = 1.0
+bulletFireColor = Color(0.99016, 0.83836, 0.557187, 1)
+bulletSize = 0.9
+texture = ExtResource("2_oevoj")
+shellTexture = ExtResource("3_u2r7m")
+magazineTexture = ExtResource("4_3e3mq")
+drawingOffset = Vector2(20, -5)
+rightHandOffset = Vector2(-5, 10)
+leftHandOffset = Vector2(-20, 0)
+dropTextureOffset = Vector2(-9.652, 33.235)
+shootSound = ExtResource("5_niic2")
+shootVolumeOffset = -6.0
+shootPitchVariance = 0.04
+reloadSound = ExtResource("6_5v7by")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=130 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -48,11 +48,12 @@
 [ext_resource type="Texture2D" uid="uid://b7avvwphyob3b" path="res://UI/AmmoIcon.png" id="48_fbn0p"]
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="48_m57vu"]
 [ext_resource type="Texture2D" uid="uid://b7wm6rcggce47" path="res://Items/LuckyCoin.png" id="49_nrmn6"]
-[ext_resource type="Texture2D" uid="uid://b3p88gsutmh2q" path="res://WeaponsContents/Shotgun/Shotgun.png" id="50_jb14m"]
+[ext_resource type="Texture2D" uid="uid://en1jqkucn5ip" path="res://WeaponsContents/UMP45/UMP45.png" id="51_6hdfg"]
 [ext_resource type="Texture2D" uid="uid://dpovr17x614m7" path="res://Environment/Graveyard/GraveyardTop.png" id="51_abhol"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="51_imopv"]
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="52_bomwk"]
 [ext_resource type="Texture2D" uid="uid://cmvlklxuckjqv" path="res://Environment/Border.png" id="52_dttcw"]
+[ext_resource type="Texture2D" uid="uid://c06jw6owawlfb" path="res://WeaponsContents/ScarL/Scar-L.png" id="52_od545"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="52_wb7qa"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
 [ext_resource type="Texture2D" uid="uid://2pm37mtq71mp" path="res://Environment/BorderSide.png" id="53_oh13s"]
@@ -5324,6 +5325,16 @@ costIncrementMultiplier = 1.05
 position = Vector2(5236, -2186)
 flip_h = true
 
+[node name="UMP45ShopItem" type="Node" parent="Level/ShopVan3"]
+script = ExtResource("47_ud1rn")
+displayName = "UMP45"
+displayTexture = ExtResource("51_6hdfg")
+displayTextureOffset = Vector2(-8, 0)
+displayScale = 0.5
+price = 200
+description = "A gun with a fast fire rate but short range."
+itemIdentifier = "UMP45"
+
 [node name="BulletStormUpgrade" type="Node" parent="Level/ShopVan3"]
 script = ExtResource("47_ud1rn")
 price = 125
@@ -5333,16 +5344,6 @@ upgradeAmounts = Array[float]([2.0])
 limitSales = true
 limitAmount = 5
 costIncrementMultiplier = 1.4
-
-[node name="ShotgunShopItem" type="Node" parent="Level/ShopVan3"]
-script = ExtResource("47_ud1rn")
-displayName = "Shotgun"
-displayTexture = ExtResource("50_jb14m")
-displayTextureOffset = Vector2(-18, 0)
-displayScale = 0.5
-price = 75
-description = "Great for targets within short range."
-itemIdentifier = "Shotgun"
 
 [node name="SpeedyRecoveryUpgrade" type="Node" parent="Level/ShopVan3"]
 script = ExtResource("47_ud1rn")
@@ -5428,6 +5429,16 @@ restockAmount = 1
 [node name="ShopVan5" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(-480, 765)
 
+[node name="ScarShopItem" type="Node" parent="Level/ShopVan5"]
+script = ExtResource("47_ud1rn")
+displayName = "Scar-L"
+displayTexture = ExtResource("52_od545")
+displayTextureOffset = Vector2(-15, 0)
+displayScale = 0.5
+price = 1500
+description = "Packs high damage but with a slower firing rate."
+itemIdentifier = "ScarL"
+
 [node name="CriticalDamageUpgrade" type="Node" parent="Level/ShopVan5"]
 script = ExtResource("47_ud1rn")
 price = 75
@@ -5443,16 +5454,6 @@ type = 2
 itemIdentifier = "ExtendedMagazine"
 upgradeAmounts = Array[float]([10.0])
 costIncrementMultiplier = 1.4
-
-[node name="MachineGunShopItem" type="Node" parent="Level/ShopVan5"]
-script = ExtResource("47_ud1rn")
-displayName = "Machine Gun"
-displayTexture = ExtResource("52_wb7qa")
-displayTextureOffset = Vector2(-5, 0)
-displayScale = 0.5
-price = 800
-description = "A weapon with a fast fire rate, but deals less damage."
-itemIdentifier = "MachineGun"
 
 [node name="LuckyCoin" type="Node" parent="Level/ShopVan5"]
 script = ExtResource("47_ud1rn")

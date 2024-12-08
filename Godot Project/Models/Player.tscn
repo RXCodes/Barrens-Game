@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://brwc5onyibsfh"]
+[gd_scene load_steps=74 format=3 uid="uid://brwc5onyibsfh"]
 
 [ext_resource type="Script" path="res://ModelContents/EntityRenderer.gd" id="1_t84kj"]
 [ext_resource type="Script" path="res://ModelContents/Player/PlayerController.gd" id="2_opaao"]
@@ -952,6 +952,18 @@ tracks/7/keys = {
 "update": 1,
 "values": [ExtResource("22_t2au1")]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:rotation_degrees")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_gjv8w"]
 resource_name = "Reload-AK47"
@@ -1488,10 +1500,89 @@ tracks/5/keys = {
 "values": [ExtResource("38_g84bq"), ExtResource("39_h5bj3")]
 }
 
+[sub_resource type="Animation" id="Animation_qul11"]
+resource_name = "Fire-AssaultRifle"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Left Hand Target:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-17, -4), Vector2(-10, -3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Right Hand Target:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(43, -30), Vector2(34, 29)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Skeleton2D/Torso:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [-1.74533, -1.5708]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["dropShell"],
+"method": &"callGunMethod"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.0872665, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-16, 5), Vector2(-16, -5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_guau6"]
 _data = {
 "Cock-Shotgun": SubResource("Animation_iueme"),
 "Fire-AK47": SubResource("Animation_sq5cb"),
+"Fire-AssaultRifle": SubResource("Animation_qul11"),
 "Fire-MachineGun": SubResource("Animation_o7jun"),
 "Fire-ScarL": SubResource("Animation_4p67b"),
 "Fire-Shotgun": SubResource("Animation_nf2tp"),
@@ -1620,19 +1711,19 @@ position = Vector2(100, 100)
 [node name="Torso" type="Sprite2D" parent="Player/EditorPreview/Transform"]
 process_mode = 3
 texture_filter = 1
-position = Vector2(-1.64509e-05, 2.60026)
-scale = Vector2(0.999826, 0.999826)
+position = Vector2(-1.64509e-05, 2.60028)
+scale = Vector2(0.999817, 0.999817)
 texture = ExtResource("4_7ekww")
 
 [node name="RightLeg" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso"]
-position = Vector2(0.00783074, 0.0041008)
-rotation = 0.00270158
-scale = Vector2(1.00016, 1.00016)
+position = Vector2(0.00941372, 0.0650368)
+rotation = 0.00264103
+scale = Vector2(0.999589, 0.999589)
 texture = ExtResource("5_mv52h")
 
 [node name="RightKnee" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/RightLeg"]
-position = Vector2(7.02023, 5.38418)
-scale = Vector2(0.999715, 0.999715)
+position = Vector2(7.01889, 5.39087)
+scale = Vector2(1.00025, 1.00025)
 texture = ExtResource("6_735yq")
 offset = Vector2(-7, -6)
 
@@ -1642,14 +1733,14 @@ texture = ExtResource("6_5fnib")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso"]
-position = Vector2(-0.0220864, -0.0554352)
-rotation = -0.00331807
-scale = Vector2(0.999168, 0.999168)
+position = Vector2(-0.0247426, -0.0554123)
+rotation = -0.00330353
+scale = Vector2(0.998682, 0.998682)
 texture = ExtResource("7_qwvak")
 
 [node name="LeftKnee" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/LeftLeg"]
-position = Vector2(-7.00157, 5.41245)
-scale = Vector2(1.00032, 1.00032)
+position = Vector2(-7.00112, 5.41301)
+scale = Vector2(1.00051, 1.00051)
 texture = ExtResource("9_8cycy")
 offset = Vector2(7, -6)
 
@@ -1660,48 +1751,49 @@ offset = Vector2(7.8855, -30.6798)
 
 [node name="Coat" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso"]
 position = Vector2(-5.24521e-06, -4.60002)
+scale = Vector2(1, 1)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat"]
-position = Vector2(14.6694, -18.167)
-rotation = -0.123056
-scale = Vector2(0.999015, 0.999015)
+position = Vector2(14.6823, -18.1709)
+rotation = -0.123641
+scale = Vector2(0.999092, 0.999092)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/RightElbow"]
-position = Vector2(5.20474, 17.5401)
-rotation = -0.43637
-scale = Vector2(0.999851, 0.999851)
+position = Vector2(5.20062, 17.5406)
+rotation = -0.434729
+scale = Vector2(0.999887, 0.999887)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat"]
-position = Vector2(-17.0904, -20.0775)
-rotation = 0.347403
-scale = Vector2(0.995489, 0.995489)
+position = Vector2(-17.1047, -20.079)
+rotation = 0.346781
+scale = Vector2(0.995739, 0.995739)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-9.62176, 16.0049)
-rotation = 0.013078
-scale = Vector2(0.999298, 0.999252)
+position = Vector2(10.3911, 14.2672)
+rotation = -0.456811
+scale = Vector2(0.999441, 0.999441)
 texture = ExtResource("22_t2au1")
-offset = Vector2(20, -5)
+offset = Vector2(20, -4)
 
 [node name="RightHand" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(46.8879, -3.64136)
-rotation = 3.03899
-scale = Vector2(1.0041, -1.00414)
-skew = -0.00158715
+position = Vector2(43.9474, -2.67863)
+rotation = 3.03895
+scale = Vector2(1.00382, -1.00381)
+skew = -0.00154054
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-5.17406, 12.1113)
-rotation = -0.361283
-scale = Vector2(0.999901, 0.999901)
+position = Vector2(-5.17306, 12.1114)
+rotation = -0.361294
+scale = Vector2(1, 1)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 
@@ -1720,7 +1812,7 @@ modification_stack = SubResource("SkeletonModificationStack2D_cbq8p")
 [node name="Torso" type="Bone2D" parent="Player/EditorPreview/Transform/Skeleton2D"]
 position = Vector2(0, 4)
 rotation = -1.5708
-scale = Vector2(0.999826, 0.999826)
+scale = Vector2(0.999817, 0.999817)
 rest = Transform2D(-4.37114e-08, -1, 1, -4.37114e-08, 0, 4)
 
 [node name="Head" type="Bone2D" parent="Player/EditorPreview/Transform/Skeleton2D/Torso"]

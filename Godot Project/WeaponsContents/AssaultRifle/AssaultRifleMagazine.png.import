@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gokmugqowqd6"
-path="res://.godot/imported/M416.png-4ad76959d37f3ae7712e4aa4edaa099f.ctex"
+uid="uid://dba8orwkfj7nb"
+path="res://.godot/imported/AssaultRifleMagazine.png-cc71de2a9ea0c6d22d6141fe25c68f13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://WeaponsContents/M416/M416.png"
-dest_files=["res://.godot/imported/M416.png-4ad76959d37f3ae7712e4aa4edaa099f.ctex"]
+source_file="res://WeaponsContents/AssaultRifle/AssaultRifleMagazine.png"
+dest_files=["res://.godot/imported/AssaultRifleMagazine.png-cc71de2a9ea0c6d22d6141fe25c68f13.ctex"]
 
 [params]
 
