@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_bmdd3"]
 [ext_resource type="Texture2D" uid="uid://cv5vst43iwcub" path="res://WeaponsContents/ScarL/ScarLMagazine.png" id="4_pv70k"]
 [ext_resource type="AudioStream" uid="uid://dvkbvcsvmjsal" path="res://WeaponsContents/ScarL/ScarLShoot.mp3" id="5_n7s3w"]
-[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_p6edo"]
+[ext_resource type="AudioStream" uid="uid://bl4i2wtj0jujb" path="res://WeaponsContents/ScarL/ScarLReload.mp3" id="6_ofikt"]
 
 [node name="ScarL" type="Node"]
 script = ExtResource("1_pwwpc")
@@ -31,4 +31,4 @@ dropTextureOffset = Vector2(-9.652, 33.235)
 shootSound = ExtResource("5_n7s3w")
 shootVolumeOffset = -6.0
 shootPitchVariance = 0.04
-reloadSound = ExtResource("6_p6edo")
+reloadSound = ExtResource("6_ofikt")

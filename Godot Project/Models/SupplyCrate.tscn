@@ -46,7 +46,7 @@ script = ExtResource("1_nevhh")
 [node name="Crate" type="Node2D" parent="." node_paths=PackedStringArray("hitBoxRigidBody", "collisionRigidBody", "mainAnimationPlayer", "actionAnimationPlayer")]
 position = Vector2(0, -23)
 script = ExtResource("2_snofn")
-maxHealth = 300
+maxHealth = 500
 cashDrop = 500
 cashDropVariance = 100
 hitBoxRigidBody = NodePath("Hitbox")
@@ -54,6 +54,7 @@ collisionRigidBody = NodePath("ColliderBox")
 walkMovementSpeed = 0.0
 mainAnimationPlayer = NodePath("ColliderBox/FlipTransform/MainAnimationPlayer")
 actionAnimationPlayer = NodePath("ColliderBox/FlipTransform/ActionAnimationPlayer")
+healthBarColor = Color(0.994896, 0.725634, 0.536652, 1)
 
 [node name="Hitbox" type="RigidBody2D" parent="Crate"]
 collision_layer = 4

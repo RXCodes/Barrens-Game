@@ -34,6 +34,9 @@ var hitBoxRigidBody: Node2D
 func _ready() -> void:
 	current = self
 	
+	# make sure the animation tree is active
+	$EditorPreview/Transform/AnimationTree.active = true
+	
 	# move the transform node from the editor preview to the subviewport
 	# the subviewport handles flipping left and right
 	# it's bugged in the editor so it needs to be this way
@@ -203,7 +206,7 @@ func _physics_process(delta: float) -> void:
 		poisonTickTime -= delta
 		if poisonTickTime <= 0.0:
 			poisonTickTime = 1.5
-			damage(randf_range(1, 2), self)
+			damage(randf_range(2, 4), self)
 	if poisonTime <= 3.0:
 		if poisonFX:
 			poisonFX.stopEmitting()
@@ -217,7 +220,7 @@ func _physics_process(delta: float) -> void:
 		fireTick -= delta
 		if fireTick <= 0.0:
 			fireTick = 1.0
-			damage(randf_range(2, 4), self)
+			damage(randf_range(4, 6), self)
 	else:
 		if burnFX:
 			burnFX.stopEmitting()

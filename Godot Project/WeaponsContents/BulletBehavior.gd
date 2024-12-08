@@ -115,4 +115,5 @@ func _physics_process(delta: float) -> void:
 			return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)
-	BulletHole.create(global_position + projectoryVector, true)
+	if not smokeBullet:
+		BulletHole.create(global_position + projectoryVector, true)
