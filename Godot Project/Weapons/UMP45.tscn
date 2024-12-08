@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_dkand"]
 [ext_resource type="Texture2D" uid="uid://en1jqkucn5ip" path="res://WeaponsContents/UMP45/UMP45.png" id="2_rghr6"]
-[ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_wm26k"]
+[ext_resource type="Texture2D" uid="uid://djg8d6omf1ioo" path="res://WeaponsContents/MachineGun/MachineGunShell.png" id="3_gwch6"]
 [ext_resource type="Texture2D" uid="uid://cciskwg7h48tx" path="res://WeaponsContents/UMP45/UMP45Magazine.png" id="4_keqm5"]
 [ext_resource type="AudioStream" uid="uid://dbf6t3vf2jtq2" path="res://WeaponsContents/UMP45/UMP45Shoot.mp3" id="5_c25jq"]
-[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_kg7cj"]
+[ext_resource type="AudioStream" uid="uid://b66wm0onvvb77" path="res://WeaponsContents/UMP45/UMP45Reload.mp3" id="6_3xt6g"]
 
 [node name="UMP45" type="Node"]
 script = ExtResource("1_dkand")
@@ -14,8 +14,8 @@ fireRate = 0.075
 recoilAmount = 3.5
 maximumMagCapacity = 50
 startingAmmoCount = 150
-bulletSpreadDegrees = 3.0
-targetRange = 500.0
+bulletSpreadDegrees = 7.0
+targetRange = 550.0
 rangeSpread = 20.0
 targetDamage = 12.0
 damageSpread = 2.0
@@ -23,7 +23,7 @@ bulletFireColor = Color(1, 1, 1, 1)
 bulletTrailColor = Color(0.35821, 0.419437, 0.484453, 1)
 bulletSize = 0.6
 texture = ExtResource("2_rghr6")
-shellTexture = ExtResource("3_wm26k")
+shellTexture = ExtResource("3_gwch6")
 magazineTexture = ExtResource("4_keqm5")
 drawingOffset = Vector2(20, -5)
 rightHandOffset = Vector2(-12, 18)
@@ -33,4 +33,4 @@ hideRightArm = true
 shootSound = ExtResource("5_c25jq")
 shootVolumeOffset = 0.0
 shootPitchVariance = 0.05
-reloadSound = ExtResource("6_kg7cj")
+reloadSound = ExtResource("6_3xt6g")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=53 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://c06jw6owawlfb" path="res://WeaponsContents/ScarL/Scar-L.png" id="24_3r8xm"]
 [ext_resource type="Texture2D" uid="uid://en1jqkucn5ip" path="res://WeaponsContents/UMP45/UMP45.png" id="24_jihxx"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
+[ext_resource type="Texture2D" uid="uid://gokmugqowqd6" path="res://WeaponsContents/M416/M416.png" id="26_qxcu7"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="PackedScene" uid="uid://bss2jrmb3hn12" path="res://Environment/Decoration/DeadTree1.tscn" id="30_3isup"]
@@ -398,6 +399,16 @@ itemIdentifier = "UMP45"
 script = ExtResource("20_hs1rk")
 displayName = "Scar-L"
 displayTexture = ExtResource("24_3r8xm")
+displayTextureOffset = Vector2(-15, 0)
+displayScale = 0.5
+price = 1500
+description = "Packs high damage but with a slower firing rate."
+itemIdentifier = "ScarL"
+
+[node name="M416ShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "M416"
+displayTexture = ExtResource("26_qxcu7")
 displayTextureOffset = Vector2(-15, 0)
 displayScale = 0.5
 price = 1500

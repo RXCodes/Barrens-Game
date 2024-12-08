@@ -396,6 +396,7 @@ func onFire() -> void:
 	refreshAmmoDisplay()
 	
 	# play shoot animation
+	resetHandAnimations()
 	actionAnimationPlayer.stop()
 	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	gunInteractor.currentWeapon.cockedGun = false
@@ -419,10 +420,12 @@ func onFire() -> void:
 				gunInteractor.currentWeapon.reload(true)
 
 func onCockWeapon() -> void:
+	resetHandAnimations()
 	actionAnimationPlayer.play("Cock-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	refreshAmmoDisplay()
 
 func onReload() -> void:
+	resetHandAnimations()
 	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName, -1, reloadSpeedDivisor)
 	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime / reloadSpeedDivisor)
 
@@ -574,14 +577,17 @@ func pickupAmmo() -> void:
 func selectWeapon(gun: Gun) -> void:
 	gunInteractor.currentWeapon = gun
 	InventoryManager.selectSlot(-1)
+	refreshAmmoDisplay()
+	resetHandAnimations()
+	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
+
+func resetHandAnimations() -> void:
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"
 	var leftHandlingTransform = $"Subviewport/Transform/Skeleton2D/Torso/Left Elbow/Left Arm/Left Hand/RemoteTransform2D"
 	var rightArm = $Subviewport/Transform/Torso/Coat/RightElbow/RightArm
 	rightHandTransform.position = gunInteractor.currentWeapon.rightHandOffset
 	leftHandlingTransform.position = gunInteractor.currentWeapon.leftHandOffset
 	rightArm.visible = not gunInteractor.currentWeapon.hideRightArm
-	refreshAmmoDisplay()
-	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
 
 func pickupWeapon(gun: Gun) -> void:
 	selectWeapon(gun)
