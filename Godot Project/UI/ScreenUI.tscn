@@ -670,10 +670,10 @@ autowrap_mode = 2
 
 [node name="HideButton" type="TextureButton" parent="ItemDropdown/SquareUI"]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 3.2
-offset_right = 138.0
-offset_bottom = 13.2
+offset_left = 121.8
+offset_top = -3.39999
+offset_right = 142.8
+offset_bottom = 17.6
 mouse_filter = 1
 shortcut = SubResource("Shortcut_fmn4k")
 shortcut_feedback = false
@@ -681,6 +681,7 @@ shortcut_in_tooltip = false
 texture_normal = ExtResource("29_gq867")
 texture_pressed = ExtResource("29_gq867")
 texture_hover = ExtResource("30_qn6y7")
+stretch_mode = 3
 script = ExtResource("32_g7q23")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ItemDropdown/SquareUI/HideButton"]

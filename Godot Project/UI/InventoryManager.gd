@@ -45,6 +45,7 @@ static func selectSlot(index: int) -> void:
 		return
 	currentSlotIndex = index
 	var selectedSlot: InventorySlot = slots[index]
+	Crosshair.current.texture = preload("res://UI/Crosshairs/ItemCrosshair.png")
 	selectedSlot.select()
 	showItemInfo()
 
@@ -60,6 +61,7 @@ static func showItemInfo() -> void:
 	itemName.show()
 
 static func hideItemInfo() -> void:
+	Crosshair.current.texture = Player.current.gunInteractor.currentWeapon.crosshairTexture
 	itemDescription.hide()
 	itemName.hide()
 
