@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="24_tsq8j"]
 [ext_resource type="Texture2D" uid="uid://gokmugqowqd6" path="res://WeaponsContents/AssaultRifle/AssaultRifle.png" id="26_qxcu7"]
 [ext_resource type="PackedScene" uid="uid://dvm13wosa3r5n" path="res://HelperClasses/TimeManager.tscn" id="27_3vsuk"]
+[ext_resource type="Texture2D" uid="uid://7n2lct0sl3f3" path="res://WeaponsContents/GrenadeLauncher/GrenadeLauncher.png" id="27_7assw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="27_l6ryw"]
 [ext_resource type="PackedScene" uid="uid://bss2jrmb3hn12" path="res://Environment/Decoration/DeadTree1.tscn" id="30_3isup"]
 [ext_resource type="PackedScene" uid="uid://dyxjgcni6mq3o" path="res://Environment/Decoration/DeadTree2.tscn" id="31_t8gop"]
@@ -42,7 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://bea0yqsiy8r2l" path="res://Environment/Decoration/WaterFountain.tscn" id="38_i01l7"]
 [ext_resource type="PackedScene" uid="uid://fsvkps20epu2" path="res://Models/SupplyCrate.tscn" id="40_7qj5u"]
 [ext_resource type="Texture2D" uid="uid://bryra10fhy4a" path="res://Environment/Sun.png" id="40_rluml"]
-[ext_resource type="PackedScene" uid="uid://n0e8t8q312gb" path="res://Models/worm_enemy.tscn" id="40_vs02l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j6j56"]
 texture = ExtResource("10_q0e8j")
@@ -415,6 +415,16 @@ price = 1500
 description = "A gun with less spread and more range."
 itemIdentifier = "AssaultRifle"
 
+[node name="GrenadeLauncherShopItem" type="Node" parent="Level/ShopVan"]
+script = ExtResource("20_hs1rk")
+displayName = "Grenade Launcher"
+displayTexture = ExtResource("27_7assw")
+displayTextureOffset = Vector2(-20, 0)
+displayScale = 0.5
+price = 2000
+description = "Boom boom time!"
+itemIdentifier = "GrenadeLauncher"
+
 [node name="MachineGunShopItem" type="Node" parent="Level/ShopVan"]
 script = ExtResource("20_hs1rk")
 displayName = "Machine Gun"
@@ -646,6 +656,3 @@ script = SubResource("GDScript_farfr")
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
-
-[node name="Worm_Enemy" parent="." instance=ExtResource("40_vs02l")]
-position = Vector2(-118, -281)
