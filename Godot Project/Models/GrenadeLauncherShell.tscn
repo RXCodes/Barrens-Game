@@ -84,8 +84,8 @@ max_value = 100.0
 _data = [Vector2(0, 0), 0.0, 23.6503, 0, 0, Vector2(0.050505, 100), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_34u23"]
-colors = PackedColorArray(0.734419, 0.946343, 0.997334, 1, 0.322919, 0.566015, 0.998886, 1)
+[sub_resource type="Gradient" id="Gradient_aa4nd"]
+colors = PackedColorArray(1, 0.91325, 0.349383, 1, 0.814992, 0.493333, 0.173254, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nvjv"]
 radius = 8.0
@@ -137,7 +137,7 @@ angle_max = 360.0
 scale_amount_min = 0.2
 scale_amount_max = 0.8
 color = Color(1, 1, 1, 0.556863)
-color_initial_ramp = SubResource("Gradient_34u23")
+color_initial_ramp = SubResource("Gradient_aa4nd")
 anim_speed_min = 1.0
 anim_speed_max = 1.75
 

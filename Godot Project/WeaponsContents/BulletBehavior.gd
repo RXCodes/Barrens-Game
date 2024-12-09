@@ -112,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			if enemy and gun:
 				enemy.call("onHit", result.position)
 				enemy.call("damage", randfn(gun.targetDamage * gun.gunInteractor.damageMultiplier, gun.damageSpread), sourceNode)
-			return
+		return
 	
 	# create a bullet hole where bullet lands (it didn't hit anything)
 	if not smokeBullet:

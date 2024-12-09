@@ -1910,14 +1910,14 @@ scale = Vector2(0.999831, 0.999831)
 texture = ExtResource("4_7ekww")
 
 [node name="RightLeg" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso"]
-position = Vector2(0.0116476, 0.0126534)
-rotation = 0.00272018
-scale = Vector2(0.999738, 0.999738)
+position = Vector2(0.0112278, 0.0112267)
+rotation = 0.00270611
+scale = Vector2(0.999707, 0.999707)
 texture = ExtResource("5_mv52h")
 
 [node name="RightKnee" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/RightLeg"]
-position = Vector2(7.02005, 5.37788)
-scale = Vector2(1.00015, 1.00015)
+position = Vector2(7.02008, 5.3781)
+scale = Vector2(1.00018, 1.00018)
 texture = ExtResource("6_735yq")
 offset = Vector2(-7, -6)
 
@@ -1927,14 +1927,14 @@ texture = ExtResource("6_5fnib")
 offset = Vector2(-7.45752, -30.0759)
 
 [node name="LeftLeg" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso"]
-position = Vector2(-0.0235138, -0.0531158)
-rotation = -0.00331855
-scale = Vector2(0.998964, 0.998964)
+position = Vector2(-0.0236297, -0.0534134)
+rotation = -0.00331807
+scale = Vector2(0.998944, 0.998944)
 texture = ExtResource("7_qwvak")
 
 [node name="LeftKnee" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/LeftLeg"]
-position = Vector2(-7.00156, 5.41122)
-scale = Vector2(1.00041, 1.00041)
+position = Vector2(-7.00159, 5.41163)
+scale = Vector2(1.0004, 1.0004)
 texture = ExtResource("9_8cycy")
 offset = Vector2(7, -6)
 
@@ -1948,45 +1948,45 @@ position = Vector2(-5.24521e-06, -4.60002)
 texture = ExtResource("9_2pba2")
 
 [node name="RightElbow" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat"]
-position = Vector2(14.6613, -18.1572)
-rotation = -0.125032
-scale = Vector2(0.998919, 0.998919)
+position = Vector2(14.6602, -18.1571)
+rotation = -0.125053
+scale = Vector2(0.998922, 0.998922)
 texture = ExtResource("10_3ywxo")
 offset = Vector2(-17.5087, 18.4199)
 
 [node name="RightArm" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/RightElbow"]
-position = Vector2(4.09931, 17.2191)
+position = Vector2(4.09929, 17.2192)
 rotation = 0.16123
-scale = Vector2(0.999907, 0.999907)
+scale = Vector2(0.999911, 0.999911)
 texture = ExtResource("11_2l05x")
 offset = Vector2(-19.7922, 3.05063)
 
 [node name="LeftElbow" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat"]
-position = Vector2(-17.0779, -20.0472)
-rotation = 0.171521
-scale = Vector2(0.995501, 0.995501)
+position = Vector2(-17.0769, -20.0472)
+rotation = 0.171555
+scale = Vector2(0.995487, 0.995487)
 texture = ExtResource("12_vu2m0")
 offset = Vector2(18, 20)
 
 [node name="Weapon" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-14.7233, 25.3544)
-rotation = -0.184584
-scale = Vector2(0.999399, 0.999377)
+position = Vector2(-14.7233, 25.3554)
+rotation = -0.184623
+scale = Vector2(0.999399, 0.999374)
 texture = ExtResource("22_t2au1")
 offset = Vector2(20, -4)
 
 [node name="RightHand" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow/Weapon"]
-position = Vector2(69.7382, -5.66587)
+position = Vector2(69.7381, -5.66589)
 rotation = 3.03892
-scale = Vector2(1.00394, -1.00396)
-skew = -0.00150084
+scale = Vector2(1.00396, -1.00399)
+skew = -0.0014993
 texture = ExtResource("14_2uyc6")
 offset = Vector2(-21.7808, -3.12533)
 
 [node name="LeftArm" type="Sprite2D" parent="Player/EditorPreview/Transform/Torso/Coat/LeftElbow"]
-position = Vector2(-4.26803, 11.6787)
-rotation = -0.109941
-scale = Vector2(0.999903, 0.999903)
+position = Vector2(-4.26812, 11.6786)
+rotation = -0.109921
+scale = Vector2(0.9999, 0.9999)
 texture = ExtResource("15_0hql7")
 offset = Vector2(21.5783, 10.0035)
 

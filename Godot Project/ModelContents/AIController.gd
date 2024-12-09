@@ -277,8 +277,11 @@ func damage(amount: float, source: Node2D) -> void:
 		var criticalChance = randf_range(0, Player.current.criticalDamageMultiplier)
 		var roll = randf_range(0, 100.0)
 		if criticalChance >= roll:
+			Crosshair.criticalHit()
 			criticalDamaged = true
 			amount *= 12.5
+		else:
+			Crosshair.enemyHit()
 		Player.current.damageDealt += amount
 		
 		# flaming bullets effect

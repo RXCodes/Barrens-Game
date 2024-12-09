@@ -397,6 +397,7 @@ func onFire() -> void:
 	
 	# play shoot animation
 	resetHandAnimations()
+	Crosshair.weaponFired()
 	actionAnimationPlayer.stop()
 	actionAnimationPlayer.play("Fire-" + gunInteractor.currentWeapon.fileName, -1, gunInteractor.fireRateDivisor)
 	gunInteractor.currentWeapon.cockedGun = false
@@ -577,9 +578,10 @@ func pickupAmmo() -> void:
 func selectWeapon(gun: Gun) -> void:
 	gunInteractor.currentWeapon = gun
 	InventoryManager.selectSlot(-1)
+	Crosshair.current.texture = gun.crosshairTexture
 	refreshAmmoDisplay()
 	resetHandAnimations()
-	WeaponSlots.setWeaponName(gunInteractor.currentWeapon.displayName)
+	WeaponSlots.setWeaponName(gun.displayName)
 
 func resetHandAnimations() -> void:
 	var rightHandTransform = $"Subviewport/Transform/Skeleton2D/Torso/Right Elbow/Right Arm/Right Hand/RemoteTransform2D"

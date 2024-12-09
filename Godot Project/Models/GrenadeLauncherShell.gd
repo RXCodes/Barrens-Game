@@ -29,7 +29,7 @@ func goToPosition(newTargetPosition: Vector2) -> void:
 	var normal = (newTargetPosition - global_position).normalized()
 	var trajectory = normal * min(distance, maxDistance)
 	targetPosition = global_position + trajectory
-	targetVelocity = (targetPosition - global_position) * 2.0 / travelTime
+	targetVelocity = (targetPosition - global_position) * 3.0 / travelTime
 	
 func _physics_process(delta: float) -> void:
 	var rigidBody: RigidBody2D = $RigidBody2D

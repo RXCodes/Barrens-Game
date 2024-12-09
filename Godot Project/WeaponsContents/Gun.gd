@@ -82,6 +82,9 @@ var leftoverAmmoCount: int:
 ## this requires the reloading animation to call an event to trigger at a specific time
 @export var magazineTexture: Texture2D
 
+## the crosshair icon to use for this weapon
+@export var crosshairTexture: Texture2D
+
 ## the drawing offset for the gun texture - this only applies to the player model
 @export var drawingOffset: Vector2 = Vector2.ZERO
 

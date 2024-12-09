@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://6cl5kxkw26hp"]
+[gd_scene load_steps=6 format=3 uid="uid://6cl5kxkw26hp"]
 
 [ext_resource type="Script" path="res://Weapons/GrenadeLauncher.gd" id="1_bmk4w"]
 [ext_resource type="Texture2D" uid="uid://7n2lct0sl3f3" path="res://WeaponsContents/GrenadeLauncher/GrenadeLauncher.png" id="2_qpgj7"]
 [ext_resource type="AudioStream" uid="uid://bv0bhc0xxio22" path="res://WeaponsContents/GrenadeLauncher/GrenadeLauncherShoot.mp3" id="3_128df"]
+[ext_resource type="Texture2D" uid="uid://b3j0dkwulb5sr" path="res://UI/Crosshairs/GrenadeLauncherCrosshair.png" id="3_qlld6"]
 [ext_resource type="AudioStream" uid="uid://cq67bf6yu30hq" path="res://WeaponsContents/GrenadeLauncher/GrenadeLauncherReload.mp3" id="4_5ffdf"]
 
 [node name="GrenadeLauncher" type="Node"]
 script = ExtResource("1_bmk4w")
+displayName = "Grenade Launcher"
 fireRate = 0.45
 maximumMagCapacity = 5
 startingAmmoCount = 8
 reloadTime = 3.4
 texture = ExtResource("2_qpgj7")
+crosshairTexture = ExtResource("3_qlld6")
 drawingOffset = Vector2(20, -4)
 rightHandOffset = Vector2(-14, 0)
 leftHandOffset = Vector2(-26, 3)

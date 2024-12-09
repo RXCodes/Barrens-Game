@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b8tpbeww4jac5"]
+[gd_scene load_steps=9 format=3 uid="uid://b8tpbeww4jac5"]
 
 [ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_qurpq"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="2_kslff"]
 [ext_resource type="Texture2D" uid="uid://djg8d6omf1ioo" path="res://WeaponsContents/MachineGun/MachineGunShell.png" id="3_3fs4u"]
 [ext_resource type="Texture2D" uid="uid://xuinsgvita5f" path="res://WeaponsContents/MachineGun/MachineGunMagazine.png" id="4_gn353"]
 [ext_resource type="AudioStream" uid="uid://dxreftqjo2xci" path="res://WeaponsContents/MachineGun/MachineGunShoot.mp3" id="5_cjnv5"]
+[ext_resource type="Texture2D" uid="uid://dm3neoafckpx6" path="res://UI/Crosshairs/SMGCrosshair.png" id="5_slfpp"]
 [ext_resource type="AudioStream" uid="uid://bodqa1yxromc1" path="res://WeaponsContents/MachineGun/MachineGunCock.mp3" id="6_yshvk"]
 [ext_resource type="AudioStream" uid="uid://8q7cvo7glnk0" path="res://WeaponsContents/MachineGun/MachineGunReload.mp3" id="7_beudm"]
 
@@ -26,6 +27,7 @@ bulletTrailColor = Color(0.418361, 0.409735, 0.411894, 1)
 texture = ExtResource("2_kslff")
 shellTexture = ExtResource("3_3fs4u")
 magazineTexture = ExtResource("4_gn353")
+crosshairTexture = ExtResource("5_slfpp")
 drawingOffset = Vector2(48, -4)
 rightHandOffset = Vector2(-16, 10)
 dropTextureOffset = Vector2(11.348, 24.235)

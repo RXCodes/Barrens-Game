@@ -1,7 +1,8 @@
-[gd_scene load_steps=73 format=3 uid="uid://oc0fa0b3t0mo"]
+[gd_scene load_steps=74 format=3 uid="uid://oc0fa0b3t0mo"]
 
 [ext_resource type="Script" path="res://Scenes/ScreenUI.gd" id="1_1kk4v"]
-[ext_resource type="Texture2D" uid="uid://ccxkmhbm1vsqw" path="res://UI/Crosshair.png" id="2_28phi"]
+[ext_resource type="Texture2D" uid="uid://bw34yijrs7un1" path="res://UI/Crosshairs/ShotgunCrosshair.png" id="2_gl0xn"]
+[ext_resource type="Texture2D" uid="uid://bhwrmd4a5o4k5" path="res://UI/Crosshairs/PopupCrosshair.png" id="2_hna4r"]
 [ext_resource type="Script" path="res://UI/CrosshairController.gd" id="3_na6ej"]
 [ext_resource type="Texture2D" uid="uid://bs0qkcxpsoh0o" path="res://UI/ReloadBar.png" id="4_7w5bb"]
 [ext_resource type="Texture2D" uid="uid://durakb81ychhg" path="res://UI/ReloadBarFull.png" id="5_xwyaq"]
@@ -157,22 +158,18 @@ layer = 128
 script = ExtResource("1_1kk4v")
 metadata/_edit_use_anchors_ = true
 
-[node name="Crosshair" type="TextureRect" parent="."]
+[node name="PopupCrosshair" type="Sprite2D" parent="."]
+visible = false
+z_index = 1000
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_hna4r")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
 z_index = 999
 texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = -26.0
-offset_right = -169.0
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(21, 21)
-texture = ExtResource("2_28phi")
+scale = Vector2(2, 2)
+texture = ExtResource("2_gl0xn")
 script = ExtResource("3_na6ej")
 
 [node name="ReloadingIcon" type="TextureProgressBar" parent="."]

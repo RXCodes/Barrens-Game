@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c41ajt8n44vfs"]
+[gd_scene load_steps=8 format=3 uid="uid://c41ajt8n44vfs"]
 
 [ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_dkand"]
 [ext_resource type="Texture2D" uid="uid://en1jqkucn5ip" path="res://WeaponsContents/UMP45/UMP45.png" id="2_rghr6"]
 [ext_resource type="Texture2D" uid="uid://djg8d6omf1ioo" path="res://WeaponsContents/MachineGun/MachineGunShell.png" id="3_gwch6"]
 [ext_resource type="Texture2D" uid="uid://cciskwg7h48tx" path="res://WeaponsContents/UMP45/UMP45Magazine.png" id="4_keqm5"]
 [ext_resource type="AudioStream" uid="uid://dbf6t3vf2jtq2" path="res://WeaponsContents/UMP45/UMP45Shoot.mp3" id="5_c25jq"]
+[ext_resource type="Texture2D" uid="uid://dm3neoafckpx6" path="res://UI/Crosshairs/SMGCrosshair.png" id="5_i0neo"]
 [ext_resource type="AudioStream" uid="uid://b66wm0onvvb77" path="res://WeaponsContents/UMP45/UMP45Reload.mp3" id="6_3xt6g"]
 
 [node name="UMP45" type="Node"]
@@ -25,6 +26,7 @@ bulletSize = 0.6
 texture = ExtResource("2_rghr6")
 shellTexture = ExtResource("3_gwch6")
 magazineTexture = ExtResource("4_keqm5")
+crosshairTexture = ExtResource("5_i0neo")
 drawingOffset = Vector2(20, -5)
 rightHandOffset = Vector2(-12, 18)
 leftHandOffset = Vector2(-20, 2)

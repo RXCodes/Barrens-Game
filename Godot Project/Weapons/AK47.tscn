@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfpjpi0uc24dp"]
+[gd_scene load_steps=8 format=3 uid="uid://dfpjpi0uc24dp"]
 
 [ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_k2unm"]
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="2_meaok"]
 [ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_i4os7"]
 [ext_resource type="Texture2D" uid="uid://dpu7ryi50nn1e" path="res://WeaponsContents/AK47/AK47Magazine.png" id="4_vtw2n"]
+[ext_resource type="Texture2D" uid="uid://cue1rs8xn4fnr" path="res://UI/Crosshairs/ARCrosshair.png" id="5_52j30"]
 [ext_resource type="AudioStream" uid="uid://doc6awewuo1na" path="res://WeaponsContents/AK47/AK47Shoot.mp3" id="5_jif8r"]
 [ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="6_f7qio"]
 
@@ -24,6 +25,7 @@ bulletSize = 0.85
 texture = ExtResource("2_meaok")
 shellTexture = ExtResource("3_i4os7")
 magazineTexture = ExtResource("4_vtw2n")
+crosshairTexture = ExtResource("5_52j30")
 drawingOffset = Vector2(10, 0)
 dropTextureOffset = Vector2(-9.652, 33.235)
 shootSound = ExtResource("5_jif8r")
