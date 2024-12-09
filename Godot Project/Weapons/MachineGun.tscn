@@ -36,3 +36,7 @@ shootVolumeOffset = -4.0
 shootPitchVariance = 0.05
 cockingSound = ExtResource("6_yshvk")
 reloadSound = ExtResource("7_beudm")
+silverTargetDamageMultiplier = 1.4
+silverFireRateMultiplier = 0.9
+silverReloadTimeMultiplier = 0.8
+silverMagazineSizeIncrease = 20

@@ -42,7 +42,7 @@ func activateHurtBox(damage: float, type: EnemyAI.HurtBoxType) -> void:
 			var distance = collider.global_position.distance_to(global_position)
 			var parent = collider.get_meta(EnemyAI.parentControllerKey)
 			if parent:
-				var newDamage = lerpf(damage * damageFalloff, damage, distance / 180)
+				var newDamage = lerpf(damage, damage * damageFalloff, distance / 180)
 				if type == EnemyAI.HurtBoxType.ALL:
 					parent.damage(newDamage, self)
 				elif parent is EnemyAI and type == EnemyAI.HurtBoxType.ENEMY:

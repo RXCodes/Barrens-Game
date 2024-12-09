@@ -27,6 +27,10 @@ func _process(delta: float) -> void:
 
 var gun: Gun
 func setupWithGun(newGun: Gun) -> void:
+	if newGun.rarity == Gun.Rarity.SILVER:
+		$Weapon/WeaponSprite.material = preload("res://WeaponsContents/Silver.tres")
+	if newGun.rarity == Gun.Rarity.GOLD:
+		$Weapon/WeaponSprite.material = preload("res://WeaponsContents/Golden.tres")
 	$Weapon/WeaponSprite.texture = newGun.texture
 	$Weapon/WeaponSprite.scale = Vector2(newGun.dropTextureScale, newGun.dropTextureScale)
 	$Weapon/WeaponSprite.position = newGun.dropTextureOffset

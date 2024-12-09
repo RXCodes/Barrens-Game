@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://babhxms1scsca"]
+[gd_scene load_steps=54 format=4 uid="uid://babhxms1scsca"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_80clb"]
 [ext_resource type="Texture2D" uid="uid://bllj1st2im3pu" path="res://Environment/RockTilemap.png" id="10_q0e8j"]
@@ -124,6 +124,20 @@ script/source = "extends Node
 func _ready() -> void:
 	await get_tree().physics_frame
 	Player.current.pickupCash(100000)
+"
+
+[sub_resource type="GDScript" id="GDScript_fuud3"]
+resource_name = "supplycratetest"
+script/source = "extends Node2D
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var crates = get_tree().get_nodes_in_group(\"Crates\")
+	if crates.size() >= 50:
+		return
+	var randomSpawn = Vector2(randfn(0, 1000), randfn(0, 1000))
+	var crate = EnemySpawner.spawnEnemy(\"SupplyCrate\", randomSpawn)
+	crate.add_to_group(\"Crates\")
 "
 
 [node name="Debug Scene" type="Node2D"]
@@ -646,7 +660,8 @@ script = SubResource("GDScript_vutwu")
 [node name="DebugSceneCode" type="Node" parent="Level"]
 script = SubResource("GDScript_farfr")
 
-[node name="SupplyCrate" parent="Level" instance=ExtResource("40_7qj5u")]
+[node name="SupplyCrate3" parent="Level" instance=ExtResource("40_7qj5u")]
+position = Vector2(9, -256)
 
 [node name="TimeManager" parent="." instance=ExtResource("27_3vsuk")]
 
@@ -656,3 +671,7 @@ script = SubResource("GDScript_farfr")
 
 [node name="DebugSceneCode" type="Node" parent="."]
 script = SubResource("GDScript_farfr")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-4.14142, 202.206)
+script = SubResource("GDScript_fuud3")

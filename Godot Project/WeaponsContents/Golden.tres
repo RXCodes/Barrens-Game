@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dpxi1fei4otuv"]
+
+[ext_resource type="Shader" path="res://WeaponsContents/Golden.gdshader" id="1_574ys"]
+
+[resource]
+shader = ExtResource("1_574ys")
+shader_parameter/size_effect = 0.35
+shader_parameter/speed = 0.55
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+shader_parameter/pause_duration = 0.0

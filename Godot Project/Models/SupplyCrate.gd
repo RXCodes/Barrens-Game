@@ -21,18 +21,27 @@ func onDeath() -> void:
 		Item.spawnItem(special.pick_random(), 1, getPosition())
 	
 	# chance to spawn a weapon
-	if randi_range(1, 5) == 1:
-		var gun = Gun.gunFromString("UMP45")
-		EnemySpawner.spawnWeapon(gun, getPosition())
-	if randi_range(1, 10) == 1:
-		var gun = Gun.gunFromString("AK47")
-		EnemySpawner.spawnWeapon(gun, getPosition())
-	if randi_range(1, 25) == 1:
-		var gun = Gun.gunFromString("MachineGun")
-		EnemySpawner.spawnWeapon(gun, getPosition())
-	if randi_range(1, 50) == 1:
-		var gun = Gun.gunFromString("ScarL")
-		EnemySpawner.spawnWeapon(gun, getPosition())
-	if randi_range(1, 50) == 1:
-		var gun = Gun.gunFromString("GrenadeLauncher")
-		EnemySpawner.spawnWeapon(gun, getPosition())
+	var spawnWeaponNames = []
+	if randi_range(1, 6) == 1:
+		spawnWeaponNames.append("UMP45")
+	if randi_range(1, 8) == 1:
+		spawnWeaponNames.append("Shotgun")
+	if randi_range(1, 15) == 1:
+		spawnWeaponNames.append("AK47")
+	if randi_range(1, 20) == 1:
+		spawnWeaponNames.append("MachineGun")
+	if randi_range(1, 30) == 1:
+		spawnWeaponNames.append("ScarL")
+	if randi_range(1, 40) == 1:
+		spawnWeaponNames.append("GrenadeLauncher")
+	
+	for weaponName: String in spawnWeaponNames:
+		var gun = Gun.gunFromString(weaponName)
+		
+		# chances to have different rarities
+		if randi_range(1, 2) == 1:
+			gun.setWeaponRarity(Gun.Rarity.SILVER)
+		if randi_range(1, 10) == 1:
+			gun.setWeaponRarity(Gun.Rarity.GOLD)
+		
+		var weapon = EnemySpawner.spawnWeapon(gun, getPosition())

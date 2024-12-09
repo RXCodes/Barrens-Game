@@ -41,6 +41,10 @@ func _ready() -> void:
 			newItemPickup.displayName = weapon.gun.displayName
 			newItemPickup.texture = weapon.gun.texture
 			newItemPickup.correspondingNode = weapon
+			if weapon.gun.rarity == Gun.Rarity.SILVER:
+				newItemPickup.shaderMaterial = preload("res://WeaponsContents/Silver.tres")
+			if weapon.gun.rarity == Gun.Rarity.GOLD:
+				newItemPickup.shaderMaterial = preload("res://WeaponsContents/Golden.tres")
 			weapon.pickupItem = newItemPickup
 			var itemDisplay = preload("res://UI/NearbyItemDisplay.tscn").instantiate()
 			itemDisplay.setupWithItemPickUp(newItemPickup)
@@ -117,3 +121,4 @@ class ItemPickup:
 	var texture: Texture2D
 	var itemDisplay: NearbyItemDisplay
 	var correspondingNode: Node
+	var shaderMaterial: ShaderMaterial

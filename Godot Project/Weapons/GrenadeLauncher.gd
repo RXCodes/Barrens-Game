@@ -26,6 +26,7 @@ func fire(holding: bool, angleRadians: float) -> void:
 		gunInteractor.onFire.call()
 	for i in range(bulletMultiplier):
 		var grenade: GrenadeLauncherShell = EnemySpawner.spawnEnemy("GrenadeLauncherShell", Player.current.global_position)
+		grenade.targetDamage = targetDamage
 		var random = Vector2.from_angle(randf_range(0, 360))
 		var distance = randf_range(0.0, 25.0)
 		random.x *= distance

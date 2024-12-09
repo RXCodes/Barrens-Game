@@ -69,8 +69,9 @@ static func spawnMoney(amount: int, position: Vector2) -> void:
 
 # spawns a weapon item into the scene
 static var gunPickup = preload("res://Models/WeaponPickup.tscn")
-static func spawnWeapon(gun: Gun, position: Vector2) -> void:
+static func spawnWeapon(gun: Gun, position: Vector2) -> WeaponEntity:
 	var newWeaponEntity: WeaponEntity = gunPickup.instantiate()
 	newWeaponEntity.setupWithGun(gun)
 	newWeaponEntity.global_position = position
 	NodeRelations.rootNode.find_child("Level").add_child(newWeaponEntity)
+	return newWeaponEntity

@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://0n6h70ulcwkj"]
+
+[ext_resource type="Script" path="res://WeaponsContents/Gun.gd" id="1_8u2kw"]
+[ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="2_t08bk"]
+[ext_resource type="Texture2D" uid="uid://baj0x8a6jwxkk" path="res://WeaponsContents/AK47/AK47Shell.png" id="3_iyg6g"]
+[ext_resource type="Texture2D" uid="uid://dpu7ryi50nn1e" path="res://WeaponsContents/AK47/AK47Magazine.png" id="4_c4t2x"]
+[ext_resource type="Texture2D" uid="uid://cue1rs8xn4fnr" path="res://UI/Crosshairs/ARCrosshair.png" id="5_glb0n"]
+[ext_resource type="AudioStream" uid="uid://doc6awewuo1na" path="res://WeaponsContents/AK47/AK47Shoot.mp3" id="6_505c5"]
+[ext_resource type="AudioStream" uid="uid://bxkwjr8iv72dj" path="res://WeaponsContents/AK47/AK47Reload.mp3" id="7_5bx3p"]
+
+[node name="AK47" type="Node"]
+script = ExtResource("1_8u2kw")
+displayName = "Golden AK47"
+fireRate = 0.1
+recoilAmount = 4.0
+maximumMagCapacity = 70
+startingAmmoCount = 200
+reloadTime = 1.1
+bulletSpreadDegrees = 3.0
+targetRange = 850.0
+rangeSpread = 30.0
+targetDamage = 13.0
+damageSpread = 2.0
+bulletFireColor = Color(0.953984, 0.853036, 0.772508, 1)
+bulletTrailColor = Color(0.35821, 0.419437, 0.484453, 1)
+bulletSize = 0.85
+texture = ExtResource("2_t08bk")
+shellTexture = ExtResource("3_iyg6g")
+magazineTexture = ExtResource("4_c4t2x")
+crosshairTexture = ExtResource("5_glb0n")
+drawingOffset = Vector2(10, 0)
+dropTextureOffset = Vector2(-9.652, 33.235)
+shootSound = ExtResource("6_505c5")
+shootVolumeOffset = -12.0
+shootPitchVariance = 0.1
+reloadSound = ExtResource("7_5bx3p")

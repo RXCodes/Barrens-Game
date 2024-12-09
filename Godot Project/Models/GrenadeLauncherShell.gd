@@ -4,6 +4,7 @@ var targetPosition: Vector2
 var maxDistance = 800
 var travelTime = 1.25
 var targetVelocity: Vector2
+var targetDamage = 120.0
 
 func _ready() -> void:
 	# play projectile animation
@@ -17,7 +18,7 @@ func explode() -> void:
 		return
 	hasExploded = true
 	# create explosion
-	var explosion = Explosion.create($RigidBody2D/Grenade.global_position, 120 * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
+	var explosion = Explosion.create($RigidBody2D/Grenade.global_position, targetDamage * Player.current.gunInteractor.damageMultiplier, EnemyAI.HurtBoxType.ENEMY)
 	explosion.isFromPlayer = true
 	# hurt the player too
 	Explosion.create($RigidBody2D/Grenade.global_position, 30, EnemyAI.HurtBoxType.PLAYER)

@@ -72,6 +72,12 @@ static func secondaryWeaponPickedUp() -> void:
 static func setPrimaryWeapon(gun: Gun) -> void:
 	primaryWeaponSprite.texture = gun.texture
 	primaryWeaponSprite.offset = gun.drawingOffset
+	if gun.rarity == Gun.Rarity.COMMON:
+		primaryWeaponSprite.material = null
+	if gun.rarity == Gun.Rarity.SILVER:
+		primaryWeaponSprite.material = preload("res://WeaponsContents/Silver.tres")
+	if gun.rarity == Gun.Rarity.GOLD:
+		primaryWeaponSprite.material = preload("res://WeaponsContents/Golden.tres")
 	
 static func setSecondaryWeapon(gun: Gun) -> void:
 	secondaryWeaponSprite.texture = gun.texture

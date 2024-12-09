@@ -36,3 +36,5 @@ shootSound = ExtResource("5_c25jq")
 shootVolumeOffset = 0.0
 shootPitchVariance = 0.05
 reloadSound = ExtResource("6_3xt6g")
+goldenTargetDamageMultiplier = 1.4
+goldenBulletMultiplierIncrease = 1

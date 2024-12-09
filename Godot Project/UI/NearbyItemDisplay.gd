@@ -5,6 +5,7 @@ var item: NearbyItemsListInteractor.ItemPickup
 func setupWithItemPickUp(itemPickUp: NearbyItemsListInteractor.ItemPickup) -> void:
 	item = itemPickUp
 	$Shop/Title.text = itemPickUp.displayName
+	$ItemFrame/Mask/Preview.material = itemPickUp.shaderMaterial
 	$ItemFrame/Mask/Preview.texture = itemPickUp.texture
 	$ItemFrame/Mask/Amount.text = "x" + str(itemPickUp.amount)
 	$ItemFrame/Mask/Amount.visible = itemPickUp.amount != 1

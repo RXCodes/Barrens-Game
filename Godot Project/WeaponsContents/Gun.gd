@@ -129,8 +129,75 @@ var leftoverAmmoCount: int:
 ## volume offset of the reload sound
 @export var reloadSoundVolumeOffset: float = -2.0
 
+@export_group("Silver Rarity Property Overrides")
+
+## how much to multiply the spread for silver rarity
+@export var silverTargetSpreadMultiplier: float = 0.9
+
+## how much to multiply the damage for silver rarity
+@export var silverTargetDamageMultiplier: float = 1.25
+
+## how much to multiply the firing rate for silver rarity
+@export var silverFireRateMultiplier: float = 0.85
+
+## how much to multiply the reload time for silver rarity
+@export var silverReloadTimeMultiplier: float = 0.7
+
+## how much to increase the magazine size for silver rarity
+@export var silverMagazineSizeIncrease: int = 10
+
+## how much to increase the bullet multiplier for silver rarity
+@export var silverBulletMultiplierIncrease: int = 0
+
+
+@export_group("Golden Rarity Property Overrides")
+
+## how much to multiply the spread for silver rarity
+@export var goldenTargetSpreadMultiplier: float = 0.8
+
+## how much to multiply the damage for silver rarity
+@export var goldenTargetDamageMultiplier: float = 1.55
+
+## how much to multiply the firing rate for silver rarity
+@export var goldenFireRateMultiplier: float = 0.75
+
+## how much to multiply the reload time for silver rarity
+@export var goldenReloadTimeMultiplier: float = 0.5
+
+## how much to increase the magazine size for silver rarity
+@export var goldenMagazineSizeIncrease: int = 20
+
+## how much to increase the bullet multiplier for silver rarity
+@export var goldenBulletMultiplierIncrease: int = 0
+
 var canFire = true
 var reloading = false
+enum Rarity {COMMON, SILVER, GOLD}
+var rarity: Gun.Rarity = Rarity.COMMON
+
+## must be only called once
+var raritySet = false
+func setWeaponRarity(newRarity: Gun.Rarity) -> void:
+	if raritySet:
+		return
+	raritySet = true
+	rarity = newRarity
+	if newRarity == Rarity.SILVER:
+		rangeSpread *= silverTargetSpreadMultiplier
+		targetDamage *= silverTargetDamageMultiplier
+		fireRate *= silverFireRateMultiplier
+		reloadTime *= silverReloadTimeMultiplier
+		maximumMagCapacity += silverMagazineSizeIncrease
+		bulletMultiplier += silverBulletMultiplierIncrease
+		displayName = "Silver " + displayName
+	if newRarity == Rarity.GOLD:
+		rangeSpread *= goldenTargetSpreadMultiplier
+		targetDamage *= goldenTargetDamageMultiplier
+		fireRate *= goldenFireRateMultiplier
+		reloadTime *= goldenReloadTimeMultiplier
+		maximumMagCapacity += goldenMagazineSizeIncrease
+		bulletMultiplier += goldenBulletMultiplierIncrease
+		displayName = "Golden " + displayName
 
 var shootAudioPlayer: AudioStreamPlayer2D
 var lastBulletAngleRadians: float
@@ -292,6 +359,12 @@ class Interactor:
 			currentWeapon = newWeapon
 			newWeapon.sourceNode = originNode
 			gunSprite.texture = currentWeapon.texture
+			if newWeapon.rarity == Gun.Rarity.COMMON:
+				gunSprite.material = null
+			if newWeapon.rarity == Gun.Rarity.SILVER:
+				gunSprite.material = preload("res://WeaponsContents/Silver.tres")
+			if newWeapon.rarity == Gun.Rarity.GOLD:
+				gunSprite.material = preload("res://WeaponsContents/Golden.tres")
 			if originNode is Player:
 				gunSprite.offset = currentWeapon.drawingOffset
 			if not newWeapon.cockedGun and newWeapon.leftoverAmmoCount > 0:
