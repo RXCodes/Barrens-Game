@@ -687,10 +687,10 @@ script = ExtResource("32_g7q23")
 [node name="ScrollContainer" type="ScrollContainer" parent="ItemDropdown/SquareUI/HideButton"]
 custom_minimum_size = Vector2(122, 94)
 layout_mode = 0
-offset_left = -119.0
-offset_top = 17.0
-offset_right = 3.0
-offset_bottom = 111.0
+offset_left = -112.6
+offset_top = 23.4
+offset_right = 9.4
+offset_bottom = 117.4
 mouse_filter = 0
 theme = SubResource("Theme_yhavq")
 horizontal_scroll_mode = 0

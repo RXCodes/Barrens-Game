@@ -31,6 +31,11 @@ events = [SubResource("InputEventKey_hcuy1")]
 resource_name = "CancelButton"
 script/source = "extends NinePatchRect
 
+var isReady = false
+func _ready() -> void:
+	await TimeManager.wait(0.2)
+	isReady = true
+
 func _on_button_mouse_entered() -> void:
 	modulate = Color(0.8, 0.8, 0.8)
 
@@ -38,6 +43,8 @@ func _on_button_mouse_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_button_down() -> void:
+	if not isReady:
+		return
 	GamePopup.closeCurrent()
 "
 
@@ -45,6 +52,11 @@ func _on_button_button_down() -> void:
 resource_name = "ConfirmButton"
 script/source = "extends NinePatchRect
 
+var isReady = false
+func _ready() -> void:
+	await TimeManager.wait(0.2)
+	isReady = true
+
 func _on_button_mouse_entered() -> void:
 	modulate = Color(0.8, 0.8, 0.8)
 
@@ -52,6 +64,8 @@ func _on_button_mouse_exited() -> void:
 	modulate = Color.WHITE
 
 func _on_button_button_down() -> void:
+	if not isReady:
+		return
 	ConfirmationPrompt.currentAccepted()
 	GamePopup.closeCurrent()
 "

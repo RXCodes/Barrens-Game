@@ -117,6 +117,7 @@ class Entity extends Node:
 	var itemTexture: Texture2D
 	var itemOffset: Vector2
 	var consumable: bool = false
+	var removeWhenConsumed: bool = true
 	var amount: int = 1
 	
 	## override this method to define what happens when the user consumes this item
@@ -135,6 +136,7 @@ class Entity extends Node:
 		copy.consumable = consumable
 		copy.onConsume = onConsume
 		copy.consumeTest = consumeTest
+		copy.removeWhenConsumed = removeWhenConsumed
 		copy.amount = amount
 		copy.onConsume = onConsume
 		return copy

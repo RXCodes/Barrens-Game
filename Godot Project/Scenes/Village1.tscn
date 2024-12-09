@@ -5230,6 +5230,17 @@ price = 200
 description = "A weapon with a decent fire rate and deals average damage."
 itemIdentifier = "AK47"
 
+[node name="WeaponUpgradeKit" type="Node" parent="Level/ShopVan"]
+script = ExtResource("47_ud1rn")
+price = 10000
+type = 1
+itemIdentifier = "WeaponUpgradeKit"
+limitAmount = 1
+canRestock = true
+restockTime = 10
+restockAmount = 1
+costIncrementMultiplier = 1.25
+
 [node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("47_ud1rn")
 price = 120

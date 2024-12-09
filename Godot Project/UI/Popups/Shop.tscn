@@ -166,10 +166,10 @@ autowrap_mode = 2
 self_modulate = Color(0.506975, 0.744358, 0.456243, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 231.0
-offset_top = 226.6
+offset_left = 224.0
+offset_top = 227.0
 offset_right = 287.0
-offset_bottom = 246.6
+offset_bottom = 247.0
 texture = ExtResource("2_3are3")
 patch_margin_left = 10
 patch_margin_top = 10
@@ -179,9 +179,9 @@ patch_margin_bottom = 10
 [node name="BuyTitle" type="Label" parent="Popup/SquareUI/BuyButton"]
 self_modulate = Color(0.690252, 0.831858, 0.592742, 1)
 layout_mode = 0
-offset_left = 1.0
-offset_top = -4.6
-offset_right = 241.0
+offset_left = 4.60001
+offset_top = -4.60001
+offset_right = 244.6
 offset_bottom = 41.4
 scale = Vector2(0.225, 0.225)
 text = "Purchase"
@@ -191,12 +191,12 @@ autowrap_mode = 2
 
 [node name="Price" type="Label" parent="Popup/SquareUI/BuyButton"]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 4.79999
-offset_right = 122.0
-offset_bottom = 50.8
+offset_left = 23.8
+offset_top = 5.0
+offset_right = 142.8
+offset_bottom = 51.0
 scale = Vector2(0.3, 0.3)
-text = "500"
+text = "10000"
 label_settings = SubResource("LabelSettings_hdjlq")
 autowrap_mode = 2
 

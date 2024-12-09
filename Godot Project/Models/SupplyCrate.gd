@@ -20,6 +20,10 @@ func onDeath() -> void:
 		var special = ["ElixirOfFortune", "EnergyDrink", "PotionOfHealing", "PotionOfRage", "ShieldSpireSerum", "StaminaPotion", "WarriorSerum"]
 		Item.spawnItem(special.pick_random(), 1, getPosition())
 	
+	# extremely rare chance to spawn weapon upgrade kit
+	if randi_range(1, 120) == 1:
+		Item.spawnItem("WeaponUpgradeKit", randi_range(0, 3), getPosition())
+	
 	# chance to spawn a weapon
 	var spawnWeaponNames = []
 	if randi_range(1, 6) == 1:

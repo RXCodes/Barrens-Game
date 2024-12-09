@@ -606,8 +606,20 @@ func pickupWeapon(gun: Gun) -> void:
 	else:
 		# if you already have two weapons, the one you're holding must be replaced
 		var previousGun: Gun = holdingWeapons[currentWeaponSlot - 1]
-		EnemySpawner.spawnWeapon(previousGun, global_position)
 		holdingWeapons[currentWeaponSlot - 1] = gun
+		EnemySpawner.spawnWeapon(previousGun, global_position)
+	
+	# update weapon slot display
+	if currentWeaponSlot == 1:
+		WeaponSlots.setPrimaryWeapon(gun)
+	elif currentWeaponSlot == 2:
+		WeaponSlots.setSecondaryWeapon(gun)
+	WeaponSlots.setWeaponName(gun.displayName)
+
+func replaceGun(gun: Gun) -> void:
+	var previousGun: Gun = holdingWeapons[currentWeaponSlot - 1]
+	holdingWeapons[currentWeaponSlot - 1] = gun
+	selectWeapon(gun)
 	
 	# update weapon slot display
 	if currentWeaponSlot == 1:
@@ -637,5 +649,6 @@ func handleItemInteraction() -> void:
 			var result = currentItem.consumeTest.call()
 			if not result:
 				return
-		InventoryManager.consumeItem()
+		if currentItem.removeWhenConsumed:
+			InventoryManager.consumeItem()
 		currentItem.onConsume.call()

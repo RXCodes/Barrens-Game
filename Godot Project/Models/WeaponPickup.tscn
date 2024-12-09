@@ -95,7 +95,6 @@ offsets = PackedFloat32Array(0, 0.2021, 0.850394, 1)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.2021, 1, 1, 1, 0.850394, 1, 1, 1, 0)
 
 [node name="WeaponEntity" type="Node2D" groups=["Weapon"]]
-position = Vector2(-146.348, -241.235)
 script = ExtResource("1_4hbwl")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

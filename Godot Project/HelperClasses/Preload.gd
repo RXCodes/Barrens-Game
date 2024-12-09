@@ -17,5 +17,6 @@ static var preloadedItemPaths = [
 	preload("res://Items/PotionOfRage.gd"), 
 	preload("res://Items/ShieldSpireSerum.gd"), 
 	preload("res://Items/StaminaPotion.gd"), 
-	preload("res://Items/WarriorSerum.gd")
+	preload("res://Items/WarriorSerum.gd"),
+	preload("res://Items/WeaponUpgradeKit.gd")
 ]

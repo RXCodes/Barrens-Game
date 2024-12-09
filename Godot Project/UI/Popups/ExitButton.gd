@@ -4,7 +4,7 @@ var exited = false
 var isReady = false
 
 func _ready() -> void:
-	await TimeManager.wait(0.1)
+	await TimeManager.wait(0.2)
 	isReady = true
 
 func _on_pressed() -> void:
