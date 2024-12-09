@@ -118,3 +118,13 @@ static func waveCompleted(earnings: int) -> void:
 	# after a delay, hide the element
 	await TimeManager.wait(1.1)
 	waveCompletedNode.hide()
+
+# pauses the countdown
+static func pause() -> void:
+	if current:
+		current.process_mode = Node.PROCESS_MODE_DISABLED
+
+# resumes the countdown
+static func unpause() -> void:
+	if current:
+		current.process_mode = Node.PROCESS_MODE_INHERIT

@@ -255,7 +255,7 @@ tracks/8/path = NodePath("PortalSound:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(-0.0333333, 1.5),
+"times": PackedFloat32Array(-0.1, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -270,7 +270,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(12.7333, 15.8333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-10.0, -60.0]
+"values": [0.0, -60.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_afb1y"]
@@ -355,7 +355,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_02vle")
 
 [node name="ExplodeSound" type="AudioStreamPlayer2D" parent="."]
-volume_db = -10.0
+volume_db = 6.0
 
 [node name="PortalSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_kt8h4")

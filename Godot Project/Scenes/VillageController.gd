@@ -315,3 +315,17 @@ func startBluePortalLoop() -> void:
 func enemyKilled() -> void:
 	targetEnemyCount -= 1
 	WaveInfoDisplay.setEnemyCount(targetEnemyCount)
+
+# pauses events in the village controller and the level
+static func pause() -> void:
+	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_DISABLED
+	WaveDisplay.pause()
+	if current:
+		current.process_mode = Node.PROCESS_MODE_DISABLED
+
+# resumes processes in the village controller and the level
+static func unpause() -> void:
+	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
+	WaveDisplay.unpause()
+	if current:
+		current.process_mode = Node.PROCESS_MODE_INHERIT

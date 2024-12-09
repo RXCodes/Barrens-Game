@@ -42,6 +42,7 @@ var leftoverAmmoCount: int:
 
 ## how much time it takes to reload this weapon in seconds
 @export var reloadTime: float = 1.5
+var baseReloadTimeMultiplier = 1.0
 
 @export_group("Bullet Properties")
 
@@ -135,7 +136,7 @@ var leftoverAmmoCount: int:
 @export var silverTargetSpreadMultiplier: float = 0.9
 
 ## how much to multiply the damage for silver rarity
-@export var silverTargetDamageMultiplier: float = 1.25
+@export var silverTargetDamageMultiplier: float = 1.4
 
 ## how much to multiply the firing rate for silver rarity
 @export var silverFireRateMultiplier: float = 0.85
@@ -156,7 +157,7 @@ var leftoverAmmoCount: int:
 @export var goldenTargetSpreadMultiplier: float = 0.8
 
 ## how much to multiply the damage for silver rarity
-@export var goldenTargetDamageMultiplier: float = 1.55
+@export var goldenTargetDamageMultiplier: float = 2.0
 
 ## how much to multiply the firing rate for silver rarity
 @export var goldenFireRateMultiplier: float = 0.75
@@ -186,7 +187,7 @@ func setWeaponRarity(newRarity: Gun.Rarity) -> void:
 		rangeSpread *= silverTargetSpreadMultiplier
 		targetDamage *= silverTargetDamageMultiplier
 		fireRate *= silverFireRateMultiplier
-		reloadTime *= silverReloadTimeMultiplier
+		baseReloadTimeMultiplier = silverReloadTimeMultiplier
 		maximumMagCapacity += silverMagazineSizeIncrease
 		bulletMultiplier += silverBulletMultiplierIncrease
 		displayName = "Silver " + displayName
@@ -194,7 +195,7 @@ func setWeaponRarity(newRarity: Gun.Rarity) -> void:
 		rangeSpread *= goldenTargetSpreadMultiplier
 		targetDamage *= goldenTargetDamageMultiplier
 		fireRate *= goldenFireRateMultiplier
-		reloadTime *= goldenReloadTimeMultiplier
+		baseReloadTimeMultiplier = goldenReloadTimeMultiplier
 		maximumMagCapacity += goldenMagazineSizeIncrease
 		bulletMultiplier += goldenBulletMultiplierIncrease
 		displayName = "Golden " + displayName
@@ -247,7 +248,9 @@ func reload(forced: bool) -> void:
 	reloading = true
 	if gunInteractor.onReload:
 		gunInteractor.onReload.call()
-	var newReloadTimer = TimeManager.waitTimer(reloadTime / gunInteractor.reloadSpeedDivisor)
+	var playbackSpeed = gunInteractor.reloadSpeedDivisor / baseReloadTimeMultiplier
+	var newReloadTimer = TimeManager.waitTimer(reloadTime / playbackSpeed)
+	reloadAudioPlayer.pitch_scale = playbackSpeed
 	reloadTimer = newReloadTimer
 	await reloadTimer.timeout
 	if reloadTimer != newReloadTimer:

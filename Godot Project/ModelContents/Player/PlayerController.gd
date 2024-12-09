@@ -410,7 +410,8 @@ func onFire() -> void:
 	
 	# after shoot animation is played, play cocking animation if any
 	# this only plays if there's at least one ammo in the magazine to load from
-	await TimeManager.wait(shootAnimationTime / gunInteractor.fireRateDivisor)
+	var playbackSpeed = reloadSpeedDivisor / gunInteractor.currentWeapon.baseReloadTimeMultiplier
+	await TimeManager.wait(shootAnimationTime / playbackSpeed)
 	if currentGunIdentifier == gunInteractor.currentWeapon.fileName:
 		if gunInteractor.currentWeapon.currentMagCapacity >= 1:
 			gunInteractor.currentWeapon.cockWeapon()
@@ -427,8 +428,9 @@ func onCockWeapon() -> void:
 
 func onReload() -> void:
 	resetHandAnimations()
-	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName, -1, reloadSpeedDivisor)
-	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime / reloadSpeedDivisor)
+	var playbackSpeed = reloadSpeedDivisor / gunInteractor.currentWeapon.baseReloadTimeMultiplier
+	actionAnimationPlayer.play("Reload-" + gunInteractor.currentWeapon.fileName, -1, playbackSpeed)
+	Crosshair.reloadWeapon(gunInteractor.currentWeapon.reloadTime / playbackSpeed)
 
 func onFinishReload() -> void:
 	AmmoInfoDisplay.gunReloaded()

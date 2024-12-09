@@ -13,7 +13,7 @@ static var appearSound: AudioStreamPlayer
 func _ready() -> void:
 	# pause the scene
 	current = self
-	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_DISABLED
+	VillageController.pause()
 	TutorialManager.shouldDisableControls = true
 	await TimeManager.wait(0.05)
 	
@@ -61,14 +61,14 @@ static func confirmButtonPressed() -> void:
 		if Upgrade.ignoreUpgradeNames.has(selectedUpgrade.upgradeName):
 			Player.current.pickupCash(1000)
 			TextAlert.setupAlert("You already have this upgrade - compensated 1,000 cash", Color.CYAN)
-			NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
+			VillageController.unpause()
 			GamePopup.closeCurrent()
 			await TimeManager.wait(0.1)
 			TutorialManager.shouldDisableControls = false
 			return
 		Upgrade.ignoreUpgradeNames.append(selectedUpgrade.upgradeName)
 	selectedUpgrade.onUpgrade(selectedUpgrade.preferredUpgradeAmounts)
-	NodeRelations.rootNode.find_child("Level").process_mode = Node.PROCESS_MODE_INHERIT
+	VillageController.unpause()
 	if selectedUpgrade.upgradeName == "Gamble":
 		await TimeManager.wait(0.1)
 		TutorialManager.shouldDisableControls = false

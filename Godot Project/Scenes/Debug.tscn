@@ -133,9 +133,9 @@ script/source = "extends Node2D
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var crates = get_tree().get_nodes_in_group(\"Crates\")
-	if crates.size() >= 50:
+	if crates.size() >= 10:
 		return
-	var randomSpawn = Vector2(randfn(0, 1000), randfn(0, 1000))
+	var randomSpawn = Vector2(randfn(0, 200), randfn(0, 200))
 	var crate = EnemySpawner.spawnEnemy(\"SupplyCrate\", randomSpawn)
 	crate.add_to_group(\"Crates\")
 "
