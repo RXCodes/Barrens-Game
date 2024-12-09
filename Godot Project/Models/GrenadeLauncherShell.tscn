@@ -85,7 +85,7 @@ _data = [Vector2(0, 0), 0.0, 23.6503, 0, 0, Vector2(0.050505, 100), 0.0, 0.0, 0,
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_34u23"]
-colors = PackedColorArray(0.734419, 0.946343, 0.997334, 1, 0.818384, 0.494838, 0, 1)
+colors = PackedColorArray(0.734419, 0.946343, 0.997334, 1, 0.322919, 0.566015, 0.998886, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nvjv"]
 radius = 8.0

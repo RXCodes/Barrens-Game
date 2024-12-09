@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=4 uid="uid://ba8xlrx4gh7yl"]
+[gd_scene load_steps=131 format=4 uid="uid://ba8xlrx4gh7yl"]
 
 [ext_resource type="Script" path="res://HelperClasses/NodeRelations.gd" id="1_875xw"]
 [ext_resource type="PackedScene" uid="uid://bhv6i8jxkr20m" path="res://Environment/Ambience.tscn" id="2_q3l28"]
@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://b7toj4jjwpymk" path="res://WeaponsContents/AK47/AK47.png" id="51_imopv"]
 [ext_resource type="Texture2D" uid="uid://bg6p20c00xb6r" path="res://Environment/Graveyard/GraveyardBottom.png" id="52_bomwk"]
 [ext_resource type="Texture2D" uid="uid://cmvlklxuckjqv" path="res://Environment/Border.png" id="52_dttcw"]
+[ext_resource type="Texture2D" uid="uid://7n2lct0sl3f3" path="res://WeaponsContents/GrenadeLauncher/GrenadeLauncher.png" id="52_k1j0j"]
 [ext_resource type="Texture2D" uid="uid://c06jw6owawlfb" path="res://WeaponsContents/ScarL/Scar-L.png" id="52_od545"]
 [ext_resource type="Texture2D" uid="uid://d2si3jncqtmgg" path="res://WeaponsContents/MachineGun/MachineGun.png" id="52_wb7qa"]
 [ext_resource type="PackedScene" uid="uid://bxe6vjhsw81h7" path="res://Models/AmmoDispenser.tscn" id="53_351gy"]
@@ -5342,7 +5343,7 @@ type = 2
 itemIdentifier = "BulletStorm"
 upgradeAmounts = Array[float]([2.0])
 limitSales = true
-limitAmount = 5
+limitAmount = 3
 costIncrementMultiplier = 1.4
 
 [node name="SpeedyRecoveryUpgrade" type="Node" parent="Level/ShopVan3"]
@@ -5377,6 +5378,16 @@ costIncrementMultiplier = 1.6
 [node name="ShopVan4" parent="Level" instance=ExtResource("46_vpcry")]
 position = Vector2(451, -2293)
 flip_h = true
+
+[node name="GrenadeLauncherShopItem" type="Node" parent="Level/ShopVan4"]
+script = ExtResource("47_ud1rn")
+displayName = "Grenade Launcher"
+displayTexture = ExtResource("52_k1j0j")
+displayTextureOffset = Vector2(-20, 0)
+displayScale = 0.5
+price = 2000
+description = "Boom boom time!"
+itemIdentifier = "GrenadeLauncher"
 
 [node name="EnergeticUpgrade" type="Node" parent="Level/ShopVan4"]
 script = ExtResource("47_ud1rn")

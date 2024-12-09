@@ -33,3 +33,6 @@ func onDeath() -> void:
 	if randi_range(1, 50) == 1:
 		var gun = Gun.gunFromString("ScarL")
 		EnemySpawner.spawnWeapon(gun, getPosition())
+	if randi_range(1, 50) == 1:
+		var gun = Gun.gunFromString("GrenadeLauncher")
+		EnemySpawner.spawnWeapon(gun, getPosition())
