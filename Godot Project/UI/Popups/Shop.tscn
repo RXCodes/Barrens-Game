@@ -207,7 +207,7 @@ texture = ExtResource("6_p7kix")
 
 [node name="Button" type="TextureButton" parent="Popup/SquareUI/BuyButton"]
 layout_mode = 0
-offset_right = 56.0
+offset_right = 63.0
 offset_bottom = 20.0
 
 [node name="ExitButton" type="TextureButton" parent="Popup/SquareUI"]
