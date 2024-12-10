@@ -23,16 +23,14 @@ func _ready() -> void:
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
 	moveTween.parallel().tween_property($Cash, "rotation_degrees", randfn(0, 15), tweenDuration)
 	await TimeManager.wait(1.25)
+	VillageController.addNodeToGridGroup(self)
 	canBePickedUp = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var frame = 0
 func _process(delta: float) -> void:
 	if Player.current.dead:
 		return
-	if canBePickedUp:
-		var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
-		if distanceToPlayerSquared <= (pickupDistance * Player.current.pickUpRangeMultiplier) ** 2:
-			pickup()
 	if pickingUp:
 		pickupAnimationProgress += delta / pickupDuration
 		var targetPosition = Player.current.global_position + Vector2(0, -35)
@@ -43,6 +41,16 @@ func _process(delta: float) -> void:
 		if pickupAnimationProgress >= 1.0:
 			Player.current.pickupCash(amount)
 			queue_free()
+		return
+	
+	# only check once every few frames
+	frame += 1
+	if frame == 5:
+		if canBePickedUp:
+			var distanceToPlayerSquared = Player.current.global_position.distance_squared_to(global_position)
+			if distanceToPlayerSquared <= (pickupDistance * Player.current.pickUpRangeMultiplier) ** 2:
+				pickup()
+		frame = 0
 
 var pickupAnimationProgress = 0.0
 var originalPosition: Vector2

@@ -7,6 +7,6 @@
 script = ExtResource("1_jgpc0")
 upgradeName = "Armored"
 description = "increase defense by [amt]% but reduce movement speed by [amt2]%"
-preferredUpgradeAmounts = Array[float]([250.0, 25.0])
+preferredUpgradeAmounts = Array[float]([50.0, 20.0])
 texture = ExtResource("2_0yu1y")
-maxRandomUpgradeAmountMultiplier = 2.0
+maxRandomUpgradeAmountMultiplier = 1.5

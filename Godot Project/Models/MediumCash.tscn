@@ -128,7 +128,7 @@ _data = {
 "RESET": SubResource("Animation_2q7es")
 }
 
-[node name="CashEntity" type="Node2D"]
+[node name="CashEntity" type="Node2D" groups=["Cash", "GridEntities"]]
 position = Vector2(-73, 61)
 script = ExtResource("1_b68l3")
 

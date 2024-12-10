@@ -72,6 +72,8 @@ folder_colors={
 
 NavigationGroup="Nodes in this group will have all collisions used in pathfinding."
 Item=""
+Cash=""
+GridEntities=""
 
 [gui]
 

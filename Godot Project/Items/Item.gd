@@ -68,6 +68,8 @@ func _ready() -> void:
 	newPosition.y += randfn(0, 12.5)
 	var tweenDuration = 1.0 / $AnimationPlayer.speed_scale
 	moveTween.tween_property(self, "global_position", newPosition, tweenDuration)
+	await $AnimationPlayer.animation_finished
+	VillageController.addNodeToGridGroup(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

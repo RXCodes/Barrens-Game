@@ -43,45 +43,6 @@ tracks/2/keys = {
 "values": [Vector2(0.4, 0), Vector2(0.423689, 0.0734152), Vector2(0.492436, 0.286475), Vector2(0.599512, 0.618322), Vector2(0.734436, 1.03647), Vector2(0.884, 1.5), Vector2(0.862993, 1.16019), Vector2(0.838822, 0.769199), Vector2(0.826373, 0.567815), Vector2(0.827629, 0.588137), Vector2(0.836054, 0.724412), Vector2(0.843876, 0.850952), Vector2(0.846972, 0.901021), Vector2(0.845618, 0.879123), Vector2(0.842467, 0.828158), Vector2(0.840049, 0.789044), Vector2(0.839407, 0.778647), Vector2(0.840143, 0.790567), Vector2(0.84126, 0.808628), Vector2(0.841969, 0.820099), Vector2(0.842047, 0.82136), Vector2(0.841719, 0.816051), Vector2(0.841341, 0.809942), Vector2(0.841147, 0.806795), Vector2(0.841166, 0.807113), Vector2(0.841298, 0.809242), Vector2(0.84142, 0.811219), Vector2(0.841468, 0.812001), Vector2(0.841447, 0.811659), Vector2(0.841398, 0.810863), Vector2(0.841381, 0.810588)]
 }
 
-[sub_resource type="Animation" id="Animation_2q7es"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.560915, 0.540294)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Cash:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-7.62939e-06, 40.7185)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Cash:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.841372, 0.810441)]
-}
-
 [sub_resource type="Animation" id="Animation_2yrjo"]
 resource_name = "CashPickup"
 tracks/0/type = "value"
@@ -121,6 +82,45 @@ tracks/2/keys = {
 "values": [Vector2(0.884, 1.5), Vector2(0.86729, 1.2297), Vector2(0.846035, 0.885873), Vector2(0.830715, 0.638051), Vector2(0.825475, 0.553293), Vector2(0.828755, 0.606342), Vector2(0.836044, 0.724246), Vector2(0.842841, 0.834201), Vector2(0.846515, 0.893632), Vector2(0.8467, 0.896636), Vector2(0.844612, 0.862848), Vector2(0.841955, 0.81987), Vector2(0.84004, 0.788892), Vector2(0.839385, 0.778297), Vector2(0.839795, 0.784929), Vector2(0.840706, 0.799667), Vector2(0.841556, 0.813411), Vector2(0.842015, 0.82084), Vector2(0.842038, 0.821215), Vector2(0.841777, 0.816992), Vector2(0.841445, 0.81162), Vector2(0.841205, 0.807747), Vector2(0.841124, 0.806423), Vector2(0.841175, 0.807252), Vector2(0.841289, 0.809094), Vector2(0.841395, 0.810812), Vector2(0.841452, 0.811741), Vector2(0.841455, 0.811788), Vector2(0.841423, 0.81126), Vector2(0.841381, 0.810588), Vector2(0.841372, 0.810441)]
 }
 
+[sub_resource type="Animation" id="Animation_2q7es"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.560915, 0.540294)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Cash:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-7.62939e-06, 40.7185)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Cash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.841372, 0.810441)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7qnai"]
 _data = {
 "CashBounce": SubResource("Animation_8eurx"),
@@ -128,7 +128,7 @@ _data = {
 "RESET": SubResource("Animation_2q7es")
 }
 
-[node name="CashEntity" type="Node2D"]
+[node name="CashEntity" type="Node2D" groups=["Cash", "GridEntities"]]
 position = Vector2(-73, 61)
 script = ExtResource("1_pi11b")
 

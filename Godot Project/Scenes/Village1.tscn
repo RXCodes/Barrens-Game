@@ -5239,7 +5239,7 @@ limitAmount = 1
 canRestock = true
 restockTime = 10
 restockAmount = 1
-costIncrementMultiplier = 1.25
+costIncrementMultiplier = 1.2
 
 [node name="BigHeartUpgrade" type="Node" parent="Level/ShopVan"]
 script = ExtResource("47_ud1rn")
