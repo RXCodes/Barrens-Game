@@ -48,7 +48,7 @@ func summonProjectile() -> void:
 	var fireball: WormFireball = EnemySpawner.spawnEnemy("WormFireball", getPosition())
 	fireball.material = renderer.material.duplicate()
 	fireball.material.set_shader_parameter("brightness", 0)
-	fireball.wormType = variantType
+	fireball.wormEnemy = self
 	fireball.goToPosition(getTargetPosition())
 
 func onDeath() -> void:

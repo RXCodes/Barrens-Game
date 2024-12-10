@@ -1,6 +1,10 @@
 class_name Explosion extends Node2D
 
 var isFromPlayer = false
+var enemySource: EnemyAI:
+	set(newSource):
+		set_meta(EnemyAI.parentControllerKey, newSource)
+		enemySource = newSource
 
 static func create(position: Vector2, damage: float, hurtBoxType: EnemyAI.HurtBoxType, color: Color = Color("f2d862")) -> Explosion:
 	var explosion: Explosion = preload("res://Models/Explosion.tscn").instantiate()

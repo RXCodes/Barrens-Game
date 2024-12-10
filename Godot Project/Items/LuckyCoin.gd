@@ -13,4 +13,7 @@ static func onConsume() -> void:
 	GamePopup.openPopup("UpgradeSelection")
 
 static func consumeTest() -> bool:
+	if VillageController.current.receivingUpgrade:
+		TextAlert.setupAlert("You're already receiving an upgrade - please wait", Color.SKY_BLUE)
+		return false
 	return true

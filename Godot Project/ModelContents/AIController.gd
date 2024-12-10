@@ -241,13 +241,14 @@ func onHit(globalPosition: Vector2) -> void:
 	if dead:
 		return
 	if actionAnimationPlayer:
-		actionAnimationPlayer.stop()
 		var directionVector = globalPosition - collisionRigidBody.global_position
 		if directionVector.x > 0 == not flipX:
 			if actionAnimationPlayer.has_animation(hitFrontAnimation):
+				actionAnimationPlayer.stop()
 				actionAnimationPlayer.play(hitFrontAnimation)
 		else:
 			if actionAnimationPlayer.has_animation(hitBackAnimation):
+				actionAnimationPlayer.stop()
 				actionAnimationPlayer.play(hitBackAnimation)
 	var random = Vector2(randfn(0, 10), randfn(0, 10))
 	HitParticle.spawnParticle(globalPosition + random, z_index + 30)
@@ -590,7 +591,8 @@ func kill() -> void:
 	collisionRigidBody.collision_layer = 0
 	hasAI = false
 	if actionAnimationPlayer:
-		actionAnimationPlayer.stop()
+		if actionAnimationPlayer.is_playing():
+			actionAnimationPlayer.stop()
 	mainAnimationPlayer.stop()
 	mainAnimationPlayer.play(deathAnimation)
 	var deathSounds = $ColliderBox/DeathSounds

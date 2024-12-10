@@ -342,10 +342,10 @@ tracks/1/path = NodePath("FlipTransform/Animations:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0.122, 0.13)]
+"values": [Vector2(0.122, 0.3), Vector2(0.122, 0.216208), Vector2(0.122, 0.119794), Vector2(0.122, 0.0701353), Vector2(0.122, 0.0751464), Vector2(0.122, 0.10875), Vector2(0.122, 0.139953), Vector2(0.122, 0.152299), Vector2(0.122, 0.1469), Vector2(0.122, 0.134332), Vector2(0.122, 0.124687), Vector2(0.122, 0.122124), Vector2(0.122, 0.125063), Vector2(0.122, 0.129517), Vector2(0.122, 0.132345), Vector2(0.122, 0.132656), Vector2(0.122, 0.131347), Vector2(0.122, 0.129841), Vector2(0.122, 0.129065), Vector2(0.122, 0.129143), Vector2(0.122, 0.129668), Vector2(0.122, 0.130156), Vector2(0.122, 0.130348), Vector2(0.122, 0.130264), Vector2(0.122, 0.130068), Vector2(0.122, 0.13)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -381,7 +381,7 @@ tracks/0/path = NodePath("FlipTransform/Animations:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.123338, 0.130809)]
@@ -430,13 +430,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("FlipTransform/Animations:scale")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.433333, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.123338, 0.130809), Vector2(0.12, 0.14), Vector2(0.123338, 0.130809)]
+"values": [Vector2(0.123338, 0.130809), Vector2(0.11, 0.128), Vector2(0.123338, 0.130809)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

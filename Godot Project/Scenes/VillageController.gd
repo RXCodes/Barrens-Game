@@ -36,6 +36,7 @@ func _ready() -> void:
 		spawnEnemies()
 		await finishedSpawningEnemies
 		await completedWave
+		receivingUpgrade = true
 		waveStarted = false
 		currentWave += 1
 		var earnings = round(Player.current.compoundInterest * Player.current.cash)
@@ -45,6 +46,7 @@ func _ready() -> void:
 		WaveDisplay.waveCompleted(earnings)
 		await TimeManager.wait(3.0)
 		GamePopup.openPopup("UpgradeSelection")
+		receivingUpgrade = false
 		await TimeManager.wait(0.5)
 		await GamePopup.popupClosed
 		await TimeManager.wait(2.0)
@@ -62,6 +64,7 @@ var targetEnemyCount = 0
 var maximumActiveEnemyCount = 50
 
 var waveStarted = false
+var receivingUpgrade = false
 var enemyObjectPool = []
 var enemySpawnNames = []
 
@@ -333,6 +336,8 @@ static func unpause() -> void:
 static var gridSize = 250
 static var activeGridPositions = {}
 static func addNodeToGridGroup(node: Node2D) -> void:
+	if Player.current.pickUpRangeMultiplier >= 99:
+		return
 	var gridGroup = gridGroupForPosition(node.global_position)
 	node.add_to_group(gridGroup)
 	if gridGroup not in activeGridPositions.keys():
@@ -383,4 +388,9 @@ static func processGridGroups() -> void:
 static func startGridGroupLoop() -> void:
 	while not Player.current.dead:
 		await TimeManager.wait(0.25)
+		if Player.current.pickUpRangeMultiplier >= 99:
+			var nodes = VillageController.current.get_tree().get_nodes_in_group("GridEntities")
+			for node: Node2D in nodes:
+				node.process_mode = Node.PROCESS_MODE_INHERIT
+			return
 		processGridGroups()

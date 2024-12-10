@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://2jq2mutff8u0"]
+[gd_scene load_steps=24 format=3 uid="uid://2jq2mutff8u0"]
 
 [ext_resource type="Script" path="res://Models/WormFireball.gd" id="1_r00gt"]
 [ext_resource type="Texture2D" uid="uid://d2qcvkjk1aqk3" path="res://ModelContents/Shadow.png" id="2_g1gmh"]
 [ext_resource type="Texture2D" uid="uid://crtenom5kgixk" path="res://ModelContents/Fireball.png" id="3_ke2sa"]
 [ext_resource type="Texture2D" uid="uid://cyrqjwoj3x33h" path="res://ModelContents/Lightning.png" id="4_k5udl"]
 [ext_resource type="Texture2D" uid="uid://d3o3h014v7rkf" path="res://Particles/SmokeAnimation/SmokeAnimation.png" id="5_pmp31"]
+[ext_resource type="Texture2D" uid="uid://covxp6jlxfhx6" path="res://ModelContents/Enemies/WormTarget.png" id="6_yd2mi"]
 
 [sub_resource type="Animation" id="Animation_a3sfp"]
 length = 0.001
@@ -84,10 +85,51 @@ tracks/2/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_cwp3h"]
+resource_name = "SummonAir"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3, 1.33333, 1.36667, 1.4, 1.43333, 1.46667, 1.5, 1.53333, 1.56667, 1.6, 1.63333, 1.66667, 1.7, 1.73333, 1.76667, 1.8, 1.83333, 1.86667, 1.9, 1.93333, 1.96667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.194766, 0.194766), Vector2(0.189547, 0.189547), Vector2(0.184357, 0.184357), Vector2(0.179209, 0.179209), Vector2(0.174118, 0.174118), Vector2(0.169098, 0.169098), Vector2(0.164163, 0.164163), Vector2(0.159326, 0.159326), Vector2(0.154601, 0.154601), Vector2(0.15, 0.15), Vector2(0.145536, 0.145536), Vector2(0.141221, 0.141221), Vector2(0.137068, 0.137068), Vector2(0.133087, 0.133087), Vector2(0.129289, 0.129289), Vector2(0.125686, 0.125686), Vector2(0.122285, 0.122285), Vector2(0.119098, 0.119098), Vector2(0.116133, 0.116133), Vector2(0.113397, 0.113397), Vector2(0.110899, 0.110899), Vector2(0.108645, 0.108645), Vector2(0.106642, 0.106642), Vector2(0.104894, 0.104894), Vector2(0.103407, 0.103407), Vector2(0.102185, 0.102185), Vector2(0.101231, 0.101231), Vector2(0.100548, 0.100548), Vector2(0.100137, 0.100137), Vector2(0.1, 0.1), Vector2(0.100959, 0.100959), Vector2(0.103835, 0.103835), Vector2(0.108618, 0.108618), Vector2(0.115297, 0.115297), Vector2(0.123852, 0.123852), Vector2(0.13426, 0.13426), Vector2(0.146494, 0.146494), Vector2(0.160518, 0.160518), Vector2(0.176295, 0.176295), Vector2(0.193782, 0.193782), Vector2(0.212931, 0.212931), Vector2(0.233688, 0.233688), Vector2(0.255998, 0.255998), Vector2(0.279799, 0.279799), Vector2(0.305025, 0.305025), Vector2(0.331609, 0.331609), Vector2(0.359476, 0.359476), Vector2(0.38855, 0.38855), Vector2(0.418753, 0.418753), Vector2(0.45, 0.45), Vector2(0.482207, 0.482207), Vector2(0.515284, 0.515284), Vector2(0.549142, 0.549142), Vector2(0.583688, 0.583688), Vector2(0.618827, 0.618827), Vector2(0.654462, 0.654462), Vector2(0.690496, 0.690496), Vector2(0.72683, 0.72683), Vector2(0.763365, 0.763365), Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Fireball:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5, 0.533333, 0.566667, 0.6, 0.633333, 0.666667, 0.7, 0.733333, 0.766667, 0.8, 0.833333, 0.866667, 0.9, 0.933333, 0.966667, 1, 1.03333, 1.06667, 1.1, 1.13333, 1.16667, 1.2, 1.23333, 1.26667, 1.3, 1.33333, 1.36667, 1.4, 1.43333, 1.46667, 1.5, 1.53333, 1.56667, 1.6, 1.63333, 1.66667, 1.7, 1.73333, 1.76667, 1.8, 1.83333, 1.86667, 1.9, 1.93333, 1.96667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -247), Vector2(0, -252.914), Vector2(0, -258.812), Vector2(0, -264.677), Vector2(0, -270.494), Vector2(0, -276.247), Vector2(0, -281.919), Vector2(0, -287.496), Vector2(0, -292.961), Vector2(0, -298.301), Vector2(0, -303.5), Vector2(0, -308.544), Vector2(0, -313.42), Vector2(0, -318.113), Vector2(0, -322.612), Vector2(0, -326.903), Vector2(0, -330.975), Vector2(0, -334.818), Vector2(0, -338.419), Vector2(0, -341.77), Vector2(0, -344.861), Vector2(0, -347.684), Vector2(0, -350.231), Vector2(0, -352.495), Vector2(0, -354.469), Vector2(0, -356.15), Vector2(0, -357.531), Vector2(0, -358.609), Vector2(0, -359.381), Vector2(0, -359.845), Vector2(0, -360), Vector2(0, -359.516), Vector2(0, -358.066), Vector2(0, -355.654), Vector2(0, -352.286), Vector2(0, -347.972), Vector2(0, -342.723), Vector2(0, -336.554), Vector2(0, -329.482), Vector2(0, -321.525), Vector2(0, -312.707), Vector2(0, -303.051), Vector2(0, -292.583), Vector2(0, -281.333), Vector2(0, -269.33), Vector2(0, -256.609), Vector2(0, -243.203), Vector2(0, -229.15), Vector2(0, -214.488), Vector2(0, -199.258), Vector2(0, -183.5), Vector2(0, -167.259), Vector2(0, -150.578), Vector2(0, -133.504), Vector2(0, -116.083), Vector2(0, -98.3631), Vector2(0, -80.3928), Vector2(0, -62.2214), Vector2(0, -43.8986), Vector2(0, -25.4746), Vector2(0, -7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Fireball/SmokeStart:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ocr2j"]
 _data = {
 "RESET": SubResource("Animation_a3sfp"),
-"Summon": SubResource("Animation_i6vst")
+"Summon": SubResource("Animation_i6vst"),
+"SummonAir": SubResource("Animation_cwp3h")
 }
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_esd7d"]
@@ -139,6 +181,67 @@ colors = PackedColorArray(0.734419, 0.946343, 0.997334, 1, 0.14, 0.312, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6nvjv"]
 radius = 8.0
+
+[sub_resource type="Animation" id="Animation_uvqla"]
+resource_name = "Summon"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.551), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qexjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0y5g"]
+_data = {
+"RESET": SubResource("Animation_qexjs"),
+"Summon": SubResource("Animation_uvqla")
+}
 
 [node name="FireballEntity" type="CanvasGroup"]
 script = ExtResource("1_r00gt")
@@ -224,3 +327,12 @@ anim_speed_max = 1.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 shape = SubResource("CircleShape2D_6nvjv")
+
+[node name="WormIndicator" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("6_yd2mi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WormIndicator"]
+libraries = {
+"": SubResource("AnimationLibrary_y0y5g")
+}
